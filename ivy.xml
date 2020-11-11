@@ -1,0 +1,7 @@
+<ivy-module version="2.0">
+    <info organisation="kuenzl.sbt" module="sbt-table-generator"/>
+    <dependencies>
+        <dependency org="commons-cli" name="commons-cli" rev="1.4" transitive="false"/>
+        <dependency org="org.apache.commons" name="commons-csv" rev="1.8" transitive="false"/>
+    </dependencies>
+</ivy-module>
