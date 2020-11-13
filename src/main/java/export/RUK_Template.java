@@ -105,7 +105,7 @@ public class RUK_Template extends ATemplate
 
         try
         {
-            strb.append(readTemplateHeader("C:\\Users\\Kuenzl\\Documents\\GitHub\\sbt-generator\\RUK_Header"));
+            strb.append(readTemplateHeader("/Users/moritzkunzl/Documents/GitHub/sbt-generator/RUK_Header"));
         } catch (IOException e)
         {
             e.printStackTrace();

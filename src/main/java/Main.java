@@ -15,7 +15,7 @@ public class Main
 {
     public static void main(String[] args) throws IOException
     {
-        File file = new File("C:/Users/Kuenzl/Desktop/SBT/erkCSV.csv");
+        File file = new File("/Users/moritzkunzl/Desktop/HTML/ProjektDaten.csv");
 
         Parser parser = new Parser(file);
 

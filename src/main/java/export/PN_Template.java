@@ -87,7 +87,7 @@ public class PN_Template extends ATemplate
 
         try
         {
-            strb.append(readTemplateHeader("C:\\Users\\Kuenzl\\Documents\\GitHub\\sbt-generator\\PN_Header"));
+            strb.append(readTemplateHeader("/Users/moritzkunzl/Documents/GitHub/sbt-generator/PN_Header"));
         } catch (IOException e)
         {
             e.printStackTrace();
