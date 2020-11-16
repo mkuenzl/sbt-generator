@@ -82,11 +82,11 @@ public class PN_TemplateStrategy extends ATemplateStrategy
             "  solid windowtext .5pt;padding:\n" +
             "  0cm 1.4pt 0cm 2.85pt;height:34.0pt'");
     //Erkundungsstelle Name
-    WordObjectCell pnErkundungsstelleCell = new WordObjectCell("width=38 style='width:28.45pt;border-top:none;border-left:none;\n" +
+    String pnErkundungsstelleCell = "width=38 style='width:28.45pt;border-top:none;border-left:none;\n" +
             "  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;\n" +
             "  mso-border-top-alt:double windowtext 1.5pt;mso-border-left-alt:solid windowtext .5pt;\n" +
             "  mso-border-alt:solid windowtext .5pt;\n" +
-            "  padding:0cm 1.4pt 0cm 2.85pt;height:34.0pt'");
+            "  padding:0cm 1.4pt 0cm 2.85pt;height:34.0pt'";
     //Tiefe
     WordObjectCell pnTiefeCell = new WordObjectCell("width=57 style='width:42.65pt;border-top:none;border-left:none;\n" +
             "  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;\n" +
@@ -130,36 +130,37 @@ public class PN_TemplateStrategy extends ATemplateStrategy
     {
         WordObjectRow wordTableRow = new WordObjectRow(htmlRowStyle);
 
-        //Probe
+        //Spalte 1 ProbeName
         content = new WordObjectCellContent(htmlContentStyle).addCellContent(String.valueOf(count++));
         wordTableRow.addCell(pnProbeCell.setContent(content));
 
-        //Art
+        //Spalte 2 ProbeArt
         wordTableRow.addCell(pnArtCell);
 
-        //Behältnis
+        //Spalte 3 BehältnisArt
         wordTableRow.addCell(pnBehaeltnisCell);
 
-        //Vol
+        //Spalte 4 BehältnisVolumen
         wordTableRow.addCell(pnVolumenCell);
 
-        //Haufwerk
+        //Spalte 5 Haufwerk
         wordTableRow.addCell(pnHaufwerkCell);
 
-        //Art
+        //Spalte 6 Art
         wordTableRow.addCell(pnAbfallartCell);
 
-        //Farbe / Geruch / Konsistenz
+        //Spalte 7 Farbe / Geruch / Konsistenz
         wordTableRow.addCell(pnAttributeCell);
 
-        //Erkundungsstelle Name
+        //Spalte 8 ErkundungsstellenName
         content = new WordObjectCellContent(htmlContentStyle).addCellContent(erkundungsstelle.getName());
-        wordTableRow.addCell(pnErkundungsstelleCell.setContent(content));
+        WordObjectCell wordObjectCell = new WordObjectCell(pnErkundungsstelleCell);
+        wordTableRow.addCell(wordObjectCell.setContent(content));
 
-        //Tiefe
+        //Spalte 9 Tiefe
         wordTableRow.addCell(pnTiefeCell);
 
-        //Bemerkungen
+        //Spalte 10 Bemerkungen
         wordTableRow.addCell(pnBemerkungenCell);
 
         return wordTableRow;
