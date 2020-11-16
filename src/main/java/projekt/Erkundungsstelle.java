@@ -1,6 +1,4 @@
-package main.java.generation;
-
-import main.java.export.ATemplate;
+package main.java.projekt;
 
 import java.util.Map;
 

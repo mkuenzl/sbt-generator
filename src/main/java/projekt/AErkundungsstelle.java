@@ -1,7 +1,5 @@
-package main.java.generation;
+package main.java.projekt;
 
-
-import main.java.export.ATemplate;
 
 import java.util.Map;
 
@@ -17,14 +15,6 @@ public abstract class AErkundungsstelle
         this.id = data.get("ERK_ID");
         this.pruefer = data.get("ERK_PRUEFER");
         this.date = data.get("ERK_DATUM");
-    }
-
-    AErkundungsstelle(){
-
-        date = null;
-        pruefer = null;
-        id = null;
-        name = null;
     }
 
     public String getName()

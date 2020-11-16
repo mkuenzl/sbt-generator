@@ -1,8 +1,9 @@
 package main.java.export;
 
-import main.java.generation.AErkundungsstelle;
-import main.java.generation.Erkundungsstelle;
-import main.java.generation.Projekt;
+import main.java.projekt.Erkundungsstelle;
+import main.java.projekt.Projekt;
+import main.java.templates.ATemplateStrategy;
+import main.java.templates.PN_TemplateStrategy;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,17 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public abstract class ATemplate
-{
-    final String htmlCloseTab = "</table>\n" +
-            "\n" +
-            "<p class=MsoNormal><o:p>&nbsp;</o:p></p>\n" +
-            "\n" +
-            "</div>\n" +
-            "\n" +
-            "</body>\n" +
-            "\n" +
-            "</html>";
+public abstract class ATemplateExportStrategy {
 
     private void export(String path, String content){
         String exportPath = path;
@@ -54,25 +45,19 @@ public abstract class ATemplate
         }
     }
 
-    public final void export(Erkundungsstelle erkundungsstelle){
-        export(getPath(), format(erkundungsstelle));
-    }
+    public void export(Projekt projekt){
+        export(getPath(), format(projekt));
+    };
+
+    abstract String format(Projekt projekt);
 
     private String getPath(){
-        return System.getProperty("user.dir" ).concat(File.separator).concat("test.html");
+        return System.getProperty("user.dir" ).concat(File.separator).concat("testPN.html");
     }
 
-    public abstract String format(AErkundungsstelle erkundungsstelle);
-
-    public void export(final Projekt projekt){
-        export(getPath(), format(projekt));   
-    }
-
-    protected abstract String format(final Projekt projekt);
-
-    String readTemplateHeader(final String pathToHeader) throws IOException
+    String readHTMLHead(final String pathToHead) throws IOException
     {
-        String content = Files.readString(Paths.get(pathToHeader), StandardCharsets.UTF_8);
+        String content = Files.readString(Paths.get(pathToHead), StandardCharsets.UTF_8);
         return content;
     }
 }

@@ -1,10 +1,8 @@
 package main.java;
 
-import main.java.export.ATemplate;
-import main.java.export.PN_Template;
-import main.java.export.RUK_Template;
-import main.java.generation.Erkundungsstelle;
-import main.java.generation.Projekt;
+import main.java.export.HTMLTemplateExportStrategy;
+import main.java.templates.PN_TemplateStrategy;
+import main.java.projekt.Projekt;
 import main.java.util.Parser;
 
 import java.io.File;
@@ -22,7 +20,7 @@ public class Main
 
         Projekt projekt = new Projekt(parser.parse());
 
-        projekt.export(new PN_Template());
+        projekt.export(new HTMLTemplateExportStrategy());
 
     }
 }

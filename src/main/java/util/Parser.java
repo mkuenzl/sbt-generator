@@ -1,6 +1,6 @@
 package main.java.util;
 
-import main.java.generation.Erkundungsstelle;
+import main.java.projekt.Erkundungsstelle;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
