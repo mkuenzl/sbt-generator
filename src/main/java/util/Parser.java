@@ -17,7 +17,6 @@ public class Parser
 {
     final File csv;
 
-
     public Parser(File csv)
     {
         this.csv = csv;

@@ -1,10 +1,7 @@
 package main.java.export;
 
-import main.java.projekt.Erkundungsstelle;
-import main.java.projekt.Projekt;
-import main.java.templates.ATemplateStrategy;
-import main.java.templates.PN_TemplateStrategy;
 
+import main.java.projekt.Projekt;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -24,11 +21,9 @@ public abstract class ATemplateExportStrategy {
             bw = new BufferedWriter(new FileWriter(file));
             bw.write(content);
             bw.close();
-            //ProfilingLogger.addText(String.format("Export to '%s' successful.", file.getName()));
         } catch (IOException e)
         {
             e.printStackTrace();
-            //ProfilingLogger.addText(String.format("Export to '%s' failed.", file.getName()));
         } finally
         {
             if (bw != null)

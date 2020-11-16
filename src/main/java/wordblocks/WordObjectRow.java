@@ -5,14 +5,15 @@ import java.util.List;
 
 public class WordObjectRow extends AWordObject
 {
-    private List<AWordObject> cellList;
+    private List<WordObjectCell> cellList = new ArrayList<>();
 
     public WordObjectRow(final String parameter){
         super(parameter);
-        this.cellList = new ArrayList<>();
     }
 
-    public void addCell(final AWordObject cell)
+    public WordObjectRow(){ }
+
+    public void addCell(WordObjectCell cell)
     {
         this.cellList.add(cell);
     }
@@ -25,7 +26,7 @@ public class WordObjectRow extends AWordObject
         strb.append(this.getParameter());
         strb.append(">");
         strb.append("\n");
-        for (AWordObject cell: cellList)
+        for (WordObjectCell cell: cellList)
         {
             strb.append(cell.printToHtml());
             strb.append("\n");

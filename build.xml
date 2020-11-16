@@ -106,7 +106,7 @@
 
     <target name="jar" depends="compile, combine-dependencies">
         <mkdir dir="${jarPath}"/>
-        <jar destfile="${jarPath}/cbdc-testSuite.jar" basedir="${classPathMain}">
+        <jar destfile="${jarPath}/sbt-table-generator.jar" basedir="${classPathMain}">
             <zipfileset src="${distPath}/dependencies-combined.jar" excludes="META-INF/*.SF"/>
             <manifest>
                 <attribute name="Main-Class" value="Main"/>

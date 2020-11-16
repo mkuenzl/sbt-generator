@@ -2,21 +2,26 @@ package main.java.wordblocks;
 
 public class WordObjectCell extends AWordObject
 {
-    AWordObject content = null;
+    AWordObject content;
 
     public WordObjectCell(final String parameter){
         super(parameter);
     }
+
+    public WordObjectCell(final String parameter, WordObjectCellContent content){
+        super(parameter);
+        this.content = content;
+    }
+
 
     AWordObject getContent()
     {
         return content;
     }
 
-    public AWordObject setContent(final WordObjectCellContent content)
+    public void setContent(final WordObjectCellContent content)
     {
         this.content = content;
-        return this;
     }
 
     public String printToHtml(){
