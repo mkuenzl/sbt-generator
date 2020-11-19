@@ -12,4 +12,10 @@ public abstract class ATemplateStrategy implements ITemplateStrategy
         String content = Files.readString(Paths.get(pathToHeader), StandardCharsets.UTF_8);
         return content;
     }
+
+    String readHTMLHead(final String pathToHead) throws IOException
+    {
+        String content = Files.readString(Paths.get(pathToHead), StandardCharsets.UTF_8);
+        return content;
+    }
 }

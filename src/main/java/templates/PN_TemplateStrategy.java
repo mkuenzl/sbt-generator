@@ -6,6 +6,7 @@ import main.java.wordblocks.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class PN_TemplateStrategy extends ATemplateStrategy
 {
@@ -100,12 +101,12 @@ public class PN_TemplateStrategy extends ATemplateStrategy
     @Override
     public String buildHtmlTable(final Projekt projekt)
     {
-        buildTableObject(projekt);
+        buildTableObject(projekt.getErk());
         return pn98Table.printToHtml();
     }
 
     @Override
-    public void buildTableObject(final Projekt projekt) {
+    public void buildTableObject(final List<AErkundungsstelle> erkundungsstelleList) {
         try
         {
             pn98Table.setTableHeader(readTemplateHeader(System.getProperty("user.dir").concat(File.separator).concat("WordTemplates").concat(File.separator).concat("PN98").concat(File.separator).concat("PN_Template_TableHead")));
@@ -113,7 +114,7 @@ public class PN_TemplateStrategy extends ATemplateStrategy
         {
             e.printStackTrace();
         }
-        for (AErkundungsstelle erkundungsstelle : projekt.getErk()) {
+        for (AErkundungsstelle erkundungsstelle : erkundungsstelleList) {
             pn98Table.addTableRow(buildRow(erkundungsstelle));
         }
     }
@@ -137,5 +138,18 @@ public class PN_TemplateStrategy extends ATemplateStrategy
                 .build();
 
         return wordObjectRow;
+    }
+
+    @Override
+    public String getHtmlHead() {
+        try {
+            return readHTMLHead(System.getProperty("user.dir")
+                    .concat(File.separator).concat("WordTemplates")
+                    .concat(File.separator).concat("PN98")
+                    .concat(File.separator).concat("PN_Template_Head"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "<head>No Head File</head>";
     }
 }

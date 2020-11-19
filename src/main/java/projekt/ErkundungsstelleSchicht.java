@@ -1,5 +1,9 @@
 package main.java.projekt;
 
-public class ErkundungsstelleSchicht extends AErkundungsstelleSchicht
-{
+import java.util.Map;
+
+public class ErkundungsstelleSchicht extends AErkundungsstelle{
+    ErkundungsstelleSchicht(Map<String, String> data) {
+        super(data);
+    }
 }

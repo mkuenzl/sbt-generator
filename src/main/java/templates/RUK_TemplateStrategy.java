@@ -1,12 +1,13 @@
 package main.java.templates;
 
 import main.java.projekt.AErkundungsstelle;
-import main.java.projekt.AErkundungsstelleSchicht;
 import main.java.projekt.Projekt;
 import main.java.wordblocks.*;
+import org.w3c.dom.ls.LSOutput;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class RUK_TemplateStrategy extends ATemplateStrategy
 {
@@ -87,12 +88,12 @@ public class RUK_TemplateStrategy extends ATemplateStrategy
     @Override
     public String buildHtmlTable(final Projekt projekt)
     {
-            buildTableObject(projekt);
+            buildTableObject(projekt.getErk());
             return rukTable.printToHtml();
     }
 
     @Override
-    public void buildTableObject(final Projekt projekt) {
+    public void buildTableObject(final List<AErkundungsstelle> erkundungsstelleList) {
         try
         {
             rukTable.setTableHeader(readTemplateHeader(System.getProperty("user.dir").concat(File.separator).concat("WordTemplates").concat(File.separator).concat(
@@ -101,7 +102,7 @@ public class RUK_TemplateStrategy extends ATemplateStrategy
         {
             e.printStackTrace();
         }
-        for (AErkundungsstelle erkundungsstelle : projekt.getErk()) {
+        for (AErkundungsstelle erkundungsstelle : erkundungsstelleList) {
             //Wenn ERK einen RUK wert hat dann blablabla
             rukTable.addTableRow(buildRow(erkundungsstelle));
         }
@@ -124,5 +125,19 @@ public class RUK_TemplateStrategy extends ATemplateStrategy
                 .build();
 
         return wordObjectRow;
+    }
+
+    @Override
+    public String getHtmlHead() {
+        try {
+            return readHTMLHead(System.getProperty("user.dir")
+                    .concat(File.separator).concat("WordTemplates")
+                    .concat(File.separator).concat("RUK")
+                    .concat(File.separator).concat("RUK_Template_Head"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //TODO
+        return "<head>HTML HEADER FILE NOT FOUND</head>";
     }
 }

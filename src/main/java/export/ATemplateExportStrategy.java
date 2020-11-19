@@ -2,6 +2,8 @@ package main.java.export;
 
 
 import main.java.projekt.Projekt;
+import main.java.templates.ITemplateStrategy;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -11,6 +13,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public abstract class ATemplateExportStrategy {
+
+    final ITemplateStrategy strategy;
+
+    ATemplateExportStrategy(final ITemplateStrategy strategy){
+        this.strategy = strategy;
+    }
 
     private void export(String path, String content){
         String exportPath = path;
@@ -46,13 +54,10 @@ public abstract class ATemplateExportStrategy {
 
     abstract String format(Projekt projekt);
 
+    abstract String format(ITemplateStrategy strategy);
+
     private String getPath(){
         return System.getProperty("user.dir" ).concat(File.separator).concat("testPN.html");
     }
 
-    String readHTMLHead(final String pathToHead) throws IOException
-    {
-        String content = Files.readString(Paths.get(pathToHead), StandardCharsets.UTF_8);
-        return content;
-    }
 }

@@ -9,7 +9,6 @@ import java.util.List;
 public class Projekt
 {
     final List<AErkundungsstelle> erk;
-    public ITemplateStrategy template;
 
     public Projekt(final List<AErkundungsstelle> erk){
         this.erk = erk;
@@ -24,5 +23,4 @@ public class Projekt
     {
         templateExportStrategy.export(this);
     }
-
 }

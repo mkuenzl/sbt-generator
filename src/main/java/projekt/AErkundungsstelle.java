@@ -1,9 +1,12 @@
 package main.java.projekt;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
-public abstract class AErkundungsstelle
+//TODO Name zu DataStructure
+public abstract class AErkundungsstelle implements IDataSet
 {
     final String name;
     final String id;
@@ -16,6 +19,8 @@ public abstract class AErkundungsstelle
     final String konsistenz;
     final String tiefe;
     final String bemerkungen;
+
+    List<AErkundungsstelle> aErkundungsstelleList = new ArrayList<>();
 
     //Builder
     AErkundungsstelle(Map<String,String> data){
@@ -85,5 +90,9 @@ public abstract class AErkundungsstelle
     public String getBemerkungen()
     {
         return bemerkungen;
+    }
+
+    public List<AErkundungsstelle> getaErkundungsstelleList() {
+        return aErkundungsstelleList;
     }
 }
