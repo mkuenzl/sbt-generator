@@ -1,14 +1,16 @@
 package main.java.templates;
 
 import main.java.projekt.AErkundungsstelle;
+import main.java.projekt.ASchicht;
 import main.java.projekt.Projekt;
 import main.java.wordblocks.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class PN_TemplateStrategy extends ATemplateStrategy
+public final class PN_TemplateStrategy extends ATemplateStrategy
 {
     private static PN_TemplateStrategy instance;
 
@@ -101,7 +103,7 @@ public class PN_TemplateStrategy extends ATemplateStrategy
     @Override
     public String buildHtmlTable(final Projekt projekt)
     {
-        buildTableObject(projekt.getErk());
+        buildTableObject(projekt.getData());
         return pn98Table.printToHtml();
     }
 
@@ -115,29 +117,45 @@ public class PN_TemplateStrategy extends ATemplateStrategy
             e.printStackTrace();
         }
         for (AErkundungsstelle erkundungsstelle : erkundungsstelleList) {
-            pn98Table.addTableRow(buildRow(erkundungsstelle));
+            pn98Table.addTableRows(buildRows(erkundungsstelle));
         }
     }
 
     //FormatRow
     @Override
-    public WordObjectRow buildRow(AErkundungsstelle erkundungsstelle)
+    public List<WordObjectRow> buildRows(AErkundungsstelle erkundungsstelle)
     {
-        WordObjectRow wordObjectRow = new WordObjectRowBuilder()
-                .setParameter(htmlRowStyle)
-                .addCell(new WordObjectCell(pnProbeCell, new WordObjectCellContent(htmlContentStyle).addCellContent(String.valueOf(count++))))
-                .addCell(new WordObjectCell(pnArtCell, new WordObjectCellContent(htmlContentStyle).addCellContent("MP")))
-                .addCell(new WordObjectCell(pnBehaeltnisCell, new WordObjectCellContent(htmlContentStyle).addCellContent(erkundungsstelle.getBehaeltnis())))
-                .addCell(new WordObjectCell(pnVolumenCell, new WordObjectCellContent(htmlContentStyle).addCellContent("10")))
-                .addCell(new WordObjectCell(pnHaufwerkCell, new WordObjectCellContent(htmlContentStyle).addCellContent(erkundungsstelle.getPruefer())))
-                .addCell(new WordObjectCell(pnSchichtArtCell, new WordObjectCellContent(htmlContentStyle).addCellContent(erkundungsstelle.getSchichtArt())))
-                .addCell(new WordObjectCell(pnAttributeCell, new WordObjectCellContent(htmlContentStyle).addCellContent(erkundungsstelle.getFarbe())))
-                .addCell(new WordObjectCell(pnErkundungsstelleCell, new WordObjectCellContent(htmlContentStyle).addCellContent(erkundungsstelle.getName())))
-                .addCell(new WordObjectCell(pnTiefeCell, new WordObjectCellContent(htmlContentStyle).addCellContent(erkundungsstelle.getTiefe())))
-                .addCell(new WordObjectCell(pnBemerkungenCell, new WordObjectCellContent(htmlContentStyle).addCellContent(erkundungsstelle.getBemerkungen())))
-                .build();
 
-        return wordObjectRow;
+        List<WordObjectRow> tableRows = new ArrayList<>();
+
+        for (ASchicht schicht :
+                erkundungsstelle.getSchichtList())
+        {
+            WordObjectRow wordObjectRow = new WordObjectRowBuilder()
+                    .setParameter(htmlRowStyle)
+                    .addCell(new WordObjectCell(pnProbeCell, new WordObjectCellContent(htmlContentStyle).addCellContent(String.valueOf(count++))))
+                    .addCell(new WordObjectCell(pnArtCell, new WordObjectCellContent(htmlContentStyle).addCellContent("MP")))
+                    .addCell(new WordObjectCell(pnBehaeltnisCell,
+                            new WordObjectCellContent(htmlContentStyle).addCellContent(schicht.getInformation("SCHICHT_BEHAELTNIS"))))
+                    .addCell(new WordObjectCell(pnVolumenCell, new WordObjectCellContent(htmlContentStyle).addCellContent("10")))
+                    .addCell(new WordObjectCell(pnHaufwerkCell, new WordObjectCellContent(htmlContentStyle).addCellContent("TODO")))
+                    .addCell(new WordObjectCell(pnSchichtArtCell,
+                            new WordObjectCellContent(htmlContentStyle).addCellContent(schicht.getInformation("SCHICHT_ART"))))
+                    .addCell(new WordObjectCell(pnAttributeCell,
+                            new WordObjectCellContent(htmlContentStyle).addCellContent(schicht.getInformation("SCHICHT_FARBE"))))
+                    .addCell(new WordObjectCell(pnErkundungsstelleCell,
+                            new WordObjectCellContent(htmlContentStyle).addCellContent(erkundungsstelle.getInformation("ERK_ID"))))
+                    .addCell(new WordObjectCell(pnTiefeCell,
+                            new WordObjectCellContent(htmlContentStyle).addCellContent(schicht.getInformation("SCHICHT_TIEFE"))))
+                    .addCell(new WordObjectCell(pnBemerkungenCell,
+                            new WordObjectCellContent(htmlContentStyle).addCellContent(schicht.getInformation("SCHICHT_BEMERKUNGEN"))))
+                    .build();
+
+            tableRows.add(wordObjectRow);
+        }
+
+
+        return tableRows;
     }
 
     @Override

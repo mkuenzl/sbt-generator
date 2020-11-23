@@ -11,7 +11,7 @@ public interface ITemplateStrategy {
 
     void buildTableObject(final List<AErkundungsstelle> erkundungsstelleList);
 
-    WordObjectRow buildRow(AErkundungsstelle erkundungsstelle);
+    List<WordObjectRow> buildRows(AErkundungsstelle erkundungsstelle);
 
     String getHtmlHead();
 }

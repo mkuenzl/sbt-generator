@@ -1,98 +1,51 @@
 package main.java.projekt;
 
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-//TODO Name zu DataStructure
-public abstract class AErkundungsstelle implements IDataSet
+public abstract class AErkundungsstelle implements Comparable<AErkundungsstelle>
 {
-    final String name;
-    final String id;
-    final String pruefer;
-    final String date;
-    final String behaeltnis;
-    final String schichtArt;
-    final String farbe;
-    final String geruch;
-    final String konsistenz;
-    final String tiefe;
-    final String bemerkungen;
+    private final Map<String,String> information;
+    private List<ASchicht> schichtList = new ArrayList<>();
 
-    List<AErkundungsstelle> aErkundungsstelleList = new ArrayList<>();
+    AErkundungsstelle(Map<String,String> data) {
 
-    //Builder
-    AErkundungsstelle(Map<String,String> data){
-        this.name = data.get("ERK_NAME");
-        this.id = data.get("ERK_ID");
-        this.pruefer = data.get("ERK_PRUEFER");
-        this.date = data.get("ERK_DATUM");
-        this.behaeltnis = data.get("SCHICHT_BEHAELTNIS");
-        this.schichtArt = data.get("SCHICHT_ART");
-        this.farbe = data.get("SCHICHT_FARBE");
-        this.geruch = data.get("SCHICHT_GERUCH");
-        this.konsistenz = data.get("SCHICHT_KONSISTENZ");
-        this.tiefe = data.get("SCHICHT_TIEFE");
-        this.bemerkungen = data.get("SCHICHT_BEMERKUNGEN");
+        this.information = new HashMap();
+
+        for (String key : data.keySet())
+        {
+            if (key.contains("ERK_")) information.put(key, data.get(key));
+        }
     }
 
-    public String getName()
+    public String getInformation(String key){
+        return information.get(key);
+    }
+
+    @Override
+    public int compareTo(final AErkundungsstelle o)
     {
-        return name;
+        return this.getInformation("ERK_ID").compareTo(o.getInformation("ERK_ID"));
     }
 
-    public String getId()
+    // Hier Schicht Map bearbeiten
+    void addSchicht(final Map<String,String> data)
     {
-        return id;
+        Map<String, String> tmpMap = new HashMap<>();
+        for (String key : data.keySet())
+        {
+            if (key.contains("SCHICHT_") || key.contains("CHEMIE_")){
+                tmpMap.put(key, data.get(key));
+            }
+        }
+        schichtList.add(new Schicht(tmpMap));
     }
 
-    public String getPruefer()
+    public List<ASchicht> getSchichtList()
     {
-        return pruefer;
+        return schichtList;
     }
 
-    public String getDate()
-    {
-        return date;
-    }
-
-    public String getBehaeltnis()
-    {
-        return behaeltnis;
-    }
-
-    public String getSchichtArt()
-    {
-        return schichtArt;
-    }
-
-    public String getFarbe()
-    {
-        return farbe;
-    }
-
-    public String getGeruch()
-    {
-        return geruch;
-    }
-
-    public String getKonsistenz()
-    {
-        return konsistenz;
-    }
-
-    public String getTiefe()
-    {
-        return tiefe;
-    }
-
-    public String getBemerkungen()
-    {
-        return bemerkungen;
-    }
-
-    public List<AErkundungsstelle> getaErkundungsstelleList() {
-        return aErkundungsstelleList;
+    void sort(){
+        Collections.sort(schichtList);
     }
 }

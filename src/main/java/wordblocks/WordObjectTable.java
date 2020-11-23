@@ -13,8 +13,17 @@ public class WordObjectTable extends AWordObject {
         this.tableRows = new ArrayList<>();
     }
 
-    public void addTableRow(WordObjectRow tableRow){
-        tableRows.add(tableRow);
+    public void addTableRows(List<WordObjectRow> tableRows){
+
+        for (WordObjectRow row :
+                tableRows)
+        {
+            this.tableRows.add(row);
+        }
+    }
+
+    public void addTableRow(WordObjectRow row){
+        this.tableRows.add(row);
     }
 
     public void setTableHeader(String tableHeader) {
