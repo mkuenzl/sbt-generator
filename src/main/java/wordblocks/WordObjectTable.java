@@ -5,7 +5,7 @@ import java.util.List;
 
 public class WordObjectTable extends AWordObject {
 
-    private String tableHeader;
+    private String tableHeader = "";
     private List<WordObjectRow> tableRows;
 
     public WordObjectTable(final String parameter){

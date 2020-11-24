@@ -1,6 +1,7 @@
 package main.java;
 
 import main.java.export.HTMLTemplateExportStrategy;
+import main.java.templates.ERK_TemplateStrategy;
 import main.java.templates.LP_TemplateStrategy;
 import main.java.templates.PN_TemplateStrategy;
 import main.java.projekt.Projekt;
@@ -28,6 +29,6 @@ public class Main
 
         Projekt projekt = new Projekt(parser.parse());
 
-        projekt.export(new HTMLTemplateExportStrategy(LP_TemplateStrategy.getInstance()));
+        projekt.export(new HTMLTemplateExportStrategy(ERK_TemplateStrategy.getInstance()));
     }
 }
