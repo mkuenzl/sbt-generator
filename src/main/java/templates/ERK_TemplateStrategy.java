@@ -54,7 +54,7 @@ public final class ERK_TemplateStrategy extends  ATemplateStrategy
     }
 
     @Override
-    public List<WordObjectRow> buildRows(final AErkundungsstelle erkundungsstelle)
+    public List<WORow> buildRows(final AErkundungsstelle erkundungsstelle)
     {
         return null;
     }

@@ -62,11 +62,11 @@ public final class ERK_OB_TemplateStrategy extends ATemplateStrategy
 
     public String buildHtmlTable(final AErkundungsstelle erkundungsstelle)
     {
-        WordObjectTable ERK_OG_Table = new WordObjectTable("class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=604\\n\" +\n" +
+        WOTable ERK_OG_Table = new WOTable("class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=604\\n\" +\n" +
                 "                \" style='width:453.35pt;border-collapse:collapse;border:none;mso-border-alt:\\n\" +\n" +
                 "                \" solid windowtext .5pt;mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'");
 
-        ERK_OG_Table.setTableHeader(getHtmlHead());
+        ERK_OG_Table.setTableHeaderRow(getHtmlHead());
         ERK_OG_Table.addTableRows(buildRows(erkundungsstelle));
 
         return ERK_OG_Table.printToHtml();
@@ -85,31 +85,31 @@ public final class ERK_OB_TemplateStrategy extends ATemplateStrategy
     }
 
     @Override
-    public List<WordObjectRow> buildRows(final AErkundungsstelle erkundungsstelle)
+    public List<WORow> buildRows(final AErkundungsstelle erkundungsstelle)
     {
 
-        List<WordObjectRow> tableRows = new ArrayList<>();
+        List<WORow> tableRows = new ArrayList<>();
 
-        for (ASchicht schicht : erkundungsstelle.getSchichtList())
-        {
-            if ("OB".equals(schicht.getInformation("SCHICHT_AUFSCHLUSS"))){
-                WordObjectRow tableRow = new WordObjectRowBuilder()
-                        .setParameter("style='mso-yfti-irow:2;height:19.85pt'")
-                        .addCell(new WordObjectCell(schichtArtCell,
-                                new WordObjectCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(schicht.getInformation("SCHICHT_ART"))))
-                        .addCell(new WordObjectCell(dickeCell,
-                                new WordObjectCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(schicht.getInformation("SCHICHT_DICKE"))))
-                        .addCell(new WordObjectCell(pechCell,
-                                new WordObjectCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(schicht.getInformation("SCHICHT_PECH"))))
-                        .addCell(new WordObjectCell(rukCell,
-                                new WordObjectCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(schicht.getInformation("SCHICHT_RUK"))))
-                        .addCell(new WordObjectCell(bemerkungenCell,
-                                new WordObjectCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(schicht.getInformation("SCHICHT_BEMERKUNGEN"))))
-                        .build();
-
-                tableRows.add(tableRow);
-            }
-        }
+//        for (ASchicht schicht : erkundungsstelle.getSchichtList())
+//        {
+//            if ("OB".equals(schicht.getInformation("SCHICHT_AUFSCHLUSS"))){
+//                WORow tableRow = new WORowBuilder()
+//                        .setStyleAttribute("style='mso-yfti-irow:2;height:19.85pt'")
+//                        .addCell(new WOCell(schichtArtCell,
+//                                new WOCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(schicht.getInformation("SCHICHT_ART"))))
+//                        .addCell(new WOCell(dickeCell,
+//                                new WOCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(schicht.getInformation("SCHICHT_DICKE"))))
+//                        .addCell(new WOCell(pechCell,
+//                                new WOCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(schicht.getInformation("SCHICHT_PECH"))))
+//                        .addCell(new WOCell(rukCell,
+//                                new WOCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(schicht.getInformation("SCHICHT_RUK"))))
+//                        .addCell(new WOCell(bemerkungenCell,
+//                                new WOCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(schicht.getInformation("SCHICHT_BEMERKUNGEN"))))
+//                        .build();
+//
+//                tableRows.add(tableRow);
+//            }
+//        }
 
 
 

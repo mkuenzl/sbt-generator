@@ -37,7 +37,7 @@ public final class ERK_HEAD_TemplateStrategy extends ATemplateStrategy
 
     public String buildHtmlTable(final AErkundungsstelle erkundungsstelle)
     {
-        WordObjectTable ERK_HEAD_Table = new WordObjectTable("class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=604\n" +
+        WOTable ERK_HEAD_Table = new WOTable("class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=604\n" +
                 " style='width:453.35pt;border-collapse:collapse;border:none;mso-border-alt:\n" +
                 " solid windowtext .5pt;mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'");
 
@@ -59,60 +59,60 @@ public final class ERK_HEAD_TemplateStrategy extends ATemplateStrategy
     }
 
     @Override
-    public List<WordObjectRow> buildRows(final AErkundungsstelle erkundungsstelle)
+    public List<WORow> buildRows(final AErkundungsstelle erkundungsstelle)
     {
-        List<WordObjectRow> tableRows = new ArrayList<>();
+        List<WORow> tableRows = new ArrayList<>();
 
-        //Header
-        WordObjectRow tableRow1 = new WordObjectRowBuilder()
-                .setParameter(htmlRowStyle)
-                .addCell(new WordObjectCell("width=151 style='width:113.15pt;border:solid windowtext 1.0pt;mso-border-alt:\n" +
-                        "  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:19.85pt'",
-                        new WordObjectCellContent(htmlContentStyle, htmlSpan).addCellContent("Erkundungsstelle")))
-                .addCell(new WordObjectCell("width=453 colspan=13 style='width:339.95pt;border:solid windowtext 1.0pt;\n" +
-                        "  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:\n" +
-                        "  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:19.85pt'",
-                        new WordObjectCellContent(htmlContentStyle, htmlSpan).addCellContent(erkundungsstelle.getInformation("ERK_ORT"))))
-                .build();
-
-        tableRows.add(tableRow1);
-
-        String cellStyle = "width=151 colspan=3 style='width:113.15pt;border-top:none;border-left:\n" +
-                "  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;\n" +
-                "  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;\n" +
-                "  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:19.85pt'";
-
-        WordObjectRow tableRow2 = new WordObjectRowBuilder()
-                .setParameter("style='mso-yfti-irow:1;height:19.85pt'")
-                .addCell(new WordObjectCell("width=151 style='width:113.15pt;border:solid windowtext 1.0pt;border-top:\n" +
-                        "  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;\n" +
-                        "  padding:0cm 5.4pt 0cm 5.4pt;height:19.85pt'",
-                        new WordObjectCellContent(htmlContentStyle, htmlSpan).addCellContent("Nummer")))
-                .addCell(new WordObjectCell(cellStyle,
-                        new WordObjectCellContent(htmlContentStyle, htmlSpan).addCellContent(erkundungsstelle.getInformation("ERK_ID"))))
-                .addCell(new WordObjectCell(cellStyle,
-                        new WordObjectCellContent(htmlContentStyle, htmlSpan).addCellContent("GPS-Koordinaten")))
-                .addCell(new WordObjectCell(cellStyle,
-                        new WordObjectCellContent(htmlContentStyle, htmlSpan).addCellContent(erkundungsstelle.getInformation("ERK_KOORDINATEN"))))
-                .build();
-
-        tableRows.add(tableRow2);
-
-        WordObjectRow tableRow3 = new WordObjectRowBuilder()
-                .setParameter("style='mso-yfti-irow:2;height:19.85pt'")
-                .addCell(new WordObjectCell("width=151 style='width:113.15pt;border:solid windowtext 1.0pt;border-top:\n" +
-                        "  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;\n" +
-                        "  padding:0cm 5.4pt 0cm 5.4pt;height:19.85pt'",
-                        new WordObjectCellContent(htmlContentStyle, htmlSpan).addCellContent("Entnahmedatum")))
-                .addCell(new WordObjectCell(cellStyle,
-                        new WordObjectCellContent(htmlContentStyle, htmlSpan).addCellContent(erkundungsstelle.getInformation("ERK_DATUM"))))
-                .addCell(new WordObjectCell(cellStyle,
-                        new WordObjectCellContent(htmlContentStyle, htmlSpan).addCellContent("Entnahme durch")))
-                .addCell(new WordObjectCell(cellStyle,
-                        new WordObjectCellContent(htmlContentStyle, htmlSpan).addCellContent(erkundungsstelle.getInformation("ERK_PRUEFER"))))
-                .build();
-
-        tableRows.add(tableRow3);
+//        //Header
+//        WORow tableRow1 = new WORowBuilder()
+//                .setStyleAttribute(htmlRowStyle)
+//                .addCell(new WOCell("width=151 style='width:113.15pt;border:solid windowtext 1.0pt;mso-border-alt:\n" +
+//                        "  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:19.85pt'",
+//                        new WOCellContent(htmlContentStyle, htmlSpan).addCellContent("Erkundungsstelle")))
+//                .addCell(new WOCell("width=453 colspan=13 style='width:339.95pt;border:solid windowtext 1.0pt;\n" +
+//                        "  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:\n" +
+//                        "  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:19.85pt'",
+//                        new WOCellContent(htmlContentStyle, htmlSpan).addCellContent(erkundungsstelle.getInformation("ERK_ORT"))))
+//                .build();
+//
+//        tableRows.add(tableRow1);
+//
+//        String cellStyle = "width=151 colspan=3 style='width:113.15pt;border-top:none;border-left:\n" +
+//                "  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;\n" +
+//                "  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;\n" +
+//                "  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:19.85pt'";
+//
+//        WORow tableRow2 = new WORowBuilder()
+//                .setStyleAttribute("style='mso-yfti-irow:1;height:19.85pt'")
+//                .addCell(new WOCell("width=151 style='width:113.15pt;border:solid windowtext 1.0pt;border-top:\n" +
+//                        "  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;\n" +
+//                        "  padding:0cm 5.4pt 0cm 5.4pt;height:19.85pt'",
+//                        new WOCellContent(htmlContentStyle, htmlSpan).addCellContent("Nummer")))
+//                .addCell(new WOCell(cellStyle,
+//                        new WOCellContent(htmlContentStyle, htmlSpan).addCellContent(erkundungsstelle.getInformation("ERK_ID"))))
+//                .addCell(new WOCell(cellStyle,
+//                        new WOCellContent(htmlContentStyle, htmlSpan).addCellContent("GPS-Koordinaten")))
+//                .addCell(new WOCell(cellStyle,
+//                        new WOCellContent(htmlContentStyle, htmlSpan).addCellContent(erkundungsstelle.getInformation("ERK_KOORDINATEN"))))
+//                .build();
+//
+//        tableRows.add(tableRow2);
+//
+//        WORow tableRow3 = new WORowBuilder()
+//                .setStyleAttribute("style='mso-yfti-irow:2;height:19.85pt'")
+//                .addCell(new WOCell("width=151 style='width:113.15pt;border:solid windowtext 1.0pt;border-top:\n" +
+//                        "  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;\n" +
+//                        "  padding:0cm 5.4pt 0cm 5.4pt;height:19.85pt'",
+//                        new WOCellContent(htmlContentStyle, htmlSpan).addCellContent("Entnahmedatum")))
+//                .addCell(new WOCell(cellStyle,
+//                        new WOCellContent(htmlContentStyle, htmlSpan).addCellContent(erkundungsstelle.getInformation("ERK_DATUM"))))
+//                .addCell(new WOCell(cellStyle,
+//                        new WOCellContent(htmlContentStyle, htmlSpan).addCellContent("Entnahme durch")))
+//                .addCell(new WOCell(cellStyle,
+//                        new WOCellContent(htmlContentStyle, htmlSpan).addCellContent(erkundungsstelle.getInformation("ERK_PRUEFER"))))
+//                .build();
+//
+//        tableRows.add(tableRow3);
 
         return tableRows;
     }

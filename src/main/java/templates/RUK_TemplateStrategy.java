@@ -34,7 +34,7 @@ public final class RUK_TemplateStrategy extends ATemplateStrategy
     private final String htmlContentStyle = "class=MsoNormal";
     private int count = 0;
 
-    WordObjectTable rukTable = new WordObjectTable("class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=605"+
+    WOTable rukTable = new WOTable("class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=605"+
     "style='width:453.7pt;border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;" +
     "mso-yfti-tbllook:1184;mso-padding-alt:0cm 2.85pt 0cm 2.85pt'");
 
@@ -98,7 +98,7 @@ public final class RUK_TemplateStrategy extends ATemplateStrategy
     public void buildTableObject(final List<AErkundungsstelle> erkundungsstelleList) {
         try
         {
-            rukTable.setTableHeader(readTemplateHeader(System.getProperty("user.dir").concat(File.separator).concat("WordTemplates").concat(File.separator).concat(
+            rukTable.setTableHeaderRow(readTemplateHeader(System.getProperty("user.dir").concat(File.separator).concat("WordTemplates").concat(File.separator).concat(
                     "RUK").concat(File.separator).concat("RUK_Template_TableHead")));
         } catch (IOException e)
         {
@@ -111,35 +111,35 @@ public final class RUK_TemplateStrategy extends ATemplateStrategy
     }
 
     @Override
-    public List<WordObjectRow> buildRows(final AErkundungsstelle erkundungsstelle)
+    public List<WORow> buildRows(final AErkundungsstelle erkundungsstelle)
     {
-        List<WordObjectRow> tableRows = new ArrayList<>();
+        List<WORow> tableRows = new ArrayList<>();
 
-        for (ASchicht schicht :
-                erkundungsstelle.getSchichtList())
-        {
-            if (!schicht.getInformation("SCHICHT_RUK").equals("")){
-                WordObjectRow wordObjectRow = new WordObjectRowBuilder()
-                        .setParameter(htmlRowStyle)
-                .addCell(new WordObjectCell(versuchNr, new WordObjectCellContent(htmlContentStyle).addCellContent(String.valueOf(++count))))
-                .addCell(new WordObjectCell(erkName, new WordObjectCellContent(htmlContentStyle).addCellContent(erkundungsstelle.getInformation("ERK_ID"))))
-                .addCell(new WordObjectCell(probenart, new WordObjectCellContent(htmlContentStyle).addCellContent("EP")))
-                .addCell(new WordObjectCell(pruefschicht, new WordObjectCellContent(htmlContentStyle).addCellContent(schicht.getInformation("SCHICHT_ART"))))
-                .addCell(new WordObjectCell(pruefschichtKG,
-                        new WordObjectCellContent(htmlContentStyle).addCellContent(schicht.getInformation("SCHICHT_KOERNUNG"))))
-                .addCell(new WordObjectCell(prueftiefeFirstParameter,
-                        new WordObjectCellContent(htmlContentStyle).addCellContent(schicht.getInformation("SCHICHT_DICKE"))))
-                .addCell(new WordObjectCell(prueftiefeConnector, new WordObjectCellContent(htmlContentStyle).addCellContent("-")))
-                .addCell(new WordObjectCell(prueftiefeSecondParameter,
-                        new WordObjectCellContent(htmlContentStyle).addCellContent(schicht.getInformation("SCHICHT_TIEFE"))))
-                .addCell(new WordObjectCell(ringUndKugelWert,
-                        new WordObjectCellContent(htmlContentStyle).addCellContent(schicht.getInformation("SCHICHT_RUK"))))
-                .build();
-
-                tableRows.add(wordObjectRow);
-            }
-
-        }
+//        for (ASchicht schicht :
+//                erkundungsstelle.getSchichtList())
+//        {
+//            if (!schicht.getInformation("SCHICHT_RUK").equals("")){
+//                WORow WORow = new WORowBuilder()
+//                        .setStyleAttribute(htmlRowStyle)
+//                .addCell(new WOCell(versuchNr, new WOCellContent(htmlContentStyle).addCellContent(String.valueOf(++count))))
+//                .addCell(new WOCell(erkName, new WOCellContent(htmlContentStyle).addCellContent(erkundungsstelle.getInformation("ERK_ID"))))
+//                .addCell(new WOCell(probenart, new WOCellContent(htmlContentStyle).addCellContent("EP")))
+//                .addCell(new WOCell(pruefschicht, new WOCellContent(htmlContentStyle).addCellContent(schicht.getInformation("SCHICHT_ART"))))
+//                .addCell(new WOCell(pruefschichtKG,
+//                        new WOCellContent(htmlContentStyle).addCellContent(schicht.getInformation("SCHICHT_KOERNUNG"))))
+//                .addCell(new WOCell(prueftiefeFirstParameter,
+//                        new WOCellContent(htmlContentStyle).addCellContent(schicht.getInformation("SCHICHT_DICKE"))))
+//                .addCell(new WOCell(prueftiefeConnector, new WOCellContent(htmlContentStyle).addCellContent("-")))
+//                .addCell(new WOCell(prueftiefeSecondParameter,
+//                        new WOCellContent(htmlContentStyle).addCellContent(schicht.getInformation("SCHICHT_TIEFE"))))
+//                .addCell(new WOCell(ringUndKugelWert,
+//                        new WOCellContent(htmlContentStyle).addCellContent(schicht.getInformation("SCHICHT_RUK"))))
+//                .build();
+//
+//                tableRows.add(WORow);
+//            }
+//
+//        }
 
 
         return tableRows;
