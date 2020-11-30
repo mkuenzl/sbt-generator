@@ -2,20 +2,20 @@ package main.java.wordblocks;
 
 abstract class AWordObject implements IWordObject
 {
-    private String parameter;
+    private String styleAttribute;
 
-    AWordObject(final String parameter){
-        this.parameter = parameter;
+    AWordObject(final String styleAttribute){
+        this.styleAttribute = styleAttribute;
     }
 
     AWordObject(){}
 
-    public String getParameter() {
-        return parameter;
+    public String getStyleAttribute() {
+        return styleAttribute;
     }
 
-    void setParameter(final String parameter)
+    void setStyleAttribute(final String style)
     {
-        this.parameter = parameter;
+        this.styleAttribute = style;
     }
 }

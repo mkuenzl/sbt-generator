@@ -29,6 +29,6 @@ public class Main
 
         Projekt projekt = new Projekt(parser.parse());
 
-        projekt.export(new HTMLTemplateExportStrategy(ERK_TemplateStrategy.getInstance()));
+        projekt.export(new HTMLTemplateExportStrategy(LP_TemplateStrategy.getInstance()));
     }
 }

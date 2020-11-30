@@ -27,7 +27,6 @@ public abstract class AErkundungsstelle implements Comparable<AErkundungsstelle>
         return this.getInformation("ERK_ID").compareTo(o.getInformation("ERK_ID"));
     }
 
-    // Hier Schicht Map bearbeiten
     void addSchicht(final Map<String,String> data)
     {
         Map<String, String> tmpMap = new HashMap<>();
@@ -47,5 +46,39 @@ public abstract class AErkundungsstelle implements Comparable<AErkundungsstelle>
 
     void sort(){
         Collections.sort(schichtList);
+    }
+
+
+    //Berechnungen! Auslagern?!
+
+    public String getLPMean(){
+
+        double lp1 = Double.parseDouble(getInformation("ERK_LP1"));
+        double lp2 = Double.parseDouble(getInformation("ERK_LP2"));
+        double lp3 = Double.parseDouble(getInformation("ERK_LP3"));
+
+        double mean = (lp1 + lp2 + lp3) / 3;
+
+        return String.valueOf(mean);
+    }
+
+    public String getLPEv(){
+
+        double evDyn = 22.5 / Double.valueOf(getLPMean());
+
+        return String.valueOf(evDyn);
+    }
+
+    public String getLPEv15(){
+
+        double evDyn15 = Double.valueOf(getLPEv()) * 0.85;
+
+        return String.valueOf(evDyn15);
+    }
+
+    public String getLPEv2(){
+        double ev15 = Double.parseDouble(getLPEv15());
+
+        return null;
     }
 }

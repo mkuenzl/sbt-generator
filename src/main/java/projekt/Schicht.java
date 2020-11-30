@@ -6,6 +6,5 @@ public class Schicht extends ASchicht
 {
     public Schicht(Map<String, String> information) {
         super(information);
-
     }
 }

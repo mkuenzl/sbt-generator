@@ -2,7 +2,7 @@ package main.java.templates;
 
 import main.java.projekt.AErkundungsstelle;
 import main.java.projekt.Projekt;
-import main.java.wordblocks.WordObjectRow;
+import main.java.wordblocks.WORow;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public interface ITemplateStrategy {
 
     void buildTableObject(final List<AErkundungsstelle> erkundungsstelleList);
 
-    List<WordObjectRow> buildRows(AErkundungsstelle erkundungsstelle);
+    List<WORow> buildRows(AErkundungsstelle erkundungsstelle);
 
     String getHtmlHead();
 }

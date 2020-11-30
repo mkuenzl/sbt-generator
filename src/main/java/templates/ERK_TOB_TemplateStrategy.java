@@ -73,11 +73,11 @@ public final class ERK_TOB_TemplateStrategy extends ATemplateStrategy
 
     public String buildHtmlTable(final AErkundungsstelle erkundungsstelle)
     {
-        WordObjectTable ERK_TOB_Table = new WordObjectTable("class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=604\\n\" +\n" +
+        WOTable ERK_TOB_Table = new WOTable("class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=604\\n\" +\n" +
                 "                \" style='width:453.35pt;border-collapse:collapse;border:none;mso-border-alt:\\n\" +\n" +
                 "                \" solid windowtext .5pt;mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'");
 
-        ERK_TOB_Table.setTableHeader(getHtmlHead());
+        ERK_TOB_Table.setTableHeaderRow(getHtmlHead());
         ERK_TOB_Table.addTableRows(buildRows(erkundungsstelle));
 
         return ERK_TOB_Table.printToHtml();
@@ -97,35 +97,35 @@ public final class ERK_TOB_TemplateStrategy extends ATemplateStrategy
     }
 
     @Override
-    public List<WordObjectRow> buildRows(final AErkundungsstelle erkundungsstelle)
+    public List<WORow> buildRows(final AErkundungsstelle erkundungsstelle)
     {
-        List<WordObjectRow> tableRows = new ArrayList<>();
+        List<WORow> tableRows = new ArrayList<>();
 
-        for (ASchicht schicht : erkundungsstelle.getSchichtList())
-        {
-            if ("ToB".equals(schicht.getInformation("SCHICHT_AUFSCHLUSS"))){
-                WordObjectRow tableRow = new WordObjectRowBuilder()
-                        .setParameter("style='mso-yfti-irow:2;height:19.85pt'")
-                        .addCell(new WordObjectCell(schichtArtCell,
-                                new WordObjectCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(schicht.getInformation("SCHICHT_ART"))))
-                        .addCell(new WordObjectCell(dickeCell,
-                                new WordObjectCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(schicht.getInformation("SCHICHT_DICKE"))))
-                        .addCell(new WordObjectCell(mufvCell,
-                                new WordObjectCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(schicht.getInformation("CHEMIE_MUFV"))))
-                        .addCell(new WordObjectCell(lagaBoCell,
-                                new WordObjectCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(schicht.getInformation("CHEMIE_LAGA_BO"))))
-                        .addCell(new WordObjectCell(lagaRcCell,
-                                new WordObjectCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(schicht.getInformation("CHEMIE_LAGA_RC"))))
-                        .addCell(new WordObjectCell(tlGesteinCell,
-                                new WordObjectCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(schicht.getInformation("CHEMIE_TLGESTEIN"))))
-                        .addCell(new WordObjectCell(lpCell,
-                                new WordObjectCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(erkundungsstelle.getInformation(
-                                        "ERK_LP1"))))
-                        .build();
-
-                tableRows.add(tableRow);
-            }
-        }
+//        for (ASchicht schicht : erkundungsstelle.getSchichtList())
+//        {
+//            if ("ToB".equals(schicht.getInformation("SCHICHT_AUFSCHLUSS"))){
+//                WORow tableRow = new WORowBuilder()
+//                        .setStyleAttribute("style='mso-yfti-irow:2;height:19.85pt'")
+//                        .addCell(new WOCell(schichtArtCell,
+//                                new WOCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(schicht.getInformation("SCHICHT_ART"))))
+//                        .addCell(new WOCell(dickeCell,
+//                                new WOCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(schicht.getInformation("SCHICHT_DICKE"))))
+//                        .addCell(new WOCell(mufvCell,
+//                                new WOCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(schicht.getInformation("CHEMIE_MUFV"))))
+//                        .addCell(new WOCell(lagaBoCell,
+//                                new WOCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(schicht.getInformation("CHEMIE_LAGA_BO"))))
+//                        .addCell(new WOCell(lagaRcCell,
+//                                new WOCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(schicht.getInformation("CHEMIE_LAGA_RC"))))
+//                        .addCell(new WOCell(tlGesteinCell,
+//                                new WOCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(schicht.getInformation("CHEMIE_TLGESTEIN"))))
+//                        .addCell(new WOCell(lpCell,
+//                                new WOCellContent(htmlContentStyle, htmlContentStyleSpan).addCellContent(erkundungsstelle.getInformation(
+//                                        "ERK_LP1"))))
+//                        .build();
+//
+//                tableRows.add(tableRow);
+//            }
+//        }
         return tableRows;
     }
 
