@@ -76,6 +76,7 @@ public abstract class AErkundungsstelle implements Comparable<AErkundungsstelle>
         return String.valueOf(evDyn15);
     }
 
+    //TODO
     public String getLPEv2(){
         double ev15 = Double.parseDouble(getLPEv15());
 

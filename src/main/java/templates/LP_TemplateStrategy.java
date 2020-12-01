@@ -75,10 +75,10 @@ public final class LP_TemplateStrategy extends  ATemplateStrategy
                         .addCell(getErkLpCell(erkundungsstelle.getInformation("ERK_LP1")))
                         .addCell(getErkLpCell(erkundungsstelle.getInformation("ERK_LP2")))
                         .addCell(getErkLpCell(erkundungsstelle.getInformation("ERK_LP3")))
-                        .addCell(getErkLpCell("Mean"))
-                        .addCell(getErkEvCell("Ev1"))
-                        .addCell(getErkEvCell("Ev-15"))
-                        .addCell(getErkEvCell("Ev2"))
+                        .addCell(getErkLpCell(erkundungsstelle.getLPMean()))
+                        .addCell(getErkEvCell(erkundungsstelle.getLPEv()))
+                        .addCell(getErkEvCell(erkundungsstelle.getLPEv15()))
+                        .addCell(getErkEvCell(erkundungsstelle.getLPEv2()))
                         .build();
 
                 table.addTableRow(tableRow);

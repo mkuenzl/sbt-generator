@@ -14,7 +14,18 @@ public final class RUK_TemplateStrategy extends ATemplateStrategy
 {
     private static RUK_TemplateStrategy instance;
 
-    private RUK_TemplateStrategy(){}
+
+    private RUK_TemplateStrategy(){
+        this.table = new WOTableBuilder()
+                .setBorderAttribute(1)
+                .setCellpaddingAttribute(0)
+                .setCellspacingAttribute(0)
+                .setClassAttribute("MsoTableGrid")
+                .setStyleAttribute("'width:453.7pt;border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;\" +\n" +
+                        "    \"mso-yfti-tbllook:1184;mso-padding-alt:0cm 2.85pt 0cm 2.85pt'")
+                .setWidthAttribute(604)
+                .build();
+    }
 
     public static RUK_TemplateStrategy getInstance(){
         if (instance == null)
@@ -34,71 +45,198 @@ public final class RUK_TemplateStrategy extends ATemplateStrategy
     private final String htmlContentStyle = "class=MsoNormal";
     private int count = 0;
 
-    WOTable rukTable = new WOTable("class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=605"+
-    "style='width:453.7pt;border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;" +
-    "mso-yfti-tbllook:1184;mso-padding-alt:0cm 2.85pt 0cm 2.85pt'");
+    private WOTable table;
 
+    private WOCell getCounterCell(){
+        WOCell cell = new WOCellBuilder()
+                .setStyleAttribute("'width:2.0cm;border:solid windowtext 1.0pt;border-top:\\n\" +\n" +
+                        "            \"  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;\\n\" +\n" +
+                        "            \"  padding:0cm 2.85pt 0cm 2.85pt;height:19.85pt'")
+                .setWidthAttribute(76)
+                .build();
 
-    //Cell Style
-    String versuchNr = "width=76 style='width:2.0cm;border:solid windowtext 1.0pt;border-top:\n" +
-            "  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;\n" +
-            "  padding:0cm 2.85pt 0cm 2.85pt;height:19.85pt'";
+        WOText text = new WOText("'font-size:8.5pt;line-height:107%;mso-bidi-font-family:Arial'", String.valueOf(count++));
 
-    String erkName = "width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:\n" +
-            "  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:\n" +
-            "  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:\n" +
-            "  solid windowtext .5pt;padding:0cm 2.85pt 0cm 2.85pt;height:19.85pt'";
+        cell.setContent(new WOCellContentBuilder()
+                .setClassAttribute("MsoNormal")
+                .setAlignAttribute("center")
+                .setStyleAttribute("'margin-top:3.0pt;margin-right:0cm;\n" +
+                        "  margin-bottom:3.0pt;margin-left:0cm;text-align:center;tab-stops:-49.0pt -13.0pt'")
+                .addText(text)
+                .build());
 
-    String probenart = "width=95 style='width:70.9pt;border-top:none;border-left:none;border-bottom:\n" +
-            "  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:\n" +
-            "  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:\n" +
-            "  solid windowtext .5pt;padding:0cm 2.85pt 0cm 2.85pt;height:19.85pt'";
+        return cell;
+    }
 
-    String pruefschicht = "width=113 style='width:3.0cm;border:none;border-bottom:solid windowtext 1.0pt;\n" +
-            "  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;\n" +
-            "  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;\n" +
-            "  mso-border-bottom-alt:solid windowtext .5pt;padding:0cm 2.85pt 0cm 2.85pt;\n" +
-            "  height:19.85pt'";
+    private WOCell getErkIdCell(String textContent){
+        WOCell cell = new WOCellBuilder()
+                .setStyleAttribute("'width:2.0cm;border-top:none;border-left:none;border-bottom:\\n\" +\n" +
+                        "            \"  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:\\n\" +\n" +
+                        "            \"  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:\\n\" +\n" +
+                        "            \"  solid windowtext .5pt;padding:0cm 2.85pt 0cm 2.85pt;height:19.85pt'")
+                .setWidthAttribute(76)
+                .build();
 
-    String pruefschichtKG = "width=57 style='width:42.55pt;border-top:none;border-left:none;\n" +
-            "  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;\n" +
-            "  mso-border-top-alt:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;\n" +
-            "  mso-border-bottom-alt:solid windowtext .5pt;mso-border-right-alt:solid windowtext .5pt;\n" +
-            "  padding:0cm 2.85pt 0cm 2.85pt;height:19.85pt'";
+        WOText text = new WOText("'font-size:8.5pt;line-height:107%;mso-bidi-font-family:Arial'", textContent);
 
-    String prueftiefeFirstParameter = "width=38 style='width:1.0cm;border:none;border-bottom:solid windowtext 1.0pt;\n" +
-            "  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;\n" +
-            "  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;\n" +
-            "  mso-border-bottom-alt:solid windowtext .5pt;padding:0cm 2.85pt 0cm 2.85pt;\n" +
-            "  height:19.85pt'";
-    String prueftiefeConnector = "width=19 style='width:14.2pt;border:none;border-bottom:solid windowtext 1.0pt;\n" +
-            "  mso-border-top-alt:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;\n" +
-            "  mso-border-bottom-alt:solid windowtext .5pt;padding:0cm 2.85pt 0cm 2.85pt;\n" +
-            "  height:19.85pt'";
-    String prueftiefeSecondParameter = "width=38 style='width:1.0cm;border-top:none;border-left:none;border-bottom:\n" +
-            "  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:\n" +
-            "  solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;mso-border-bottom-alt:\n" +
-            "  solid windowtext .5pt;mso-border-right-alt:solid windowtext .5pt;padding:\n" +
-            "  0cm 2.85pt 0cm 2.85pt;height:19.85pt'";
+        cell.setContent(new WOCellContentBuilder()
+                .setClassAttribute("MsoNormal")
+                .setAlignAttribute("center")
+                .setStyleAttribute("'margin-top:3.0pt;margin-right:0cm;\n" +
+                        "  margin-bottom:3.0pt;margin-left:0cm;text-align:center;tab-stops:-49.0pt -13.0pt'")
+                .addText(text)
+                .build());
 
-    String ringUndKugelWert = "width=95 style='width:70.9pt;border-top:none;border-left:none;border-bottom:\n" +
-            "  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:\n" +
-            "  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:\n" +
-            "  solid windowtext .5pt;padding:0cm 2.85pt 0cm 2.85pt;height:19.85pt'";
+        return cell;
+    }
 
+    private WOCell getProbenArtCell(String textContent){
+        WOCell cell = new WOCellBuilder()
+                .setStyleAttribute("'width:70.9pt;border-top:none;border-left:none;border-bottom:\\n\" +\n" +
+                        "            \"  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:\\n\" +\n" +
+                        "            \"  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:\\n\" +\n" +
+                        "            \"  solid windowtext .5pt;padding:0cm 2.85pt 0cm 2.85pt;height:19.85pt'")
+                .setWidthAttribute(95)
+                .build();
+
+        WOText text = new WOText("'font-size:8.5pt;line-height:107%;mso-bidi-font-family:Arial'", textContent);
+
+        cell.setContent(new WOCellContentBuilder()
+                .setClassAttribute("MsoNormal")
+                .setAlignAttribute("center")
+                .setStyleAttribute("'margin-top:3.0pt;margin-right:0cm;\n" +
+                        "  margin-bottom:3.0pt;margin-left:0cm;text-align:center;tab-stops:-49.0pt -13.0pt'")
+                .addText(text)
+                .build());
+
+        return cell;
+    }
+
+    private WOCell getPruefschichtCell(String textContent){
+        WOCell cell = new WOCellBuilder()
+                .setStyleAttribute("'width:3.0cm;border:none;border-bottom:solid windowtext 1.0pt;\\n\" +\n" +
+                        "            \"  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;\\n\" +\n" +
+                        "            \"  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;\\n\" +\n" +
+                        "            \"  mso-border-bottom-alt:solid windowtext .5pt;padding:0cm 2.85pt 0cm 2.85pt;\\n\" +\n" +
+                        "            \"  height:19.85pt'")
+                .setWidthAttribute(113)
+                .build();
+
+        WOText text = new WOText("'font-size:8.5pt;line-height:107%;mso-bidi-font-family:Arial'", textContent);
+
+        cell.setContent(new WOCellContentBuilder()
+                .setClassAttribute("MsoNormal")
+                .setAlignAttribute("center")
+                .setStyleAttribute("'margin-top:3.0pt;margin-right:0cm;\n" +
+                        "  margin-bottom:3.0pt;margin-left:0cm;text-align:center;tab-stops:-49.0pt -13.0pt'")
+                .addText(text)
+                .build());
+
+        return cell;
+    }
+
+    private WOCell getPruefschichtKGCell(String textContent){
+        WOCell cell = new WOCellBuilder()
+                .setStyleAttribute("'width:42.55pt;border-top:none;border-left:none;\\n\" +\n" +
+                        "            \"  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;\\n\" +\n" +
+                        "            \"  mso-border-top-alt:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;\\n\" +\n" +
+                        "            \"  mso-border-bottom-alt:solid windowtext .5pt;mso-border-right-alt:solid windowtext .5pt;\\n\" +\n" +
+                        "            \"  padding:0cm 2.85pt 0cm 2.85pt;height:19.85pt'")
+                .setWidthAttribute(57)
+                .build();
+
+        WOText text = new WOText("'font-size:8.5pt;line-height:107%;mso-bidi-font-family:Arial'", textContent);
+
+        cell.setContent(new WOCellContentBuilder()
+                .setClassAttribute("MsoNormal")
+                .setAlignAttribute("center")
+                .setStyleAttribute("'margin-top:3.0pt;margin-right:0cm;\n" +
+                        "  margin-bottom:3.0pt;margin-left:0cm;text-align:center;tab-stops:-49.0pt -13.0pt'")
+                .addText(text)
+                .build());
+
+        return cell;
+    }
+
+    private WOCell getTiefeCell(String textContent){
+        WOCell cell = new WOCellBuilder()
+                .setStyleAttribute("'width:1.0cm;border:none;border-bottom:solid windowtext 1.0pt;\\n\" +\n" +
+                        "            \"  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;\\n\" +\n" +
+                        "            \"  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;\\n\" +\n" +
+                        "            \"  mso-border-bottom-alt:solid windowtext .5pt;padding:0cm 2.85pt 0cm 2.85pt;\\n\" +\n" +
+                        "            \"  height:19.85pt'")
+                .setWidthAttribute(38)
+                .build();
+
+        WOText text = new WOText("'font-size:8.5pt;line-height:107%;mso-bidi-font-family:Arial'", textContent);
+
+        cell.setContent(new WOCellContentBuilder()
+                .setClassAttribute("MsoNormal")
+                .setAlignAttribute("center")
+                .setStyleAttribute("'margin-top:3.0pt;margin-right:0cm;\n" +
+                        "  margin-bottom:3.0pt;margin-left:0cm;text-align:center;tab-stops:-49.0pt -13.0pt'")
+                .addText(text)
+                .build());
+
+        return cell;
+    }
+
+    private WOCell getConnectorCell(String textContent){
+        WOCell cell = new WOCellBuilder()
+                .setStyleAttribute("'width:14.2pt;border:none;border-bottom:solid windowtext 1.0pt;\\n\" +\n" +
+                        "            \"  mso-border-top-alt:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;\\n\" +\n" +
+                        "            \"  mso-border-bottom-alt:solid windowtext .5pt;padding:0cm 2.85pt 0cm 2.85pt;\\n\" +\n" +
+                        "            \"  height:19.85pt'")
+                .setWidthAttribute(19)
+                .build();
+
+        WOText text = new WOText("'font-size:8.5pt;line-height:107%;mso-bidi-font-family:Arial'", textContent);
+
+        cell.setContent(new WOCellContentBuilder()
+                .setClassAttribute("MsoNormal")
+                .setAlignAttribute("center")
+                .setStyleAttribute("'margin-top:3.0pt;margin-right:0cm;\n" +
+                        "  margin-bottom:3.0pt;margin-left:0cm;text-align:center;tab-stops:-49.0pt -13.0pt'")
+                .addText(text)
+                .build());
+
+        return cell;
+    }
+
+    private WOCell getRUKCell(String textContent){
+        WOCell cell = new WOCellBuilder()
+                .setStyleAttribute("'width:70.9pt;border-top:none;border-left:none;border-bottom:" +
+                        "            \"  solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:" +
+                        "            \"  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:" +
+                        "            \"  solid windowtext .5pt;padding:0cm 2.85pt 0cm 2.85pt;height:19.85pt'")
+                .setWidthAttribute(95)
+                .build();
+
+        WOText text = new WOText("'font-size:8.5pt;line-height:107%;mso-bidi-font-family:Arial'", textContent);
+
+        cell.setContent(new WOCellContentBuilder()
+                .setClassAttribute("MsoNormal")
+                .setAlignAttribute("center")
+                .setStyleAttribute("'margin-top:3.0pt;margin-right:0cm;\n" +
+                        "  margin-bottom:3.0pt;margin-left:0cm;text-align:center;tab-stops:-49.0pt -13.0pt'")
+                .addText(text)
+                .build());
+
+        return cell;
+    }
 
     @Override
     public String buildHtmlTable(final Projekt projekt)
     {
             buildTableObject(projekt.getData());
-            return rukTable.printToHtml();
+            return table.printToHtml();
     }
 
     @Override
     public void buildTableObject(final List<AErkundungsstelle> erkundungsstelleList) {
         try
         {
-            rukTable.setTableHeaderRow(readTemplateHeader(System.getProperty("user.dir").concat(File.separator).concat("WordTemplates").concat(File.separator).concat(
+            table.setTableHeaderRow(readTemplateHeader(System.getProperty("user.dir").concat(File.separator).concat("WordTemplates").concat(File.separator).concat(
                     "RUK").concat(File.separator).concat("RUK_Template_TableHead")));
         } catch (IOException e)
         {
@@ -106,7 +244,7 @@ public final class RUK_TemplateStrategy extends ATemplateStrategy
         }
         for (AErkundungsstelle erkundungsstelle : erkundungsstelleList) {
             //Wenn ERK einen RUK wert hat dann blablabla
-            rukTable.addTableRows(buildRows(erkundungsstelle));
+            table.addTableRows(buildRows(erkundungsstelle));
         }
     }
 
@@ -115,31 +253,26 @@ public final class RUK_TemplateStrategy extends ATemplateStrategy
     {
         List<WORow> tableRows = new ArrayList<>();
 
-//        for (ASchicht schicht :
-//                erkundungsstelle.getSchichtList())
-//        {
-//            if (!schicht.getInformation("SCHICHT_RUK").equals("")){
-//                WORow WORow = new WORowBuilder()
-//                        .setStyleAttribute(htmlRowStyle)
-//                .addCell(new WOCell(versuchNr, new WOCellContent(htmlContentStyle).addCellContent(String.valueOf(++count))))
-//                .addCell(new WOCell(erkName, new WOCellContent(htmlContentStyle).addCellContent(erkundungsstelle.getInformation("ERK_ID"))))
-//                .addCell(new WOCell(probenart, new WOCellContent(htmlContentStyle).addCellContent("EP")))
-//                .addCell(new WOCell(pruefschicht, new WOCellContent(htmlContentStyle).addCellContent(schicht.getInformation("SCHICHT_ART"))))
-//                .addCell(new WOCell(pruefschichtKG,
-//                        new WOCellContent(htmlContentStyle).addCellContent(schicht.getInformation("SCHICHT_KOERNUNG"))))
-//                .addCell(new WOCell(prueftiefeFirstParameter,
-//                        new WOCellContent(htmlContentStyle).addCellContent(schicht.getInformation("SCHICHT_DICKE"))))
-//                .addCell(new WOCell(prueftiefeConnector, new WOCellContent(htmlContentStyle).addCellContent("-")))
-//                .addCell(new WOCell(prueftiefeSecondParameter,
-//                        new WOCellContent(htmlContentStyle).addCellContent(schicht.getInformation("SCHICHT_TIEFE"))))
-//                .addCell(new WOCell(ringUndKugelWert,
-//                        new WOCellContent(htmlContentStyle).addCellContent(schicht.getInformation("SCHICHT_RUK"))))
-//                .build();
-//
-//                tableRows.add(WORow);
-//            }
-//
-//        }
+        for (ASchicht schicht : erkundungsstelle.getSchichtList())
+        {
+            if (!"".equals(schicht.getInformation("SCHICHT_RUK"))){
+                WORow WORow = new WORowBuilder()
+                        .setStyleAttribute("'mso-yfti-irow:1;height:19.85pt'")
+                        .addCell(getCounterCell())
+                        .addCell(getErkIdCell(erkundungsstelle.getInformation("ERK_ID")))
+                        .addCell(getProbenArtCell("EP"))
+                        .addCell(getPruefschichtCell(schicht.getInformation("SCHICHT_ART")))
+                        .addCell(getPruefschichtKGCell(schicht.getInformation("SCHICHT_KOERNUNG")))
+                        .addCell(getTiefeCell(schicht.getInformation("SCHICHT_DICKE")))
+                        .addCell(getConnectorCell("-"))
+                        .addCell(getTiefeCell(schicht.getInformation("SCHICHT_TIEFE")))
+                        .addCell(getRUKCell(schicht.getInformation("SCHICHT_RUK")))
+                        .build();
+
+                tableRows.add(WORow);
+            }
+
+        }
 
 
         return tableRows;

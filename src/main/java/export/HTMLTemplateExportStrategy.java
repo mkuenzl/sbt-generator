@@ -31,8 +31,10 @@ public class HTMLTemplateExportStrategy extends ATemplateExportStrategy{
 
         strb.append(this.strategy.getHtmlHead());
 
-        strb.append("<body ").append(this.htmlBodyParameter).append(">");
-        strb.append("<div ").append(">");
+        strb.append("<body ")
+                .append(this.htmlBodyParameter)
+                .append(">")
+                .append("<div>");
 
         strb.append(this.strategy.buildHtmlTable(projekt));
 
