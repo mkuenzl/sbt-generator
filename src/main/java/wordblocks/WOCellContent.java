@@ -3,7 +3,6 @@ package main.java.wordblocks;
 import java.util.ArrayList;
 import java.util.List;
 
-//Add Span<> Element
 public class WOCellContent extends AWordObject
 {
     private List<AWordObject> textContent;

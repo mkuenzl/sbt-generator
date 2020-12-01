@@ -1,11 +1,8 @@
 package main.java;
 
 import main.java.export.HTMLTemplateExportStrategy;
-import main.java.templates.ERK_TemplateStrategy;
-import main.java.templates.LP_TemplateStrategy;
-import main.java.templates.PN_TemplateStrategy;
+import main.java.templates.*;
 import main.java.projekt.Projekt;
-import main.java.templates.RUK_TemplateStrategy;
 import main.java.util.CLI;
 import main.java.util.Parser;
 
@@ -17,7 +14,7 @@ public class Main
 {
     public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchMethodException
     {
-        File file = new File("/Users/moritzkunzl/Desktop/HTML/ProjektDaten.csv");
+        File file = new File("C:\\Users\\Kuenzl\\Desktop\\Datenbank.CSV");
 
         //Reflection
         //Class clazz = Class.forName("main.java.templates.PN_TemplateStrategy");
@@ -29,6 +26,6 @@ public class Main
 
         Projekt projekt = new Projekt(parser.parse());
 
-        projekt.export(new HTMLTemplateExportStrategy(RUK_TemplateStrategy.getInstance()));
+        projekt.export(new HTMLTemplateExportStrategy(Test_TemplateStrategy.getInstance()));
     }
 }

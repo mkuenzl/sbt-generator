@@ -512,44 +512,4 @@ table.MsoTableGrid
  <o:shapelayout v:ext="edit">
   <o:idmap v:ext="edit" data="1"/>
  </o:shapelayout></xml><![endif]-->
-</head><body lang=DE style='tab-interval:35.4pt;word-wrap:break-word'><div><table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=604 style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
-
-<tr height=10 >
-<td style='mso-border-alt:solid windowtext .5pt;background:black;padding:0cm 5.4pt 0cm 5.4pt' width=95 >
-<p style='margin-top:3.0pt;margin-right:0cm;margin-bottom:3.0pt;margin-left:0cm;tab-stops:-49.0pt -13.0pt' align=center class=MsoNormal ><span style='font-size:8.5pt;color:white;line-height:100%;mso-bidi-font-family:Arial'>textContent</span></p>
-</td>
-
-<td style='mso-border-alt:solid windowtext .5pt;background:red;padding:0cm 5.4pt 0cm 5.4pt' width=15 >
-<p align=center class=MsoNormal >textContent2</p>
-</td>
-
-<td style='mso-border-alt:solid windowtext .5pt;background:#538135;padding:0cm 5.4pt 0cm 5.4pt' width=30 >
-<p align=center class=MsoNormal >textContent2</p>
-</td>
-
-</tr>
-
-<tr height=10 >
-<td style='mso-border-alt:solid windowtext .5pt;background:black;padding:0cm 5.4pt 0cm 5.4pt' width=95 >
-<p style='margin-top:3.0pt;margin-right:0cm;margin-bottom:3.0pt;margin-left:0cm;tab-stops:-49.0pt -13.0pt' align=center class=MsoNormal ><span style='font-size:8.5pt;color:white;line-height:100%;mso-bidi-font-family:Arial'>textContent</span></p>
-</td>
-
-<td style='mso-border-alt:solid windowtext .5pt;background:red;padding:0cm 5.4pt 0cm 5.4pt' width=15 >
-<p align=center class=MsoNormal >textContent2</p>
-</td>
-
-<td style='mso-border-alt:solid windowtext .5pt;background:#538135;padding:0cm 5.4pt 0cm 5.4pt' width=30 >
-<p align=center class=MsoNormal >textContent2</p>
-</td>
-
-</tr>
-
-</table>
-
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
-
-</div>
-
-</body>
-
-</html>
+</head>

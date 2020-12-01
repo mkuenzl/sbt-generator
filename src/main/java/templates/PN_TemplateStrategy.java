@@ -108,11 +108,11 @@ public final class PN_TemplateStrategy extends ATemplateStrategy
     private WOCell createSchichtBehaeltnisVolumenCell(String textContent){
         WOCell cell = new WOCellBuilder()
                 .setWidthAttribute(47)
-                .setStyleAttribute("'width:35.55pt;border-top:none;border-left:none;\\n\" +\n" +
-                        "            \"  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;\\n\" +\n" +
-                        "            \"  mso-border-top-alt:double windowtext 1.5pt;mso-border-left-alt:solid windowtext .5pt;\\n\" +\n" +
-                        "            \"  mso-border-alt:solid windowtext .5pt;\\n\" +\n" +
-                        "            \"  padding:0cm 1.4pt 0cm 2.85pt;height:34.0pt'")
+                .setStyleAttribute("'width:35.55pt;border-top:none;border-left:none;" +
+                        "            border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;" +
+                        "            mso-border-top-alt:double windowtext 1.5pt;mso-border-left-alt:solid windowtext .5pt;" +
+                        "            mso-border-alt:solid windowtext .5pt;" +
+                        "            padding:0cm 1.4pt 0cm 2.85pt;height:34.0pt'")
                 .build();
 
         WOText text = new WOText(textContent);
