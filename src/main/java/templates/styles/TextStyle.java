@@ -14,7 +14,7 @@ public enum TextStyle
                     .append(";")
                     .append("line-height:100%")
                     .append(";")
-                    .append("mso-bidi-font-family:Arial")
+                    .append("font-family:\"Arial\"")
                     .append("'");
             return stringBuilder.toString();
         }
@@ -31,7 +31,7 @@ public enum TextStyle
                     .append(";")
                     .append("line-height:100%")
                     .append(";")
-                    .append("mso-bidi-font-family:Arial")
+                    .append("font-family:\"Arial\"")
                     .append("'");
             return stringBuilder.toString();
         }
@@ -46,7 +46,7 @@ public enum TextStyle
                     .append(";")
                     .append("line-height:100%")
                     .append(";")
-                    .append("mso-bidi-font-family:Arial")
+                    .append("font-family:\"Arial\"")
                     .append("'");
             return stringBuilder.toString();
         }

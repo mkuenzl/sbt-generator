@@ -64,7 +64,7 @@ public class Test_TemplateStrategy extends ATemplateStrategy
                 .setWidthAttribute(15)
                 .build();
 
-        WOText text2 = new WOText("textContent2");
+        WOText text2 = new WOText("textContöäüäöäüäöäöüent2");
 
         cell2.setContent(new WOCellContentBuilder()
                 .setAlignAttribute("center")

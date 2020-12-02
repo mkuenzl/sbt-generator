@@ -12,11 +12,9 @@ public enum TableStyle
                     .append(";")
                     .append("border:none")
                     .append(";")
-                    .append("mso-border-alt:solid windowtext .5pt")
+                    .append("border:solid windowtext .5pt")
                     .append(";")
-                    .append("mso-yfti-tbllook:1184")
-                    .append(";")
-                    .append("mso-padding-alt:0cm 5.4pt 0cm 5.4pt")
+                    .append("padding:0cm 5.4pt 0cm 5.4pt")
                     .append("'");
             return stringBuilder.toString();
         }

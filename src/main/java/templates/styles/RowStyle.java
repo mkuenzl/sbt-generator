@@ -8,8 +8,6 @@ public enum RowStyle
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("'")
-                    .append("mso-yfti-irow:1")
-                    .append(";")
                     .append("page-break-inside:avoid")
                     .append(";")
                     .append("height:1.0cm")
@@ -23,8 +21,6 @@ public enum RowStyle
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("'")
-                    .append("mso-yfti-irow:1")
-                    .append(";")
                     .append("page-break-inside:avoid")
                     .append(";")
                     .append("height:0.7cm")

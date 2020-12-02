@@ -8,7 +8,7 @@ public enum CellStyle
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("'")
-                    .append("mso-border-alt:solid windowtext .5pt")
+                    .append("border:solid windowtext .5pt")
                     .append(";")
                     .append("padding:0cm 5.4pt 0cm 5.4pt")
                     .append("'");
@@ -21,7 +21,7 @@ public enum CellStyle
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("'")
-                    .append("mso-border-alt:solid windowtext .5pt")
+                    .append("border:solid windowtext .5pt")
                     .append(";")
                     .append("background:red")
                     .append(";")
@@ -36,7 +36,7 @@ public enum CellStyle
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("'")
-                    .append("mso-border-alt:solid windowtext .5pt")
+                    .append("border:solid windowtext .5pt")
                     .append(";")
                     .append("background:#538135")
                     .append(";")
@@ -51,7 +51,7 @@ public enum CellStyle
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("'")
-                    .append("mso-border-alt:solid windowtext .5pt")
+                    .append("border:solid windowtext .5pt")
                     .append(";")
                     .append("background:black")
                     .append(";")
