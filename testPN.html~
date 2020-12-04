@@ -152,7 +152,7 @@ td.ChemieBlue
 </head>
 <body style='tab-interval:35.4pt;word-wrap:break-word' lang=DE >
 <div >
-<table border=1 cellpadding=0 width=605 cellspacing=0 class=MsoNormalTable >
+<table class=MsoTableGrid border=1 width=605>
 <tr><th></th></tr>
 <tr><td></td></tr>
 </table>

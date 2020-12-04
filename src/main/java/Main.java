@@ -1,6 +1,6 @@
 package main.java;
 
-import main.java.export.HTMLTemplateExportStrategy;
+import main.java.export.HtmlTemplateExportStrategy;
 import main.java.templates.*;
 import main.java.projekt.Projekt;
 import main.java.util.CLI;
@@ -12,15 +12,10 @@ import java.io.IOException;
 
 public class Main
 {
-    public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchMethodException
+    public static void main(String[] args) throws IOException
     {
-        //File file = new File("C:\\Users\\Kuenzl\\Desktop\\Datenbank.CSV");
-        File file = new File("/Users/moritzkunzl/Desktop/HTML/ProjektDaten.csv");
-
-
-        //Reflection
-        //Class clazz = Class.forName("main.java.templates.PN_TemplateStrategy");
-        //Method m = clazz.getMethod("getInstance");
+        File file = new File("C:\\Users\\Kuenzl\\Desktop\\Datenbank.CSV");
+        //File file = new File("/Users/moritzkunzl/Desktop/HTML/ProjektDaten.csv");
 
         CLI commandLineInterface = new CLI(args);
 
@@ -28,6 +23,6 @@ public class Main
 
         Projekt projekt = new Projekt(parser.parse());
 
-        projekt.export(new HTMLTemplateExportStrategy(Test_TemplateStrategy.getInstance()));
+        projekt.export(new HtmlTemplateExportStrategy(TemplateStrategy.getInstance()));
     }
 }

@@ -1,22 +1,19 @@
 package main.java.export;
 
-
 import main.java.projekt.Projekt;
-import main.java.templates.ITemplateStrategy;
+import main.java.templates.IHtmlTemplateStrategy;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
-public abstract class ATemplateExportStrategy {
+public abstract class ATemplateExportStrategy
+{
 
-    final ITemplateStrategy strategy;
+    final IHtmlTemplateStrategy strategy;
 
-    ATemplateExportStrategy(final ITemplateStrategy strategy){
+    ATemplateExportStrategy(final IHtmlTemplateStrategy strategy){
         this.strategy = strategy;
     }
 
@@ -53,8 +50,6 @@ public abstract class ATemplateExportStrategy {
     };
 
     abstract String format(Projekt projekt);
-
-    abstract String format(ITemplateStrategy strategy);
 
     private String getPath(){
         return System.getProperty("user.dir" ).concat(File.separator).concat("testPN.html");
