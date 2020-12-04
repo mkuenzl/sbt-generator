@@ -14,7 +14,9 @@ public class Main
 {
     public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchMethodException
     {
-        File file = new File("C:\\Users\\Kuenzl\\Desktop\\Datenbank.CSV");
+        //File file = new File("C:\\Users\\Kuenzl\\Desktop\\Datenbank.CSV");
+        File file = new File("/Users/moritzkunzl/Desktop/HTML/ProjektDaten.csv");
+
 
         //Reflection
         //Class clazz = Class.forName("main.java.templates.PN_TemplateStrategy");

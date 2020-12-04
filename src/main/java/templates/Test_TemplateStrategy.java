@@ -73,7 +73,7 @@ public class Test_TemplateStrategy extends ATemplateStrategy
                 .build());
 
         WOCell cell3 = new WOCellBuilder()
-                .setStyleAttribute(CellStyle.CELL_STYLE_GREEN.getAttributes())
+                .setClass("ChemieGreen")
                 .setWidthAttribute(30)
                 .build();
 

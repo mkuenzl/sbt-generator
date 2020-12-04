@@ -46,4 +46,9 @@ public class WOCellBuilder
     public WOCell build(){
         return this.cell;
     }
+
+    public WOCellBuilder setClass(final String classAttribute) {
+        this.cell.setClass(classAttribute);
+        return this;
+    }
 }

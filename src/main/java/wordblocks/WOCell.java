@@ -8,6 +8,7 @@ public class WOCell extends AWordObject
     private int widthAttribute;
     private int colspanAttribute;
     private int rowspanAttribute;
+    private String classAttribute;
 
     public WOCell(){
 
@@ -34,28 +35,33 @@ public class WOCell extends AWordObject
     public String attributesToString()
     {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("style=")
-                .append(getStyleAttribute())
-                .append(" ");
-        if (heightAttribute != 0){
-            stringBuilder.append("height=")
-                    .append(heightAttribute)
+        if (classAttribute == null){
+            stringBuilder.append("style=")
+                    .append(getStyleAttribute())
                     .append(" ");
-        }
-        if (widthAttribute != 0){
-            stringBuilder.append("width=")
-                    .append(widthAttribute)
-                    .append(" ");
-        }
-        if (colspanAttribute != 0){
-            stringBuilder.append("colspan=")
-                    .append(colspanAttribute)
-                    .append(" ");
-        }
-        if (rowspanAttribute != 0){
-            stringBuilder.append("rowspan=")
-                    .append(rowspanAttribute)
-                    .append(" ");
+            if (heightAttribute != 0){
+                stringBuilder.append("height=")
+                        .append(heightAttribute)
+                        .append(" ");
+            }
+            if (widthAttribute != 0){
+                stringBuilder.append("width=")
+                        .append(widthAttribute)
+                        .append(" ");
+            }
+            if (colspanAttribute != 0){
+                stringBuilder.append("colspan=")
+                        .append(colspanAttribute)
+                        .append(" ");
+            }
+            if (rowspanAttribute != 0){
+                stringBuilder.append("rowspan=")
+                        .append(rowspanAttribute)
+                        .append(" ");
+            }
+        } else {
+            stringBuilder.append("class=")
+                    .append(classAttribute);
         }
 
         return stringBuilder.toString();
@@ -84,5 +90,9 @@ public class WOCell extends AWordObject
     void setHeightAttribute(final int heightAttribute)
     {
         this.heightAttribute = heightAttribute;
+    }
+
+    void setClass(String classAttribute) {
+        this.classAttribute = classAttribute;
     }
 }
