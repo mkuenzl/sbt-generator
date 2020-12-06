@@ -2,14 +2,12 @@
 
     <!-- set global properties for this build -->
     <property name="srcPath" value="${basedir}/src"/>
-    <property name="srcMainPath" value="${srcPath}/main/java"/>
-    <property name="srcTestPath" value="${srcPath}/test/java"/>
+    <property name="srcMainPath" value="${srcPath}/main/"/>
     <property name="buildPath" value="${basedir}/build"/>
     <property name="resourcePath" value="${basedir}/resources"/>
     <property name="jarPath" value="${basedir}/build/jar"/>
     <property name="classPath" value="${buildPath}/classes"/>
     <property name="classPathMain" value="${classPath}/main"/>
-    <property name="classPathTest" value="${classPath}/test"/>
     <property name="libPath" value="${basedir}/lib"/>
     <property name="outPath" value="${basedir}/out"/>
     <property name="distPath" value="${buildPath}/dist"/>
@@ -90,7 +88,7 @@
 
     <target name="compile" depends="clean, retrieve-ivy">
         <mkdir dir="${classPathMain}"/>
-        <javac srcdir="${srcMainPath}" destdir="${classPath}" debug="true" debuglevel="lines,vars,source">
+        <javac srcdir="${srcMainPath}" destdir="${classPathMain}" debug="true" debuglevel="lines,vars,source">
             <classpath>
                 <path refid="libraries"/>
             </classpath>
