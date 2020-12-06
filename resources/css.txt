@@ -87,57 +87,80 @@ w\:* {behavior:url(#default#VML);}
  {
     border:solid windowtext .5pt;
     background:white;
-    padding:0cm 5.4pt 0cm 5.4pt;
+    padding:0cm 1.4pt 0cm 1.4pt;
+    overflow:hidden;
  }
+  td.NormalHeader
+  {
+     border:solid windowtext .5pt;
+     background:#F2F2F2;
+     padding:0cm 1.4pt 0cm 1.4pt;
+  }
 td.ChemieRed
 {
  border:solid windowtext .5pt;
  background:red;
- padding:0cm 5.4pt 0cm 5.4pt;
+ padding:0cm 1.4pt 0cm 1.4pt;
 }
 td.ChemieBlack
 {
   border:solid windowtext .5pt;
   background:black;
-  padding:0cm 5.4pt 0cm 5.4pt;
+  padding:0cm 1.4pt 0cm 1.4pt;
 }
 td.ChemieGreen
   {
      border:solid windowtext .5pt;
      background:green;
      color:white;
-     padding:0cm 5.4pt 0cm 5.4pt;
+     padding:0cm 1.4pt 0cm 1.4pt;
   }
 td.ChemieBlue
  {
     border:solid windowtext .5pt;
     background:blue;
-    padding:0cm 5.4pt 0cm 5.4pt;
+    padding:0cm 1.4pt 0cm 1.4pt;
  }
  td.ChemieYellow
     {
        border:solid windowtext .5pt;
        background:yellow;
-       padding:0cm 5.4pt 0cm 5.4pt;
+       padding:0cm 1.4pt 0cm 1.4pt;
     }
 th.NormalTableHeader{
         border:solid windowtext .5pt;
         background:#F2F2F2;
-        padding:0cm 5.4pt 0cm 5.4pt;
+        padding:0cm 1.4pt 0cm 1.4pt;
 }
  table.MsoNormalTable
 	{
-	padding-alt:0cm 5.4pt 0cm 5.4pt;
+	table-layout:fixed;
+	padding-alt:0cm 1.4pt 0cm 1.4pt;
 	para-margin:0cm;
 	pagination:widow-orphan;
 	font-size:8.0pt;
 	font-family:"Arial",sans-serif;
+	word-break:break-all;
+	border-collapse: collapse;
 	}
- table.MsoTableGrid
-	{
-	border:solid windowtext 1.0pt;
-	font-size:11.0pt;
-	font-family:"Arial",sans-serif;
+    table.fixed
+    {
+    table-layout:fixed;
+    width:100%;
+    padding-alt:0cm 1.4pt 0cm 1.4pt;
+    para-margin:0cm;
+    pagination:widow-orphan;
+    font-size:8.0pt;
+    font-family:"Arial",sans-serif;
+    word-break:break-all;
+    border-collapse: collapse;
+    }
+    table.fixed td
+    {
+    overflow:hidden;        /*Hide text outside the cell.*/
+    border:solid windowtext .5pt;
+    background:white;
+    padding:0cm 1.4pt 0cm 1.4pt;
     }
 </style>
 <xml>
