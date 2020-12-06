@@ -88,7 +88,7 @@
 
     <target name="compile" depends="clean, retrieve-ivy">
         <mkdir dir="${classPathMain}"/>
-        <javac srcdir="${srcMainPath}" destdir="${classPathMain}" debug="true" debuglevel="lines,vars,source">
+        <javac srcdir="${srcMainPath}" destdir="${classPathMain}">
             <classpath>
                 <path refid="libraries"/>
             </classpath>
@@ -101,7 +101,7 @@
             <zipfileset src="${distPath}/dependencies-combined.jar" excludes="META-INF/*.SF"/>
             <fileset dir="${resourcePath}"/>
             <manifest>
-                <attribute name="Main-Class" value="Main"/>
+                <attribute name="Main-Class" value="sbt/Main"/>
             </manifest>
         </jar>
     </target>

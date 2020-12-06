@@ -42,11 +42,15 @@ abstract class AHtmlTemplateStrategy implements IHtmlTemplateStrategy
         {
             // "/css.txt" sollte ausreichen als Pfad für die JAR
             BufferedReader reader =
-                    new BufferedReader(new FileReader(System.getProperty("user.dir")
-                            .concat(File.separator)
-                            .concat("resources")
-                            .concat(File.separator)
-                            .concat("css.txt")));
+                    new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/css.txt")));
+
+            //testing
+//            BufferedReader reader =
+//                    new BufferedReader(new FileReader(System.getProperty("user.dir")
+//                            .concat(File.separator)
+//                            .concat("resources")
+//                            .concat(File.separator)
+//                            .concat("css.txt")));
             StringBuilder stringBuilder = new StringBuilder();
             String line = null;
             String ls = System.getProperty("line.separator");
