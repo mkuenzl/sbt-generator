@@ -3,6 +3,20 @@ package main.java.util.html;
 public class HtmlRow extends AHtml{
     //Tags
     //String Content
+    public static class Builder extends BaseHtmlBuilder<HtmlRow, Builder>{
+
+        @Override
+        protected HtmlRow getActual()
+        {
+            return new HtmlRow();
+        }
+
+        @Override
+        protected Builder getActualBuilder()
+        {
+            return this;
+        }
+    }
 
     @Override
     public String appendTag() {

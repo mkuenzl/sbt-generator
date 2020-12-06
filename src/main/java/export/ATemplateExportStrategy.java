@@ -18,7 +18,6 @@ public abstract class ATemplateExportStrategy
     }
 
     private void export(String path, String content){
-        String exportPath = path;
         File file = new File(path);
         BufferedWriter bw = null;
         try
@@ -52,7 +51,7 @@ public abstract class ATemplateExportStrategy
     abstract String format(Projekt projekt);
 
     private String getPath(){
-        return System.getProperty("user.dir" ).concat(File.separator).concat("testPN.html");
+        return System.getProperty("user.dir" ).concat(File.separator).concat(strategy.getExportFileName());
     }
 
 }

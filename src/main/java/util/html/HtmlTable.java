@@ -3,6 +3,21 @@ package main.java.util.html;
 public class HtmlTable extends AHtml{
     //table
 
+    public static class Builder extends BaseHtmlBuilder<HtmlTable, Builder>{
+
+        @Override
+        protected HtmlTable getActual()
+        {
+            return new HtmlTable();
+        }
+
+        @Override
+        protected Builder getActualBuilder()
+        {
+            return this;
+        }
+    }
+
     @Override
     public String appendTag() {
         StringBuilder strb = new StringBuilder();

@@ -9,4 +9,6 @@ public interface IHtmlTemplateStrategy
     String buildHtmlTemplate();
 
     void buildHtmlTable(List<AErkundungsstelle> data);
+
+    String getExportFileName();
 }

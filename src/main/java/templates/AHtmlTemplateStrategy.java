@@ -3,7 +3,6 @@ package main.java.templates;
 import main.java.util.html.Html;
 import main.java.util.html.HtmlBody;
 import main.java.util.html.HtmlDiv;
-import main.java.util.html.HtmlRow;
 
 import java.io.*;
 
@@ -38,12 +37,13 @@ abstract class AHtmlTemplateStrategy implements IHtmlTemplateStrategy
     String getHtmlHead(){
         try
         {
+            // "/css.txt" sollte ausreichen als Pfad für die JAR
             BufferedReader reader =
                     new BufferedReader(new FileReader(System.getProperty("user.dir")
                             .concat(File.separator)
-                            .concat("WordTemplates")
+                            .concat("resources")
                             .concat(File.separator)
-                            .concat("CSS.txt")));
+                            .concat("css.txt")));
             StringBuilder stringBuilder = new StringBuilder();
             String line = null;
             String ls = System.getProperty("line.separator");
@@ -71,4 +71,5 @@ abstract class AHtmlTemplateStrategy implements IHtmlTemplateStrategy
     }
 
     abstract String setHtmlTableHeader();
+
 }

@@ -2,6 +2,21 @@ package main.java.util.html;
 
 public class HtmlDiv extends AHtml
 {
+    public static class Builder extends BaseHtmlBuilder<HtmlDiv, Builder>{
+
+        @Override
+        protected HtmlDiv getActual()
+        {
+            return new HtmlDiv();
+        }
+
+        @Override
+        protected Builder getActualBuilder()
+        {
+            return this;
+        }
+    }
+
     @Override
     public String appendTag()
     {

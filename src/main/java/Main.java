@@ -1,7 +1,6 @@
 package main.java;
 
 import main.java.export.HtmlTemplateExportStrategy;
-import main.java.templates.*;
 import main.java.projekt.Projekt;
 import main.java.util.CLI;
 import main.java.util.Parser;
@@ -19,10 +18,12 @@ public class Main
 
         CLI commandLineInterface = new CLI(args);
 
-        Parser parser = new Parser(file);
+        Parser parser = new Parser(new File(commandLineInterface.getCsvFilePath()));
+        //Parser parser = new Parser(file);
 
         Projekt projekt = new Projekt(parser.parse());
 
-        projekt.export(new HtmlTemplateExportStrategy(TemplateStrategy.getInstance()));
+        projekt.export(new HtmlTemplateExportStrategy(commandLineInterface.getStrategy()));
+        //projekt.export(new HtmlTemplateExportStrategy(LPTemplateStrategy.getInstance()));
     }
 }

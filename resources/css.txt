@@ -1,4 +1,3 @@
-<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40" >
 <head>
 <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
 <style>
@@ -149,30 +148,3 @@ th.NormalTableHeader{
   <o:idmap v:ext="edit" data="1"/>
  </o:shapelayout></xml><![endif]-->
 </head>
-<body style='tab-interval:35.4pt;word-wrap:break-word' lang=DE >
-<div >
-<table border=1 cellpadding=0 width=605 cellspacing=0 class=MsoNormalTable >
-<tr height=2 >
-<th width=75 class=NormalTableHeader >
-Versuch Nr.
-</th>
-<th width=75 class=NormalTableHeader >
-Erk. St.
-</th>
-<th width=95 class=NormalTableHeader >
-Probenart
-</th>
-<th width=170 class=NormalTableHeader >
-Prüfschicht
-</th>
-<th colspan=3 width=95 class=NormalTableHeader >
-Prüftiefe | cm
-</th>
-<th width=95 class=NormalTableHeader >
-Erw. RuK | °C
-</th>
-</tr>
-</table>
-</div>
-</body>
-</html>

@@ -1,6 +1,23 @@
 package main.java.util.html;
 
 public class HtmlCell extends AHtml{
+
+    public static class Builder extends BaseHtmlBuilder<HtmlCell, Builder> {
+
+        @Override
+        protected HtmlCell getActual()
+        {
+            return new HtmlCell();
+        }
+
+        @Override
+        protected Builder getActualBuilder()
+        {
+            return this;
+        }
+    }
+
+
     @Override
     public String appendTag() {
         StringBuilder strb = new StringBuilder();

@@ -1,0 +1,210 @@
+package main.java.templates;
+
+import main.java.projekt.AErkundungsstelle;
+import main.java.projekt.ASchicht;
+import main.java.projekt.Erkundungsstelle;
+import main.java.util.html.HtmlCell;
+import main.java.util.html.HtmlRow;
+import main.java.util.html.HtmlTable;
+import main.java.util.html.HtmlTableHeader;
+
+import java.util.List;
+
+public final class PNTemplateStrategy extends AHtmlTemplateStrategy
+{
+    private static PNTemplateStrategy instance;
+
+
+    private PNTemplateStrategy(){}
+
+    public static PNTemplateStrategy getInstance(){
+        if (instance == null)
+        {
+            synchronized (PNTemplateStrategy.class)
+            {
+                if (instance == null)
+                {
+                    instance = new PNTemplateStrategy();
+                }
+            }
+        }
+        return instance;
+    }
+
+    @Override
+    public void buildHtmlTable(final List<AErkundungsstelle> data)
+    {
+        HtmlTable table = new HtmlTable.Builder()
+                .appendAttribute("class", "MsoNormalTable")
+                .appendAttribute("width", "605")
+                .appendAttribute("border", "1")
+                .appendAttribute("cellspacing", "0")
+                .appendAttribute("cellpadding", "0")
+                .appendContent(setHtmlTableHeader())
+                .build();
+
+
+        for (int i = 0; i < data.size(); i++)
+        {
+            AErkundungsstelle erkTmp = data.get(i);
+            List<ASchicht> schichtList = erkTmp.getSchichtList();
+
+            for (int j = 0; j < schichtList.size(); j++)
+            {
+                HtmlCell cell1 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendContent("Cell1")
+                        .build();
+
+                HtmlCell cell2 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendContent("Cell2")
+                        .build();
+
+                HtmlCell cell3 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendContent("Cell3")
+                        .build();
+
+                HtmlCell cell4 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendContent("Cell4")
+                        .build();
+
+                HtmlCell cell5 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendContent("Cell5")
+                        .build();
+
+                HtmlCell cell6 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendContent("Cell6")
+                        .build();
+
+                HtmlCell cell7 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendContent("Cell7")
+                        .build();
+
+                HtmlCell cell8 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendContent("Cell8")
+                        .build();
+
+                HtmlCell cell9 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendContent("Cell9")
+                        .build();
+
+                HtmlCell cell10 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendContent("Cell10")
+                        .build();
+
+                HtmlRow row = new HtmlRow.Builder()
+                        .appendAttribute("height", "1")
+                        .appendContent(cell1.appendTag())
+                        .appendContent(cell2.appendTag())
+                        .appendContent(cell3.appendTag())
+                        .appendContent(cell4.appendTag())
+                        .appendContent(cell5.appendTag())
+                        .appendContent(cell6.appendTag())
+                        .appendContent(cell7.appendTag())
+                        .appendContent(cell8.appendTag())
+                        .appendContent(cell9.appendTag())
+                        .appendContent(cell10.appendTag())
+                        .build();
+
+                table.appendContent(row.appendTag());
+            }
+        }
+
+        setHtmlTable(table.appendTag());
+    }
+
+    @Override
+    String setHtmlTableHeader()
+    {
+        HtmlTableHeader cell1 = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("width", "38")
+                .appendContent("Probe")
+                .build();
+
+        HtmlTableHeader cell2 = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("width", "30")
+                .appendContent("Art")
+                .build();
+
+        HtmlTableHeader cell3 = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("width", "65")
+                .appendContent("Behältnis")
+                .build();
+
+        HtmlTableHeader cell4 = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("width", "47")
+                .appendContent("Vol. | L")
+                .build();
+
+        HtmlTableHeader cell5 = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("width", "57")
+                .appendContent("Haufwerk Vol. | L")
+                .build();
+
+        HtmlTableHeader cell6 = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("width", "95")
+                .appendContent("Abfallart")
+                .build();
+
+        HtmlTableHeader cell7 = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("width", "76")
+                .appendContent("Farbe")
+                .build();
+
+        HtmlTableHeader cell8 = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("width", "38")
+                .appendContent("Erk. St.")
+                .build();
+
+        HtmlTableHeader cell9 = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("width", "57")
+                .appendContent("Tiefe | cm")
+                .build();
+
+        HtmlTableHeader cell10 = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("width", "102")
+                .appendContent("Bemerkungen")
+                .build();
+
+        HtmlRow row = new HtmlRow.Builder()
+                .appendAttribute("height", "2")
+                .appendContent(cell1.appendTag())
+                .appendContent(cell2.appendTag())
+                .appendContent(cell3.appendTag())
+                .appendContent(cell4.appendTag())
+                .appendContent(cell5.appendTag())
+                .appendContent(cell6.appendTag())
+                .appendContent(cell7.appendTag())
+                .appendContent(cell8.appendTag())
+                .appendContent(cell9.appendTag())
+                .appendContent(cell10.appendTag())
+                .build();
+
+        return row.appendTag();
+    }
+
+    @Override
+    public String getExportFileName()
+    {
+        return "PN_Tabelle.html";
+    }
+}
