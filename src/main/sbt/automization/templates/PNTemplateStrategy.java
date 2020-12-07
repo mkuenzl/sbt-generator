@@ -3,6 +3,7 @@ package sbt.automization.templates;
 
 import sbt.automization.projekt.AErkundungsstelle;
 import sbt.automization.projekt.ASchicht;
+import sbt.automization.templates.styles.TableStyle;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
@@ -38,6 +39,7 @@ public final class PNTemplateStrategy extends AHtmlTemplateStrategy
                 .appendAttribute("class", "MsoNormalTable")
                 .appendAttribute("width", "605")
                 .appendAttribute("border", "1")
+                .appendAttribute("style", TableStyle.TABLE_STYLE1.getAttributes())
                 .appendAttribute("cellspacing", "0")
                 .appendAttribute("cellpadding", "0")
                 .appendContent(setHtmlTableHeader())
@@ -88,7 +90,7 @@ public final class PNTemplateStrategy extends AHtmlTemplateStrategy
 
                 HtmlCell cell8 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent("Cell8")
+                        .appendContent("cell8888888")
                         .build();
 
                 HtmlCell cell9 = new HtmlCell.Builder()
@@ -169,7 +171,7 @@ public final class PNTemplateStrategy extends AHtmlTemplateStrategy
 
         HtmlTableHeader cell8 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "38")
+                .appendAttribute("width", "45")
                 .appendContent("Erk. St.")
                 .build();
 
@@ -181,7 +183,7 @@ public final class PNTemplateStrategy extends AHtmlTemplateStrategy
 
         HtmlTableHeader cell10 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "102")
+                .appendAttribute("width", "95")
                 .appendContent("Bemerkungen")
                 .build();
 

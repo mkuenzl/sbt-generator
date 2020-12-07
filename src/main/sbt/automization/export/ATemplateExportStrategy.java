@@ -51,7 +51,7 @@ public abstract class ATemplateExportStrategy
     abstract String format(Projekt projekt);
 
     private String getPath(){
-        return System.getProperty("user.dir" ).concat(File.separator).concat(strategy.getExportFileName());
+        return System.getProperty("user.dir").concat(File.separator).concat(strategy.getExportFileName());
     }
 
 }

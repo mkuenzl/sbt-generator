@@ -1,6 +1,7 @@
 package sbt.automization.templates;
 
 import sbt.automization.projekt.AErkundungsstelle;
+import sbt.automization.templates.styles.TableStyle;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
 import sbt.automization.util.html.HtmlTableHeader;
@@ -94,6 +95,7 @@ public final class RUKTemplateStrategy extends AHtmlTemplateStrategy
                 .appendAttribute("class", "MsoNormalTable")
                 .appendAttribute("width", "605")
                 .appendAttribute("border", "1")
+                .appendAttribute("style", TableStyle.TABLE_STYLE1.getAttributes())
                 .appendAttribute("cellspacing", "0")
                 .appendAttribute("cellpadding", "0")
                 .appendContent(setHtmlTableHeader())

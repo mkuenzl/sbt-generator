@@ -1,7 +1,7 @@
 package sbt;
 
 import sbt.automization.projekt.Projekt;
-import sbt.automization.templates.LPTemplateStrategy;
+import sbt.automization.templates.*;
 import sbt.automization.util.CLI;
 import sbt.automization.export.HtmlTemplateExportStrategy;
 import java.io.File;
@@ -13,17 +13,22 @@ public class Main
 {
     public static void main(String[] args) throws IOException
     {
-        File file = new File("C:\\Users\\Kuenzl\\Desktop\\Datenbank.CSV");
+        String csvFilePath = System.getProperty("user.dir").concat(File.separator).concat("datenbank.csv");
+        File file = new File(csvFilePath);
         //File file = new File("/Users/moritzkunzl/Desktop/HTML/ProjektDaten.csv");
 
-        CLI commandLineInterface = new CLI(args);
 
+        CLI commandLineInterface = new CLI(args);
+        commandLineInterface.parse();
+
+        //FALL KEIN FILE VORHANDEN
         //Parser parser = new Parser(new File(commandLineInterface.getCsvFilePath()));
         Parser parser = new Parser(file);
 
         Projekt projekt = new Projekt(parser.parse());
 
+        //FALL KEINE STRATEGY VORHANDEN
         //projekt.export(new HtmlTemplateExportStrategy(commandLineInterface.getStrategy()));
-        projekt.export(new HtmlTemplateExportStrategy(LPTemplateStrategy.getInstance()));
+        projekt.export(new HtmlTemplateExportStrategy(PNTemplateStrategy.getInstance()));
     }
 }

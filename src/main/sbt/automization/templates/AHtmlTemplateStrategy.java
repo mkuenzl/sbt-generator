@@ -17,6 +17,7 @@ abstract class AHtmlTemplateStrategy implements IHtmlTemplateStrategy
     public String buildHtmlTemplate(){
 
         HtmlDiv div = new HtmlDiv.Builder()
+                .appendAttribute("class", "WordSection1")
                 .appendContent(htmlTable)
                 .build();
 
@@ -44,13 +45,6 @@ abstract class AHtmlTemplateStrategy implements IHtmlTemplateStrategy
             BufferedReader reader =
                     new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/css.txt")));
 
-            //testing
-//            BufferedReader reader =
-//                    new BufferedReader(new FileReader(System.getProperty("user.dir")
-//                            .concat(File.separator)
-//                            .concat("resources")
-//                            .concat(File.separator)
-//                            .concat("css.txt")));
             StringBuilder stringBuilder = new StringBuilder();
             String line = null;
             String ls = System.getProperty("line.separator");
@@ -75,6 +69,11 @@ abstract class AHtmlTemplateStrategy implements IHtmlTemplateStrategy
     void setHtmlTable(final String htmlTable)
     {
         this.htmlTable = htmlTable;
+    }
+
+    String getHtmlTable()
+    {
+        return htmlTable;
     }
 
     abstract String setHtmlTableHeader();

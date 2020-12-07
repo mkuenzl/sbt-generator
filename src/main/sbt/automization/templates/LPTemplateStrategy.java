@@ -2,6 +2,7 @@ package sbt.automization.templates;
 
 
 import sbt.automization.projekt.AErkundungsstelle;
+import sbt.automization.templates.styles.TableStyle;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
 import sbt.automization.util.html.HtmlTableHeader;
@@ -33,14 +34,14 @@ public final class LPTemplateStrategy extends AHtmlTemplateStrategy
     {
         HtmlTableHeader cell1 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "64")
+                .appendAttribute("width", "54")
                 .appendAttribute("rowspan", "3")        //Zelle geht über 3 Reihen
                 .appendContent("Versuch Nr.")
                 .build();
 
         HtmlTableHeader cell2 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "57")
+                .appendAttribute("width", "67")
                 .appendAttribute("rowspan", "3")        //Zelle geht über 3 Reihen
                 .appendContent("Messstelle Nr.")
                 .build();
@@ -198,6 +199,7 @@ public final class LPTemplateStrategy extends AHtmlTemplateStrategy
     {
         HtmlTable table = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
+                .appendAttribute("style", TableStyle.TABLE_STYLE1.getAttributes())
                 .appendAttribute("width", "605")
                 .appendAttribute("border", "1")
                 .appendAttribute("cellspacing", "0")

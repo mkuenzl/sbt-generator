@@ -10,6 +10,8 @@ public enum CellStyle
             stringBuilder.append("'")
                     .append("border:solid windowtext .5pt")
                     .append(";")
+                    .append("mso-border-alt:solid windowtext .5pt")
+                    .append(";")
                     .append("padding:0cm 5.4pt 0cm 5.4pt")
                     .append("'");
             return stringBuilder.toString();

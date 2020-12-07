@@ -3,19 +3,21 @@ package sbt.automization.util;
 import org.apache.commons.cli.*;
 import sbt.automization.templates.*;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CLI
 {
     private String[] args;
-    private Options options = new Options();
-    private String csvFilePath = System.getProperty("user.dir").concat("datenbank.csv");
+    private Options options;
+    private String csvFilePath = System.getProperty("user.dir").concat(File.separator).concat("datenbank.csv");
     private IHtmlTemplateStrategy strategy;
 
     public CLI(String[] args)
     {
         this.args = args;
+        this.options = new Options();
 
         options.addOption("h", "help", false, "Show options");
         options.addOption("t", "template", true, "Print template");
@@ -52,7 +54,7 @@ public class CLI
                         this.strategy = RUKTemplateStrategy.getInstance();
                         break;
                     case "ERK_Template":
-                        //this.strategy = ERKTemplateStrategy.getInstance();
+                        this.strategy = ERKTemplateStrategy.getInstance();
                         break;
                     default:
                         System.err.println("Please provide a template.");
@@ -64,18 +66,6 @@ public class CLI
         {
             System.err.println("Parsing failed. Reason: " + e.getMessage());
         }
-    }
-
-    public Map parseOption(String propValues)
-    {
-        Map<String, String> map = new HashMap<>();
-        String[] values = propValues.split(",");
-        for (String value : values)
-        {
-            String[] property = value.split("=");
-            map.put(property[0], property[1]);
-        }
-        return map;
     }
 
     public String getCsvFilePath()

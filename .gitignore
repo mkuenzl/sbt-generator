@@ -5,7 +5,6 @@ build
 .*
 sources
 out
-resources/*.jar
 
 # Compiled class file
 *.class
@@ -28,6 +27,7 @@ resources/*.jar
 *.rar
 *.idea
 *.html
+*.csv
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*

@@ -4,6 +4,7 @@ package sbt.automization.projekt;
 import sbt.automization.export.ATemplateExportStrategy;
 import java.util.*;
 
+//Eigentlich Main Interface um mit allem zu interagieren
 public class Projekt
 {
     private List<AErkundungsstelle> data;
