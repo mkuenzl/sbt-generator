@@ -156,38 +156,47 @@ class ERK_GO_TemplateStrategy extends AHtmlTemplateStrategy
     public void buildHtmlTable(final List<AErkundungsstelle> data)
     {
         HtmlCell cell1 = new HtmlCell.Builder()
+                .appendAttribute("class", "Normal")
                 .appendContent("11")
                 .build();
 
         HtmlCell cell2 = new HtmlCell.Builder()
+                .appendAttribute("class", "Normal")
                 .appendContent("11")
                 .build();
 
         HtmlCell cell3 = new HtmlCell.Builder()
+                .appendAttribute("class", "Normal")
                 .appendContent("11")
                 .build();
 
         HtmlCell cell4 = new HtmlCell.Builder()
+                .appendAttribute("class", "Normal")
                 .appendContent("11")
                 .build();
 
         HtmlCell cell5 = new HtmlCell.Builder()
+                .appendAttribute("class", "Normal")
                 .appendContent("11")
                 .build();
 
         HtmlCell cell6 = new HtmlCell.Builder()
+                .appendAttribute("class", "Normal")
                 .appendContent("11")
                 .build();
 
         HtmlCell cell7 = new HtmlCell.Builder()
+                .appendAttribute("class", "Normal")
                 .appendContent("11")
                 .build();
 
         HtmlCell cell8 = new HtmlCell.Builder()
+                .appendAttribute("class", "Normal")
                 .appendContent("11")
                 .build();
 
         HtmlRow row = new HtmlRow.Builder()
+                .appendAttribute("class", "Normal")
                 .appendContent(cell1.appendTag())
                 .appendContent(cell2.appendTag())
                 .appendContent(cell3.appendTag())

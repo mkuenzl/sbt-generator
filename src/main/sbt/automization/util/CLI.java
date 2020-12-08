@@ -11,7 +11,9 @@ public class CLI
 {
     private String[] args;
     private Options options;
-    private String csvFilePath = System.getProperty("user.dir").concat(File.separator).concat("datenbank.csv");
+    private String csvFilePath;
+    private File file = new File(System.getProperty("user.dir").concat(File.separator).concat("datenbank.csv"));
+    //private File file = new File("/Users/moritzkunzl/Desktop/HTML/ProjektDaten.csv");
     private IHtmlTemplateStrategy strategy;
 
     public CLI(String[] args)
@@ -68,9 +70,9 @@ public class CLI
         }
     }
 
-    public String getCsvFilePath()
+    public File getCsvFile()
     {
-        return csvFilePath;
+        return file;
     }
 
     public IHtmlTemplateStrategy getStrategy()

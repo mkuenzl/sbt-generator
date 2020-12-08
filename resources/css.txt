@@ -4,7 +4,7 @@
 			<o:DocumentProperties>
 				<o:Author>Kuenzl</o:Author>
 				<o:Template/>
-				<o:LastAuthor>Moritz Künzl</o:LastAuthor>
+				<o:LastAuthor>Moritz Kuenzl</o:LastAuthor>
 				<o:Revision/>
 				<o:Created>2020-11-11T10:31:00Z</o:Created>
 				<o:LastSaved>2020-11-11T10:32:00Z</o:LastSaved>

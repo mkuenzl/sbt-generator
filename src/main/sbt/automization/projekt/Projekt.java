@@ -47,9 +47,10 @@ public class Projekt
 
         for (AErkundungsstelle erk : data)
         {
+            //Sortiert die Schichten in einer Erkundungsstellen
             erk.sort();
         }
-
+        //Sortiert die Erkundungsstellen
         Collections.sort(data);
     }
 

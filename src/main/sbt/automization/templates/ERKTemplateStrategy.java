@@ -39,7 +39,7 @@ public final class ERKTemplateStrategy extends AHtmlTemplateStrategy
     {
         HtmlCell cell11 = new HtmlCell.Builder()
                 .appendAttribute("width", "75")
-                .appendAttribute("class", "Normal")
+                .appendAttribute("class", "NormalHeader")
                 .appendContent("Erkund.-Stelle")
                 .build();
 
@@ -50,14 +50,14 @@ public final class ERKTemplateStrategy extends AHtmlTemplateStrategy
                 .build();
 
         HtmlRow row1 = new HtmlRow.Builder()
-                .appendAttribute("height", "1")
+                .appendAttribute("class", "Normal")
                 .appendContent(cell11.appendTag())
                 .appendContent(cell12.appendTag())
                 .build();
 
         HtmlCell cell21 = new HtmlCell.Builder()
                 .appendAttribute("width", "75")
-                .appendAttribute("class", "Normal")
+                .appendAttribute("class", "NormalHeader")
                 .appendContent("Name")
                 .build();
 
@@ -69,7 +69,7 @@ public final class ERKTemplateStrategy extends AHtmlTemplateStrategy
 
         HtmlCell cell23 = new HtmlCell.Builder()
                 .appendAttribute("width", "75")
-                .appendAttribute("class", "Normal")
+                .appendAttribute("class", "NormalHeader")
                 .appendContent("Datum")
                 .build();
 
@@ -80,7 +80,7 @@ public final class ERKTemplateStrategy extends AHtmlTemplateStrategy
                 .build();
 
         HtmlRow row2 = new HtmlRow.Builder()
-                .appendAttribute("height", "1")
+                .appendAttribute("class", "Normal")
                 .appendContent(cell21.appendTag())
                 .appendContent(cell22.appendTag())
                 .appendContent(cell23.appendTag())
@@ -89,7 +89,7 @@ public final class ERKTemplateStrategy extends AHtmlTemplateStrategy
 
 
         HtmlCell cell31 = new HtmlCell.Builder()
-                .appendAttribute("class", "Normal")
+                .appendAttribute("class", "NormalHeader")
                 .appendContent("Koordinaten")
                 .build();
 
@@ -100,7 +100,7 @@ public final class ERKTemplateStrategy extends AHtmlTemplateStrategy
 
 
         HtmlCell cell33 = new HtmlCell.Builder()
-                .appendAttribute("class", "Normal")
+                .appendAttribute("class", "NormalHeader")
                 .appendContent("Entnehmer")
                 .build();
 
@@ -110,7 +110,7 @@ public final class ERKTemplateStrategy extends AHtmlTemplateStrategy
                 .build();
 
         HtmlRow row3 = new HtmlRow.Builder()
-                .appendAttribute("height", "1")
+                .appendAttribute("class", "Normal")
                 .appendContent(cell31.appendTag())
                 .appendContent(cell32.appendTag())
                 .appendContent(cell33.appendTag())

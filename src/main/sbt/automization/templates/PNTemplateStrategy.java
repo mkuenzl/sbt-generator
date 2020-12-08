@@ -32,6 +32,8 @@ public final class PNTemplateStrategy extends AHtmlTemplateStrategy
         return instance;
     }
 
+    private int counter = 0;
+
     @Override
     public void buildHtmlTable(final List<AErkundungsstelle> data)
     {
@@ -55,56 +57,56 @@ public final class PNTemplateStrategy extends AHtmlTemplateStrategy
             {
                 HtmlCell cell1 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent("Cell1")
+                        .appendContent("Cell" + counter++)
                         .build();
 
                 HtmlCell cell2 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent("Cell2")
+                        .appendContent("Cell" + counter++)
                         .build();
 
                 HtmlCell cell3 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent("Cell3")
+                        .appendContent("Cell" + counter++)
                         .build();
 
                 HtmlCell cell4 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent("Cell4")
+                        .appendContent("Cell" + counter++)
                         .build();
 
                 HtmlCell cell5 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent("Cell5")
+                        .appendContent("Cell" + counter++)
                         .build();
 
                 HtmlCell cell6 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent("Cell6")
+                        .appendContent("Cell" + counter++)
                         .build();
 
                 HtmlCell cell7 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent("Cell7")
+                        .appendContent("Cell" + counter++)
                         .build();
 
                 HtmlCell cell8 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent("cell8888888")
+                        .appendContent("Cell" + counter++)
                         .build();
 
                 HtmlCell cell9 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent("Cell9")
+                        .appendContent("Cell" + counter++)
                         .build();
 
                 HtmlCell cell10 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent("Cell10")
+                        .appendContent("Cell" + counter++)
                         .build();
 
                 HtmlRow row = new HtmlRow.Builder()
-                        .appendAttribute("height", "1")
+                        .appendAttribute("class", "Normal")
                         .appendContent(cell1.appendTag())
                         .appendContent(cell2.appendTag())
                         .appendContent(cell3.appendTag())
