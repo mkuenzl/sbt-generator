@@ -48,26 +48,25 @@ public final class PNTemplateStrategy extends AHtmlTemplateStrategy
                 .build();
 
 
-        for (int i = 0; i < data.size(); i++)
+        for (AErkundungsstelle erkundungsstelle : data)
         {
-            AErkundungsstelle erkTmp = data.get(i);
-            List<ASchicht> schichtList = erkTmp.getSchichtList();
+            List<ASchicht> schichtList = erkundungsstelle.getSchichtList();
 
-            for (int j = 0; j < schichtList.size(); j++)
+            for (ASchicht schicht : schichtList)
             {
                 HtmlCell cell1 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent("Cell" + counter++)
+                        .appendContent(schicht.getInformation("SCHICHT_ID"))
                         .build();
 
                 HtmlCell cell2 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent("Cell" + counter++)
+                        .appendContent("EP")
                         .build();
 
                 HtmlCell cell3 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent("Cell" + counter++)
+                        .appendContent(schicht.getInformation("SCHICHT_BEHAELTNIS"))
                         .build();
 
                 HtmlCell cell4 = new HtmlCell.Builder()
@@ -77,32 +76,40 @@ public final class PNTemplateStrategy extends AHtmlTemplateStrategy
 
                 HtmlCell cell5 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent("Cell" + counter++)
+                        .appendContent("")
                         .build();
 
+                //HIER MUSS MEHR CODE STRATEGY?? TODO
                 HtmlCell cell6 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent("Cell" + counter++)
+                        .appendAttribute("width", "95")
+                        .appendContent(schicht.getInformation("SCHICHT_ART"))
                         .build();
 
                 HtmlCell cell7 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent("Cell" + counter++)
+                        .appendAttribute("width", "30")
+                        .appendContent(schicht.getInformation("SCHICHT_KOERNUNG"))
                         .build();
 
                 HtmlCell cell8 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent("Cell" + counter++)
+                        .appendContent(schicht.getInformation("SCHICHT_FARBE"))
                         .build();
 
                 HtmlCell cell9 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent("Cell" + counter++)
+                        .appendContent(erkundungsstelle.getInformation("ERK_ID"))
                         .build();
 
                 HtmlCell cell10 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent("Cell" + counter++)
+                        .appendContent(schicht.getInformation("SCHICHT_TIEFE"))
+                        .build();
+
+                HtmlCell cell11 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendContent("")
                         .build();
 
                 HtmlRow row = new HtmlRow.Builder()
@@ -117,6 +124,7 @@ public final class PNTemplateStrategy extends AHtmlTemplateStrategy
                         .appendContent(cell8.appendTag())
                         .appendContent(cell9.appendTag())
                         .appendContent(cell10.appendTag())
+                        .appendContent(cell11.appendTag())
                         .build();
 
                 table.appendContent(row.appendTag());
@@ -124,6 +132,12 @@ public final class PNTemplateStrategy extends AHtmlTemplateStrategy
         }
 
         setHtmlTable(table.appendTag());
+    }
+
+    @Override
+    public void buildHtmlTable(final AErkundungsstelle data)
+    {
+
     }
 
     @Override
@@ -150,18 +164,19 @@ public final class PNTemplateStrategy extends AHtmlTemplateStrategy
         HtmlTableHeader cell4 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "47")
-                .appendContent("Vol. | L")
+                .appendContent("Vol.")
                 .build();
 
         HtmlTableHeader cell5 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "57")
-                .appendContent("Haufwerk Vol. | L")
+                .appendContent("Haufwerk Vol.")
                 .build();
 
         HtmlTableHeader cell6 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "95")
+                .appendAttribute("width", "125")
+                .appendAttribute("colspan", "2")
                 .appendContent("Abfallart")
                 .build();
 
@@ -180,17 +195,50 @@ public final class PNTemplateStrategy extends AHtmlTemplateStrategy
         HtmlTableHeader cell9 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "57")
-                .appendContent("Tiefe | cm")
+                .appendContent("Tiefe")
                 .build();
 
         HtmlTableHeader cell10 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "95")
-                .appendContent("Bemerkungen")
+                .appendAttribute("width", "65")
+                .appendContent("Notiz")
                 .build();
 
-        HtmlRow row = new HtmlRow.Builder()
-                .appendAttribute("height", "2")
+        HtmlTableHeader cell21 = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("colspan", "3")
+                .appendContent("")
+                .build();
+
+        HtmlTableHeader cell22 = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendContent("L")
+                .build();
+
+        HtmlTableHeader cell23 = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendContent("L")
+                .build();
+
+        HtmlTableHeader cell24 = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("colspan", "4")
+                .appendContent("")
+                .build();
+
+        HtmlTableHeader cell25 = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendContent("cm")
+                .build();
+
+        HtmlTableHeader cell26 = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendContent("")
+                .build();
+
+
+        HtmlRow row1 = new HtmlRow.Builder()
+                .appendAttribute("class", "NormalHeader")
                 .appendContent(cell1.appendTag())
                 .appendContent(cell2.appendTag())
                 .appendContent(cell3.appendTag())
@@ -203,7 +251,21 @@ public final class PNTemplateStrategy extends AHtmlTemplateStrategy
                 .appendContent(cell10.appendTag())
                 .build();
 
-        return row.appendTag();
+        HtmlRow row2 = new HtmlRow.Builder()
+                .appendAttribute("class", "NormalHeaderUnits")
+                .appendContent(cell21.appendTag())
+                .appendContent(cell22.appendTag())
+                .appendContent(cell23.appendTag())
+                .appendContent(cell24.appendTag())
+                .appendContent(cell25.appendTag())
+                .appendContent(cell26.appendTag())
+                .build();
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(row1.appendTag())
+                .append(row2.appendTag());
+
+        return stringBuilder.toString();
     }
 
     @Override

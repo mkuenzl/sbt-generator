@@ -53,7 +53,6 @@ public final class RUKTemplateStrategy extends AHtmlTemplateStrategy
         HtmlTableHeader cell14 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "165")
-                .appendAttribute("colspan", "2")
                 .appendContent("Prüfschicht")
                 .build();
 
@@ -61,18 +60,38 @@ public final class RUKTemplateStrategy extends AHtmlTemplateStrategy
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "100")
                 .appendAttribute("colspan", "3")
-                .appendContent("Prüftiefe | cm")
+                .appendContent("Prüftiefe")
                 .build();
 
         HtmlTableHeader cell16 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "95")
-                .appendContent("Erw. RuK | °C")
+                .appendContent("Erw. RuK")
+                .build();
+
+        HtmlTableHeader cell21 = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("width", "165")
+                .appendAttribute("colspan", "4")
+                .appendContent("")
+                .build();
+
+        HtmlTableHeader cell22 = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("width", "100")
+                .appendAttribute("colspan", "3")
+                .appendContent("cm")
+                .build();
+
+        HtmlTableHeader cell23 = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("width", "95")
+                .appendContent("°C")
                 .build();
 
         //First Header Row
         HtmlRow row1 = new HtmlRow.Builder()
-                .appendAttribute("height", "2")
+                .appendAttribute("class", "NormalHeader")
                 .appendContent(cell11.appendTag())
                 .appendContent(cell12.appendTag())
                 .appendContent(cell13.appendTag())
@@ -81,7 +100,18 @@ public final class RUKTemplateStrategy extends AHtmlTemplateStrategy
                 .appendContent(cell16.appendTag())
                 .build();
 
-        return row1.appendTag();
+        HtmlRow row2 = new HtmlRow.Builder()
+                .appendAttribute("class", "NormalHeaderUnits")
+                .appendContent(cell21.appendTag())
+                .appendContent(cell22.appendTag())
+                .appendContent(cell23.appendTag())
+                .build();
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(row1.appendTag())
+                .append(row2.appendTag());
+
+        return stringBuilder.toString();
     }
 
     @Override
@@ -104,13 +134,13 @@ public final class RUKTemplateStrategy extends AHtmlTemplateStrategy
                 .build();
 
 
-        for (int i = 0; i < data.size(); i++)
+        for (AErkundungsstelle erkundungsstelle : data)
         {
-            List<ASchicht> sList = data.get(i).getSchichtList();
+            List<ASchicht> sList = erkundungsstelle.getSchichtList();
 
-            for (int j = 0; j < sList.size(); j++)
+            for (ASchicht schicht : sList)
             {
-                String rukValue = sList.get(j).getInformation("SCHICHT_RUK");
+                String rukValue = schicht.getInformation("SCHICHT_RUK");
 
                 if (!"".equals(rukValue)){
                     HtmlCell cell1 = new HtmlCell.Builder()
@@ -120,51 +150,46 @@ public final class RUKTemplateStrategy extends AHtmlTemplateStrategy
 
                     HtmlCell cell2 = new HtmlCell.Builder()
                             .appendAttribute("class", "Normal")
-                            .appendContent("1")
+                            .appendContent(erkundungsstelle.getInformation("ERK_ID"))
                             .build();
 
                     HtmlCell cell3 = new HtmlCell.Builder()
                             .appendAttribute("class", "Normal")
-                            .appendContent("1")
+                            .appendContent("EINZELPROBE")
                             .build();
 
                     HtmlCell cell4 = new HtmlCell.Builder()
                             .appendAttribute("class", "Normal")
-                            .appendAttribute("width", "120")
-                            .appendContent("1")
+                            .appendAttribute("width", "170")
+                            .appendContent(schicht.getInformation("SCHICHT_ART").concat("  ").concat(schicht.getInformation("SCHICHT_KOERNUNG")))
                             .build();
+
 
                     HtmlCell cell5 = new HtmlCell.Builder()
                             .appendAttribute("class", "Normal")
-                            .appendAttribute("width", "50")
-                            .appendContent("1")
+                            .appendAttribute("width", "35")
+                            .appendAttribute("align", "center")
+                            .appendContent(schicht.getInformation("SCHICHT_DICKE"))
                             .build();
 
                     HtmlCell cell6 = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendAttribute("width", "35")
-                            .appendAttribute("align", "center")
-                            .appendContent("1")
-                            .build();
-
-                    HtmlCell cell7 = new HtmlCell.Builder()
                             .appendAttribute("class", "Normal")
                             .appendAttribute("width", "30")
                             .appendAttribute("align", "center")
                             .appendContent("-")
                             .build();
 
-                    HtmlCell cell8 = new HtmlCell.Builder()
+                    HtmlCell cell7 = new HtmlCell.Builder()
                             .appendAttribute("class", "Normal")
                             .appendAttribute("width", "35")
                             .appendAttribute("align", "center")
-                            .appendContent("1")
+                            .appendContent(schicht.getInformation("SCHICHT_TIEFE"))
                             .build();
 
-                    HtmlCell cell9 = new HtmlCell.Builder()
+                    HtmlCell cell8 = new HtmlCell.Builder()
                             .appendAttribute("class", "Normal")
                             .appendAttribute("align", "center")
-                            .appendContent("1")
+                            .appendContent(schicht.getInformation("SCHICHT_RUK"))
                             .build();
 
                     HtmlRow htmlRow = new HtmlRow.Builder()
@@ -177,7 +202,6 @@ public final class RUKTemplateStrategy extends AHtmlTemplateStrategy
                             .appendContent(cell6.appendTag())
                             .appendContent(cell7.appendTag())
                             .appendContent(cell8.appendTag())
-                            .appendContent(cell9.appendTag())
                             .build();
 
                     table.appendContent(htmlRow.appendTag());
@@ -186,5 +210,11 @@ public final class RUKTemplateStrategy extends AHtmlTemplateStrategy
         }
 
         setHtmlTable(table.appendTag());
+    }
+
+    @Override
+    public void buildHtmlTable(final AErkundungsstelle data)
+    {
+
     }
 }

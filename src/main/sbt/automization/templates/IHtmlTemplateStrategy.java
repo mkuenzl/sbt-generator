@@ -11,5 +11,7 @@ public interface IHtmlTemplateStrategy
 
     void buildHtmlTable(List<AErkundungsstelle> data);
 
+    void buildHtmlTable(AErkundungsstelle data);
+
     String getExportFileName();
 }

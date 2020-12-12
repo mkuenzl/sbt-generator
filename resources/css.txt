@@ -70,8 +70,14 @@
 			{
 			page-break-inside:avoid;
 			background:grey;
-			height:2.0cm;
+			height:1.0cm;
 			}
+			tr.NormalHeaderUnits
+            {
+            page-break-inside:avoid;
+            background:grey;
+            height:0.5cm;
+            }
 			tr.NormalThin
 			{
 			page-break-inside:avoid;
@@ -84,6 +90,14 @@
 			padding:0cm 1.4pt 0cm 1.4pt;
 			overflow:hidden;
 			}
+			td.NormalErkundungsstelle
+            {
+            border:solid windowtext .5pt;
+            background:white;
+            padding:0cm 1.4pt 0cm 1.4pt;
+            text-align:center;
+            overflow:hidden;
+            }
 			td.NormalHeader
 			{
 			border:solid windowtext .5pt;

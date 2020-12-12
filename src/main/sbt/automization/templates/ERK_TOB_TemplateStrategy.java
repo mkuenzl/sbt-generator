@@ -1,6 +1,7 @@
 package sbt.automization.templates;
 
 import sbt.automization.projekt.AErkundungsstelle;
+import sbt.automization.projekt.ASchicht;
 import sbt.automization.templates.styles.TableStyle;
 import sbt.automization.util.html.*;
 
@@ -128,12 +129,13 @@ class ERK_TOB_TemplateStrategy extends AHtmlTemplateStrategy
                 .build();
 
         HtmlRow row1 = new HtmlRow.Builder()
-                .appendAttribute("height","1")
+                .appendAttribute("class", "NormalHeader")
                 .appendContent(cell11.appendTag())
                 .appendContent(cell12.appendTag())
                 .build();
 
         HtmlRow row2 = new HtmlRow.Builder()
+                .appendAttribute("class", "NormalHeader")
                 .appendContent(cell21.appendTag())
                 .appendContent(cell22.appendTag())
                 .appendContent(cell23.appendTag())
@@ -145,6 +147,7 @@ class ERK_TOB_TemplateStrategy extends AHtmlTemplateStrategy
                 .build();
 
         HtmlRow row3 = new HtmlRow.Builder()
+                .appendAttribute("class", "NormalHeaderUnits")
                 .appendContent(cell31.appendTag())
                 .appendContent(cell32.appendTag())
                 .appendContent(cell33.appendTag())
@@ -166,6 +169,12 @@ class ERK_TOB_TemplateStrategy extends AHtmlTemplateStrategy
     @Override
     public void buildHtmlTable(final List<AErkundungsstelle> data)
     {
+
+    }
+
+    @Override
+    public void buildHtmlTable(final AErkundungsstelle data)
+    {
         HtmlTable table = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
                 .appendAttribute("width", "605")
@@ -176,6 +185,73 @@ class ERK_TOB_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendContent(setHtmlTableHeader())
                 .build();
 
+
+        for (ASchicht schicht : data.getSchichtList())
+        {
+            if ("ToB".equals(schicht.getInformation("SCHICHT_AUFSCHLUSS"))){
+                //Art der Schicht
+                HtmlCell cell1 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendContent(schicht.getInformation("SCHICHT_ART").concat("  ").concat(schicht.getInformation("SCHICHT_KOERNUNG")))
+                        .build();
+
+                //Dicke
+                HtmlCell cell2 = new HtmlCell.Builder()
+                        .appendAttribute("class", "NormalErkundungsstelle")
+                        .appendContent(schicht.getInformation("SCHICHT_DICKE"))
+                        .build();
+
+                //Tiefe
+                HtmlCell cell3 = new HtmlCell.Builder()
+                        .appendAttribute("class", "NormalErkundungsstelle")
+                        .appendContent(schicht.getInformation("SCHICHT_TIEFE"))
+                        .build();
+
+                //Pech
+                HtmlCell cell4 = new HtmlCell.Builder()
+                        .appendAttribute("class", "NormalErkundungsstelle")
+                        .appendContent(schicht.getInformation("CHEMIE_LAGA_BO"))
+                        .build();
+
+                //MUFV
+                HtmlCell cell5 = new HtmlCell.Builder()
+                        .appendAttribute("class", "NormalErkundungsstelle")
+                        .appendContent(schicht.getInformation("CHEMIE_LAGA_RC"))
+                        .build();
+
+                //RuK
+                HtmlCell cell6 = new HtmlCell.Builder()
+                        .appendAttribute("class", "NormalErkundungsstelle")
+                        .appendContent(schicht.getInformation("CHEMIE_TLGESTEIN"))
+                        .build();
+
+                //LP?
+                HtmlCell cell7 = new HtmlCell.Builder()
+                        .appendAttribute("class", "NormalErkundungsstelle")
+                        //.appendContent(schicht.getInformation("CHEMIE_TLGESTEIN"))
+                        .build();
+
+                //Notiz
+                HtmlCell cell8 = new HtmlCell.Builder()
+                        .appendAttribute("class", "NormalErkundungsstelle")
+                        .appendContent(schicht.getInformation("SCHICHT_BEMERKUNGEN"))
+                        .build();
+
+                HtmlRow row = new HtmlRow.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendContent(cell1.appendTag())
+                        .appendContent(cell2.appendTag())
+                        .appendContent(cell3.appendTag())
+                        .appendContent(cell4.appendTag())
+                        .appendContent(cell5.appendTag())
+                        .appendContent(cell6.appendTag())
+                        .appendContent(cell7.appendTag())
+                        .appendContent(cell8.appendTag())
+                        .build();
+
+                table.appendContent(row.appendTag());
+            }
+        }
         setHtmlTable(table.appendTag());
     }
 
