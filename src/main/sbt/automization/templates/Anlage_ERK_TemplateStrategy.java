@@ -6,20 +6,20 @@ import sbt.automization.util.html.*;
 
 import java.util.List;
 
-public final class ERKTemplateStrategy extends AHtmlTemplateStrategy
+public final class Anlage_ERK_TemplateStrategy extends AHtmlTemplateStrategy
 {
-    private static ERKTemplateStrategy instance;
+    private static Anlage_ERK_TemplateStrategy instance;
 
-    private ERKTemplateStrategy(){}
+    private Anlage_ERK_TemplateStrategy(){}
 
-    public static ERKTemplateStrategy getInstance(){
+    public static Anlage_ERK_TemplateStrategy getInstance(){
         if (instance == null)
         {
-            synchronized (ERKTemplateStrategy.class)
+            synchronized (Anlage_ERK_TemplateStrategy.class)
             {
                 if (instance == null)
                 {
-                    instance = new ERKTemplateStrategy();
+                    instance = new Anlage_ERK_TemplateStrategy();
                 }
             }
         }
@@ -135,13 +135,13 @@ public final class ERKTemplateStrategy extends AHtmlTemplateStrategy
                     .appendContent(row3.appendTag())
                     .build();
 
-            ERK_OB_TemplateStrategy erk_GO_Tabelle = new ERK_OB_TemplateStrategy();
+            Anlage_ERK_OB_TemplateStrategy erk_GO_Tabelle = new Anlage_ERK_OB_TemplateStrategy();
             erk_GO_Tabelle.buildHtmlTable(erkundungsstelle);
 
-            ERK_TOB_TemplateStrategy erk_TOB_Tabelle = new ERK_TOB_TemplateStrategy();
+            Anlage_ERK_TOB_TemplateStrategy erk_TOB_Tabelle = new Anlage_ERK_TOB_TemplateStrategy();
             erk_TOB_Tabelle.buildHtmlTable(erkundungsstelle);
 
-            ERK_UG_TemplateStrategy erk_UG_Tabelle = new ERK_UG_TemplateStrategy();
+            Anlage_ERK_UG_TemplateStrategy erk_UG_Tabelle = new Anlage_ERK_UG_TemplateStrategy();
             erk_UG_Tabelle.buildHtmlTable(erkundungsstelle);
 
             stringBuilder.append(table.appendTag())

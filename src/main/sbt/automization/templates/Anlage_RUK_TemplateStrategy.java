@@ -9,20 +9,22 @@ import sbt.automization.util.html.HtmlTable;
 import sbt.automization.util.html.HtmlTableHeader;
 import java.util.List;
 
-public final class RUKTemplateStrategy extends AHtmlTemplateStrategy
+public final class Anlage_RUK_TemplateStrategy extends AHtmlTemplateStrategy
 {
-    private static RUKTemplateStrategy instance;
+    private int counter = 1;
 
-    private RUKTemplateStrategy(){}
+    private static Anlage_RUK_TemplateStrategy instance;
 
-    public static RUKTemplateStrategy getInstance(){
+    private Anlage_RUK_TemplateStrategy(){}
+
+    public static Anlage_RUK_TemplateStrategy getInstance(){
         if (instance == null)
         {
-            synchronized (RUKTemplateStrategy.class)
+            synchronized (Anlage_RUK_TemplateStrategy.class)
             {
                 if (instance == null)
                 {
-                    instance = new RUKTemplateStrategy();
+                    instance = new Anlage_RUK_TemplateStrategy();
                 }
             }
         }
@@ -71,7 +73,6 @@ public final class RUKTemplateStrategy extends AHtmlTemplateStrategy
 
         HtmlTableHeader cell21 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "165")
                 .appendAttribute("colspan", "4")
                 .appendContent("")
                 .build();
@@ -145,17 +146,19 @@ public final class RUKTemplateStrategy extends AHtmlTemplateStrategy
                 if (!"".equals(rukValue)){
                     HtmlCell cell1 = new HtmlCell.Builder()
                             .appendAttribute("class", "Normal")
-                            .appendContent("1")
+                            .appendAttribute("align", "center")
+                            .appendContent(String.valueOf(counter++))
                             .build();
 
                     HtmlCell cell2 = new HtmlCell.Builder()
                             .appendAttribute("class", "Normal")
+                            .appendAttribute("align", "center")
                             .appendContent(erkundungsstelle.getInformation("ERK_ID"))
                             .build();
 
                     HtmlCell cell3 = new HtmlCell.Builder()
                             .appendAttribute("class", "Normal")
-                            .appendContent("EINZELPROBE")
+                            .appendContent("Einzelprobe")
                             .build();
 
                     HtmlCell cell4 = new HtmlCell.Builder()
@@ -169,7 +172,7 @@ public final class RUKTemplateStrategy extends AHtmlTemplateStrategy
                             .appendAttribute("class", "Normal")
                             .appendAttribute("width", "35")
                             .appendAttribute("align", "center")
-                            .appendContent(schicht.getInformation("SCHICHT_DICKE"))
+                            .appendContent(schicht.getInformation("SCHICHT_TIEFE_START"))
                             .build();
 
                     HtmlCell cell6 = new HtmlCell.Builder()
@@ -183,7 +186,7 @@ public final class RUKTemplateStrategy extends AHtmlTemplateStrategy
                             .appendAttribute("class", "Normal")
                             .appendAttribute("width", "35")
                             .appendAttribute("align", "center")
-                            .appendContent(schicht.getInformation("SCHICHT_TIEFE"))
+                            .appendContent(schicht.getInformation("SCHICHT_TIEFE_ENDE"))
                             .build();
 
                     HtmlCell cell8 = new HtmlCell.Builder()

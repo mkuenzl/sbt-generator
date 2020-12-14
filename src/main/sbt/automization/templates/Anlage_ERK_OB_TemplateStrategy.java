@@ -7,7 +7,7 @@ import sbt.automization.util.html.*;
 
 import java.util.List;
 
-class ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
+class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
 {
     @Override
     String setHtmlTableHeader()
@@ -193,7 +193,7 @@ class ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
                 //Tiefe
                 HtmlCell cell3 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(schicht.getInformation("SCHICHT_TIEFE"))
+                        .appendContent(schicht.getInformation("SCHICHT_TIEFE_ENDE"))
                         .build();
 
                 //Pech

@@ -1,6 +1,7 @@
 package sbt.automization.templates;
 
 
+import sbt.automization.data.Tiefe_PN_DataFormatStrategy;
 import sbt.automization.projekt.AErkundungsstelle;
 import sbt.automization.projekt.ASchicht;
 import sbt.automization.templates.styles.TableStyle;
@@ -11,21 +12,21 @@ import sbt.automization.util.html.HtmlTableHeader;
 
 import java.util.List;
 
-public final class PNTemplateStrategy extends AHtmlTemplateStrategy
+public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
 {
-    private static PNTemplateStrategy instance;
+    private static Anlage_PN_TemplateStrategy instance;
 
 
-    private PNTemplateStrategy(){}
+    private Anlage_PN_TemplateStrategy(){}
 
-    public static PNTemplateStrategy getInstance(){
+    public static Anlage_PN_TemplateStrategy getInstance(){
         if (instance == null)
         {
-            synchronized (PNTemplateStrategy.class)
+            synchronized (Anlage_PN_TemplateStrategy.class)
             {
                 if (instance == null)
                 {
-                    instance = new PNTemplateStrategy();
+                    instance = new Anlage_PN_TemplateStrategy();
                 }
             }
         }
@@ -55,12 +56,12 @@ public final class PNTemplateStrategy extends AHtmlTemplateStrategy
             for (ASchicht schicht : schichtList)
             {
                 HtmlCell cell1 = new HtmlCell.Builder()
-                        .appendAttribute("class", "Normal")
+                        .appendAttribute("class", "NormalCentered")
                         .appendContent(schicht.getInformation("SCHICHT_ID"))
                         .build();
 
                 HtmlCell cell2 = new HtmlCell.Builder()
-                        .appendAttribute("class", "Normal")
+                        .appendAttribute("class", "NormalCentered")
                         .appendContent("EP")
                         .build();
 
@@ -70,25 +71,25 @@ public final class PNTemplateStrategy extends AHtmlTemplateStrategy
                         .build();
 
                 HtmlCell cell4 = new HtmlCell.Builder()
-                        .appendAttribute("class", "Normal")
+                        .appendAttribute("class", "NormalCentered")
                         .appendContent("Cell" + counter++)
                         .build();
 
                 HtmlCell cell5 = new HtmlCell.Builder()
-                        .appendAttribute("class", "Normal")
+                        .appendAttribute("class", "NormalCentered")
                         .appendContent("")
                         .build();
 
                 //HIER MUSS MEHR CODE STRATEGY?? TODO
                 HtmlCell cell6 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendAttribute("width", "95")
+                        .appendAttribute("width", "110")
                         .appendContent(schicht.getInformation("SCHICHT_ART"))
                         .build();
 
                 HtmlCell cell7 = new HtmlCell.Builder()
-                        .appendAttribute("class", "Normal")
-                        .appendAttribute("width", "30")
+                        .appendAttribute("class", "NormalCentered")
+                        .appendAttribute("width", "50")
                         .appendContent(schicht.getInformation("SCHICHT_KOERNUNG"))
                         .build();
 
@@ -98,17 +99,18 @@ public final class PNTemplateStrategy extends AHtmlTemplateStrategy
                         .build();
 
                 HtmlCell cell9 = new HtmlCell.Builder()
-                        .appendAttribute("class", "Normal")
+                        .appendAttribute("class", "NormalCentered")
+                        .appendAttribute("width", "30")
                         .appendContent(erkundungsstelle.getInformation("ERK_ID"))
                         .build();
 
                 HtmlCell cell10 = new HtmlCell.Builder()
-                        .appendAttribute("class", "Normal")
-                        .appendContent(schicht.getInformation("SCHICHT_TIEFE"))
+                        .appendAttribute("class", "NormalCentered")
+                        .appendContent(Tiefe_PN_DataFormatStrategy.getInstance().getDataFormat(schicht))
                         .build();
 
                 HtmlCell cell11 = new HtmlCell.Builder()
-                        .appendAttribute("class", "Normal")
+                        .appendAttribute("class", "NormalCentered")
                         .appendContent("")
                         .build();
 
@@ -145,13 +147,13 @@ public final class PNTemplateStrategy extends AHtmlTemplateStrategy
     {
         HtmlTableHeader cell1 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "38")
+                .appendAttribute("width", "40")
                 .appendContent("Probe")
                 .build();
 
         HtmlTableHeader cell2 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "30")
+                .appendAttribute("width", "40")
                 .appendContent("Art")
                 .build();
 
@@ -163,19 +165,19 @@ public final class PNTemplateStrategy extends AHtmlTemplateStrategy
 
         HtmlTableHeader cell4 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "47")
+                .appendAttribute("width", "40")
                 .appendContent("Vol.")
                 .build();
 
         HtmlTableHeader cell5 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "57")
+                .appendAttribute("width", "60")
                 .appendContent("Haufwerk Vol.")
                 .build();
 
         HtmlTableHeader cell6 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "125")
+                .appendAttribute("width", "140")
                 .appendAttribute("colspan", "2")
                 .appendContent("Abfallart")
                 .build();
@@ -188,13 +190,13 @@ public final class PNTemplateStrategy extends AHtmlTemplateStrategy
 
         HtmlTableHeader cell8 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "45")
+                .appendAttribute("width", "30")
                 .appendContent("Erk. St.")
                 .build();
 
         HtmlTableHeader cell9 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "57")
+                .appendAttribute("width", "70")
                 .appendContent("Tiefe")
                 .build();
 

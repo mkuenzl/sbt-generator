@@ -2,7 +2,7 @@ package sbt.automization.projekt;
 
 import java.util.*;
 
-public abstract class AErkundungsstelle implements Comparable<AErkundungsstelle>
+public abstract class AErkundungsstelle implements Comparable<AErkundungsstelle>, IProjektData
 {
     private final Map<String,String> information;
     private List<ASchicht> schichtList = new ArrayList<>();
@@ -42,6 +42,19 @@ public abstract class AErkundungsstelle implements Comparable<AErkundungsstelle>
     public List<ASchicht> getSchichtList()
     {
         return schichtList;
+    }
+
+    public List<ASchicht> getSchichtAufschluss(final String aufschluss) {
+        List<ASchicht> schichtAufschlussList = new ArrayList<>();
+        for (ASchicht schicht :
+                schichtList)
+        {
+            if (aufschluss.equals(schicht.getInformation("SCHICHT_AUFSCHLUSS")))
+            {
+                schichtAufschlussList.add(schicht);
+            }
+        }
+        return schichtAufschlussList;
     }
 
     void sort(){

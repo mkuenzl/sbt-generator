@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class Parser
     {
         List<Map> dataPoints = new ArrayList<>();
 
-        InputStreamReader input = new InputStreamReader(new FileInputStream(csv));
+        InputStreamReader input = new InputStreamReader(new FileInputStream(csv), StandardCharsets.UTF_8);
         CSVParser csvParser = CSVFormat.EXCEL.withDelimiter(';').withFirstRecordAsHeader().parse(input);
 
         //Zeile

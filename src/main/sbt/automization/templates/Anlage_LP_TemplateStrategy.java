@@ -2,29 +2,26 @@ package sbt.automization.templates;
 
 
 import sbt.automization.projekt.AErkundungsstelle;
-import sbt.automization.projekt.ASchicht;
 import sbt.automization.templates.styles.TableStyle;
-import sbt.automization.util.html.HtmlCell;
-import sbt.automization.util.html.HtmlRow;
-import sbt.automization.util.html.HtmlTable;
-import sbt.automization.util.html.HtmlTableHeader;
+import sbt.automization.util.html.*;
+
 import java.util.List;
 
-public final class LPTemplateStrategy extends AHtmlTemplateStrategy
+public final class Anlage_LP_TemplateStrategy extends AHtmlTemplateStrategy
 {
-    private static LPTemplateStrategy instance;
+    private static Anlage_LP_TemplateStrategy instance;
+    private int counter = 1;
 
+    private Anlage_LP_TemplateStrategy(){}
 
-    private LPTemplateStrategy(){}
-
-    public static LPTemplateStrategy getInstance(){
+    public static Anlage_LP_TemplateStrategy getInstance(){
         if (instance == null)
         {
-            synchronized (LPTemplateStrategy.class)
+            synchronized (Anlage_LP_TemplateStrategy.class)
             {
                 if (instance == null)
                 {
-                    instance = new LPTemplateStrategy();
+                    instance = new Anlage_LP_TemplateStrategy();
                 }
             }
         }
@@ -66,21 +63,22 @@ public final class LPTemplateStrategy extends AHtmlTemplateStrategy
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "45")
                 .appendAttribute("rowspan", "2")
-                .appendContent("Evdyn")
+                .appendContent("E<sub>Vdyn</sub>")
                 .build();
 
         HtmlTableHeader cell6 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "45")
                 .appendAttribute("rowspan", "2")
-                .appendContent("Evdyn15")
+                .appendContent("E<sub>Vdyn</sub>")
+                .appendContent(new HtmlText.Builder().appendAttribute("class","Normal").appendContent("<sub>(-15%)</sub>").build().appendTag())
                 .build();
 
         HtmlTableHeader cell7 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "45")
                 .appendAttribute("rowspan", "2")
-                .appendContent("Ev2")
+                .appendContent("E<sub>V2</sub>")
                 .build();
 
         //First Header Row
@@ -99,25 +97,25 @@ public final class LPTemplateStrategy extends AHtmlTemplateStrategy
         HtmlTableHeader cell21 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "40")
-                .appendContent("S1")
+                .appendContent("S<sub>1</sub>")
                 .build();
 
         HtmlTableHeader cell22 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "40")
-                .appendContent("S2")
+                .appendContent("S<sub>2</sub>")
                 .build();
 
         HtmlTableHeader cell23 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "40")
-                .appendContent("S3")
+                .appendContent("S<sub>3</sub>")
                 .build();
 
         HtmlTableHeader cell24 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "40")
-                .appendContent("x")
+                .appendContent("x̅")
                 .build();
 
         //Second Header Row
@@ -130,45 +128,45 @@ public final class LPTemplateStrategy extends AHtmlTemplateStrategy
 
         //Third Header
         HtmlTableHeader cell31 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("class", "NormalTableHeaderUnits")
                 .appendAttribute("width", "40")
                 .appendContent("mm")
                 .build();
 
         HtmlTableHeader cell32 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("class", "NormalTableHeaderUnits")
                 .appendAttribute("width", "40")
                 .appendContent("mm")
                 .build();
 
         HtmlTableHeader cell33 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("class", "NormalTableHeaderUnits")
                 .appendAttribute("width", "40")
                 .appendContent("mm")
                 .build();
 
         HtmlTableHeader cell34 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("class", "NormalTableHeaderUnits")
                 .appendAttribute("width", "40")
                 .appendContent("mm")
                 .build();
 
         HtmlTableHeader cell35 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("class", "NormalTableHeaderUnits")
                 .appendAttribute("width", "45")
-                .appendContent("MN")
+                .appendContent("MN/m²")
                 .build();
 
         HtmlTableHeader cell36 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("class", "NormalTableHeaderUnits")
                 .appendAttribute("width", "45")
-                .appendContent("MN")
+                .appendContent("MN/m²")
                 .build();
 
         HtmlTableHeader cell37 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("class", "NormalTableHeaderUnits")
                 .appendAttribute("width", "45")
-                .appendContent("MN")
+                .appendContent("MN/m²")
                 .build();
 
         //Third Header Row
@@ -212,91 +210,87 @@ public final class LPTemplateStrategy extends AHtmlTemplateStrategy
 
         for (AErkundungsstelle erkundungsstelle : data)
         {
-            //in Excel ergänzen wenn vorhanden
-                String erk_lp = erkundungsstelle.getInformation("ERK_LP1");
+            if (!"".equals(erkundungsstelle.getInformation("ERK_LP1"))){
+                HtmlCell cell1 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendAttribute("align", "center")
+                        .appendContent(String.valueOf(counter++))
+                        .build();
 
-                if (!"".equals(erk_lp)){
-                    HtmlCell cell1 = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendContent("1")
-                            .build();
+                HtmlCell cell2 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendAttribute("align", "center")
+                        .appendContent(erkundungsstelle.getInformation("ERK_ID"))
+                        .build();
 
-                    HtmlCell cell2 = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendContent(erkundungsstelle.getInformation("ERK_ID"))
-                            .build();
+                HtmlCell cell3 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendContent(erkundungsstelle.getInformation("ERK_ORT"))
+                        .build();
 
-                    HtmlCell cell3 = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendContent(erkundungsstelle.getInformation("ERK_ORT"))
-                            .build();
+                HtmlCell cell4 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendAttribute("align", "center")
+                        .appendAttribute("width", "40")
+                        .appendContent(erkundungsstelle.getInformation("ERK_LP1"))
+                        .build();
 
-                    HtmlCell cell4 = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendAttribute("align", "center")
-                            .appendAttribute("width", "40")
-                            .appendContent(erkundungsstelle.getInformation("ERK_LP1"))
-                            .build();
+                HtmlCell cell5 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendAttribute("align", "center")
+                        .appendAttribute("width", "40")
+                        .appendContent(erkundungsstelle.getInformation("ERK_LP2"))
+                        .build();
 
-                    HtmlCell cell5 = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendAttribute("align", "center")
-                            .appendAttribute("width", "40")
-                            .appendContent(erkundungsstelle.getInformation("ERK_LP2"))
-                            .build();
+                HtmlCell cell6 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendAttribute("align", "center")
+                        .appendAttribute("width", "40")
+                        .appendContent(erkundungsstelle.getInformation("ERK_LP3"))
+                        .build();
 
-                    HtmlCell cell6 = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendAttribute("align", "center")
-                            .appendAttribute("width", "40")
-                            .appendContent(erkundungsstelle.getInformation("ERK_LP3"))
-                            .build();
+                HtmlCell cell7 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendAttribute("align", "center")
+                        .appendAttribute("width", "40")
+                        .appendContent(erkundungsstelle.getInformation("ERK_LP_MEAN"))
+                        .build();
 
-                    HtmlCell cell7 = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendAttribute("align", "center")
-                            .appendAttribute("width", "40")
-                            .appendContent("1")
-                            .build();
+                HtmlCell cell8 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendAttribute("align", "center")
+                        .appendContent(erkundungsstelle.getInformation("ERK_LP_EV"))
+                        .build();
 
-                    HtmlCell cell8 = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendAttribute("align", "center")
-                            .appendContent("-")
-                            .build();
+                HtmlCell cell9 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendAttribute("align", "center")
+                        .appendContent(erkundungsstelle.getInformation("ERK_LP_EV15"))
+                        .build();
 
-                    HtmlCell cell9 = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendAttribute("align", "center")
-                            .appendContent("-")
-                            .build();
+                HtmlCell cell10 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendAttribute("align", "center")
+                        .appendContent(erkundungsstelle.getInformation("ERK_LP_EV2"))
+                        .build();
 
-                    HtmlCell cell10 = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendAttribute("align", "center")
-                            .appendContent("-")
-                            .build();
+                HtmlRow htmlRow = new HtmlRow.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendContent(cell1.appendTag())
+                        .appendContent(cell2.appendTag())
+                        .appendContent(cell3.appendTag())
+                        .appendContent(cell4.appendTag())
+                        .appendContent(cell5.appendTag())
+                        .appendContent(cell6.appendTag())
+                        .appendContent(cell7.appendTag())
+                        .appendContent(cell8.appendTag())
+                        .appendContent(cell9.appendTag())
+                        .appendContent(cell10.appendTag())
+                        .build();
 
-                    HtmlRow htmlRow = new HtmlRow.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendContent(cell1.appendTag())
-                            .appendContent(cell2.appendTag())
-                            .appendContent(cell3.appendTag())
-                            .appendContent(cell4.appendTag())
-                            .appendContent(cell5.appendTag())
-                            .appendContent(cell6.appendTag())
-                            .appendContent(cell7.appendTag())
-                            .appendContent(cell8.appendTag())
-                            .appendContent(cell9.appendTag())
-                            .appendContent(cell10.appendTag())
-                            .build();
-
-                    table.appendContent(htmlRow.appendTag());
-                }
-
+                table.appendContent(htmlRow.appendTag());
+            }
         }
-
-
         setHtmlTable(table.appendTag());
     }
 

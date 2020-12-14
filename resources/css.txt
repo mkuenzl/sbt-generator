@@ -33,6 +33,12 @@
 			font-size:8.0pt;
 			font-family:"Arial",sans-serif;
 			}
+			p.Normal7, li.Normal7, div.Normal7
+            {
+            margin:0cm;
+            font-size:7.0pt;
+            font-family:"Arial",sans-serif;
+            }
 			span.Normal
 			{
 			font-size:8.0pt;
@@ -64,7 +70,7 @@
 			tr.Normal
 			{
 			page-break-inside:avoid;
-			height:1.0cm;
+			height:1cm;
 			}
 			tr.NormalHeader
 			{
@@ -90,6 +96,20 @@
 			padding:0cm 1.4pt 0cm 1.4pt;
 			overflow:hidden;
 			}
+			td.NormalNoBorder
+            {
+            background:white;
+            padding:0cm 1.4pt 0cm 1.4pt;
+            overflow:hidden;
+            }
+			td.NormalCentered
+            {
+            border:solid windowtext .5pt;
+            background:white;
+            padding:0cm 1.4pt 0cm 1.4pt;
+            text-align:center;
+            overflow:hidden;
+            }
 			td.NormalErkundungsstelle
             {
             border:solid windowtext .5pt;
@@ -135,11 +155,19 @@
 			background:yellow;
 			padding:0cm 1.4pt 0cm 1.4pt;
 			}
-			th.NormalTableHeader{
+			th.NormalTableHeader
+			{
 			border:solid windowtext .5pt;
 			background:#F2F2F2;
 			padding:0cm 1.4pt 0cm 1.4pt;
 			}
+			th.NormalTableHeaderUnits
+			{
+            border:solid windowtext .5pt;
+            background:#F2F2F2;
+            padding:0cm 1.4pt 0cm 1.4pt;
+            font-style:italic;
+            }
 			table.MsoNormalTable
 			{
 			table-layout:fixed;

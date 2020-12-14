@@ -4,8 +4,6 @@ import org.apache.commons.cli.*;
 import sbt.automization.templates.*;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 public class CLI
 {
@@ -47,16 +45,19 @@ public class CLI
             if (cmd.hasOption("t")){
                 switch (cmd.getOptionValue("t")){
                     case "LP_Template":
-                        this.strategy = LPTemplateStrategy.getInstance();
+                        this.strategy = Anlage_LP_TemplateStrategy.getInstance();
                         break;
                     case "PN_Template":
-                        this.strategy = PNTemplateStrategy.getInstance();
+                        this.strategy = Anlage_PN_TemplateStrategy.getInstance();
                         break;
                     case "RUK_Template":
-                        this.strategy = RUKTemplateStrategy.getInstance();
+                        this.strategy = Anlage_RUK_TemplateStrategy.getInstance();
                         break;
                     case "ERK_Template":
-                        this.strategy = ERKTemplateStrategy.getInstance();
+                        this.strategy = Anlage_ERK_TemplateStrategy.getInstance();
+                        break;
+                    case "Bericht_Template":
+                        this.strategy = Bericht_OB_TemplateStrategy.getInstance();
                         break;
                     default:
                         System.err.println("Please provide a template.");

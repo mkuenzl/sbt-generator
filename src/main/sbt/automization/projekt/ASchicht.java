@@ -2,7 +2,7 @@ package sbt.automization.projekt;
 
 import java.util.Map;
 
-public abstract class ASchicht implements Comparable<ASchicht>
+public abstract class ASchicht implements Comparable<ASchicht>, IProjektData
 {
     private final Map<String, String> information;
 
