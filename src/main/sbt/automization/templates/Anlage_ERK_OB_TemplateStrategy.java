@@ -9,6 +9,8 @@ import java.util.List;
 
 class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
 {
+    private String aufschluss = "";
+
     @Override
     String setHtmlTableHeader()
     {
@@ -24,7 +26,7 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("align", "left")
                 .appendAttribute("colspan", "7")        //Zelle geht über 3 Reihen
-                .appendContent("Bohrkern")
+                .appendContent(aufschluss)
                 .build();
 
 
@@ -165,6 +167,8 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
     @Override
     public void buildHtmlTable(final AErkundungsstelle data)
     {
+        aufschluss = data.getInformation("ERK_AUFSCHLUSS_OB");
+
         HtmlTable table = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
                 .appendAttribute("width", "605")

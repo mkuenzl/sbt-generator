@@ -121,39 +121,63 @@
 			td.NormalHeader
 			{
 			border:solid windowtext .5pt;
-			background:#F2F2F2;
+			background:#F3F3F3;
 			padding:0cm 1.4pt 0cm 1.4pt;
 			}
+			td.ChemieWhite
+            {
+            border:solid windowtext .5pt;
+            background:white;
+            padding:0cm 1.4pt 0cm 1.4pt;
+            text-align:center;
+            font-weight: bold;
+            overflow:hidden;
+            }
 			td.ChemieRed
 			{
 			border:solid windowtext .5pt;
-			background:red;
+			background:#FF0000;
 			padding:0cm 1.4pt 0cm 1.4pt;
+			text-align:center;
+			font-weight: bold;
+            overflow:hidden;
 			}
 			td.ChemieBlack
 			{
 			border:solid windowtext .5pt;
 			background:black;
+			color:white;
 			padding:0cm 1.4pt 0cm 1.4pt;
-			}
+            text-align:center;
+            font-weight: bold;
+            overflow:hidden;
+            }
 			td.ChemieGreen
 			{
 			border:solid windowtext .5pt;
-			background:green;
-			color:white;
+			background:#00FF00;
 			padding:0cm 1.4pt 0cm 1.4pt;
+            text-align:center;
+            font-weight: bold;
+            overflow:hidden;
 			}
 			td.ChemieBlue
 			{
 			border:solid windowtext .5pt;
-			background:blue;
+			background:#00FFFF;
 			padding:0cm 1.4pt 0cm 1.4pt;
+            text-align:center;
+            font-weight: bold;
+            overflow:hidden;
 			}
 			td.ChemieYellow
 			{
 			border:solid windowtext .5pt;
-			background:yellow;
+			background:#FFFF00;
 			padding:0cm 1.4pt 0cm 1.4pt;
+            text-align:center;
+            font-weight: bold;
+            overflow:hidden;
 			}
 			th.NormalTableHeader
 			{

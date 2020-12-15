@@ -1,5 +1,6 @@
 package sbt.automization.templates;
 
+import sbt.automization.data.Chemie_DataCellStrategy;
 import sbt.automization.projekt.AErkundungsstelle;
 import sbt.automization.projekt.ASchicht;
 import sbt.automization.templates.styles.TableStyle;
@@ -9,6 +10,8 @@ import java.util.List;
 
 class Anlage_ERK_TOB_TemplateStrategy extends AHtmlTemplateStrategy
 {
+    private String aufschluss = "";
+
     @Override
     String setHtmlTableHeader()
     {
@@ -24,7 +27,7 @@ class Anlage_ERK_TOB_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("colspan", "7")        //Zelle geht über 3 Reihen
                 .appendAttribute("align", "left")
-                .appendContent("Handschurf")
+                .appendContent(aufschluss)
                 .build();
 
 
@@ -175,6 +178,8 @@ class Anlage_ERK_TOB_TemplateStrategy extends AHtmlTemplateStrategy
     @Override
     public void buildHtmlTable(final AErkundungsstelle data)
     {
+        aufschluss = data.getInformation("ERK_AUFSCHLUSS_TOB");
+
         HtmlTable table = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
                 .appendAttribute("width", "605")
@@ -208,27 +213,18 @@ class Anlage_ERK_TOB_TemplateStrategy extends AHtmlTemplateStrategy
                         .build();
 
                 //Pech
-                HtmlCell cell4 = new HtmlCell.Builder()
-                        .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(schicht.getInformation("CHEMIE_LAGA_BO"))
-                        .build();
+                HtmlCell cell4 = Chemie_DataCellStrategy.getInstance().getDataCell(schicht.getInformation("CHEMIE_LAGA_BO"));
 
                 //MUFV
-                HtmlCell cell5 = new HtmlCell.Builder()
-                        .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(schicht.getInformation("CHEMIE_LAGA_RC"))
-                        .build();
+                HtmlCell cell5 = Chemie_DataCellStrategy.getInstance().getDataCell(schicht.getInformation("CHEMIE_LAGA_RC"));
 
                 //RuK
-                HtmlCell cell6 = new HtmlCell.Builder()
-                        .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(schicht.getInformation("CHEMIE_TLGESTEIN"))
-                        .build();
+                HtmlCell cell6 =  Chemie_DataCellStrategy.getInstance().getDataCell(schicht.getInformation("CHEMIE_TLGESTEIN"));
 
                 //LP?
                 HtmlCell cell7 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        //.appendContent(schicht.getInformation("CHEMIE_TLGESTEIN"))
+                        .appendContent(data.getInformation("ERK_LP_EV2"))
                         .build();
 
                 //Notiz

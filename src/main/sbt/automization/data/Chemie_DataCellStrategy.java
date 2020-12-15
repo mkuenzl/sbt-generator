@@ -25,14 +25,57 @@ public class Chemie_DataCellStrategy extends ADataCellStrategy
     }
 
     @Override
-    HtmlCell getDataCell(final AErkundungsstelle erkundungsstelle)
+    public HtmlCell getDataCell(final AErkundungsstelle erkundungsstelle)
     {
         return null;
     }
 
     @Override
-    HtmlCell getDataCell(final ASchicht schicht)
+    public HtmlCell getDataCell(final ASchicht schicht)
     {
         return null;
+    }
+
+    @Override
+    public HtmlCell getDataCell(final String data)
+    {
+        String chemie = data;
+        HtmlCell htmlCell = new HtmlCell.Builder()
+                .appendContent(chemie)
+                .build();
+
+        switch (chemie){
+            case "Z0":
+            case "DK0":
+                htmlCell.appendAttribute("class", "ChemieWhite");
+                break;
+            case "Z0*":
+                htmlCell.appendAttribute("class", "ChemieBlue");
+                break;
+            case "Z1":
+            case "Z1.1":
+            case "RC1":
+            case "DK1":
+                htmlCell.appendAttribute("class", "ChemieGreen");
+                break;
+            case "Z1.2":
+            case "RC2":
+            case "DK2":
+                htmlCell.appendAttribute("class", "ChemieYellow");
+                break;
+            case "Z2":
+            case "RC3":
+            case "DK3":
+                htmlCell.appendAttribute("class", "ChemieRed");
+                break;
+            case ">Z2":
+                htmlCell.appendAttribute("class", "ChemieBlack");
+                break;
+            default:
+                htmlCell.appendAttribute("class", "Normal");
+                break;
+        }
+
+        return htmlCell;
     }
 }

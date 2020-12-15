@@ -1,5 +1,7 @@
 package sbt.automization.templates;
 
+import sbt.automization.data.Chemie_DataCellStrategy;
+import sbt.automization.data.WasserProctor_DataFormatStrategy;
 import sbt.automization.projekt.AErkundungsstelle;
 import sbt.automization.projekt.ASchicht;
 import sbt.automization.templates.styles.TableStyle;
@@ -9,6 +11,8 @@ import java.util.List;
 
 class Anlage_ERK_UG_TemplateStrategy extends AHtmlTemplateStrategy
 {
+    private String aufschluss = "";
+
     @Override
     String setHtmlTableHeader()
     {
@@ -24,7 +28,7 @@ class Anlage_ERK_UG_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("align", "left")
                 .appendAttribute("colspan", "7")        //Zelle geht über 3 Reihen
-                .appendContent("Kleinrammbohrung")
+                .appendContent(aufschluss)
                 .build();
 
 
@@ -167,6 +171,8 @@ class Anlage_ERK_UG_TemplateStrategy extends AHtmlTemplateStrategy
     @Override
     public void buildHtmlTable(final AErkundungsstelle data)
     {
+        aufschluss = data.getInformation("ERK_AUFSCHLUSS_UG");
+
         HtmlTable table = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
                 .appendAttribute("width", "605")
@@ -199,10 +205,7 @@ class Anlage_ERK_UG_TemplateStrategy extends AHtmlTemplateStrategy
                         .build();
 
                 //LAGA BO
-                HtmlCell cell4 = new HtmlCell.Builder()
-                        .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(schicht.getInformation("CHEMIE_LAGA_BO"))
-                        .build();
+                HtmlCell cell4 = Chemie_DataCellStrategy.getInstance().getDataCell(schicht.getInformation("CHEMIE_LAGA_BO"));
 
                 //Wassergehalt
                 HtmlCell cell5 = new HtmlCell.Builder()
@@ -213,13 +216,13 @@ class Anlage_ERK_UG_TemplateStrategy extends AHtmlTemplateStrategy
                 //WasserProctor
                 HtmlCell cell6 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(schicht.getInformation("SCHICHT_WASSERPROCTOR"))
+                        .appendContent(WasserProctor_DataFormatStrategy.getInstance().getDataFormat(schicht))
                         .build();
 
                 //Proctor
                 HtmlCell cell7 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        //.appendContent(schicht.getInformation("CHEMIE_TLGESTEIN"))
+                        .appendContent("-")
                         .build();
 
                 //Notiz

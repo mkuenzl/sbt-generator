@@ -6,7 +6,9 @@ import sbt.automization.util.html.HtmlCell;
 
 abstract class ADataCellStrategy
 {
-    abstract HtmlCell getDataCell(AErkundungsstelle erkundungsstelle);
+    abstract public HtmlCell getDataCell(AErkundungsstelle erkundungsstelle);
 
-    abstract HtmlCell getDataCell(ASchicht schicht);
+    abstract public HtmlCell getDataCell(ASchicht schicht);
+
+    abstract public HtmlCell getDataCell(String data);
 }

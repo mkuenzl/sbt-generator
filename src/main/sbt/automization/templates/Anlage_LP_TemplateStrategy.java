@@ -210,11 +210,12 @@ public final class Anlage_LP_TemplateStrategy extends AHtmlTemplateStrategy
 
         for (AErkundungsstelle erkundungsstelle : data)
         {
-            if (!"".equals(erkundungsstelle.getInformation("ERK_LP1"))){
+            if (!"".equals(erkundungsstelle.getInformation("ERK_LP"))){
+
                 HtmlCell cell1 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("align", "center")
-                        .appendContent(String.valueOf(counter++))
+                        .appendContent("LP".concat(erkundungsstelle.getInformation("ERK_LP")))
                         .build();
 
                 HtmlCell cell2 = new HtmlCell.Builder()

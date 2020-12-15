@@ -1,14 +1,11 @@
 package sbt.automization.templates;
 
 
-import sbt.automization.data.Tiefe_PN_DataFormatStrategy;
+import sbt.automization.data.TiefeVonBis_DataFormatStrategy;
 import sbt.automization.projekt.AErkundungsstelle;
 import sbt.automization.projekt.ASchicht;
 import sbt.automization.templates.styles.TableStyle;
-import sbt.automization.util.html.HtmlCell;
-import sbt.automization.util.html.HtmlRow;
-import sbt.automization.util.html.HtmlTable;
-import sbt.automization.util.html.HtmlTableHeader;
+import sbt.automization.util.html.*;
 
 import java.util.List;
 
@@ -70,10 +67,10 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
                         .appendContent(schicht.getInformation("SCHICHT_BEHAELTNIS"))
                         .build();
 
-                HtmlCell cell4 = new HtmlCell.Builder()
-                        .appendAttribute("class", "NormalCentered")
-                        .appendContent("Cell" + counter++)
-                        .build();
+//                HtmlCell cell4 = new HtmlCell.Builder()
+//                        .appendAttribute("class", "NormalCentered")
+//                        .appendContent("Cell" + counter++)
+//                        .build();
 
                 HtmlCell cell5 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
@@ -106,7 +103,7 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
 
                 HtmlCell cell10 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
-                        .appendContent(Tiefe_PN_DataFormatStrategy.getInstance().getDataFormat(schicht))
+                        .appendContent(TiefeVonBis_DataFormatStrategy.getInstance().getDataFormat(schicht))
                         .build();
 
                 HtmlCell cell11 = new HtmlCell.Builder()
@@ -119,7 +116,7 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
                         .appendContent(cell1.appendTag())
                         .appendContent(cell2.appendTag())
                         .appendContent(cell3.appendTag())
-                        .appendContent(cell4.appendTag())
+ //                       .appendContent(cell4.appendTag())
                         .appendContent(cell5.appendTag())
                         .appendContent(cell6.appendTag())
                         .appendContent(cell7.appendTag())
@@ -159,20 +156,22 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
 
         HtmlTableHeader cell3 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "65")
+                .appendAttribute("width", "105")
                 .appendContent("Behältnis")
+                .appendContent(new HtmlText.Builder().appendAttribute("class","Normal").appendContent("Vol.").build().appendTag())
                 .build();
 
-        HtmlTableHeader cell4 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "40")
-                .appendContent("Vol.")
-                .build();
+//        HtmlTableHeader cell4 = new HtmlTableHeader.Builder()
+//                .appendAttribute("class", "NormalTableHeader")
+//                .appendAttribute("width", "40")
+//                .appendContent("Vol.")
+//                .build();
 
         HtmlTableHeader cell5 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
-                .appendContent("Haufwerk Vol.")
+                .appendContent("Haufwerk")
+                .appendContent(new HtmlText.Builder().appendAttribute("class","Normal").appendContent("Vol.").build().appendTag())
                 .build();
 
         HtmlTableHeader cell6 = new HtmlTableHeader.Builder()
@@ -208,7 +207,7 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
 
         HtmlTableHeader cell21 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("colspan", "3")
+                .appendAttribute("colspan", "2")
                 .appendContent("")
                 .build();
 
@@ -244,7 +243,7 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendContent(cell1.appendTag())
                 .appendContent(cell2.appendTag())
                 .appendContent(cell3.appendTag())
-                .appendContent(cell4.appendTag())
+       //         .appendContent(cell4.appendTag())
                 .appendContent(cell5.appendTag())
                 .appendContent(cell6.appendTag())
                 .appendContent(cell7.appendTag())

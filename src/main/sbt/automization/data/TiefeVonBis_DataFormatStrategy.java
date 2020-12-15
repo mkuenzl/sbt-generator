@@ -4,20 +4,20 @@ import sbt.automization.projekt.AErkundungsstelle;
 import sbt.automization.projekt.ASchicht;
 import sbt.automization.util.html.HtmlText;
 
-public class Tiefe_PN_DataFormatStrategy extends ADataFormatStrategy
+public class TiefeVonBis_DataFormatStrategy extends ADataFormatStrategy
 {
-    private static Tiefe_PN_DataFormatStrategy instance;
+    private static TiefeVonBis_DataFormatStrategy instance;
 
-    private Tiefe_PN_DataFormatStrategy(){}
+    private TiefeVonBis_DataFormatStrategy(){}
 
-    public static Tiefe_PN_DataFormatStrategy getInstance(){
+    public static TiefeVonBis_DataFormatStrategy getInstance(){
         if (instance == null)
         {
-            synchronized (Tiefe_PN_DataFormatStrategy.class)
+            synchronized (TiefeVonBis_DataFormatStrategy.class)
             {
                 if (instance == null)
                 {
-                    instance = new Tiefe_PN_DataFormatStrategy();
+                    instance = new TiefeVonBis_DataFormatStrategy();
                 }
             }
         }

@@ -141,13 +141,13 @@ public final class Anlage_RUK_TemplateStrategy extends AHtmlTemplateStrategy
 
             for (ASchicht schicht : sList)
             {
-                String rukValue = schicht.getInformation("SCHICHT_RUK");
+                String rukNumber = schicht.getInformation("SCHICHT_RUK_NR");
 
-                if (!"".equals(rukValue)){
+                if (!"".equals(rukNumber)){
                     HtmlCell cell1 = new HtmlCell.Builder()
                             .appendAttribute("class", "Normal")
                             .appendAttribute("align", "center")
-                            .appendContent(String.valueOf(counter++))
+                            .appendContent("A".concat(rukNumber))
                             .build();
 
                     HtmlCell cell2 = new HtmlCell.Builder()

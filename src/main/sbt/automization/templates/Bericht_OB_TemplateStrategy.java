@@ -38,6 +38,8 @@ public final class Bericht_OB_TemplateStrategy extends AHtmlTemplateStrategy
     @Override
     public void buildHtmlTable(final List<AErkundungsstelle> data)
     {
+        //Sort Data nach OB
+
         HtmlTable table = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
                 .appendAttribute("border", "1")
