@@ -15,6 +15,10 @@ public abstract class ASchicht implements Comparable<ASchicht>, IProjektData
         return information.get(key);
     }
 
+    public void setInformation(String key, String value){
+        this.information.put(key,value);
+    }
+
     // Chemie Parameter
 
     @Override

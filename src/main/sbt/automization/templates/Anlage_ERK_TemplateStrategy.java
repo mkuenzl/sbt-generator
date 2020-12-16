@@ -64,7 +64,7 @@ public final class Anlage_ERK_TemplateStrategy extends AHtmlTemplateStrategy
             HtmlCell cell21 = new HtmlCell.Builder()
                     .appendAttribute("width", "75")
                     .appendAttribute("class", "NormalHeader")
-                    .appendContent("Name")
+                    .appendContent("Bezeichnung")
                     .build();
 
             HtmlCell cell22 = new HtmlCell.Builder()
@@ -107,7 +107,7 @@ public final class Anlage_ERK_TemplateStrategy extends AHtmlTemplateStrategy
 
             HtmlCell cell33 = new HtmlCell.Builder()
                     .appendAttribute("class", "NormalHeader")
-                    .appendContent("Entnehmer")
+                    .appendContent("Probenehmer")
                     .build();
 
             HtmlCell cell34 = new HtmlCell.Builder()

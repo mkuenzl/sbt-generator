@@ -3,6 +3,7 @@ package sbt.automization.data;
 import sbt.automization.projekt.AErkundungsstelle;
 import sbt.automization.projekt.ASchicht;
 import sbt.automization.util.html.HtmlCell;
+import sbt.automization.util.html.HtmlText;
 
 public class Chemie_DataCellStrategy extends ADataCellStrategy
 {
@@ -39,40 +40,66 @@ public class Chemie_DataCellStrategy extends ADataCellStrategy
     @Override
     public HtmlCell getDataCell(final String data)
     {
-        String chemie = data;
-        HtmlCell htmlCell = new HtmlCell.Builder()
-                .appendContent(chemie)
-                .build();
+        HtmlCell htmlCell;
 
-        switch (chemie){
+        switch (data){
             case "Z0":
             case "DK0":
-                htmlCell.appendAttribute("class", "ChemieWhite");
+                htmlCell = new HtmlCell.Builder()
+                        .appendAttribute("class", "ChemieWhite")
+                        .appendContent(data)
+                        .build();
                 break;
             case "Z0*":
-                htmlCell.appendAttribute("class", "ChemieBlue");
+                htmlCell = new HtmlCell.Builder()
+                        .appendAttribute("class", "ChemieBlue")
+                        .appendContent(data)
+                        .build();
                 break;
             case "Z1":
             case "Z1.1":
             case "RC1":
             case "DK1":
-                htmlCell.appendAttribute("class", "ChemieGreen");
+                htmlCell = new HtmlCell.Builder()
+                        .appendAttribute("class", "ChemieGreen")
+                        .appendContent(data)
+                        .build();
                 break;
             case "Z1.2":
             case "RC2":
             case "DK2":
-                htmlCell.appendAttribute("class", "ChemieYellow");
+                htmlCell = new HtmlCell.Builder()
+                        .appendAttribute("class", "ChemieYellow")
+                        .appendContent(data)
+                        .build();
                 break;
             case "Z2":
             case "RC3":
             case "DK3":
-                htmlCell.appendAttribute("class", "ChemieRed");
+                htmlCell = new HtmlCell.Builder()
+                        .appendAttribute("class", "ChemieRed")
+                        .appendContent(data)
+                        .build();
                 break;
             case ">Z2":
-                htmlCell.appendAttribute("class", "ChemieBlack");
+            case "gefährlich":
+                htmlCell = new HtmlCell.Builder()
+                        .appendAttribute("class", "ChemieBlack")
+                        .appendContent(data)
+                        .build();
+                break;
+            case "nicht gefährlich":
+                htmlCell = new HtmlCell.Builder()
+                        .appendAttribute("class", "ChemieWhite")
+                        .appendContent("nicht")
+                        .appendContent(new HtmlText.Builder().appendAttribute("class","Normal").appendContent("gefährlich").build().appendTag())
+                        .build();
                 break;
             default:
-                htmlCell.appendAttribute("class", "Normal");
+                htmlCell = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendContent(data)
+                        .build();
                 break;
         }
 

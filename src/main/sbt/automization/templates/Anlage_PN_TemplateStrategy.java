@@ -1,18 +1,21 @@
 package sbt.automization.templates;
 
 
+import sbt.automization.data.PNProbenart_DataFormatStrategy;
 import sbt.automization.data.TiefeVonBis_DataFormatStrategy;
 import sbt.automization.projekt.AErkundungsstelle;
 import sbt.automization.projekt.ASchicht;
+import sbt.automization.projekt.Schicht;
 import sbt.automization.templates.styles.TableStyle;
 import sbt.automization.util.html.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
 {
     private static Anlage_PN_TemplateStrategy instance;
-
+    private int counter = 1;
 
     private Anlage_PN_TemplateStrategy(){}
 
@@ -30,7 +33,22 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
         return instance;
     }
 
-    private int counter = 0;
+    public List<ASchicht> formatSchichtList(List<ASchicht> schichtList){
+
+        for (int i = 0; i < schichtList.size(); i++)
+        {
+            if ("GOB".equals(schichtList.get(i).getInformation("SCHICHT_AUFSCHLUSS"))){
+                if (schichtList.get(i).getInformation("SCHICHT_ABFALLART").equals(schichtList.get(i+1).getInformation("SCHICHT_ABFALLART")))
+                {
+                    schichtList.get(i+1).setInformation("SCHICHT_TIEFE_START", schichtList.get(i).getInformation("SCHICHT_TIEFE_START"));
+                    schichtList.get(i+1).setInformation("SCHICHT_KOERNUNG", "");
+                    schichtList.remove(schichtList.get(i));
+                    i--;
+                }
+            }
+        }
+        return schichtList;
+    }
 
     @Override
     public void buildHtmlTable(final List<AErkundungsstelle> data)
@@ -48,29 +66,25 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
 
         for (AErkundungsstelle erkundungsstelle : data)
         {
-            List<ASchicht> schichtList = erkundungsstelle.getSchichtList();
+            List<ASchicht> schichtList = formatSchichtList(erkundungsstelle.getSchichtList());
+
 
             for (ASchicht schicht : schichtList)
             {
                 HtmlCell cell1 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
-                        .appendContent(schicht.getInformation("SCHICHT_ID"))
+                        .appendContent("P".concat(String.valueOf(counter++)))
                         .build();
 
                 HtmlCell cell2 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
-                        .appendContent("EP")
+                        .appendContent(PNProbenart_DataFormatStrategy.getInstance().getDataFormat(schicht))
                         .build();
 
                 HtmlCell cell3 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendContent(schicht.getInformation("SCHICHT_BEHAELTNIS"))
                         .build();
-
-//                HtmlCell cell4 = new HtmlCell.Builder()
-//                        .appendAttribute("class", "NormalCentered")
-//                        .appendContent("Cell" + counter++)
-//                        .build();
 
                 HtmlCell cell5 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
@@ -81,7 +95,7 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
                 HtmlCell cell6 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("width", "110")
-                        .appendContent(schicht.getInformation("SCHICHT_ART"))
+                        .appendContent(schicht.getInformation("SCHICHT_ABFALLART"))
                         .build();
 
                 HtmlCell cell7 = new HtmlCell.Builder()
@@ -93,6 +107,7 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
                 HtmlCell cell8 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendContent(schicht.getInformation("SCHICHT_FARBE"))
+                        .appendContent(new HtmlText.Builder().appendAttribute("class","Normal").appendContent(schicht.getInformation("SCHICHT_GERUCH")).build().appendTag())
                         .build();
 
                 HtmlCell cell9 = new HtmlCell.Builder()
@@ -133,6 +148,8 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
         setHtmlTable(table.appendTag());
     }
 
+
+
     @Override
     public void buildHtmlTable(final AErkundungsstelle data)
     {
@@ -145,12 +162,14 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
         HtmlTableHeader cell1 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "40")
+                .appendAttribute("rowspan", "2")
                 .appendContent("Probe")
                 .build();
 
         HtmlTableHeader cell2 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "40")
+                .appendAttribute("rowspan", "2")
                 .appendContent("Art")
                 .build();
 
@@ -178,18 +197,22 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "140")
                 .appendAttribute("colspan", "2")
+                .appendAttribute("rowspan", "2")
                 .appendContent("Abfallart")
                 .build();
 
         HtmlTableHeader cell7 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "76")
+                .appendAttribute("rowspan", "2")
                 .appendContent("Farbe")
+                .appendContent(new HtmlText.Builder().appendAttribute("class","Normal").appendContent("Geruch").build().appendTag())
                 .build();
 
         HtmlTableHeader cell8 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "30")
+                .appendAttribute("rowspan", "2")
                 .appendContent("Erk. St.")
                 .build();
 
@@ -202,14 +225,15 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
         HtmlTableHeader cell10 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "65")
+                .appendAttribute("rowspan", "2")
                 .appendContent("Notiz")
                 .build();
 
-        HtmlTableHeader cell21 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("colspan", "2")
-                .appendContent("")
-                .build();
+//        HtmlTableHeader cell21 = new HtmlTableHeader.Builder()
+//                .appendAttribute("class", "NormalTableHeader")
+//                .appendAttribute("colspan", "2")
+//                .appendContent("")
+//                .build();
 
         HtmlTableHeader cell22 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
@@ -221,21 +245,21 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendContent("L")
                 .build();
 
-        HtmlTableHeader cell24 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("colspan", "4")
-                .appendContent("")
-                .build();
+//        HtmlTableHeader cell24 = new HtmlTableHeader.Builder()
+//                .appendAttribute("class", "NormalTableHeader")
+//                .appendAttribute("colspan", "4")
+//                .appendContent("")
+//                .build();
 
         HtmlTableHeader cell25 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendContent("cm")
                 .build();
 
-        HtmlTableHeader cell26 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
-                .appendContent("")
-                .build();
+//        HtmlTableHeader cell26 = new HtmlTableHeader.Builder()
+//                .appendAttribute("class", "NormalTableHeader")
+//                .appendContent("")
+//                .build();
 
 
         HtmlRow row1 = new HtmlRow.Builder()
@@ -254,12 +278,12 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
 
         HtmlRow row2 = new HtmlRow.Builder()
                 .appendAttribute("class", "NormalHeaderUnits")
-                .appendContent(cell21.appendTag())
+             //   .appendContent(cell21.appendTag())
                 .appendContent(cell22.appendTag())
                 .appendContent(cell23.appendTag())
-                .appendContent(cell24.appendTag())
+              //  .appendContent(cell24.appendTag())
                 .appendContent(cell25.appendTag())
-                .appendContent(cell26.appendTag())
+            //    .appendContent(cell26.appendTag())
                 .build();
 
         StringBuilder stringBuilder = new StringBuilder();

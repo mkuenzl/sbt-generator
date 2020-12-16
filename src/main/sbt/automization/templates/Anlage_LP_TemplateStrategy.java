@@ -35,14 +35,15 @@ public final class Anlage_LP_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "55")
                 .appendAttribute("rowspan", "3")        //Zelle geht über 3 Reihen
-                .appendContent("Versuch Nr.")
+                .appendContent("Versuch")
+                .appendContent(new HtmlText.Builder().appendAttribute("class","Normal").appendContent("Nr.").build().appendTag())
                 .build();
 
         HtmlTableHeader cell2 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "65")
                 .appendAttribute("rowspan", "3")        //Zelle geht über 3 Reihen
-                .appendContent("Messstelle Nr.")
+                .appendContent("Erk. St.")
                 .build();
 
         HtmlTableHeader cell3 = new HtmlTableHeader.Builder()

@@ -27,7 +27,7 @@ public class Parser
     {
         List<Map> dataPoints = new ArrayList<>();
 
-        InputStreamReader input = new InputStreamReader(new FileInputStream(csv), StandardCharsets.UTF_8);
+        InputStreamReader input = new InputStreamReader(new FileInputStream(csv), StandardCharsets.ISO_8859_1);
         CSVParser csvParser = CSVFormat.EXCEL.withDelimiter(';').withFirstRecordAsHeader().parse(input);
 
         //Zeile

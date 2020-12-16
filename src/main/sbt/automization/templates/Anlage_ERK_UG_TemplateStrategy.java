@@ -28,7 +28,7 @@ class Anlage_ERK_UG_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("align", "left")
                 .appendAttribute("colspan", "7")        //Zelle geht über 3 Reihen
-                .appendContent(aufschluss)
+                .appendContent("Aufschlussverfahren:".concat(" ").concat(aufschluss))
                 .build();
 
 
@@ -37,6 +37,7 @@ class Anlage_ERK_UG_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("align", "left")
                 .appendAttribute("width", "185")
+                .appendAttribute("rowspan", "2")
                 .appendContent("Bodengruppe")
                 .build();
 
@@ -55,39 +56,43 @@ class Anlage_ERK_UG_TemplateStrategy extends AHtmlTemplateStrategy
         HtmlTableHeader cell24 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
+                .appendAttribute("rowspan", "2")
                 .appendContent("LAGA BO")
                 .build();
 
         HtmlTableHeader cell25 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
-                .appendContent("WG")
+                .appendAttribute("rowspan", "2")
+                .appendContent("LAGA RC")
                 .build();
 
         HtmlTableHeader cell26 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
-                .appendContent("WPR")
+                .appendContent("WG")
                 .build();
 
         HtmlTableHeader cell27 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
-                .appendContent("Proctor")
+                .appendContent("W<sub>Pr</sub>")
                 .build();
 
         HtmlTableHeader cell28 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
-                .appendContent("Notiz")
+                .appendContent("Proctor")
                 .build();
 
+
+
         //Third Row
-        HtmlTableHeader cell31 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("align", "left")
-                .appendContent("-")
-                .build();
+//        HtmlTableHeader cell31 = new HtmlTableHeader.Builder()
+//                .appendAttribute("class", "NormalTableHeader")
+//                .appendAttribute("align", "left")
+//                .appendContent("-")
+//                .build();
 
         HtmlTableHeader cell32 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
@@ -99,30 +104,30 @@ class Anlage_ERK_UG_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendContent("cm")
                 .build();
 
-        HtmlTableHeader cell34 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
-                .appendContent("-")
-                .build();
+//        HtmlTableHeader cell34 = new HtmlTableHeader.Builder()
+//                .appendAttribute("class", "NormalTableHeader")
+//                .appendContent("-")
+//                .build();
 
         HtmlTableHeader cell35 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendContent("M%")
+                .appendContent("M.-%")
                 .build();
 
         HtmlTableHeader cell36 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendContent("M%")
+                .appendContent("M.-%")
                 .build();
 
         HtmlTableHeader cell37 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendContent("t/m3/M%")
+                .appendContent("Mg/m³")
                 .build();
 
-        HtmlTableHeader cell38 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
-                .appendContent("-")
-                .build();
+//        HtmlTableHeader cell38 = new HtmlTableHeader.Builder()
+//                .appendAttribute("class", "NormalTableHeader")
+//                .appendContent("-")
+//                .build();
 
         HtmlRow row1 = new HtmlRow.Builder()
                 .appendAttribute("class", "NormalHeader")
@@ -144,14 +149,14 @@ class Anlage_ERK_UG_TemplateStrategy extends AHtmlTemplateStrategy
 
         HtmlRow row3 = new HtmlRow.Builder()
                 .appendAttribute("class", "NormalHeaderUnits")
-                .appendContent(cell31.appendTag())
+             //   .appendContent(cell31.appendTag())
                 .appendContent(cell32.appendTag())
                 .appendContent(cell33.appendTag())
-                .appendContent(cell34.appendTag())
+             //   .appendContent(cell34.appendTag())
                 .appendContent(cell35.appendTag())
                 .appendContent(cell36.appendTag())
                 .appendContent(cell37.appendTag())
-                .appendContent(cell38.appendTag())
+              //  .appendContent(cell38.appendTag())
                 .build();
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -189,7 +194,7 @@ class Anlage_ERK_UG_TemplateStrategy extends AHtmlTemplateStrategy
                 //Art der Schicht
                 HtmlCell cell1 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent(schicht.getInformation("SCHICHT_ART").concat("  ").concat(schicht.getInformation("SCHICHT_KOERNUNG")))
+                        .appendContent(schicht.getInformation("SCHICHT_ART"))
                         .build();
 
                 //Dicke
@@ -207,28 +212,25 @@ class Anlage_ERK_UG_TemplateStrategy extends AHtmlTemplateStrategy
                 //LAGA BO
                 HtmlCell cell4 = Chemie_DataCellStrategy.getInstance().getDataCell(schicht.getInformation("CHEMIE_LAGA_BO"));
 
+                //Notiz
+                HtmlCell cell5 = Chemie_DataCellStrategy.getInstance().getDataCell(schicht.getInformation("CHEMIE_LAGA_RC"));
+
                 //Wassergehalt
-                HtmlCell cell5 = new HtmlCell.Builder()
+                HtmlCell cell6 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
                         .appendContent(schicht.getInformation("SCHICHT_WASSERGEHALT"))
                         .build();
 
                 //WasserProctor
-                HtmlCell cell6 = new HtmlCell.Builder()
+                HtmlCell cell7 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
                         .appendContent(WasserProctor_DataFormatStrategy.getInstance().getDataFormat(schicht))
                         .build();
 
                 //Proctor
-                HtmlCell cell7 = new HtmlCell.Builder()
-                        .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent("-")
-                        .build();
-
-                //Notiz
                 HtmlCell cell8 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(schicht.getInformation("SCHICHT_BEMERKUNGEN"))
+                        .appendContent("-")
                         .build();
 
                 HtmlRow row = new HtmlRow.Builder()

@@ -30,7 +30,7 @@ public class DickeOberbau_DataFormatStrategy extends ADataFormatStrategy
     @Override
     public String getDataFormat(final AErkundungsstelle erkundungsstelle)
     {
-        List<ASchicht> schichtList = erkundungsstelle.getSchichtAufschluss("OB");
+        List<ASchicht> schichtList = erkundungsstelle.getSchichtAufschluss("GOB");
         for (ASchicht schicht : schichtList){
 
             height = height  + Double.parseDouble(schicht.getInformation("SCHICHT_DICKE").replace(",","."));

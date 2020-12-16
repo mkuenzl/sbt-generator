@@ -32,10 +32,10 @@ public class WasserProctor_DataFormatStrategy extends ADataFormatStrategy
     @Override
     public String getDataFormat(final ASchicht schicht)
     {
-        if ("".equals(schicht.getInformation("SCHICHT_WASSERPROCTOR"))){
+        if ("".equals(schicht.getInformation("SCHICHT_FEUCHTIGKEIT"))){
             return "-";
         } else {
-            return schicht.getInformation("SCHICHT_WASSERPROCTOR").concat(" W<sub>Pr</sub>");
+            return schicht.getInformation("SCHICHT_FEUCHTIGKEIT").concat(" W<sub>Pr</sub>");
         }
     }
 }
