@@ -1,16 +1,16 @@
 <project name="sbt-generator" default="jar" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
 
     <!-- set global properties for this build -->
-    <property name="srcPath" value="${basedir}/src"/>
-    <property name="srcMainPath" value="${srcPath}/main/"/>
-    <property name="buildPath" value="${basedir}/build"/>
-    <property name="resourcePath" value="${basedir}/resources"/>
-    <property name="jarPath" value="${basedir}/build/jar"/>
-    <property name="classPath" value="${buildPath}/classes"/>
-    <property name="classPathMain" value="${classPath}/main"/>
-    <property name="libPath" value="${basedir}/lib"/>
-    <property name="outPath" value="${basedir}/out"/>
-    <property name="distPath" value="${buildPath}/dist"/>
+    <property name="src.dir" value="src"/>
+    <property name="main.dir" value="${src.dir}/main/"/>
+    <property name="build.dir" value="build"/>
+    <property name="resource.dir" value="resources"/>
+    <property name="jar.dir" value="${build.dir}/jar"/>
+    <property name="class.dir" value="${build.dir}/classes"/>
+    <property name="class.main.dir" value="${class.dir}/main"/>
+    <property name="lib.dir" value="lib"/>
+    <property name="out.dir" value="out"/>
+    <property name="dist.dir" value="${build.dir}/dist"/>
 
     <!-- set ivy properties for this build -->
     <property name="ivy.install.version" value="2.5.0"/>
@@ -54,7 +54,7 @@
 
     <!-- set lib/dist Paths -->
     <path id="libraries">
-        <fileset dir="${libPath}">
+        <fileset dir="${lib.dir}">
             <include name="**/*.jar"/>
             <exclude name="**/*sources.jar"/>
             <exclude name="**/*javadoc.jar"/>
@@ -65,10 +65,10 @@
     </path>
 
     <target name="combine-dependencies">
-        <mkdir dir="${distPath}"/>
+        <mkdir dir="${dist.dir}"/>
 
-        <jar jarfile="${distPath}/dependencies-combined.jar">
-            <zipgroupfileset dir="${libPath}">
+        <jar jarfile="${dist.dir}/dependencies-combined.jar">
+            <zipgroupfileset dir="${lib.dir}">
                 <include name="**/*.jar"/>
                 <exclude name="**/*sources.jar"/>
                 <exclude name="**/*javadoc.jar"/>
@@ -81,14 +81,17 @@
     <!-- -->
 
     <target name="clean">
-        <delete dir="${buildPath}"/>
+        <delete dir="${build.dir}"/>
         <!--<delete dir="${libPath}"/>-->
-        <delete dir="${outPath}"/>
+        <delete dir="${out.dir}"/>
     </target>
 
     <target name="compile" depends="clean, retrieve-ivy">
-        <mkdir dir="${classPathMain}"/>
-        <javac srcdir="${srcMainPath}" destdir="${classPathMain}">
+        <mkdir dir="${class.main.dir}"/>
+        <javac srcdir="${main.dir}"
+               destdir="${class.main.dir}"
+                release="8"
+               includeantruntime="false">
             <classpath>
                 <path refid="libraries"/>
             </classpath>
@@ -96,12 +99,12 @@
     </target>
 
     <target name="jar" depends="compile, combine-dependencies">
-        <mkdir dir="${jarPath}"/>
-        <jar destfile="${jarPath}/sbt-table-generator.jar" basedir="${classPathMain}">
-            <zipfileset src="${distPath}/dependencies-combined.jar" excludes="META-INF/*.SF"/>
-            <fileset dir="${resourcePath}"/>
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${jar.dir}/sbt-table-generator.jar" basedir="${class.main.dir}">
+            <zipfileset src="${dist.dir}/dependencies-combined.jar" excludes="META-INF/*.SF"/>
+            <fileset dir="${resource.dir}"/>
             <manifest>
-                <attribute name="Main-Class" value="sbt/Main"/>
+                <attribute name="Main-Class" value="sbt.Main"/>
             </manifest>
         </jar>
     </target>
