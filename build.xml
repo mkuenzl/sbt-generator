@@ -6,11 +6,13 @@
     <property name="build.dir" value="build"/>
     <property name="resource.dir" value="resources"/>
     <property name="jar.dir" value="${build.dir}/jar"/>
+    <property name="exe.dir" value="${build.dir}/exe"/>
     <property name="class.dir" value="${build.dir}/classes"/>
     <property name="class.main.dir" value="${class.dir}/main"/>
     <property name="lib.dir" value="lib"/>
     <property name="out.dir" value="out"/>
     <property name="dist.dir" value="${build.dir}/dist"/>
+    <property name="launch4j.dir" location="${user.home}/launch4j/" />
 
     <!-- set ivy properties for this build -->
     <property name="ivy.install.version" value="2.5.0"/>
@@ -22,6 +24,9 @@
     <!-- -->
     <property name="project" value="sbt-table-generator"/>
 
+    <taskdef name="launch4j"
+             classname="net.sf.launch4j.ant.Launch4jTask"
+             classpath="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar" />
 
     <!-- ivy targets for this build -->
     <target name="installed-ivy">
@@ -107,6 +112,11 @@
                 <attribute name="Main-Class" value="sbt.Main"/>
             </manifest>
         </jar>
+    </target>
+
+    <target name="exe" depends="jar">
+        <mkdir dir="${exe.dir}"/>
+        <launch4j configFile="./sbt-table-config.xml" />
     </target>
 
     <!-- TODO -->
