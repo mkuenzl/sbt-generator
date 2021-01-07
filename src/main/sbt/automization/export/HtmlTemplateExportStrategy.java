@@ -1,7 +1,7 @@
 package sbt.automization.export;
 
 
-import sbt.automization.projekt.Projekt;
+import sbt.automization.engine.TableEngine;
 import sbt.automization.templates.IHtmlTemplateStrategy;
 
 public class HtmlTemplateExportStrategy extends ATemplateExportStrategy
@@ -12,9 +12,9 @@ public class HtmlTemplateExportStrategy extends ATemplateExportStrategy
     }
 
     @Override
-    String format(final Projekt projekt)
+    String format(final TableEngine tableEngine)
     {
-        strategy.buildHtmlTable(projekt.getData());
+        strategy.buildHtmlTable(tableEngine.getData());
         return strategy.buildHtmlTemplate();
     }
 }

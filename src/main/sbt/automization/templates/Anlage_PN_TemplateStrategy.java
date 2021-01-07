@@ -3,13 +3,11 @@ package sbt.automization.templates;
 
 import sbt.automization.data.PNProbenart_DataFormatStrategy;
 import sbt.automization.data.TiefeVonBis_DataFormatStrategy;
-import sbt.automization.projekt.AErkundungsstelle;
-import sbt.automization.projekt.ASchicht;
-import sbt.automization.projekt.Schicht;
+import sbt.automization.engine.AErkundungsstelle;
+import sbt.automization.engine.ASchicht;
 import sbt.automization.templates.styles.TableStyle;
 import sbt.automization.util.html.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy

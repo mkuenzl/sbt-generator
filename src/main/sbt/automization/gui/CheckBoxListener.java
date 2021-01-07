@@ -14,6 +14,10 @@ public class CheckBoxListener implements ItemListener
             System.out.println(((JCheckBox) e.getItem()).getText() + "- selected");
 
             StrategyStorage.getInstance().addStrategy(((JCheckBox) e.getItem()).getText());
+        } else {
+            StrategyStorage.getInstance().removeStrategy(((JCheckBox) e.getItem()).getText());
+
+            System.out.println(((JCheckBox) e.getItem()).getText() + "- unselected");
         }
     }
 }

@@ -1,15 +1,15 @@
-package sbt.automization.projekt;
+package sbt.automization.engine;
 
 
 import sbt.automization.export.ATemplateExportStrategy;
 import java.util.*;
 
 //Eigentlich Main Interface um mit allem zu interagieren
-public class Projekt
+public class TableEngine
 {
     private List<AErkundungsstelle> data;
 
-    public Projekt(final List<Map> dataRows){
+    public TableEngine(final List<Map> dataRows){
         build(dataRows);
     }
 

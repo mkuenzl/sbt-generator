@@ -2,8 +2,8 @@ package sbt.automization.templates;
 
 import sbt.automization.data.Chemie_DataCellStrategy;
 import sbt.automization.data.Pech_DataCellStrategy;
-import sbt.automization.projekt.AErkundungsstelle;
-import sbt.automization.projekt.ASchicht;
+import sbt.automization.engine.AErkundungsstelle;
+import sbt.automization.engine.ASchicht;
 import sbt.automization.templates.styles.TableStyle;
 import sbt.automization.util.html.*;
 

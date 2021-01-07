@@ -1,6 +1,6 @@
 package sbt.automization.templates;
 
-import sbt.automization.projekt.AErkundungsstelle;
+import sbt.automization.engine.AErkundungsstelle;
 import sbt.automization.templates.styles.TableStyle;
 import sbt.automization.util.html.*;
 

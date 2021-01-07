@@ -1,7 +1,7 @@
 package sbt.automization.data;
 
-import sbt.automization.projekt.AErkundungsstelle;
-import sbt.automization.projekt.ASchicht;
+import sbt.automization.engine.AErkundungsstelle;
+import sbt.automization.engine.ASchicht;
 
 import java.util.List;
 

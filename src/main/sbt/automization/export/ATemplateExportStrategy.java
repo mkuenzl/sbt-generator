@@ -1,6 +1,6 @@
 package sbt.automization.export;
 
-import sbt.automization.projekt.Projekt;
+import sbt.automization.engine.TableEngine;
 import sbt.automization.templates.IHtmlTemplateStrategy;
 
 import java.io.*;
@@ -42,11 +42,11 @@ public abstract class ATemplateExportStrategy
         }
     }
 
-    public void export(Projekt projekt){
-        export(getPath(), format(projekt));
+    public void export(TableEngine tableEngine){
+        export(getPath(), format(tableEngine));
     };
 
-    abstract String format(Projekt projekt);
+    abstract String format(TableEngine tableEngine);
 
     private String getPath(){
         return System.getProperty("user.dir").concat(File.separator).concat(strategy.getExportFileName());

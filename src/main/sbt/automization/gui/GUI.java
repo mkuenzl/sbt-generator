@@ -1,7 +1,7 @@
 package sbt.automization.gui;
 
 import sbt.automization.export.HtmlTemplateExportStrategy;
-import sbt.automization.projekt.Projekt;
+import sbt.automization.engine.TableEngine;
 import sbt.automization.templates.IHtmlTemplateStrategy;
 import sbt.automization.util.Parser;
 
@@ -201,7 +201,7 @@ public class GUI extends JFrame implements ActionListener {
 
             try
             {
-                Projekt database = new Projekt(parser.parse());
+                TableEngine database = new TableEngine(parser.parse());
 
                 for (IHtmlTemplateStrategy strategy : StrategyStorage.getInstance().getStrategies())
                 {

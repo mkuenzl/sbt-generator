@@ -1,7 +1,7 @@
 package sbt.automization.templates;
 
 
-import sbt.automization.projekt.AErkundungsstelle;
+import sbt.automization.engine.AErkundungsstelle;
 
 import java.util.List;
 
