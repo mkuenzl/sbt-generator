@@ -43,6 +43,9 @@ public class StrategyStorage
             case "LP_TABELLE":
                 strategyList.add(Anlage_LP_TemplateStrategy.getInstance());
                 break;
+            case "BERICHT_TABELLEN":
+                strategyList.add(Bericht_OB_TemplateStrategy.getInstance());
+                break;
         }
     }
 
@@ -60,6 +63,9 @@ public class StrategyStorage
                 break;
             case "LP_TABELLE":
                 strategyList.remove(Anlage_LP_TemplateStrategy.getInstance());
+                break;
+            case "BERICHT_TABELLEN":
+                strategyList.remove(Bericht_OB_TemplateStrategy.getInstance());
                 break;
         }
     }

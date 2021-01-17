@@ -1,6 +1,5 @@
 package sbt.automization.templates;
 
-
 import sbt.automization.data.PNProbenart_DataFormatStrategy;
 import sbt.automization.data.TiefeVonBis_DataFormatStrategy;
 import sbt.automization.engine.AErkundungsstelle;
