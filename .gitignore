@@ -7,6 +7,7 @@ sources
 out
 *.html
 *.jpg
+files
 
 # Compiled class file
 *.class
