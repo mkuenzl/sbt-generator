@@ -18,14 +18,14 @@ class Anlage_ERK_TOB_TemplateStrategy extends AHtmlTemplateStrategy
         //First Row
         HtmlTableHeader cell11 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "185")
+                .appendAttribute("width", "125")
                 .appendAttribute("align", "left")
-                .appendContent("Tragschicht ohne Bindemittel")
+                .appendContent("Tragschicht ohne </br> Bindemittel")
                 .build();
 
         HtmlTableHeader cell12 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("colspan", "7")        //Zelle geht über 3 Reihen
+                .appendAttribute("colspan", "8")        //Zelle geht über 3 Reihen
                 .appendAttribute("align", "left")
                 .appendContent("Aufschlussverfahren:".concat(" ").concat(aufschluss))
                 .build();
@@ -34,7 +34,7 @@ class Anlage_ERK_TOB_TemplateStrategy extends AHtmlTemplateStrategy
         //Second Row
         HtmlTableHeader cell21 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "185")
+                .appendAttribute("width", "125")
                 .appendAttribute("align", "left")
                 .appendAttribute("rowspan", "2")
                 .appendContent("Art der Schicht")
@@ -84,6 +84,13 @@ class Anlage_ERK_TOB_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendContent("E<sub>V2</sub>")
+                .build();
+
+        HtmlTableHeader cell29 = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("width", "60")
+                .appendAttribute("rowspan", "2")
+                .appendContent("KGV")
                 .build();
 
 
@@ -154,6 +161,7 @@ class Anlage_ERK_TOB_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendContent(cell26.appendTag())
                 .appendContent(cell27.appendTag())
                 .appendContent(cell28.appendTag())
+                .appendContent(cell29.appendTag())
                 .build();
 
         HtmlRow row3 = new HtmlRow.Builder()

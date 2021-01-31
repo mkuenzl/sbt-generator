@@ -19,7 +19,7 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
         //First Row
         HtmlTableHeader cell11 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "185")
+                .appendAttribute("width", "125")
                 .appendAttribute("align", "left")
                 .appendContent("Gebundener Oberbau")
                 .build();
@@ -27,7 +27,7 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
         HtmlTableHeader cell12 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("align", "left")
-                .appendAttribute("colspan", "7")        //Zelle geht über 3 Reihen
+                .appendAttribute("colspan", "8")        //Zelle geht über 3 Reihen
                 .appendContent("Aufschlussverfahren:".concat(" ").concat(aufschluss))
                 .build();
 
@@ -75,11 +75,20 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
 
         HtmlTableHeader cell27 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "60")
+                .appendAttribute("width", "120")
+                .appendAttribute("colspan", "2")
+                .appendAttribute("rowspan", "2")
                 .appendContent("")
                 .build();
 
         HtmlTableHeader cell28 = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("width", "60")
+                .appendAttribute("rowspan", "2")
+                .appendContent("")
+                .build();
+
+        HtmlTableHeader cell29 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendAttribute("rowspan", "2")
@@ -118,9 +127,9 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendContent("°C")
                 .build();
 
-        HtmlTableHeader cell37 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
-                .build();
+//        HtmlTableHeader cell37 = new HtmlTableHeader.Builder()
+//                .appendAttribute("class", "NormalTableHeader")
+//                .build();
 
 //        HtmlTableHeader cell38 = new HtmlTableHeader.Builder()
 //                .appendAttribute("class", "NormalTableHeader")
@@ -142,7 +151,8 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendContent(cell25.appendTag())
                 .appendContent(cell26.appendTag())
                 .appendContent(cell27.appendTag())
-                .appendContent(cell28.appendTag())
+//                .appendContent(cell28.appendTag())
+                .appendContent(cell29.appendTag())
                 .build();
 
         HtmlRow row3 = new HtmlRow.Builder()
@@ -153,7 +163,7 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
               //  .appendContent(cell34.appendTag())
              //   .appendContent(cell35.appendTag())
                 .appendContent(cell36.appendTag())
-                .appendContent(cell37.appendTag())
+             //   .appendContent(cell37.appendTag())
              //   .appendContent(cell38.appendTag())
                 .build();
 

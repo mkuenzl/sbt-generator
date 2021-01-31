@@ -14,25 +14,25 @@ import java.io.IOException;
 
 public class Main
 {
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args)
     {
 //        CLI commandLineInterface = new CLI(args);
 //        commandLineInterface.parse();
 //
         //FALL KEIN FILE VORHANDEN
         //Parser parser = new Parser(commandLineInterface.getCsvFile());
-//        Parser parser = new Parser(new File("files/Test_1_ERK_1.CSV"));
+        Parser parser = new Parser(new File("datenbank.csv"));
 //
 //
-//        TableEngine projekt = new TableEngine(parser.parse());
+        TableEngine projekt = new TableEngine(parser.parse());
 //
 //        //FALL KEINE STRATEGY VORHANDEN
 //        //projekt.export(new HtmlTemplateExportStrategy(commandLineInterface.getStrategy()));
 //        projekt.export(new HtmlTemplateExportStrategy(Anlage_RUK_TemplateStrategy.getInstance()));
 //        projekt.export(new HtmlTemplateExportStrategy(Anlage_LP_TemplateStrategy.getInstance()));
-//        projekt.export(new HtmlTemplateExportStrategy(Anlage_ERK_TemplateStrategy.getInstance()));
+        projekt.export(new HtmlTemplateExportStrategy(Anlage_ERK_TemplateStrategy.getInstance()));
 //        projekt.export(new HtmlTemplateExportStrategy(Anlage_PN_TemplateStrategy.getInstance()));
 
-        new GUI();
+        //new GUI();
     }
 }

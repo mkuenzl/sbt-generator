@@ -39,23 +39,25 @@ abstract class AHtmlTemplateStrategy implements IHtmlTemplateStrategy
     }
 
     String getHtmlHead(){
+
+        InputStreamReader inputStreamReader = null;
+        BufferedReader bufferedReader = null;
+        StringBuilder stringBuilder = new StringBuilder();
         try
         {
             // "/css.txt" sollte ausreichen als Pfad für die JAR
-            BufferedReader reader =
-                    new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/css.txt")));
+            inputStreamReader = new InputStreamReader(getClass().getResourceAsStream("/css.txt"));
+            bufferedReader = new BufferedReader(inputStreamReader);
 
-            StringBuilder stringBuilder = new StringBuilder();
             String line = null;
             String ls = System.getProperty("line.separator");
-            while ((line = reader.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null) {
                 stringBuilder.append(line);
                 stringBuilder.append(ls);
             }
             // delete the last new line separator
             stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-            reader.close();
-            return stringBuilder.toString();
+
         } catch (FileNotFoundException e)
         {
             e.printStackTrace();
@@ -63,7 +65,19 @@ abstract class AHtmlTemplateStrategy implements IHtmlTemplateStrategy
         {
             e.printStackTrace();
         }
-        return "<head></head>";
+        finally {
+            if (inputStreamReader != null){
+                try {
+                    inputStreamReader.close();
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                return "<head></head>";
+            }
+        }
+        return stringBuilder.toString();
     }
 
     void setHtmlTable(final String htmlTable)
