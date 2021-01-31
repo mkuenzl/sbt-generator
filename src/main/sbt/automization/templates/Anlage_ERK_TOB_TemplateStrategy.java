@@ -20,8 +20,14 @@ class Anlage_ERK_TOB_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "125")
                 .appendAttribute("align", "left")
-                .appendContent("Tragschicht ohne </br> Bindemittel")
+                .appendContent("Tragschicht ohne")
+                .appendContent(new HtmlText.Builder().appendAttribute("class","Normal")
+                        .appendContent("Bindemittel")
+                        .build()
+                        .appendTag())
                 .build();
+
+
 
         HtmlTableHeader cell12 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
@@ -84,12 +90,16 @@ class Anlage_ERK_TOB_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendContent("E<sub>V2</sub>")
+                .appendContent(new HtmlText.Builder().appendAttribute("class","Normal").appendContent("E<sub>Vdyn</sub>").build().appendTag())
+                .appendContent(new HtmlText.Builder().appendAttribute("class","Normal").appendContent("<sub>(-15%)</sub>").build().appendTag())
                 .build();
+
+
+
 
         HtmlTableHeader cell29 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
-                .appendAttribute("rowspan", "2")
                 .appendContent("KGV")
                 .build();
 
@@ -139,6 +149,12 @@ class Anlage_ERK_TOB_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendContent("MN/m²")
                 .build();
 
+        HtmlTableHeader cell38 = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("width", "60")
+                .appendContent("M.-%")
+                .build();
+
 //        HtmlTableHeader cell38 = new HtmlTableHeader.Builder()
 //                .appendAttribute("class", "NormalTableHeader")
 //                .appendAttribute("width", "60")
@@ -173,7 +189,7 @@ class Anlage_ERK_TOB_TemplateStrategy extends AHtmlTemplateStrategy
            //     .appendContent(cell35.appendTag())
             //    .appendContent(cell36.appendTag())
                 .appendContent(cell37.appendTag())
-            //    .appendContent(cell38.appendTag())
+                .appendContent(cell38.appendTag())
                 .build();
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -212,9 +228,13 @@ class Anlage_ERK_TOB_TemplateStrategy extends AHtmlTemplateStrategy
                 //Art der Schicht
                 HtmlCell cell1 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent(schicht.getInformation("SCHICHT_ART").concat("  ").concat(schicht.getInformation("SCHICHT_KOERNUNG")))
-                        .appendContent(new HtmlText.Builder().appendAttribute("class","Normal").appendContent(schicht.getInformation(
-                                "SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT")).build().appendTag())
+                        .appendContent(schicht.getInformation("SCHICHT_ART"))
+                        .appendContent(new HtmlText.Builder().appendAttribute("class","Normal")
+                                .appendContent(schicht.getInformation("SCHICHT_KOERNUNG"))
+                                .appendContent(" ")
+                                .appendContent(schicht.getInformation("SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT"))
+                                .build()
+                                .appendTag())
                         .build();
 
                 //Dicke
@@ -245,8 +265,17 @@ class Anlage_ERK_TOB_TemplateStrategy extends AHtmlTemplateStrategy
                 HtmlCell cell8 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
                         .appendContent(data.getInformation("ERK_LP_EV2"))
+                        .appendContent("")
+                        .appendContent(new HtmlText.Builder().appendAttribute("class","Normal")
+                                .appendContent(data.getInformation("ERK_LP_EV15"))
+                                .build()
+                                .appendTag())
                         .build();
 
+                HtmlCell cell9 = new HtmlCell.Builder()
+                        .appendAttribute("class", "NormalErkundungsstelle")
+                        .appendContent(schicht.getInformation("SCHICHT_KORNGROESSENVERTEILUNG"))
+                        .build();
 
 
                 HtmlRow row = new HtmlRow.Builder()
@@ -259,6 +288,7 @@ class Anlage_ERK_TOB_TemplateStrategy extends AHtmlTemplateStrategy
                         .appendContent(cell6.appendTag())
                         .appendContent(cell7.appendTag())
                         .appendContent(cell8.appendTag())
+                        .appendContent(cell9.appendTag())
                         .build();
 
                 table.appendContent(row.appendTag());

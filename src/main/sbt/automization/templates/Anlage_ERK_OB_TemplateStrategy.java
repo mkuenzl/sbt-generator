@@ -36,7 +36,7 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
         HtmlTableHeader cell21 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("align","left")
-                .appendAttribute("width", "185")
+                .appendAttribute("width", "125")
                 .appendAttribute("rowspan", "2")
                 .appendContent("Art der Schicht")
                 .build();
@@ -75,8 +75,7 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
 
         HtmlTableHeader cell27 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "120")
-                .appendAttribute("colspan", "2")
+                .appendAttribute("width", "60")
                 .appendAttribute("rowspan", "2")
                 .appendContent("")
                 .build();
@@ -151,7 +150,7 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendContent(cell25.appendTag())
                 .appendContent(cell26.appendTag())
                 .appendContent(cell27.appendTag())
-//                .appendContent(cell28.appendTag())
+                .appendContent(cell28.appendTag())
                 .appendContent(cell29.appendTag())
                 .build();
 
@@ -235,8 +234,14 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
                         .appendContent("")
                         .build();
 
-                //Notiz
+                //LP?
                 HtmlCell cell8 = new HtmlCell.Builder()
+                        .appendAttribute("class", "NormalErkundungsstelle")
+                        .appendContent("")
+                        .build();
+
+                //Notiz
+                HtmlCell cell9 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
                         .appendContent(schicht.getInformation("SCHICHT_BEMERKUNGEN"))
                         .build();
@@ -250,6 +255,7 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
                         .appendContent(cell5.appendTag())
                         .appendContent(cell6.appendTag())
                         .appendContent(cell7.appendTag())
+                        .appendContent(cell8.appendTag())
                         .appendContent(cell8.appendTag())
                         .build();
 

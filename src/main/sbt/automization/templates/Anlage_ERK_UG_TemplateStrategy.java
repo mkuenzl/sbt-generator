@@ -36,7 +36,7 @@ class Anlage_ERK_UG_TemplateStrategy extends AHtmlTemplateStrategy
         HtmlTableHeader cell21 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("align", "left")
-                .appendAttribute("width", "185")
+                .appendAttribute("width", "125")
                 .appendAttribute("rowspan", "2")
                 .appendContent("Bodengruppe")
                 .build();
