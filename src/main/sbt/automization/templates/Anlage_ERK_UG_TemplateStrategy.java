@@ -1,5 +1,6 @@
 package sbt.automization.templates;
 
+import sbt.automization.data.BodenGruppe_DataFormatStrategy;
 import sbt.automization.data.Chemie_DataCellStrategy;
 import sbt.automization.data.WasserProctor_DataFormatStrategy;
 import sbt.automization.engine.AErkundungsstelle;
@@ -202,7 +203,7 @@ class Anlage_ERK_UG_TemplateStrategy extends AHtmlTemplateStrategy
                 //Art der Schicht
                 HtmlCell cell1 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent(schicht.getInformation("SCHICHT_ART"))
+                        .appendContent(BodenGruppe_DataFormatStrategy.getInstance().getDataFormat(schicht))
                         .build();
 
                 //Dicke
