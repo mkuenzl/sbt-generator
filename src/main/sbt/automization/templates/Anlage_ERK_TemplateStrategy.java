@@ -1,5 +1,6 @@
 package sbt.automization.templates;
 
+import sbt.automization.data.Footnote_DataFormatStrategy;
 import sbt.automization.engine.AErkundungsstelle;
 import sbt.automization.templates.styles.TableStyle;
 import sbt.automization.util.html.*;
@@ -144,6 +145,29 @@ public final class Anlage_ERK_TemplateStrategy extends AHtmlTemplateStrategy
             Anlage_ERK_UG_TemplateStrategy erk_UG_Tabelle = new Anlage_ERK_UG_TemplateStrategy();
             erk_UG_Tabelle.buildHtmlTable(erkundungsstelle);
 
+            HtmlCell footer = new HtmlCell.Builder()
+                    .appendAttribute("class", "Normal")
+                    .appendAttribute("colspan", "3")
+                    .appendContent(Footnote_DataFormatStrategy.getInstance().getDataFormat(erkundungsstelle))
+                    .build();
+
+            HtmlRow footerRow = new HtmlRow.Builder()
+                    .appendAttribute("class", "Normal")
+                    .appendContent(footer.appendTag())
+                    .build();
+
+            HtmlTable footNotes = new HtmlTable.Builder()
+                    .appendAttribute("class", "MsoNormalTable")
+                    .appendAttribute("width", "605")
+                    .appendAttribute("border", "1")
+                    .appendAttribute("style", TableStyle.TABLE_STYLE1.getAttributes())
+                    .appendAttribute("cellspacing", "0")
+                    .appendAttribute("cellpadding", "0")
+                    .appendContent(footerRow.appendTag())
+                    .build();
+
+
+
             stringBuilder.append(table.appendTag())
                     //.append("<br></br>")
                     .append(erk_GO_Tabelle.getHtmlTable())
@@ -151,6 +175,7 @@ public final class Anlage_ERK_TemplateStrategy extends AHtmlTemplateStrategy
                     .append(erk_TOB_Tabelle.getHtmlTable())
                     //.append("<br></br>")
                     .append(erk_UG_Tabelle.getHtmlTable())
+                    .append(footNotes.appendTag())
                     .append("<br></br>");
         }
 

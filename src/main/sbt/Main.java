@@ -21,7 +21,7 @@ public class Main
 //
         //FALL KEIN FILE VORHANDEN
         //Parser parser = new Parser(commandLineInterface.getCsvFile());
-        Parser parser = new Parser(new File("datenbank.csv"));
+        Parser parser = new Parser(new File("datenbank_schablone.csv"));
 //
 //
         TableEngine projekt = new TableEngine(parser.parse());
