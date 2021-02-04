@@ -34,12 +34,12 @@ public class TiefeVonBis_DataFormatStrategy extends ADataFormatStrategy
     public String getDataFormat(final ASchicht schicht)
     {
         HtmlText htmlText = new HtmlText.Builder()
-                .appendAttribute("class", "Normal7")
-                .appendContent("[")
+                .appendAttribute("class", "Normal")
+                .appendContent("")
                 .appendContent(schicht.getInformation("SCHICHT_TIEFE_START"))
                 .appendContent("-")
                 .appendContent(schicht.getInformation("SCHICHT_TIEFE_ENDE"))
-                .appendContent("]")
+                .appendContent("")
                 .build();
 
         return htmlText.appendTag();

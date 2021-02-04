@@ -60,14 +60,35 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendContent(setHtmlTableHeader())
                 .build();
 
+        int rowCounter = 0;
+        StringBuilder stringBuilder = new StringBuilder();
 
         for (AErkundungsstelle erkundungsstelle : data)
         {
             List<ASchicht> schichtList = formatSchichtList(erkundungsstelle.getSchichtList());
 
-
             for (ASchicht schicht : schichtList)
             {
+
+                if (rowCounter >= 20){
+                    stringBuilder.append(table.appendTag())
+                            .append("<br>")
+                            .append("<br>");
+
+                    table = new HtmlTable.Builder()
+                            .appendAttribute("class", "MsoNormalTable")
+                            .appendAttribute("width", "605")
+                            .appendAttribute("border", "1")
+                            .appendAttribute("style", TableStyle.TABLE_STYLE1.getAttributes())
+                            .appendAttribute("cellspacing", "0")
+                            .appendAttribute("cellpadding", "0")
+                            .appendContent(setHtmlTableHeader())
+                            .build();
+
+                    rowCounter = 0;
+                }
+
+
                 HtmlCell cell1 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
                         .appendContent("P".concat(String.valueOf(counter++)))
@@ -120,7 +141,7 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
 
                 HtmlCell cell11 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
-                        .appendContent("")
+                        .appendContent(erkundungsstelle.getInformation("ERK_OBERKANTE"))
                         .build();
 
                 HtmlRow row = new HtmlRow.Builder()
@@ -138,11 +159,15 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
                         .appendContent(cell11.appendTag())
                         .build();
 
+                rowCounter++;
+
                 table.appendContent(row.appendTag());
             }
         }
 
-        setHtmlTable(table.appendTag());
+        stringBuilder.append(table.appendTag());
+
+        setHtmlTable(stringBuilder.toString());
     }
 
 

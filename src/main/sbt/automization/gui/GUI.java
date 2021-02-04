@@ -199,7 +199,6 @@ public class GUI extends JFrame implements ActionListener {
 
             Parser parser = new Parser(new File(textfield.getText()));
 
-
             TableEngine database = new TableEngine(parser.parse());
 
             for (IHtmlTemplateStrategy strategy : StrategyStorage.getInstance().getStrategies())

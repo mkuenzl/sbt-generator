@@ -16,11 +16,14 @@ public abstract class ATemplateExportStrategy
     }
 
     private void export(String path, String content){
-        //File file = new File(path);
         BufferedWriter bw = null;
+        OutputStreamWriter outputStreamWriter = null;
+        FileOutputStream fileOutputStream = null;
         try
         {
-            bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path), StandardCharsets.UTF_8));
+            fileOutputStream = new FileOutputStream(path);
+            outputStreamWriter = new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8);
+            bw = new BufferedWriter(outputStreamWriter);
             bw.write(content);
             bw.close();
         } catch (IOException e)
@@ -28,10 +31,14 @@ public abstract class ATemplateExportStrategy
             e.printStackTrace();
         } finally
         {
-            if (bw != null)
+            if (fileOutputStream != null)
             {
                 try
                 {
+                    fileOutputStream.flush();
+                    fileOutputStream.close();
+                    outputStreamWriter.flush();
+                    outputStreamWriter.close();
                     bw.flush();
                     bw.close();
                 } catch (IOException e)
