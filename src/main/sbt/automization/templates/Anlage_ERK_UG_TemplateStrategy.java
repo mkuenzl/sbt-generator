@@ -221,7 +221,7 @@ class Anlage_ERK_UG_TemplateStrategy extends AHtmlTemplateStrategy
                 //MUFV DUMMY
                 HtmlCell cell4 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent("-")
+                        .appendContent("")
                         .build();
 
                 //LAGA BO

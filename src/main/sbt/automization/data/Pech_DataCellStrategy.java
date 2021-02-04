@@ -53,6 +53,8 @@ public class Pech_DataCellStrategy extends ADataCellStrategy
                 htmlCell.appendContent("PECH");
                 break;
             default:
+                htmlCell.appendAttribute("class", "NormalErkundungsstelle");
+                htmlCell.appendContent("");
                 break;
         }
 

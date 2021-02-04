@@ -120,14 +120,15 @@ public class Footnote_DataFormatStrategy extends ADataFormatStrategy{
                     .appendTag());
         }
 
-        stringBuilder.append(new HtmlText.Builder()
-                .appendAttribute("class","Normal")
-                .appendContent(String.valueOf(counter++))
-                .appendContent(".) ")
-                .appendContent(erkundungsstelle.getInformation("ERK_VARIABLE_FOOTNOTE"))
-                .build()
-                .appendTag());
-
+        if(erkundungsstelle.getInformation("ERK_VARIABLE_FOOTNOTE") != null){
+            stringBuilder.append(new HtmlText.Builder()
+                    .appendAttribute("class","Normal")
+                    .appendContent(String.valueOf(counter++))
+                    .appendContent(".) ")
+                    .appendContent(erkundungsstelle.getInformation("ERK_VARIABLE_FOOTNOTE"))
+                    .build()
+                    .appendTag());
+        }
 
 
         if (!"".equals(erkundungsstelle.getInformation("ERK_LP"))){
