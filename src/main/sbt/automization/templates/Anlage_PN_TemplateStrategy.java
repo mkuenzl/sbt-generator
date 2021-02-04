@@ -7,6 +7,7 @@ import sbt.automization.engine.ASchicht;
 import sbt.automization.templates.styles.TableStyle;
 import sbt.automization.util.html.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
@@ -30,8 +31,19 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
         return instance;
     }
 
-    public List<ASchicht> formatSchichtList(List<ASchicht> schichtList){
+    public List<ASchicht> formatSchichtList(List<ASchicht> schichtListe){
 
+        List<ASchicht> schichtList = new ArrayList<>();
+        for (ASchicht schicht : schichtListe)
+        {
+            try
+            {
+                schichtList.add((ASchicht) schicht.clone());
+            } catch (CloneNotSupportedException e)
+            {
+                e.printStackTrace();
+            }
+        }
         for (int i = 0; i < schichtList.size(); i++)
         {
             if ("GOB".equals(schichtList.get(i).getInformation("SCHICHT_AUFSCHLUSS"))){
