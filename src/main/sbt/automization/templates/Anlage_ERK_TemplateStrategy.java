@@ -1,8 +1,7 @@
 package sbt.automization.templates;
 
-import sbt.automization.data.Footnote_DataFormatStrategy;
-import sbt.automization.engine.AErkundungsstelle;
-import sbt.automization.templates.styles.TableStyle;
+import sbt.automization.engine.Erkundungsstelle;
+import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.*;
 
 import java.util.List;
@@ -36,13 +35,13 @@ public final class Anlage_ERK_TemplateStrategy extends AHtmlTemplateStrategy
 
     //Erstellt die Informationen und ruft dann Methoden einzelner Klassen auf
     @Override
-    public void buildHtmlTable(final List<AErkundungsstelle> data)
+    public void buildHtmlTable(final List<Erkundungsstelle> data)
     {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (int i = 0; i < data.size(); i++)
         {
-            AErkundungsstelle erkundungsstelle = data.get(i);
+            Erkundungsstelle erkundungsstelle = data.get(i);
 
             HtmlCell cell11 = new HtmlCell.Builder()
                     .appendAttribute("width", "75")
@@ -128,7 +127,7 @@ public final class Anlage_ERK_TemplateStrategy extends AHtmlTemplateStrategy
                     .appendAttribute("class", "MsoNormalTable")
                     .appendAttribute("width", "605")
                     .appendAttribute("border", "1")
-                    .appendAttribute("style", TableStyle.TABLE_STYLE1.getAttributes())
+                    .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
                     .appendAttribute("cellspacing", "0")
                     .appendAttribute("cellpadding", "0")
                     .appendContent(row1.appendTag())
@@ -148,7 +147,7 @@ public final class Anlage_ERK_TemplateStrategy extends AHtmlTemplateStrategy
             HtmlCell footer = new HtmlCell.Builder()
                     .appendAttribute("class", "Normal")
                     .appendAttribute("colspan", "3")
-                    .appendContent(Footnote_DataFormatStrategy.getInstance().getDataFormat(erkundungsstelle))
+                    .appendContent(TextFormatUtil.formatErkFootnotes(erkundungsstelle))
                     .build();
 
             HtmlRow footerRow = new HtmlRow.Builder()
@@ -160,7 +159,7 @@ public final class Anlage_ERK_TemplateStrategy extends AHtmlTemplateStrategy
                     .appendAttribute("class", "MsoNormalTable")
                     .appendAttribute("width", "605")
                     .appendAttribute("border", "1")
-                    .appendAttribute("style", TableStyle.TABLE_STYLE1.getAttributes())
+                    .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
                     .appendAttribute("cellspacing", "0")
                     .appendAttribute("cellpadding", "0")
                     .appendContent(footerRow.appendTag())
@@ -183,7 +182,7 @@ public final class Anlage_ERK_TemplateStrategy extends AHtmlTemplateStrategy
     }
 
     @Override
-    public void buildHtmlTable(final AErkundungsstelle data)
+    public void buildHtmlTable(final Erkundungsstelle data)
     {
 
     }

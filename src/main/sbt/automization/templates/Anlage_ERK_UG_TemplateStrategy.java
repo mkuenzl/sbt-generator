@@ -1,11 +1,9 @@
 package sbt.automization.templates;
 
-import sbt.automization.data.BodenGruppe_DataFormatStrategy;
-import sbt.automization.data.Chemie_DataCellStrategy;
-import sbt.automization.data.WasserProctor_DataFormatStrategy;
-import sbt.automization.engine.AErkundungsstelle;
-import sbt.automization.engine.ASchicht;
-import sbt.automization.templates.styles.TableStyle;
+import sbt.automization.engine.Erkundungsstelle;
+import sbt.automization.engine.Schicht;
+import sbt.automization.format.HtmlCellFormatUtil;
+import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.*;
 
 import java.util.List;
@@ -177,13 +175,13 @@ class Anlage_ERK_UG_TemplateStrategy extends AHtmlTemplateStrategy
     }
 
     @Override
-    public void buildHtmlTable(final List<AErkundungsstelle> data)
+    public void buildHtmlTable(final List<Erkundungsstelle> data)
     {
 
     }
 
     @Override
-    public void buildHtmlTable(final AErkundungsstelle data)
+    public void buildHtmlTable(final Erkundungsstelle data)
     {
         aufschluss = data.getInformation("ERK_AUFSCHLUSS_UG");
 
@@ -191,19 +189,19 @@ class Anlage_ERK_UG_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendAttribute("class", "MsoNormalTable")
                 .appendAttribute("width", "605")
                 .appendAttribute("border", "1")
-                .appendAttribute("style", TableStyle.TABLE_STYLE1.getAttributes())
+                .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
                 .appendAttribute("cellspacing", "0")
                 .appendAttribute("cellpadding", "0")
                 .appendContent(setHtmlTableHeader())
                 .build();
 
-        for (ASchicht schicht : data.getSchichtList())
+        for (Schicht schicht : data.getSchichtList())
         {
             if ("UG".equals(schicht.getInformation("SCHICHT_AUFSCHLUSS"))){
                 //Art der Schicht
                 HtmlCell cell1 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent(BodenGruppe_DataFormatStrategy.getInstance().getDataFormat(schicht))
+                        .appendContent(TextFormatUtil.formatSchichtBodenGruppe(schicht))
                         .build();
 
                 //Dicke
@@ -225,10 +223,12 @@ class Anlage_ERK_UG_TemplateStrategy extends AHtmlTemplateStrategy
                         .build();
 
                 //LAGA BO
-                HtmlCell cell5 = Chemie_DataCellStrategy.getInstance().getDataCell(schicht.getInformation("CHEMIE_LAGA_BO"));
+                String chemie_laga_bo = schicht.getInformation("CHEMIE_LAGA_BO");
+                HtmlCell cell5 = HtmlCellFormatUtil.formatChemie(chemie_laga_bo);
 
                 //Notiz
-                HtmlCell cell6 = Chemie_DataCellStrategy.getInstance().getDataCell(schicht.getInformation("CHEMIE_LAGA_RC"));
+                String chemie_laga_rc = schicht.getInformation("CHEMIE_LAGA_RC");
+                HtmlCell cell6 = HtmlCellFormatUtil.formatChemie(chemie_laga_rc);
 
                 //Wassergehalt
                 HtmlCell cell7 = new HtmlCell.Builder()
@@ -239,7 +239,7 @@ class Anlage_ERK_UG_TemplateStrategy extends AHtmlTemplateStrategy
                 //WasserProctor
                 HtmlCell cell8 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(WasserProctor_DataFormatStrategy.getInstance().getDataFormat(schicht))
+                        .appendContent(TextFormatUtil.formatSchichtProctor(schicht))
                         .build();
 
                 //Proctor

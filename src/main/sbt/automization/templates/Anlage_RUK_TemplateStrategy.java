@@ -1,8 +1,7 @@
 package sbt.automization.templates;
 
-import sbt.automization.engine.AErkundungsstelle;
-import sbt.automization.engine.ASchicht;
-import sbt.automization.templates.styles.TableStyle;
+import sbt.automization.engine.Erkundungsstelle;
+import sbt.automization.engine.Schicht;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
@@ -128,24 +127,24 @@ public final class Anlage_RUK_TemplateStrategy extends AHtmlTemplateStrategy
     }
 
     @Override
-    public void buildHtmlTable(final List<AErkundungsstelle> data)
+    public void buildHtmlTable(final List<Erkundungsstelle> data)
     {
         HtmlTable table = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
                 .appendAttribute("width", "605")
                 .appendAttribute("border", "1")
-                .appendAttribute("style", TableStyle.TABLE_STYLE1.getAttributes())
+                .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
                 .appendAttribute("cellspacing", "0")
                 .appendAttribute("cellpadding", "0")
                 .appendContent(setHtmlTableHeader())
                 .build();
 
 
-        for (AErkundungsstelle erkundungsstelle : data)
+        for (Erkundungsstelle erkundungsstelle : data)
         {
-            List<ASchicht> sList = erkundungsstelle.getSchichtList();
+            List<Schicht> sList = erkundungsstelle.getSchichtList();
 
-            for (ASchicht schicht : sList)
+            for (Schicht schicht : sList)
             {
                 String rukNumber = schicht.getInformation("SCHICHT_RUK_NR");
 
@@ -224,7 +223,7 @@ public final class Anlage_RUK_TemplateStrategy extends AHtmlTemplateStrategy
     }
 
     @Override
-    public void buildHtmlTable(final AErkundungsstelle data)
+    public void buildHtmlTable(final Erkundungsstelle data)
     {
 
     }

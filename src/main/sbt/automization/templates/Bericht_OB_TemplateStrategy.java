@@ -1,8 +1,7 @@
 package sbt.automization.templates;
 
-import sbt.automization.data.DickeOberbau_DataFormatStrategy;
-import sbt.automization.engine.AErkundungsstelle;
-import sbt.automization.templates.styles.TableStyle;
+import sbt.automization.format.TextFormatUtil;
+import sbt.automization.engine.Erkundungsstelle;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
@@ -36,14 +35,13 @@ public final class Bericht_OB_TemplateStrategy extends AHtmlTemplateStrategy
     }
 
     @Override
-    public void buildHtmlTable(final List<AErkundungsstelle> data)
+    public void buildHtmlTable(final List<Erkundungsstelle> data)
     {
         //Sort Data nach OB
-
         HtmlTable table = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
                 .appendAttribute("border", "1")
-                .appendAttribute("style", TableStyle.TABLE_STYLE1.getAttributes())
+                .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
                 .appendAttribute("cellspacing", "0")
                 .appendAttribute("cellpadding", "0")
                 .build();
@@ -59,7 +57,7 @@ public final class Bericht_OB_TemplateStrategy extends AHtmlTemplateStrategy
                         .appendTag())
                 .build();
 
-        for (AErkundungsstelle erkundungsstelle :
+        for (Erkundungsstelle erkundungsstelle :
                 data)
         {
             HtmlCell htmlCell = new HtmlCell.Builder()
@@ -82,7 +80,7 @@ public final class Bericht_OB_TemplateStrategy extends AHtmlTemplateStrategy
                         .appendTag())
                 .build();
 
-        for (AErkundungsstelle erkundungsstelle :
+        for (Erkundungsstelle erkundungsstelle :
                 data)
         {
             HtmlCell htmlCell = new HtmlCell.Builder()
@@ -116,13 +114,13 @@ public final class Bericht_OB_TemplateStrategy extends AHtmlTemplateStrategy
                         .appendTag())
                 .build();
 
-        for (AErkundungsstelle erkundungsstelle :
+        for (Erkundungsstelle erkundungsstelle :
                 data)
         {
             HtmlCell htmlCell = new HtmlCell.Builder()
                     .appendAttribute("class", "NormalBericht")
                     .appendAttribute("width", "50")
-                    .appendContent(DickeOberbau_DataFormatStrategy.getInstance().getDataFormat(erkundungsstelle))
+                    .appendContent(TextFormatUtil.formatErkAufschlussDicke(erkundungsstelle, "GOB"))
                     .build();
 
             row4.appendContent(htmlCell.appendTag());
@@ -138,7 +136,7 @@ public final class Bericht_OB_TemplateStrategy extends AHtmlTemplateStrategy
     }
 
     @Override
-    public void buildHtmlTable(final AErkundungsstelle data)
+    public void buildHtmlTable(final Erkundungsstelle data)
     {
 
     }

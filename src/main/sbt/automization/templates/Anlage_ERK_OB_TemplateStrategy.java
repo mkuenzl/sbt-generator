@@ -1,21 +1,17 @@
 package sbt.automization.templates;
 
-import sbt.automization.data.Chemie_DataCellStrategy;
-import sbt.automization.data.Pech_DataCellStrategy;
-import sbt.automization.engine.AErkundungsstelle;
-import sbt.automization.engine.ASchicht;
-import sbt.automization.templates.styles.TableStyle;
+import sbt.automization.format.HtmlCellFormatUtil;
+import sbt.automization.engine.Erkundungsstelle;
+import sbt.automization.engine.Schicht;
 import sbt.automization.util.html.*;
 
 import java.util.List;
 
-class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
-{
+class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy {
     private String aufschluss = "";
 
     @Override
-    String setHtmlTableHeader()
-    {
+    String setHtmlTableHeader() {
         //First Row
         HtmlTableHeader cell11 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
@@ -35,7 +31,7 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
         //Second Row
         HtmlTableHeader cell21 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("align","left")
+                .appendAttribute("align", "left")
                 .appendAttribute("width", "125")
                 .appendAttribute("rowspan", "2")
                 .appendContent("Art der Schicht")
@@ -156,14 +152,14 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
 
         HtmlRow row3 = new HtmlRow.Builder()
                 .appendAttribute("class", "NormalHeaderUnits")
-              //  .appendContent(cell31.appendTag())
+                //  .appendContent(cell31.appendTag())
                 .appendContent(cell32.appendTag())
                 .appendContent(cell33.appendTag())
-              //  .appendContent(cell34.appendTag())
-             //   .appendContent(cell35.appendTag())
+                //  .appendContent(cell34.appendTag())
+                //   .appendContent(cell35.appendTag())
                 .appendContent(cell36.appendTag())
-             //   .appendContent(cell37.appendTag())
-             //   .appendContent(cell38.appendTag())
+                //   .appendContent(cell37.appendTag())
+                //   .appendContent(cell38.appendTag())
                 .build();
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -175,28 +171,25 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
     }
 
     @Override
-    public void buildHtmlTable(final List<AErkundungsstelle> data)
-    {
+    public void buildHtmlTable(final List<Erkundungsstelle> data) {
     }
 
     @Override
-    public void buildHtmlTable(final AErkundungsstelle data)
-    {
+    public void buildHtmlTable(final Erkundungsstelle data) {
         aufschluss = data.getInformation("ERK_AUFSCHLUSS_OB");
 
         HtmlTable table = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
                 .appendAttribute("width", "605")
                 .appendAttribute("border", "1")
-                .appendAttribute("style", TableStyle.TABLE_STYLE1.getAttributes())
+                .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
                 .appendAttribute("cellspacing", "0")
                 .appendAttribute("cellpadding", "0")
                 .appendContent(setHtmlTableHeader())
                 .build();
 
-        for (ASchicht schicht : data.getSchichtList())
-        {
-            if ("GOB".equals(schicht.getInformation("SCHICHT_AUFSCHLUSS"))){
+        for (Schicht schicht : data.getSchichtList()) {
+            if ("GOB".equals(schicht.getInformation("SCHICHT_AUFSCHLUSS"))) {
                 //Art der Schicht
                 HtmlCell cell1 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
@@ -217,10 +210,12 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
 
 
                 //MUFV
-                HtmlCell cell4 = Chemie_DataCellStrategy.getInstance().getDataCell(schicht.getInformation("CHEMIE_MUFV"));
+                String chemie_mufv = schicht.getInformation("CHEMIE_MUFV");
+                HtmlCell cell4 = HtmlCellFormatUtil.formatChemie(chemie_mufv);
 
                 //Pech
-                HtmlCell cell5 = Pech_DataCellStrategy.getInstance().getDataCell(schicht.getInformation("SCHICHT_PECH"));
+                String schicht_pech = schicht.getInformation("SCHICHT_PECH");
+                HtmlCell cell5 = HtmlCellFormatUtil.formatPech(schicht_pech);
 
                 //RuK
                 HtmlCell cell6 = new HtmlCell.Builder()
@@ -267,8 +262,7 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
     }
 
     @Override
-    public String getExportFileName()
-    {
+    public String getExportFileName() {
         return null;
     }
 }

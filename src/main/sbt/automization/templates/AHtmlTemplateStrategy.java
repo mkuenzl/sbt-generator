@@ -4,17 +4,30 @@ import sbt.automization.util.html.HtmlBody;
 import sbt.automization.util.html.HtmlDiv;
 
 import java.io.*;
+
 import sbt.automization.util.html.Html;
 
-abstract class AHtmlTemplateStrategy implements IHtmlTemplateStrategy
-{
+abstract class AHtmlTemplateStrategy implements IHtmlTemplateStrategy {
     static final String HTML_BODY_STYLE_ATTRIBUTE = "'tab-interval:35.4pt;word-wrap:break-word'";
     static final String HTML_ATTRIBUTE_XMLNSO = "\"urn:schemas-microsoft-com:office:office\"";
     static final String HTML_ATTRIBUTE_XMLNS = "\"http://www.w3.org/TR/REC-html40\"";
+    static final String HTML_BASIC_TABLE_STYLE = new StringBuilder()
+            .append("'")
+            .append("border-collapse:collapse")
+            .append(";")
+            .append("mso-table-layout-alt:fixed")
+            .append(";")
+            .append("border:none")
+            .append(";")
+            .append("mso-border-alt:solid windowtext .5pt")
+            .append(";")
+            .append("mso-padding-alt:0cm 5.4pt 0cm 5.4pt")
+            .append("'")
+            .toString();
 
     private String htmlTable;
 
-    public String buildHtmlTemplate(){
+    public String buildHtmlTemplate() {
 
         HtmlDiv div = new HtmlDiv.Builder()
                 .appendAttribute("class", "WordSection1")
@@ -29,7 +42,7 @@ abstract class AHtmlTemplateStrategy implements IHtmlTemplateStrategy
                 .build();
 
         Html template = new Html.Builder()
-                .appendAttribute("xmlns:o",HTML_ATTRIBUTE_XMLNSO)
+                .appendAttribute("xmlns:o", HTML_ATTRIBUTE_XMLNSO)
                 .appendAttribute("xmlns", HTML_ATTRIBUTE_XMLNS)
                 .appendContent(getHtmlHead())
                 .appendContent(body.appendTag())
@@ -38,13 +51,12 @@ abstract class AHtmlTemplateStrategy implements IHtmlTemplateStrategy
         return template.appendTag();
     }
 
-    String getHtmlHead(){
+    String getHtmlHead() {
 
         InputStreamReader inputStreamReader = null;
         BufferedReader bufferedReader = null;
         StringBuilder stringBuilder = new StringBuilder();
-        try
-        {
+        try {
             // "/css.txt" sollte ausreichen als Pfad für die JAR
             inputStreamReader = new InputStreamReader(getClass().getResourceAsStream("/css.txt"));
             bufferedReader = new BufferedReader(inputStreamReader);
@@ -58,15 +70,12 @@ abstract class AHtmlTemplateStrategy implements IHtmlTemplateStrategy
             // delete the last new line separator
             stringBuilder.deleteCharAt(stringBuilder.length() - 1);
 
-        } catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally {
-            if (inputStreamReader != null){
+        } finally {
+            if (inputStreamReader != null) {
                 try {
                     inputStreamReader.close();
                     bufferedReader.close();
@@ -80,13 +89,11 @@ abstract class AHtmlTemplateStrategy implements IHtmlTemplateStrategy
         return stringBuilder.toString();
     }
 
-    void setHtmlTable(final String htmlTable)
-    {
+    void setHtmlTable(final String htmlTable) {
         this.htmlTable = htmlTable;
     }
 
-    String getHtmlTable()
-    {
+    String getHtmlTable() {
         return htmlTable;
     }
 

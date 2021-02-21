@@ -1,10 +1,8 @@
 package sbt.automization.templates;
 
-import sbt.automization.data.PNProbenart_DataFormatStrategy;
-import sbt.automization.data.TiefeVonBis_DataFormatStrategy;
-import sbt.automization.engine.AErkundungsstelle;
-import sbt.automization.engine.ASchicht;
-import sbt.automization.templates.styles.TableStyle;
+import sbt.automization.engine.Erkundungsstelle;
+import sbt.automization.engine.Schicht;
+import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.*;
 
 import java.util.ArrayList;
@@ -31,14 +29,14 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
         return instance;
     }
 
-    public List<ASchicht> formatSchichtList(List<ASchicht> schichtListe){
+    public List<Schicht> formatSchichtList(List<Schicht> schichtListe){
 
-        List<ASchicht> schichtList = new ArrayList<>();
-        for (ASchicht schicht : schichtListe)
+        List<Schicht> schichtList = new ArrayList<>();
+        for (Schicht schicht : schichtListe)
         {
             try
             {
-                schichtList.add((ASchicht) schicht.clone());
+                schichtList.add((Schicht) schicht.clone());
             } catch (CloneNotSupportedException e)
             {
                 e.printStackTrace();
@@ -60,13 +58,13 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
     }
 
     @Override
-    public void buildHtmlTable(final List<AErkundungsstelle> data)
+    public void buildHtmlTable(final List<Erkundungsstelle> data)
     {
         HtmlTable table = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
                 .appendAttribute("width", "605")
                 .appendAttribute("border", "1")
-                .appendAttribute("style", TableStyle.TABLE_STYLE1.getAttributes())
+                .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
                 .appendAttribute("cellspacing", "0")
                 .appendAttribute("cellpadding", "0")
                 .appendContent(setHtmlTableHeader())
@@ -75,11 +73,11 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
         int rowCounter = 0;
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (AErkundungsstelle erkundungsstelle : data)
+        for (Erkundungsstelle erkundungsstelle : data)
         {
-            List<ASchicht> schichtList = formatSchichtList(erkundungsstelle.getSchichtList());
+            List<Schicht> schichtList = formatSchichtList(erkundungsstelle.getSchichtList());
 
-            for (ASchicht schicht : schichtList)
+            for (Schicht schicht : schichtList)
             {
 
                 if (rowCounter >= 20){
@@ -91,7 +89,7 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
                             .appendAttribute("class", "MsoNormalTable")
                             .appendAttribute("width", "605")
                             .appendAttribute("border", "1")
-                            .appendAttribute("style", TableStyle.TABLE_STYLE1.getAttributes())
+                            .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
                             .appendAttribute("cellspacing", "0")
                             .appendAttribute("cellpadding", "0")
                             .appendContent(setHtmlTableHeader())
@@ -108,7 +106,7 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
 
                 HtmlCell cell2 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
-                        .appendContent(PNProbenart_DataFormatStrategy.getInstance().getDataFormat(schicht))
+                        .appendContent(TextFormatUtil.formatSchichtProbePN(schicht))
                         .build();
 
                 HtmlCell cell3 = new HtmlCell.Builder()
@@ -148,7 +146,7 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
 
                 HtmlCell cell10 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
-                        .appendContent(TiefeVonBis_DataFormatStrategy.getInstance().getDataFormat(schicht))
+                        .appendContent(TextFormatUtil.formatSchichtTiefe(schicht))
                         .build();
 
                 HtmlCell cell11 = new HtmlCell.Builder()
@@ -185,7 +183,7 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
 
 
     @Override
-    public void buildHtmlTable(final AErkundungsstelle data)
+    public void buildHtmlTable(final Erkundungsstelle data)
     {
 
     }

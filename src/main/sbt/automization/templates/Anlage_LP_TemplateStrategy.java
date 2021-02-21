@@ -1,8 +1,7 @@
 package sbt.automization.templates;
 
 
-import sbt.automization.engine.AErkundungsstelle;
-import sbt.automization.templates.styles.TableStyle;
+import sbt.automization.engine.Erkundungsstelle;
 import sbt.automization.util.html.*;
 
 import java.util.List;
@@ -196,11 +195,11 @@ public final class Anlage_LP_TemplateStrategy extends AHtmlTemplateStrategy
     }
 
     @Override
-    public void buildHtmlTable(final List<AErkundungsstelle> data)
+    public void buildHtmlTable(final List<Erkundungsstelle> data)
     {
         HtmlTable table = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
-                .appendAttribute("style", TableStyle.TABLE_STYLE1.getAttributes())
+                .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
                 .appendAttribute("width", "605")
                 .appendAttribute("border", "1")
                 .appendAttribute("cellspacing", "0")
@@ -209,7 +208,7 @@ public final class Anlage_LP_TemplateStrategy extends AHtmlTemplateStrategy
                 .build();
 
 
-        for (AErkundungsstelle erkundungsstelle : data)
+        for (Erkundungsstelle erkundungsstelle : data)
         {
             if (!"".equals(erkundungsstelle.getInformation("ERK_LP"))){
 
@@ -297,7 +296,7 @@ public final class Anlage_LP_TemplateStrategy extends AHtmlTemplateStrategy
     }
 
     @Override
-    public void buildHtmlTable(final AErkundungsstelle data)
+    public void buildHtmlTable(final Erkundungsstelle data)
     {
 
     }
