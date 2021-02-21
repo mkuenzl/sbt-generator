@@ -7,10 +7,10 @@ import java.util.*;
 //Eigentlich Main Interface um mit allem zu interagieren
 public class TableEngine
 {
-    private List<AErkundungsstelle> data;
+    private List<Erkundungsstelle> data;
 
-    public TableEngine(final List<Map> dataRows){
-        build(dataRows);
+    public TableEngine(final List<Map> data){
+        build(data);
     }
 
     public void export(ATemplateExportStrategy templateExportStrategy)
@@ -19,43 +19,43 @@ public class TableEngine
     }
 
     // Auslagern
-    private void build(final List<Map> dataRows){
+    private void build(final List<Map> data){
 
-        data = new ArrayList<>();
+        this.data = new ArrayList<>();
 
         Set<String> erkIDs = new HashSet<>();
 
         // Läuft über die Map Liste einzelner Schichten und ordnet diese Erkundungsstellen zu
-        for (Map row : dataRows)
+        for (Map dataRow : data)
         {
-            String erkID = String.valueOf(row.get("ERK_ID"));
+            String erkID = String.valueOf(dataRow.get("ERK_ID"));
 
             if (!erkIDs.contains(erkID)) {
                 erkIDs.add(String.valueOf(erkID));
-                Erkundungsstelle erk_tmp = new Erkundungsstelle(row);
-                erk_tmp.addSchicht(row);
-                data.add(erk_tmp);
+                Erkundungsstelle erk_tmp = new Erkundungsstelle(dataRow);
+                erk_tmp.addSchicht(dataRow);
+                this.data.add(erk_tmp);
             } else {
-                for (AErkundungsstelle erk : data)
+                for (Erkundungsstelle erk : this.data)
                 {
                     if (erk.getInformation("ERK_ID").equals(erkID)){
-                        erk.addSchicht(row);
+                        erk.addSchicht(dataRow);
                     }
                 }
             }
         }
 
-        for (AErkundungsstelle erk : data)
+        for (Erkundungsstelle erk : this.data)
         {
             //Sortiert die Schichten in einer Erkundungsstellen
             erk.sort();
         }
         //Sortiert die Erkundungsstellen
-        Collections.sort(data);
+        Collections.sort(this.data);
     }
 
     //Kack Name
-    public List<AErkundungsstelle> getData()
+    public List<Erkundungsstelle> getData()
     {
         return data;
     }
