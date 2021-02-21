@@ -1,44 +1,34 @@
-package sbt.automization.data;
+package sbt.automization.format;
 
-import sbt.automization.engine.AErkundungsstelle;
-import sbt.automization.engine.ASchicht;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlText;
 
-public class Chemie_DataCellStrategy extends ADataCellStrategy
-{
-    private static Chemie_DataCellStrategy instance;
+public final class HtmlCellFormatUtil {
 
-    private Chemie_DataCellStrategy(){}
+    public static HtmlCell formatPech(final String data)
+    {
+        HtmlCell htmlCell = new HtmlCell();
 
-    public static Chemie_DataCellStrategy getInstance(){
-        if (instance == null)
+        switch (data)
         {
-            synchronized (Chemie_DataCellStrategy.class)
-            {
-                if (instance == null)
-                {
-                    instance = new Chemie_DataCellStrategy();
-                }
-            }
+            case "nein":
+                htmlCell.appendAttribute("class", "ChemieWhite");
+                htmlCell.appendContent("FREI");
+                break;
+            case "ja":
+                htmlCell.appendAttribute("class", "ChemieBlack");
+                htmlCell.appendContent("PECH");
+                break;
+            default:
+                htmlCell.appendAttribute("class", "NormalErkundungsstelle");
+                htmlCell.appendContent("");
+                break;
         }
-        return instance;
+
+        return htmlCell;
     }
 
-    @Override
-    public HtmlCell getDataCell(final AErkundungsstelle erkundungsstelle)
-    {
-        return null;
-    }
-
-    @Override
-    public HtmlCell getDataCell(final ASchicht schicht)
-    {
-        return null;
-    }
-
-    @Override
-    public HtmlCell getDataCell(final String data)
+    public static HtmlCell formatChemie(final String data)
     {
         HtmlCell htmlCell;
 
