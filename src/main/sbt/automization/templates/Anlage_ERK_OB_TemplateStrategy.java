@@ -1,8 +1,8 @@
 package sbt.automization.templates;
 
 import sbt.automization.format.HtmlCellFormatUtil;
-import sbt.automization.engine.Erkundungsstelle;
-import sbt.automization.engine.Schicht;
+import sbt.automization.data.Erkundungsstelle;
+import sbt.automization.data.Schicht;
 import sbt.automization.util.html.*;
 
 import java.util.List;

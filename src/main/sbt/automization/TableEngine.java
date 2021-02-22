@@ -1,6 +1,7 @@
-package sbt.automization.engine;
+package sbt.automization;
 
 
+import sbt.automization.data.Erkundungsstelle;
 import sbt.automization.export.ATemplateExportStrategy;
 import java.util.*;
 

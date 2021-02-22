@@ -1,7 +1,7 @@
 package sbt.automization.templates;
 
 import sbt.automization.format.TextFormatUtil;
-import sbt.automization.engine.Erkundungsstelle;
+import sbt.automization.data.Erkundungsstelle;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;

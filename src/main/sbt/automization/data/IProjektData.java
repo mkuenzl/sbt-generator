@@ -1,4 +1,4 @@
-package sbt.automization.engine;
+package sbt.automization.data;
 
 public interface IProjektData
 {

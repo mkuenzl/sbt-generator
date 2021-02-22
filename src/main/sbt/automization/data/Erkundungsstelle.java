@@ -1,13 +1,14 @@
-package sbt.automization.engine;
+package sbt.automization.data;
 
 import java.util.*;
 
 public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektData
 {
-    private final Map<String,String> dataMap;
+    private final Map<String, String> dataMap;
     private List<Schicht> schichtList = new ArrayList<>();
 
-    Erkundungsstelle(Map<String,String> data) {
+    public Erkundungsstelle(Map<String, String> data)
+    {
 
         this.dataMap = new HashMap();
 
@@ -17,22 +18,24 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
         }
     }
 
-    public String getInformation(String key){
-        return dataMap.get(key);
-    }
-
     @Override
     public int compareTo(final Erkundungsstelle o)
     {
         return this.getInformation("ERK_ID").compareTo(o.getInformation("ERK_ID"));
     }
 
-    void addSchicht(final Map<String,String> data)
+    public String getInformation(String key)
+    {
+        return dataMap.get(key);
+    }
+
+    public void addSchicht(final Map<String, String> data)
     {
         Map<String, String> tmpMap = new HashMap<>();
         for (String key : data.keySet())
         {
-            if (key.contains("SCHICHT_") || key.contains("CHEMIE_")){
+            if (key.contains("SCHICHT_") || key.contains("CHEMIE_"))
+            {
                 tmpMap.put(key, data.get(key));
             }
         }
@@ -44,10 +47,10 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
         return schichtList;
     }
 
-    public List<Schicht> getSchichtAufschluss(final String aufschluss) {
+    public List<Schicht> getSchichtAufschluss(final String aufschluss)
+    {
         List<Schicht> schichtAufschlussList = new ArrayList<>();
-        for (Schicht schicht :
-                schichtList)
+        for (Schicht schicht : schichtList)
         {
             if (aufschluss.equals(schicht.getInformation("SCHICHT_AUFSCHLUSS")))
             {
@@ -57,7 +60,8 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
         return schichtAufschlussList;
     }
 
-    void sort(){
+    public void sort()
+    {
         Collections.sort(schichtList);
     }
 }

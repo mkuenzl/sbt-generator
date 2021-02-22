@@ -1,7 +1,7 @@
 package sbt.automization.gui;
 
 import sbt.automization.export.HtmlTemplateExportStrategy;
-import sbt.automization.engine.TableEngine;
+import sbt.automization.TableEngine;
 import sbt.automization.templates.IHtmlTemplateStrategy;
 import sbt.automization.util.Parser;
 
@@ -10,7 +10,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
 
 public class GUI extends JFrame implements ActionListener {
 

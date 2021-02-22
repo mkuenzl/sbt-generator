@@ -1,6 +1,6 @@
 package sbt.automization.templates;
 
-import sbt.automization.engine.Erkundungsstelle;
+import sbt.automization.data.Erkundungsstelle;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.*;
 

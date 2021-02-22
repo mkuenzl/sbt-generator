@@ -1,4 +1,4 @@
-package sbt.automization.engine;
+package sbt.automization.data;
 
 import java.util.Map;
 
@@ -6,20 +6,15 @@ public class Schicht implements Comparable<Schicht>, IProjektData, Cloneable
 {
     private final Map<String, String> dataMap;
 
-    Schicht(Map<String, String> dataMap) {
+    Schicht(Map<String, String> dataMap)
+    {
         this.dataMap = dataMap;
     }
 
-    // Schicht Parameter
-    public String getInformation(String key){
-        return dataMap.get(key);
+    public void setInformation(String key, String value)
+    {
+        this.dataMap.put(key, value);
     }
-
-    public void setInformation(String key, String value){
-        this.dataMap.put(key,value);
-    }
-
-    // Chemie Parameter
 
     @Override
     public int compareTo(final Schicht schicht)
@@ -29,10 +24,18 @@ public class Schicht implements Comparable<Schicht>, IProjektData, Cloneable
         return s1 - s2;
     }
 
+    // Chemie Parameter
+
+    // Schicht Parameter
+    public String getInformation(String key)
+    {
+        return dataMap.get(key);
+    }
+
     @Override
     public Object clone() throws CloneNotSupportedException
     {
-        Schicht cloned = (Schicht)super.clone();
+        Schicht cloned = (Schicht) super.clone();
         return cloned;
     }
 }

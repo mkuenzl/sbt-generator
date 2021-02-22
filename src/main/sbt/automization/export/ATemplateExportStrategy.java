@@ -1,6 +1,6 @@
 package sbt.automization.export;
 
-import sbt.automization.engine.TableEngine;
+import sbt.automization.TableEngine;
 import sbt.automization.templates.IHtmlTemplateStrategy;
 
 import java.io.*;

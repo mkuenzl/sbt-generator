@@ -1,7 +1,7 @@
 package sbt.automization.format;
 
-import sbt.automization.engine.Erkundungsstelle;
-import sbt.automization.engine.Schicht;
+import sbt.automization.data.Erkundungsstelle;
+import sbt.automization.data.Schicht;
 import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
@@ -43,9 +43,13 @@ public final class TextFormatUtil {
         int counter = 1;
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append(String.valueOf(counter++))
-                .append(" .) ")
-                .append("Messeinheit: Garmin eTrex 10, herstellerseitig angegebene Lagegenauigkeit ~ 3 m");
+        stringBuilder.append(new HtmlText.Builder()
+                        .appendAttribute("class","Normal")
+                        .appendContent(String.valueOf(counter++))
+                        .appendContent(".) ")
+                        .appendContent("Messeinheit: Garmin eTrex 10, herstellerseitig angegebene Lagegenauigkeit ~ 3 m")
+                        .build()
+                        .appendTag());
 
         if ("#".equals(erkundungsstelle.getInformation("ERK_LEITFADEN_AUSBAUASPHALT"))){
             stringBuilder.append(new HtmlText.Builder()
