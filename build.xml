@@ -68,21 +68,6 @@
 <!--            <include name="CSS.txt"/>-->
 <!--        </fileset>-->
     </path>
-
-    <target name="combine-dependencies">
-        <mkdir dir="${dist.dir}"/>
-
-        <jar jarfile="${dist.dir}/dependencies-combined.jar">
-            <zipgroupfileset dir="${lib.dir}">
-                <include name="**/*.jar"/>
-                <exclude name="**/*sources.jar"/>
-                <exclude name="**/*javadoc.jar"/>
-            </zipgroupfileset>
-<!--            <zipgroupfileset dir="${resourcePath}">-->
-<!--                <include name="**/*.txt"/>-->
-<!--            </zipgroupfileset>-->
-        </jar>
-    </target>
     <!-- -->
 
     <target name="clean">
@@ -95,7 +80,7 @@
         <mkdir dir="${class.main.dir}"/>
         <javac srcdir="${main.dir}"
                destdir="${class.main.dir}"
-                release="8"
+                release="11"
                includeantruntime="false">
             <classpath>
                 <path refid="libraries"/>
@@ -103,10 +88,14 @@
         </javac>
     </target>
 
-    <target name="jar" depends="compile, combine-dependencies">
+    <target name="jar" depends="compile">
         <mkdir dir="${jar.dir}"/>
         <jar destfile="${jar.dir}/sbt-table-generator.jar" basedir="${class.main.dir}">
-            <zipfileset src="${dist.dir}/dependencies-combined.jar" excludes="META-INF/*.SF"/>
+            <zipgroupfileset dir="${lib.dir}">
+                <include name="commons-cli-1.4.jar"/>
+                <include name="commons-io-2.6.jar"/>
+                <include name="commons-csv-1.8.jar"/>
+            </zipgroupfileset>
             <fileset dir="${resource.dir}"/>
             <manifest>
                 <attribute name="Main-Class" value="sbt.Main"/>
@@ -116,7 +105,7 @@
 
     <target name="exe" depends="jar">
         <mkdir dir="${exe.dir}"/>
-        <launch4j configFile="./sbt-table-config.xml" />
+        <launch4j configFile="resources/sbt-table-config.xml" />
     </target>
 
     <!-- TODO -->

@@ -58,7 +58,7 @@ abstract class AHtmlTemplateStrategy implements IHtmlTemplateStrategy {
         StringBuilder stringBuilder = new StringBuilder();
         try {
             // "/css.txt" sollte ausreichen als Pfad für die JAR
-            inputStreamReader = new InputStreamReader(getClass().getResourceAsStream("/css.txt"));
+            inputStreamReader = new InputStreamReader(getClass().getResourceAsStream("/sbt-table-stylesheet.txt"));
             bufferedReader = new BufferedReader(inputStreamReader);
 
             String line = null;

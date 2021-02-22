@@ -1,16 +1,6 @@
 package sbt;
 
-import sbt.automization.engine.TableEngine;
-import sbt.automization.export.HtmlTemplateExportStrategy;
 import sbt.automization.gui.GUI;
-import sbt.automization.templates.Anlage_ERK_TemplateStrategy;
-import sbt.automization.templates.Anlage_LP_TemplateStrategy;
-import sbt.automization.templates.Anlage_PN_TemplateStrategy;
-import sbt.automization.templates.Anlage_RUK_TemplateStrategy;
-import sbt.automization.util.Parser;
-
-import java.io.File;
-import java.io.IOException;
 
 public class Main
 {
