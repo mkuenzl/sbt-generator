@@ -110,14 +110,7 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
         //Belastungklasse Tiefe von-bis
         HtmlCell cellEmpty1 = new HtmlCell.Builder()
                 .appendAttribute("class", "NormalErkundungsstelle")
-                .appendAttribute("colspan", "3")        //Zelle geht über 3 Spalten
-                .appendContent("")
-                .build();
-
-        //Belastungklasse Tiefe von-bis
-        HtmlCell cellEmpty2 = new HtmlCell.Builder()
-                .appendAttribute("class", "NormalErkundungsstelle")
-                .appendAttribute("colspan", "2")
+                .appendAttribute("colspan", "5")        //Zelle geht über 3 Spalten
                 .appendContent("")
                 .build();
 
@@ -129,18 +122,17 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
                 .build();
 
         //Belastungsklassen Tafel
-        HtmlCell cellEmpty4 = new HtmlCell.Builder()
+        HtmlCell cellBelastungklasseTafel = new HtmlCell.Builder()
                 .appendAttribute("class", "NormalErkundungsstelle")
                 .appendAttribute("colspan", "2")
-                .appendContent("")
+                .appendContent(data.getInformation("ERK_BELASTUNGSKLASSE_TAFEL"))
                 .build();
 
         HtmlRow rowBelastungklasse = new HtmlRow.Builder()
                 .appendAttribute("class", "Normal")
                 .appendContent(cellEmpty1.appendTag())
-                .appendContent(cellEmpty2.appendTag())
                 .appendContent(cellBelastungsklasse.appendTag())
-                .appendContent(cellEmpty4.appendTag())
+                .appendContent(cellBelastungklasseTafel.appendTag())
                 .build();
 
         table.appendContent(rowBelastungklasse.appendTag());

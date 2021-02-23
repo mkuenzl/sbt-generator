@@ -24,12 +24,11 @@ public class Schicht implements Comparable<Schicht>, IProjektData, Cloneable
         return s1 - s2;
     }
 
-    // Chemie Parameter
-
-    // Schicht Parameter
     public String getInformation(String key)
     {
-        return dataMap.get(key);
+        String s = dataMap.get(key);
+        if (s == null || s.equals("")) return "-";
+        return s;
     }
 
     @Override
