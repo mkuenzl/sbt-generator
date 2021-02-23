@@ -34,7 +34,7 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
     {
         int counter = 1;
 
-        HtmlTable table = new HtmlTable.Builder()
+        HtmlTable tablePN = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
                 .appendAttribute("width", "605")
                 .appendAttribute("border", "1")
@@ -56,11 +56,11 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
 
                 if (rowCounter >= 20)
                 {
-                    stringBuilder.append(table.appendTag())
+                    stringBuilder.append(tablePN.appendTag())
                             .append("<br>")
                             .append("<br>");
 
-                    table = new HtmlTable.Builder()
+                    tablePN = new HtmlTable.Builder()
                             .appendAttribute("class", "MsoNormalTable")
                             .appendAttribute("width", "605")
                             .appendAttribute("border", "1")
@@ -74,83 +74,95 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
                 }
 
 
-                HtmlCell cell1 = new HtmlCell.Builder()
+                HtmlCell cellPNCounter = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
                         .appendContent("P".concat(String.valueOf(counter++)))
                         .build();
 
-                HtmlCell cell2 = new HtmlCell.Builder()
+                HtmlCell cellSchichtProbenArt = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
                         .appendContent(TextFormatUtil.formatSchichtProbePN(schicht))
                         .build();
 
-                HtmlCell cell3 = new HtmlCell.Builder()
+                HtmlCell cellBehaeltnis = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendContent(schicht.getInformation("SCHICHT_BEHAELTNIS"))
                         .build();
 
-                HtmlCell cell5 = new HtmlCell.Builder()
+                HtmlCell cellHaufwerk = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
                         .appendContent("")
                         .build();
 
-                //HIER MUSS MEHR CODE STRATEGY?? TODO
-                HtmlCell cell6 = new HtmlCell.Builder()
+                //TODO already done in excel sheet
+                HtmlCell cellSchichtAbfallArt = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("width", "110")
                         .appendContent(schicht.getInformation("SCHICHT_ABFALLART"))
                         .build();
 
-                HtmlCell cell7 = new HtmlCell.Builder()
+                HtmlCell cellSchichtKoernung = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
                         .appendAttribute("width", "50")
                         .appendContent(schicht.getInformation("SCHICHT_KOERNUNG"))
                         .build();
 
-                HtmlCell cell8 = new HtmlCell.Builder()
+                HtmlCell cellSchichtFarbeGeruchKonsistenz = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent(schicht.getInformation("SCHICHT_FARBE"))
-                        .appendContent(new HtmlText.Builder().appendAttribute("class", "Normal").appendContent(schicht.getInformation("SCHICHT_GERUCH")).build().appendTag())
+                        .appendContent(new HtmlText.Builder()
+                                .appendAttribute("class", "Normal")
+                                .appendContent(schicht.getInformation("SCHICHT_FARBE"))
+                                .build()
+                                .appendTag())
+                        .appendContent(new HtmlText.Builder()
+                                .appendAttribute("class", "Normal")
+                                .appendContent(schicht.getInformation("SCHICHT_GERUCH"))
+                                .build()
+                                .appendTag())
+//                        .appendContent(new HtmlText.Builder()
+//                                .appendAttribute("class", "Normal")
+//                                .appendContent(schicht.getInformation("SCHICHT_KONSISTENZ"))
+//                                .build()
+//                                .appendTag())
                         .build();
 
-                HtmlCell cell9 = new HtmlCell.Builder()
+                HtmlCell cellErkundungsstellenIdentifier = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
                         .appendAttribute("width", "30")
                         .appendContent(erkundungsstelle.getInformation("ERK_ID"))
                         .build();
 
-                HtmlCell cell10 = new HtmlCell.Builder()
+                HtmlCell cellSchichtTiefe = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
                         .appendContent(TextFormatUtil.formatSchichtTiefe(schicht))
                         .build();
 
-                HtmlCell cell11 = new HtmlCell.Builder()
+                HtmlCell cellErkundungsstellenOberkante = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
                         .appendContent(erkundungsstelle.getInformation("ERK_OBERKANTE"))
                         .build();
 
                 HtmlRow row = new HtmlRow.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent(cell1.appendTag())
-                        .appendContent(cell2.appendTag())
-                        .appendContent(cell3.appendTag())
-                        //                       .appendContent(cell4.appendTag())
-                        .appendContent(cell5.appendTag())
-                        .appendContent(cell6.appendTag())
-                        .appendContent(cell7.appendTag())
-                        .appendContent(cell8.appendTag())
-                        .appendContent(cell9.appendTag())
-                        .appendContent(cell10.appendTag())
-                        .appendContent(cell11.appendTag())
+                        .appendContent(cellPNCounter.appendTag())
+                        .appendContent(cellSchichtProbenArt.appendTag())
+                        .appendContent(cellBehaeltnis.appendTag())
+                        .appendContent(cellHaufwerk.appendTag())
+                        .appendContent(cellSchichtAbfallArt.appendTag())
+                        .appendContent(cellSchichtKoernung.appendTag())
+                        .appendContent(cellSchichtFarbeGeruchKonsistenz.appendTag())
+                        .appendContent(cellErkundungsstellenIdentifier.appendTag())
+                        .appendContent(cellSchichtTiefe.appendTag())
+                        .appendContent(cellErkundungsstellenOberkante.appendTag())
                         .build();
 
                 rowCounter++;
 
-                table.appendContent(row.appendTag());
+                tablePN.appendContent(row.appendTag());
             }
         }
 
-        stringBuilder.append(table.appendTag());
+        stringBuilder.append(tablePN.appendTag());
 
         setHtmlTable(stringBuilder.toString());
     }
