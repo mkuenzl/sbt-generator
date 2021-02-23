@@ -43,7 +43,7 @@ class Anlage_ERK_UG_TemplateStrategy extends AHtmlTemplateStrategy
                 //Art der Schicht
                 HtmlCell cell1 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent(TextFormatUtil.formatSchichtBodenGruppe(schicht))
+                        .appendContent(TextFormatUtil.formatSchichtBodenGruppe(schicht.getInformation("SCHICHT_ART")))
                         .build();
 
                 //Dicke

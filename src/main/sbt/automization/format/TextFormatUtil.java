@@ -215,101 +215,118 @@ public final class TextFormatUtil
         return htmlText.appendTag();
     }
 
-    public static String formatSchichtBodenGruppe(final Schicht schicht)
+    /**
+     * Expects a valid Bodengruppe and formats the String for representation in the ERK_Anlage
+     *
+     * @param schichtArt a valid Bodengruppe as String either with [] or without
+     * @return a formated String of the long text and short text of a Bodengruppe
+     */
+    public static String formatSchichtBodenGruppe(final String schichtArt)
     {
+        boolean isFillUp;
+        String kind;
+        String kindText;
 
-        String schicht_art = schicht.getInformation("SCHICHT_ART");
+        if (schichtArt == null)
+        {
+            return "-";
+        }
 
-        switch (schicht_art)
+        if (schichtArt.contains("["))
+        {
+            kind = schichtArt.replaceAll("[\\[\\]]", "");
+            isFillUp = true;
+        } else
+        {
+            kind = schichtArt;
+            isFillUp = false;
+        }
+
+        switch (kind)
         {
             case "GE":
-                schicht_art = "Engestufte Kiese";
+                kindText = "Engestufte Kiese";
                 break;
             case "GW":
-                schicht_art = "Weitgestufte Kies-Sand-Gemische";
+                kindText = "Weitgestufte Kies-Sand-Gemische";
                 break;
             case "GI":
-                schicht_art = "Intermittierend gestufte Kies-Sand-Gemische";
+                kindText = "Intermittierend gestufte Kies-Sand-Gemische";
                 break;
             case "SE":
-                schicht_art = "Enggestufte Sande";
+                kindText = "Enggestufte Sande";
                 break;
             case "SW":
-                schicht_art = "Weitgestufte Sand-Kies-Gemische";
+                kindText = "Weitgestufte Sand-Kies-Gemische";
                 break;
             case "SI":
-                schicht_art = "Intermittierend gestufte Sand-Kies-Gemische";
+                kindText = "Intermittierend gestufte Sand-Kies-Gemische";
                 break;
             case "GU":
             case "GU*":
-                schicht_art = "Kies-Schluff-Gemisch";
+                kindText = "Kies-Schluff-Gemisch";
                 break;
             case "GT":
             case "GT*":
-                schicht_art = "Kies-Ton-Gemisch";
+                kindText = "Kies-Ton-Gemisch";
                 break;
             case "SU":
             case "SU*":
-                schicht_art = "Sand-Schluff-Gemisch";
+                kindText = "Sand-Schluff-Gemisch";
                 break;
             case "ST":
             case "ST*":
-                schicht_art = "Sand-Ton-Gemisch";
+                kindText = "Sand-Ton-Gemisch";
                 break;
             case "UL":
-                schicht_art = "Leicht plastische Schluffe";
+                kindText = "Leicht plastische Schluffe";
                 break;
             case "UM":
-                schicht_art = "Mittelplastische Schluffe";
+                kindText = "Mittelplastische Schluffe";
                 break;
             case "UA":
-                schicht_art = "Ausgeprägt plastische Schluffe";
+                kindText = "Ausgeprägt plastische Schluffe";
                 break;
             case "TL":
-                schicht_art = "Leicht plastische Tone";
+                kindText = "Leicht plastische Tone";
                 break;
             case "TM":
-                schicht_art = "Mittelplastische Tone";
+                kindText = "Mittelplastische Tone";
                 break;
             case "TA":
-                schicht_art = "Ausgeprägt plastische Tone";
+                kindText = "Ausgeprägt plastische Tone";
                 break;
             case "OU":
-                schicht_art = "Organogene Schluffe";
+                kindText = "Organogene Schluffe";
                 break;
             case "OT":
                 //schicht_art = "Organogene Tone";
                 //break;
             case "OH":
-                schicht_art = "Oberboden";
+                kindText = "Oberboden";
                 break;
             case "OK":
-                schicht_art = "Grob bis gemischtkörnige Böden mit kalkigen, kieseligen Bildungen";
+                kindText = "Grob bis gemischtkörnige Böden mit kalkigen, kieseligen Bildungen";
                 break;
             case "HN":
-                schicht_art = "Nicht bis mäßig zersetzte Torfe";
+                kindText = "Nicht bis mäßig zersetzte Torfe";
                 break;
             case "HZ":
-                schicht_art = "Zersetzte Torfe";
+                kindText = "Zersetzte Torfe";
                 break;
             case "F":
-                schicht_art = "Mudden";
+                kindText = "Mudden";
                 break;
             default:
+                kindText = "Invalid Bodengruppe";
                 break;
         }
-        if (schicht_art.contains("["))
-        {
-            //TODO entweder soll Sand-Ton-Gemisch ST oder Sand-Ton-Gemisch [ST]
-            String tmp = new HtmlText.Builder()
-                    .appendAttribute("class", "Normal")
-                    .appendContent("Fremdstoffen " + schicht_art)
-                    .build()
-                    .appendTag();
 
-            schicht_art = "Auffüllung aus" + tmp;
+        if (isFillUp)
+        {
+            return kindText + " " + "[" + kind + "]";
         }
 
-        return schicht_art;
+        return kindText + " " + kind;
     }
 }
