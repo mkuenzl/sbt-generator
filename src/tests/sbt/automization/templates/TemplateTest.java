@@ -25,4 +25,22 @@ public class TemplateTest
         HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Anlage_ERK_TemplateStrategy.getInstance());
         htmlTemplateExportStrategy.export(erkundungsstellen);
     }
+
+    @Test
+    public void createRukTemplate(){
+        HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Anlage_RUK_TemplateStrategy.getInstance());
+        htmlTemplateExportStrategy.export(erkundungsstellen);
+    }
+
+    @Test
+    public void createLpTemplate(){
+        HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Anlage_LP_TemplateStrategy.getInstance());
+        htmlTemplateExportStrategy.export(erkundungsstellen);
+    }
+
+    @Test
+    public void createPnTemplate(){
+        HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Anlage_PN_TemplateStrategy.getInstance());
+        htmlTemplateExportStrategy.export(erkundungsstellen);
+    }
 }
