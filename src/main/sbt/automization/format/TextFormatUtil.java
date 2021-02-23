@@ -6,23 +6,43 @@ import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
 
-public final class TextFormatUtil {
+public final class TextFormatUtil
+{
+    public static String formatBelastungsklasse(final Erkundungsstelle erkundungsstelle)
+    {
+        String s1 = new HtmlText.Builder().appendAttribute("class", "Normal")
+                .appendContent("Belastungsklasse")
+                .build()
+                .appendTag();
+        String s2 = new HtmlText.Builder().appendAttribute("class", "Normal")
+                .appendContent("Bk" + erkundungsstelle.getInformation("ERK_BELASTUNGSKLASSE"))
+                .build()
+                .appendTag();
 
-    public static String formatSchichtProctor(final Schicht schicht){
-        if ("".equals(schicht.getInformation("SCHICHT_FEUCHTIGKEIT"))){
+        return s1 + s2;
+    }
+
+
+    public static String formatSchichtProctor(final Schicht schicht)
+    {
+        if ("".equals(schicht.getInformation("SCHICHT_FEUCHTIGKEIT")))
+        {
             return "-";
-        } else {
+        } else
+        {
             return schicht.getInformation("SCHICHT_FEUCHTIGKEIT").concat(" W<sub>Pr</sub>");
         }
     }
 
-    public static String formatErkAufschlussDicke(final Erkundungsstelle erkundungsstelle, String aufschluss){
+    public static String formatErkAufschlussDicke(final Erkundungsstelle erkundungsstelle, String aufschluss)
+    {
 
         double height = 0.0;
         List<Schicht> schichtList = erkundungsstelle.getSchichtAufschluss(aufschluss);
-        for (Schicht schicht : schichtList){
+        for (Schicht schicht : schichtList)
+        {
 
-            height = height  + Double.parseDouble(schicht.getInformation("SCHICHT_DICKE").replace(",","."));
+            height = height + Double.parseDouble(schicht.getInformation("SCHICHT_DICKE").replace(",", "."));
         }
         return String.valueOf(height);
     }
@@ -30,30 +50,34 @@ public final class TextFormatUtil {
     public static String formatSchichtProbePN(final Schicht schicht)
     {
         String probenart;
-        if ("".equals(schicht.getInformation("SCHICHT_BEHAELTNIS"))){
+        if ("".equals(schicht.getInformation("SCHICHT_BEHAELTNIS")))
+        {
             probenart = "EP";
-        } else {
+        } else
+        {
             probenart = "MP";
         }
         return probenart;
     }
 
-    public static String formatErkFootnotes(final Erkundungsstelle erkundungsstelle) {
+    public static String formatErkFootnotes(final Erkundungsstelle erkundungsstelle)
+    {
 
         int counter = 1;
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append(new HtmlText.Builder()
-                        .appendAttribute("class","Normal")
-                        .appendContent(String.valueOf(counter++))
-                        .appendContent(".) ")
-                        .appendContent("Messeinheit: Garmin eTrex 10, herstellerseitig angegebene Lagegenauigkeit ~ 3 m")
-                        .build()
-                        .appendTag());
+                .appendAttribute("class", "Normal")
+                .appendContent(String.valueOf(counter++))
+                .appendContent(".) ")
+                .appendContent("Messeinheit: Garmin eTrex 10, herstellerseitig angegebene Lagegenauigkeit ~ 3 m")
+                .build()
+                .appendTag());
 
-        if ("#".equals(erkundungsstelle.getInformation("ERK_LEITFADEN_AUSBAUASPHALT"))){
+        if ("#".equals(erkundungsstelle.getInformation("ERK_LEITFADEN_AUSBAUASPHALT")))
+        {
             stringBuilder.append(new HtmlText.Builder()
-                    .appendAttribute("class","Normal")
+                    .appendAttribute("class", "Normal")
                     .appendContent(String.valueOf(counter++))
                     .appendContent(".) ")
                     .appendContent("Bewertung unter Berücksichtigung der Angaben im Leitfaden Ausbauasphalt")
@@ -61,9 +85,10 @@ public final class TextFormatUtil {
                     .appendTag());
         }
 
-        if ("#".equals(erkundungsstelle.getInformation("ERK_TEILWEISE_VERFESTIGT"))){
+        if ("#".equals(erkundungsstelle.getInformation("ERK_TEILWEISE_VERFESTIGT")))
+        {
             stringBuilder.append(new HtmlText.Builder()
-                    .appendAttribute("class","Normal")
+                    .appendAttribute("class", "Normal")
                     .appendContent(String.valueOf(counter++))
                     .appendContent(".) ")
                     .appendContent("teilweise verfestigt")
@@ -71,25 +96,27 @@ public final class TextFormatUtil {
                     .appendTag());
         }
 
-        if ("#".equals(erkundungsstelle.getInformation("ERK_UEBERSCHREITUNG_ORIENT"))){
+        if ("#".equals(erkundungsstelle.getInformation("ERK_UEBERSCHREITUNG_ORIENT")))
+        {
             stringBuilder.append(new HtmlText.Builder()
-                    .appendAttribute("class","Normal")
+                    .appendAttribute("class", "Normal")
                     .appendContent(String.valueOf(counter++))
                     .appendContent(".) ")
                     .appendContent("Aufgrund der Überschreitung eines Orientierungswertes ist eine Aufbereitung (z. B. als RC-Gemisch) ggf. nicht möglich.")
                     .build()
                     .appendTag())
                     .append(new HtmlText.Builder()
-                            .appendAttribute("class","Normal")
+                            .appendAttribute("class", "Normal")
                             .appendContent("Absprache mit Behörde empfohlen")
                             .build()
                             .appendTag());
 
         }
 
-        if ("#".equals(erkundungsstelle.getInformation("ERK_RAMMHINDERNIS"))){
+        if ("#".equals(erkundungsstelle.getInformation("ERK_RAMMHINDERNIS")))
+        {
             stringBuilder.append(new HtmlText.Builder()
-                    .appendAttribute("class","Normal")
+                    .appendAttribute("class", "Normal")
                     .appendContent(String.valueOf(counter++))
                     .appendContent(".) ")
                     .appendContent("Rammhindernis; keine tiefere Entnahme möglich")
@@ -97,9 +124,10 @@ public final class TextFormatUtil {
                     .appendTag());
         }
 
-        if ("#".equals(erkundungsstelle.getInformation("ERK_KABELTRASSE"))){
+        if ("#".equals(erkundungsstelle.getInformation("ERK_KABELTRASSE")))
+        {
             stringBuilder.append(new HtmlText.Builder()
-                    .appendAttribute("class","Normal")
+                    .appendAttribute("class", "Normal")
                     .appendContent(String.valueOf(counter++))
                     .appendContent(".) ")
                     .appendContent("Kabeltrasse; keine tiefere Entnahme möglich")
@@ -107,9 +135,10 @@ public final class TextFormatUtil {
                     .appendTag());
         }
 
-        if ("#".equals(erkundungsstelle.getInformation("ERK_FREMDBESTANDTEILE"))){
+        if ("#".equals(erkundungsstelle.getInformation("ERK_FREMDBESTANDTEILE")))
+        {
             stringBuilder.append(new HtmlText.Builder()
-                    .appendAttribute("class","Normal")
+                    .appendAttribute("class", "Normal")
                     .appendContent(String.valueOf(counter++))
                     .appendContent(".) ")
                     .appendContent("mit mineralischen Fremdbestandteilen < 10 V.-%")
@@ -117,9 +146,10 @@ public final class TextFormatUtil {
                     .appendTag());
         }
 
-        if ("#".equals(erkundungsstelle.getInformation("ERK_GUENSTIGE_EINSTUFUNG"))){
+        if ("#".equals(erkundungsstelle.getInformation("ERK_GUENSTIGE_EINSTUFUNG")))
+        {
             stringBuilder.append(new HtmlText.Builder()
-                    .appendAttribute("class","Normal")
+                    .appendAttribute("class", "Normal")
                     .appendContent(String.valueOf(counter++))
                     .appendContent(".) ")
                     .appendContent("Ggf. günstigere Einstufung nach Rücksprache mit der Behörde möglich")
@@ -127,9 +157,10 @@ public final class TextFormatUtil {
                     .appendTag());
         }
 
-        if ("#".equals(erkundungsstelle.getInformation("ERK_VERNACHLAESSIGUNG_LEITFAEHIGKEIT"))){
+        if ("#".equals(erkundungsstelle.getInformation("ERK_VERNACHLAESSIGUNG_LEITFAEHIGKEIT")))
+        {
             stringBuilder.append(new HtmlText.Builder()
-                    .appendAttribute("class","Normal")
+                    .appendAttribute("class", "Normal")
                     .appendContent(String.valueOf(counter++))
                     .appendContent(".) ")
                     .appendContent("Einstufung unter Vernachlässigung des Parameters elektrische Leitfähigkeit")
@@ -137,9 +168,10 @@ public final class TextFormatUtil {
                     .appendTag());
         }
 
-        if(erkundungsstelle.getInformation("ERK_VARIABLE_FOOTNOTE") != null){
+        if (erkundungsstelle.getInformation("ERK_VARIABLE_FOOTNOTE") != null)
+        {
             stringBuilder.append(new HtmlText.Builder()
-                    .appendAttribute("class","Normal")
+                    .appendAttribute("class", "Normal")
                     .appendContent(String.valueOf(counter++))
                     .appendContent(".) ")
                     .appendContent(erkundungsstelle.getInformation("ERK_VARIABLE_FOOTNOTE"))
@@ -148,20 +180,22 @@ public final class TextFormatUtil {
         }
 
 
-        if (!"".equals(erkundungsstelle.getInformation("ERK_LP"))){
+        if (! "".equals(erkundungsstelle.getInformation("ERK_LP")))
+        {
 
             stringBuilder.append(new HtmlText.Builder()
-                    .appendAttribute("class","Normal")
+                    .appendAttribute("class", "Normal")
                     .appendContent(String.valueOf(counter++))
                     .appendContent(".) ")
                     .appendContent("Prüfergebnisse unter Berücksichtigung einer ca. 15 % Reduzierung aufgrund der Einspannung durch den ")
                     .build()
                     .appendTag())
                     .append(new HtmlText.Builder()
-                            .appendAttribute("class","Normal")
+                            .appendAttribute("class", "Normal")
                             .appendContent("gebundenen Oberbau")
                             .build()
-                            .appendTag());;
+                            .appendTag());
+
         }
         return stringBuilder.toString();
     }
@@ -181,11 +215,13 @@ public final class TextFormatUtil {
         return htmlText.appendTag();
     }
 
-    public static String formatSchichtBodenGruppe(final Schicht schicht) {
+    public static String formatSchichtBodenGruppe(final Schicht schicht)
+    {
 
         String schicht_art = schicht.getInformation("SCHICHT_ART");
 
-        switch (schicht_art){
+        switch (schicht_art)
+        {
             case "GE":
                 schicht_art = "Engestufte Kiese";
                 break;
@@ -242,10 +278,10 @@ public final class TextFormatUtil {
                 schicht_art = "Organogene Schluffe";
                 break;
             case "OT":
-                schicht_art = "Organogene Tone";
-                break;
+                //schicht_art = "Organogene Tone";
+                //break;
             case "OH":
-                schicht_art = "Grob bis gemischtkörnige Böden mit humosen Beimengungen";
+                schicht_art = "Oberboden";
                 break;
             case "OK":
                 schicht_art = "Grob bis gemischtkörnige Böden mit kalkigen, kieseligen Bildungen";
@@ -262,9 +298,11 @@ public final class TextFormatUtil {
             default:
                 break;
         }
-        if (schicht_art.contains("[")) {
+        if (schicht_art.contains("["))
+        {
+            //TODO entweder soll Sand-Ton-Gemisch ST oder Sand-Ton-Gemisch [ST]
             String tmp = new HtmlText.Builder()
-                    .appendAttribute("class","Normal")
+                    .appendAttribute("class", "Normal")
                     .appendContent("Fremdstoffen " + schicht_art)
                     .build()
                     .appendTag();

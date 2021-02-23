@@ -3,7 +3,8 @@ package sbt.automization.format;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlText;
 
-public final class HtmlCellFormatUtil {
+public final class HtmlCellFormatUtil
+{
 
     public static HtmlCell formatPech(final String data)
     {
@@ -21,7 +22,7 @@ public final class HtmlCellFormatUtil {
                 break;
             default:
                 htmlCell.appendAttribute("class", "NormalErkundungsstelle");
-                htmlCell.appendContent("");
+                htmlCell.appendContent("-");
                 break;
         }
 
@@ -32,7 +33,8 @@ public final class HtmlCellFormatUtil {
     {
         HtmlCell htmlCell;
 
-        switch (data){
+        switch (data)
+        {
             case "Z0":
             case "DK0":
                 htmlCell = new HtmlCell.Builder()
@@ -81,8 +83,8 @@ public final class HtmlCellFormatUtil {
             case "nicht gefährlich":
                 htmlCell = new HtmlCell.Builder()
                         .appendAttribute("class", "ChemieWhite")
-                        .appendContent("nicht")
-                        .appendContent(new HtmlText.Builder().appendAttribute("class","Normal").appendContent("gefährlich").build().appendTag())
+                        .appendContent(new HtmlText.Builder().appendAttribute("class", "Normal").appendContent("nicht").build().appendTag())
+                        .appendContent(new HtmlText.Builder().appendAttribute("class", "Normal").appendContent("gefährlich").build().appendTag())
                         .build();
                 break;
             default:
