@@ -1,10 +1,12 @@
 package sbt.automization.export;
 
 import sbt.automization.TableEngine;
+import sbt.automization.data.Erkundungsstelle;
 import sbt.automization.templates.IHtmlTemplateStrategy;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public abstract class ATemplateExportStrategy
 {
@@ -19,6 +21,11 @@ public abstract class ATemplateExportStrategy
     public void export(TableEngine tableEngine)
     {
         export(getPath(), format(tableEngine));
+    }
+
+    public void export(List<Erkundungsstelle> erkundungsstellen)
+    {
+        export(getPath(), format(erkundungsstellen));
     }
 
     private void export(String path, String content)
@@ -64,5 +71,7 @@ public abstract class ATemplateExportStrategy
     }
 
     abstract String format(TableEngine tableEngine);
+
+    abstract String format(List<Erkundungsstelle> erkundungsstellen);
 
 }
