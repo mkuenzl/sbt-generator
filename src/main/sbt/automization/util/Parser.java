@@ -6,6 +6,7 @@ import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.io.input.BOMInputStream;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -20,9 +21,9 @@ public class Parser
         this.csv = csv;
     }
 
-    public List parse()
+    public List<Map<String,String>> parse()
     {
-        List<Map> dataPoints = new ArrayList<>();
+        List<Map<String,String>> dataPoints = new ArrayList<>();
 
         FileInputStream fileInputStream = null;
         InputStreamReader inputStreamReader = null;
@@ -34,7 +35,7 @@ public class Parser
         {
             fileInputStream = new FileInputStream(csv);
             bomInputStream = new BOMInputStream(fileInputStream);
-            inputStreamReader = new InputStreamReader(bomInputStream, "UTF-8");
+            inputStreamReader = new InputStreamReader(bomInputStream, StandardCharsets.UTF_8);
             csvParser = CSVFormat.EXCEL.withDelimiter(';').withFirstRecordAsHeader().withIgnoreEmptyLines(true).parse(inputStreamReader);
 
             if (csvParser != null){
@@ -43,7 +44,6 @@ public class Parser
                 {
                     /* Prevent wrong excel formatting of .csv files to crash the program */
                     if ("".equals(record.get(0))){
-
                     } else {
                         Map<String,String> map = record.toMap();
                         System.out.println(map.get("ERK_ID"));
@@ -60,6 +60,7 @@ public class Parser
             if (fileInputStream != null){
                 try
                 {
+                    assert inputStreamReader != null;
                     inputStreamReader.close();
                     fileInputStream.close();
                 } catch (IOException e)
