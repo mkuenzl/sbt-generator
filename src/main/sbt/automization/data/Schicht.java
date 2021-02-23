@@ -6,7 +6,7 @@ public class Schicht implements Comparable<Schicht>, IProjektData, Cloneable
 {
     private final Map<String, String> dataMap;
 
-    Schicht(Map<String, String> dataMap)
+    public Schicht(Map<String, String> dataMap)
     {
         this.dataMap = dataMap;
     }
