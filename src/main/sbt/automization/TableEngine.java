@@ -12,10 +12,17 @@ import java.util.Map;
 public class TableEngine
 {
     private final List<Erkundungsstelle> erkundungsstellen;
+    public static String exportPath;
 
     public TableEngine(final List<Map<String, String>> parsedExcelData)
     {
         erkundungsstellen = ObjectCreatorUtil.createErkundungsstellen(parsedExcelData);
+    }
+
+    public TableEngine(List<Map<String, String>> parsedExcelData, String path)
+    {
+        erkundungsstellen = ObjectCreatorUtil.createErkundungsstellen(parsedExcelData);
+        exportPath = path;
     }
 
     public void export(ATemplateExportStrategy templateExportStrategy)

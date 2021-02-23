@@ -67,7 +67,9 @@ public abstract class ATemplateExportStrategy
 
     private String getPath()
     {
-        return System.getProperty("user.dir").concat(File.separator).concat(strategy.getExportFileName());
+        if (TableEngine.exportPath == null) return System.getProperty("user.dir").concat(File.separator).concat(strategy.getExportFileName());
+
+        return TableEngine.exportPath.concat(File.separator).concat(strategy.getExportFileName());
     }
 
     abstract String format(TableEngine tableEngine);

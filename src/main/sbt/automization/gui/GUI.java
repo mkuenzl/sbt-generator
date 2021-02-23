@@ -203,9 +203,10 @@ public class GUI extends JFrame implements ActionListener
 //                System.out.println(file);
 //            }
 
-            Parser parser = new Parser(new File(textfield.getText()));
+            File csv = new File(textfield.getText());
+            Parser parser = new Parser(csv);
 
-            TableEngine database = new TableEngine(parser.parse());
+            TableEngine database = new TableEngine(parser.parse(), csv.getParent());
 
             for (IHtmlTemplateStrategy strategy : StrategyStorage.getInstance().getStrategies())
             {
