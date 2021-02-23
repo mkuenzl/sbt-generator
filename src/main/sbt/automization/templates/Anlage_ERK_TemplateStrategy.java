@@ -46,84 +46,113 @@ public final class Anlage_ERK_TemplateStrategy extends AHtmlTemplateStrategy
         {
             Erkundungsstelle erkundungsstelle = data.get(i);
 
-            HtmlCell cell11 = new HtmlCell.Builder()
+            HtmlCell cellTextERKORT = new HtmlCell.Builder()
                     .appendAttribute("width", "75")
                     .appendAttribute("class", "NormalHeader")
                     .appendContent("Erkund.-Stelle")
                     .build();
 
-            HtmlCell cell12 = new HtmlCell.Builder()
+            HtmlCell cellERKORT = new HtmlCell.Builder()
                     .appendAttribute("class", "Normal")
                     .appendAttribute("colspan", "3")
                     .appendContent(erkundungsstelle.getInformation("ERK_ORT"))
                     .build();
 
-            HtmlRow row1 = new HtmlRow.Builder()
+            HtmlRow firstErkRow = new HtmlRow.Builder()
                     .appendAttribute("class", "Normal")
-                    .appendContent(cell11.appendTag())
-                    .appendContent(cell12.appendTag())
+                    .appendContent(cellTextERKORT.appendTag())
+                    .appendContent(cellERKORT.appendTag())
                     .build();
 
-            HtmlCell cell21 = new HtmlCell.Builder()
+            HtmlCell cellTextERKID = new HtmlCell.Builder()
                     .appendAttribute("width", "75")
                     .appendAttribute("class", "NormalHeader")
                     .appendContent("Bezeichnung")
                     .build();
 
-            HtmlCell cell22 = new HtmlCell.Builder()
+            HtmlCell cellERKID = new HtmlCell.Builder()
                     .appendAttribute("width", "150")
                     .appendAttribute("class", "Normal")
                     .appendContent(erkundungsstelle.getInformation("ERK_ID"))
                     .build();
 
-            HtmlCell cell23 = new HtmlCell.Builder()
+            HtmlCell cellTextERKDATUM = new HtmlCell.Builder()
                     .appendAttribute("width", "75")
                     .appendAttribute("class", "NormalHeader")
                     .appendContent("Datum")
                     .build();
 
-            HtmlCell cell24 = new HtmlCell.Builder()
+            HtmlCell cellERKDATUM = new HtmlCell.Builder()
                     .appendAttribute("width", "150")
                     .appendAttribute("class", "Normal")
                     .appendContent(erkundungsstelle.getInformation("ERK_DATUM"))
                     .build();
 
-            HtmlRow row2 = new HtmlRow.Builder()
+            HtmlRow secondErkRow = new HtmlRow.Builder()
                     .appendAttribute("class", "Normal")
-                    .appendContent(cell21.appendTag())
-                    .appendContent(cell22.appendTag())
-                    .appendContent(cell23.appendTag())
-                    .appendContent(cell24.appendTag())
+                    .appendContent(cellTextERKID.appendTag())
+                    .appendContent(cellERKID.appendTag())
+                    .appendContent(cellTextERKDATUM.appendTag())
+                    .appendContent(cellERKDATUM.appendTag())
                     .build();
 
 
-            HtmlCell cell31 = new HtmlCell.Builder()
+            HtmlCell cellTextERK_KOORDINATEN = new HtmlCell.Builder()
                     .appendAttribute("class", "NormalHeader")
                     .appendContent("Koordinaten")
                     .build();
 
-            HtmlCell cell32 = new HtmlCell.Builder()
+            HtmlCell cellERK_KOORDINATEN = new HtmlCell.Builder()
                     .appendAttribute("class", "Normal")
                     .appendContent(erkundungsstelle.getInformation("ERK_KOORDINATEN"))
                     .build();
 
 
-            HtmlCell cell33 = new HtmlCell.Builder()
+            HtmlCell cellTextERK_PRUEFER = new HtmlCell.Builder()
                     .appendAttribute("class", "NormalHeader")
                     .appendContent("Probenehmer")
                     .build();
 
-            HtmlCell cell34 = new HtmlCell.Builder()
+            HtmlCell cellERK_PRUEFER = new HtmlCell.Builder()
                     .appendAttribute("class", "Normal")
                     .appendContent(erkundungsstelle.getInformation("ERK_PRUEFER"))
                     .build();
 
-            HtmlRow row3 = new HtmlRow.Builder()
+            HtmlRow thirdErkRow = new HtmlRow.Builder()
                     .appendAttribute("class", "Normal")
-                    .appendContent(cell31.appendTag())
-                    .appendContent(cell32.appendTag())
-                    .appendContent(cell33.appendTag())
-                    .appendContent(cell34.appendTag())
+                    .appendContent(cellTextERK_KOORDINATEN.appendTag())
+                    .appendContent(cellERK_KOORDINATEN.appendTag())
+                    .appendContent(cellTextERK_PRUEFER.appendTag())
+                    .appendContent(cellERK_PRUEFER.appendTag())
+                    .build();
+
+            HtmlCell cellTextERK_BEREICH = new HtmlCell.Builder()
+                    .appendAttribute("class", "NormalHeader")
+                    .appendContent("Bereich")
+                    .build();
+
+            HtmlCell cellERK_BEREICH = new HtmlCell.Builder()
+                    .appendAttribute("class", "Normal")
+                    .appendContent(erkundungsstelle.getInformation("ERK_BEREICH"))
+                    .build();
+
+
+            HtmlCell cellTextERK_ANSPRECHPARNTER = new HtmlCell.Builder()
+                    .appendAttribute("class", "NormalHeader")
+                    .appendContent("Ansprechpartner")
+                    .build();
+
+            HtmlCell cellERK_ANSPRECHPARNTER = new HtmlCell.Builder()
+                    .appendAttribute("class", "Normal")
+                    .appendContent(erkundungsstelle.getInformation("ERK_ANSPRECHPARTNER"))
+                    .build();
+
+            HtmlRow fourthErkRow = new HtmlRow.Builder()
+                    .appendAttribute("class", "Normal")
+                    .appendContent(cellTextERK_BEREICH.appendTag())
+                    .appendContent(cellERK_BEREICH.appendTag())
+                    .appendContent(cellTextERK_ANSPRECHPARNTER.appendTag())
+                    .appendContent(cellERK_ANSPRECHPARNTER.appendTag())
                     .build();
 
             HtmlTable table = new HtmlTable.Builder()
@@ -133,9 +162,10 @@ public final class Anlage_ERK_TemplateStrategy extends AHtmlTemplateStrategy
                     .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
                     .appendAttribute("cellspacing", "0")
                     .appendAttribute("cellpadding", "0")
-                    .appendContent(row1.appendTag())
-                    .appendContent(row2.appendTag())
-                    .appendContent(row3.appendTag())
+                    .appendContent(firstErkRow.appendTag())
+                    .appendContent(secondErkRow.appendTag())
+                    .appendContent(thirdErkRow.appendTag())
+                    .appendContent(fourthErkRow.appendTag())
                     .build();
 
             Anlage_ERK_OB_TemplateStrategy erk_GO_Tabelle = new Anlage_ERK_OB_TemplateStrategy();
@@ -170,11 +200,8 @@ public final class Anlage_ERK_TemplateStrategy extends AHtmlTemplateStrategy
 
 
             stringBuilder.append(table.appendTag())
-                    //.append("<br></br>")
                     .append(erk_GO_Tabelle.getHtmlTable())
-                    //.append("<br></br>")
                     .append(erk_TOB_Tabelle.getHtmlTable())
-                    //.append("<br></br>")
                     .append(erk_UG_Tabelle.getHtmlTable())
                     .append(footNotes.appendTag())
                     .append("<br></br>");
