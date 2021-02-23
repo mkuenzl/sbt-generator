@@ -89,8 +89,8 @@ public final class HtmlCellFormatUtil
                 break;
             default:
                 htmlCell = new HtmlCell.Builder()
-                        .appendAttribute("class", "Normal")
-                        .appendContent(data)
+                        .appendAttribute("class", "NormalErkundungsstelle")
+                        .appendContent("-")
                         .build();
                 break;
         }
