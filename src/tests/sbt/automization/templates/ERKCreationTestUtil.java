@@ -78,6 +78,8 @@ public class ERKCreationTestUtil
 		erkDaten.put("ERK_ID", "FB8");
 		erkDaten.put("ERK_DATUM", "01.01.2021");
 		erkDaten.put("ERK_PRUEFER", "Mensur;Polaki");
+		erkDaten.put("ERK_BEREICH", "LBM");
+		erkDaten.put("ERK_ANSPRECHPARTNER", "Herr WasWeißIch");
 		erkDaten.put("ERK_KOORDINATEN", "32U 123141 123123");
 		erkDaten.put("ERK_ORT", "K 35, NK 5809 018 – NK 5809 016, Stat. 4+200, FS FR Treis");
 		erkDaten.put("ERK_AUFSCHLUSS_OB", "Bk400");
