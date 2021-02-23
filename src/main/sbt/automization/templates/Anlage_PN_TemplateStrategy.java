@@ -91,7 +91,7 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
 
                 HtmlCell cellHaufwerk = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
-                        .appendContent("")
+                        .appendContent("-")
                         .build();
 
                 //TODO already done in excel sheet

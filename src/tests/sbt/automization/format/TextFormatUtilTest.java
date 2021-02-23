@@ -58,4 +58,16 @@ public class TextFormatUtilTest
         String schichtBodenGruppe = TextFormatUtil.formatSchichtBodenGruppe("ST");
         Assert.assertTrue(schichtBodenGruppe.equals("Sand-Ton-Gemisch ST"));
     }
+
+    @Test
+    public void bodengruppenTest(){
+        String schichtBodenGruppe = TextFormatUtil.formatSchichtBodenGruppe("ST - ST*");
+        Assert.assertTrue(schichtBodenGruppe.equals("ST - ST*"));
+    }
+
+    @Test
+    public void bodengruppenAufuellungTest(){
+        String schichtBodenGruppe = TextFormatUtil.formatSchichtBodenGruppe("[ST - ST*]");
+        Assert.assertTrue(schichtBodenGruppe.equals("[ST - ST*]"));
+    }
 }

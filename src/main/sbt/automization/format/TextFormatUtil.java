@@ -258,6 +258,11 @@ public final class TextFormatUtil
 			return "-";
 		}
 
+		if (schichtArt.contains("-"))
+		{
+			return schichtArt;
+		}
+
 		if (schichtArt.contains("["))
 		{
 			kind = schichtArt.replaceAll("[\\[\\]]", "");
