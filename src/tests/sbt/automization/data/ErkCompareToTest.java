@@ -60,19 +60,19 @@ public class ErkCompareToTest
 		erkundungsstelleFB22 = new Erkundungsstelle(erk22Daten);
 
 		Map<String, String> erk01Daten = new HashMap<>(){{
-			put("ERK_ID", "FB22");
+			put("ERK_ID", "1");
 		}};
 
 		erkundungsstelle1 = new Erkundungsstelle(erk01Daten);
 
 		Map<String, String> erk02Daten = new HashMap<>(){{
-			put("ERK_ID", "FB22");
+			put("ERK_ID", "2");
 		}};
 
 		erkundungsstelle2 = new Erkundungsstelle(erk02Daten);
 
 		Map<String, String> erk03Daten = new HashMap<>(){{
-			put("ERK_ID", "FB22");
+			put("ERK_ID", "3");
 		}};
 
 		erkundungsstelle3 = new Erkundungsstelle(erk03Daten);
