@@ -1,6 +1,8 @@
 package sbt.automization.data;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektData
 {
@@ -48,13 +50,29 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
     @Override
     public int compareTo(final Erkundungsstelle o)
     {
-        return this.getInformation("ERK_ID").compareTo(o.getInformation("ERK_ID"));
-        /*
-        int s1 = Integer.parseInt(this.getInformation("SCHICHT_NR"));
-        int s2 = Integer.parseInt(schicht.getInformation("SCHICHT_NR"));
-        return s1 - s2;
-         */
+        String erk_id1 = this.getInformation("ERK_ID");
+        String[] split1 = erk_id1.split("\\D+");
+        int id1;
+        if (split1.length > 1)
+        {
+            id1 = Integer.parseInt(split1[1]);
+        } else
+        {
+            id1 = Integer.parseInt(split1[0]);
+        }
 
+        String erk_id2 = o.getInformation("ERK_ID");
+        String[] split2 = erk_id2.split("\\D+");
+        int id2;
+        if (split2.length > 1)
+        {
+            id2 = Integer.parseInt(split2[1]);
+        } else
+        {
+            id2 = Integer.parseInt(split2[0]);
+        }
+
+        return id1 > id2 ? 1 : -1;
     }
 
     public String getInformation(String key)

@@ -4,11 +4,16 @@ import java.util.Map;
 
 public class Schicht implements Comparable<Schicht>, IProjektData, Cloneable
 {
-    private final Map<String, String> dataMap;
+    private Map<String, String> dataMap;
 
     public Schicht(Map<String, String> dataMap)
     {
         this.dataMap = dataMap;
+    }
+
+    public Schicht()
+    {
+
     }
 
     public void setInformation(String key, String value)
