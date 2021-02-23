@@ -35,7 +35,7 @@ class Anlage_ERK_TOB_TemplateStrategy extends AHtmlTemplateStrategy
 
         for (Schicht schicht : data.getSchichtList())
         {
-            if ("TOB".equals(schicht.getInformation("SCHICHT_AUFSCHLUSS")))
+            if ("TOB".equals(schicht.getInformation("SCHICHT_AUFSCHLUSS").toUpperCase()))
             {
                 //Art der Schicht
                 HtmlCell cell1 = new HtmlCell.Builder()
