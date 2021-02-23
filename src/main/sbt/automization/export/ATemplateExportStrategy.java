@@ -11,11 +11,18 @@ public abstract class ATemplateExportStrategy
 
     final IHtmlTemplateStrategy strategy;
 
-    ATemplateExportStrategy(final IHtmlTemplateStrategy strategy){
+    ATemplateExportStrategy(final IHtmlTemplateStrategy strategy)
+    {
         this.strategy = strategy;
     }
 
-    private void export(String path, String content){
+    public void export(TableEngine tableEngine)
+    {
+        export(getPath(), format(tableEngine));
+    }
+
+    private void export(String path, String content)
+    {
         BufferedWriter bw = null;
         OutputStreamWriter outputStreamWriter = null;
         FileOutputStream fileOutputStream = null;
@@ -37,8 +44,10 @@ public abstract class ATemplateExportStrategy
                 {
                     fileOutputStream.flush();
                     fileOutputStream.close();
+                    assert outputStreamWriter != null;
                     outputStreamWriter.flush();
                     outputStreamWriter.close();
+                    assert bw != null;
                     bw.flush();
                     bw.close();
                 } catch (IOException e)
@@ -49,14 +58,11 @@ public abstract class ATemplateExportStrategy
         }
     }
 
-    public void export(TableEngine tableEngine){
-        export(getPath(), format(tableEngine));
-    };
-
-    abstract String format(TableEngine tableEngine);
-
-    private String getPath(){
+    private String getPath()
+    {
         return System.getProperty("user.dir").concat(File.separator).concat(strategy.getExportFileName());
     }
+
+    abstract String format(TableEngine tableEngine);
 
 }

@@ -2,21 +2,6 @@ package sbt.automization.util.html;
 
 public class HtmlColGroup extends AHtml
 {
-    public static class Builder extends BaseHtmlBuilder<HtmlColGroup, Builder> {
-
-        @Override
-        protected HtmlColGroup getActual()
-        {
-            return new HtmlColGroup();
-        }
-
-        @Override
-        protected Builder getActualBuilder()
-        {
-            return this;
-        }
-    }
-
     @Override
     public String appendTag()
     {
@@ -31,5 +16,21 @@ public class HtmlColGroup extends AHtml
                 .append("\n")
                 .append("</colgroup>");
         return strb.toString();
+    }
+
+    public static class Builder extends BaseHtmlBuilder<HtmlColGroup, Builder>
+    {
+
+        @Override
+        protected HtmlColGroup getActual()
+        {
+            return new HtmlColGroup();
+        }
+
+        @Override
+        protected Builder getActualBuilder()
+        {
+            return this;
+        }
     }
 }

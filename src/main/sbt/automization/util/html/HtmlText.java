@@ -1,8 +1,26 @@
 package sbt.automization.util.html;
 
-public class HtmlText extends AHtml{
+public class HtmlText extends AHtml
+{
+    @Override
+    public String appendTag()
+    {
+        StringBuilder strb = new StringBuilder();
+        strb.append("<")
+                .append("p")
+                .append(" ")
+                .append(appendAttributes())
+                .append(">")
+                .append("\n")
+                .append(content)
+                .append("\n")
+                .append("</p>");
+        return strb.toString();
+    }
+
     //p , span
-    public static class Builder extends BaseHtmlBuilder<HtmlText, Builder>{
+    public static class Builder extends BaseHtmlBuilder<HtmlText, Builder>
+    {
 
         @Override
         protected HtmlText getActual()
@@ -15,20 +33,5 @@ public class HtmlText extends AHtml{
         {
             return this;
         }
-    }
-
-    @Override
-    public String appendTag() {
-        StringBuilder strb = new StringBuilder();
-        strb.append("<")
-                .append("p")
-                .append(" ")
-                .append(appendAttributes())
-                .append(">")
-                .append("\n")
-                .append(content)
-                .append("\n")
-                .append("</p>");
-        return strb.toString();
     }
 }

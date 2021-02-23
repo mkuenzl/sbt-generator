@@ -2,21 +2,6 @@ package sbt.automization.util.html;
 
 public class HtmlTableHeader extends AHtml
 {
-    public static class Builder extends BaseHtmlBuilder<HtmlTableHeader, Builder>{
-
-        @Override
-        protected HtmlTableHeader getActual()
-        {
-            return new HtmlTableHeader();
-        }
-
-        @Override
-        protected Builder getActualBuilder()
-        {
-            return this;
-        }
-    }
-
     @Override
     public String appendTag()
     {
@@ -31,5 +16,21 @@ public class HtmlTableHeader extends AHtml
                 .append("\n")
                 .append("</th>");
         return strb.toString();
+    }
+
+    public static class Builder extends BaseHtmlBuilder<HtmlTableHeader, Builder>
+    {
+
+        @Override
+        protected HtmlTableHeader getActual()
+        {
+            return new HtmlTableHeader();
+        }
+
+        @Override
+        protected Builder getActualBuilder()
+        {
+            return this;
+        }
     }
 }

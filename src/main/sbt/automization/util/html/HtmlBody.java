@@ -1,22 +1,7 @@
 package sbt.automization.util.html;
 
-public class HtmlBody extends  AHtml
+public class HtmlBody extends AHtml
 {
-    public static class Builder extends BaseHtmlBuilder<HtmlBody, Builder> {
-
-        @Override
-        protected HtmlBody getActual()
-        {
-            return new HtmlBody();
-        }
-
-        @Override
-        protected Builder getActualBuilder()
-        {
-            return this;
-        }
-    }
-
     @Override
     public String appendTag()
     {
@@ -31,5 +16,21 @@ public class HtmlBody extends  AHtml
                 .append("\n")
                 .append("</body>");
         return strb.toString();
+    }
+
+    public static class Builder extends BaseHtmlBuilder<HtmlBody, Builder>
+    {
+
+        @Override
+        protected HtmlBody getActual()
+        {
+            return new HtmlBody();
+        }
+
+        @Override
+        protected Builder getActualBuilder()
+        {
+            return this;
+        }
     }
 }

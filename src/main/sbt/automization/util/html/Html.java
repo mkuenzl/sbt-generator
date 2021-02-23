@@ -2,21 +2,6 @@ package sbt.automization.util.html;
 
 public class Html extends AHtml
 {
-    public static class Builder extends BaseHtmlBuilder<Html, Builder> {
-
-        @Override
-        protected Html getActual()
-        {
-            return new Html();
-        }
-
-        @Override
-        protected Builder getActualBuilder()
-        {
-            return this;
-        }
-    }
-
     @Override
     public String appendTag()
     {
@@ -31,5 +16,21 @@ public class Html extends AHtml
                 .append("\n")
                 .append("</html>");
         return strb.toString();
+    }
+
+    public static class Builder extends BaseHtmlBuilder<Html, Builder>
+    {
+
+        @Override
+        protected Html getActual()
+        {
+            return new Html();
+        }
+
+        @Override
+        protected Builder getActualBuilder()
+        {
+            return this;
+        }
     }
 }

@@ -1,7 +1,7 @@
 package sbt.automization.templates;
 
-import sbt.automization.format.TextFormatUtil;
 import sbt.automization.data.Erkundungsstelle;
+import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
@@ -12,9 +12,10 @@ public final class Bericht_OB_TemplateStrategy extends AHtmlTemplateStrategy
 {
     private static Bericht_OB_TemplateStrategy instance;
 
-    private Bericht_OB_TemplateStrategy(){}
+    private Bericht_OB_TemplateStrategy() {}
 
-    public static Bericht_OB_TemplateStrategy getInstance(){
+    public static Bericht_OB_TemplateStrategy getInstance()
+    {
         if (instance == null)
         {
             synchronized (Bericht_OB_TemplateStrategy.class)
@@ -97,7 +98,7 @@ public final class Bericht_OB_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendAttribute("class", "Normal")
                 .appendContent(new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendAttribute("colspan", String.valueOf(1+data.size()))
+                        .appendAttribute("colspan", String.valueOf(1 + data.size()))
                         .appendContent("Technische Merkmale")
                         .build()
                         .appendTag())

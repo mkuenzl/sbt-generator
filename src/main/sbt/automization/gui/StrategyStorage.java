@@ -9,13 +9,15 @@ public class StrategyStorage
 {
     private static StrategyStorage instance;
 
-    private List<IHtmlTemplateStrategy> strategyList;
+    private final List<IHtmlTemplateStrategy> strategyList;
 
-    private StrategyStorage(){
+    private StrategyStorage()
+    {
         strategyList = new ArrayList<>();
     }
 
-    public static StrategyStorage getInstance(){
+    public static StrategyStorage getInstance()
+    {
         if (instance == null)
         {
             synchronized (StrategyStorage.class)
@@ -29,8 +31,10 @@ public class StrategyStorage
         return instance;
     }
 
-    public void addStrategy(String strategyName){
-        switch (strategyName){
+    public void addStrategy(String strategyName)
+    {
+        switch (strategyName)
+        {
             case "PN_TABELLE":
                 strategyList.add(Anlage_PN_TemplateStrategy.getInstance());
                 break;
@@ -50,8 +54,10 @@ public class StrategyStorage
     }
 
     //TODO
-    public void removeStrategy(String strategyName){
-        switch (strategyName){
+    public void removeStrategy(String strategyName)
+    {
+        switch (strategyName)
+        {
             case "PN_TABELLE":
                 strategyList.remove(Anlage_PN_TemplateStrategy.getInstance());
                 break;
@@ -70,7 +76,8 @@ public class StrategyStorage
         }
     }
 
-    public List<IHtmlTemplateStrategy> getStrategies(){
+    public List<IHtmlTemplateStrategy> getStrategies()
+    {
         return strategyList;
     }
 }

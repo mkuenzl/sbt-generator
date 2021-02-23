@@ -21,7 +21,7 @@ public class CLI
 
         options.addOption("h", "help", false, "Show options");
         options.addOption("t", "template", true, "Print template");
-        options.addOption("c","csv", true,"Provide a different csv filepath");
+        options.addOption("c", "csv", true, "Provide a different csv filepath");
     }
 
     //Keine Argumente Fall einführen
@@ -32,7 +32,8 @@ public class CLI
         {
             CommandLine cmd = parser.parse(this.options, this.args);
 
-            if (cmd.hasOption("c")){
+            if (cmd.hasOption("c"))
+            {
                 csvFilePath = cmd.getOptionValue("c");
             }
 
@@ -42,8 +43,10 @@ public class CLI
                 formatter.printHelp("sbt-table-generator", this.options);
             }
 
-            if (cmd.hasOption("t")){
-                switch (cmd.getOptionValue("t")){
+            if (cmd.hasOption("t"))
+            {
+                switch (cmd.getOptionValue("t"))
+                {
                     case "LP_Template":
                         this.strategy = Anlage_LP_TemplateStrategy.getInstance();
                         break;

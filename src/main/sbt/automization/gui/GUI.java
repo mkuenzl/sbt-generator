@@ -1,7 +1,7 @@
 package sbt.automization.gui;
 
-import sbt.automization.export.HtmlTemplateExportStrategy;
 import sbt.automization.TableEngine;
+import sbt.automization.export.HtmlTemplateExportStrategy;
 import sbt.automization.templates.IHtmlTemplateStrategy;
 import sbt.automization.util.Parser;
 
@@ -11,10 +11,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-public class GUI extends JFrame implements ActionListener {
+public class GUI extends JFrame implements ActionListener
+{
 
     private JPanel panel;
-//    private final JMenu menu;
+    //    private final JMenu menu;
 //    private final JMenuItem info;
 //    private final JMenuBar menuBar;
     private JButton executeButton;
@@ -27,7 +28,8 @@ public class GUI extends JFrame implements ActionListener {
     //private final JLabel label;
     private JTextArea textfield;
 
-    public GUI() {
+    public GUI()
+    {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("SBT Berichterstellung");
@@ -40,7 +42,8 @@ public class GUI extends JFrame implements ActionListener {
 
     }
 
-    private void buildPanel(){
+    private void buildPanel()
+    {
 
         panel = new JPanel();
         panel.setLayout(null);
@@ -134,7 +137,7 @@ public class GUI extends JFrame implements ActionListener {
         textfield.setEditable(false);
         textfield.setWrapStyleWord(true);
         textfield.setLineWrap(true);
-        textfield.setFont(new Font("Verdana",Font.PLAIN,10));
+        textfield.setFont(new Font("Verdana", Font.PLAIN, 10));
 
         panel.add(textfield);
 
@@ -142,7 +145,8 @@ public class GUI extends JFrame implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e)
+    {
 
 //        if (e.getSource()==info) {
 //            JDialog dialog = new JDialog();
@@ -166,14 +170,16 @@ public class GUI extends JFrame implements ActionListener {
 //            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 //        }
 
-        if (e.getSource() == explorerButton) {
+        if (e.getSource() == explorerButton)
+        {
 
             JFileChooser explorer = new JFileChooser();
             explorer.setCurrentDirectory(new File(System.getProperty("user.dir")));
 
             int response = explorer.showOpenDialog(null); //select file to open
 
-            if (response == JFileChooser.APPROVE_OPTION) {
+            if (response == JFileChooser.APPROVE_OPTION)
+            {
                 File file = new File(explorer.getSelectedFile().getAbsolutePath());
                 //System.out.println(file);
 
@@ -184,7 +190,8 @@ public class GUI extends JFrame implements ActionListener {
             }
         }
 
-        if(e.getSource()==executeButton){
+        if (e.getSource() == executeButton)
+        {
 
 //            JFileChooser saver = new JFileChooser();
 //            int userSelection = saver.showSaveDialog(null);

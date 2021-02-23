@@ -6,17 +6,17 @@ import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
 import sbt.automization.util.html.HtmlTableHeader;
+
 import java.util.List;
 
 public final class Anlage_RUK_TemplateStrategy extends AHtmlTemplateStrategy
 {
-    private int counter = 1;
-
     private static Anlage_RUK_TemplateStrategy instance;
 
-    private Anlage_RUK_TemplateStrategy(){}
+    private Anlage_RUK_TemplateStrategy() {}
 
-    public static Anlage_RUK_TemplateStrategy getInstance(){
+    public static Anlage_RUK_TemplateStrategy getInstance()
+    {
         if (instance == null)
         {
             synchronized (Anlage_RUK_TemplateStrategy.class)
@@ -28,6 +28,103 @@ public final class Anlage_RUK_TemplateStrategy extends AHtmlTemplateStrategy
             }
         }
         return instance;
+    }
+
+    @Override
+    public void buildHtmlTable(final List<Erkundungsstelle> data)
+    {
+        HtmlTable table = new HtmlTable.Builder()
+                .appendAttribute("class", "MsoNormalTable")
+                .appendAttribute("width", "605")
+                .appendAttribute("border", "1")
+                .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+                .appendAttribute("cellspacing", "0")
+                .appendAttribute("cellpadding", "0")
+                .appendContent(setHtmlTableHeader())
+                .build();
+
+
+        for (Erkundungsstelle erkundungsstelle : data)
+        {
+            List<Schicht> sList = erkundungsstelle.getSchichtList();
+
+            for (Schicht schicht : sList)
+            {
+                String rukNumber = schicht.getInformation("SCHICHT_RUK_NR");
+
+                if (! "".equals(rukNumber))
+                {
+
+                    HtmlCell cell1 = new HtmlCell.Builder()
+                            .appendAttribute("class", "Normal")
+                            .appendAttribute("align", "center")
+                            .appendContent(erkundungsstelle.getInformation("ERK_ID"))
+                            .build();
+
+                    HtmlCell cell2 = new HtmlCell.Builder()
+                            .appendAttribute("class", "Normal")
+                            .appendAttribute("align", "center")
+                            .appendContent("A".concat(rukNumber))
+                            .build();
+
+
+                    HtmlCell cell3 = new HtmlCell.Builder()
+                            .appendAttribute("class", "Normal")
+                            .appendContent(schicht.getInformation("SCHICHT_RUK_PROBE"))
+                            .build();
+
+                    HtmlCell cell4 = new HtmlCell.Builder()
+                            .appendAttribute("class", "Normal")
+                            .appendAttribute("width", "170")
+                            .appendContent(schicht.getInformation("SCHICHT_ART").concat("  ").concat(schicht.getInformation("SCHICHT_KOERNUNG")))
+                            .build();
+
+
+                    HtmlCell cell5 = new HtmlCell.Builder()
+                            .appendAttribute("class", "Normal")
+                            .appendAttribute("width", "35")
+                            .appendAttribute("align", "center")
+                            .appendContent(schicht.getInformation("SCHICHT_TIEFE_START"))
+                            .build();
+
+                    HtmlCell cell6 = new HtmlCell.Builder()
+                            .appendAttribute("class", "Normal")
+                            .appendAttribute("width", "30")
+                            .appendAttribute("align", "center")
+                            .appendContent("-")
+                            .build();
+
+                    HtmlCell cell7 = new HtmlCell.Builder()
+                            .appendAttribute("class", "Normal")
+                            .appendAttribute("width", "35")
+                            .appendAttribute("align", "center")
+                            .appendContent(schicht.getInformation("SCHICHT_TIEFE_ENDE"))
+                            .build();
+
+                    HtmlCell cell8 = new HtmlCell.Builder()
+                            .appendAttribute("class", "Normal")
+                            .appendAttribute("align", "center")
+                            .appendContent(schicht.getInformation("SCHICHT_RUK"))
+                            .build();
+
+                    HtmlRow htmlRow = new HtmlRow.Builder()
+                            .appendAttribute("class", "Normal")
+                            .appendContent(cell1.appendTag())
+                            .appendContent(cell2.appendTag())
+                            .appendContent(cell3.appendTag())
+                            .appendContent(cell4.appendTag())
+                            .appendContent(cell5.appendTag())
+                            .appendContent(cell6.appendTag())
+                            .appendContent(cell7.appendTag())
+                            .appendContent(cell8.appendTag())
+                            .build();
+
+                    table.appendContent(htmlRow.appendTag());
+                }
+            }
+        }
+
+        setHtmlTable(table.appendTag());
     }
 
     @Override
@@ -108,7 +205,7 @@ public final class Anlage_RUK_TemplateStrategy extends AHtmlTemplateStrategy
 
         HtmlRow row2 = new HtmlRow.Builder()
                 .appendAttribute("class", "NormalHeaderUnits")
-               // .appendContent(cell21.appendTag())
+                // .appendContent(cell21.appendTag())
                 .appendContent(cell22.appendTag())
                 .appendContent(cell23.appendTag())
                 .build();
@@ -121,110 +218,14 @@ public final class Anlage_RUK_TemplateStrategy extends AHtmlTemplateStrategy
     }
 
     @Override
-    public String getExportFileName()
-    {
-        return "RUK_Tabelle.html";
-    }
-
-    @Override
-    public void buildHtmlTable(final List<Erkundungsstelle> data)
-    {
-        HtmlTable table = new HtmlTable.Builder()
-                .appendAttribute("class", "MsoNormalTable")
-                .appendAttribute("width", "605")
-                .appendAttribute("border", "1")
-                .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
-                .appendAttribute("cellspacing", "0")
-                .appendAttribute("cellpadding", "0")
-                .appendContent(setHtmlTableHeader())
-                .build();
-
-
-        for (Erkundungsstelle erkundungsstelle : data)
-        {
-            List<Schicht> sList = erkundungsstelle.getSchichtList();
-
-            for (Schicht schicht : sList)
-            {
-                String rukNumber = schicht.getInformation("SCHICHT_RUK_NR");
-
-                if (!"".equals(rukNumber)){
-
-                    HtmlCell cell1 = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendAttribute("align", "center")
-                            .appendContent(erkundungsstelle.getInformation("ERK_ID"))
-                            .build();
-
-                    HtmlCell cell2 = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendAttribute("align", "center")
-                            .appendContent("A".concat(rukNumber))
-                            .build();
-
-
-                    HtmlCell cell3 = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendContent(schicht.getInformation("SCHICHT_RUK_PROBE"))
-                            .build();
-
-                    HtmlCell cell4 = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendAttribute("width", "170")
-                            .appendContent(schicht.getInformation("SCHICHT_ART").concat("  ").concat(schicht.getInformation("SCHICHT_KOERNUNG")))
-                            .build();
-
-
-                    HtmlCell cell5 = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendAttribute("width", "35")
-                            .appendAttribute("align", "center")
-                            .appendContent(schicht.getInformation("SCHICHT_TIEFE_START"))
-                            .build();
-
-                    HtmlCell cell6 = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendAttribute("width", "30")
-                            .appendAttribute("align", "center")
-                            .appendContent("-")
-                            .build();
-
-                    HtmlCell cell7 = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendAttribute("width", "35")
-                            .appendAttribute("align", "center")
-                            .appendContent(schicht.getInformation("SCHICHT_TIEFE_ENDE"))
-                            .build();
-
-                    HtmlCell cell8 = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendAttribute("align", "center")
-                            .appendContent(schicht.getInformation("SCHICHT_RUK"))
-                            .build();
-
-                    HtmlRow htmlRow = new HtmlRow.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendContent(cell1.appendTag())
-                            .appendContent(cell2.appendTag())
-                            .appendContent(cell3.appendTag())
-                            .appendContent(cell4.appendTag())
-                            .appendContent(cell5.appendTag())
-                            .appendContent(cell6.appendTag())
-                            .appendContent(cell7.appendTag())
-                            .appendContent(cell8.appendTag())
-                            .build();
-
-                    table.appendContent(htmlRow.appendTag());
-                }
-            }
-        }
-
-        setHtmlTable(table.appendTag());
-    }
-
-    @Override
     public void buildHtmlTable(final Erkundungsstelle data)
     {
 
+    }
+
+    @Override
+    public String getExportFileName()
+    {
+        return "RUK_Tabelle.html";
     }
 }

@@ -9,11 +9,11 @@ import java.util.List;
 public final class Anlage_LP_TemplateStrategy extends AHtmlTemplateStrategy
 {
     private static Anlage_LP_TemplateStrategy instance;
-    private int counter = 1;
 
-    private Anlage_LP_TemplateStrategy(){}
+    private Anlage_LP_TemplateStrategy() {}
 
-    public static Anlage_LP_TemplateStrategy getInstance(){
+    public static Anlage_LP_TemplateStrategy getInstance()
+    {
         if (instance == null)
         {
             synchronized (Anlage_LP_TemplateStrategy.class)
@@ -28,6 +28,108 @@ public final class Anlage_LP_TemplateStrategy extends AHtmlTemplateStrategy
     }
 
     @Override
+    public void buildHtmlTable(final List<Erkundungsstelle> data)
+    {
+        HtmlTable table = new HtmlTable.Builder()
+                .appendAttribute("class", "MsoNormalTable")
+                .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+                .appendAttribute("width", "605")
+                .appendAttribute("border", "1")
+                .appendAttribute("cellspacing", "0")
+                .appendAttribute("cellpadding", "0")
+                .appendContent(setHtmlTableHeader())
+                .build();
+
+
+        for (Erkundungsstelle erkundungsstelle : data)
+        {
+            if (! "".equals(erkundungsstelle.getInformation("ERK_LP")))
+            {
+
+                HtmlCell cell1 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendAttribute("align", "center")
+                        .appendContent("LP".concat(erkundungsstelle.getInformation("ERK_LP")))
+                        .build();
+
+                HtmlCell cell2 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendAttribute("align", "center")
+                        .appendContent(erkundungsstelle.getInformation("ERK_ID"))
+                        .build();
+
+                HtmlCell cell3 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendContent(erkundungsstelle.getInformation("ERK_ORT"))
+                        .build();
+
+                HtmlCell cell4 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendAttribute("align", "center")
+                        .appendAttribute("width", "40")
+                        .appendContent(erkundungsstelle.getInformation("ERK_LP1"))
+                        .build();
+
+                HtmlCell cell5 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendAttribute("align", "center")
+                        .appendAttribute("width", "40")
+                        .appendContent(erkundungsstelle.getInformation("ERK_LP2"))
+                        .build();
+
+                HtmlCell cell6 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendAttribute("align", "center")
+                        .appendAttribute("width", "40")
+                        .appendContent(erkundungsstelle.getInformation("ERK_LP3"))
+                        .build();
+
+                HtmlCell cell7 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendAttribute("align", "center")
+                        .appendAttribute("width", "40")
+                        .appendContent(erkundungsstelle.getInformation("ERK_LP_MEAN"))
+                        .build();
+
+                HtmlCell cell8 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendAttribute("align", "center")
+                        .appendContent(erkundungsstelle.getInformation("ERK_LP_EV"))
+                        .build();
+
+                HtmlCell cell9 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendAttribute("align", "center")
+                        .appendContent(erkundungsstelle.getInformation("ERK_LP_EV15"))
+                        .build();
+
+                HtmlCell cell10 = new HtmlCell.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendAttribute("align", "center")
+                        .appendContent(erkundungsstelle.getInformation("ERK_LP_EV2"))
+                        .build();
+
+                HtmlRow htmlRow = new HtmlRow.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendContent(cell1.appendTag())
+                        .appendContent(cell2.appendTag())
+                        .appendContent(cell3.appendTag())
+                        .appendContent(cell4.appendTag())
+                        .appendContent(cell5.appendTag())
+                        .appendContent(cell6.appendTag())
+                        .appendContent(cell7.appendTag())
+                        .appendContent(cell8.appendTag())
+                        .appendContent(cell9.appendTag())
+                        .appendContent(cell10.appendTag())
+                        .build();
+
+                table.appendContent(htmlRow.appendTag());
+            }
+        }
+        setHtmlTable(table.appendTag());
+    }
+
+    @Override
     String setHtmlTableHeader()
     {
         HtmlTableHeader cell1 = new HtmlTableHeader.Builder()
@@ -35,7 +137,7 @@ public final class Anlage_LP_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendAttribute("width", "55")
                 .appendAttribute("rowspan", "3")        //Zelle geht über 3 Reihen
                 .appendContent("Versuch")
-                .appendContent(new HtmlText.Builder().appendAttribute("class","Normal").appendContent("Nr.").build().appendTag())
+                .appendContent(new HtmlText.Builder().appendAttribute("class", "Normal").appendContent("Nr.").build().appendTag())
                 .build();
 
         HtmlTableHeader cell2 = new HtmlTableHeader.Builder()
@@ -71,7 +173,7 @@ public final class Anlage_LP_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendAttribute("width", "45")
                 .appendAttribute("rowspan", "2")
                 .appendContent("E<sub>Vdyn</sub>")
-                .appendContent(new HtmlText.Builder().appendAttribute("class","Normal").appendContent("<sub>(-15%)</sub>").build().appendTag())
+                .appendContent(new HtmlText.Builder().appendAttribute("class", "Normal").appendContent("<sub>(-15%)</sub>").build().appendTag())
                 .build();
 
         HtmlTableHeader cell7 = new HtmlTableHeader.Builder()
@@ -189,115 +291,14 @@ public final class Anlage_LP_TemplateStrategy extends AHtmlTemplateStrategy
     }
 
     @Override
-    public String getExportFileName()
-    {
-        return "LP_Tabelle.html";
-    }
-
-    @Override
-    public void buildHtmlTable(final List<Erkundungsstelle> data)
-    {
-        HtmlTable table = new HtmlTable.Builder()
-                .appendAttribute("class", "MsoNormalTable")
-                .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
-                .appendAttribute("width", "605")
-                .appendAttribute("border", "1")
-                .appendAttribute("cellspacing", "0")
-                .appendAttribute("cellpadding", "0")
-                .appendContent(setHtmlTableHeader())
-                .build();
-
-
-        for (Erkundungsstelle erkundungsstelle : data)
-        {
-            if (!"".equals(erkundungsstelle.getInformation("ERK_LP"))){
-
-                HtmlCell cell1 = new HtmlCell.Builder()
-                        .appendAttribute("class", "Normal")
-                        .appendAttribute("align", "center")
-                        .appendContent("LP".concat(erkundungsstelle.getInformation("ERK_LP")))
-                        .build();
-
-                HtmlCell cell2 = new HtmlCell.Builder()
-                        .appendAttribute("class", "Normal")
-                        .appendAttribute("align", "center")
-                        .appendContent(erkundungsstelle.getInformation("ERK_ID"))
-                        .build();
-
-                HtmlCell cell3 = new HtmlCell.Builder()
-                        .appendAttribute("class", "Normal")
-                        .appendContent(erkundungsstelle.getInformation("ERK_ORT"))
-                        .build();
-
-                HtmlCell cell4 = new HtmlCell.Builder()
-                        .appendAttribute("class", "Normal")
-                        .appendAttribute("align", "center")
-                        .appendAttribute("width", "40")
-                        .appendContent(erkundungsstelle.getInformation("ERK_LP1"))
-                        .build();
-
-                HtmlCell cell5 = new HtmlCell.Builder()
-                        .appendAttribute("class", "Normal")
-                        .appendAttribute("align", "center")
-                        .appendAttribute("width", "40")
-                        .appendContent(erkundungsstelle.getInformation("ERK_LP2"))
-                        .build();
-
-                HtmlCell cell6 = new HtmlCell.Builder()
-                        .appendAttribute("class", "Normal")
-                        .appendAttribute("align", "center")
-                        .appendAttribute("width", "40")
-                        .appendContent(erkundungsstelle.getInformation("ERK_LP3"))
-                        .build();
-
-                HtmlCell cell7 = new HtmlCell.Builder()
-                        .appendAttribute("class", "Normal")
-                        .appendAttribute("align", "center")
-                        .appendAttribute("width", "40")
-                        .appendContent(erkundungsstelle.getInformation("ERK_LP_MEAN"))
-                        .build();
-
-                HtmlCell cell8 = new HtmlCell.Builder()
-                        .appendAttribute("class", "Normal")
-                        .appendAttribute("align", "center")
-                        .appendContent(erkundungsstelle.getInformation("ERK_LP_EV"))
-                        .build();
-
-                HtmlCell cell9 = new HtmlCell.Builder()
-                        .appendAttribute("class", "Normal")
-                        .appendAttribute("align", "center")
-                        .appendContent(erkundungsstelle.getInformation("ERK_LP_EV15"))
-                        .build();
-
-                HtmlCell cell10 = new HtmlCell.Builder()
-                        .appendAttribute("class", "Normal")
-                        .appendAttribute("align", "center")
-                        .appendContent(erkundungsstelle.getInformation("ERK_LP_EV2"))
-                        .build();
-
-                HtmlRow htmlRow = new HtmlRow.Builder()
-                        .appendAttribute("class", "Normal")
-                        .appendContent(cell1.appendTag())
-                        .appendContent(cell2.appendTag())
-                        .appendContent(cell3.appendTag())
-                        .appendContent(cell4.appendTag())
-                        .appendContent(cell5.appendTag())
-                        .appendContent(cell6.appendTag())
-                        .appendContent(cell7.appendTag())
-                        .appendContent(cell8.appendTag())
-                        .appendContent(cell9.appendTag())
-                        .appendContent(cell10.appendTag())
-                        .build();
-
-                table.appendContent(htmlRow.appendTag());
-            }
-        }
-        setHtmlTable(table.appendTag());
-    }
-
-    @Override
     public void buildHtmlTable(final Erkundungsstelle data)
     {
 
+    }
+
+    @Override
+    public String getExportFileName()
+    {
+        return "LP_Tabelle.html";
     }
 }

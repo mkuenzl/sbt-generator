@@ -1,6 +1,7 @@
 package sbt.automization.util.html;
 
-public interface IHtmlCode {
+public interface IHtmlCode
+{
 
     void appendAttribute(String attribute, String content);
 

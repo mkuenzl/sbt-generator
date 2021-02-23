@@ -14,7 +14,7 @@ public class HtmlTemplateExportStrategy extends ATemplateExportStrategy
     @Override
     String format(final TableEngine tableEngine)
     {
-        strategy.buildHtmlTable(tableEngine.getData());
+        strategy.buildHtmlTable(tableEngine.getErkundungsstellen());
         return strategy.buildHtmlTemplate();
     }
 }

@@ -2,7 +2,9 @@ package sbt.automization.templates;
 
 import sbt.automization.data.Erkundungsstelle;
 import sbt.automization.format.TextFormatUtil;
-import sbt.automization.util.html.*;
+import sbt.automization.util.html.HtmlCell;
+import sbt.automization.util.html.HtmlRow;
+import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
@@ -10,9 +12,10 @@ public final class Anlage_ERK_TemplateStrategy extends AHtmlTemplateStrategy
 {
     private static Anlage_ERK_TemplateStrategy instance;
 
-    private Anlage_ERK_TemplateStrategy(){}
+    private Anlage_ERK_TemplateStrategy() {}
 
-    public static Anlage_ERK_TemplateStrategy getInstance(){
+    public static Anlage_ERK_TemplateStrategy getInstance()
+    {
         if (instance == null)
         {
             synchronized (Anlage_ERK_TemplateStrategy.class)
@@ -39,7 +42,7 @@ public final class Anlage_ERK_TemplateStrategy extends AHtmlTemplateStrategy
     {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (int i = 0; i < data.size(); i++)
+        for (int i = 0 ; i < data.size() ; i++)
         {
             Erkundungsstelle erkundungsstelle = data.get(i);
 
@@ -164,7 +167,6 @@ public final class Anlage_ERK_TemplateStrategy extends AHtmlTemplateStrategy
                     .appendAttribute("cellpadding", "0")
                     .appendContent(footerRow.appendTag())
                     .build();
-
 
 
             stringBuilder.append(table.appendTag())

@@ -11,11 +11,11 @@ import java.util.List;
 public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
 {
     private static Anlage_PN_TemplateStrategy instance;
-    private int counter = 1;
 
-    private Anlage_PN_TemplateStrategy(){}
+    private Anlage_PN_TemplateStrategy() {}
 
-    public static Anlage_PN_TemplateStrategy getInstance(){
+    public static Anlage_PN_TemplateStrategy getInstance()
+    {
         if (instance == null)
         {
             synchronized (Anlage_PN_TemplateStrategy.class)
@@ -29,37 +29,11 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
         return instance;
     }
 
-    public List<Schicht> formatSchichtList(List<Schicht> schichtListe){
-
-        List<Schicht> schichtList = new ArrayList<>();
-        for (Schicht schicht : schichtListe)
-        {
-            try
-            {
-                schichtList.add((Schicht) schicht.clone());
-            } catch (CloneNotSupportedException e)
-            {
-                e.printStackTrace();
-            }
-        }
-        for (int i = 0; i < schichtList.size(); i++)
-        {
-            if ("GOB".equals(schichtList.get(i).getInformation("SCHICHT_AUFSCHLUSS"))){
-                if (schichtList.get(i).getInformation("SCHICHT_ABFALLART").equals(schichtList.get(i+1).getInformation("SCHICHT_ABFALLART")))
-                {
-                    schichtList.get(i+1).setInformation("SCHICHT_TIEFE_START", schichtList.get(i).getInformation("SCHICHT_TIEFE_START"));
-                    schichtList.get(i+1).setInformation("SCHICHT_KOERNUNG", "");
-                    schichtList.remove(schichtList.get(i));
-                    i--;
-                }
-            }
-        }
-        return schichtList;
-    }
-
     @Override
     public void buildHtmlTable(final List<Erkundungsstelle> data)
     {
+        int counter = 1;
+
         HtmlTable table = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
                 .appendAttribute("width", "605")
@@ -80,7 +54,8 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
             for (Schicht schicht : schichtList)
             {
 
-                if (rowCounter >= 20){
+                if (rowCounter >= 20)
+                {
                     stringBuilder.append(table.appendTag())
                             .append("<br>")
                             .append("<br>");
@@ -135,7 +110,7 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
                 HtmlCell cell8 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendContent(schicht.getInformation("SCHICHT_FARBE"))
-                        .appendContent(new HtmlText.Builder().appendAttribute("class","Normal").appendContent(schicht.getInformation("SCHICHT_GERUCH")).build().appendTag())
+                        .appendContent(new HtmlText.Builder().appendAttribute("class", "Normal").appendContent(schicht.getInformation("SCHICHT_GERUCH")).build().appendTag())
                         .build();
 
                 HtmlCell cell9 = new HtmlCell.Builder()
@@ -159,7 +134,7 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
                         .appendContent(cell1.appendTag())
                         .appendContent(cell2.appendTag())
                         .appendContent(cell3.appendTag())
- //                       .appendContent(cell4.appendTag())
+                        //                       .appendContent(cell4.appendTag())
                         .appendContent(cell5.appendTag())
                         .appendContent(cell6.appendTag())
                         .appendContent(cell7.appendTag())
@@ -180,12 +155,16 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
         setHtmlTable(stringBuilder.toString());
     }
 
-
-
     @Override
     public void buildHtmlTable(final Erkundungsstelle data)
     {
 
+    }
+
+    @Override
+    public String getExportFileName()
+    {
+        return "PN_Tabelle.html";
     }
 
     @Override
@@ -209,7 +188,7 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "105")
                 .appendContent("Behältnis")
-                .appendContent(new HtmlText.Builder().appendAttribute("class","Normal").appendContent("Vol.").build().appendTag())
+                .appendContent(new HtmlText.Builder().appendAttribute("class", "Normal").appendContent("Vol.").build().appendTag())
                 .build();
 
 //        HtmlTableHeader cell4 = new HtmlTableHeader.Builder()
@@ -222,7 +201,7 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendContent("Haufwerk")
-                .appendContent(new HtmlText.Builder().appendAttribute("class","Normal").appendContent("Vol.").build().appendTag())
+                .appendContent(new HtmlText.Builder().appendAttribute("class", "Normal").appendContent("Vol.").build().appendTag())
                 .build();
 
         HtmlTableHeader cell6 = new HtmlTableHeader.Builder()
@@ -238,7 +217,7 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendAttribute("width", "76")
                 .appendAttribute("rowspan", "2")
                 .appendContent("Farbe")
-                .appendContent(new HtmlText.Builder().appendAttribute("class","Normal").appendContent("Geruch").build().appendTag())
+                .appendContent(new HtmlText.Builder().appendAttribute("class", "Normal").appendContent("Geruch").build().appendTag())
                 .build();
 
         HtmlTableHeader cell8 = new HtmlTableHeader.Builder()
@@ -299,7 +278,7 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendContent(cell1.appendTag())
                 .appendContent(cell2.appendTag())
                 .appendContent(cell3.appendTag())
-       //         .appendContent(cell4.appendTag())
+                //         .appendContent(cell4.appendTag())
                 .appendContent(cell5.appendTag())
                 .appendContent(cell6.appendTag())
                 .appendContent(cell7.appendTag())
@@ -310,12 +289,12 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
 
         HtmlRow row2 = new HtmlRow.Builder()
                 .appendAttribute("class", "NormalHeaderUnits")
-             //   .appendContent(cell21.appendTag())
+                //   .appendContent(cell21.appendTag())
                 .appendContent(cell22.appendTag())
                 .appendContent(cell23.appendTag())
-              //  .appendContent(cell24.appendTag())
+                //  .appendContent(cell24.appendTag())
                 .appendContent(cell25.appendTag())
-            //    .appendContent(cell26.appendTag())
+                //    .appendContent(cell26.appendTag())
                 .build();
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -325,9 +304,33 @@ public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
         return stringBuilder.toString();
     }
 
-    @Override
-    public String getExportFileName()
+    public List<Schicht> formatSchichtList(List<Schicht> schichtListe)
     {
-        return "PN_Tabelle.html";
+
+        List<Schicht> schichtList = new ArrayList<>();
+        for (Schicht schicht : schichtListe)
+        {
+            try
+            {
+                schichtList.add((Schicht) schicht.clone());
+            } catch (CloneNotSupportedException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        for (int i = 0 ; i < schichtList.size() ; i++)
+        {
+            if ("GOB".equals(schichtList.get(i).getInformation("SCHICHT_AUFSCHLUSS")))
+            {
+                if (schichtList.get(i).getInformation("SCHICHT_ABFALLART").equals(schichtList.get(i + 1).getInformation("SCHICHT_ABFALLART")))
+                {
+                    schichtList.get(i + 1).setInformation("SCHICHT_TIEFE_START", schichtList.get(i).getInformation("SCHICHT_TIEFE_START"));
+                    schichtList.get(i + 1).setInformation("SCHICHT_KOERNUNG", "");
+                    schichtList.remove(schichtList.get(i));
+                    i--;
+                }
+            }
+        }
+        return schichtList;
     }
 }

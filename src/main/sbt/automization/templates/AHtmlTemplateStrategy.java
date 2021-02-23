@@ -1,13 +1,15 @@
 package sbt.automization.templates;
 
+import sbt.automization.util.html.Html;
 import sbt.automization.util.html.HtmlBody;
 import sbt.automization.util.html.HtmlDiv;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-import sbt.automization.util.html.Html;
-
-abstract class AHtmlTemplateStrategy implements IHtmlTemplateStrategy {
+abstract class AHtmlTemplateStrategy implements IHtmlTemplateStrategy
+{
     static final String HTML_BODY_STYLE_ATTRIBUTE = "'tab-interval:35.4pt;word-wrap:break-word'";
     static final String HTML_ATTRIBUTE_XMLNSO = "\"urn:schemas-microsoft-com:office:office\"";
     static final String HTML_ATTRIBUTE_XMLNS = "\"http://www.w3.org/TR/REC-html40\"";
@@ -27,7 +29,8 @@ abstract class AHtmlTemplateStrategy implements IHtmlTemplateStrategy {
 
     private String htmlTable;
 
-    public String buildHtmlTemplate() {
+    public String buildHtmlTemplate()
+    {
 
         HtmlDiv div = new HtmlDiv.Builder()
                 .appendAttribute("class", "WordSection1")
@@ -51,50 +54,60 @@ abstract class AHtmlTemplateStrategy implements IHtmlTemplateStrategy {
         return template.appendTag();
     }
 
-    String getHtmlHead() {
+    String getHtmlHead()
+    {
 
         InputStreamReader inputStreamReader = null;
         BufferedReader bufferedReader = null;
         StringBuilder stringBuilder = new StringBuilder();
-        try {
+        try
+        {
             // "/css.txt" sollte ausreichen als Pfad für die JAR
             inputStreamReader = new InputStreamReader(getClass().getResourceAsStream("/sbt-table-stylesheet.txt"));
             bufferedReader = new BufferedReader(inputStreamReader);
 
-            String line = null;
+            String line;
             String ls = System.getProperty("line.separator");
-            while ((line = bufferedReader.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null)
+            {
                 stringBuilder.append(line);
                 stringBuilder.append(ls);
             }
             // delete the last new line separator
             stringBuilder.deleteCharAt(stringBuilder.length() - 1);
 
-        } catch (FileNotFoundException e) {
+        } catch (IOException e)
+        {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (inputStreamReader != null) {
-                try {
+        } finally
+        {
+            if (inputStreamReader != null)
+            {
+                try
+                {
                     inputStreamReader.close();
+                    assert bufferedReader != null;
                     bufferedReader.close();
-                } catch (IOException e) {
+                } catch (IOException e)
+                {
                     e.printStackTrace();
                 }
-            } else {
-                return "<head></head>";
+            } else
+            {
+                stringBuilder.append("<head></head>");
             }
         }
         return stringBuilder.toString();
     }
 
-    void setHtmlTable(final String htmlTable) {
-        this.htmlTable = htmlTable;
+    String getHtmlTable()
+    {
+        return htmlTable;
     }
 
-    String getHtmlTable() {
-        return htmlTable;
+    void setHtmlTable(final String htmlTable)
+    {
+        this.htmlTable = htmlTable;
     }
 
     abstract String setHtmlTableHeader();
