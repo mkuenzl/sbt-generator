@@ -170,7 +170,7 @@ public final class TextFormatUtil
 		}
 
         String erk_variable_footnote = erkundungsstelle.getInformation("ERK_VARIABLE_FOOTNOTE");
-        if (erk_variable_footnote != null && !erk_variable_footnote.equals("#"))
+        if (erk_variable_footnote != null && !erk_variable_footnote.equals("#") && !erk_variable_footnote.equals("-"))
         {
             stringBuilder.append(new HtmlText.Builder()
                     .appendAttribute("class", "Normal")

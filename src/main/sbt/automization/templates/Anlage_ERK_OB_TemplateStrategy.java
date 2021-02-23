@@ -16,16 +16,16 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
     private String aufschluss = "";
 
     @Override
-    public void buildHtmlTable(final List<Erkundungsstelle> data)
+    public void buildHtmlTable(final List<Erkundungsstelle> erkundungsstellen)
     {
     }
 
     @Override
-    public void buildHtmlTable(final Erkundungsstelle data)
+    public void buildHtmlTable(final Erkundungsstelle erkundungsstelle)
     {
-        aufschluss = data.getInformation("ERK_AUFSCHLUSS_OB");
+        aufschluss = erkundungsstelle.getInformation("ERK_AUFSCHLUSS_OB");
 
-        HtmlTable table = new HtmlTable.Builder()
+        HtmlTable tableErkOb = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
                 .appendAttribute("width", "605")
                 .appendAttribute("border", "1")
@@ -35,7 +35,7 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendContent(setHtmlTableHeader())
                 .build();
 
-        for (Schicht schicht : data.getSchichtList())
+        for (Schicht schicht : erkundungsstelle.getSchichtList())
         {
             if ("GOB".equals(schicht.getInformation("SCHICHT_AUFSCHLUSS")))
             {
@@ -66,22 +66,18 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
                 String schicht_pech = schicht.getInformation("SCHICHT_PECH");
                 HtmlCell cellPech = HtmlCellFormatUtil.formatPech(schicht_pech);
 
+                //LAGA RC
+                String chemie_laga_rc = schicht.getInformation("CHEMIE_LAGA_RC");
+                HtmlCell cellLAGARC = HtmlCellFormatUtil.formatPech(chemie_laga_rc);
+
+                //TL GESTEIN
+                String chemie_tlgestein = schicht.getInformation("CHEMIE_TLGESTEIN");
+                HtmlCell cellTLGESTEIN = HtmlCellFormatUtil.formatPech(chemie_tlgestein);
+
                 //RuK
                 HtmlCell cellRUK = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
                         .appendContent(schicht.getInformation("SCHICHT_RUK"))
-                        .build();
-
-                //LP?
-                HtmlCell cellEmpty1 = new HtmlCell.Builder()
-                        .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent("")
-                        .build();
-
-                //LP?
-                HtmlCell cellEmpty2 = new HtmlCell.Builder()
-                        .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent("")
                         .build();
 
                 //Notiz
@@ -90,27 +86,27 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
                         .appendContent(schicht.getInformation("SCHICHT_NOTIZ"))
                         .build();
 
-                HtmlRow row = new HtmlRow.Builder()
+                HtmlRow schichtRow = new HtmlRow.Builder()
                         .appendAttribute("class", "Normal")
                         .appendContent(cellSchichtArt.appendTag())
                         .appendContent(cellDicke.appendTag())
                         .appendContent(cellTiefe.appendTag())
                         .appendContent(cellMUFV.appendTag())
                         .appendContent(cellPech.appendTag())
+                        .appendContent(cellLAGARC.appendTag())
+                        .appendContent(cellTLGESTEIN.appendTag())
                         .appendContent(cellRUK.appendTag())
-                        .appendContent(cellEmpty1.appendTag())
-                        .appendContent(cellEmpty2.appendTag())
                         .appendContent(cellBemerkungen.appendTag())
                         .build();
 
-                table.appendContent(row.appendTag());
+                tableErkOb.appendContent(schichtRow.appendTag());
             }
         }
 
-        //Belastungklasse Tiefe von-bis
+        //Belastungklasse empty call
         HtmlCell cellEmpty1 = new HtmlCell.Builder()
                 .appendAttribute("class", "NormalErkundungsstelle")
-                .appendAttribute("colspan", "5")        //Zelle geht über 3 Spalten
+                .appendAttribute("colspan", "5")        //Zelle geht über 5 Spalten
                 .appendContent("")
                 .build();
 
@@ -118,14 +114,14 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
         HtmlCell cellBelastungsklasse = new HtmlCell.Builder()
                 .appendAttribute("class", "NormalErkundungsstelle")
                 .appendAttribute("colspan", "2")
-                .appendContent(TextFormatUtil.formatBelastungsklasse(data))
+                .appendContent(TextFormatUtil.formatBelastungsklasse(erkundungsstelle))
                 .build();
 
         //Belastungsklassen Tafel
         HtmlCell cellBelastungklasseTafel = new HtmlCell.Builder()
                 .appendAttribute("class", "NormalErkundungsstelle")
                 .appendAttribute("colspan", "2")
-                .appendContent(data.getInformation("ERK_BELASTUNGSKLASSE_TAFEL"))
+                .appendContent(erkundungsstelle.getInformation("ERK_BELASTUNGSKLASSE_TAFEL"))
                 .build();
 
         HtmlRow rowBelastungklasse = new HtmlRow.Builder()
@@ -135,23 +131,23 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendContent(cellBelastungklasseTafel.appendTag())
                 .build();
 
-        table.appendContent(rowBelastungklasse.appendTag());
+        tableErkOb.appendContent(rowBelastungklasse.appendTag());
 
-        setHtmlTable(table.appendTag());
+        setHtmlTable(tableErkOb.appendTag());
     }
 
     @Override
     String setHtmlTableHeader()
     {
         //First Row
-        HtmlTableHeader cell11 = new HtmlTableHeader.Builder()
+        HtmlTableHeader cellGebundenerOberbauHeader = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "125")
                 .appendAttribute("align", "left")
                 .appendContent("Gebundener Oberbau")
                 .build();
 
-        HtmlTableHeader cell12 = new HtmlTableHeader.Builder()
+        HtmlTableHeader cellAufschlussverfahren = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("align", "left")
                 .appendAttribute("colspan", "8")        //Zelle geht über 3 Reihen
@@ -160,7 +156,7 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
 
 
         //Second Row
-        HtmlTableHeader cell21 = new HtmlTableHeader.Builder()
+        HtmlTableHeader cellSchichtArt = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("align", "left")
                 .appendAttribute("width", "125")
@@ -168,53 +164,53 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
                 .appendContent("Art der Schicht")
                 .build();
 
-        HtmlTableHeader cell22 = new HtmlTableHeader.Builder()
+        HtmlTableHeader cellDicke = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendContent("Dicke")
                 .build();
 
-        HtmlTableHeader cell23 = new HtmlTableHeader.Builder()
+        HtmlTableHeader cellTiefe = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendContent("Tiefe")
                 .build();
 
-        HtmlTableHeader cell24 = new HtmlTableHeader.Builder()
+        HtmlTableHeader cellMufv = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendAttribute("rowspan", "2")
                 .appendContent("MUFV")
                 .build();
 
-        HtmlTableHeader cell25 = new HtmlTableHeader.Builder()
+        HtmlTableHeader cellPech = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendAttribute("rowspan", "2")
                 .appendContent("PECH")
                 .build();
 
-        HtmlTableHeader cell26 = new HtmlTableHeader.Builder()
+        HtmlTableHeader cellLAGARC = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("width", "60")
+                .appendAttribute("rowspan", "2")
+                .appendContent("LAGA RC")
+                .build();
+
+        HtmlTableHeader cellTLGe = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("width", "60")
+                .appendAttribute("rowspan", "2")
+                .appendContent("TL Ge.")
+                .build();
+
+        HtmlTableHeader cellRUK = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendContent("RuK")
                 .build();
 
-        HtmlTableHeader cell27 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "60")
-                .appendAttribute("rowspan", "2")
-                .appendContent("")
-                .build();
-
-        HtmlTableHeader cell28 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "60")
-                .appendAttribute("rowspan", "2")
-                .appendContent("")
-                .build();
-
-        HtmlTableHeader cell29 = new HtmlTableHeader.Builder()
+        HtmlTableHeader cellNotiz = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendAttribute("rowspan", "2")
@@ -228,75 +224,53 @@ class Anlage_ERK_OB_TemplateStrategy extends AHtmlTemplateStrategy
 //                .appendContent("-")
 //                .build();
 
-        HtmlTableHeader cell32 = new HtmlTableHeader.Builder()
+        HtmlTableHeader cellDickeCm = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendContent("cm")
                 .build();
 
-        HtmlTableHeader cell33 = new HtmlTableHeader.Builder()
+        HtmlTableHeader cellTiefeCm = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendContent("cm")
                 .build();
 
-//        HtmlTableHeader cell34 = new HtmlTableHeader.Builder()
-//                .appendAttribute("class", "NormalTableHeader")
-//                .appendContent("-")
-//                .build();
-//
-//        HtmlTableHeader cell35 = new HtmlTableHeader.Builder()
-//                .appendAttribute("class", "NormalTableHeader")
-//                .appendContent("-")
-//                .build();
 
-        HtmlTableHeader cell36 = new HtmlTableHeader.Builder()
+
+        HtmlTableHeader cellRukCGrad = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendContent("°C")
                 .build();
 
-//        HtmlTableHeader cell37 = new HtmlTableHeader.Builder()
-//                .appendAttribute("class", "NormalTableHeader")
-//                .build();
-
-//        HtmlTableHeader cell38 = new HtmlTableHeader.Builder()
-//                .appendAttribute("class", "NormalTableHeader")
-//                .appendContent("-")
-//                .build();
-
-        HtmlRow row1 = new HtmlRow.Builder()
+        HtmlRow firstHeaderRow = new HtmlRow.Builder()
                 .appendAttribute("class", "NormalHeader")
-                .appendContent(cell11.appendTag())
-                .appendContent(cell12.appendTag())
+                .appendContent(cellGebundenerOberbauHeader.appendTag())
+                .appendContent(cellAufschlussverfahren.appendTag())
                 .build();
 
-        HtmlRow row2 = new HtmlRow.Builder()
+        HtmlRow secondHeaderRow = new HtmlRow.Builder()
                 .appendAttribute("class", "NormalHeader")
-                .appendContent(cell21.appendTag())
-                .appendContent(cell22.appendTag())
-                .appendContent(cell23.appendTag())
-                .appendContent(cell24.appendTag())
-                .appendContent(cell25.appendTag())
-                .appendContent(cell26.appendTag())
-                .appendContent(cell27.appendTag())
-                .appendContent(cell28.appendTag())
-                .appendContent(cell29.appendTag())
+                .appendContent(cellSchichtArt.appendTag())
+                .appendContent(cellDicke.appendTag())
+                .appendContent(cellTiefe.appendTag())
+                .appendContent(cellMufv.appendTag())
+                .appendContent(cellPech.appendTag())
+                .appendContent(cellLAGARC.appendTag())
+                .appendContent(cellTLGe.appendTag())
+                .appendContent(cellRUK.appendTag())
+                .appendContent(cellNotiz.appendTag())
                 .build();
 
-        HtmlRow row3 = new HtmlRow.Builder()
+        HtmlRow thirdHeaderRow = new HtmlRow.Builder()
                 .appendAttribute("class", "NormalHeaderUnits")
-                //  .appendContent(cell31.appendTag())
-                .appendContent(cell32.appendTag())
-                .appendContent(cell33.appendTag())
-                //  .appendContent(cell34.appendTag())
-                //   .appendContent(cell35.appendTag())
-                .appendContent(cell36.appendTag())
-                //   .appendContent(cell37.appendTag())
-                //   .appendContent(cell38.appendTag())
+                .appendContent(cellDickeCm.appendTag())
+                .appendContent(cellTiefeCm.appendTag())
+                .appendContent(cellRukCGrad.appendTag())
                 .build();
 
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(row1.appendTag())
-                .append(row2.appendTag())
-                .append(row3.appendTag());
+        stringBuilder.append(firstHeaderRow.appendTag())
+                .append(secondHeaderRow.appendTag())
+                .append(thirdHeaderRow.appendTag());
 
         return stringBuilder.toString();
     }

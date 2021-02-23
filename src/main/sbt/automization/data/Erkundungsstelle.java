@@ -59,7 +59,9 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
 
     public String getInformation(String key)
     {
-        return dataMap.get(key);
+        String s = dataMap.get(key);
+        if (s == null || s.equals("")) return "-";
+        return s;
     }
 
     public void addSchicht(Schicht schicht)

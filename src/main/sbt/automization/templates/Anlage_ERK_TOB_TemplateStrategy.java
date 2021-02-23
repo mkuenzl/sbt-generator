@@ -80,8 +80,10 @@ class Anlage_ERK_TOB_TemplateStrategy extends AHtmlTemplateStrategy
                 //LP_DYN
                 HtmlCell cell8 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(data.getInformation("ERK_LP_EV2"))
-                        .appendContent("")
+                        .appendContent(new HtmlText.Builder().appendAttribute("class", "Normal")
+                                .appendContent(data.getInformation("ERK_LP_EV2"))
+                                .build()
+                                .appendTag())
                         .appendContent(new HtmlText.Builder().appendAttribute("class", "Normal")
                                 .appendContent(data.getInformation("ERK_LP_EV15"))
                                 .build()
