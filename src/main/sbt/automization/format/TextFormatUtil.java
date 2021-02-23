@@ -169,17 +169,41 @@ public final class TextFormatUtil
 					.appendTag());
 		}
 
-        String erk_variable_footnote = erkundungsstelle.getInformation("ERK_VARIABLE_FOOTNOTE");
-        if (erk_variable_footnote != null && !erk_variable_footnote.equals("#") && !erk_variable_footnote.equals("-"))
+        String erk_variable_footnote1 = erkundungsstelle.getInformation("ERK_VARIABLE_FOOTNOTE1");
+        if (erk_variable_footnote1 != null && !erk_variable_footnote1.equals("#") && !erk_variable_footnote1.equals("-"))
         {
             stringBuilder.append(new HtmlText.Builder()
                     .appendAttribute("class", "Normal")
                     .appendContent(String.valueOf(footnoteCounter++))
                     .appendContent(".) ")
-                    .appendContent(erk_variable_footnote)
+                    .appendContent(erk_variable_footnote1)
                     .build()
                     .appendTag());
         }
+
+		String erk_variable_footnote2 = erkundungsstelle.getInformation("ERK_VARIABLE_FOOTNOTE2");
+		if (erk_variable_footnote2 != null && !erk_variable_footnote2.equals("#") && !erk_variable_footnote2.equals("-"))
+		{
+			stringBuilder.append(new HtmlText.Builder()
+					.appendAttribute("class", "Normal")
+					.appendContent(String.valueOf(footnoteCounter++))
+					.appendContent(".) ")
+					.appendContent(erk_variable_footnote2)
+					.build()
+					.appendTag());
+		}
+
+		String erk_variable_footnote3 = erkundungsstelle.getInformation("ERK_VARIABLE_FOOTNOTE3");
+		if (erk_variable_footnote3 != null && !erk_variable_footnote3.equals("#") && !erk_variable_footnote3.equals("-"))
+		{
+			stringBuilder.append(new HtmlText.Builder()
+					.appendAttribute("class", "Normal")
+					.appendContent(String.valueOf(footnoteCounter++))
+					.appendContent(".) ")
+					.appendContent(erk_variable_footnote3)
+					.build()
+					.appendTag());
+		}
 
 
 		if (! "".equals(erkundungsstelle.getInformation("ERK_LP")))
