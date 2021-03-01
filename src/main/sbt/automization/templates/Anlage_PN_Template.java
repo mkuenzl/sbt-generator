@@ -8,21 +8,21 @@ import sbt.automization.util.html.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Anlage_PN_TemplateStrategy extends AHtmlTemplateStrategy
+public final class Anlage_PN_Template extends AHtmlTemplate
 {
-    private static Anlage_PN_TemplateStrategy instance;
+    private static Anlage_PN_Template instance;
 
-    private Anlage_PN_TemplateStrategy() {}
+    private Anlage_PN_Template() {}
 
-    public static Anlage_PN_TemplateStrategy getInstance()
+    public static Anlage_PN_Template getInstance()
     {
         if (instance == null)
         {
-            synchronized (Anlage_PN_TemplateStrategy.class)
+            synchronized (Anlage_PN_Template.class)
             {
                 if (instance == null)
                 {
-                    instance = new Anlage_PN_TemplateStrategy();
+                    instance = new Anlage_PN_Template();
                 }
             }
         }

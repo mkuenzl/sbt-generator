@@ -2,7 +2,7 @@ package sbt.automization.export;
 
 import sbt.automization.TableEngine;
 import sbt.automization.data.Erkundungsstelle;
-import sbt.automization.templates.IHtmlTemplateStrategy;
+import sbt.automization.templates.IHtmlTemplate;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -11,9 +11,9 @@ import java.util.List;
 public abstract class ATemplateExportStrategy
 {
 
-    final IHtmlTemplateStrategy strategy;
+    final IHtmlTemplate strategy;
 
-    ATemplateExportStrategy(final IHtmlTemplateStrategy strategy)
+    ATemplateExportStrategy(final IHtmlTemplate strategy)
     {
         this.strategy = strategy;
     }

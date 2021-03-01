@@ -11,7 +11,7 @@ import sbt.automization.util.html.HtmlTableHeader;
 
 import java.util.List;
 
-class Anlage_ERK_UG_TemplateStrategy extends AHtmlTemplateStrategy
+class Anlage_ERK_UG_Template extends AHtmlTemplate
 {
     private String aufschluss = "";
 

@@ -8,21 +8,21 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class Bericht_OB_TemplateStrategy extends AHtmlTemplateStrategy
+public final class Bericht_OB_Template extends AHtmlTemplate
 {
-    private static Bericht_OB_TemplateStrategy instance;
+    private static Bericht_OB_Template instance;
 
-    private Bericht_OB_TemplateStrategy() {}
+    private Bericht_OB_Template() {}
 
-    public static Bericht_OB_TemplateStrategy getInstance()
+    public static Bericht_OB_Template getInstance()
     {
         if (instance == null)
         {
-            synchronized (Bericht_OB_TemplateStrategy.class)
+            synchronized (Bericht_OB_Template.class)
             {
                 if (instance == null)
                 {
-                    instance = new Bericht_OB_TemplateStrategy();
+                    instance = new Bericht_OB_Template();
                 }
             }
         }
@@ -39,6 +39,7 @@ public final class Bericht_OB_TemplateStrategy extends AHtmlTemplateStrategy
     public void buildHtmlTable(final List<Erkundungsstelle> data)
     {
         //Sort Data nach OB
+
         HtmlTable table = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
                 .appendAttribute("border", "1")

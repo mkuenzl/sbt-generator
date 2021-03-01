@@ -348,6 +348,9 @@ public final class TextFormatUtil
 			case "F":
 				kindText = "Mudden";
 				break;
+			case "Bankettandeckung":
+				kindText = "Bankettandeckung";
+				break;
 			default:
 				kindText = "Invalid Bodengruppe";
 				break;

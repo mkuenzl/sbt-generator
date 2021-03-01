@@ -7,7 +7,7 @@ import sbt.automization.util.html.*;
 
 import java.util.List;
 
-class Anlage_ERK_TOB_TemplateStrategy extends AHtmlTemplateStrategy
+class Anlage_ERK_TOB_Template extends AHtmlTemplate
 {
 	private String aufschluss = "";
 

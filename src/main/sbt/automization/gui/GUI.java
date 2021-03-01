@@ -2,7 +2,7 @@ package sbt.automization.gui;
 
 import sbt.automization.TableEngine;
 import sbt.automization.export.HtmlTemplateExportStrategy;
-import sbt.automization.templates.IHtmlTemplateStrategy;
+import sbt.automization.templates.IHtmlTemplate;
 import sbt.automization.util.Parser;
 
 import javax.swing.*;
@@ -208,7 +208,7 @@ public class GUI extends JFrame implements ActionListener
 
             TableEngine database = new TableEngine(parser.parse(), csv.getParent());
 
-            for (IHtmlTemplateStrategy strategy : StrategyStorage.getInstance().getStrategies())
+            for (IHtmlTemplate strategy : StrategyStorage.getInstance().getStrategies())
             {
                 database.export(new HtmlTemplateExportStrategy(strategy));
             }

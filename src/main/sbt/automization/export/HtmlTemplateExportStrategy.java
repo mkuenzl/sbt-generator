@@ -3,13 +3,13 @@ package sbt.automization.export;
 
 import sbt.automization.TableEngine;
 import sbt.automization.data.Erkundungsstelle;
-import sbt.automization.templates.IHtmlTemplateStrategy;
+import sbt.automization.templates.IHtmlTemplate;
 
 import java.util.List;
 
 public class HtmlTemplateExportStrategy extends ATemplateExportStrategy
 {
-    public HtmlTemplateExportStrategy(final IHtmlTemplateStrategy strategy)
+    public HtmlTemplateExportStrategy(final IHtmlTemplate strategy)
     {
         super(strategy);
     }

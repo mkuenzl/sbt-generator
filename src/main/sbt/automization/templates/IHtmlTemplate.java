@@ -5,7 +5,7 @@ import sbt.automization.data.Erkundungsstelle;
 
 import java.util.List;
 
-public interface IHtmlTemplateStrategy
+public interface IHtmlTemplate
 {
     String buildHtmlTemplate();
 
