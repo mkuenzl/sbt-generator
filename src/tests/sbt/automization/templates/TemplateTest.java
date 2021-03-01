@@ -43,4 +43,28 @@ public class TemplateTest
         HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Anlage_PN_Template.getInstance());
         htmlTemplateExportStrategy.export(erkundungsstellen);
     }
+
+    @Test
+    public void createBerichtOBTemplate(){
+        HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Bericht_OB_Template.getInstance());
+        htmlTemplateExportStrategy.export(erkundungsstellen);
+    }
+
+    @Test
+    public void createBerichtTOBTemplate(){
+        HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Bericht_TOB_Template.getInstance());
+        htmlTemplateExportStrategy.export(erkundungsstellen);
+    }
+
+    @Test
+    public void createBerichtUGTemplate(){
+        HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Bericht_UG_Template.getInstance());
+        htmlTemplateExportStrategy.export(erkundungsstellen);
+    }
+
+    @Test
+    public void createBerichtOHTemplate(){
+        HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Bericht_OH_Template.getInstance());
+        htmlTemplateExportStrategy.export(erkundungsstellen);
+    }
 }
