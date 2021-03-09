@@ -381,7 +381,7 @@ public class ERKCreationTestUtil
 		schicht5_2_Daten.put("CHEMIE_PCB", "");
 		schicht5_2_Daten.put("CHEMIE_BTEX", "");
 
-		schicht5_1_TOB = new Schicht(schicht5_2_Daten);
+		schicht5_2_TOB = new Schicht(schicht5_2_Daten);
 
 		Map<String, String> schicht6Daten = new HashMap<>();
 

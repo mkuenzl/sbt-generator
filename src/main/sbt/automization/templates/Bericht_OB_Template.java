@@ -77,7 +77,7 @@ public final class Bericht_OB_Template extends AHtmlTemplate
 		{
 			HtmlCell htmlCell_ERK_ID = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
-					.appendAttribute("width", "50")
+					.appendAttribute("width", "60")
 					.appendContent(erkundungsstelle.getInformation("ERK_ID"))
 					.build();
 
@@ -181,7 +181,7 @@ public final class Bericht_OB_Template extends AHtmlTemplate
 			HtmlCell htmlCell = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "50")
-					.appendContent("")
+					.appendContent(TextFormatUtil.presentMultipleSchichtInformationRUK(erkundungsstelle, "GOB"))
 					.build();
 
 			rowERK_RUK.appendContent(htmlCell.appendTag());
@@ -273,9 +273,12 @@ public final class Bericht_OB_Template extends AHtmlTemplate
 
 	private String buildQuerschnittRows(final List<Erkundungsstelle> erkundungsstellen, boolean pech)
 	{
-		StringBuilder querschnittBuilder = new StringBuilder();
+		//TODO Boolean variable wenn keine Schicht pechhaltig oder pechfrei ist dann kompletten querschnitt weglassen
+		//Test den Kram
 
-		boolean empty = true;
+		StringBuilder querschnittBuilder = new StringBuilder();
+		boolean areThereAnythingToBuild = false;
+
 		String querschnitt;
 		String dicke;
 		String mufv;
@@ -356,6 +359,8 @@ public final class Bericht_OB_Template extends AHtmlTemplate
 		for (Erkundungsstelle erkundungsstelle :
 				erkundungsstellen)
 		{
+			boolean empty = true;
+
 			List<Schicht> gob = erkundungsstelle.getSchichtAufschluss("GOB");
 			if (gob != null) {
 				double d = 0;
@@ -385,12 +390,12 @@ public final class Bericht_OB_Template extends AHtmlTemplate
 				{
 					dicke = String.valueOf(d);
 					empty = false;
+					areThereAnythingToBuild = true;
 				}
 			}
 
 			if (empty)
 			{
-				querschnitt = "Pechhaltiger Querschnitt";
 				dicke = "-";
 				mufv = "-";
 				ruva = "-";
@@ -426,11 +431,15 @@ public final class Bericht_OB_Template extends AHtmlTemplate
 			rowERK_AVV_PECH.appendContent(htmlCell_AVV.appendTag());
 		}
 
-		querschnittBuilder.append(rowPECH_QUERSCHNITT.appendTag())
-				.append(rowERK_DICKE_PECH.appendTag())
-				.append(rowERK_MUFV_PECH.appendTag())
-				.append(rowERK_RUVA_PECH.appendTag())
-				.append(rowERK_AVV_PECH.appendTag());
+
+		if (areThereAnythingToBuild)
+		{
+			querschnittBuilder.append(rowPECH_QUERSCHNITT.appendTag())
+					.append(rowERK_DICKE_PECH.appendTag())
+					.append(rowERK_MUFV_PECH.appendTag())
+					.append(rowERK_RUVA_PECH.appendTag())
+					.append(rowERK_AVV_PECH.appendTag());
+		}
 
 		return querschnittBuilder.toString();
 	}

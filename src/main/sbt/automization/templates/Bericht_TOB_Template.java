@@ -1,7 +1,7 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.Erkundungsstelle;
-import sbt.automization.format.HtmlCellFormatUtil;
+import sbt.automization.data.Schicht;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
@@ -171,15 +171,20 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 			HtmlCell htmlCell_SCHICHTEN_KGV = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "60")
-					.appendContent("dummy")
+					.appendContent(TextFormatUtil.presentSchichtenKGVToB(erkundungsstelle))
 					.build();
 
 			rowSCHICHTEN_KGV.appendContent(htmlCell_SCHICHTEN_KGV.appendTag());
 
+			String gob_dicke = TextFormatUtil.formatErkAufschlussDicke(erkundungsstelle, "GOB");
+			String tob_dicke = TextFormatUtil.formatErkAufschlussDicke(erkundungsstelle, "TOB");
+
+			String gesamtDicke = String.valueOf(Double.parseDouble(gob_dicke) + Double.parseDouble(tob_dicke));
+
 			HtmlCell htmlCell_ERK_GESAMTDICKE = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "60")
-					.appendContent("dummy")
+					.appendContent(gesamtDicke)
 					.build();
 
 			rowERK_GESAMTDICKE.appendContent(htmlCell_ERK_GESAMTDICKE.appendTag());
@@ -292,7 +297,64 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 
 		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
 		{
+			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss("TOB");
 
+			HtmlCell htmlCell_CHEMIE_ID = new HtmlCell.Builder()
+					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("width", "60")
+					.appendContent(TextFormatUtil.presentMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_ID"))
+					.build();
+
+			HtmlCell htmlCell_CHEMIE_MUFV = new HtmlCell.Builder()
+					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("width", "60")
+					.appendContent(TextFormatUtil.presentMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_MUFV"))
+					.build();
+
+			HtmlCell htmlCell_CHEMIE_LAGA_BO = new HtmlCell.Builder()
+					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("width", "60")
+					.appendContent(TextFormatUtil.presentMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_LAGA_BO"))
+					.build();
+
+			HtmlCell htmlCell_CHEMIE_LAGA_RC = new HtmlCell.Builder()
+					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("width", "60")
+					.appendContent(TextFormatUtil.presentMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_LAGA_RC"))
+					.build();
+
+			HtmlCell htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG = new HtmlCell.Builder()
+					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("width", "60")
+					.appendContent(TextFormatUtil.presentMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_LAGARC_ORIENTIERUNGSWERT"))
+					.build();
+
+			HtmlCell htmlCell_CHEMIE_TL_GESTEIN = new HtmlCell.Builder()
+					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("width", "60")
+					.appendContent(TextFormatUtil.presentMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_TLGESTEIN"))
+					.build();
+
+			HtmlCell htmlCell_CHEMIE_DEPV = new HtmlCell.Builder()
+					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("width", "60")
+					.appendContent(TextFormatUtil.presentMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_DEPV"))
+					.build();
+
+			HtmlCell htmlCell_CHEMIE_ENTSCHEIDUNGSILFE = new HtmlCell.Builder()
+					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("width", "60")
+					.appendContent(TextFormatUtil.presentMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_ENTSCHEIDUNGSHILFE"))
+					.build();
+
+			rowCHEMIE_ID.appendContent(htmlCell_CHEMIE_ID.appendTag());
+			rowCHEMIE_MUFV.appendContent(htmlCell_CHEMIE_MUFV.appendTag());
+			rowCHEMIE_LAGA_BO.appendContent(htmlCell_CHEMIE_LAGA_BO.appendTag());
+			rowCHEMIE_LAGA_RC.appendContent(htmlCell_CHEMIE_LAGA_RC.appendTag());
+			rowCHEMIE_LAGA_RC_ORIENTIERUNG.appendContent(htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG.appendTag());
+			rowCHEMIE_TL_GESTEIN.appendContent(htmlCell_CHEMIE_TL_GESTEIN.appendTag());
+			rowCHEMIE_DEPV.appendContent(htmlCell_CHEMIE_DEPV.appendTag());
+			rowCHEMIE_ENTSCHEIDUNGSHILFE.appendContent(htmlCell_CHEMIE_ENTSCHEIDUNGSILFE.appendTag());
 		}
 
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())

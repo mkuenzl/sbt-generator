@@ -208,7 +208,6 @@ public final class TextFormatUtil
 
 		if (! "".equals(erkundungsstelle.getInformation("ERK_LP")))
 		{
-
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
 					.appendContent(String.valueOf(footnoteCounter++))
@@ -414,4 +413,135 @@ public final class TextFormatUtil
 
 		return formatedSchichtenMaterial.toString();
 	}
+
+	public static String presentSchichtenKGVToB(final Erkundungsstelle erkundungsstelle)
+	{
+		StringBuilder formatedSchichtenMaterial = new StringBuilder();
+
+		List<Schicht> tob = erkundungsstelle.getSchichtAufschluss("TOB");
+
+
+		int size = tob.size();
+		for (int i = 0 ; i < size ; i++)
+		{
+			Schicht schicht = tob.get(i);
+
+			String schicht_korngroessenverteilung = schicht.getInformation("SCHICHT_KORNGROESSENVERTEILUNG");
+			if (!"-".equals(schicht_korngroessenverteilung) && !"".equals(schicht_korngroessenverteilung)){
+				HtmlText text1 = new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent(NameFormatUtil.formatArt(schicht_korngroessenverteilung))
+						.build();
+
+				HtmlText text2 = new HtmlText.Builder()
+						.appendAttribute("class", "Normal6")
+						.appendContent("[T:")
+						.appendContent(schicht.getInformation("SCHICHT_TIEFE_START"))
+						.appendContent("-")
+						.appendContent(schicht.getInformation("SCHICHT_TIEFE_ENDE"))
+						.appendContent("]")
+						.build();
+
+				formatedSchichtenMaterial.append(text1.appendTag());
+				formatedSchichtenMaterial.append(text2.appendTag());
+
+//				if (i + 1 < size)
+//				{
+//					HtmlText textDivider = new HtmlText.Builder()
+//							.appendAttribute("class", "Normal")
+//							.appendContent("----------")
+//							.build();
+//
+//					formatedSchichtenMaterial.append(textDivider.appendTag());
+//				}
+			}
+		}
+
+		return formatedSchichtenMaterial.toString();
+	}
+
+	public static String presentMultipleSchichtInformation(final Erkundungsstelle erkundungsstelle, final String aufschluss, final String tag)
+	{
+		List<Schicht> tob = erkundungsstelle.getSchichtAufschluss(aufschluss);
+
+		StringBuilder stringBuilder = new StringBuilder();
+
+		for (Schicht schicht : tob)
+		{
+			String id = schicht.getInformation(tag);
+
+			if (!"-".equals(id) && !"".equals(id))
+			{
+				HtmlText text1 = new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent(id)
+						.build();
+
+				HtmlText text2 = new HtmlText.Builder()
+						.appendAttribute("class", "Normal6")
+						.appendContent("[T:")
+						.appendContent(schicht.getInformation("SCHICHT_TIEFE_START"))
+						.appendContent("-")
+						.appendContent(schicht.getInformation("SCHICHT_TIEFE_ENDE"))
+						.appendContent("]")
+						.build();
+
+				if (0 != stringBuilder.length())
+				{
+					HtmlText textDivider = new HtmlText.Builder()
+							.appendAttribute("class", "Normal")
+							.appendContent("----------")
+							.build();
+
+					stringBuilder.append(textDivider.appendTag());
+				}
+
+				stringBuilder.append(text1.appendTag())
+						.append(text2.appendTag());
+
+			}
+		}
+		return stringBuilder.toString();
+	}
+
+	public static String presentMultipleSchichtInformationRUK(final Erkundungsstelle erkundungsstelle, final String aufschluss)
+	{
+		List<Schicht> tob = erkundungsstelle.getSchichtAufschluss(aufschluss);
+
+		StringBuilder stringBuilder = new StringBuilder();
+
+		for (Schicht schicht : tob)
+		{
+			String ruk = schicht.getInformation("SCHICHT_RUK");
+
+			if (!"-".equals(ruk) && !"".equals(ruk))
+			{
+				HtmlText text1 = new HtmlText.Builder()
+						.appendAttribute("class", "Normal6")
+						.appendContent(schicht.getInformation("SCHICHT_ART"))
+						.build();
+
+				HtmlText text2 = new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent(ruk)
+						.build();
+
+				if (0 != stringBuilder.length())
+				{
+					HtmlText textDivider = new HtmlText.Builder()
+							.appendAttribute("class", "Normal")
+							.appendContent("----------")
+							.build();
+
+					stringBuilder.append(textDivider.appendTag());
+				}
+
+				stringBuilder.append(text1.appendTag())
+						.append(text2.appendTag());
+
+			}
+		}
+		return stringBuilder.toString();
+	}
+
 }

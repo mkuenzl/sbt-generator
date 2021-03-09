@@ -45,6 +45,12 @@ abstract class AHtml implements IHtmlCode
         }
     }
 
+    public boolean isWithoutContent()
+    {
+        if ("".equals(content)) return true;
+        return false;
+    }
+
     protected static abstract class BaseHtmlBuilder<T extends AHtml, B extends BaseHtmlBuilder>
     {
         protected T actualHtmlClass;
