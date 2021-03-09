@@ -3,19 +3,23 @@ package sbt.automization.format;
 import sbt.automization.data.Schicht;
 import sbt.automization.util.html.HtmlText;
 
-public class NameFormatUtil
+public final class NameFormatUtil
 {
 	//Gem. a. G. (NS)
-	public static String formatArt(final Schicht schicht)
+
+	/**
+	 * Formats different names for better visualisation in each template, replacement for automatic line breaks.
+	 * @param name
+	 * @return
+	 */
+	public static String formatArt(final String name)
 	{
-		String schicht_art = schicht.getInformation("SCHICHT_ART");
+		String formatedName = null;
 
-		String formatedArt = null;
-
-		if (schicht_art.contains("Gem"))
+		if (name.contains("Gem"))
 		{
 			//Gem. a. G. (NS)
-			String[] split = schicht_art.split(" ");
+			String[] split = name.split(" ");
 
 			HtmlText text1 = new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
@@ -26,9 +30,10 @@ public class NameFormatUtil
 					.appendContent(split[3])
 					.build();
 
-			formatedArt = text1.appendTag().concat(text2.appendTag());
-
+			formatedName = text1.appendTag().concat(text2.appendTag());
+		} else {
+			return name;
 		}
-		return formatedArt;
+		return formatedName;
 	}
 }

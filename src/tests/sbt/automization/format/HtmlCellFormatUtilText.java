@@ -41,16 +41,28 @@ public class HtmlCellFormatUtilText
 	{
 
 		Erkundungsstelle testErkundungsstelle1 = new ERKCreationTestUtil().getTestErkundungsstelle1();
-		HtmlCell htmlCell1 = HtmlCellFormatUtil.presentSchichtenToB(testErkundungsstelle1);
+		HtmlCell htmlCell1 = new HtmlCell.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent(TextFormatUtil.presentSchichtenToB(testErkundungsstelle1))
+				.build();
 
 		Erkundungsstelle testErkundungsstelle2 = new ERKCreationTestUtil().getTestErkundungsstelle2();
-		HtmlCell htmlCell2 = HtmlCellFormatUtil.presentSchichtenToB(testErkundungsstelle2);
+		HtmlCell htmlCell2 = new HtmlCell.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent(TextFormatUtil.presentSchichtenToB(testErkundungsstelle2))
+				.build();
 
 		Erkundungsstelle testErkundungsstelle3 = new ERKCreationTestUtil().getTestErkundungsstelle3();
-		HtmlCell htmlCell3 = HtmlCellFormatUtil.presentSchichtenToB(testErkundungsstelle3);
+		HtmlCell htmlCell3 = new HtmlCell.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent(TextFormatUtil.presentSchichtenToB(testErkundungsstelle3))
+				.build();
 
 		Erkundungsstelle testErkundungsstelle4 = new ERKCreationTestUtil().getTestErkundungsstelle4();
-		HtmlCell htmlCell4 = HtmlCellFormatUtil.presentSchichtenToB(testErkundungsstelle4);
+		HtmlCell htmlCell4 = new HtmlCell.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent(TextFormatUtil.presentSchichtenToB(testErkundungsstelle4))
+				.build();
 
 
 		HtmlRow htmlRow = new HtmlRow.Builder()

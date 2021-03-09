@@ -2,6 +2,7 @@ package sbt.automization.templates;
 
 import sbt.automization.data.Erkundungsstelle;
 import sbt.automization.format.HtmlCellFormatUtil;
+import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
@@ -190,7 +191,10 @@ public final class Example_Template extends AHtmlTemplate
 				.appendAttribute("cellpadding", "0")
 				.build();
 
-		HtmlCell htmlCell = HtmlCellFormatUtil.presentSchichtenToB(data.get(0));
+		HtmlCell htmlCell = new HtmlCell.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent(TextFormatUtil.presentSchichtenToB(data.get(0)))
+				.build();
 
 		HtmlRow htmlRow = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")

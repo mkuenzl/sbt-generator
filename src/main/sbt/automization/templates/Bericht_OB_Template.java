@@ -1,6 +1,8 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.Erkundungsstelle;
+import sbt.automization.data.Schicht;
+import sbt.automization.format.HtmlCellFormatUtil;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
@@ -98,6 +100,7 @@ public final class Bericht_OB_Template extends AHtmlTemplate
 		tableBericht.appendContent(rowERK_AUFSCHLUSS.appendTag());
 		tableBericht.appendContent(buildTechnischeMerkmale(erkundungsstellen));
 		tableBericht.appendContent(buildUmweltTechnischeMerkmale(erkundungsstellen));
+		//TODO
 		tableBericht.appendContent(buildQuerschnittRows(erkundungsstellen, false));
 		tableBericht.appendContent(buildQuerschnittRows(erkundungsstellen, true));
 
@@ -272,6 +275,7 @@ public final class Bericht_OB_Template extends AHtmlTemplate
 	{
 		StringBuilder querschnittBuilder = new StringBuilder();
 
+		boolean empty = true;
 		String querschnitt;
 		String dicke;
 		String mufv;
@@ -281,14 +285,14 @@ public final class Bericht_OB_Template extends AHtmlTemplate
 		if (pech)
 		{
 			querschnitt = "Pechhaltiger Querschnitt";
-			dicke = "7";
+			dicke = "-";
 			mufv = "gefährlich";
 			ruva = "B";
 			avv = "17 03 01*";
 		} else
 		{
 			querschnitt = "Pechfreier Querschnitt";
-			dicke = "7";
+			dicke = "-";
 			mufv = "nicht gefährlich";
 			ruva = "A";
 			avv = "17 03 02";
@@ -352,9 +356,45 @@ public final class Bericht_OB_Template extends AHtmlTemplate
 		for (Erkundungsstelle erkundungsstelle :
 				erkundungsstellen)
 		{
-			if (erkundungsstelle.getSchichtAufschluss("GOB") != null)
-			{
+			List<Schicht> gob = erkundungsstelle.getSchichtAufschluss("GOB");
+			if (gob != null) {
+				double d = 0;
 				//TODO
+				//Wie viele Schichten haben Pech und wie viele haben kein Pech
+				//Dicke anpassen
+				//Wenn eine Erkundungsstelle nicht keine pech freien / haltigen Schichten hat, dann "-"
+				for (Schicht schicht : gob) {
+					//TODO CHANGE TO TRUE & FALSE PECH
+					String schicht_dicke = schicht.getInformation("SCHICHT_DICKE");
+					schicht_dicke = schicht_dicke.replace(",", ".");
+					if (pech) {
+						//Zähle Dicke der pechhaltigen Schichten
+						if ("ja".equals(schicht.getInformation("SCHICHT_PECH"))) {
+							d += Integer.parseInt(schicht_dicke);
+						}
+					}
+					if (!pech)
+					{ //Zähle Dicke der pechfreien Schichten
+						if ("nein".equals(schicht.getInformation("SCHICHT_PECH"))) {
+							d += Double.parseDouble(schicht_dicke);
+						}
+					}
+				}
+
+				if (d > 0)
+				{
+					dicke = String.valueOf(d);
+					empty = false;
+				}
+			}
+
+			if (empty)
+			{
+				querschnitt = "Pechhaltiger Querschnitt";
+				dicke = "-";
+				mufv = "-";
+				ruva = "-";
+				avv = "-";
 			}
 
 			HtmlCell htmlCell_Dicke = new HtmlCell.Builder()
@@ -365,11 +405,7 @@ public final class Bericht_OB_Template extends AHtmlTemplate
 
 			rowERK_DICKE_PECH.appendContent(htmlCell_Dicke.appendTag());
 
-			HtmlCell htmlCell_MUFV = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
-					.appendAttribute("width", "50")
-					.appendContent(mufv)
-					.build();
+			HtmlCell htmlCell_MUFV = HtmlCellFormatUtil.formatChemie(mufv);
 
 			rowERK_MUFV_PECH.appendContent(htmlCell_MUFV.appendTag());
 

@@ -2,6 +2,7 @@ package sbt.automization.templates;
 
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import sbt.automization.data.Erkundungsstelle;
 import sbt.automization.export.HtmlTemplateExportStrategy;
@@ -18,6 +19,9 @@ public class TemplateTest
     {
         ERKCreationTestUtil erkCreationTestUtil = new ERKCreationTestUtil();
         erkundungsstellen.add(erkCreationTestUtil.getTestErkundungsstelle1());
+        erkundungsstellen.add(erkCreationTestUtil.getTestErkundungsstelle2());
+        erkundungsstellen.add(erkCreationTestUtil.getTestErkundungsstelle3());
+        erkundungsstellen.add(erkCreationTestUtil.getTestErkundungsstelle4());
     }
 
     @Test

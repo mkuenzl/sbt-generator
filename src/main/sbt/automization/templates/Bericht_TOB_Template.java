@@ -1,6 +1,8 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.Erkundungsstelle;
+import sbt.automization.format.HtmlCellFormatUtil;
+import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
@@ -73,7 +75,7 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 		{
 			HtmlCell htmlCell_ERK_ID = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
-					.appendAttribute("width", "50")
+					.appendAttribute("width", "60")
 					.appendContent(erkundungsstelle.getInformation("ERK_ID"))
 					.build();
 
@@ -81,7 +83,7 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 
 			HtmlCell htmlCell_ERK_AUFSCHLUSS = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
-					.appendAttribute("width", "50")
+					.appendAttribute("width", "60")
 					.appendContent(erkundungsstelle.getInformation("ERK_AUFSCHLUSS_TOB"))
 					.build();
 
@@ -112,16 +114,16 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 						.appendTag())
 				.build();
 
-		//Zonen Dicke 1 - Anzahl Schichten
-		HtmlRow rowSCHICHTE_DICKE = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Dicke Zonen")
-						.build()
-						.appendTag())
-				.build();
+//		//Zonen Dicke 1 - Anzahl Schichten
+//		HtmlRow rowSCHICHTE_DICKE = new HtmlRow.Builder()
+//				.appendAttribute("class", "Normal")
+//				.appendContent(new HtmlCell.Builder()
+//						.appendAttribute("class", "Normal")
+//						.appendAttribute("width", "100")
+//						.appendContent("Dicke Zonen")
+//						.build()
+//						.appendTag())
+//				.build();
 
 		//Zonen Material 1 - Anzahl Schichten
 		HtmlRow rowSCHICHTEN_MATERIAL = new HtmlRow.Builder()
@@ -158,9 +160,17 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 
 		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
 		{
+			HtmlCell htmlCell_SCHICHTEN_MATERIAL = new HtmlCell.Builder()
+					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("width", "60")
+					.appendContent(TextFormatUtil.presentSchichtenToB(erkundungsstelle))
+					.build();
+
+			rowSCHICHTEN_MATERIAL.appendContent(htmlCell_SCHICHTEN_MATERIAL.appendTag());
+
 			HtmlCell htmlCell_SCHICHTEN_KGV = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
-					.appendAttribute("width", "50")
+					.appendAttribute("width", "60")
 					.appendContent("dummy")
 					.build();
 
@@ -168,7 +178,7 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 
 			HtmlCell htmlCell_ERK_GESAMTDICKE = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
-					.appendAttribute("width", "50")
+					.appendAttribute("width", "60")
 					.appendContent("dummy")
 					.build();
 
@@ -177,7 +187,7 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 
 		techBuilder.append(rowTECHMERKMALE.appendTag())
 				.append(buildTechnischeMerkmaleEV(erkundungsstellen))
-				.append(rowSCHICHTE_DICKE.appendTag())
+//				.append(rowSCHICHTE_DICKE.appendTag())
 				.append(rowSCHICHTEN_MATERIAL.appendTag())
 				.append(rowSCHICHTEN_KGV.appendTag())
 				.append(rowERK_GESAMTDICKE.appendTag());

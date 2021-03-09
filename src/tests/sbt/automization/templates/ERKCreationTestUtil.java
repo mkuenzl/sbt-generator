@@ -71,7 +71,7 @@ public class ERKCreationTestUtil
 
 	public Erkundungsstelle getTestErkundungsstelle1()
 	{
-		buildErkDaten();
+		erkundungsstelle1.setDataMap(buildErkDaten());
 		buildSchichtDaten();
 		erkundungsstelle1.addSchicht(schicht1_GOB);
 		erkundungsstelle1.addSchicht(schicht2_GOB);
@@ -87,7 +87,7 @@ public class ERKCreationTestUtil
 
 	public Erkundungsstelle getTestErkundungsstelle2()
 	{
-		buildErkDaten();
+		erkundungsstelle2.setDataMap(buildErkDaten());
 		buildSchichtDaten();
 		erkundungsstelle2.addSchicht(schicht1_GOB);
 		erkundungsstelle2.addSchicht(schicht2_GOB);
@@ -100,7 +100,7 @@ public class ERKCreationTestUtil
 
 	public Erkundungsstelle getTestErkundungsstelle3()
 	{
-		buildErkDaten();
+		erkundungsstelle3.setDataMap(buildErkDaten());
 		buildSchichtDaten();
 		erkundungsstelle3.addSchicht(schicht1_GOB);
 		erkundungsstelle3.addSchicht(schicht2_GOB);
@@ -114,7 +114,7 @@ public class ERKCreationTestUtil
 
 	public Erkundungsstelle getTestErkundungsstelle4()
 	{
-		buildErkDaten();
+		erkundungsstelle4.setDataMap(buildErkDaten());
 		buildSchichtDaten();
 		erkundungsstelle4.addSchicht(schicht1_GOB);
 		erkundungsstelle4.addSchicht(schicht2_GOB);
@@ -125,7 +125,7 @@ public class ERKCreationTestUtil
 		return erkundungsstelle4;
 	}
 
-	private void buildErkDaten()
+	private Map<String, String> buildErkDaten()
 	{
 		Map<String, String> erkDaten = new HashMap<>();
 
@@ -144,7 +144,7 @@ public class ERKCreationTestUtil
 		erkDaten.put("ERK_BELASTUNGSKLASSE_TAFEL", "Tafel 1, Zeile 1");
 		erkDaten.put("ERK_LP", "");
 
-		erkundungsstelle1.setDataMap(erkDaten);
+		return erkDaten;
 	}
 
 	private void buildSchichtDaten()
@@ -239,7 +239,7 @@ public class ERKCreationTestUtil
 		schicht3Daten.put("SCHICHT_DICKE", "6");
 		schicht3Daten.put("SCHICHT_TIEFE_START", "6,5");
 		schicht3Daten.put("SCHICHT_TIEFE_ENDE", "12,5");
-		schicht3Daten.put("SCHICHT_PECH", "nein");
+		schicht3Daten.put("SCHICHT_PECH", "ja");
 		schicht3Daten.put("SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT", "");
 		schicht3Daten.put("SCHICHT_FARBE", "schwarz-grau");
 		schicht3Daten.put("SCHICHT_FEUCHTIGKEIT", "");
@@ -278,7 +278,7 @@ public class ERKCreationTestUtil
 		schicht4Daten.put("SCHICHT_DICKE", "5,5");
 		schicht4Daten.put("SCHICHT_TIEFE_START", "12,5");
 		schicht4Daten.put("SCHICHT_TIEFE_ENDE", "18");
-		schicht4Daten.put("SCHICHT_PECH", "nein");
+		schicht4Daten.put("SCHICHT_PECH", "");
 		schicht4Daten.put("SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT", "");
 		schicht4Daten.put("SCHICHT_FARBE", "schwarz-grau");
 		schicht4Daten.put("SCHICHT_FEUCHTIGKEIT", "");

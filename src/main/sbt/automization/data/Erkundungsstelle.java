@@ -77,6 +77,10 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
 
     public String getInformation(String key)
     {
+        if (dataMap == null)
+        {
+            return "Missing Values";
+        }
         String s = dataMap.get(key);
         if (s == null || s.equals("")) return "-";
         return s;

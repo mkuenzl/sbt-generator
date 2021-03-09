@@ -363,4 +363,55 @@ public final class TextFormatUtil
 
 		return kindText + " " + kind;
 	}
+
+	public static String presentSchichtenToB(final Erkundungsstelle erkundungsstelle)
+	{
+		StringBuilder formatedSchichtenMaterial = new StringBuilder();
+
+		List<Schicht> tob = erkundungsstelle.getSchichtAufschluss("TOB");
+
+
+		int size = tob.size();
+		for (int i = 0 ; i < size ; i++)
+		{
+			Schicht schicht = tob.get(i);
+
+			HtmlText text1 = new HtmlText.Builder()
+					.appendAttribute("class", "Normal")
+					.appendContent(NameFormatUtil.formatArt(schicht.getInformation("SCHICHT_ART")))
+					.build();
+
+			HtmlText text2 = new HtmlText.Builder()
+					.appendAttribute("class", "Normal6")
+					.appendContent(schicht.getInformation("SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT"))
+					.appendContent(" ")
+					.appendContent(schicht.getInformation("SCHICHT_KOERNUNG"))
+					.build();
+
+			HtmlText text3 = new HtmlText.Builder()
+					.appendAttribute("class", "Normal6")
+					.appendContent("[T:")
+					.appendContent(schicht.getInformation("SCHICHT_TIEFE_START"))
+					.appendContent("-")
+					.appendContent(schicht.getInformation("SCHICHT_TIEFE_ENDE"))
+					.appendContent("]")
+					.build();
+
+			formatedSchichtenMaterial.append(text1.appendTag());
+			formatedSchichtenMaterial.append(text2.appendTag());
+			formatedSchichtenMaterial.append(text3.appendTag());
+
+			if (i + 1 < size)
+			{
+				HtmlText textDivider = new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent("----------")
+						.build();
+
+				formatedSchichtenMaterial.append(textDivider.appendTag());
+			}
+		}
+
+		return formatedSchichtenMaterial.toString();
+	}
 }
