@@ -29,38 +29,44 @@
 			/* Style Definitions */
 			p.Normal, li.Normal, div.Normal
 			{
-			margin:0cm;
-			font-size:8.0pt;
-			font-family:"Arial",sans-serif;
+                margin:0cm;
+                font-size:8.0pt;
+                font-family:"Arial",sans-serif;
 			}
 			p.Normal7, li.Normal7, div.Normal7
             {
-            margin:0cm;
-            font-size:7.0pt;
-            font-family:"Arial",sans-serif;
+                margin:0cm;
+                font-size:7.0pt;
+                font-family:"Arial",sans-serif;
+            }
+            p.Normal6, li.Normal6, div.Normal6
+            {
+                margin:0cm;
+                font-size:6.0pt;
+                font-family:"Arial",sans-serif;
             }
 			span.Normal
 			{
-			font-size:8.0pt;
-			font-family:"Arial",sans-serif;
-			font-weight:normal; /*bold*/
-			text-decoration:underline;
-			text-underline:single;
+                font-size:8.0pt;
+                font-family:"Arial",sans-serif;
+                font-weight:normal; /*bold*/
+                text-decoration:underline;
+                text-underline:single;
 			}
 			span.ChemieWhite
 			{
-			font-size:8.0pt;
-			font-family:"Arial",sans-serif;
-			color:white;
-			font-weight:bold;
-			text-decoration:underline;
-			text-underline:single;
+                font-size:8.0pt;
+                font-family:"Arial",sans-serif;
+                color:white;
+                font-weight:bold;
+                text-decoration:underline;
+                text-underline:single;
 			}
 			p.Standard-Tabelle, li.Standard-Tabelle, div.Standard-Tabelle
 			{
-			margin:0cm;
-			font-size:8.0pt;
-			font-family:"Arial",sans-serif;
+                margin:0cm;
+                font-size:8.0pt;
+                font-family:"Arial",sans-serif;
 			}
 			div.WordSection1
 			{page:WordSection1;}
@@ -69,139 +75,165 @@
 			/* Style Definitions */
 			tr.Normal
 			{
-			page-break-inside:avoid;
-			height:1cm;
+                page-break-inside:avoid;
+                height:1cm;
 			}
+			tr.NormalInner
+            {
+                page-break-inside:avoid;
+            }
 			tr.NormalHeader
 			{
-			page-break-inside:avoid;
-			background:grey;
-			height:1.0cm;
+                page-break-inside:avoid;
+                background:grey;
+                height:1.0cm;
 			}
 			tr.NormalHeaderUnits
             {
-            page-break-inside:avoid;
-            background:grey;
-            height:0.5cm;
+                page-break-inside:avoid;
+                background:grey;
+                height:0.5cm;
             }
 			tr.NormalThin
 			{
-			page-break-inside:avoid;
-			height:0.7cm;
+                page-break-inside:avoid;
+                height:0.7cm;
 			}
 			td.Normal
 			{
-			border:solid windowtext .5pt;
-			background:white;
-			padding:0cm 1.4pt 0cm 3.4pt;
-			overflow:hidden;
+                border:solid windowtext .5pt;
+                background:white;
+                padding:0cm 1.4pt 0cm 3.4pt;
+                overflow:hidden;
+			}
+            td.NormalInner
+			{
+                border:solid windowtext .5pt;
+                height:1cm;
+                background:white;
+                padding:0cm 1.4pt 0cm 3.4pt;
+                overflow:hidden;
 			}
 			td.NormalNoBorder
             {
-            background:white;
-            padding:0cm 1.4pt 0cm 1.4pt;
-            overflow:hidden;
+                background:white;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                overflow:hidden;
             }
 			td.NormalCentered
             {
-            border:solid windowtext .5pt;
-            background:white;
-            padding:0cm 1.4pt 0cm 1.4pt;
-            text-align:center;
-            overflow:hidden;
+                border:solid windowtext .5pt;
+                background:white;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
+                overflow:hidden;
             }
 			td.NormalErkundungsstelle
             {
-            border:solid windowtext .5pt;
-            background:white;
-            padding:0cm 1.4pt 0cm 1.4pt;
-            text-align:center;
-            overflow:hidden;
+                border:solid windowtext .5pt;
+                background:white;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
+                overflow:hidden;
             }
 			td.NormalHeader
 			{
-			border:solid windowtext .5pt;
-			background:#F3F3F3;
-			padding:0cm 1.4pt 0cm 1.4pt;
+                border:solid windowtext .5pt;
+                background:#F3F3F3;
+                padding:0cm 1.4pt 0cm 1.4pt;
 			}
 			td.ChemieWhite
             {
-            border:solid windowtext .5pt;
-            background:white;
-            padding:0cm 1.4pt 0cm 1.4pt;
-            text-align:center;
-            font-weight: bold;
-            overflow:hidden;
+                border:solid windowtext .5pt;
+                background:white;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
+                font-weight: bold;
+                overflow:hidden;
             }
 			td.ChemieRed
 			{
-			border:solid windowtext .5pt;
-			background:#FF0000;
-			padding:0cm 1.4pt 0cm 1.4pt;
-			text-align:center;
-			font-weight: bold;
-            overflow:hidden;
+                border:solid windowtext .5pt;
+                background:#FF0000;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
+                font-weight: bold;
+                overflow:hidden;
 			}
 			td.ChemieBlack
 			{
-			border:solid windowtext .5pt;
-			background:black;
-			color:white;
-			padding:0cm 1.4pt 0cm 1.4pt;
-            text-align:center;
-            font-weight: bold;
-            overflow:hidden;
+                border:solid windowtext .5pt;
+                background:black;
+                color:white;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
+                font-weight: bold;
+                overflow:hidden;
             }
 			td.ChemieGreen
 			{
-			border:solid windowtext .5pt;
-			background:#00FF00;
-			padding:0cm 1.4pt 0cm 1.4pt;
-            text-align:center;
-            font-weight: bold;
-            overflow:hidden;
+                border:solid windowtext .5pt;
+                background:#00FF00;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
+                font-weight: bold;
+                overflow:hidden;
 			}
 			td.ChemieBlue
 			{
-			border:solid windowtext .5pt;
-			background:#00FFFF;
-			padding:0cm 1.4pt 0cm 1.4pt;
-            text-align:center;
-            font-weight: bold;
-            overflow:hidden;
+                border:solid windowtext .5pt;
+                background:#00FFFF;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
+                font-weight: bold;
+                overflow:hidden;
 			}
 			td.ChemieYellow
 			{
-			border:solid windowtext .5pt;
-			background:#FFFF00;
-			padding:0cm 1.4pt 0cm 1.4pt;
-            text-align:center;
-            font-weight: bold;
-            overflow:hidden;
+                border:solid windowtext .5pt;
+                background:#FFFF00;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
+                font-weight: bold;
+                overflow:hidden;
 			}
 			th.NormalTableHeader
 			{
-			border:solid windowtext .5pt;
-			background:#F2F2F2;
-			padding:0cm 1.4pt 0cm 1.4pt;
+                border:solid windowtext .5pt;
+                background:#F2F2F2;
+                padding:0cm 1.4pt 0cm 1.4pt;
 			}
 			th.NormalTableHeaderUnits
 			{
-            border:solid windowtext .5pt;
-            background:#F2F2F2;
-            padding:0cm 1.4pt 0cm 1.4pt;
-            font-style:italic;
+                border:solid windowtext .5pt;
+                background:#F2F2F2;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                font-style:italic;
             }
 			table.MsoNormalTable
 			{
-			table-layout:fixed;
-			padding-alt:0cm 1.4pt 0cm 1.4pt;
-			para-margin:0cm;
-			pagination:widow-orphan;
-			font-size:8.0pt;
-			font-family:"Arial",sans-serif;
-			word-break:break-all;
-			border-collapse: collapse;
+                table-layout:fixed;
+                padding-alt:0cm 1.4pt 0cm 1.4pt;
+                para-margin:0cm;
+                pagination:widow-orphan;
+                font-size:8.0pt;
+                font-family:"Arial",sans-serif;
+                word-break:break-all;
+                border-collapse: collapse;
 			}
+			table.MsoTableGrid
+            {
+                table-layout:fixed;
+                width:100.0%;
+                height:100.0%;
+                border:solid windowtext 1.0pt;
+                padding-alt:0cm 0pt 0cm 0pt;
+                para-margin:0cm;
+                pagination:widow-orphan;
+                font-size:8.0pt;
+                font-family:"Arial",sans-serif;
+                word-break:break-all;
+                border-collapse: collapse;
+            }
 		</style>
 </head>

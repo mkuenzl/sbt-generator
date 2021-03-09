@@ -48,27 +48,81 @@ public class ERKCreationTestUtil
 		*/
 
 	Erkundungsstelle erkundungsstelle1 = new Erkundungsstelle();
-	Schicht schicht1;
-	Schicht schicht2;
-	Schicht schicht3;
-	Schicht schicht4;
-	Schicht schicht5;
-	Schicht schicht6;
-	Schicht schicht7;
-	Schicht schicht8;
+	Erkundungsstelle erkundungsstelle2 = new Erkundungsstelle();
+	Erkundungsstelle erkundungsstelle3 = new Erkundungsstelle();
+	Erkundungsstelle erkundungsstelle4 = new Erkundungsstelle();
+
+
+	Schicht schicht1_GOB;
+	Schicht schicht2_GOB;
+	Schicht schicht3_GOB;
+	Schicht schicht4_GOB;
+	Schicht schicht5_1_TOB;
+	Schicht schicht5_2_TOB;
+
+	Schicht schicht6_1_TOB;
+	Schicht schicht6_2_TOB;
+
+	Schicht schicht7_1_TOB;
+	Schicht schicht7_2_TOB;
+
+	Schicht schicht8_UG;
 
 
 	public Erkundungsstelle getTestErkundungsstelle1()
 	{
 		buildErkDaten();
 		buildSchichtDaten();
-		erkundungsstelle1.addSchicht(schicht1);
-		erkundungsstelle1.addSchicht(schicht2);
-		erkundungsstelle1.addSchicht(schicht3);
-		erkundungsstelle1.addSchicht(schicht4);
-		erkundungsstelle1.addSchicht(schicht5);
+		erkundungsstelle1.addSchicht(schicht1_GOB);
+		erkundungsstelle1.addSchicht(schicht2_GOB);
+		erkundungsstelle1.addSchicht(schicht3_GOB);
+		erkundungsstelle1.addSchicht(schicht4_GOB);
+		erkundungsstelle1.addSchicht(schicht5_1_TOB);
+		erkundungsstelle1.addSchicht(schicht6_1_TOB);
+		erkundungsstelle1.addSchicht(schicht7_1_TOB);
+		erkundungsstelle1.addSchicht(schicht8_UG);
 
 		return erkundungsstelle1;
+	}
+
+	public Erkundungsstelle getTestErkundungsstelle2()
+	{
+		buildErkDaten();
+		buildSchichtDaten();
+		erkundungsstelle2.addSchicht(schicht1_GOB);
+		erkundungsstelle2.addSchicht(schicht2_GOB);
+		erkundungsstelle2.addSchicht(schicht3_GOB);
+		erkundungsstelle2.addSchicht(schicht4_GOB);
+
+		return erkundungsstelle2;
+	}
+
+
+	public Erkundungsstelle getTestErkundungsstelle3()
+	{
+		buildErkDaten();
+		buildSchichtDaten();
+		erkundungsstelle3.addSchicht(schicht1_GOB);
+		erkundungsstelle3.addSchicht(schicht2_GOB);
+		erkundungsstelle3.addSchicht(schicht3_GOB);
+		erkundungsstelle3.addSchicht(schicht4_GOB);
+		erkundungsstelle3.addSchicht(schicht5_1_TOB);
+		erkundungsstelle3.addSchicht(schicht6_1_TOB);
+
+		return erkundungsstelle3;
+	}
+
+	public Erkundungsstelle getTestErkundungsstelle4()
+	{
+		buildErkDaten();
+		buildSchichtDaten();
+		erkundungsstelle4.addSchicht(schicht1_GOB);
+		erkundungsstelle4.addSchicht(schicht2_GOB);
+		erkundungsstelle4.addSchicht(schicht3_GOB);
+		erkundungsstelle4.addSchicht(schicht4_GOB);
+		erkundungsstelle4.addSchicht(schicht5_1_TOB);
+
+		return erkundungsstelle4;
 	}
 
 	private void buildErkDaten()
@@ -132,7 +186,7 @@ public class ERKCreationTestUtil
 		schicht1Daten.put("CHEMIE_PCB", "");
 		schicht1Daten.put("CHEMIE_BTEX", "");
 
-		schicht1 = new Schicht(schicht1Daten);
+		schicht1_GOB = new Schicht(schicht1Daten);
 
 		Map<String, String> schicht2Daten = new HashMap<>();
 
@@ -171,7 +225,7 @@ public class ERKCreationTestUtil
 		schicht2Daten.put("CHEMIE_PCB", "");
 		schicht2Daten.put("CHEMIE_BTEX", "");
 
-		schicht2 = new Schicht(schicht2Daten);
+		schicht2_GOB = new Schicht(schicht2Daten);
 
 		Map<String, String> schicht3Daten = new HashMap<>();
 
@@ -210,7 +264,7 @@ public class ERKCreationTestUtil
 		schicht3Daten.put("CHEMIE_PCB", "");
 		schicht3Daten.put("CHEMIE_BTEX", "");
 
-		schicht3 = new Schicht(schicht3Daten);
+		schicht3_GOB = new Schicht(schicht3Daten);
 
 		Map<String, String> schicht4Daten = new HashMap<>();
 
@@ -249,7 +303,7 @@ public class ERKCreationTestUtil
 		schicht4Daten.put("CHEMIE_PCB", "");
 		schicht4Daten.put("CHEMIE_BTEX", "");
 
-		schicht4 = new Schicht(schicht4Daten);
+		schicht4_GOB = new Schicht(schicht4Daten);
 
 		Map<String, String> schicht5Daten = new HashMap<>();
 
@@ -288,6 +342,162 @@ public class ERKCreationTestUtil
 		schicht5Daten.put("CHEMIE_PCB", "");
 		schicht5Daten.put("CHEMIE_BTEX", "");
 
-		schicht5 = new Schicht(schicht5Daten);
+		schicht5_1_TOB = new Schicht(schicht5Daten);
+
+		Map<String, String> schicht5_2_Daten = new HashMap<>();
+
+		schicht5_2_Daten.put("SCHICHT_ID", "5");
+		schicht5_2_Daten.put("ERK_ID", "FB8");
+		schicht5_2_Daten.put("CHEMIE_ID", "C1");
+		schicht5_2_Daten.put("SCHICHT_NR", "5");
+		schicht5_2_Daten.put("SCHICHT_AUFSCHLUSS", "TOB");
+		schicht5_2_Daten.put("SCHICHT_ART", "Gem. a. G. (XS)");
+		schicht5_2_Daten.put("SCHICHT_KOERNUNG", "0/22");
+		schicht5_2_Daten.put("SCHICHT_DICKE", "10");
+		schicht5_2_Daten.put("SCHICHT_TIEFE_START", "18");
+		schicht5_2_Daten.put("SCHICHT_TIEFE_ENDE", "28");
+		schicht5_2_Daten.put("SCHICHT_PECH", "");
+		schicht5_2_Daten.put("SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT", "BK, sg");
+		schicht5_2_Daten.put("SCHICHT_FARBE", "rotbraun");
+		schicht5_2_Daten.put("SCHICHT_FEUCHTIGKEIT", "");
+		schicht5_2_Daten.put("SCHICHT_WASSERGEHALT", "");
+		schicht5_2_Daten.put("SCHICHT_BEMERKUNGEN", "");
+		schicht5_2_Daten.put("SCHICHT_BEHAELTNIS", "");
+		schicht5_2_Daten.put("SCHICHT_ABFALLART", "Gem. a. G. (LS)");
+		schicht5_2_Daten.put("SCHICHT_GERUCH", "neutral");
+		schicht5_2_Daten.put("SCHICHT_RUK_NR", "");
+		schicht5_2_Daten.put("SCHICHT_RUK_PROBE", "");
+		schicht5_2_Daten.put("SCHICHT_RUK", "");
+		schicht5_2_Daten.put("CHEMIE_MUFV", "nicht gefährlich");
+		schicht5_2_Daten.put("CHEMIE_LAGA_BO", "Z0*");
+		schicht5_2_Daten.put("CHEMIE_LAGA_RC", "Z1.1");
+		schicht5_2_Daten.put("CHEMIE_LFS", "");
+		schicht5_2_Daten.put("CHEMIE_LAGARC_ORIENTIERUNGSWERT", "eingehalten");
+		schicht5_2_Daten.put("CHEMIE_TLGESTEIN", "RC1");
+		schicht5_2_Daten.put("CHEMIE_DEPV", "DK0");
+		schicht5_2_Daten.put("CHEMIE_ENTSCHEIDUNGSHILFE", "");
+		schicht5_2_Daten.put("CHEMIE_REKU", "");
+		schicht5_2_Daten.put("CHEMIE_ASBEST", "");
+		schicht5_2_Daten.put("CHEMIE_PCB", "");
+		schicht5_2_Daten.put("CHEMIE_BTEX", "");
+
+		schicht5_1_TOB = new Schicht(schicht5_2_Daten);
+
+		Map<String, String> schicht6Daten = new HashMap<>();
+
+		schicht6Daten.put("SCHICHT_ID", "6");
+		schicht6Daten.put("ERK_ID", "FB8");
+		schicht6Daten.put("CHEMIE_ID", "C1");
+		schicht6Daten.put("SCHICHT_NR", "6");
+		schicht6Daten.put("SCHICHT_AUFSCHLUSS", "TOB");
+		schicht6Daten.put("SCHICHT_ART", "Gem. a. G. (NS)");
+		schicht6Daten.put("SCHICHT_KOERNUNG", "0/24");
+		schicht6Daten.put("SCHICHT_DICKE", "10");
+		schicht6Daten.put("SCHICHT_TIEFE_START", "18");
+		schicht6Daten.put("SCHICHT_TIEFE_ENDE", "28");
+		schicht6Daten.put("SCHICHT_PECH", "");
+		schicht6Daten.put("SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT", "BK, sg");
+		schicht6Daten.put("SCHICHT_FARBE", "rotbraun");
+		schicht6Daten.put("SCHICHT_FEUCHTIGKEIT", "");
+		schicht6Daten.put("SCHICHT_WASSERGEHALT", "");
+		schicht6Daten.put("SCHICHT_BEMERKUNGEN", "");
+		schicht6Daten.put("SCHICHT_BEHAELTNIS", "");
+		schicht6Daten.put("SCHICHT_ABFALLART", "Gem. a. G. (NS)");
+		schicht6Daten.put("SCHICHT_GERUCH", "neutral");
+		schicht6Daten.put("SCHICHT_RUK_NR", "");
+		schicht6Daten.put("SCHICHT_RUK_PROBE", "");
+		schicht6Daten.put("SCHICHT_RUK", "");
+		schicht6Daten.put("CHEMIE_MUFV", "nicht gefährlich");
+		schicht6Daten.put("CHEMIE_LAGA_BO", "Z0*");
+		schicht6Daten.put("CHEMIE_LAGA_RC", "Z1.1");
+		schicht6Daten.put("CHEMIE_LFS", "");
+		schicht6Daten.put("CHEMIE_LAGARC_ORIENTIERUNGSWERT", "eingehalten");
+		schicht6Daten.put("CHEMIE_TLGESTEIN", "RC1");
+		schicht6Daten.put("CHEMIE_DEPV", "DK0");
+		schicht6Daten.put("CHEMIE_ENTSCHEIDUNGSHILFE", "");
+		schicht6Daten.put("CHEMIE_REKU", "");
+		schicht6Daten.put("CHEMIE_ASBEST", "");
+		schicht6Daten.put("CHEMIE_PCB", "");
+		schicht6Daten.put("CHEMIE_BTEX", "");
+
+		schicht6_1_TOB = new Schicht(schicht6Daten);
+
+		Map<String, String> schicht7Daten = new HashMap<>();
+
+		schicht7Daten.put("SCHICHT_ID", "7");
+		schicht7Daten.put("ERK_ID", "FB8");
+		schicht7Daten.put("CHEMIE_ID", "C1");
+		schicht7Daten.put("SCHICHT_NR", "7");
+		schicht7Daten.put("SCHICHT_AUFSCHLUSS", "TOB");
+		schicht7Daten.put("SCHICHT_ART", "Gem. a. G. (GS)");
+		schicht7Daten.put("SCHICHT_KOERNUNG", "0/26");
+		schicht7Daten.put("SCHICHT_DICKE", "10");
+		schicht7Daten.put("SCHICHT_TIEFE_START", "18");
+		schicht7Daten.put("SCHICHT_TIEFE_ENDE", "28");
+		schicht7Daten.put("SCHICHT_PECH", "");
+		schicht7Daten.put("SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT", "BK, sg");
+		schicht7Daten.put("SCHICHT_FARBE", "rotbraun");
+		schicht7Daten.put("SCHICHT_FEUCHTIGKEIT", "");
+		schicht7Daten.put("SCHICHT_WASSERGEHALT", "");
+		schicht7Daten.put("SCHICHT_BEMERKUNGEN", "");
+		schicht7Daten.put("SCHICHT_BEHAELTNIS", "");
+		schicht7Daten.put("SCHICHT_ABFALLART", "Gem. a. G. (LS)");
+		schicht7Daten.put("SCHICHT_GERUCH", "neutral");
+		schicht7Daten.put("SCHICHT_RUK_NR", "");
+		schicht7Daten.put("SCHICHT_RUK_PROBE", "");
+		schicht7Daten.put("SCHICHT_RUK", "");
+		schicht7Daten.put("CHEMIE_MUFV", "nicht gefährlich");
+		schicht7Daten.put("CHEMIE_LAGA_BO", "Z0*");
+		schicht7Daten.put("CHEMIE_LAGA_RC", "Z1.1");
+		schicht7Daten.put("CHEMIE_LFS", "");
+		schicht7Daten.put("CHEMIE_LAGARC_ORIENTIERUNGSWERT", "eingehalten");
+		schicht7Daten.put("CHEMIE_TLGESTEIN", "RC1");
+		schicht7Daten.put("CHEMIE_DEPV", "DK0");
+		schicht7Daten.put("CHEMIE_ENTSCHEIDUNGSHILFE", "");
+		schicht7Daten.put("CHEMIE_REKU", "");
+		schicht7Daten.put("CHEMIE_ASBEST", "");
+		schicht7Daten.put("CHEMIE_PCB", "");
+		schicht7Daten.put("CHEMIE_BTEX", "");
+
+		schicht7_1_TOB = new Schicht(schicht7Daten);
+
+		Map<String, String> schicht8Daten = new HashMap<>();
+
+		schicht8Daten.put("SCHICHT_ID", "8");
+		schicht8Daten.put("ERK_ID", "FB8");
+		schicht8Daten.put("CHEMIE_ID", "C1");
+		schicht8Daten.put("SCHICHT_NR", "8");
+		schicht8Daten.put("SCHICHT_AUFSCHLUSS", "UG");
+		schicht8Daten.put("SCHICHT_ART", "Boden");
+		schicht8Daten.put("SCHICHT_KOERNUNG", "0/22");
+		schicht8Daten.put("SCHICHT_DICKE", "10");
+		schicht8Daten.put("SCHICHT_TIEFE_START", "18");
+		schicht8Daten.put("SCHICHT_TIEFE_ENDE", "28");
+		schicht8Daten.put("SCHICHT_PECH", "");
+		schicht8Daten.put("SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT", "BK, sg");
+		schicht8Daten.put("SCHICHT_FARBE", "rotbraun");
+		schicht8Daten.put("SCHICHT_FEUCHTIGKEIT", "");
+		schicht8Daten.put("SCHICHT_WASSERGEHALT", "");
+		schicht8Daten.put("SCHICHT_BEMERKUNGEN", "");
+		schicht8Daten.put("SCHICHT_BEHAELTNIS", "");
+		schicht8Daten.put("SCHICHT_ABFALLART", "Gem. a. G. (LS)");
+		schicht8Daten.put("SCHICHT_GERUCH", "neutral");
+		schicht8Daten.put("SCHICHT_RUK_NR", "");
+		schicht8Daten.put("SCHICHT_RUK_PROBE", "");
+		schicht8Daten.put("SCHICHT_RUK", "");
+		schicht8Daten.put("CHEMIE_MUFV", "nicht gefährlich");
+		schicht8Daten.put("CHEMIE_LAGA_BO", "Z0*");
+		schicht8Daten.put("CHEMIE_LAGA_RC", "Z1.1");
+		schicht8Daten.put("CHEMIE_LFS", "");
+		schicht8Daten.put("CHEMIE_LAGARC_ORIENTIERUNGSWERT", "eingehalten");
+		schicht8Daten.put("CHEMIE_TLGESTEIN", "RC1");
+		schicht8Daten.put("CHEMIE_DEPV", "DK0");
+		schicht8Daten.put("CHEMIE_ENTSCHEIDUNGSHILFE", "");
+		schicht8Daten.put("CHEMIE_REKU", "");
+		schicht8Daten.put("CHEMIE_ASBEST", "");
+		schicht8Daten.put("CHEMIE_PCB", "");
+		schicht8Daten.put("CHEMIE_BTEX", "");
+
+		schicht8_UG = new Schicht(schicht8Daten);
 	}
 }

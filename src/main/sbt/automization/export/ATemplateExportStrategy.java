@@ -2,6 +2,7 @@ package sbt.automization.export;
 
 import sbt.automization.TableEngine;
 import sbt.automization.data.Erkundungsstelle;
+import sbt.automization.templates.AHtmlTemplate;
 import sbt.automization.templates.IHtmlTemplate;
 
 import java.io.*;
@@ -21,6 +22,11 @@ public abstract class ATemplateExportStrategy
     public void export(TableEngine tableEngine)
     {
         export(getPath(), format(tableEngine));
+    }
+
+    public void export()
+    {
+        export(System.getProperty("user.dir").concat(File.separator).concat(strategy.getExportFileName()), strategy.buildHtmlTemplate());
     }
 
     public void export(List<Erkundungsstelle> erkundungsstellen)

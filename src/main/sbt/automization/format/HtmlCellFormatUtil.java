@@ -1,7 +1,14 @@
 package sbt.automization.format;
 
+import sbt.automization.data.Erkundungsstelle;
+import sbt.automization.data.Schicht;
 import sbt.automization.util.html.HtmlCell;
+import sbt.automization.util.html.HtmlTable;
 import sbt.automization.util.html.HtmlText;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public final class HtmlCellFormatUtil
 {
@@ -93,6 +100,94 @@ public final class HtmlCellFormatUtil
                         .appendContent("-")
                         .build();
                 break;
+        }
+
+        return htmlCell;
+    }
+
+    public static HtmlTable buildInnerTable()
+    {
+        final String HTML_BASIC_INNER_TABLE_STYLE = new StringBuilder()
+                .append("'")
+                .append("width:100%")
+                .append(";")
+                .append("height:100%")
+                .append(";")
+                .append("border-collapse:collapse")
+                .append(";")
+                .append("mso-table-layout-alt:fixed")
+                .append(";")
+                .append("border:1")
+                .append(";")
+                .append("mso-border-alt:solid windowtext .5pt")
+                .append(";")
+                .append("mso-padding-alt:0cm 5.4pt 0cm 5.4pt")
+                .append("'")
+                .toString();
+
+        HtmlTable innerTable = new HtmlTable.Builder()
+                .appendAttribute("class", "MsoTableGrid")
+                .appendAttribute("width", "100%")
+                .appendAttribute("height", "100%")
+                .appendAttribute("border", "1")
+                .appendAttribute("background", "red")
+                .appendAttribute("cellspacing", "0")
+                .appendAttribute("cellpadding", "0")
+                .appendAttribute("style", HTML_BASIC_INNER_TABLE_STYLE)
+                .build();
+
+
+        return innerTable;
+    }
+
+    public static HtmlCell presentSchichtenToB(final Erkundungsstelle erkundungsstelle)
+    {
+        HtmlCell htmlCell = new HtmlCell.Builder()
+				.appendAttribute("class", "Normal")
+                .build();
+
+        List<Schicht> tob = erkundungsstelle.getSchichtAufschluss("TOB");
+
+
+        int size = tob.size();
+        for (int i = 0 ; i < size ; i++)
+        {
+            Schicht schicht = tob.get(i);
+
+            HtmlText text1 = new HtmlText.Builder()
+                    .appendAttribute("class", "Normal")
+                    .appendContent(schicht.getInformation("SCHICHT_ART"))
+                    .build();
+
+            HtmlText text2 = new HtmlText.Builder()
+                    .appendAttribute("class", "Normal6")
+                    .appendContent(schicht.getInformation("SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT"))
+                    .appendContent(" ")
+                    .appendContent(schicht.getInformation("SCHICHT_KOERNUNG"))
+                    .build();
+
+            HtmlText text3 = new HtmlText.Builder()
+                    .appendAttribute("class", "Normal6")
+                    .appendContent("[T:")
+                    .appendContent(schicht.getInformation("SCHICHT_TIEFE_START"))
+                    .appendContent("-")
+                    .appendContent(schicht.getInformation("SCHICHT_TIEFE_ENDE"))
+                    .appendContent("]")
+                    .build();
+
+            htmlCell.appendContent(text1.appendTag());
+            htmlCell.appendContent(text2.appendTag());
+            htmlCell.appendContent(text3.appendTag());
+
+            if (i+1 < size)
+            {
+                HtmlText textDivider = new HtmlText.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendContent("----")
+                        .build();
+
+                htmlCell.appendContent(textDivider.appendTag());
+            }
         }
 
         return htmlCell;

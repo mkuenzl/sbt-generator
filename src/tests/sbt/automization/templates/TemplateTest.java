@@ -67,4 +67,10 @@ public class TemplateTest
         HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Bericht_OH_Template.getInstance());
         htmlTemplateExportStrategy.export(erkundungsstellen);
     }
+
+    @Test
+    public void createExampleTemplate(){
+        HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Example_Template.getInstance());
+        htmlTemplateExportStrategy.export(erkundungsstellen);
+    }
 }
