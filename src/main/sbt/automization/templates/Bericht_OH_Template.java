@@ -4,6 +4,7 @@ import sbt.automization.data.Erkundungsstelle;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
+import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
 
@@ -51,7 +52,7 @@ public final class Bericht_OH_Template extends AHtmlTemplate
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
+						.appendAttribute("width", "110")
 						.appendContent("Erkundungsstelle")
 						.build()
 						.appendTag())
@@ -105,7 +106,7 @@ public final class Bericht_OH_Template extends AHtmlTemplate
 		HtmlRow rowUMWELTMERKMALE = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", "NormalHeader")
 						.appendAttribute("colspan", String.valueOf(1 + erkundungsstellen.size()))
 						.appendContent("Umwelttechnische Merkmale")
 						.build()
@@ -127,7 +128,12 @@ public final class Bericht_OH_Template extends AHtmlTemplate
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
 						.appendAttribute("width", "100")
-						.appendContent("LAGA Boden, Zuordnung")
+						.appendContent("LAGA Boden,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("Zuordnung")
+								.build()
+								.appendTag())
 						.build()
 						.appendTag())
 				.build();
@@ -137,7 +143,12 @@ public final class Bericht_OH_Template extends AHtmlTemplate
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
 						.appendAttribute("width", "100")
-						.appendContent("DepV, Deponieverordnungsklasse")
+						.appendContent("DepV,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("Deponieverordnungsklasse")
+								.build()
+								.appendTag())
 						.build()
 						.appendTag())
 				.build();
@@ -147,7 +158,12 @@ public final class Bericht_OH_Template extends AHtmlTemplate
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
 						.appendAttribute("width", "100")
-						.appendContent("Entscheidungshilfe, DepV")
+						.appendContent("Entscheidungshilfe,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("DepV")
+								.build()
+								.appendTag())
 						.build()
 						.appendTag())
 				.build();
@@ -157,7 +173,12 @@ public final class Bericht_OH_Template extends AHtmlTemplate
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
 						.appendAttribute("width", "100")
-						.appendContent("AVV, Abfallschlüssel")
+						.appendContent("AVV,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("Abfallschlüssel")
+								.build()
+								.appendTag())
 						.build()
 						.appendTag())
 				.build();
@@ -185,7 +206,7 @@ public final class Bericht_OH_Template extends AHtmlTemplate
 		HtmlRow rowTECHMERKMALE = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", "NormalHeader")
 						.appendAttribute("colspan", String.valueOf(1 + erkundungsstellen.size()))
 						.appendContent("Technische Merkmale")
 						.build()
@@ -208,7 +229,12 @@ public final class Bericht_OH_Template extends AHtmlTemplate
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
 						.appendAttribute("width", "100")
-						.appendContent("DIN 18196")
+						.appendContent("DIN 18196,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("Bodengruppe")
+								.build()
+								.appendTag())
 						.build()
 						.appendTag())
 				.build();
@@ -219,7 +245,12 @@ public final class Bericht_OH_Template extends AHtmlTemplate
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
 						.appendAttribute("width", "100")
-						.appendContent("DIN 19682")
+						.appendContent("DIN 19682,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("Bodengruppe")
+								.build()
+								.appendTag())
 						.build()
 						.appendTag())
 				.build();
@@ -230,13 +261,17 @@ public final class Bericht_OH_Template extends AHtmlTemplate
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
 						.appendAttribute("width", "100")
-						.appendContent("DIN 18320:2019-09")
+						.appendContent("DIN 18320:2019-09,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("Homogenbereich")
+								.build()
+								.appendTag())
 						.build()
 						.appendTag())
 				.build();
 
 		stringBuilder.append(rowERK_DIN18196.appendTag())
-				.append(rowERK_DIN18196.appendTag())
 				.append(rowERK_DIN19682.appendTag())
 				.append(rowERK_DIN18320.appendTag());
 

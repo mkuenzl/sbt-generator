@@ -6,6 +6,7 @@ import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
+import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
 
@@ -53,7 +54,7 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
+						.appendAttribute("width", "110")
 						.appendContent("Erkundungsstelle")
 						.build()
 						.appendTag())
@@ -64,7 +65,6 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
 						.appendContent("Aufschlussart")
 						.build()
 						.appendTag())
@@ -107,7 +107,7 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 		HtmlRow rowTECHMERKMALE = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", "NormalHeader")
 						.appendAttribute("colspan", String.valueOf(1 + erkundungsstellen.size()))
 						.appendContent("Technische Merkmale")
 						.build()
@@ -142,7 +142,12 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
 						.appendAttribute("width", "100")
-						.appendContent("Korngrößenverteilung Kornanteil < 0,0063 mm")
+						.appendContent("Korngrößenverteilung,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("Kornanteil < 0,0063 mm")
+								.build()
+								.appendTag())
 						.build()
 						.appendTag())
 				.build();
@@ -153,7 +158,12 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
 						.appendAttribute("width", "100")
-						.appendContent("Gesamtdicke / frostsicherer Oberbau")
+						.appendContent("Gesamtdicke,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("frostsicherer Oberbau")
+								.build()
+								.appendTag())
 						.build()
 						.appendTag())
 				.build();
@@ -208,8 +218,8 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 		HtmlRow rowUMWELTMERKMALE = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("colspan", String.valueOf(1 + erkundungsstellen.size()))
+						.appendAttribute("class", "NormalHeader")
+ 						.appendAttribute("colspan", String.valueOf(1 + erkundungsstellen.size()))
 						.appendContent("Umwelttechnische Merkmale")
 						.build()
 						.appendTag())
@@ -230,7 +240,12 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
 						.appendAttribute("width", "100")
-						.appendContent("Schreiben des MUFV")
+						.appendContent("Schreiben des MUFV,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("Abgrenzung Gefährlichkeit")
+								.build()
+								.appendTag())
 						.build()
 						.appendTag())
 				.build();
@@ -240,7 +255,12 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
 						.appendAttribute("width", "100")
-						.appendContent("LAGA Boden, Zuordnung")
+						.appendContent("LAGA Boden,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("Zuordnung")
+								.build()
+								.appendTag())
 						.build()
 						.appendTag())
 				.build();
@@ -250,7 +270,12 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
 						.appendAttribute("width", "100")
-						.appendContent("LAGA Bauschutt, Zuordnung")
+						.appendContent("LAGA Bauschutt,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("Zuordnung")
+								.build()
+								.appendTag())
 						.build()
 						.appendTag())
 				.build();
@@ -260,7 +285,12 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
 						.appendAttribute("width", "100")
-						.appendContent("LAGA Bauschutt, Orientierung")
+						.appendContent("LAGA Bauschutt,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("Orientierung")
+								.build()
+								.appendTag())
 						.build()
 						.appendTag())
 				.build();
@@ -270,7 +300,12 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
 						.appendAttribute("width", "100")
-						.appendContent("TL Gestein, Verwertungsklasse")
+						.appendContent("TL Gestein,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("Verwertungsklasse")
+								.build()
+								.appendTag())
 						.build()
 						.appendTag())
 				.build();
@@ -280,7 +315,12 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
 						.appendAttribute("width", "100")
-						.appendContent("DepV, Deponieverordnungsklasse")
+						.appendContent("DepV,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("Deponieverordnungsklasse")
+								.build()
+								.appendTag())
 						.build()
 						.appendTag())
 				.build();
@@ -290,7 +330,12 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
 						.appendAttribute("width", "100")
-						.appendContent("Entscheidungshilfe, DepV")
+						.appendContent("Entscheidungshilfe,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("DepV")
+								.build()
+								.appendTag())
 						.build()
 						.appendTag())
 				.build();
@@ -302,49 +347,49 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 			HtmlCell htmlCell_CHEMIE_ID = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.presentMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_ID"))
+					.appendContent(TextFormatUtil.printMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_ID"))
 					.build();
 
 			HtmlCell htmlCell_CHEMIE_MUFV = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.presentMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_MUFV"))
+					.appendContent(TextFormatUtil.printMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_MUFV"))
 					.build();
 
 			HtmlCell htmlCell_CHEMIE_LAGA_BO = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.presentMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_LAGA_BO"))
+					.appendContent(TextFormatUtil.printMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_LAGA_BO"))
 					.build();
 
 			HtmlCell htmlCell_CHEMIE_LAGA_RC = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.presentMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_LAGA_RC"))
+					.appendContent(TextFormatUtil.printMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_LAGA_RC"))
 					.build();
 
 			HtmlCell htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.presentMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_LAGARC_ORIENTIERUNGSWERT"))
+					.appendContent(TextFormatUtil.printMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_LAGARC_ORIENTIERUNGSWERT"))
 					.build();
 
 			HtmlCell htmlCell_CHEMIE_TL_GESTEIN = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.presentMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_TLGESTEIN"))
+					.appendContent(TextFormatUtil.printMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_TLGESTEIN"))
 					.build();
 
 			HtmlCell htmlCell_CHEMIE_DEPV = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.presentMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_DEPV"))
+					.appendContent(TextFormatUtil.printMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_DEPV"))
 					.build();
 
 			HtmlCell htmlCell_CHEMIE_ENTSCHEIDUNGSILFE = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.presentMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_ENTSCHEIDUNGSHILFE"))
+					.appendContent(TextFormatUtil.printMultipleSchichtInformation(erkundungsstelle, "TOB","CHEMIE_ENTSCHEIDUNGSHILFE"))
 					.build();
 
 			rowCHEMIE_ID.appendContent(htmlCell_CHEMIE_ID.appendTag());
@@ -379,7 +424,12 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
 						.appendAttribute("width", "100")
-						.appendContent("EVDYN")
+						.appendContent("E<sub>Vdyn</sub>,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("MN/m²")
+								.build()
+								.appendTag())
 						.build()
 						.appendTag())
 				.build();
@@ -389,7 +439,12 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
 						.appendAttribute("width", "100")
-						.appendContent("EVDYN15")
+						.appendContent("E<sub>Vdyn (-15%)</sub>,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("MN/m²")
+								.build()
+								.appendTag())
 						.build()
 						.appendTag())
 				.build();
@@ -399,7 +454,12 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
 						.appendAttribute("width", "100")
-						.appendContent("EV2")
+						.appendContent("E<sub>V2</sub>,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("MN/m²")
+								.build()
+								.appendTag())
 						.build()
 						.appendTag())
 				.build();

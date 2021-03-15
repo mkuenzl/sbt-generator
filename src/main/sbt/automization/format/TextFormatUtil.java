@@ -402,12 +402,7 @@ public final class TextFormatUtil
 
 			if (i + 1 < size)
 			{
-				HtmlText textDivider = new HtmlText.Builder()
-						.appendAttribute("class", "Normal")
-						.appendContent("----------")
-						.build();
-
-				formatedSchichtenMaterial.append(textDivider.appendTag());
+				formatedSchichtenMaterial.append(printCellTextDivider());
 			}
 		}
 
@@ -460,7 +455,21 @@ public final class TextFormatUtil
 		return formatedSchichtenMaterial.toString();
 	}
 
-	public static String presentMultipleSchichtInformation(final Erkundungsstelle erkundungsstelle, final String aufschluss, final String tag)
+	public static String printCellTextDivider()
+	{
+		HtmlText textDivider = new HtmlText.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent("__________")
+				.appendContent(new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent("")
+						.build().appendTag())
+				.build();
+
+		return textDivider.appendTag();
+	}
+
+	public static String printMultipleSchichtInformation(final Erkundungsstelle erkundungsstelle, final String aufschluss, final String tag)
 	{
 		List<Schicht> tob = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
@@ -488,12 +497,7 @@ public final class TextFormatUtil
 
 				if (0 != stringBuilder.length())
 				{
-					HtmlText textDivider = new HtmlText.Builder()
-							.appendAttribute("class", "Normal")
-							.appendContent("----------")
-							.build();
-
-					stringBuilder.append(textDivider.appendTag());
+					stringBuilder.append(printCellTextDivider());
 				}
 
 				stringBuilder.append(text1.appendTag())
@@ -504,7 +508,7 @@ public final class TextFormatUtil
 		return stringBuilder.toString();
 	}
 
-	public static String presentMultipleSchichtInformationRUK(final Erkundungsstelle erkundungsstelle, final String aufschluss)
+	public static String printMultipleSchichtInformationRUK(final Erkundungsstelle erkundungsstelle, final String aufschluss)
 	{
 		List<Schicht> tob = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
@@ -528,12 +532,7 @@ public final class TextFormatUtil
 
 				if (0 != stringBuilder.length())
 				{
-					HtmlText textDivider = new HtmlText.Builder()
-							.appendAttribute("class", "Normal")
-							.appendContent("----------")
-							.build();
-
-					stringBuilder.append(textDivider.appendTag());
+					stringBuilder.append(printCellTextDivider());
 				}
 
 				stringBuilder.append(text1.appendTag())
