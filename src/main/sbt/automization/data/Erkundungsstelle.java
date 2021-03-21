@@ -1,10 +1,9 @@
 package sbt.automization.data;
 
+import java.io.Serializable;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektData
+public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektData, Serializable
 {
     /*
     Testing variables instead of map
@@ -24,8 +23,6 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
     private String lpEv;
     private String lpEv15;
     private String lpEv2;
-
-
 
     private Map<String, String> dataMap;
     private final List<Schicht> schichtList = new ArrayList<>();

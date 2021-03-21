@@ -1,8 +1,9 @@
 package sbt.automization.data;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class Schicht implements Comparable<Schicht>, IProjektData, Cloneable
+public class Schicht implements Comparable<Schicht>, IProjektData, Cloneable, Serializable
 {
     private Map<String, String> dataMap;
 
