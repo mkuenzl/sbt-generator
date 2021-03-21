@@ -7,8 +7,6 @@ import java.util.*;
 
 public class ObjectCreatorUtil
 {
-
-
     public static List<Erkundungsstelle> createErkundungsstellen(List<Map<String, String>> data)
     {
         List<Erkundungsstelle> erkundungsstellen = new ArrayList<>();
@@ -91,4 +89,6 @@ public class ObjectCreatorUtil
 
         return erkundungsstelle;
     }
+
+
 }
