@@ -3,7 +3,7 @@ package sbt.automization.templates;
 import sbt.automization.data.Erkundungsstelle;
 import sbt.automization.data.Schicht;
 import sbt.automization.format.HtmlCellFormatUtil;
-import sbt.automization.format.TextFormatUtil;
+import sbt.automization.templates.helper.Bericht_OB_Factory;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
@@ -42,7 +42,6 @@ public final class Bericht_OB_Template extends AHtmlTemplate
 	public void buildHtmlTable(final List<Erkundungsstelle> erkundungsstellen)
 	{
 		//Sort Data nach OB
-
 		HtmlTable tableBericht = new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
 				.appendAttribute("border", "1")
@@ -51,59 +50,14 @@ public final class Bericht_OB_Template extends AHtmlTemplate
 				.appendAttribute("cellpadding", "0")
 				.build();
 
-		//Erkundungsstellen ID
-		HtmlRow rowERK_ID = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "110")
-						.appendContent("Erkundungsstelle")
-						.build()
-						.appendTag())
-				.build();
+		tableBericht.appendContent(Bericht_OB_Factory.createIDRow(erkundungsstellen));
+		tableBericht.appendContent(Bericht_OB_Factory.createAufschlussRow(erkundungsstellen));
 
-		//Erkundungsstellen Aufschlussart
-		HtmlRow rowERK_AUFSCHLUSS = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Aufschlussart")
-						.build()
-						.appendTag())
-				.build();
-
-		for (Erkundungsstelle erkundungsstelle :
-				erkundungsstellen)
-		{
-			HtmlCell htmlCell_ERK_ID = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
-					.appendAttribute("width", "60")
-					.appendContent(erkundungsstelle.getInformation("ERK_ID"))
-					.build();
-
-			rowERK_ID.appendContent(htmlCell_ERK_ID.appendTag());
-
-			HtmlCell htmlCell_ERK_AUFSCHLUSS = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
-					.appendAttribute("width", "50")
-					.appendContent(erkundungsstelle.getInformation("ERK_AUFSCHLUSS_OB"))
-					.build();
-
-			rowERK_AUFSCHLUSS.appendContent(htmlCell_ERK_AUFSCHLUSS.appendTag());
-		}
-
-		buildTechnischeMerkmale(erkundungsstellen);
-
-
-
-		tableBericht.appendContent(rowERK_ID.appendTag());
-		tableBericht.appendContent(rowERK_AUFSCHLUSS.appendTag());
 		tableBericht.appendContent(buildTechnischeMerkmale(erkundungsstellen));
 		tableBericht.appendContent(buildUmweltTechnischeMerkmale(erkundungsstellen));
 		//TODO
-		tableBericht.appendContent(buildQuerschnittRows(erkundungsstellen, false));
-		tableBericht.appendContent(buildQuerschnittRows(erkundungsstellen, true));
+		tableBericht.appendContent(Bericht_OB_Factory.createPechQuerschnittRows(erkundungsstellen, false));
+		tableBericht.appendContent(Bericht_OB_Factory.createPechQuerschnittRows(erkundungsstellen, true));
 
 		setHtmlTable(tableBericht.appendTag());
 	}
@@ -112,7 +66,6 @@ public final class Bericht_OB_Template extends AHtmlTemplate
 	{
 		StringBuilder techBuilder = new StringBuilder();
 
-		//Technische Merkmale Trennzeile
 		HtmlRow rowTECHMERKMALE = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
@@ -123,114 +76,13 @@ public final class Bericht_OB_Template extends AHtmlTemplate
 						.appendTag())
 				.build();
 
-		//Gesamtdicke Oberbau
-		HtmlRow rowERK_DICKE_OBERBAU = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Gesamtdicke geb.")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal")
-								.appendContent("Oberbau,")
-								.build()
-								.appendTag())
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("cm")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		//RSTO Belastungsklasse
-		HtmlRow rowERK_BELASTUNGSKLASSE = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("RStO,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("Belastungsklasse")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		for (Erkundungsstelle erkundungsstelle :
-				erkundungsstellen)
-		{
-			HtmlCell htmlCell_ERK_DICKE = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
-					.appendAttribute("width", "50")
-					.appendContent(TextFormatUtil.formatErkAufschlussDicke(erkundungsstelle, "GOB"))
-					.build();
-
-			rowERK_DICKE_OBERBAU.appendContent(htmlCell_ERK_DICKE.appendTag());
-
-			HtmlCell htmlCell_ERK_BELASTUNGSKLASSE = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
-					.appendAttribute("width", "50")
-					.appendContent(erkundungsstelle.getInformation("ERK_BELASTUNGSKLASSE"))
-					.build();
-
-			rowERK_BELASTUNGSKLASSE.appendContent(htmlCell_ERK_BELASTUNGSKLASSE.appendTag());
-		}
-
-		//RUK
-		HtmlRow rowERK_RUK = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Erweichungspunkt")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal")
-								.appendContent("RuK,")
-								.build()
-								.appendTag())
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("°C")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		for (Erkundungsstelle erkundungsstelle :
-				erkundungsstellen)
-		{
-			HtmlCell htmlCell = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
-					.appendAttribute("width", "50")
-					.appendContent(TextFormatUtil.printMultipleSchichtInformationRUK(erkundungsstelle, "GOB"))
-					.build();
-
-			rowERK_RUK.appendContent(htmlCell.appendTag());
-		}
-
 		techBuilder.append(rowTECHMERKMALE.appendTag())
-				.append(rowERK_DICKE_OBERBAU.appendTag())
-				.append(rowERK_BELASTUNGSKLASSE.appendTag())
-				.append(rowERK_RUK.appendTag());
+				.append(Bericht_OB_Factory.createDickeOberbauRow(erkundungsstellen))
+				.append(Bericht_OB_Factory.createBelastungsklasseRow(erkundungsstellen))
+				.append(Bericht_OB_Factory.createRukRow(erkundungsstellen))
+				.append(Bericht_OB_Factory.createRukEinzelWertRow(erkundungsstellen));
 
 		return techBuilder.toString();
-	}
-
-	@Override
-	public void buildHtmlTable(final Erkundungsstelle data)
-	{
-
-	}
-
-	@Override
-	public String getExportFileName()
-	{
-		return "Bericht_OB_Table.html";
 	}
 
 	private String buildUmweltTechnischeMerkmale(final List<Erkundungsstelle> erkundungsstellen)
@@ -248,250 +100,22 @@ public final class Bericht_OB_Template extends AHtmlTemplate
 						.appendTag())
 				.build();
 
-		//Pechnachweis qualitativ
-		HtmlRow rowERK_PECH_QUALITATIV = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Pechnachweiß")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal")
-								.appendContent("qualitativ")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		//Pechnachweis quantitativ
-		HtmlRow rowERK_PECH_QUANTITATIV = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Pechnachweiß")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal")
-								.appendContent("quantitativ")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		for (Erkundungsstelle erkundungsstelle :
-				erkundungsstellen)
-		{
-			HtmlCell htmlCell_PECHQUAL = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
-					.appendAttribute("width", "50")
-					.appendContent(erkundungsstelle.getInformation("ERK_PECH_QUALITATIV"))
-					.build();
-
-			rowERK_PECH_QUALITATIV.appendContent(htmlCell_PECHQUAL.appendTag());
-
-			HtmlCell htmlCell_PECHQUAN = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
-					.appendAttribute("width", "50")
-					.appendContent(erkundungsstelle.getInformation("ERK_PECH_QUANTITATIV"))
-					.build();
-
-			rowERK_PECH_QUANTITATIV.appendContent(htmlCell_PECHQUAN.appendTag());
-		}
-
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())
-				.append(rowERK_PECH_QUALITATIV.appendTag())
-				.append(rowERK_PECH_QUANTITATIV.appendTag());
+				.append(Bericht_OB_Factory.createPechQualitativRow(erkundungsstellen))
+				.append(Bericht_OB_Factory.createPechQuantitativRow(erkundungsstellen));
 
 		return umweltTechBuilder.toString();
 	}
 
-	private String buildQuerschnittRows(final List<Erkundungsstelle> erkundungsstellen, boolean pech)
+	@Override
+	public void buildHtmlTable(final Erkundungsstelle data)
 	{
-		//TODO Boolean variable wenn keine Schicht pechhaltig oder pechfrei ist dann kompletten querschnitt weglassen
-		//Test den Kram
 
-		StringBuilder querschnittBuilder = new StringBuilder();
-		boolean areThereAnythingToBuild = false;
+	}
 
-		String querschnitt;
-		String dicke;
-		String mufv;
-		String ruva;
-		String avv;
-
-		if (pech)
-		{
-			querschnitt = "Pechhaltiger Querschnitt";
-			dicke = "-";
-			mufv = "gefährlich";
-			ruva = "B";
-			avv = "17 03 01*";
-		} else
-		{
-			querschnitt = "Pechfreier Querschnitt";
-			dicke = "-";
-			mufv = "nicht gefährlich";
-			ruva = "A";
-			avv = "17 03 02";
-		}
-
-		//Pechfreier Querschnitt Trennzeile
-		HtmlRow rowPECH_QUERSCHNITT = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "NormalHeader")
-						.appendAttribute("colspan", String.valueOf(1 + erkundungsstellen.size()))
-						.appendContent(querschnitt)
-						.build()
-						.appendTag())
-				.build();
-
-		//Dicke pechfreier Querschnitt
-		HtmlRow rowERK_DICKE_PECH = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Dicke,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("cm")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		//MUFV Querschnitt
-		HtmlRow rowERK_MUFV_PECH = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Schreiben des MUFV")
-						.build()
-						.appendTag())
-				.build();
-
-		//RUVA Querschnitt
-		HtmlRow rowERK_RUVA_PECH = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("RUVA,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("Verwertungsklasse")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		//AVV Querschnitt
-		HtmlRow rowERK_AVV_PECH = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("AVV,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("Abfallschlüssel")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		for (Erkundungsstelle erkundungsstelle :
-				erkundungsstellen)
-		{
-			boolean empty = true;
-
-			List<Schicht> gob = erkundungsstelle.getSchichtAufschluss("GOB");
-			if (gob != null) {
-				double d = 0;
-				//TODO
-				//Wie viele Schichten haben Pech und wie viele haben kein Pech
-				//Dicke anpassen
-				//Wenn eine Erkundungsstelle nicht keine pech freien / haltigen Schichten hat, dann "-"
-				for (Schicht schicht : gob) {
-					//TODO CHANGE TO TRUE & FALSE PECH
-					String schicht_dicke = schicht.getInformation("SCHICHT_DICKE");
-					schicht_dicke = schicht_dicke.replace(",", ".");
-					if (pech) {
-						//Zähle Dicke der pechhaltigen Schichten
-						if ("ja".equals(schicht.getInformation("SCHICHT_PECH"))) {
-							d += Integer.parseInt(schicht_dicke);
-						}
-					}
-					if (!pech)
-					{ //Zähle Dicke der pechfreien Schichten
-						if ("nein".equals(schicht.getInformation("SCHICHT_PECH"))) {
-							d += Double.parseDouble(schicht_dicke);
-						}
-					}
-				}
-
-				if (d > 0)
-				{
-					dicke = String.valueOf(d);
-					empty = false;
-					areThereAnythingToBuild = true;
-				}
-			}
-
-			if (empty)
-			{
-				dicke = "-";
-				mufv = "-";
-				ruva = "-";
-				avv = "-";
-			}
-
-			HtmlCell htmlCell_Dicke = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
-					.appendAttribute("width", "50")
-					.appendContent(dicke)
-					.build();
-
-			rowERK_DICKE_PECH.appendContent(htmlCell_Dicke.appendTag());
-
-			HtmlCell htmlCell_MUFV = HtmlCellFormatUtil.formatChemie(mufv);
-
-			rowERK_MUFV_PECH.appendContent(htmlCell_MUFV.appendTag());
-
-			HtmlCell htmlCell_RUVA = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
-					.appendAttribute("width", "50")
-					.appendContent(ruva)
-					.build();
-
-			rowERK_RUVA_PECH.appendContent(htmlCell_RUVA.appendTag());
-
-			HtmlCell htmlCell_AVV = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
-					.appendAttribute("width", "50")
-					.appendContent(avv)
-					.build();
-
-			rowERK_AVV_PECH.appendContent(htmlCell_AVV.appendTag());
-		}
-
-
-		if (areThereAnythingToBuild)
-		{
-			querschnittBuilder.append(rowPECH_QUERSCHNITT.appendTag())
-					.append(rowERK_DICKE_PECH.appendTag())
-					.append(rowERK_MUFV_PECH.appendTag())
-					.append(rowERK_RUVA_PECH.appendTag())
-					.append(rowERK_AVV_PECH.appendTag());
-		}
-
-		return querschnittBuilder.toString();
+	@Override
+	public String getExportFileName()
+	{
+		return "Bericht_OB_Table.html";
 	}
 }

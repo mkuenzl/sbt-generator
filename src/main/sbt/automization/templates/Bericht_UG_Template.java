@@ -1,6 +1,7 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.Erkundungsstelle;
+import sbt.automization.templates.helper.Bericht_UG_Factory;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
@@ -47,7 +48,8 @@ public final class Bericht_UG_Template extends AHtmlTemplate
 				.appendAttribute("cellpadding", "0")
 				.build();
 
-		tableBericht.appendContent(buildUntergrundErkundungsstelle(erkundungsstellen));
+		tableBericht.appendContent(Bericht_UG_Factory.createIDRow(erkundungsstellen));
+		tableBericht.appendContent(Bericht_UG_Factory.createDickeRow(erkundungsstellen));
 		tableBericht.appendContent(buildTechnischeMerkmale(erkundungsstellen));
 		tableBericht.appendContent(buildUmweltTechnischeMerkmale(erkundungsstellen));
 
@@ -66,62 +68,6 @@ public final class Bericht_UG_Template extends AHtmlTemplate
 		return "Bericht_UG_Table.html";
 	}
 
-	private String buildUntergrundErkundungsstelle(List<Erkundungsstelle> erkundungsstellen)
-	{
-		StringBuilder ugERKBuilder = new StringBuilder();
-
-		//Erkundungsstellen ID
-		HtmlRow rowERK_ID = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "110")
-						.appendContent("Erkundungsstelle")
-						.build()
-						.appendTag())
-				.build();
-
-		//Erkundungsstellen Aufschlussart
-		HtmlRow rowERK_DICKE = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Dicke,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("cm")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		for (Erkundungsstelle erkundungsstelle :
-				erkundungsstellen)
-		{
-			HtmlCell htmlCell_ERK_ID = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
-					.appendAttribute("width", "50")
-					.appendContent(erkundungsstelle.getInformation("ERK_ID"))
-					.build();
-
-			rowERK_ID.appendContent(htmlCell_ERK_ID.appendTag());
-
-			HtmlCell htmlCell_ERK_DICKE = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
-					.appendAttribute("width", "50")
-					.appendContent("dicke")
-					.build();
-
-			rowERK_DICKE.appendContent(htmlCell_ERK_DICKE.appendTag());
-		}
-
-		ugERKBuilder.append(rowERK_ID.appendTag())
-				.append(rowERK_DICKE.appendTag());
-
-		return ugERKBuilder.toString();
-	}
 
 	private String buildTechnischeMerkmale(List<Erkundungsstelle> erkundungsstellen)
 	{
@@ -138,144 +84,20 @@ public final class Bericht_UG_Template extends AHtmlTemplate
 						.appendTag())
 				.build();
 
-		//WASSERGEHALT
-		HtmlRow rowERK_WASSERGEHALT = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Wassergehalt")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("M.-%")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		//FEUCHTEZUSTAND
-		HtmlRow rowERK_FEUCHTEZUSTAND = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Feuchtezustand")
-						.build()
-						.appendTag())
-				.build();
-
-		//KONSISTENZ
-		HtmlRow rowERK_KONSISTENZ = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Konsistenz")
-						.build()
-						.appendTag())
-				.build();
-
-		//PROCTORDICHTE
-		HtmlRow rowERK_PROCTORDICHTE = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Proctordichte")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("Mg/m³")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		//DIFFERENCE
-		HtmlRow rowERK_DIFFERENCE = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Differenz W<sub>n</sub> - W<sub>opt</sub>")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("M.-%")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		//VERDICHTUNGSFÄHIGKEIT
-		HtmlRow rowERK_VERDICHTUNGSFÄHIGKEIT = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Verdichtungsfähigkeit")
-						.build()
-						.appendTag())
-				.build();
-
-		//TRAGFAEHIGKEIT_PLANUM
-		HtmlRow rowERK_TRAGFAEHIGKEIT_PLANUM = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Tragfähigkeit")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal")
-								.appendContent("Planum")
-								.build()
-								.appendTag())
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("Soll: E<sub>V2</sub> >= 45 MN/m²")
-								.build()
-								.appendTag())
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("Ansatz Planum: FOK -60cm")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		//TRAGFAEHIGKEIT_GRABENSOHLE
-		HtmlRow rowERK_TRAGFAEHIGKEIT_GRABENSOHLE = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Tragfähigkeit")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal")
-								.appendContent("Grabensohle")
-								.build()
-								.appendTag())
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("Ansatz Sohle: FOK -200cm")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
 		techBuilder.append(rowTECHMERKMALE.appendTag())
-				.append(buildTechnischeMerkmaleDIN(erkundungsstellen))
-				.append(rowERK_WASSERGEHALT.appendTag())
-				.append(rowERK_FEUCHTEZUSTAND.appendTag())
-				.append(rowERK_KONSISTENZ.appendTag())
-				.append(rowERK_PROCTORDICHTE.appendTag())
-				.append(rowERK_DIFFERENCE.appendTag())
-				.append(rowERK_VERDICHTUNGSFÄHIGKEIT.appendTag())
-				.append(rowERK_TRAGFAEHIGKEIT_PLANUM.appendTag())
-				.append(rowERK_TRAGFAEHIGKEIT_GRABENSOHLE.appendTag());
+				.append(Bericht_UG_Factory.createDIN18196Row(erkundungsstellen))
+				.append(Bericht_UG_Factory.createDIN18300Row(erkundungsstellen))
+				.append(Bericht_UG_Factory.createDIN19682Row(erkundungsstellen))
+				.append(Bericht_UG_Factory.createDIN18300_09Row(erkundungsstellen))
+				.append(Bericht_UG_Factory.createZTVRow(erkundungsstellen))
+				.append(Bericht_UG_Factory.createWasserGehaltRow(erkundungsstellen))
+				.append(Bericht_UG_Factory.createFeuchteZustandRow(erkundungsstellen))
+				.append(Bericht_UG_Factory.createKonsistenzRow(erkundungsstellen))
+				.append(Bericht_UG_Factory.createProctordichteRow(erkundungsstellen))
+				.append(Bericht_UG_Factory.createProtorDifferenzRow(erkundungsstellen))
+				.append(Bericht_UG_Factory.createVerdichtungsfaehigkeitRow(erkundungsstellen))
+				.append(Bericht_UG_Factory.createTragPlanumRow(erkundungsstellen))
+				.append(Bericht_UG_Factory.createTragSohleRow(erkundungsstellen));
 
 		return techBuilder.toString();
 	}
@@ -295,229 +117,17 @@ public final class Bericht_UG_Template extends AHtmlTemplate
 						.appendTag())
 				.build();
 
-		HtmlRow rowCHEMIE_ID = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Laborprobe")
-						.build()
-						.appendTag())
-				.build();
-
-		HtmlRow rowCHEMIE_MUFV = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Schreiben des MUFV,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("Abgrenzung Gefährlichkeit")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		HtmlRow rowCHEMIE_LAGA_BO = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("LAGA Boden,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("Zuordnung")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		HtmlRow rowCHEMIE_LAGA_RC = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("LAGA Bauschutt,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("Zuordnung")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		HtmlRow rowCHEMIE_LAGA_RC_ORIENTIERUNG = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("LAGA Bauschutt,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("Orientierung")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		HtmlRow rowCHEMIE_TL_GESTEIN = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("TL Gestein,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("Verwertungsklasse")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		HtmlRow rowCHEMIE_DEPV = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("DepV,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("Deponieverordnungsklasse")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		HtmlRow rowCHEMIE_ENTSCHEIDUNGSHILFE = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Entscheidungshilfe,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("DepV")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
-		{
-
-		}
-
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())
-				.append(rowCHEMIE_ID.appendTag())
-				.append(rowCHEMIE_MUFV.appendTag())
-				.append(rowCHEMIE_LAGA_BO.appendTag())
-				.append(rowCHEMIE_LAGA_RC.appendTag())
-				.append(rowCHEMIE_LAGA_RC_ORIENTIERUNG.appendTag())
-				.append(rowCHEMIE_TL_GESTEIN.appendTag())
-				.append(rowCHEMIE_DEPV.appendTag())
-				.append(rowCHEMIE_ENTSCHEIDUNGSHILFE.appendTag());
+				.append(Bericht_UG_Factory.createChemieIDRow(erkundungsstellen))
+				.append(Bericht_UG_Factory.createChemieMufvRow(erkundungsstellen))
+				.append(Bericht_UG_Factory.createChemieLagaBoRow(erkundungsstellen))
+				.append(Bericht_UG_Factory.createChemieLagaRcRow(erkundungsstellen))
+				.append(Bericht_UG_Factory.createChemieLagaRcOrientierungRow(erkundungsstellen))
+				.append(Bericht_UG_Factory.createChemieTlGesteinRow(erkundungsstellen))
+				.append(Bericht_UG_Factory.createChemieDepvRow(erkundungsstellen))
+				.append(Bericht_UG_Factory.createChemieEntscheidungshilfeRow(erkundungsstellen));
 
 		return umweltTechBuilder.toString();
 	}
 
-	private String buildTechnischeMerkmaleDIN(List<Erkundungsstelle> erkundungsstellen)
-	{
-		StringBuilder stringBuilder = new StringBuilder();
-
-		//DIN18196
-		HtmlRow rowERK_DIN18196 = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("DIN 18196,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("Bodengruppe")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		//DIN18300
-		HtmlRow rowERK_DIN18300 = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("DIN 18300,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("Bodenklasse")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		//DIN19682
-		HtmlRow rowERK_DIN19682 = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("DIN 19682-2,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("Bodenart-Hauptgruppe")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		//DIN18300:2019-09
-		HtmlRow rowERK_DIN18300N = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("DIN 18300:2019-09,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("Homogenbereich")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		//ZTV-E
-		HtmlRow rowERK_ZTV = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("ZTV E,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("Frostempfindlichkeitsklasse")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		stringBuilder.append(rowERK_DIN18196.appendTag())
-				.append(rowERK_DIN18300.appendTag())
-				.append(rowERK_DIN19682.appendTag())
-				.append(rowERK_DIN18300N.appendTag())
-				.append(rowERK_ZTV.appendTag());
-
-		return stringBuilder.toString();
-	}
 }

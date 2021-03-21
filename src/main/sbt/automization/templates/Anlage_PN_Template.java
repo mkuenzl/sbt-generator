@@ -119,11 +119,11 @@ public final class Anlage_PN_Template extends AHtmlTemplate
                                 .appendContent(schicht.getInformation("SCHICHT_GERUCH"))
                                 .build()
                                 .appendTag())
-//                        .appendContent(new HtmlText.Builder()
-//                                .appendAttribute("class", "Normal")
-//                                .appendContent(schicht.getInformation("SCHICHT_KONSISTENZ"))
-//                                .build()
-//                                .appendTag())
+                        .appendContent(new HtmlText.Builder()
+                                .appendAttribute("class", "Normal")
+                                .appendContent(schicht.getInformation("SCHICHT_BODENART"))
+                                .build()
+                                .appendTag())
                         .build();
 
                 HtmlCell cellErkundungsstellenIdentifier = new HtmlCell.Builder()
@@ -229,7 +229,16 @@ public final class Anlage_PN_Template extends AHtmlTemplate
                 .appendAttribute("width", "76")
                 .appendAttribute("rowspan", "2")
                 .appendContent("Farbe")
-                .appendContent(new HtmlText.Builder().appendAttribute("class", "Normal").appendContent("Geruch").build().appendTag())
+                .appendContent(new HtmlText.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendContent("Geruch")
+                        .build()
+                        .appendTag())
+                .appendContent(new HtmlText.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendContent("Bodenart")
+                        .build()
+                        .appendTag())
                 .build();
 
         HtmlTableHeader cell8 = new HtmlTableHeader.Builder()
@@ -330,6 +339,7 @@ public final class Anlage_PN_Template extends AHtmlTemplate
                 e.printStackTrace();
             }
         }
+        //TODO NULL POINTER
         for (int i = 0 ; i < schichtList.size() ; i++)
         {
             if ("GOB".equals(schichtList.get(i).getInformation("SCHICHT_AUFSCHLUSS")))
