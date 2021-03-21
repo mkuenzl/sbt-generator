@@ -81,6 +81,7 @@ public final class HtmlCellFormatUtil
                         .build();
                 break;
             case ">Z2":
+            case ">DK3":
             case "gefährlich":
                 htmlCell = new HtmlCell.Builder()
                         .appendAttribute("class", "ChemieBlack")

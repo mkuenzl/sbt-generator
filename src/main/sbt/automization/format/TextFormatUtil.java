@@ -2,6 +2,7 @@ package sbt.automization.format;
 
 import sbt.automization.data.Erkundungsstelle;
 import sbt.automization.data.Schicht;
+import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
@@ -437,8 +438,14 @@ public final class TextFormatUtil
 						.appendContent("]")
 						.build();
 
-				formatedSchichtenMaterial.append(text1.appendTag());
-				formatedSchichtenMaterial.append(text2.appendTag());
+
+				if (0 != formatedSchichtenMaterial.length())
+				{
+					formatedSchichtenMaterial.append(printCellTextDivider());
+				}
+
+				formatedSchichtenMaterial.append(text1.appendTag())
+						.append(text2.appendTag());
 
 //				if (i + 1 < size)
 //				{
@@ -479,6 +486,12 @@ public final class TextFormatUtil
 		{
 			String id = schicht.getInformation(tag);
 
+			//TODO
+			if (tag.contains("CHEMIE"))
+			{
+				id = printChemieMarkup(id);
+			}
+
 			if (!"-".equals(id) && !"".equals(id))
 			{
 				HtmlText text1 = new HtmlText.Builder()
@@ -510,6 +523,11 @@ public final class TextFormatUtil
 
 	public static String printMultipleSchichtInformationRUK(final Erkundungsstelle erkundungsstelle, final String aufschluss)
 	{
+		HtmlText lineBreak = new HtmlText.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent("")
+				.build();
+
 		List<Schicht> tob = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 		StringBuilder stringBuilder = new StringBuilder();
@@ -540,7 +558,97 @@ public final class TextFormatUtil
 
 			}
 		}
+
 		return stringBuilder.toString();
 	}
 
+	public static String printChemieMarkup(final String data)
+	{
+		StringBuilder stringBuilder = new StringBuilder();
+
+		switch (data)
+		{
+			case "Z0":
+			case "DK0":
+				stringBuilder.append(new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent("<mark style=\"background-color: black;\n" +
+								"  color: white\">")
+						.appendContent(data)
+						.appendContent("</mark>")
+						.build().appendTag());
+				break;
+			case "Z0*":
+				stringBuilder.append(new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent("<mark style=\"background-color: #00FFFF;\n" +
+								"  color: black\">")
+						.appendContent(data)
+						.appendContent("</mark>")
+						.build().appendTag());
+				break;
+			case "Z1":
+			case "Z1.1":
+			case "RC1":
+			case "DK1":
+				stringBuilder.append(new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent("<mark style=\"background-color: #00FF00;\n" +
+								"  color: black\">")
+						.appendContent(data)
+						.appendContent("</mark>")
+						.build().appendTag());
+				break;
+			case "Z1.2":
+			case "RC2":
+			case "DK2":
+				stringBuilder.append(new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent("<mark style=\"background-color: yellow;\n" +
+								"  color: white\">")
+						.appendContent(data)
+						.appendContent("</mark>")
+						.build().appendTag());
+				break;
+			case "Z2":
+			case "RC3":
+			case "DK3":
+				stringBuilder.append(new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent("<mark style=\"background-color: red;\n" +
+								"  color: white\">")
+						.appendContent(data)
+						.appendContent("</mark>")
+						.build().appendTag());
+				break;
+			case ">Z2":
+			case "gefährlich":
+				stringBuilder.append(new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent("<mark style=\"background-color: black;\n" +
+								"  color: white\">")
+						.appendContent(data)
+						.appendContent("</mark>")
+						.build().appendTag());
+				break;
+			case "nicht gefährlich":
+				stringBuilder.append(new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent("<mark style=\"background-color: white;\n" +
+								"  color: black\">")
+						.appendContent("nicht")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal")
+								.appendContent("gefährlich")
+								.appendContent("</mark>")
+								.build().appendTag())
+						.appendContent("</mark>")
+						.build().appendTag());
+				break;
+			default:
+				break;
+		}
+
+		return stringBuilder.toString();
+	}
 }
