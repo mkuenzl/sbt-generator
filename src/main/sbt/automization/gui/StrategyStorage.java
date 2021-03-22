@@ -47,8 +47,17 @@ public class StrategyStorage
             case "LP_TABELLE":
                 strategyList.add(Anlage_LP_Template.getInstance());
                 break;
-            case "BERICHT_TABELLEN":
+            case "BERICHT_GOB":
                 strategyList.add(Bericht_OB_Template.getInstance());
+                break;
+            case "BERICHT_TOB":
+                strategyList.add(Bericht_TOB_Template.getInstance());
+                break;
+            case "BERICHT_UG":
+                strategyList.add(Bericht_UG_Template.getInstance());
+                break;
+            case "BERICHT_OH":
+                strategyList.add(Bericht_OH_Template.getInstance());
                 break;
         }
     }
@@ -70,8 +79,17 @@ public class StrategyStorage
             case "LP_TABELLE":
                 strategyList.remove(Anlage_LP_Template.getInstance());
                 break;
-            case "BERICHT_TABELLEN":
+            case "BERICHT_GOB":
                 strategyList.remove(Bericht_OB_Template.getInstance());
+                break;
+            case "BERICHT_TOB":
+                strategyList.remove(Bericht_TOB_Template.getInstance());
+                break;
+            case "BERICHT_UG":
+                strategyList.remove(Bericht_UG_Template.getInstance());
+                break;
+            case "BERICHT_OH":
+                strategyList.remove(Bericht_OH_Template.getInstance());
                 break;
         }
     }

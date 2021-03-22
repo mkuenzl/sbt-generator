@@ -11,7 +11,6 @@ public class CLI
     private Options options;
     private String csvFilePath;
     private File file = new File(System.getProperty("user.dir").concat(File.separator).concat("datenbank.csv"));
-    //private File file = new File("/Users/moritzkunzl/Desktop/HTML/ProjektDaten.csv");
     private IHtmlTemplate strategy;
 
     public CLI(String[] args)

@@ -14,41 +14,48 @@ import java.io.File;
 public class GUI extends JFrame implements ActionListener
 {
 
-    private JPanel panel;
-    //    private final JMenu menu;
+	private JPanel panel;
+	//    private final JMenu menu;
 //    private final JMenuItem info;
 //    private final JMenuBar menuBar;
-    private JButton executeButton;
-    private JButton explorerButton;
-    private JCheckBox checkBox1;
-    private JCheckBox checkBox2;
-    private JCheckBox checkBox3;
-    private JCheckBox checkBox4;
-    private JCheckBox checkBox5;
-    //private final JLabel label;
-    private JTextArea textfield;
+	private JButton executeButton;
+	private JButton explorerButton;
+	private JButton infoButton;
+	private JCheckBox checkBox1;
+	private JCheckBox checkBox2;
+	private JCheckBox checkBox3;
+	private JCheckBox checkBox4;
+	private JCheckBox checkBox5;
+	private JCheckBox checkBox6;
+	private JCheckBox checkBox7;
+	private JCheckBox checkBox8;
+	//private final JLabel label;
+	private JTextArea textfield;
 
-    public GUI()
-    {
+	public GUI()
+	{
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setTitle("SBT Berichterstellung");
-        this.setLayout(null);
-        this.setSize(300, 440);
-        this.setResizable(false);
-        buildPanel();
-        //this.setJMenuBar(menuBar);
-        this.setVisible(true);
+		ImageIcon img = new ImageIcon(getClass().getResource("/sbt-logo.jpg"));
 
-    }
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setIconImage(img.getImage());
+		this.setTitle("SBT Berichterstellung");
+		this.setLayout(null);
+		this.setSize(300, 550);
+		this.setResizable(false);
+		buildPanel();
+		//this.setJMenuBar(menuBar);
+		this.setVisible(true);
 
-    private void buildPanel()
-    {
+	}
 
-        panel = new JPanel();
-        panel.setLayout(null);
-        panel.setBounds(0, 0, 300, 400);
-        panel.setBackground(Color.gray);
+	private void buildPanel()
+	{
+
+		panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBounds(0, 0, 300, 520);
+		panel.setBackground(Color.gray);
 
 //        menu = new JMenu("Menu");
 //        info = new JMenuItem("Info");
@@ -60,70 +67,83 @@ public class GUI extends JFrame implements ActionListener
 //        menuBar.setBorder(border);
 //        menuBar.add(menu);
 
-        // BUTTONS.
-        executeButton = new JButton("Ausführen");
-        executeButton.setBounds(10, 320, 265, 50);
-        executeButton.setFocusable(false);
-        executeButton.addActionListener(this);
-        executeButton.setEnabled(true);
-        panel.add(executeButton);
+		// OPTIONEN FÜR CHECKBOXES
+		checkBox1 = new JCheckBox("ERK_TABELLE", false);
+		checkBox1.setBounds(10, 10, 265, 20);
+		checkBox1.setEnabled(false);
+		checkBox1.setVisible(false);
+		checkBox1.addItemListener(new CheckBoxListener());
+		panel.add(checkBox1);
 
-        explorerButton = new JButton("Datei auswählen");
-        explorerButton.setBounds(10, 260, 265, 50);
-        explorerButton.setFocusable(false);
-        explorerButton.addActionListener(this);
-        panel.add(explorerButton);
+		checkBox2 = new JCheckBox("LP_TABELLE", false);
+		checkBox2.setBounds(10, 40, 265, 20);
+		checkBox2.setEnabled(false);
+		checkBox2.setVisible(false);
+		checkBox2.addItemListener(new CheckBoxListener());
+		panel.add(checkBox2);
 
+		checkBox3 = new JCheckBox("PN_TABELLE", false);
+		checkBox3.setBounds(10, 70, 265, 20);
+		checkBox3.setEnabled(false);
+		checkBox3.setVisible(false);
+		checkBox3.addItemListener(new CheckBoxListener());
+		panel.add(checkBox3);
 
-        // OPTIONEN FÜR CHECKBOXES
-        checkBox1 = new JCheckBox("ERK_TABELLE", false);
-        checkBox1.setBounds(10, 10, 265, 20);
-        checkBox1.setEnabled(false);
-        checkBox1.setVisible(false);
-        checkBox1.addItemListener(new CheckBoxListener());
-        panel.add(checkBox1);
+		checkBox4 = new JCheckBox("RUK_TABELLE", false);
+		checkBox4.setBounds(10, 100, 265, 20);
+		checkBox4.setEnabled(false);
+		checkBox4.setVisible(false);
+		checkBox4.addItemListener(new CheckBoxListener());
+		panel.add(checkBox4);
 
-        checkBox2 = new JCheckBox("LP_TABELLE", false);
-        checkBox2.setBounds(10, 40, 265, 20);
-        checkBox2.setEnabled(false);
-        checkBox2.setVisible(false);
-        checkBox2.addItemListener(new CheckBoxListener());
-        panel.add(checkBox2);
+		checkBox5 = new JCheckBox("BERICHT_GOB", false);
+		checkBox5.setBounds(10, 130, 265, 20);
+		checkBox5.setEnabled(false);
+		checkBox5.setVisible(false);
+		checkBox5.addItemListener(new CheckBoxListener());
+		panel.add(checkBox5);
 
-        checkBox3 = new JCheckBox("PN_TABELLE", false);
-        checkBox3.setBounds(10, 70, 265, 20);
-        checkBox3.setEnabled(false);
-        checkBox3.setVisible(false);
-        checkBox3.addItemListener(new CheckBoxListener());
-        panel.add(checkBox3);
+		checkBox6 = new JCheckBox("BERICHT_TOB", false);
+		checkBox6.setBounds(10, 160, 265, 20);
+		checkBox6.setEnabled(false);
+		checkBox6.setVisible(false);
+		checkBox6.addItemListener(new CheckBoxListener());
+		panel.add(checkBox6);
 
-        checkBox4 = new JCheckBox("RUK_TABELLE", false);
-        checkBox4.setBounds(10, 100, 265, 20);
-        checkBox4.setEnabled(false);
-        checkBox4.setVisible(false);
-        checkBox4.addItemListener(new CheckBoxListener());
-        panel.add(checkBox4);
+		checkBox7 = new JCheckBox("BERICHT_UG", false);
+		checkBox7.setBounds(10, 190, 265, 20);
+		checkBox7.setEnabled(false);
+		checkBox7.setVisible(false);
+		checkBox7.addItemListener(new CheckBoxListener());
+		panel.add(checkBox7);
 
-        checkBox5 = new JCheckBox("BERICHT_TABELLEN", false);
-        checkBox5.setBounds(10, 130, 265, 20);
-        checkBox5.setEnabled(false);
-        checkBox5.setVisible(false);
-        checkBox5.addItemListener(new CheckBoxListener());
-        panel.add(checkBox5);
+		checkBox8 = new JCheckBox("BERICHT_OH", false);
+		checkBox8.setBounds(10, 220, 265, 20);
+		checkBox8.setEnabled(false);
+		checkBox8.setVisible(false);
+		checkBox8.addItemListener(new CheckBoxListener());
+		panel.add(checkBox8);
 
-        checkBox1.setVisible(true);
-        checkBox2.setVisible(true);
-        checkBox3.setVisible(true);
-        checkBox4.setVisible(true);
-        checkBox5.setVisible(true);
-        checkBox1.setEnabled(true);
-        checkBox2.setEnabled(true);
-        checkBox3.setEnabled(true);
-        checkBox4.setEnabled(true);
-        checkBox5.setEnabled(true);
+		checkBox1.setVisible(true);
+		checkBox2.setVisible(true);
+		checkBox3.setVisible(true);
+		checkBox4.setVisible(true);
+		checkBox5.setVisible(true);
+		checkBox6.setVisible(true);
+		checkBox7.setVisible(true);
+		checkBox8.setVisible(true);
 
-        // ICON DAS NACH AUSWAHL VON DATEI VERSCHWINDET
-        // WARUM?
+		checkBox1.setEnabled(true);
+		checkBox2.setEnabled(true);
+		checkBox3.setEnabled(true);
+		checkBox4.setEnabled(true);
+		checkBox5.setEnabled(true);
+		checkBox6.setEnabled(true);
+		checkBox7.setEnabled(true);
+		checkBox8.setEnabled(true);
+
+		// ICON DAS NACH AUSWAHL VON DATEI VERSCHWINDET
+		// WARUM?
 
 //        ImageIcon icon = new ImageIcon("resources/SBT.jpg");
 //
@@ -132,66 +152,92 @@ public class GUI extends JFrame implements ActionListener
 //        label.setEnabled(true);
 //        panel.add(label);
 
-        textfield = new JTextArea();
-        textfield.setBounds(10, 160, 265, 90);
-        textfield.setEditable(false);
-        textfield.setWrapStyleWord(true);
-        textfield.setLineWrap(true);
-        textfield.setFont(new Font("Verdana", Font.PLAIN, 10));
+		textfield = new JTextArea();
+		textfield.setBounds(10, 250, 265, 90);
+		textfield.setEditable(false);
+		textfield.setWrapStyleWord(true);
+		textfield.setLineWrap(true);
+		textfield.setFont(new Font("Verdana", Font.PLAIN, 10));
+		panel.add(textfield);
 
-        panel.add(textfield);
+		// BUTTONS.
+		executeButton = new JButton("Ausführen");
+		executeButton.setBounds(10, 410, 265, 50);
+		executeButton.setFocusable(false);
+		executeButton.addActionListener(this);
+		executeButton.setEnabled(true);
+		panel.add(executeButton);
 
-        this.add(panel);
-    }
+		explorerButton = new JButton("Datei auswählen");
+		explorerButton.setBounds(10, 350, 265, 50);
+		explorerButton.setFocusable(false);
+		explorerButton.addActionListener(this);
+		panel.add(explorerButton);
 
-    @Override
-    public void actionPerformed(ActionEvent e)
-    {
+		infoButton = new JButton("");
+		ImageIcon infoIcon = new ImageIcon(getClass().getResource("/questionmark-icon.png"));
+		Image scaledInstance = infoIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+		ImageIcon infoIconScaled = new ImageIcon(scaledInstance);
+		infoButton.setIcon(infoIconScaled);
+		infoButton.setBounds(240, 470, 30, 30);
+		infoButton.setFocusable(false);
+		infoButton.setBackground(Color.GRAY);
+		infoButton.setOpaque(true);
+		infoButton.addActionListener(this);
+		panel.add(infoButton);
 
-//        if (e.getSource()==info) {
-//            JDialog dialog = new JDialog();
-//            dialog.setTitle("Impressum");
-//            dialog.setBounds(10,10,200,200);
-//
-//            JPanel dialogpanel = new JPanel();
-//            dialogpanel.setBounds(0,0,200,200);
-//
-//            JTextArea infotext = new JTextArea();
-//            infotext.setText("Programmierung: Moritz Künzl" + "\n" + "GZUI: Vincent Görlich" + "\n" + "Firma: sbt"+ "\n" + "Am Kenner Haus 13" + "\n" +
-//                    "54344 Kenn");
-//            infotext.setEditable(false);
-//            infotext.setVisible(true);
-//
-//            dialog.add(dialogpanel);
-//
-//            dialogpanel.add(infotext);
-//
-//            dialog.setVisible(true);
-//            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-//        }
+		this.add(panel);
+	}
 
-        if (e.getSource() == explorerButton)
-        {
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
 
-            JFileChooser explorer = new JFileChooser();
-            explorer.setCurrentDirectory(new File(System.getProperty("user.dir")));
+		if (e.getSource() == infoButton)
+		{
+			JDialog dialog = new JDialog();
+			dialog.setTitle("Impressum");
+			dialog.setBounds(10, 10, 100, 100);
 
-            int response = explorer.showOpenDialog(null); //select file to open
+			JPanel dialogpanel = new JPanel();
+			dialogpanel.setBounds(0, 0, 100, 100);
 
-            if (response == JFileChooser.APPROVE_OPTION)
-            {
-                File file = new File(explorer.getSelectedFile().getAbsolutePath());
-                //System.out.println(file);
+			JTextArea infotext = new JTextArea();
+			infotext.setText("Firma: sbt" + "\n" + "Am Kenner Haus 13" + "\n" +
+					"54344 Kenn");
+			infotext.setEditable(false);
+			infotext.setVisible(true);
 
-                String path = file.toString();
-                textfield.setText(path);
+			dialog.add(dialogpanel);
 
-                //label.setVisible(false);
-            }
-        }
+			dialogpanel.add(infotext);
 
-        if (e.getSource() == executeButton)
-        {
+			dialog.setVisible(true);
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		}
+
+		if (e.getSource() == explorerButton)
+		{
+
+			JFileChooser explorer = new JFileChooser();
+			explorer.setCurrentDirectory(new File(System.getProperty("user.dir")));
+
+			int response = explorer.showOpenDialog(null); //select file to open
+
+			if (response == JFileChooser.APPROVE_OPTION)
+			{
+				File file = new File(explorer.getSelectedFile().getAbsolutePath());
+				//System.out.println(file);
+
+				String path = file.toString();
+				textfield.setText(path);
+
+				//label.setVisible(false);
+			}
+		}
+
+		if (e.getSource() == executeButton)
+		{
 
 //            JFileChooser saver = new JFileChooser();
 //            int userSelection = saver.showSaveDialog(null);
@@ -203,18 +249,18 @@ public class GUI extends JFrame implements ActionListener
 //                System.out.println(file);
 //            }
 
-            File csv = new File(textfield.getText());
-            Parser parser = new Parser(csv);
+			File csv = new File(textfield.getText());
+			Parser parser = new Parser(csv);
 
-            TableEngine database = new TableEngine(parser.parse(), csv.getParent());
+			TableEngine database = new TableEngine(parser.parse(), csv.getParent());
 
-            for (IHtmlTemplate strategy : StrategyStorage.getInstance().getStrategies())
-            {
-                database.export(new HtmlTemplateExportStrategy(strategy));
-            }
+			for (IHtmlTemplate strategy : StrategyStorage.getInstance().getStrategies())
+			{
+				database.export(new HtmlTemplateExportStrategy(strategy));
+			}
 
-        }
-    }
+		}
+	}
 }
 
 
