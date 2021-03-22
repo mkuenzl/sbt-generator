@@ -412,6 +412,7 @@ public class Bericht_OB_Factory
 
 			if (empty)
 			{
+				dicke = "-";
 				mufv = "-";
 				ruva = "-";
 				avv = "-";
