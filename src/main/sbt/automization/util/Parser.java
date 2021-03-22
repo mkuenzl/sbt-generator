@@ -46,8 +46,8 @@ public class Parser
                     if ("".equals(record.get(0))){
                     } else {
                         Map<String,String> map = record.toMap();
-                        System.out.println(map.get("ERK_ID"));
-                        System.out.println(map.toString());
+                        //System.out.println(map.get("ERK_ID"));
+                        //System.out.println(map.toString());
                         dataPoints.add(map);
                     }
                 }
