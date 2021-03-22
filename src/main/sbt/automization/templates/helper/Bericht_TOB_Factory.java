@@ -116,7 +116,7 @@ public class Bericht_TOB_Factory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.presentSchichtenKGVToB(erkundungsstelle))
+					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, "TOB", "SCHICHT_KORNGROESSENVERTEILUNG"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -281,10 +281,18 @@ public class Bericht_TOB_Factory
 		for (Erkundungsstelle erkundungsstelle :
 				erkundungsstellen)
 		{
+			String content = null;
+
+			if (!"-".equals(erkundungsstelle.getInformation("ERK_LP_EV2")) && !"".equals(erkundungsstelle.getInformation("ERK_LP_EV2")))
+			{
+				content = "120";
+			} else {
+				content = "-";
+			}
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "50")
-					.appendContent("120 TODO")
+					.appendContent(content)
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -311,7 +319,7 @@ public class Bericht_TOB_Factory
 			HtmlCell htmlCell_CHEMIE_ID = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printMultipleSchichtInformation(erkundungsstelle, "TOB", "CHEMIE_ID"))
+					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, "TOB", "CHEMIE_ID"))
 					.build();
 
 			rowCHEMIE_ID.appendContent(htmlCell_CHEMIE_ID.appendTag());
@@ -350,7 +358,7 @@ public class Bericht_TOB_Factory
 			HtmlCell htmlCell_CHEMIE_MUFV = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printMultipleSchichtInformation(erkundungsstelle, "TOB", "CHEMIE_MUFV"))
+					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, "TOB", "CHEMIE_MUFV"))
 					.build();
 
 			rowCHEMIE_MUFV.appendContent(htmlCell_CHEMIE_MUFV.appendTag());
@@ -383,7 +391,7 @@ public class Bericht_TOB_Factory
 			HtmlCell htmlCell_CHEMIE_LAGA_BO = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printMultipleSchichtInformation(erkundungsstelle, "TOB", "CHEMIE_LAGA_BO"))
+					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, "TOB", "CHEMIE_LAGA_BO"))
 					.build();
 
 			rowCHEMIE_LAGA_BO.appendContent(htmlCell_CHEMIE_LAGA_BO.appendTag());
@@ -416,7 +424,7 @@ public class Bericht_TOB_Factory
 			HtmlCell htmlCell_CHEMIE_LAGA_RC = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printMultipleSchichtInformation(erkundungsstelle, "TOB", "CHEMIE_LAGA_RC"))
+					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, "TOB", "CHEMIE_LAGA_RC"))
 					.build();
 
 			rowCHEMIE_LAGA_RC.appendContent(htmlCell_CHEMIE_LAGA_RC.appendTag());
@@ -449,7 +457,7 @@ public class Bericht_TOB_Factory
 			HtmlCell htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printMultipleSchichtInformation(erkundungsstelle, "TOB", "CHEMIE_LAGARC_ORIENTIERUNGSWERT"))
+					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, "TOB", "CHEMIE_LAGARC_ORIENTIERUNGSWERT"))
 					.build();
 
 			rowCHEMIE_LAGA_RC_ORIENTIERUNG.appendContent(htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG.appendTag());
@@ -483,7 +491,7 @@ public class Bericht_TOB_Factory
 			HtmlCell htmlCell_CHEMIE_TL_GESTEIN = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printMultipleSchichtInformation(erkundungsstelle, "TOB", "CHEMIE_TLGESTEIN"))
+					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, "TOB", "CHEMIE_TLGESTEIN"))
 					.build();
 
 
@@ -522,7 +530,7 @@ public class Bericht_TOB_Factory
 			HtmlCell htmlCell_CHEMIE_DEPV = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printMultipleSchichtInformation(erkundungsstelle, "TOB", "CHEMIE_DEPV"))
+					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, "TOB", "CHEMIE_DEPV"))
 					.build();
 
 
@@ -556,7 +564,7 @@ public class Bericht_TOB_Factory
 			HtmlCell htmlCell_CHEMIE_ENTSCHEIDUNGSILFE = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printMultipleSchichtInformation(erkundungsstelle, "TOB", "CHEMIE_ENTSCHEIDUNGSHILFE"))
+					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, "TOB", "CHEMIE_ENTSCHEIDUNGSHILFE"))
 					.build();
 
 			rowCHEMIE_ENTSCHEIDUNGSHILFE.appendContent(htmlCell_CHEMIE_ENTSCHEIDUNGSILFE.appendTag());

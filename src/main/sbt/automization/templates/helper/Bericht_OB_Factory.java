@@ -168,7 +168,7 @@ public class Bericht_OB_Factory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "50")
-					.appendContent(TextFormatUtil.printMultipleSchichtInformationRUK(erkundungsstelle, "GOB"))
+					.appendContent(TextFormatUtil.printSchichtRUK(erkundungsstelle, "GOB"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -209,7 +209,6 @@ public class Bericht_OB_Factory
 
 		return row.appendTag();
 	}
-
 
 	public static String createPechQualitativRow(List<Erkundungsstelle> erkundungsstellen)
 	{

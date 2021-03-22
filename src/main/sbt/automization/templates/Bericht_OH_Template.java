@@ -1,6 +1,7 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.Erkundungsstelle;
+import sbt.automization.templates.helper.Bericht_OH_Factory;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
@@ -113,92 +114,12 @@ public final class Bericht_OH_Template extends AHtmlTemplate
 						.appendTag())
 				.build();
 
-		HtmlRow rowCHEMIE_ID = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Laborprobe")
-						.build()
-						.appendTag())
-				.build();
-
-		HtmlRow rowCHEMIE_LAGA_BO = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("LAGA Boden,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("Zuordnung")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		HtmlRow rowCHEMIE_DEPV = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Deponieverordnungs-")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal")
-								.appendContent("klasse,")
-								.build()
-								.appendTag())
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("DepV")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		HtmlRow rowCHEMIE_ENTSCHEIDUNGSHILFE = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Entscheidungshilfe,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("DepV")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		HtmlRow rowCHEMIE_AVV = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Abfallschlüssel,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("AVV")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
-		{
-
-		}
-
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())
-				.append(rowCHEMIE_ID.appendTag())
-				.append(rowCHEMIE_LAGA_BO.appendTag())
-				.append(rowCHEMIE_DEPV.appendTag())
-				.append(rowCHEMIE_ENTSCHEIDUNGSHILFE.appendTag())
-				.append(rowCHEMIE_AVV.appendTag());
+				.append(Bericht_OH_Factory.createChemieIDRow(erkundungsstellen))
+				.append(Bericht_OH_Factory.createChemieLagaBoRow(erkundungsstellen))
+				.append(Bericht_OH_Factory.createChemieDepvRow(erkundungsstellen))
+				.append(Bericht_OH_Factory.createChemieEntscheidungshilfeRow(erkundungsstellen))
+				.append(Bericht_OH_Factory.createChemieAbfallSchluesselRow(erkundungsstellen));
 
 		return umweltTechBuilder.toString();
 	}
@@ -219,69 +140,11 @@ public final class Bericht_OH_Template extends AHtmlTemplate
 				.build();
 
 		techBuilder.append(rowTECHMERKMALE.appendTag())
-			.append(buildTechnischeMerkmaleDIN(erkundungsstellen));
+			.append(Bericht_OH_Factory.createDIN18196Row(erkundungsstellen))
+			.append(Bericht_OH_Factory.createDIN19682Row(erkundungsstellen))
+			.append(Bericht_OH_Factory.createDIN18320Row(erkundungsstellen));
 
 		return techBuilder.toString();
-	}
-
-	private String buildTechnischeMerkmaleDIN(List<Erkundungsstelle> erkundungsstellen)
-	{
-		StringBuilder stringBuilder = new StringBuilder();
-
-		//DIN18196
-		HtmlRow rowERK_DIN18196 = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Bodengruppe,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("DIN 18196")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		//DIN19682
-		HtmlRow rowERK_DIN19682 = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Bodengruppe,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("DIN 19682")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		//DIN18320:2019-09
-		HtmlRow rowERK_DIN18320 = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Homogenbereich,")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal6")
-								.appendContent("DIN 18320:2019-09")
-								.build()
-								.appendTag())
-						.build()
-						.appendTag())
-				.build();
-
-		stringBuilder.append(rowERK_DIN18196.appendTag())
-				.append(rowERK_DIN19682.appendTag())
-				.append(rowERK_DIN18320.appendTag());
-
-
-		return stringBuilder.toString();
 	}
 
 	@Override
