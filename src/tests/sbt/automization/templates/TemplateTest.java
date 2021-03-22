@@ -18,6 +18,10 @@ public class TemplateTest
 {
 	List<Erkundungsstelle> erkundungsstellen = new ArrayList<>();
 
+//	String path = "C:/Users/Kuenzl/Documents/GitHub/sbt-generator/tests-resources/";
+	String path = "/Users/moritzkunzl/Documents/GitHub/sbt-generator/tests-resources/";
+
+
 	@BeforeClass
 	public static void createErk()
 	{
@@ -27,7 +31,10 @@ public class TemplateTest
 //		erkundungsstellen.add(erkCreationTestUtil.getTestErkundungsstelle3());
 //		erkundungsstellen.add(erkCreationTestUtil.getTestErkundungsstelle4());
 
-		File csv = new File("C:/Users/Kuenzl/Documents/GitHub/sbt-generator/tests-resources/Datenbank-Test.csv");
+//		String path = "C:/Users/Kuenzl/Documents/GitHub/sbt-generator/tests-resources/";
+		String path = "/Users/moritzkunzl/Documents/GitHub/sbt-generator/tests-resources/";
+
+		File csv = new File(path + "Datenbank-Test.csv");
 		Parser parser = new Parser(csv);
 
 		TableEngine database = new TableEngine(parser.parse(), csv.getParent());
@@ -43,14 +50,14 @@ public class TemplateTest
 	@Before
 	public void initializeErk()
 	{
-		erkundungsstellen.add(Util.readSerializedErkundungsstelle("C:/Users/Kuenzl/Documents/GitHub/sbt-generator/tests-resources/TestErkundungsstelle_0"));
-		erkundungsstellen.add(Util.readSerializedErkundungsstelle("C:/Users/Kuenzl/Documents/GitHub/sbt-generator/tests-resources/TestErkundungsstelle_1"));
-		erkundungsstellen.add(Util.readSerializedErkundungsstelle("C:/Users/Kuenzl/Documents/GitHub/sbt-generator/tests-resources/TestErkundungsstelle_2"));
-		erkundungsstellen.add(Util.readSerializedErkundungsstelle("C:/Users/Kuenzl/Documents/GitHub/sbt-generator/tests-resources/TestErkundungsstelle_3"));
-		erkundungsstellen.add(Util.readSerializedErkundungsstelle("C:/Users/Kuenzl/Documents/GitHub/sbt-generator/tests-resources/TestErkundungsstelle_4"));
-		erkundungsstellen.add(Util.readSerializedErkundungsstelle("C:/Users/Kuenzl/Documents/GitHub/sbt-generator/tests-resources/TestErkundungsstelle_5"));
-		erkundungsstellen.add(Util.readSerializedErkundungsstelle("C:/Users/Kuenzl/Documents/GitHub/sbt-generator/tests-resources/TestErkundungsstelle_6"));
-		erkundungsstellen.add(Util.readSerializedErkundungsstelle("C:/Users/Kuenzl/Documents/GitHub/sbt-generator/tests-resources/TestErkundungsstelle_7"));
+		erkundungsstellen.add(Util.readSerializedErkundungsstelle(path + "TestErkundungsstelle_0"));
+		erkundungsstellen.add(Util.readSerializedErkundungsstelle(path + "TestErkundungsstelle_1"));
+		erkundungsstellen.add(Util.readSerializedErkundungsstelle(path + "TestErkundungsstelle_2"));
+		erkundungsstellen.add(Util.readSerializedErkundungsstelle(path + "TestErkundungsstelle_3"));
+		erkundungsstellen.add(Util.readSerializedErkundungsstelle(path + "TestErkundungsstelle_4"));
+		erkundungsstellen.add(Util.readSerializedErkundungsstelle(path + "TestErkundungsstelle_5"));
+		erkundungsstellen.add(Util.readSerializedErkundungsstelle(path + "TestErkundungsstelle_6"));
+		erkundungsstellen.add(Util.readSerializedErkundungsstelle(path + "TestErkundungsstelle_7"));
 	}
 
 	@Test
