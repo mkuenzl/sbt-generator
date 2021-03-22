@@ -2,6 +2,7 @@ package sbt.automization.templates;
 
 import sbt.automization.data.Erkundungsstelle;
 import sbt.automization.data.Schicht;
+import sbt.automization.format.NameFormatUtil;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.*;
 
@@ -98,7 +99,7 @@ public final class Anlage_PN_Template extends AHtmlTemplate
                 HtmlCell cellSchichtAbfallArt = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("width", "110")
-                        .appendContent(schicht.getInformation("SCHICHT_ABFALLART"))
+                        .appendContent(NameFormatUtil.formatArt(schicht.getInformation("SCHICHT_ABFALLART")))
                         .build();
 
                 HtmlCell cellSchichtKoernung = new HtmlCell.Builder()
