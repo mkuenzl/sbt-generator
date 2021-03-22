@@ -6,7 +6,7 @@ import sbt.automization.data.Schicht;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ERKCreationTestUtil
+public class ErkundungsstellenTestFactory
 {
 
 /*	Map<String, String> schichtDaten = new HashMap<>();

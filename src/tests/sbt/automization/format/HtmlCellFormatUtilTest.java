@@ -3,13 +3,13 @@ package sbt.automization.format;
 import org.junit.Test;
 import sbt.automization.data.Erkundungsstelle;
 import sbt.automization.export.HtmlTemplateExportStrategy;
-import sbt.automization.templates.ERKCreationTestUtil;
+import sbt.automization.templates.ErkundungsstellenTestFactory;
 import sbt.automization.templates.Example_Template;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
 
-public class HtmlCellFormatUtilText
+public class HtmlCellFormatUtilTest
 {
 
 
@@ -40,25 +40,25 @@ public class HtmlCellFormatUtilText
 	public void presentSchichtenToBTest()
 	{
 
-		Erkundungsstelle testErkundungsstelle1 = new ERKCreationTestUtil().getTestErkundungsstelle1();
+		Erkundungsstelle testErkundungsstelle1 = new ErkundungsstellenTestFactory().getTestErkundungsstelle1();
 		HtmlCell htmlCell1 = new HtmlCell.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(TextFormatUtil.presentSchichtenToB(testErkundungsstelle1))
 				.build();
 
-		Erkundungsstelle testErkundungsstelle2 = new ERKCreationTestUtil().getTestErkundungsstelle2();
+		Erkundungsstelle testErkundungsstelle2 = new ErkundungsstellenTestFactory().getTestErkundungsstelle2();
 		HtmlCell htmlCell2 = new HtmlCell.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(TextFormatUtil.presentSchichtenToB(testErkundungsstelle2))
 				.build();
 
-		Erkundungsstelle testErkundungsstelle3 = new ERKCreationTestUtil().getTestErkundungsstelle3();
+		Erkundungsstelle testErkundungsstelle3 = new ErkundungsstellenTestFactory().getTestErkundungsstelle3();
 		HtmlCell htmlCell3 = new HtmlCell.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(TextFormatUtil.presentSchichtenToB(testErkundungsstelle3))
 				.build();
 
-		Erkundungsstelle testErkundungsstelle4 = new ERKCreationTestUtil().getTestErkundungsstelle4();
+		Erkundungsstelle testErkundungsstelle4 = new ErkundungsstellenTestFactory().getTestErkundungsstelle4();
 		HtmlCell htmlCell4 = new HtmlCell.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(TextFormatUtil.presentSchichtenToB(testErkundungsstelle4))
