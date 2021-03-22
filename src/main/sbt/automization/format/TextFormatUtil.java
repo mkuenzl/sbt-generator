@@ -376,10 +376,9 @@ public final class TextFormatUtil
 		{
 			Schicht schicht = tob.get(i);
 
-			HtmlText text1 = new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
-					.appendContent(NameFormatUtil.formatArt(schicht.getInformation("SCHICHT_ART")))
-					.build();
+			formatedSchichtenMaterial.append(NameFormatUtil.formatArt(schicht.getInformation("SCHICHT_ART")));
+
+			formatedSchichtenMaterial.append(printLineBreak());
 
 			HtmlText text2 = new HtmlText.Builder()
 					.appendAttribute("class", "Normal6")
@@ -397,7 +396,6 @@ public final class TextFormatUtil
 					.appendContent("]")
 					.build();
 
-			formatedSchichtenMaterial.append(text1.appendTag());
 			formatedSchichtenMaterial.append(text2.appendTag());
 			formatedSchichtenMaterial.append(text3.appendTag());
 
@@ -410,124 +408,89 @@ public final class TextFormatUtil
 		return formatedSchichtenMaterial.toString();
 	}
 
-	public static String presentSchichtenKGVToB(final Erkundungsstelle erkundungsstelle)
+	public static String printLineBreak()
 	{
-		StringBuilder formatedSchichtenMaterial = new StringBuilder();
+		HtmlText lineBreak = new HtmlText.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent("&nbsp;")
+				.build();
 
-		List<Schicht> tob = erkundungsstelle.getSchichtAufschluss("TOB");
-
-
-		int size = tob.size();
-		for (int i = 0 ; i < size ; i++)
-		{
-			Schicht schicht = tob.get(i);
-
-			String schicht_korngroessenverteilung = schicht.getInformation("SCHICHT_KORNGROESSENVERTEILUNG");
-			if (!"-".equals(schicht_korngroessenverteilung) && !"".equals(schicht_korngroessenverteilung)){
-				HtmlText text1 = new HtmlText.Builder()
-						.appendAttribute("class", "Normal")
-						.appendContent(NameFormatUtil.formatArt(schicht_korngroessenverteilung))
-						.build();
-
-				HtmlText text2 = new HtmlText.Builder()
-						.appendAttribute("class", "Normal6")
-						.appendContent("[T:")
-						.appendContent(schicht.getInformation("SCHICHT_TIEFE_START"))
-						.appendContent("-")
-						.appendContent(schicht.getInformation("SCHICHT_TIEFE_ENDE"))
-						.appendContent("]")
-						.build();
-
-
-				if (0 != formatedSchichtenMaterial.length())
-				{
-					formatedSchichtenMaterial.append(printCellTextDivider());
-				}
-
-				formatedSchichtenMaterial.append(text1.appendTag())
-						.append(text2.appendTag());
-
-//				if (i + 1 < size)
-//				{
-//					HtmlText textDivider = new HtmlText.Builder()
-//							.appendAttribute("class", "Normal")
-//							.appendContent("----------")
-//							.build();
-//
-//					formatedSchichtenMaterial.append(textDivider.appendTag());
-//				}
-			}
-		}
-
-		return formatedSchichtenMaterial.toString();
+		return lineBreak.appendTag();
 	}
 
 	public static String printCellTextDivider()
 	{
+		StringBuilder strb = new StringBuilder();
 		HtmlText textDivider = new HtmlText.Builder()
 				.appendAttribute("class", "Normal")
-				.appendContent("__________")
-				.appendContent(new HtmlText.Builder()
-						.appendAttribute("class", "Normal")
-						.appendContent("")
-						.build().appendTag())
+				.appendContent("_________")
 				.build();
 
-		return textDivider.appendTag();
+		strb.append(textDivider.appendTag())
+				.append(printLineBreak());
+
+		return strb.toString();
 	}
 
-	public static String printMultipleSchichtInformation(final Erkundungsstelle erkundungsstelle, final String aufschluss, final String tag)
+	public static String printSchichtInformation(final Erkundungsstelle erkundungsstelle, final String aufschluss, final String tag)
 	{
-		List<Schicht> tob = erkundungsstelle.getSchichtAufschluss(aufschluss);
+		List<Schicht> schichten = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 		StringBuilder stringBuilder = new StringBuilder();
 
-		for (Schicht schicht : tob)
+		int number = schichten.size();
+
+		for (int i = 0; i < number; i++)
 		{
-			String id = schicht.getInformation(tag);
+			Schicht schicht = schichten.get(i);
+
+			String formatedTag;
 
 			//TODO
 			if (tag.contains("CHEMIE"))
 			{
-				id = printChemieMarkup(id);
+				formatedTag = printChemieMarkup(schicht.getInformation(tag));
+			} else
+			{
+				formatedTag = new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent(schicht.getInformation(tag))
+						.build().appendTag();
 			}
 
-			if (!"-".equals(id) && !"".equals(id))
-			{
-				HtmlText text1 = new HtmlText.Builder()
-						.appendAttribute("class", "Normal")
-						.appendContent(id)
-						.build();
 
-				HtmlText text2 = new HtmlText.Builder()
-						.appendAttribute("class", "Normal6")
-						.appendContent("[T:")
-						.appendContent(schicht.getInformation("SCHICHT_TIEFE_START"))
-						.appendContent("-")
-						.appendContent(schicht.getInformation("SCHICHT_TIEFE_ENDE"))
-						.appendContent("]")
-						.build();
-
-				if (0 != stringBuilder.length())
+				if (i > 0)
 				{
 					stringBuilder.append(printCellTextDivider());
 				}
 
-				stringBuilder.append(text1.appendTag())
-						.append(text2.appendTag());
+				stringBuilder.append(formatedTag);
+
+
+				if (number > 1)
+				{
+
+					HtmlText text2 = new HtmlText.Builder()
+							.appendAttribute("class", "Normal6")
+							.appendContent("[T:")
+							.appendContent(schicht.getInformation("SCHICHT_TIEFE_START"))
+							.appendContent("-")
+							.appendContent(schicht.getInformation("SCHICHT_TIEFE_ENDE"))
+							.appendContent("]")
+							.build();
+
+					stringBuilder.append(printLineBreak());
+					stringBuilder.append(text2.appendTag());
+				}
+
 
 			}
-		}
+
 		return stringBuilder.toString();
 	}
 
-	public static String printMultipleSchichtInformationRUK(final Erkundungsstelle erkundungsstelle, final String aufschluss)
+	public static String printSchichtRUK(final Erkundungsstelle erkundungsstelle, final String aufschluss)
 	{
-		HtmlText lineBreak = new HtmlText.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent("")
-				.build();
-
 		List<Schicht> tob = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 		StringBuilder stringBuilder = new StringBuilder();
@@ -538,6 +501,11 @@ public final class TextFormatUtil
 
 			if (!"-".equals(ruk) && !"".equals(ruk))
 			{
+				if (0 != stringBuilder.length())
+				{
+					stringBuilder.append(printCellTextDivider());
+				}
+
 				HtmlText text1 = new HtmlText.Builder()
 						.appendAttribute("class", "Normal6")
 						.appendContent(schicht.getInformation("SCHICHT_ART"))
@@ -547,11 +515,6 @@ public final class TextFormatUtil
 						.appendAttribute("class", "Normal")
 						.appendContent(ruk)
 						.build();
-
-				if (0 != stringBuilder.length())
-				{
-					stringBuilder.append(printCellTextDivider());
-				}
 
 				stringBuilder.append(text1.appendTag())
 						.append(text2.appendTag());
@@ -572,19 +535,19 @@ public final class TextFormatUtil
 			case "DK0":
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent("<mark style=\"background-color: black;\n" +
+						.appendContent("<span style=\"background-color: black;\n" +
 								"  color: white\">")
 						.appendContent(data)
-						.appendContent("</mark>")
+						.appendContent("</span>")
 						.build().appendTag());
 				break;
 			case "Z0*":
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent("<mark style=\"background-color: #00FFFF;\n" +
+						.appendContent("<span style=\"background-color: #00FFFF;\n" +
 								"  color: black\">")
 						.appendContent(data)
-						.appendContent("</mark>")
+						.appendContent("</span>")
 						.build().appendTag());
 				break;
 			case "Z1":
@@ -593,10 +556,10 @@ public final class TextFormatUtil
 			case "DK1":
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent("<mark style=\"background-color: #00FF00;\n" +
+						.appendContent("<span style=\"background-color: #00FF00;\n" +
 								"  color: black\">")
 						.appendContent(data)
-						.appendContent("</mark>")
+						.appendContent("</span>")
 						.build().appendTag());
 				break;
 			case "Z1.2":
@@ -604,10 +567,10 @@ public final class TextFormatUtil
 			case "DK2":
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent("<mark style=\"background-color: yellow;\n" +
-								"  color: white\">")
+						.appendContent("<span style=\"background-color: yellow;\n" +
+								"  color: black\">")
 						.appendContent(data)
-						.appendContent("</mark>")
+						.appendContent("</span>")
 						.build().appendTag());
 				break;
 			case "Z2":
@@ -615,37 +578,51 @@ public final class TextFormatUtil
 			case "DK3":
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent("<mark style=\"background-color: red;\n" +
-								"  color: white\">")
+						.appendContent("<span style=\"background-color: red;\n" +
+								"  color: black\">")
 						.appendContent(data)
-						.appendContent("</mark>")
+						.appendContent("</span>")
 						.build().appendTag());
 				break;
 			case ">Z2":
+			case ">DK3":
 			case "gefährlich":
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent("<mark style=\"background-color: black;\n" +
+						.appendContent("<span style=\"background-color: black;\n" +
 								"  color: white\">")
 						.appendContent(data)
-						.appendContent("</mark>")
+						.appendContent("</span>")
 						.build().appendTag());
 				break;
 			case "nicht gefährlich":
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent("<mark style=\"background-color: white;\n" +
+						.appendContent("<span style=\"background-color: white;\n" +
 								"  color: black\">")
 						.appendContent("nicht")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal")
 								.appendContent("gefährlich")
-								.appendContent("</mark>")
 								.build().appendTag())
-						.appendContent("</mark>")
+						.appendContent("</span>")
+						.build().appendTag());
+				break;
+			case "nicht eingehalten":
+				stringBuilder.append(new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent("nicht")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal")
+								.appendContent("eingehalten")
+								.build().appendTag())
 						.build().appendTag());
 				break;
 			default:
+				stringBuilder.append(new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent(data)
+						.build().appendTag());
 				break;
 		}
 
