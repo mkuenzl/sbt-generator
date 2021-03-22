@@ -71,7 +71,7 @@ public abstract class ATemplateExportStrategy
         }
     }
 
-    private String getPath()
+    public String getPath()
     {
         if (TableEngine.exportPath == null) return System.getProperty("user.dir").concat(File.separator).concat(strategy.getExportFileName());
 
