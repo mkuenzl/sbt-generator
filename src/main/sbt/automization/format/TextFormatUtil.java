@@ -535,8 +535,8 @@ public final class TextFormatUtil
 			case "DK0":
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent("<span style=\"background-color: black;\n" +
-								"  color: white\">")
+						.appendContent("<span style=\"background-color: white;font-weight: bold;\n\n" +
+								"  color: black\">")
 						.appendContent(data)
 						.appendContent("</span>")
 						.build().appendTag());
@@ -544,7 +544,7 @@ public final class TextFormatUtil
 			case "Z0*":
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent("<span style=\"background-color: #00FFFF;\n" +
+						.appendContent("<span style=\"background-color: #00FFFF;font-weight: bold;\n" +
 								"  color: black\">")
 						.appendContent(data)
 						.appendContent("</span>")
@@ -556,7 +556,7 @@ public final class TextFormatUtil
 			case "DK1":
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent("<span style=\"background-color: #00FF00;\n" +
+						.appendContent("<span style=\"background-color: #00FF00;font-weight: bold;\n" +
 								"  color: black\">")
 						.appendContent(data)
 						.appendContent("</span>")
@@ -567,7 +567,7 @@ public final class TextFormatUtil
 			case "DK2":
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent("<span style=\"background-color: yellow;\n" +
+						.appendContent("<span style=\"background-color: yellow;font-weight: bold;\n" +
 								"  color: black\">")
 						.appendContent(data)
 						.appendContent("</span>")
@@ -578,8 +578,8 @@ public final class TextFormatUtil
 			case "DK3":
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent("<span style=\"background-color: red;\n" +
-								"  color: black\">")
+						.appendContent("<span style=\"background-color: red;font-weight: bold;\n" +
+								"  color: white\">")
 						.appendContent(data)
 						.appendContent("</span>")
 						.build().appendTag());
@@ -589,7 +589,7 @@ public final class TextFormatUtil
 			case "gefährlich":
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent("<span style=\"background-color: black;\n" +
+						.appendContent("<span style=\"background-color: black;font-weight: bold;\n" +
 								"  color: white\">")
 						.appendContent(data)
 						.appendContent("</span>")
@@ -598,12 +598,14 @@ public final class TextFormatUtil
 			case "nicht gefährlich":
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent("<span style=\"background-color: white;\n" +
+						.appendContent("<span style=\"background-color: white;font-weight: bold;\n" +
 								"  color: black\">")
 						.appendContent("nicht")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal")
+								.appendContent("<span style=\"font-weight: bold\";>")
 								.appendContent("gefährlich")
+								.appendContent("</span>")
 								.build().appendTag())
 						.appendContent("</span>")
 						.build().appendTag());
@@ -611,13 +613,24 @@ public final class TextFormatUtil
 			case "nicht eingehalten":
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
+						.appendContent("<span style=\"font-weight: bold\";>")
 						.appendContent("nicht")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal")
+								.appendContent("<span style=\"font-weight: bold\";>")
 								.appendContent("eingehalten")
+								.appendContent("</span>")
 								.build().appendTag())
+						.appendContent("</span>")
 						.build().appendTag());
 				break;
+			case "eingehalten":
+				stringBuilder.append(new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent("<span style=\"font-weight: bold\";>")
+						.appendContent(data)
+						.appendContent("</span>")
+						.build().appendTag());
 			default:
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
