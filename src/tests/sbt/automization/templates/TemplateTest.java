@@ -10,7 +10,9 @@ import sbt.automization.export.HtmlTemplateExportStrategy;
 import sbt.automization.util.Parser;
 import sbt.automization.util.Util;
 
+import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,21 +20,17 @@ public class TemplateTest
 {
 	List<Erkundungsstelle> erkundungsstellen = new ArrayList<>();
 
-//	String path = "C:/Users/Kuenzl/Documents/GitHub/sbt-generator/tests-resources/";
-	String path = "/Users/moritzkunzl/Documents/GitHub/sbt-generator/tests-resources/";
-
+	private static void openExportFile(HtmlTemplateExportStrategy htmlTemplateExportStrategy) throws IOException
+	{
+		String path = htmlTemplateExportStrategy.getPath();
+		File htmlFile = new File(path);
+		Desktop.getDesktop().browse(htmlFile.toURI());
+	}
 
 	@BeforeClass
 	public static void createErk()
 	{
-//		ERKCreationTestUtil erkCreationTestUtil = new ERKCreationTestUtil();
-//		erkundungsstellen.add(erkCreationTestUtil.getTestErkundungsstelle1());
-//		erkundungsstellen.add(erkCreationTestUtil.getTestErkundungsstelle2());
-//		erkundungsstellen.add(erkCreationTestUtil.getTestErkundungsstelle3());
-//		erkundungsstellen.add(erkCreationTestUtil.getTestErkundungsstelle4());
-
-//		String path = "C:/Users/Kuenzl/Documents/GitHub/sbt-generator/tests-resources/";
-		String path = "/Users/moritzkunzl/Documents/GitHub/sbt-generator/tests-resources/";
+		String path = System.getProperty("user.dir").concat(File.separator).concat("tests-resources").concat(File.separator);
 
 		File csv = new File(path + "Datenbank-Test.csv");
 		Parser parser = new Parser(csv);
@@ -50,6 +48,8 @@ public class TemplateTest
 	@Before
 	public void initializeErk()
 	{
+		String path = System.getProperty("user.dir").concat(File.separator).concat("tests-resources").concat(File.separator);
+
 		erkundungsstellen.add(Util.readSerializedErkundungsstelle(path + "TestErkundungsstelle_0"));
 		erkundungsstellen.add(Util.readSerializedErkundungsstelle(path + "TestErkundungsstelle_1"));
 		erkundungsstellen.add(Util.readSerializedErkundungsstelle(path + "TestErkundungsstelle_2"));
@@ -61,65 +61,83 @@ public class TemplateTest
 	}
 
 	@Test
-	public void createErkTemplate()
+	public void createErkTemplate() throws IOException
 	{
 		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Anlage_ERK_Template.getInstance());
 		htmlTemplateExportStrategy.export(erkundungsstellen);
+
+		openExportFile(htmlTemplateExportStrategy);
 	}
 
 	@Test
-	public void createRukTemplate()
+	public void createRukTemplate() throws IOException
 	{
 		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Anlage_RUK_Template.getInstance());
 		htmlTemplateExportStrategy.export(erkundungsstellen);
+
+		openExportFile(htmlTemplateExportStrategy);
 	}
 
 	@Test
-	public void createLpTemplate()
+	public void createLpTemplate() throws IOException
 	{
 		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Anlage_LP_Template.getInstance());
 		htmlTemplateExportStrategy.export(erkundungsstellen);
+
+		openExportFile(htmlTemplateExportStrategy);
 	}
 
 	@Test
-	public void createPnTemplate()
+	public void createPnTemplate() throws IOException
 	{
 		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Anlage_PN_Template.getInstance());
 		htmlTemplateExportStrategy.export(erkundungsstellen);
+
+		openExportFile(htmlTemplateExportStrategy);
 	}
 
 	@Test
-	public void createBerichtOBTemplate()
+	public void createBerichtOBTemplate() throws IOException
 	{
 		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Bericht_OB_Template.getInstance());
 		htmlTemplateExportStrategy.export(erkundungsstellen);
+
+		openExportFile(htmlTemplateExportStrategy);
 	}
 
 	@Test
-	public void createBerichtTOBTemplate()
+	public void createBerichtTOBTemplate() throws IOException
 	{
 		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Bericht_TOB_Template.getInstance());
 		htmlTemplateExportStrategy.export(erkundungsstellen);
+
+		openExportFile(htmlTemplateExportStrategy);
 	}
 
 	@Test
-	public void createBerichtUGTemplate()
+	public void createBerichtUGTemplate() throws IOException
 	{
 		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Bericht_UG_Template.getInstance());
 		htmlTemplateExportStrategy.export(erkundungsstellen);
+
+		openExportFile(htmlTemplateExportStrategy);
 	}
 
 	@Test
-	public void createBerichtOHTemplate()
+	public void createBerichtOHTemplate() throws IOException
 	{
 		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Bericht_OH_Template.getInstance());
 		htmlTemplateExportStrategy.export(erkundungsstellen);
+
+		openExportFile(htmlTemplateExportStrategy);
 	}
 
 	@Test
-	public void createExampleTemplate()
+	public void createExampleTemplate() throws IOException
 	{
 		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Example_Template.getInstance());
 		htmlTemplateExportStrategy.export(erkundungsstellen);
+
+		openExportFile(htmlTemplateExportStrategy);
 	}
 }
