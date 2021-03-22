@@ -132,7 +132,7 @@
             {
                 border:solid windowtext .5pt;
                 background:white;
-                padding:0cm 1.4pt 0cm 1.4pt;
+                padding:2.4pt 1.4pt 2.4pt 1.4pt;
                 text-align:center;
                 overflow:hidden;
             }
