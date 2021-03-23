@@ -12,13 +12,17 @@ import java.util.List;
 
 public class Bericht_OB_Factory
 {
+	private static String aufschluss = "OB";
+	private static String normalCellClass = "NormalBold";
+	private static String headerCellClass = "NormalHeader";
+	
 	public static String createIDRow(List<Erkundungsstelle> erkundungsstellen)
 	{
 		//Erkundungsstellen ID
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "110")
 						.appendContent("Erkundungsstelle")
 						.build()
@@ -29,7 +33,7 @@ public class Bericht_OB_Factory
 				erkundungsstellen)
 		{
 			HtmlCell htmlCell_ERK_ID = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(erkundungsstelle.getInformation("ERK_ID"))
 					.build();
@@ -46,7 +50,7 @@ public class Bericht_OB_Factory
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Aufschlussart")
 						.build()
@@ -57,7 +61,7 @@ public class Bericht_OB_Factory
 				erkundungsstellen)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
 					.appendContent(erkundungsstelle.getInformation("ERK_AUFSCHLUSS_OB"))
 					.build();
@@ -74,7 +78,7 @@ public class Bericht_OB_Factory
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Gesamtdicke geb.")
 						.appendContent(new HtmlText.Builder()
@@ -95,7 +99,7 @@ public class Bericht_OB_Factory
 				erkundungsstellen)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
 					.appendContent(TextFormatUtil.formatErkAufschlussDicke(erkundungsstelle, "GOB"))
 					.build();
@@ -112,7 +116,7 @@ public class Bericht_OB_Factory
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Belastungsklasse,")
 						.appendContent(new HtmlText.Builder()
@@ -128,7 +132,7 @@ public class Bericht_OB_Factory
 				erkundungsstellen)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
 					.appendContent(erkundungsstelle.getInformation("ERK_BELASTUNGSKLASSE"))
 					.build();
@@ -145,7 +149,7 @@ public class Bericht_OB_Factory
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Erweichungspunkt")
 						.appendContent(new HtmlText.Builder()
@@ -166,7 +170,7 @@ public class Bericht_OB_Factory
 				erkundungsstellen)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
 					.appendContent(TextFormatUtil.printSchichtRUK(erkundungsstelle, "GOB"))
 					.build();
@@ -183,7 +187,7 @@ public class Bericht_OB_Factory
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Soll Einzelwert,")
 						.appendContent(new HtmlText.Builder()
@@ -199,7 +203,7 @@ public class Bericht_OB_Factory
 				erkundungsstellen)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
 					.appendContent("77")
 					.build();
@@ -216,7 +220,7 @@ public class Bericht_OB_Factory
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Pechnachweiß")
 						.appendContent(new HtmlText.Builder()
@@ -242,13 +246,45 @@ public class Bericht_OB_Factory
 		return row.appendTag();
 	}
 
+	public static String createPechHalbQuantitativRow(List<Erkundungsstelle> erkundungsstellen)
+	{
+		//Pechnachweis quantitativ
+		HtmlRow row = new HtmlRow.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent(new HtmlCell.Builder()
+						.appendAttribute("class", headerCellClass)
+						.appendAttribute("width", "100")
+						.appendContent("Pechnachweiß")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal")
+								.appendContent("halb-quantitativ")
+								.build()
+								.appendTag())
+						.build()
+						.appendTag())
+				.build();
+
+		for (Erkundungsstelle erkundungsstelle :
+				erkundungsstellen)
+		{
+			HtmlCell cell = new HtmlCell.Builder()
+					.appendAttribute("class", normalCellClass)
+					.appendAttribute("width", "50")
+					.appendContent(erkundungsstelle.getInformation("ERK_PECH_HALB_QUANTITATIV"))
+					.build();
+
+			row.appendContent(cell.appendTag());
+		}
+		return row.appendTag();
+	}
+
 	public static String createPechQuantitativRow(List<Erkundungsstelle> erkundungsstellen)
 	{
 		//Pechnachweis quantitativ
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Pechnachweiß")
 						.appendContent(new HtmlText.Builder()
@@ -264,7 +300,7 @@ public class Bericht_OB_Factory
 				erkundungsstellen)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
 					.appendContent(erkundungsstelle.getInformation("ERK_PECH_QUANTITATIV"))
 					.build();
@@ -290,7 +326,7 @@ public class Bericht_OB_Factory
 		HtmlRow rowPECH_QUERSCHNITT = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "NormalHeader")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("colspan", String.valueOf(1 + erkundungsstellen.size()))
 						.appendContent(querschnitt)
 						.build()
@@ -301,7 +337,7 @@ public class Bericht_OB_Factory
 		HtmlRow rowERK_DICKE_PECH = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Dicke,")
 						.appendContent(new HtmlText.Builder()
@@ -317,7 +353,7 @@ public class Bericht_OB_Factory
 		HtmlRow rowERK_MUFV_PECH = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Abgrenzung")
 						.appendContent(new HtmlText.Builder()
@@ -338,7 +374,7 @@ public class Bericht_OB_Factory
 		HtmlRow rowERK_RUVA_PECH = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Verwertungsklasse,")
 						.appendContent(new HtmlText.Builder()
@@ -354,7 +390,7 @@ public class Bericht_OB_Factory
 		HtmlRow rowERK_AVV_PECH = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Abfallschlüssel,")
 						.appendContent(new HtmlText.Builder()
@@ -420,7 +456,7 @@ public class Bericht_OB_Factory
 
 			//DICKE
 			HtmlCell htmlCell_Dicke = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
 					.appendContent(dicke)
 					.build();
@@ -434,7 +470,7 @@ public class Bericht_OB_Factory
 
 			//RUVA
 			HtmlCell htmlCell_RUVA = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
 					.appendContent(ruva)
 					.build();
@@ -443,7 +479,7 @@ public class Bericht_OB_Factory
 
 			//AVV
 			HtmlCell htmlCell_AVV = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
 					.appendContent(avv)
 					.build();

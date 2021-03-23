@@ -56,6 +56,8 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 		tableBericht.appendContent(buildTechnischeMerkmale(erkundungsstellen));
 		tableBericht.appendContent(buildUmweltTechnischeMerkmale(erkundungsstellen));
 
+		tableBericht.appendContent(Bericht_TOB_Factory.createLegendeRow(erkundungsstellen));
+
 		setHtmlTable(tableBericht.appendTag());
 	}
 
@@ -80,6 +82,7 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 				.append(Bericht_TOB_Factory.createEv2Row(erkundungsstellen))
 				.append(Bericht_TOB_Factory.createEvSollRow(erkundungsstellen))
 				.append(Bericht_TOB_Factory.createMaterialRow(erkundungsstellen))
+				.append(Bericht_TOB_Factory.createDickeRow(erkundungsstellen))
 				.append(Bericht_TOB_Factory.createKGVRow(erkundungsstellen))
 				.append(Bericht_TOB_Factory.createGesamtDickeRow(erkundungsstellen));
 

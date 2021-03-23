@@ -48,51 +48,8 @@ public final class Bericht_OH_Template extends AHtmlTemplate
 				.appendAttribute("cellpadding", "0")
 				.build();
 
-		//Erkundungsstellen ID
-		HtmlRow rowERK_ID = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "110")
-						.appendContent("Erkundungsstelle")
-						.build()
-						.appendTag())
-				.build();
-
-		//Erkundungsstellen Aufschlussart
-		HtmlRow rowERK_AUFSCHLUSS = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "100")
-						.appendContent("Aufschlussart")
-						.build()
-						.appendTag())
-				.build();
-
-		for (Erkundungsstelle erkundungsstelle :
-				erkundungsstellen)
-		{
-			HtmlCell htmlCell_ERK_ID = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
-					.appendAttribute("width", "50")
-					.appendContent(erkundungsstelle.getInformation("ERK_ID"))
-					.build();
-
-			rowERK_ID.appendContent(htmlCell_ERK_ID.appendTag());
-
-			HtmlCell htmlCell_ERK_AUFSCHLUSS = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
-					.appendAttribute("width", "50")
-					.appendContent(erkundungsstelle.getInformation("ERK_AUFSCHLUSS_TOB"))
-					.build();
-
-			rowERK_AUFSCHLUSS.appendContent(htmlCell_ERK_AUFSCHLUSS.appendTag());
-		}
-
-
-		tableBericht.appendContent(rowERK_ID.appendTag());
-		tableBericht.appendContent(rowERK_AUFSCHLUSS.appendTag());
+		tableBericht.appendContent(Bericht_OH_Factory.createIDRow(erkundungsstellen));
+		tableBericht.appendContent(Bericht_OH_Factory.createAufschlussRow(erkundungsstellen));
 		tableBericht.appendContent(buildTechnischeMerkmale(erkundungsstellen));
 		tableBericht.appendContent(buildUmweltTechnischeMerkmale(erkundungsstellen));
 

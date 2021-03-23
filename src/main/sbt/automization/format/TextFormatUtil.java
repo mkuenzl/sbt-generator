@@ -467,10 +467,10 @@ public final class TextFormatUtil
 				stringBuilder.append(formatedTag);
 
 
-				if (number > 1)
-				{
+//				if (number > 1)
+//				{
 
-					HtmlText text2 = new HtmlText.Builder()
+					HtmlText formatedTiefe = new HtmlText.Builder()
 							.appendAttribute("class", "Normal6")
 							.appendContent("[T:")
 							.appendContent(schicht.getInformation("SCHICHT_TIEFE_START"))
@@ -480,8 +480,8 @@ public final class TextFormatUtil
 							.build();
 
 					stringBuilder.append(printLineBreak());
-					stringBuilder.append(text2.appendTag());
-				}
+					stringBuilder.append(formatedTiefe.appendTag());
+//				}
 
 
 			}

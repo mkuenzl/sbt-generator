@@ -50,6 +50,7 @@ public final class Bericht_UG_Template extends AHtmlTemplate
 
 		tableBericht.appendContent(Bericht_UG_Factory.createIDRow(erkundungsstellen));
 		tableBericht.appendContent(Bericht_UG_Factory.createDickeRow(erkundungsstellen));
+		tableBericht.appendContent(Bericht_UG_Factory.createZielTiefeRow(erkundungsstellen));
 		tableBericht.appendContent(buildTechnischeMerkmale(erkundungsstellen));
 		tableBericht.appendContent(buildUmweltTechnischeMerkmale(erkundungsstellen));
 
@@ -93,8 +94,6 @@ public final class Bericht_UG_Template extends AHtmlTemplate
 				.append(Bericht_UG_Factory.createWasserGehaltRow(erkundungsstellen))
 				.append(Bericht_UG_Factory.createFeuchteZustandRow(erkundungsstellen))
 				.append(Bericht_UG_Factory.createKonsistenzRow(erkundungsstellen))
-				.append(Bericht_UG_Factory.createProctordichteRow(erkundungsstellen))
-				.append(Bericht_UG_Factory.createProtorDifferenzRow(erkundungsstellen))
 				.append(Bericht_UG_Factory.createVerdichtungsfaehigkeitRow(erkundungsstellen))
 				.append(Bericht_UG_Factory.createTragPlanumRow(erkundungsstellen))
 				.append(Bericht_UG_Factory.createTragSohleRow(erkundungsstellen));

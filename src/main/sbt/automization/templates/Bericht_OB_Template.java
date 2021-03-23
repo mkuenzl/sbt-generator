@@ -102,6 +102,7 @@ public final class Bericht_OB_Template extends AHtmlTemplate
 
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())
 				.append(Bericht_OB_Factory.createPechQualitativRow(erkundungsstellen))
+				.append(Bericht_OB_Factory.createPechHalbQuantitativRow(erkundungsstellen))
 				.append(Bericht_OB_Factory.createPechQuantitativRow(erkundungsstellen));
 
 		return umweltTechBuilder.toString();

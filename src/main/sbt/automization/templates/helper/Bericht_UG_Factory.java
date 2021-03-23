@@ -12,6 +12,8 @@ import java.util.List;
 public class Bericht_UG_Factory
 {
 	private static String aufschluss = "UG";
+	private static String headerCellClass = "NormalHeader";
+	private static String normalCellClass = "NormalBold";
 
 	public static String createIDRow(List<Erkundungsstelle> erkundungsstellen)
 	{
@@ -19,7 +21,7 @@ public class Bericht_UG_Factory
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "110")
 						.appendContent("Erkundungsstelle")
 						.build()
@@ -30,7 +32,7 @@ public class Bericht_UG_Factory
 				erkundungsstellen)
 		{
 			HtmlCell htmlCell_ERK_ID = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(erkundungsstelle.getInformation("ERK_ID"))
 					.build();
@@ -47,7 +49,7 @@ public class Bericht_UG_Factory
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Dicke,")
 						.appendContent(new HtmlText.Builder()
@@ -63,19 +65,46 @@ public class Bericht_UG_Factory
 		for (Erkundungsstelle erkundungsstelle :
 				erkundungsstellen)
 		{
-			List<Schicht> ug = erkundungsstelle.getSchichtAufschluss("UG");
-
-			int dicke = 0;
-			for (Schicht schicht : ug) {
-				String schicht_dicke = schicht.getInformation("SCHICHT_DICKE");
-				int d = Integer.parseInt(schicht_dicke);
-				dicke += d;
-			}
+			String aufschlussDicke = TextFormatUtil.formatErkAufschlussDicke(erkundungsstelle, aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
-					.appendContent(String.valueOf(dicke))
+					.appendContent(String.valueOf(aufschlussDicke))
+					.build();
+
+			row.appendContent(cell.appendTag());
+		}
+
+		return row.appendTag();
+	}
+
+	public static String createZielTiefeRow(List<Erkundungsstelle> erkundungsstellen)
+	{
+		//WASSERGEHALT
+		HtmlRow row = new HtmlRow.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent(new HtmlCell.Builder()
+						.appendAttribute("class", headerCellClass)
+						.appendAttribute("width", "100")
+						.appendContent("Zieltiefe,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("cm")
+								.build()
+								.appendTag())
+						.build()
+						.appendTag())
+				.build();
+
+		//Wenn GesamtDicke gleich Zieltiefe, dann grün ansonsten rot da Zieltiefe nicht erreicht wurde
+
+		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		{
+			HtmlCell cell = new HtmlCell.Builder()
+					.appendAttribute("class", normalCellClass)
+					.appendAttribute("width", "60")
+					.appendContent(erkundungsstelle.getInformation("ERK_ZIELTIEFE"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -90,9 +119,9 @@ public class Bericht_UG_Factory
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
-						.appendContent("Wassergehalt")
+						.appendContent("Wassergehalt,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal6")
 								.appendContent("M.-%")
@@ -107,7 +136,7 @@ public class Bericht_UG_Factory
 			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_WASSERGEHALT"))
 					.build();
@@ -124,7 +153,7 @@ public class Bericht_UG_Factory
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Feuchtezustand")
 						.build()
@@ -136,7 +165,7 @@ public class Bericht_UG_Factory
 			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_FEUCHTIGKEIT"))
 					.build();
@@ -153,7 +182,7 @@ public class Bericht_UG_Factory
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Konsistenz")
 						.build()
@@ -165,7 +194,7 @@ public class Bericht_UG_Factory
 			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_KONSISTENZ"))
 					.build();
@@ -182,7 +211,7 @@ public class Bericht_UG_Factory
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Proctordichte")
 						.appendContent(new HtmlText.Builder()
@@ -199,7 +228,7 @@ public class Bericht_UG_Factory
 			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_WASSERPROCTOR"))
 					.build();
@@ -216,7 +245,7 @@ public class Bericht_UG_Factory
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Differenz W<sub>n</sub> - W<sub>opt</sub>")
 						.appendContent(new HtmlText.Builder()
@@ -233,7 +262,7 @@ public class Bericht_UG_Factory
 			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_DIFFERENZ_WN_WOPT"))
 					.build();
@@ -250,7 +279,7 @@ public class Bericht_UG_Factory
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Verdichtungsfähigkeit")
 						.build()
@@ -262,7 +291,7 @@ public class Bericht_UG_Factory
 			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_VERDICHTUNGSFAEHIGKEIT"))
 					.build();
@@ -279,7 +308,7 @@ public class Bericht_UG_Factory
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Tragfähigkeit")
 						.appendContent(new HtmlText.Builder()
@@ -306,7 +335,7 @@ public class Bericht_UG_Factory
 			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(erkundungsstelle.getInformation("ERK_TRAG_PLANUM"))
 					.build();
@@ -323,7 +352,7 @@ public class Bericht_UG_Factory
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Tragfähigkeit")
 						.appendContent(new HtmlText.Builder()
@@ -333,7 +362,7 @@ public class Bericht_UG_Factory
 								.appendTag())
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal6")
-								.appendContent("Ansatz Sohle: FOK -200cm")
+								.appendContent("Ansatz Sohle")
 								.build()
 								.appendTag())
 						.build()
@@ -345,9 +374,11 @@ public class Bericht_UG_Factory
 			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(erkundungsstelle.getInformation("ERK_TRAG_GRABENSOHLE"))
+					.appendContent(TextFormatUtil.printLineBreak())
+					.appendContent(erkundungsstelle.getInformation("ERK_TRAG_GRABENSOHLE_ANSATZ"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -362,7 +393,7 @@ public class Bericht_UG_Factory
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Bodengruppe,")
 						.appendContent(new HtmlText.Builder()
@@ -379,7 +410,7 @@ public class Bericht_UG_Factory
 			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_ART"))
 					.build();
@@ -396,7 +427,7 @@ public class Bericht_UG_Factory
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Bodenklasse,")
 						.appendContent(new HtmlText.Builder()
@@ -413,7 +444,7 @@ public class Bericht_UG_Factory
 			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_BODENKLASSE"))
 					.build();
@@ -430,7 +461,7 @@ public class Bericht_UG_Factory
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Bodenart-")
 						.appendContent(new HtmlText.Builder()
@@ -452,7 +483,7 @@ public class Bericht_UG_Factory
 			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_BODENART"))
 					.build();
@@ -469,7 +500,7 @@ public class Bericht_UG_Factory
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Homogenbereich,")
 						.appendContent(new HtmlText.Builder()
@@ -486,7 +517,7 @@ public class Bericht_UG_Factory
 			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_HOMOGENBEREICH"))
 					.build();
@@ -503,7 +534,7 @@ public class Bericht_UG_Factory
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Frostempfindlichkeits-")
 						.appendContent(new HtmlText.Builder()
@@ -525,7 +556,7 @@ public class Bericht_UG_Factory
 			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_FROSTEMPFINDLICHKEITSKLASSE"))
 					.build();
@@ -541,7 +572,7 @@ public class Bericht_UG_Factory
 		HtmlRow rowCHEMIE_ID = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Laborprobe")
 						.build()
@@ -553,7 +584,7 @@ public class Bericht_UG_Factory
 			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_ID = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_ID"))
 					.build();
@@ -570,7 +601,7 @@ public class Bericht_UG_Factory
 		HtmlRow rowCHEMIE_MUFV = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Abgrenzung")
 						.appendContent(new HtmlText.Builder()
@@ -592,7 +623,7 @@ public class Bericht_UG_Factory
 			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_MUFV = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_MUFV"))
 					.build();
@@ -608,12 +639,12 @@ public class Bericht_UG_Factory
 		HtmlRow rowCHEMIE_LAGA_BO = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
-						.appendContent("LAGA Boden,")
+						.appendContent("Zuordnung,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal6")
-								.appendContent("Zuordnung")
+								.appendContent("LAGA Boden")
 								.build()
 								.appendTag())
 						.build()
@@ -625,7 +656,7 @@ public class Bericht_UG_Factory
 			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_LAGA_BO = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_LAGA_BO"))
 					.build();
@@ -641,12 +672,12 @@ public class Bericht_UG_Factory
 		HtmlRow rowCHEMIE_LAGA_RC = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
-						.appendContent("LAGA Bauschutt,")
+						.appendContent("Zuordnung,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal6")
-								.appendContent("Zuordnung")
+								.appendContent("LAGA Bauschutt")
 								.build()
 								.appendTag())
 						.build()
@@ -658,7 +689,7 @@ public class Bericht_UG_Factory
 			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_LAGA_RC = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_LAGA_RC"))
 					.build();
@@ -674,12 +705,12 @@ public class Bericht_UG_Factory
 		HtmlRow rowCHEMIE_LAGA_RC_ORIENTIERUNG = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
-						.appendContent("LAGA Bauschutt,")
+						.appendContent("Orientierung,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal6")
-								.appendContent("Orientierung")
+								.appendContent("LAGA Bauschutt")
 								.build()
 								.appendTag())
 						.build()
@@ -691,7 +722,7 @@ public class Bericht_UG_Factory
 			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_LAGARC_ORIENTIERUNGSWERT"))
 					.build();
@@ -708,12 +739,12 @@ public class Bericht_UG_Factory
 		HtmlRow rowCHEMIE_TL_GESTEIN = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
-						.appendContent("TL Gestein,")
+						.appendContent("Verwertungsklasse,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal6")
-								.appendContent("Verwertungsklasse")
+								.appendContent("TL Gestein")
 								.build()
 								.appendTag())
 						.build()
@@ -725,7 +756,7 @@ public class Bericht_UG_Factory
 			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_TL_GESTEIN = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_TLGESTEIN"))
 					.build();
@@ -742,7 +773,7 @@ public class Bericht_UG_Factory
 		HtmlRow rowCHEMIE_DEPV = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Deponieverordnungs-")
 						.appendContent(new HtmlText.Builder()
@@ -764,7 +795,7 @@ public class Bericht_UG_Factory
 			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_DEPV = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_DEPV"))
 					.build();
@@ -781,7 +812,7 @@ public class Bericht_UG_Factory
 		HtmlRow rowCHEMIE_ENTSCHEIDUNGSHILFE = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
+						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Entscheidungshilfe,")
 						.appendContent(new HtmlText.Builder()
@@ -798,7 +829,7 @@ public class Bericht_UG_Factory
 			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_ENTSCHEIDUNGSILFE = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalErkundungsstelle")
+					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_ENTSCHEIDUNGSHILFE"))
 					.build();
