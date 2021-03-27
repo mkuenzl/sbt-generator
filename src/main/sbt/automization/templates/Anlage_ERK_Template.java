@@ -168,14 +168,32 @@ public final class Anlage_ERK_Template extends AHtmlTemplate
                     .appendContent(fourthErkRow.appendTag())
                     .build();
 
-            Anlage_ERK_OB_Template erk_GO_Tabelle = new Anlage_ERK_OB_Template();
-            erk_GO_Tabelle.buildHtmlTable(erkundungsstelle);
+            stringBuilder.append(table.appendTag());
 
-            Anlage_ERK_TOB_Template erk_TOB_Tabelle = new Anlage_ERK_TOB_Template();
-            erk_TOB_Tabelle.buildHtmlTable(erkundungsstelle);
+            if (erkundungsstelle.getSchichtAufschluss("OH").size() > 0)
+            {
+                Anlage_ERK_OH_Template erk_OH_Tabelle = new Anlage_ERK_OH_Template();
+                erk_OH_Tabelle.buildHtmlTable(erkundungsstelle);
+                stringBuilder.append(erk_OH_Tabelle.getHtmlTable());
+            }
 
-            Anlage_ERK_UG_Template erk_UG_Tabelle = new Anlage_ERK_UG_Template();
-            erk_UG_Tabelle.buildHtmlTable(erkundungsstelle);
+            if (erkundungsstelle.getSchichtAufschluss("GOB").size() > 0) {
+                Anlage_ERK_OB_Template erk_OB_Tabelle = new Anlage_ERK_OB_Template();
+                erk_OB_Tabelle.buildHtmlTable(erkundungsstelle);
+                stringBuilder.append(erk_OB_Tabelle.getHtmlTable());
+            }
+
+            if (erkundungsstelle.getSchichtAufschluss("TOB").size() > 0) {
+                Anlage_ERK_TOB_Template erk_TOB_Tabelle = new Anlage_ERK_TOB_Template();
+                erk_TOB_Tabelle.buildHtmlTable(erkundungsstelle);
+                stringBuilder.append(erk_TOB_Tabelle.getHtmlTable());
+            }
+
+            if (erkundungsstelle.getSchichtAufschluss("UG").size() > 0) {
+                Anlage_ERK_UG_Template erk_UG_Tabelle = new Anlage_ERK_UG_Template();
+                erk_UG_Tabelle.buildHtmlTable(erkundungsstelle);
+                stringBuilder.append(erk_UG_Tabelle.getHtmlTable());
+            }
 
             HtmlCell footer = new HtmlCell.Builder()
                     .appendAttribute("class", "Normal")
@@ -199,11 +217,7 @@ public final class Anlage_ERK_Template extends AHtmlTemplate
                     .build();
 
 
-            stringBuilder.append(table.appendTag())
-                    .append(erk_GO_Tabelle.getHtmlTable())
-                    .append(erk_TOB_Tabelle.getHtmlTable())
-                    .append(erk_UG_Tabelle.getHtmlTable())
-                    .append(footNotes.appendTag())
+            stringBuilder.append(footNotes.appendTag())
                     .append("<br></br>");
         }
 

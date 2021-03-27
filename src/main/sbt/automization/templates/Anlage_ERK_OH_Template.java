@@ -11,7 +11,7 @@ import sbt.automization.util.html.HtmlTableHeader;
 
 import java.util.List;
 
-class Anlage_ERK_UG_Template extends AHtmlTemplate
+class Anlage_ERK_OH_Template extends AHtmlTemplate
 {
     private String aufschluss = "";
 
@@ -38,7 +38,7 @@ class Anlage_ERK_UG_Template extends AHtmlTemplate
 
         for (Schicht schicht : data.getSchichtList())
         {
-            if ("UG".equals(schicht.getInformation("SCHICHT_AUFSCHLUSS")))
+            if ("OH".equals(schicht.getInformation("SCHICHT_AUFSCHLUSS")))
             {
                 //Art der Schicht
                 HtmlCell cell1 = new HtmlCell.Builder()
@@ -116,7 +116,7 @@ class Anlage_ERK_UG_Template extends AHtmlTemplate
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "125")
                 .appendAttribute("align", "left")
-                .appendContent("Untergrund / Unterbau")
+                .appendContent("Oberboden")
                 .build();
 
         HtmlTableHeader cell12 = new HtmlTableHeader.Builder()

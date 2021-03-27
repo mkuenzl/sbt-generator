@@ -10,6 +10,7 @@ import sbt.automization.util.html.HtmlTable;
 import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public final class Bericht_OB_Template extends AHtmlTemplate
 {
@@ -50,14 +51,18 @@ public final class Bericht_OB_Template extends AHtmlTemplate
 				.appendAttribute("cellpadding", "0")
 				.build();
 
-		tableBericht.appendContent(Bericht_OB_Factory.createIDRow(erkundungsstellen));
-		tableBericht.appendContent(Bericht_OB_Factory.createAufschlussRow(erkundungsstellen));
+		List<Erkundungsstelle> templateErkundungsstellen = erkundungsstellen.stream()
+				.filter(e -> e.getSchichtAufschluss("GOB").size() > 0)
+				.collect(Collectors.toList());
 
-		tableBericht.appendContent(buildTechnischeMerkmale(erkundungsstellen));
-		tableBericht.appendContent(buildUmweltTechnischeMerkmale(erkundungsstellen));
+		tableBericht.appendContent(Bericht_OB_Factory.createIDRow(templateErkundungsstellen));
+		tableBericht.appendContent(Bericht_OB_Factory.createAufschlussRow(templateErkundungsstellen));
+
+		tableBericht.appendContent(buildTechnischeMerkmale(templateErkundungsstellen));
+		tableBericht.appendContent(buildUmweltTechnischeMerkmale(templateErkundungsstellen));
 		//TODO
-		tableBericht.appendContent(Bericht_OB_Factory.createPechQuerschnittRows(erkundungsstellen, false));
-		tableBericht.appendContent(Bericht_OB_Factory.createPechQuerschnittRows(erkundungsstellen, true));
+		tableBericht.appendContent(Bericht_OB_Factory.createPechQuerschnittRows(templateErkundungsstellen, false));
+		tableBericht.appendContent(Bericht_OB_Factory.createPechQuerschnittRows(templateErkundungsstellen, true));
 
 		setHtmlTable(tableBericht.appendTag());
 	}

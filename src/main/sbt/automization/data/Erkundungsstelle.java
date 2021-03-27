@@ -106,6 +106,18 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
         return schichtAufschlussList;
     }
 
+    public Double getDicke()
+    {
+        double d = 0;
+
+        for (Schicht schicht : schichtList) {
+            String schicht_dicke = schicht.getInformation("SCHICHT_DICKE").replace(",",".");
+            d += Double.parseDouble(schicht_dicke);
+        }
+
+        return d;
+    }
+
     public void sortSchichten()
     {
         Collections.sort(schichtList);

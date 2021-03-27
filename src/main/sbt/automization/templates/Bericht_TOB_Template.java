@@ -10,6 +10,7 @@ import sbt.automization.util.html.HtmlTable;
 import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public final class Bericht_TOB_Template extends AHtmlTemplate
 {
@@ -50,13 +51,17 @@ public final class Bericht_TOB_Template extends AHtmlTemplate
 				.appendAttribute("cellpadding", "0")
 				.build();
 
-		tableBericht.appendContent(Bericht_TOB_Factory.createIDRow(erkundungsstellen));
-		tableBericht.appendContent(Bericht_TOB_Factory.createAufschlussRow(erkundungsstellen));
+		List<Erkundungsstelle> templateErkundungsstellen = erkundungsstellen.stream()
+				.filter(e -> e.getSchichtAufschluss("TOB").size() > 0)
+				.collect(Collectors.toList());
 
-		tableBericht.appendContent(buildTechnischeMerkmale(erkundungsstellen));
-		tableBericht.appendContent(buildUmweltTechnischeMerkmale(erkundungsstellen));
+		tableBericht.appendContent(Bericht_TOB_Factory.createIDRow(templateErkundungsstellen));
+		tableBericht.appendContent(Bericht_TOB_Factory.createAufschlussRow(templateErkundungsstellen));
 
-		tableBericht.appendContent(Bericht_TOB_Factory.createLegendeRow(erkundungsstellen));
+		tableBericht.appendContent(buildTechnischeMerkmale(templateErkundungsstellen));
+		tableBericht.appendContent(buildUmweltTechnischeMerkmale(templateErkundungsstellen));
+
+		tableBericht.appendContent(Bericht_TOB_Factory.createLegendeRow(templateErkundungsstellen));
 
 		setHtmlTable(tableBericht.appendTag());
 	}

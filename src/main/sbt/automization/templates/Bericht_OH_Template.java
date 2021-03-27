@@ -7,6 +7,7 @@ import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public final class Bericht_OH_Template extends AHtmlTemplate
 {
@@ -47,10 +48,14 @@ public final class Bericht_OH_Template extends AHtmlTemplate
 				.appendAttribute("cellpadding", "0")
 				.build();
 
-		tableBericht.appendContent(Bericht_OH_Factory.createIDRow(erkundungsstellen));
-		tableBericht.appendContent(Bericht_OH_Factory.createAufschlussRow(erkundungsstellen));
-		tableBericht.appendContent(buildTechnischeMerkmale(erkundungsstellen));
-		tableBericht.appendContent(buildUmweltTechnischeMerkmale(erkundungsstellen));
+		List<Erkundungsstelle> templateErkundungsstellen = erkundungsstellen.stream()
+				.filter(e -> e.getSchichtAufschluss("OH").size() > 0)
+				.collect(Collectors.toList());
+
+		tableBericht.appendContent(Bericht_OH_Factory.createIDRow(templateErkundungsstellen));
+		tableBericht.appendContent(Bericht_OH_Factory.createAufschlussRow(templateErkundungsstellen));
+		tableBericht.appendContent(buildTechnischeMerkmale(templateErkundungsstellen));
+		tableBericht.appendContent(buildUmweltTechnischeMerkmale(templateErkundungsstellen));
 
 		setHtmlTable(tableBericht.appendTag());
 	}
