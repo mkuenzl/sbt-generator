@@ -8,6 +8,7 @@ import sbt.automization.util.html.HtmlTable;
 import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public final class Bericht_UG_Template extends AHtmlTemplate
 {
@@ -48,12 +49,17 @@ public final class Bericht_UG_Template extends AHtmlTemplate
 				.appendAttribute("cellpadding", "0")
 				.build();
 
-		tableBericht.appendContent(Bericht_UG_Factory.createIDRow(erkundungsstellen));
-		tableBericht.appendContent(Bericht_UG_Factory.createAufschlussRow(erkundungsstellen));
-		tableBericht.appendContent(Bericht_UG_Factory.createDickeRow(erkundungsstellen));
-		tableBericht.appendContent(Bericht_UG_Factory.createZielTiefeRow(erkundungsstellen));
-		tableBericht.appendContent(buildTechnischeMerkmale(erkundungsstellen));
-		tableBericht.appendContent(buildUmweltTechnischeMerkmale(erkundungsstellen));
+		List<Erkundungsstelle> templateErkundungsstellen = erkundungsstellen.stream()
+				.filter(e -> e.getSchichtAufschluss("UG").size() > 0)
+				.collect(Collectors.toList());
+
+		tableBericht.appendContent(Bericht_UG_Factory.createIDRow(templateErkundungsstellen));
+		tableBericht.appendContent(Bericht_UG_Factory.createAufschlussRow(templateErkundungsstellen));
+		tableBericht.appendContent(Bericht_UG_Factory.createDickeRow(templateErkundungsstellen));
+		tableBericht.appendContent(Bericht_UG_Factory.createGesamtDickeRow(templateErkundungsstellen));
+		tableBericht.appendContent(Bericht_UG_Factory.createZielTiefeRow(templateErkundungsstellen));
+		tableBericht.appendContent(buildTechnischeMerkmale(templateErkundungsstellen));
+		tableBericht.appendContent(buildUmweltTechnischeMerkmale(templateErkundungsstellen));
 
 		setHtmlTable(tableBericht.appendTag());
 	}

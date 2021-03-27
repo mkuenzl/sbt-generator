@@ -79,9 +79,44 @@ public class Bericht_UG_Factory
 		return row.appendTag();
 	}
 
+	public static String createGesamtDickeRow(List<Erkundungsstelle> erkundungsstellen)
+	{
+		//Erkundungsstellen Aufschlussart
+		HtmlRow row = new HtmlRow.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent(new HtmlCell.Builder()
+						.appendAttribute("class", headerCellClass)
+						.appendAttribute("width", "100")
+						.appendContent("Gesamte Dicke,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("cm")
+								.build()
+								.appendTag())
+						.build()
+						.appendTag())
+				.build();
+
+
+		for (Erkundungsstelle erkundungsstelle :
+				erkundungsstellen)
+		{
+
+			HtmlCell cell = new HtmlCell.Builder()
+					.appendAttribute("class", normalCellClass)
+					.appendAttribute("width", "50")
+					.appendContent(String.valueOf(erkundungsstelle.getDicke()))
+					.build();
+
+			row.appendContent(cell.appendTag());
+		}
+
+		return row.appendTag();
+	}
+
 	public static String createZielTiefeRow(List<Erkundungsstelle> erkundungsstellen)
 	{
-		//WASSERGEHALT
+		//ZIELTIEFE
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
@@ -101,10 +136,27 @@ public class Bericht_UG_Factory
 
 		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
 		{
+			String zieltiefe = erkundungsstelle.getInformation("ERK_ZIELTIEFE");
+			double tiefe = Double.parseDouble(zieltiefe);
+
+			String color;
+
+			if (tiefe <= erkundungsstelle.getDicke()) {
+				color = "green";
+			} else {
+				color = "red";
+			}
+
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(erkundungsstelle.getInformation("ERK_ZIELTIEFE"))
+					.appendContent(new HtmlText.Builder()
+							.appendAttribute("class", "Normal")
+							.appendContent("<span style=\"background-color: white;font-weight: bold;\n\n" +
+									"  color: "+color+"\">")
+							.appendContent(zieltiefe)
+							.appendContent("</span>")
+							.build().appendTag())
 					.build();
 
 			row.appendContent(cell.appendTag());
