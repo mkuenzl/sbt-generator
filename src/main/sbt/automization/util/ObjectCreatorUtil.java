@@ -47,7 +47,13 @@ public class ObjectCreatorUtil
         }
 
         //Sortiert die Erkundungsstellen
-        Collections.sort(erkundungsstellen);
+        //BA12 FB123 GEW12345
+        //BA1 FB2 FB1 BA2 GEW1 FB3 GEW2
+        //Liste{Liste{BA1, BA2}, Liste{FB2, FB1, FB3}, Liste{GEW1, GEW2}}
+        //Collections.sort(erkundungsstellen);
+
+        //TODO kännte funktionieren, muss aber nicht unbedingt
+        java.util.Collections.sort(erkundungsstellen);
 
         return erkundungsstellen;
     }
