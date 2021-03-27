@@ -11,9 +11,9 @@ import java.util.List;
 
 public class Bericht_OH_Factory {
 
-    public static String aufschluss = "OH";
-    private static String headerCellClass = "NormalHeader";
-    private static String normalCellClass = "NormalBold";
+    private static final String aufschluss = "OH";
+    private static final String headerCellClass = "NormalHeader";
+    private static final String normalCellClass = "NormalBold";
 
     public static String createIDRow(List<Erkundungsstelle> erkundungsstellen)
     {
@@ -62,7 +62,7 @@ public class Bericht_OH_Factory {
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "50")
-                    .appendContent(erkundungsstelle.getInformation("ERK_AUFSCHLUSS_OH"))
+                    .appendContent(erkundungsstelle.getInformation("ERK_AUFSCHLUSS_UG_OH_BA"))
                     .build();
 
             row.appendContent(cell.appendTag());
@@ -96,7 +96,7 @@ public class Bericht_OH_Factory {
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent("TODO")
+                    .appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_ART"))
                     .build();
 
             rowERK_DIN18196.appendContent(cell.appendTag());
@@ -104,9 +104,9 @@ public class Bericht_OH_Factory {
         return rowERK_DIN18196.appendTag();
     }
 
-    public static String createDIN19682Row(List<Erkundungsstelle> erkundungsstellen)
+    public static String createDIN18915Row(List<Erkundungsstelle> erkundungsstellen)
     {
-        //DIN19682
+        //DIN18915
         HtmlRow rowERK_DIN19682 = new HtmlRow.Builder()
                 .appendAttribute("class", "Normal")
                 .appendContent(new HtmlCell.Builder()
@@ -115,7 +115,7 @@ public class Bericht_OH_Factory {
                         .appendContent("Bodengruppe,")
                         .appendContent(new HtmlText.Builder()
                                 .appendAttribute("class", "Normal6")
-                                .appendContent("DIN 19682")
+                                .appendContent("DIN 18915")
                                 .build()
                                 .appendTag())
                         .build()
@@ -129,7 +129,7 @@ public class Bericht_OH_Factory {
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent("TODO")
+                    .appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_BODENKLASSE"))
                     .build();
 
             rowERK_DIN19682.appendContent(cell.appendTag());
@@ -162,7 +162,7 @@ public class Bericht_OH_Factory {
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent("TODO")
+                    .appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_HOMOGENBEREICH"))
                     .build();
 
             rowERK_DIN18320.appendContent(cell.appendTag());
@@ -328,7 +328,7 @@ public class Bericht_OH_Factory {
             HtmlCell htmlCell_CHEMIE_ENTSCHEIDUNGSILFE = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, "OH", "CHEMIE_ABFALLSCHLUESSEL"))
+                    .appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_ABFALLSCHLUESSEL"))
                     .build();
 
             rowCHEMIE_AVV.appendContent(htmlCell_CHEMIE_ENTSCHEIDUNGSILFE.appendTag());

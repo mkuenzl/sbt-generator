@@ -49,6 +49,7 @@ public final class Bericht_UG_Template extends AHtmlTemplate
 				.build();
 
 		tableBericht.appendContent(Bericht_UG_Factory.createIDRow(erkundungsstellen));
+		tableBericht.appendContent(Bericht_UG_Factory.createAufschlussRow(erkundungsstellen));
 		tableBericht.appendContent(Bericht_UG_Factory.createDickeRow(erkundungsstellen));
 		tableBericht.appendContent(Bericht_UG_Factory.createZielTiefeRow(erkundungsstellen));
 		tableBericht.appendContent(buildTechnischeMerkmale(erkundungsstellen));

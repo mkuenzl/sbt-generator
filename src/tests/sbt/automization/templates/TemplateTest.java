@@ -58,6 +58,7 @@ public class TemplateTest
 		erkundungsstellen.add(Util.readSerializedErkundungsstelle(path + "TestErkundungsstelle_5"));
 		erkundungsstellen.add(Util.readSerializedErkundungsstelle(path + "TestErkundungsstelle_6"));
 		erkundungsstellen.add(Util.readSerializedErkundungsstelle(path + "TestErkundungsstelle_7"));
+		erkundungsstellen.add(Util.readSerializedErkundungsstelle(path + "TestErkundungsstelle_8"));
 	}
 
 	@Test

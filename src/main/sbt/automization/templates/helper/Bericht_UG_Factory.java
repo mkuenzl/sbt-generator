@@ -11,9 +11,9 @@ import java.util.List;
 
 public class Bericht_UG_Factory
 {
-	private static String aufschluss = "UG";
-	private static String headerCellClass = "NormalHeader";
-	private static String normalCellClass = "NormalBold";
+	private static final String aufschluss = "UG";
+	private static final String headerCellClass = "NormalHeader";
+	private static final String normalCellClass = "NormalBold";
 
 	public static String createIDRow(List<Erkundungsstelle> erkundungsstellen)
 	{
@@ -105,6 +105,34 @@ public class Bericht_UG_Factory
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(erkundungsstelle.getInformation("ERK_ZIELTIEFE"))
+					.build();
+
+			row.appendContent(cell.appendTag());
+		}
+
+		return row.appendTag();
+	}
+
+	public static String createAufschlussRow(List<Erkundungsstelle> erkundungsstellen)
+	{
+		//Erkundungsstellen Aufschlussart
+		HtmlRow row = new HtmlRow.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent(new HtmlCell.Builder()
+						.appendAttribute("class", headerCellClass)
+						.appendAttribute("width", "100")
+						.appendContent("Aufschlussart")
+						.build()
+						.appendTag())
+				.build();
+
+		for (Erkundungsstelle erkundungsstelle :
+				erkundungsstellen)
+		{
+			HtmlCell cell = new HtmlCell.Builder()
+					.appendAttribute("class", normalCellClass)
+					.appendAttribute("width", "50")
+					.appendContent(erkundungsstelle.getInformation("ERK_AUFSCHLUSS_UG_OH_BA"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -378,7 +406,10 @@ public class Bericht_UG_Factory
 					.appendAttribute("width", "60")
 					.appendContent(erkundungsstelle.getInformation("ERK_TRAG_GRABENSOHLE"))
 					.appendContent(TextFormatUtil.printLineBreak())
-					.appendContent(erkundungsstelle.getInformation("ERK_TRAG_GRABENSOHLE_ANSATZ"))
+					.appendContent(new HtmlText.Builder().appendAttribute("class", "Normal6")
+							.appendContent("[T:")
+							.appendContent(erkundungsstelle.getInformation("ERK_SOHLE_TIEFE"))
+							.appendContent("]").build().appendTag())
 					.build();
 
 			row.appendContent(cell.appendTag());

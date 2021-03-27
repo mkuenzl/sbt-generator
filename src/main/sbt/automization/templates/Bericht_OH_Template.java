@@ -5,7 +5,6 @@ import sbt.automization.templates.helper.Bericht_OH_Factory;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
-import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
 
@@ -98,7 +97,7 @@ public final class Bericht_OH_Template extends AHtmlTemplate
 
 		techBuilder.append(rowTECHMERKMALE.appendTag())
 			.append(Bericht_OH_Factory.createDIN18196Row(erkundungsstellen))
-			.append(Bericht_OH_Factory.createDIN19682Row(erkundungsstellen))
+			.append(Bericht_OH_Factory.createDIN18915Row(erkundungsstellen))
 			.append(Bericht_OH_Factory.createDIN18320Row(erkundungsstellen));
 
 		return techBuilder.toString();

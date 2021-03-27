@@ -12,9 +12,9 @@ import java.util.List;
 
 public class Bericht_OB_Factory
 {
-	private static String aufschluss = "OB";
-	private static String normalCellClass = "NormalBold";
-	private static String headerCellClass = "NormalHeader";
+	private static final String aufschluss = "OB";
+	private static final String normalCellClass = "NormalBold";
+	private static final String headerCellClass = "NormalHeader";
 	
 	public static String createIDRow(List<Erkundungsstelle> erkundungsstellen)
 	{
@@ -270,7 +270,7 @@ public class Bericht_OB_Factory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
-					.appendContent(erkundungsstelle.getInformation("ERK_PECH_HALB_QUANTITATIV"))
+					.appendContent(erkundungsstelle.getInformation("ERK_PECH_HALBQUANTITATIV"))
 					.build();
 
 			row.appendContent(cell.appendTag());
