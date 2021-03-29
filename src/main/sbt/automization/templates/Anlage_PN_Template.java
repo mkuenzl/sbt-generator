@@ -340,7 +340,13 @@ public final class Anlage_PN_Template extends AHtmlTemplate
                 e.printStackTrace();
             }
         }
+
         //TODO NULL POINTER
+        if(schichtList.size() < 2)
+        {
+            return schichtList;
+        }
+
         for (int i = 0 ; i < schichtList.size() ; i++)
         {
             if ("GOB".equals(schichtList.get(i).getInformation("SCHICHT_AUFSCHLUSS")))
