@@ -101,7 +101,6 @@ public final class Util
 			{
 				FileUtils.copyURLToFile(inputUrl, dest);
 			}
-
 		}
 	}
 }

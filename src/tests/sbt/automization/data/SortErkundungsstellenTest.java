@@ -52,7 +52,6 @@ public class SortErkundungsstellenTest {
         HashMap<String, String> dataMap9 = new HashMap<>();
         dataMap9.put("ERK_ID", "");
         nothing = new Erkundungsstelle().setDataMap(dataMap9);
-
     }
 
     @Test
