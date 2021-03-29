@@ -68,11 +68,11 @@ class Anlage_ERK_OB_Template extends AHtmlTemplate
 
                 //LAGA RC
                 String chemie_laga_rc = schicht.getInformation("CHEMIE_LAGA_RC");
-                HtmlCell cellLAGARC = HtmlCellFormatUtil.formatPech(chemie_laga_rc);
+                HtmlCell cellLAGARC = HtmlCellFormatUtil.formatChemie(chemie_laga_rc);
 
                 //TL GESTEIN
                 String chemie_tlgestein = schicht.getInformation("CHEMIE_TLGESTEIN");
-                HtmlCell cellTLGESTEIN = HtmlCellFormatUtil.formatPech(chemie_tlgestein);
+                HtmlCell cellTLGESTEIN = HtmlCellFormatUtil.formatChemie(chemie_tlgestein);
 
                 //RuK
                 HtmlCell cellRUK = new HtmlCell.Builder()
