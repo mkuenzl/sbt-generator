@@ -42,6 +42,10 @@ public final class Bericht_OB_Template extends AHtmlTemplate
 	@Override
 	public void buildHtmlTable(final List<Erkundungsstelle> erkundungsstellen)
 	{
+		List<Erkundungsstelle> templateErkundungsstellen = erkundungsstellen.stream()
+				.filter(e -> e.getSchichtAufschluss("GOB").size() > 0)
+				.collect(Collectors.toList());
+
 		//Sort Data nach OB
 		HtmlTable tableBericht = new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
@@ -51,16 +55,15 @@ public final class Bericht_OB_Template extends AHtmlTemplate
 				.appendAttribute("cellpadding", "0")
 				.build();
 
-		List<Erkundungsstelle> templateErkundungsstellen = erkundungsstellen.stream()
-				.filter(e -> e.getSchichtAufschluss("GOB").size() > 0)
-				.collect(Collectors.toList());
+
 
 		tableBericht.appendContent(Bericht_OB_Factory.createIDRow(templateErkundungsstellen));
 		tableBericht.appendContent(Bericht_OB_Factory.createAufschlussRow(templateErkundungsstellen));
 
 		tableBericht.appendContent(buildTechnischeMerkmale(templateErkundungsstellen));
 		tableBericht.appendContent(buildUmweltTechnischeMerkmale(templateErkundungsstellen));
-		//TODO
+
+		//TODO pech, no pech, pech by depth
 		tableBericht.appendContent(Bericht_OB_Factory.createPechQuerschnittRows(templateErkundungsstellen, false));
 		tableBericht.appendContent(Bericht_OB_Factory.createPechQuerschnittRows(templateErkundungsstellen, true));
 

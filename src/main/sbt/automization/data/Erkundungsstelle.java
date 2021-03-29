@@ -2,13 +2,14 @@ package sbt.automization.data;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektData, Serializable
 {
     /*
     Testing variables instead of map
      */
-
     private String identifier;
     private String datum;
     private String pruefer;
@@ -43,33 +44,56 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
 
     }
 
-    //TODO split nach Zahl und vergleiche Zahl anstatt ID
+    /**
+     * Valid ERK_ID is String[A-Z]+ followed by Number[0-9]+, other IDs will not be sorted and put at the end of list
+     * @param erkundungsstelle expects a Erkundungsstelle with a data map, containing a valid ERK_ID
+     * @return a compare to key for Collections.sort
+     */
     @Override
-    public int compareTo(final Erkundungsstelle o)
+    public int compareTo(final Erkundungsstelle erkundungsstelle)
     {
-        String erk_id1 = this.getInformation("ERK_ID");
-        String[] split1 = erk_id1.split("\\D+");
-        int id1;
-        if (split1.length > 1)
-        {
-            id1 = Integer.parseInt(split1[1]);
-        } else
-        {
-            id1 = Integer.parseInt(split1[0]);
+        Pattern VALID_PATTERN = Pattern.compile("[0-9]+|[A-Z]+");
+
+        String firstIdentifier = this.getInformation("ERK_ID");
+        String secondIdentifier = erkundungsstelle.getInformation("ERK_ID");
+
+        Matcher firstMatcher = VALID_PATTERN.matcher(firstIdentifier);
+        Matcher secondMatcher = VALID_PATTERN.matcher(secondIdentifier);
+
+        List<String> firstIdentifierSplit = new LinkedList<String>();
+        while (firstMatcher.find()) {
+            firstIdentifierSplit.add( firstMatcher.group() );
         }
 
-        String erk_id2 = o.getInformation("ERK_ID");
-        String[] split2 = erk_id2.split("\\D+");
-        int id2;
-        if (split2.length > 1)
-        {
-            id2 = Integer.parseInt(split2[1]);
-        } else
-        {
-            id2 = Integer.parseInt(split2[0]);
+        List<String> secondIdentifierSplit = new LinkedList<String>();
+        while (secondMatcher.find()) {
+            secondIdentifierSplit.add( secondMatcher.group() );
         }
 
-        return id1 > id2 ? 1 : -1;
+        int firstId;
+        int secondId;
+        String firstName;
+        String secondName;
+
+        int sizeFirst = firstIdentifierSplit.size();
+        int sizeSecond = secondIdentifierSplit.size();
+        if (sizeFirst > 1 && sizeSecond > 1)
+        {
+            firstId = Integer.parseInt(firstIdentifierSplit.get(1));
+            firstName = firstIdentifierSplit.get(0);
+
+            secondId = Integer.parseInt(secondIdentifierSplit.get(1));
+            secondName = secondIdentifierSplit.get(0);
+
+            if (firstName.equals(secondName))
+            {
+                return firstId > secondId ? 1 : -1;
+            }
+        } else
+        {
+            return sizeFirst > sizeSecond ? -1 : 1;
+        }
+        return firstName.compareTo(secondName);
     }
 
     public String getInformation(String key)
