@@ -1,8 +1,13 @@
 package sbt.automization.util;
 
+import org.apache.commons.io.FileUtils;
 import sbt.automization.data.Erkundungsstelle;
 
 import java.io.*;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public final class Util
 {
@@ -72,5 +77,31 @@ public final class Util
 		}
 
 		return erkundungsstelle;
+	}
+
+	public static void exportExcelTemplate() throws IOException
+	{
+		String filePath = "/sbt-excel-template.xlsx";
+		String pathname = System.getProperty("user.dir") + filePath;
+
+		if (new File(pathname).exists()) return;
+
+		URL inputUrl = Util.class.getResource(filePath);
+
+		File dest = new File(pathname);
+
+		if (! dest.exists() && ! dest.isDirectory())
+		{
+			Path path = Paths.get(dest.getPath()).getParent();
+			if (! Files.exists(path))
+			{
+				Files.createDirectories(path);
+			}
+			if (inputUrl != null && dest != null)
+			{
+				FileUtils.copyURLToFile(inputUrl, dest);
+			}
+
+		}
 	}
 }

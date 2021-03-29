@@ -4,12 +4,14 @@ import sbt.automization.TableEngine;
 import sbt.automization.export.HtmlTemplateExportStrategy;
 import sbt.automization.templates.IHtmlTemplate;
 import sbt.automization.util.Parser;
+import sbt.automization.util.Util;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 
 public class GUI extends JFrame implements ActionListener
 {
@@ -31,6 +33,7 @@ public class GUI extends JFrame implements ActionListener
 	private JCheckBox checkBox8;
 	//private final JLabel label;
 	private JTextArea textfield;
+	private JButton createCSVButton;
 
 	public GUI()
 	{
@@ -174,6 +177,14 @@ public class GUI extends JFrame implements ActionListener
 		explorerButton.addActionListener(this);
 		panel.add(explorerButton);
 
+		// BUTTONS.
+		createCSVButton = new JButton("Generiere Excel-Template");
+		createCSVButton.setBounds(10, 470, 210, 30);
+		createCSVButton.setFocusable(false);
+		createCSVButton.addActionListener(this);
+		createCSVButton.setEnabled(true);
+		panel.add(createCSVButton);
+
 		infoButton = new JButton("");
 		ImageIcon infoIcon = new ImageIcon(getClass().getResource("/questionmark-icon.png"));
 		Image scaledInstance = infoIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
@@ -192,6 +203,17 @@ public class GUI extends JFrame implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
+		if (e.getSource() == createCSVButton)
+		{
+			try
+			{
+				Util.exportExcelTemplate();
+			} catch (IOException ioException)
+			{
+				ioException.printStackTrace();
+			}
+		}
+
 
 		if (e.getSource() == infoButton)
 		{
