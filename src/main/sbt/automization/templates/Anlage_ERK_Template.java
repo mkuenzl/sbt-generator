@@ -170,6 +170,13 @@ public final class Anlage_ERK_Template extends AHtmlTemplate
 
             stringBuilder.append(table.appendTag());
 
+            if (erkundungsstelle.getSchichtAufschluss("FUGE").size() > 0)
+            {
+                Anlage_ERK_FUGE_Template erk_FUGE_Tabelle = new Anlage_ERK_FUGE_Template();
+                erk_FUGE_Tabelle.buildHtmlTable(erkundungsstelle);
+                stringBuilder.append(erk_FUGE_Tabelle.getHtmlTable());
+            }
+
             if (erkundungsstelle.getSchichtAufschluss("OH").size() > 0)
             {
                 Anlage_ERK_OH_Template erk_OH_Tabelle = new Anlage_ERK_OH_Template();
