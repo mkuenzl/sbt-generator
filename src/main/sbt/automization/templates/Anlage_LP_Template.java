@@ -2,6 +2,7 @@ package sbt.automization.templates;
 
 
 import sbt.automization.data.Erkundungsstelle;
+import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.*;
 
 import java.util.List;
@@ -108,7 +109,7 @@ public final class Anlage_LP_Template extends AHtmlTemplate
                 HtmlCell cellERKLPEV2 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("align", "center")
-                        .appendContent(erkundungsstelle.getInformation("ERK_LP_EV2"))
+                        .appendContent(TextFormatUtil.formatErkLP(erkundungsstelle))
                         .build();
 
                 HtmlRow htmlRow = new HtmlRow.Builder()

@@ -23,7 +23,6 @@ public final class TextFormatUtil
 		return s1 + s2;
 	}
 
-
 	public static String formatSchichtProctor(final Schicht schicht)
 	{
         String schicht_feuchtigkeit = schicht.getInformation("SCHICHT_FEUCHTIGKEIT");
@@ -34,6 +33,55 @@ public final class TextFormatUtil
 		{
 			return schicht_feuchtigkeit.concat(" W<sub>Pr</sub>");
 		}
+	}
+
+	public static String formatErkLP(final Erkundungsstelle erkundungsstelle)
+	{
+		StringBuilder strb = new StringBuilder();
+
+		String ev2 = erkundungsstelle.getInformation("ERK_LP_EV2");
+
+		if ("< 80".equals(ev2))
+		{
+			double ev = Double.parseDouble(erkundungsstelle.getInformation("ERK_LP_EV").replace(",","."));
+			String range = "";
+
+			if (ev >= 10 && ev < 20)
+			{
+				range = "[30-40]";
+			}
+			if (ev >= 20 && ev < 30)
+			{
+				range = "[40-50]";
+			}
+			if (ev >= 30 && ev < 40)
+			{
+				range = "[50-60]";
+			}
+			if (ev >= 40 && ev < 45)
+			{
+				range = "[60-80]";
+			}
+
+			strb.append(new HtmlText.Builder()
+					.appendAttribute("class", "Normal")
+					.appendContent(ev2)
+					.build()
+					.appendTag())
+				.append(new HtmlText.Builder()
+					.appendAttribute("class", "Normal")
+					.appendContent(range)
+					.build().appendTag());
+		} else
+		{
+			strb.append(new HtmlText.Builder()
+					.appendAttribute("class", "Normal")
+					.appendContent(ev2)
+					.build()
+					.appendTag());
+		}
+
+		return strb.toString();
 	}
 
 	public static String formatErkAufschlussDicke(final Erkundungsstelle erkundungsstelle, String aufschluss)
@@ -225,7 +273,6 @@ public final class TextFormatUtil
 		}
 		return stringBuilder.toString();
 	}
-
 
 	public static String formatSchichtTiefe(final Schicht schicht)
 	{

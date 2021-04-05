@@ -292,7 +292,7 @@ public class Bericht_TOB_Factory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
-					.appendContent(erkundungsstelle.getInformation("ERK_LP_EV2"))
+					.appendContent(TextFormatUtil.formatErkLP(erkundungsstelle))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -471,7 +471,7 @@ public class Bericht_TOB_Factory
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
-						.appendContent("Orientierung,")
+						.appendContent("Orientierungswert,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal6")
 								.appendContent("LAGA Bauschutt")
@@ -539,12 +539,7 @@ public class Bericht_TOB_Factory
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
-						.appendContent("Deponieverordnungs-")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal")
-								.appendContent("klasse,")
-								.build()
-								.appendTag())
+						.appendContent("Deponieklasse,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal6")
 								.appendContent("DepV")

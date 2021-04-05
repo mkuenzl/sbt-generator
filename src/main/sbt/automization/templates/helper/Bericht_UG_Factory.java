@@ -139,12 +139,15 @@ public class Bericht_UG_Factory
 			String zieltiefe = erkundungsstelle.getInformation("ERK_ZIELTIEFE");
 			double tiefe = Double.parseDouble(zieltiefe);
 
-			String color;
+			String backgroundColor;
+			String textColor;
 
 			if (tiefe <= erkundungsstelle.getDicke()) {
-				color = "green";
+				backgroundColor = "green";
+				textColor = "black";
 			} else {
-				color = "red";
+				backgroundColor = "red";
+				textColor = "white";
 			}
 
 			HtmlCell cell = new HtmlCell.Builder()
@@ -152,8 +155,8 @@ public class Bericht_UG_Factory
 					.appendAttribute("width", "60")
 					.appendContent(new HtmlText.Builder()
 							.appendAttribute("class", "Normal")
-							.appendContent("<span style=\"background-color: white;font-weight: bold;\n\n" +
-									"  color: "+color+"\">")
+							.appendContent("<span style=\"background-color: " + backgroundColor + ";font-weight: bold;\n\n" +
+									"  color: " + textColor + "\">")
 							.appendContent(zieltiefe)
 							.appendContent("</span>")
 							.build().appendTag())
