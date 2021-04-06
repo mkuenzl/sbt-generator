@@ -31,6 +31,9 @@ public class GUI extends JFrame implements ActionListener
 	private JCheckBox checkBox6;
 	private JCheckBox checkBox7;
 	private JCheckBox checkBox8;
+	private JCheckBox checkBox9;
+	private JCheckBox checkBox10;
+	private JCheckBox checkBox11;
 	//private final JLabel label;
 	private JTextArea textfield;
 	private JButton createCSVButton;
@@ -44,7 +47,7 @@ public class GUI extends JFrame implements ActionListener
 		this.setIconImage(img.getImage());
 		this.setTitle("SBT Berichterstellung");
 		this.setLayout(null);
-		this.setSize(300, 550);
+		this.setSize(300, 650);
 		this.setResizable(false);
 		buildPanel();
 		//this.setJMenuBar(menuBar);
@@ -57,7 +60,7 @@ public class GUI extends JFrame implements ActionListener
 
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBounds(0, 0, 300, 520);
+		panel.setBounds(0, 0, 300, 650);
 		panel.setBackground(Color.gray);
 
 //        menu = new JMenu("Menu");
@@ -127,6 +130,27 @@ public class GUI extends JFrame implements ActionListener
 		checkBox8.addItemListener(new CheckBoxListener());
 		panel.add(checkBox8);
 
+		checkBox9 = new JCheckBox("BERICHT_TMHB_TEST", false);
+		checkBox9.setBounds(10, 250, 265, 20);
+		checkBox9.setEnabled(false);
+		checkBox9.setVisible(false);
+		checkBox9.addItemListener(new CheckBoxListener());
+		panel.add(checkBox9);
+
+		checkBox10 = new JCheckBox("BERICHT_BETON_TEST", false);
+		checkBox10.setBounds(10, 280, 265, 20);
+		checkBox10.setEnabled(false);
+		checkBox10.setVisible(false);
+		checkBox10.addItemListener(new CheckBoxListener());
+		panel.add(checkBox10);
+
+		checkBox11 = new JCheckBox("BERICHT_FUGE_TEST", false);
+		checkBox11.setBounds(10, 310, 265, 20);
+		checkBox11.setEnabled(false);
+		checkBox11.setVisible(false);
+		checkBox11.addItemListener(new CheckBoxListener());
+		panel.add(checkBox11);
+
 		checkBox1.setVisible(true);
 		checkBox2.setVisible(true);
 		checkBox3.setVisible(true);
@@ -135,6 +159,10 @@ public class GUI extends JFrame implements ActionListener
 		checkBox6.setVisible(true);
 		checkBox7.setVisible(true);
 		checkBox8.setVisible(true);
+		checkBox9.setVisible(true);
+		checkBox10.setVisible(true);
+		checkBox11.setVisible(true);
+
 
 		checkBox1.setEnabled(true);
 		checkBox2.setEnabled(true);
@@ -144,6 +172,9 @@ public class GUI extends JFrame implements ActionListener
 		checkBox6.setEnabled(true);
 		checkBox7.setEnabled(true);
 		checkBox8.setEnabled(true);
+		checkBox9.setEnabled(true);
+		checkBox10.setEnabled(true);
+		checkBox11.setEnabled(true);
 
 		// ICON DAS NACH AUSWAHL VON DATEI VERSCHWINDET
 		// WARUM?
@@ -156,30 +187,31 @@ public class GUI extends JFrame implements ActionListener
 //        panel.add(label);
 
 		textfield = new JTextArea();
-		textfield.setBounds(10, 250, 265, 90);
+		textfield.setBounds(10, 340, 265, 90);
 		textfield.setEditable(false);
 		textfield.setWrapStyleWord(true);
 		textfield.setLineWrap(true);
 		textfield.setFont(new Font("Verdana", Font.PLAIN, 10));
 		panel.add(textfield);
 
+		explorerButton = new JButton("Datei auswählen");
+		explorerButton.setBounds(10, 440, 265, 50);
+		explorerButton.setFocusable(false);
+		explorerButton.addActionListener(this);
+		panel.add(explorerButton);
+
+
 		// BUTTONS.
 		executeButton = new JButton("Ausführen");
-		executeButton.setBounds(10, 410, 265, 50);
+		executeButton.setBounds(10, 500, 265, 50);
 		executeButton.setFocusable(false);
 		executeButton.addActionListener(this);
 		executeButton.setEnabled(true);
 		panel.add(executeButton);
 
-		explorerButton = new JButton("Datei auswählen");
-		explorerButton.setBounds(10, 350, 265, 50);
-		explorerButton.setFocusable(false);
-		explorerButton.addActionListener(this);
-		panel.add(explorerButton);
-
 		// BUTTONS.
 		createCSVButton = new JButton("Generiere Excel-Template");
-		createCSVButton.setBounds(10, 470, 210, 30);
+		createCSVButton.setBounds(10, 560, 210, 30);
 		createCSVButton.setFocusable(false);
 		createCSVButton.addActionListener(this);
 		createCSVButton.setEnabled(true);
@@ -190,7 +222,7 @@ public class GUI extends JFrame implements ActionListener
 		Image scaledInstance = infoIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
 		ImageIcon infoIconScaled = new ImageIcon(scaledInstance);
 		infoButton.setIcon(infoIconScaled);
-		infoButton.setBounds(240, 470, 30, 30);
+		infoButton.setBounds(240, 560, 30, 30);
 		infoButton.setFocusable(false);
 		infoButton.setBackground(Color.GRAY);
 		infoButton.setOpaque(true);

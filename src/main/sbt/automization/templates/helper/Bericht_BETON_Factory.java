@@ -2,12 +2,14 @@ package sbt.automization.templates.helper;
 
 import sbt.automization.data.Erkundungsstelle;
 import sbt.automization.data.Schicht;
+import sbt.automization.format.NameFormatUtil;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
+
 
 public class Bericht_BETON_Factory {
     private static final String aufschluss = "BETON";
@@ -102,7 +104,7 @@ public class Bericht_BETON_Factory {
 
     }
 
-    public static String createMaterialRow(List<Erkundungsstelle> erkundungsstellen)
+    public static String createDickenRow(List<Erkundungsstelle> erkundungsstellen)
     {
         //Zonen Material 1 - Anzahl Schichten
         HtmlRow row = new HtmlRow.Builder()
@@ -110,36 +112,10 @@ public class Bericht_BETON_Factory {
                 .appendContent(new HtmlCell.Builder()
                         .appendAttribute("class", headerCellClass)
                         .appendAttribute("width", "100")
-                        .appendContent("Material")
-                        .build()
-                        .appendTag())
-                .build();
-
-        for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
-        {
-            HtmlCell cell = new HtmlCell.Builder()
-                    .appendAttribute("class", normalCellClass)
-                    .appendAttribute("width", "60")
-                    .appendContent("Material + Dicke")
-                    .build();
-
-            row.appendContent(cell.appendTag());
-        }
-        return row.appendTag();
-    }
-
-    public static String createBelastungklasseRow(List<Erkundungsstelle> erkundungsstellen)
-    {
-        //Belastungklasse
-        HtmlRow row = new HtmlRow.Builder()
-                .appendAttribute("class", "Normal")
-                .appendContent(new HtmlCell.Builder()
-                        .appendAttribute("class", headerCellClass)
-                        .appendAttribute("width", "100")
-                        .appendContent("Belastungklasse,")
+                        .appendContent("Dicke,")
                         .appendContent(new HtmlText.Builder()
                                 .appendAttribute("class", "Normal6")
-                                .appendContent("RStO")
+                                .appendContent("cm")
                                 .build()
                                 .appendTag())
                         .build()
@@ -148,16 +124,41 @@ public class Bericht_BETON_Factory {
 
         for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
         {
+            StringBuilder formatedSchichtenMaterial = new StringBuilder();
+
+            List<Schicht> beton = erkundungsstelle.getSchichtAufschluss("BETON");
+
+
+            int size = beton.size();
+            for (int i = 0 ; i < size ; i++)
+            {
+                Schicht schicht = beton.get(i);
+
+                formatedSchichtenMaterial.append(NameFormatUtil.formatArt(schicht.getInformation("SCHICHT_ART")));
+
+                formatedSchichtenMaterial.append(TextFormatUtil.printLineBreak());
+
+                HtmlText text2 = new HtmlText.Builder()
+                        .appendAttribute("class", "Normal")
+                        .appendContent(schicht.getInformation("SCHICHT_DICKE"))
+                        .build();
+
+                formatedSchichtenMaterial.append(text2.appendTag());
+                formatedSchichtenMaterial.append(TextFormatUtil.printFormatedSchichtTiefe(schicht));
+
+                if (i + 1 < size)
+                {
+                    formatedSchichtenMaterial.append(TextFormatUtil.printCellTextDivider());
+                }
+            }
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
-                    .appendAttribute("width", "60")
-                    .appendContent(erkundungsstelle.getInformation("ERK_BELASTUNGSKLASSE"))
+                    .appendAttribute("width", "50")
+                    .appendContent(formatedSchichtenMaterial.toString())
                     .build();
-
             row.appendContent(cell.appendTag());
         }
         return row.appendTag();
-
     }
 
     public static String createChemieIDRow(List<Erkundungsstelle> erkundungsstellen)

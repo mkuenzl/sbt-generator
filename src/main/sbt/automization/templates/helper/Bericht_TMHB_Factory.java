@@ -10,6 +10,7 @@ import sbt.automization.util.html.HtmlText;
 import java.util.List;
 
 public class Bericht_TMHB_Factory {
+
     private static final String aufschluss = "TMHB";
     private static final String headerCellClass = "NormalHeader";
     private static final String normalCellClass = "NormalBold";
@@ -93,7 +94,8 @@ public class Bericht_TMHB_Factory {
             String gob_dicke = TextFormatUtil.formatErkAufschlussDicke(erkundungsstelle, "GOB");
             String tob_dicke = TextFormatUtil.formatErkAufschlussDicke(erkundungsstelle, aufschluss);
 
-            String gesamtDicke = String.valueOf(Double.parseDouble(gob_dicke) + Double.parseDouble(tob_dicke));
+            String doubleValue = String.valueOf(Math.round(Double.parseDouble(gob_dicke) + Double.parseDouble(tob_dicke)));
+            String gesamtDicke = doubleValue.replace(".",",");
 
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)

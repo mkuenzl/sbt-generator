@@ -141,4 +141,31 @@ public class TemplateTest
 
 		openExportFile(htmlTemplateExportStrategy);
 	}
+
+	@Test
+	public void createBerichtTMHBTemplate() throws IOException
+	{
+		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Bericht_TMHB_Template.getInstance());
+		htmlTemplateExportStrategy.export(erkundungsstellen);
+
+		openExportFile(htmlTemplateExportStrategy);
+	}
+
+	@Test
+	public void createBerichtBETONTemplate() throws IOException
+	{
+		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Bericht_BETON_Template.getInstance());
+		htmlTemplateExportStrategy.export(erkundungsstellen);
+
+		openExportFile(htmlTemplateExportStrategy);
+	}
+
+	@Test
+	public void createBerichtFUGETemplate() throws IOException
+	{
+		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(Bericht_FUGE_Template.getInstance());
+		htmlTemplateExportStrategy.export(erkundungsstellen);
+
+		openExportFile(htmlTemplateExportStrategy);
+	}
 }

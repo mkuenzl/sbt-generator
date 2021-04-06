@@ -1,6 +1,7 @@
 package sbt.automization.gui;
 
 import sbt.automization.templates.*;
+import sbt.automization.templates.helper.Bericht_TMHB_Factory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +60,15 @@ public class StrategyStorage
             case "BERICHT_OH":
                 strategyList.add(Bericht_OH_Template.getInstance());
                 break;
+            case "BERICHT_TMBH_TEST":
+                strategyList.add(Bericht_TMHB_Template.getInstance());
+                break;
+            case "BERICHT_BETON_TEST":
+                strategyList.add(Bericht_BETON_Template.getInstance());
+                break;
+            case "BERICHT_FUGE_TEST":
+                strategyList.add(Bericht_FUGE_Template.getInstance());
+                break;
         }
     }
 
@@ -90,6 +100,15 @@ public class StrategyStorage
                 break;
             case "BERICHT_OH":
                 strategyList.remove(Bericht_OH_Template.getInstance());
+                break;
+            case "BERICHT_TMBH_TEST":
+                strategyList.remove(Bericht_TMHB_Template.getInstance());
+                break;
+            case "BERICHT_BETON_TEST":
+                strategyList.remove(Bericht_BETON_Template.getInstance());
+                break;
+            case "BERICHT_FUGE_TEST":
+                strategyList.remove(Bericht_FUGE_Template.getInstance());
                 break;
         }
     }
