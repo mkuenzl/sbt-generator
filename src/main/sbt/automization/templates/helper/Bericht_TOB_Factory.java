@@ -149,10 +149,11 @@ public class Bericht_TOB_Factory
 
 		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
 		{
-			String gob_dicke = TextFormatUtil.formatErkAufschlussDicke(erkundungsstelle, "GOB");
-			String tob_dicke = TextFormatUtil.formatErkAufschlussDicke(erkundungsstelle, aufschluss);
+			String gob_dicke = TextFormatUtil.formatErkAufschlussDicke(erkundungsstelle, "GOB").replace(",",".");
+			String tob_dicke = TextFormatUtil.formatErkAufschlussDicke(erkundungsstelle, aufschluss).replace(",",".");
 
-			String gesamtDicke = String.valueOf(Double.parseDouble(gob_dicke) + Double.parseDouble(tob_dicke));
+			String doubleValue = String.valueOf(Math.round(Double.parseDouble(gob_dicke) + Double.parseDouble(tob_dicke)));
+			String gesamtDicke = doubleValue.replace(".",",");
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)

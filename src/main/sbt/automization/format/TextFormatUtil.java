@@ -43,24 +43,26 @@ public final class TextFormatUtil
 
 		if ("< 80".equals(ev2))
 		{
-			double ev = Double.parseDouble(erkundungsstelle.getInformation("ERK_LP_EV").replace(",","."));
+			String erk_lp_ev15 = erkundungsstelle.getInformation("ERK_LP_EV15").replace(",", ".");
+			String replace = erk_lp_ev15.replace("~ ", "");
+			double ev = Double.parseDouble(replace);
 			String range = "";
 
 			if (ev >= 10 && ev < 20)
 			{
-				range = "[30-40]";
+				range = "[30 - 40]";
 			}
 			if (ev >= 20 && ev < 30)
 			{
-				range = "[40-50]";
+				range = "[40 - 50]";
 			}
 			if (ev >= 30 && ev < 40)
 			{
-				range = "[50-60]";
+				range = "[50 - 60]";
 			}
 			if (ev >= 40 && ev < 45)
 			{
-				range = "[60-80]";
+				range = "[60 - 80]";
 			}
 
 			strb.append(new HtmlText.Builder()
@@ -69,7 +71,12 @@ public final class TextFormatUtil
 					.build()
 					.appendTag())
 				.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
+						.appendAttribute("class", "Normal6")
+						.appendContent("&nbsp;")
+						.build()
+						.appendTag())
+				.append(new HtmlText.Builder()
+					.appendAttribute("class", "Normal6")
 					.appendContent(range)
 					.build().appendTag());
 		} else
@@ -94,7 +101,8 @@ public final class TextFormatUtil
 
 			height = height + Double.parseDouble(schicht.getInformation("SCHICHT_DICKE").replace(",", "."));
 		}
-		return String.valueOf(height);
+		String h = String.valueOf(height);
+		return h.replace(".",",");
 	}
 
 	public static String formatSchichtProbePN(final Schicht schicht)
@@ -444,7 +452,7 @@ public final class TextFormatUtil
 					.build();
 
 			formatedSchichtenMaterial.append(text2.appendTag());
-			formatedSchichtenMaterial.append(text3.appendTag());
+			formatedSchichtenMaterial.append(printFormatedSchichtTiefe(schicht));
 
 			if (i + 1 < size)
 			{
@@ -527,13 +535,25 @@ public final class TextFormatUtil
 							.build();
 
 					stringBuilder.append(printLineBreak());
-					stringBuilder.append(formatedTiefe.appendTag());
+					stringBuilder.append(printFormatedSchichtTiefe(schicht));
 //				}
 
 
 			}
 
 		return stringBuilder.toString();
+	}
+
+	public static String printFormatedSchichtTiefe(final Schicht schicht)
+	{
+		String tiefe = "[T: " + schicht.getInformation("SCHICHT_TIEFE_START") +" - "+ schicht.getInformation("SCHICHT_TIEFE_ENDE")+"]";
+
+		HtmlText formatedTiefe = new HtmlText.Builder()
+				.appendAttribute("class", "Normal6")
+				.appendContent(tiefe)
+				.build();
+
+		return formatedTiefe.appendTag();
 	}
 
 	public static String printSchichtRUK(final Erkundungsstelle erkundungsstelle, final String aufschluss)
@@ -644,18 +664,18 @@ public final class TextFormatUtil
 				break;
 			case "nicht gefährlich":
 				stringBuilder.append(new HtmlText.Builder()
-						.appendAttribute("class", "Normal")
-						.appendContent("<span style=\"background-color: white;font-weight: bold;\n" +
-								"  color: black\">")
-						.appendContent("nicht")
-						.appendContent(new HtmlText.Builder()
-								.appendAttribute("class", "Normal")
-								.appendContent("<span style=\"font-weight: bold\";>")
-								.appendContent("gefährlich")
-								.appendContent("</span>")
-								.build().appendTag())
-						.appendContent("</span>")
-						.build().appendTag());
+							.appendAttribute("class", "Normal")
+							.appendContent("<span style=\"background-color: white;font-weight: bold;\n" +
+									"  color: black\">")
+							.appendContent("nicht")
+							.appendContent("</span>")
+							.build().appendTag())
+						.append(new HtmlText.Builder()
+							.appendAttribute("class", "Normal")
+							.appendContent("<span style=\"font-weight: bold\";>")
+							.appendContent("gefährlich")
+							.appendContent("</span>")
+							.build().appendTag());
 				break;
 			case "nicht eingehalten":
 				stringBuilder.append(new HtmlText.Builder()
@@ -678,6 +698,7 @@ public final class TextFormatUtil
 						.appendContent(data)
 						.appendContent("</span>")
 						.build().appendTag());
+				break;
 			default:
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")

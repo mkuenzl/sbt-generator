@@ -60,6 +60,7 @@ public final class Bericht_UG_Template extends AHtmlTemplate
 		tableBericht.appendContent(Bericht_UG_Factory.createZielTiefeRow(templateErkundungsstellen));
 		tableBericht.appendContent(buildTechnischeMerkmale(templateErkundungsstellen));
 		tableBericht.appendContent(buildUmweltTechnischeMerkmale(templateErkundungsstellen));
+		tableBericht.appendContent(Bericht_UG_Factory.createLegendeRow(erkundungsstellen));
 
 		setHtmlTable(tableBericht.appendTag());
 	}

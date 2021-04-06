@@ -105,7 +105,7 @@ public class Bericht_UG_Factory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
-					.appendContent(String.valueOf(erkundungsstelle.getDicke()))
+					.appendContent(String.valueOf(erkundungsstelle.getDicke()).replace(".", ","))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -924,5 +924,21 @@ public class Bericht_UG_Factory
 		}
 
 		return rowCHEMIE_ENTSCHEIDUNGSHILFE.appendTag();
+	}
+
+	public static String createLegendeRow(List<Erkundungsstelle> erkundungsstellen)
+	{
+		//Umwelttechnische Merkmale Trennzeile
+		HtmlRow rowLegende = new HtmlRow.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent(new HtmlCell.Builder()
+						.appendAttribute("class", "NormalHeader")
+						.appendAttribute("colspan", String.valueOf(1 + erkundungsstellen.size()))
+						.appendContent("Für die angegebenen Tiefen (T[]) gilt die Einheit cm.")
+						.build()
+						.appendTag())
+				.build();
+
+		return rowLegende.appendTag();
 	}
 }

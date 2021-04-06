@@ -53,7 +53,7 @@ public class ObjectCreatorUtil
         //Collections.sort(erkundungsstellen);
 
         //TODO kännte funktionieren, muss aber nicht unbedingt
-        java.util.Collections.sort(erkundungsstellen);
+        //java.util.Collections.sort(erkundungsstellen);
 
         return erkundungsstellen;
     }
