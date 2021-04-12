@@ -1,8 +1,6 @@
 package sbt.automization.templates.helper;
 
 import sbt.automization.data.Erkundungsstelle;
-import sbt.automization.data.Schicht;
-import sbt.automization.format.HtmlCellFormatUtil;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
@@ -85,8 +83,6 @@ public class Bericht_FUGE_Factory {
 
         for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
         {
-            List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
-
             HtmlCell htmlCell_CHEMIE_ID = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
@@ -124,8 +120,6 @@ public class Bericht_FUGE_Factory {
 
         for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
         {
-            List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
-
             HtmlCell htmlCell_CHEMIE_MUFV = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
@@ -140,7 +134,7 @@ public class Bericht_FUGE_Factory {
 
     public static String createAVVRow(List<Erkundungsstelle> erkundungsstellen){
         //AVV
-        HtmlRow rowERK_AVV_PECH = new HtmlRow.Builder()
+        HtmlRow rowERK_AVV = new HtmlRow.Builder()
                 .appendAttribute("class", "Normal")
                 .appendContent(new HtmlCell.Builder()
                         .appendAttribute("class", headerCellClass)
@@ -162,13 +156,13 @@ public class Bericht_FUGE_Factory {
             HtmlCell htmlCell_AVV = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "50")
-                    .appendContent("AVV")
+                    .appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_ABFALLSCHLUESSEL"))
                     .build();
 
-            rowERK_AVV_PECH.appendContent(htmlCell_AVV.appendTag());
+            rowERK_AVV.appendContent(htmlCell_AVV.appendTag());
         }
 
-        return rowERK_AVV_PECH.appendTag();
+        return rowERK_AVV.appendTag();
     }
 
 }

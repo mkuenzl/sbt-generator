@@ -24,13 +24,11 @@ public final class NameFormatUtil
 			HtmlText text1 = new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
 					.appendContent(split[0].concat(" ").concat(split[1]).concat(" ").concat(split[2]))
-					.build();
-			HtmlText text2 = new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
+					.appendContent(TextFormatUtil.printLineBreak())
 					.appendContent(split[3])
 					.build();
 
-			formatedName = text1.appendTag().concat(text2.appendTag());
+			formatedName = text1.appendTag();
 		} else {
 			return name;
 		}

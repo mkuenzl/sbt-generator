@@ -2,7 +2,6 @@ package sbt.automization.templates.helper;
 
 import sbt.automization.data.Erkundungsstelle;
 import sbt.automization.data.Schicht;
-import sbt.automization.format.NameFormatUtil;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
@@ -124,38 +123,46 @@ public class Bericht_BETON_Factory {
 
         for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
         {
-            StringBuilder formatedSchichtenMaterial = new StringBuilder();
+//            StringBuilder formatedSchichtenMaterial = new StringBuilder();
+//
+//            List<Schicht> beton = erkundungsstelle.getSchichtAufschluss("BETON");
+//
+//
+//            int size = beton.size();
+//            for (int i = 0 ; i < size ; i++)
+//            {
+//                Schicht schicht = beton.get(i);
+//
+//                formatedSchichtenMaterial.append(NameFormatUtil.formatArt(schicht.getInformation("SCHICHT_ART")));
+//
+//                formatedSchichtenMaterial.append(TextFormatUtil.printEmptyRow());
+//
+//                HtmlText text2 = new HtmlText.Builder()
+//                        .appendAttribute("class", "Normal")
+//                        .appendContent(schicht.getInformation("SCHICHT_DICKE"))
+//                        .build();
+//
+//                formatedSchichtenMaterial.append(text2.appendTag());
+//                formatedSchichtenMaterial.append(TextFormatUtil.printFormatedSchichtTiefe(schicht));
+//
+//                if (i + 1 < size)
+//                {
+//                    formatedSchichtenMaterial.append(TextFormatUtil.printCellTextDivider());
+//                }
+//            }
+//
+//            HtmlCell cell = new HtmlCell.Builder()
+//                    .appendAttribute("class", normalCellClass)
+//                    .appendAttribute("width", "50")
+//                    .appendContent(formatedSchichtenMaterial.toString())
+//                    .build();
 
-            List<Schicht> beton = erkundungsstelle.getSchichtAufschluss("BETON");
-
-
-            int size = beton.size();
-            for (int i = 0 ; i < size ; i++)
-            {
-                Schicht schicht = beton.get(i);
-
-                formatedSchichtenMaterial.append(NameFormatUtil.formatArt(schicht.getInformation("SCHICHT_ART")));
-
-                formatedSchichtenMaterial.append(TextFormatUtil.printLineBreak());
-
-                HtmlText text2 = new HtmlText.Builder()
-                        .appendAttribute("class", "Normal")
-                        .appendContent(schicht.getInformation("SCHICHT_DICKE"))
-                        .build();
-
-                formatedSchichtenMaterial.append(text2.appendTag());
-                formatedSchichtenMaterial.append(TextFormatUtil.printFormatedSchichtTiefe(schicht));
-
-                if (i + 1 < size)
-                {
-                    formatedSchichtenMaterial.append(TextFormatUtil.printCellTextDivider());
-                }
-            }
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
-                    .appendAttribute("width", "50")
-                    .appendContent(formatedSchichtenMaterial.toString())
+                    .appendAttribute("width", "60")
+                    .appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_ART"))
                     .build();
+
             row.appendContent(cell.appendTag());
         }
         return row.appendTag();
@@ -388,7 +395,7 @@ public class Bericht_BETON_Factory {
             HtmlCell htmlCell_AVV = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "50")
-                    .appendContent("AVV")
+                    .appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_ABFALLSCHLUESSEL"))
                     .build();
 
             rowERK_AVV_PECH.appendContent(htmlCell_AVV.appendTag());

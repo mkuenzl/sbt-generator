@@ -460,7 +460,7 @@ public class Bericht_UG_Factory
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(erkundungsstelle.getInformation("ERK_TRAG_GRABENSOHLE"))
-					.appendContent(TextFormatUtil.printLineBreak())
+					.appendContent(TextFormatUtil.printEmptyRow())
 					.appendContent(new HtmlText.Builder().appendAttribute("class", "Normal6")
 							.appendContent("[T:")
 							.appendContent(erkundungsstelle.getInformation("ERK_SOHLE_TIEFE"))

@@ -99,7 +99,7 @@ public final class Anlage_ERK_Template extends AHtmlTemplate
 
             HtmlCell cellTextERK_KOORDINATEN = new HtmlCell.Builder()
                     .appendAttribute("class", "NormalHeader")
-                    .appendContent("Koordinaten")
+                    .appendContent("Koordinaten<sup>1)</sup>")
                     .build();
 
             HtmlCell cellERK_KOORDINATEN = new HtmlCell.Builder()
@@ -185,7 +185,7 @@ public final class Anlage_ERK_Template extends AHtmlTemplate
             }
 
             if (erkundungsstelle.getSchichtAufschluss("GOB").size() > 0) {
-                Anlage_ERK_OB_Template erk_OB_Tabelle = new Anlage_ERK_OB_Template();
+                Anlage_ERK_GOB_Template erk_OB_Tabelle = new Anlage_ERK_GOB_Template();
                 erk_OB_Tabelle.buildHtmlTable(erkundungsstelle);
                 stringBuilder.append(erk_OB_Tabelle.getHtmlTable());
             }

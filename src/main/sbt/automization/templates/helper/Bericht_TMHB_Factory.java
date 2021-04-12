@@ -91,10 +91,10 @@ public class Bericht_TMHB_Factory {
 
         for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
         {
-            String gob_dicke = TextFormatUtil.formatErkAufschlussDicke(erkundungsstelle, "GOB");
-            String tob_dicke = TextFormatUtil.formatErkAufschlussDicke(erkundungsstelle, aufschluss);
+            Double gob_dicke = erkundungsstelle.getAufschlussDicke("GOB");
+            Double tmhb_dicke = erkundungsstelle.getAufschlussDicke(aufschluss);
 
-            String doubleValue = String.valueOf(Math.round(Double.parseDouble(gob_dicke) + Double.parseDouble(tob_dicke)));
+            String doubleValue = String.valueOf(Math.round(gob_dicke + tmhb_dicke));
             String gesamtDicke = doubleValue.replace(".",",");
 
             HtmlCell cell = new HtmlCell.Builder()
@@ -432,11 +432,11 @@ public class Bericht_TMHB_Factory {
         for (Erkundungsstelle erkundungsstelle :
                 erkundungsstellen)
         {
-            //TODO CHEMIE_ABFALLSCHLUESSEL
+            //TODO AVV
             HtmlCell htmlCell_AVV = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "50")
-                    .appendContent("AVV")
+                    .appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_ABFALLSCHLUESSEL"))
                     .build();
 
             rowERK_AVV_PECH.appendContent(htmlCell_AVV.appendTag());

@@ -341,25 +341,25 @@ public final class Anlage_PN_Template extends AHtmlTemplate
             }
         }
 
-        //TODO NULL POINTER
-        if(schichtList.size() < 2)
-        {
-            return schichtList;
-        }
+        int size = schichtList.size();
 
-        for (int i = 0 ; i < schichtList.size() ; i++)
+        if(size > 2)
         {
-            if ("GOB".equals(schichtList.get(i).getInformation("SCHICHT_AUFSCHLUSS")))
+            for (int i = 0 ; i < schichtList.size() ; i++)
             {
-                if (schichtList.get(i).getInformation("SCHICHT_ABFALLART").equals(schichtList.get(i + 1).getInformation("SCHICHT_ABFALLART")))
+                if ("GOB".equals(schichtList.get(i).getInformation("SCHICHT_AUFSCHLUSS")))
                 {
-                    schichtList.get(i + 1).setInformation("SCHICHT_TIEFE_START", schichtList.get(i).getInformation("SCHICHT_TIEFE_START"));
-                    schichtList.get(i + 1).setInformation("SCHICHT_KOERNUNG", "");
-                    schichtList.remove(schichtList.get(i));
-                    i--;
+                    if (schichtList.get(i).getInformation("SCHICHT_ABFALLART").equals(schichtList.get(i + 1).getInformation("SCHICHT_ABFALLART")))
+                    {
+                        schichtList.get(i + 1).setInformation("SCHICHT_TIEFE_START", schichtList.get(i).getInformation("SCHICHT_TIEFE_START"));
+                        schichtList.get(i + 1).setInformation("SCHICHT_KOERNUNG", "");
+                        schichtList.remove(schichtList.get(i));
+                        i--;
+                    }
                 }
             }
         }
         return schichtList;
     }
+
 }

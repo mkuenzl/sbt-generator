@@ -82,10 +82,19 @@ public final class HtmlCellFormatUtil
                 break;
             case ">Z2":
             case ">DK3":
+            case ">RC3":
             case "gefährlich":
                 htmlCell = new HtmlCell.Builder()
                         .appendAttribute("class", "ChemieBlack")
                         .appendContent(data)
+                        .build();
+                break;
+            case "nachweisbar":
+                htmlCell = new HtmlCell.Builder()
+                        .appendAttribute("class", "ChemieBlack")
+                        .appendContent("nachweis-")
+                        .appendContent(TextFormatUtil.printLineBreak())
+                        .appendContent("bar")
                         .build();
                 break;
             case "nicht gefährlich":
@@ -93,6 +102,16 @@ public final class HtmlCellFormatUtil
                         .appendAttribute("class", "ChemieWhite")
                         .appendContent(new HtmlText.Builder().appendAttribute("class", "Normal").appendContent("nicht").build().appendTag())
                         .appendContent(new HtmlText.Builder().appendAttribute("class", "Normal").appendContent("gefährlich").build().appendTag())
+                        .build();
+                break;
+            case "nicht nachweisbar":
+                htmlCell = new HtmlCell.Builder()
+                        .appendAttribute("class", "ChemieWhite")
+                        .appendContent("nicht")
+                        .appendContent(TextFormatUtil.printLineBreak())
+                        .appendContent("nachweis-")
+                        .appendContent(TextFormatUtil.printLineBreak())
+                        .appendContent("bar")
                         .build();
                 break;
             default:

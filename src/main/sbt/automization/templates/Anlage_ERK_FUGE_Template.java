@@ -42,7 +42,7 @@ public class Anlage_ERK_FUGE_Template extends AHtmlTemplate{
                 //Art der Schicht
                 HtmlCell schichtArt = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent(TextFormatUtil.formatSchichtBodenGruppe(schicht.getInformation("SCHICHT_ART")))
+                        .appendContent(schicht.getInformation("SCHICHT_ART"))
                         .build();
 
                 //Dicke
@@ -61,11 +61,13 @@ public class Anlage_ERK_FUGE_Template extends AHtmlTemplate{
                 String chemie_mufv = schicht.getInformation("CHEMIE_MUFV");
                 HtmlCell schichtMufv = HtmlCellFormatUtil.formatChemie(chemie_mufv);
 
-                //PAK TODO
-                String chemie_laga_bo = schicht.getInformation("CHEMIE_PAK");
-                HtmlCell schichtPak = HtmlCellFormatUtil.formatChemie("PAK");
+                //PAK
+                HtmlCell schichtPak = new HtmlCell.Builder()
+                        .appendAttribute("class", "NormalErkundungsstelle")
+                        .appendContent(schicht.getInformation("SCHICHT_PAK"))
+                        .build();
 
-                //Asbest TODO
+                //Asbest
                 String chemie_asbest = schicht.getInformation("CHEMIE_ASBEST");
                 HtmlCell schichtAsbest = HtmlCellFormatUtil.formatChemie(chemie_asbest);
 

@@ -11,7 +11,7 @@ import sbt.automization.util.html.HtmlTableHeader;
 
 import java.util.List;
 
-class Anlage_ERK_OB_Template extends AHtmlTemplate
+class Anlage_ERK_GOB_Template extends AHtmlTemplate
 {
     private String aufschluss = "";
 
@@ -37,7 +37,8 @@ class Anlage_ERK_OB_Template extends AHtmlTemplate
 
         for (Schicht schicht : erkundungsstelle.getSchichtList())
         {
-            if ("GOB".equals(schicht.getInformation("SCHICHT_AUFSCHLUSS")))
+            String schicht_aufschluss = schicht.getInformation("SCHICHT_AUFSCHLUSS");
+            if ("GOB".equals(schicht_aufschluss) || "TMHB".equals(schicht_aufschluss) || "BETON".equals(schicht_aufschluss) ||"BESCHICHTUNG".equals(schicht_aufschluss) ||"ABDICHTUNG".equals(schicht_aufschluss))
             {
                 //Art der Schicht
                 HtmlCell cellSchichtArt = new HtmlCell.Builder()
@@ -74,16 +75,16 @@ class Anlage_ERK_OB_Template extends AHtmlTemplate
                 String chemie_tlgestein = schicht.getInformation("CHEMIE_TLGESTEIN");
                 HtmlCell cellTLGESTEIN = HtmlCellFormatUtil.formatChemie(chemie_tlgestein);
 
+                //PAK
+                HtmlCell cellPAK = new HtmlCell.Builder()
+                        .appendAttribute("class", "NormalErkundungsstelle")
+                        .appendContent(schicht.getInformation("SCHICHT_PAK"))
+                        .build();
+
                 //RuK
                 HtmlCell cellRUK = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
                         .appendContent(schicht.getInformation("SCHICHT_RUK"))
-                        .build();
-
-                //Notiz
-                HtmlCell cellBemerkungen = new HtmlCell.Builder()
-                        .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(schicht.getInformation("SCHICHT_NOTIZ"))
                         .build();
 
                 HtmlRow schichtRow = new HtmlRow.Builder()
@@ -95,8 +96,8 @@ class Anlage_ERK_OB_Template extends AHtmlTemplate
                         .appendContent(cellPech.appendTag())
                         .appendContent(cellLAGARC.appendTag())
                         .appendContent(cellTLGESTEIN.appendTag())
+                        .appendContent(cellPAK.appendTag())
                         .appendContent(cellRUK.appendTag())
-                        .appendContent(cellBemerkungen.appendTag())
                         .build();
 
                 tableErkOb.appendContent(schichtRow.appendTag());
@@ -204,17 +205,16 @@ class Anlage_ERK_OB_Template extends AHtmlTemplate
                 .appendContent("TL Ge.")
                 .build();
 
+        HtmlTableHeader cellPAK = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("width", "60")
+                .appendContent("PAK")
+                .build();
+
         HtmlTableHeader cellRUK = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendContent("RuK")
-                .build();
-
-        HtmlTableHeader cellNotiz = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "60")
-                .appendAttribute("rowspan", "2")
-                .appendContent("Notiz")
                 .build();
 
         //Third Row
@@ -234,7 +234,10 @@ class Anlage_ERK_OB_Template extends AHtmlTemplate
                 .appendContent("cm")
                 .build();
 
-
+        HtmlTableHeader cellPAKmgkg = new HtmlTableHeader.Builder()
+                .appendAttribute("class", "NormalTableHeader")
+                .appendContent("mg/kg")
+                .build();
 
         HtmlTableHeader cellRukCGrad = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
@@ -256,14 +259,15 @@ class Anlage_ERK_OB_Template extends AHtmlTemplate
                 .appendContent(cellPech.appendTag())
                 .appendContent(cellLAGARC.appendTag())
                 .appendContent(cellTLGe.appendTag())
+                .appendContent(cellPAK.appendTag())
                 .appendContent(cellRUK.appendTag())
-                .appendContent(cellNotiz.appendTag())
                 .build();
 
         HtmlRow thirdHeaderRow = new HtmlRow.Builder()
                 .appendAttribute("class", "NormalHeaderUnits")
                 .appendContent(cellDickeCm.appendTag())
                 .appendContent(cellTiefeCm.appendTag())
+                .appendContent(cellPAKmgkg.appendTag())
                 .appendContent(cellRukCGrad.appendTag())
                 .build();
 

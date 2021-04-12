@@ -13,6 +13,8 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
     private String identifier;
     private String datum;
     private String pruefer;
+    private String bereich;
+    private String ansprechpartner;
     private String koordinaten;
     private String ort;
     private String aufschlussOb;
@@ -20,10 +22,22 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
     private String aufschlussUg;
     private String oberkante;
     private String belastungsklasse;
+    private String belastungsklasseTafel;
+    private String zielTiefe;
+
+    private String ERK_PECH_HALBQUANTITATIV;
+    private String ERK_PECH_QUANTITATIV;
+    private String ERK_TRAG_PLANUM;
+    private String ERK_TRAG_GRABENSOHLE;
+    private String ERK_SOHLE_TIEFE;
+    private String ERK_VERBUND_UNTERLAGE;
+
     private String lpIdentifier;
     private String lpEv;
     private String lpEv15;
     private String lpEv2;
+    private String lpEv2SollTiefe;
+
 
     private Map<String, String> dataMap;
     private final List<Schicht> schichtList = new ArrayList<>();
@@ -135,6 +149,18 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
         double d = 0;
 
         for (Schicht schicht : schichtList) {
+            String schicht_dicke = schicht.getInformation("SCHICHT_DICKE").replace(",",".");
+            d += Double.parseDouble(schicht_dicke);
+        }
+
+        return d;
+    }
+
+    public Double getAufschlussDicke(final String aufschluss)
+    {
+        double d = 0;
+
+        for (Schicht schicht : getSchichtAufschluss(aufschluss)) {
             String schicht_dicke = schicht.getInformation("SCHICHT_DICKE").replace(",",".");
             d += Double.parseDouble(schicht_dicke);
         }

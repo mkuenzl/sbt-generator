@@ -2,7 +2,6 @@ package sbt.automization.format;
 
 import sbt.automization.data.Erkundungsstelle;
 import sbt.automization.data.Schicht;
-import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
@@ -15,8 +14,19 @@ public final class TextFormatUtil
 				.appendContent("Belastungsklasse")
 				.build()
 				.appendTag();
+
+		String erk_belastungsklasse = erkundungsstelle.getInformation("ERK_BELASTUNGSKLASSE");
+		String content;
+		if ("keine".equals(erk_belastungsklasse) || "-".equals(erk_belastungsklasse))
+		{
+			content = erk_belastungsklasse;
+		} else
+		{
+			content = "Bk" + erk_belastungsklasse;
+		}
+
 		String s2 = new HtmlText.Builder().appendAttribute("class", "Normal")
-				.appendContent("Bk" + erkundungsstelle.getInformation("ERK_BELASTUNGSKLASSE"))
+				.appendContent(content)
 				.build()
 				.appendTag();
 
@@ -93,7 +103,6 @@ public final class TextFormatUtil
 
 	public static String formatErkAufschlussDicke(final Erkundungsstelle erkundungsstelle, String aufschluss)
 	{
-
 		double height = 0.0;
 		List<Schicht> schichtList = erkundungsstelle.getSchichtAufschluss(aufschluss);
 		for (Schicht schicht : schichtList)
@@ -123,6 +132,21 @@ public final class TextFormatUtil
 
 		int footnoteCounter = 1;
 		StringBuilder stringBuilder = new StringBuilder();
+
+
+		stringBuilder.append(new HtmlText.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent("Angaben:")
+				.appendContent(printLineBreak())
+				.appendContent("KGV = Korngrößenverteilung, WG = Wassergehalt, LP = Plattendruckversuch, wPr = optimaler Wassergehalt")
+				.appendContent(printLineBreak())
+				.appendContent("Gem. a. G. = Gemisch aus Gesteinskörnungen, NS = Naturstein, LS = Lavaschlacke, HO = Hochofenschlacke")
+				.appendContent(printLineBreak())
+				.appendContent("RC = Rezyklierte Gesteinskörnung, BK = Brechkorn, RK = Rundkorn, sg = stetig gestuft, ug = unstetig gestuft")
+				.appendContent(printLineBreak())
+				.appendContent(TextFormatUtil.printEmptyRow())
+				.build()
+				.appendTag());
 
 		stringBuilder.append(new HtmlText.Builder()
 				.appendAttribute("class", "Normal")
@@ -433,7 +457,7 @@ public final class TextFormatUtil
 
 			formatedSchichtenMaterial.append(NameFormatUtil.formatArt(schicht.getInformation("SCHICHT_ART")));
 
-			formatedSchichtenMaterial.append(printLineBreak());
+			formatedSchichtenMaterial.append(printEmptyRow());
 
 			HtmlText text2 = new HtmlText.Builder()
 					.appendAttribute("class", "Normal6")
@@ -463,7 +487,7 @@ public final class TextFormatUtil
 		return formatedSchichtenMaterial.toString();
 	}
 
-	public static String printLineBreak()
+	public static String printEmptyRow()
 	{
 		HtmlText lineBreak = new HtmlText.Builder()
 				.appendAttribute("class", "Normal")
@@ -471,6 +495,11 @@ public final class TextFormatUtil
 				.build();
 
 		return lineBreak.appendTag();
+	}
+
+	public static String printLineBreak()
+	{
+		return "<br>";
 	}
 
 	public static String printCellTextDivider()
@@ -482,7 +511,7 @@ public final class TextFormatUtil
 				.build();
 
 		strb.append(textDivider.appendTag())
-				.append(printLineBreak());
+				.append(printEmptyRow());
 
 		return strb.toString();
 	}
@@ -534,7 +563,7 @@ public final class TextFormatUtil
 							.appendContent("]")
 							.build();
 
-					stringBuilder.append(printLineBreak());
+					stringBuilder.append(printEmptyRow());
 					stringBuilder.append(printFormatedSchichtTiefe(schicht));
 //				}
 
@@ -679,17 +708,17 @@ public final class TextFormatUtil
 				break;
 			case "nicht eingehalten":
 				stringBuilder.append(new HtmlText.Builder()
-						.appendAttribute("class", "Normal")
-						.appendContent("<span style=\"font-weight: bold\";>")
-						.appendContent("nicht")
-						.appendContent(new HtmlText.Builder()
+							.appendAttribute("class", "Normal")
+							.appendContent("<span style=\"font-weight: bold\";>")
+							.appendContent("nicht")
+							.appendContent("</span>")
+							.build().appendTag())
+						.append(new HtmlText.Builder()
 								.appendAttribute("class", "Normal")
 								.appendContent("<span style=\"font-weight: bold\";>")
 								.appendContent("eingehalten")
 								.appendContent("</span>")
-								.build().appendTag())
-						.appendContent("</span>")
-						.build().appendTag());
+								.build().appendTag());
 				break;
 			case "eingehalten":
 				stringBuilder.append(new HtmlText.Builder()
