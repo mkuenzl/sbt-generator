@@ -440,7 +440,7 @@ public class Bericht_OB_Factory
 
 				if (d > 0)
 				{
-					dicke = String.valueOf(d);
+					dicke = String.valueOf(d).replace(".", ",");
 					empty = false;
 					isThereDataToBuild = true;
 				}
