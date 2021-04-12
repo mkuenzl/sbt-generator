@@ -49,7 +49,7 @@ public class Bericht_FUGE_Template extends AHtmlTemplate{
 				.build();
 
 		List<Erkundungsstelle> templateErkundungsstellen = erkundungsstellen.stream()
-				.filter(e -> e.getSchichtAufschluss("BETON").size() > 0)
+				.filter(e -> e.getSchichtAufschluss("FUGE").size() > 0)
 				.collect(Collectors.toList());
 
 		tableBericht.appendContent(Bericht_FUGE_Factory.createIDRow(templateErkundungsstellen));
