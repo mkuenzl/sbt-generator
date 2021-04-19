@@ -64,9 +64,6 @@
             <exclude name="**/*sources.jar"/>
             <exclude name="**/*javadoc.jar"/>
         </fileset>
-<!--        <fileset dir="${resourcePath}">-->
-<!--            <include name="CSS.txt"/>-->
-<!--        </fileset>-->
     </path>
     <!-- -->
 

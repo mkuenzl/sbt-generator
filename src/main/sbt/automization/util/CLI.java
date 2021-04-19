@@ -47,19 +47,19 @@ public class CLI
                 switch (cmd.getOptionValue("t"))
                 {
                     case "LP_Template":
-                        this.strategy = Anlage_LP_Template.getInstance();
+                        this.strategy = AppendixLP.getInstance();
                         break;
                     case "PN_Template":
-                        this.strategy = Anlage_PN_Template.getInstance();
+                        this.strategy = AppendixPN.getInstance();
                         break;
                     case "RUK_Template":
-                        this.strategy = Anlage_RUK_Template.getInstance();
+                        this.strategy = AppendixRuk.getInstance();
                         break;
                     case "ERK_Template":
-                        this.strategy = Anlage_ERK_Template.getInstance();
+                        this.strategy = AppendixExplorationSite.getInstance();
                         break;
                     case "Bericht_Template":
-                        this.strategy = Bericht_OB_Template.getInstance();
+                        this.strategy = GOBReport.getInstance();
                         break;
                     default:
                         System.err.println("Please provide a template.");

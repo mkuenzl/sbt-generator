@@ -1,7 +1,7 @@
 package sbt.automization.templates;
 
-import sbt.automization.data.Erkundungsstelle;
-import sbt.automization.data.Schicht;
+import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.Layer;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
@@ -9,21 +9,21 @@ import sbt.automization.util.html.HtmlTableHeader;
 
 import java.util.List;
 
-public final class Anlage_RUK_Template extends AHtmlTemplate
+public final class AppendixRuk extends AHtmlTemplate
 {
-    private static Anlage_RUK_Template instance;
+    private static AppendixRuk instance;
 
-    private Anlage_RUK_Template() {}
+    private AppendixRuk() {}
 
-    public static Anlage_RUK_Template getInstance()
+    public static AppendixRuk getInstance()
     {
         if (instance == null)
         {
-            synchronized (Anlage_RUK_Template.class)
+            synchronized (AppendixRuk.class)
             {
                 if (instance == null)
                 {
-                    instance = new Anlage_RUK_Template();
+                    instance = new AppendixRuk();
                 }
             }
         }
@@ -31,9 +31,9 @@ public final class Anlage_RUK_Template extends AHtmlTemplate
     }
 
     @Override
-    public void buildHtmlTable(final List<Erkundungsstelle> erkundungsstellen)
+    public void buildHtmlTable(final List<ExplorationSite> sites)
     {
-        HtmlTable table = new HtmlTable.Builder()
+        HtmlTable tableRuK = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
                 .appendAttribute("width", "605")
                 .appendAttribute("border", "1")
@@ -43,14 +43,35 @@ public final class Anlage_RUK_Template extends AHtmlTemplate
                 .appendContent(setHtmlTableHeader())
                 .build();
 
+        int rowCounter = 0;
+        StringBuilder stringBuilder = new StringBuilder();
 
-        for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+        for (ExplorationSite explorationSite : sites)
         {
-            List<Schicht> sList = erkundungsstelle.getSchichtList();
+            List<Layer> sList = explorationSite.getSchichtList();
 
-            for (Schicht schicht : sList)
+            for (Layer layer : sList)
             {
-                String rukNumber = schicht.getInformation("SCHICHT_RUK_NR");
+                if (rowCounter >= 20)
+                {
+                    stringBuilder.append(tableRuK.appendTag())
+                            .append("<br>")
+                            .append("<br>");
+
+                    tableRuK = new HtmlTable.Builder()
+                            .appendAttribute("class", "MsoNormalTable")
+                            .appendAttribute("width", "605")
+                            .appendAttribute("border", "1")
+                            .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+                            .appendAttribute("cellspacing", "0")
+                            .appendAttribute("cellpadding", "0")
+                            .appendContent(setHtmlTableHeader())
+                            .build();
+
+                    rowCounter = 0;
+                }
+
+                String rukNumber = layer.getInformation("SCHICHT_RUK_NR");
 
                 if (! "-".equals(rukNumber))
                 {
@@ -58,7 +79,7 @@ public final class Anlage_RUK_Template extends AHtmlTemplate
                     HtmlCell cellErkIdentifier = new HtmlCell.Builder()
                             .appendAttribute("class", "Normal")
                             .appendAttribute("align", "center")
-                            .appendContent(erkundungsstelle.getInformation("ERK_ID"))
+                            .appendContent(explorationSite.getInformation("ERK_ID"))
                             .build();
 
                     HtmlCell cellRukVersuchNr = new HtmlCell.Builder()
@@ -70,13 +91,13 @@ public final class Anlage_RUK_Template extends AHtmlTemplate
 
                     HtmlCell cellRukProbenArt = new HtmlCell.Builder()
                             .appendAttribute("class", "Normal")
-                            .appendContent(schicht.getInformation("SCHICHT_RUK_PROBE"))
+                            .appendContent(layer.getInformation("SCHICHT_RUK_PROBE"))
                             .build();
 
                     HtmlCell cellSchichtArtAndKoernung = new HtmlCell.Builder()
                             .appendAttribute("class", "Normal")
                             .appendAttribute("width", "170")
-                            .appendContent(schicht.getInformation("SCHICHT_ART").concat("  ").concat(schicht.getInformation("SCHICHT_KOERNUNG")))
+                            .appendContent(layer.getInformation("SCHICHT_ART").concat("  ").concat(layer.getInformation("SCHICHT_KOERNUNG")))
                             .build();
 
 
@@ -84,7 +105,7 @@ public final class Anlage_RUK_Template extends AHtmlTemplate
                             .appendAttribute("class", "Normal")
                             .appendAttribute("width", "35")
                             .appendAttribute("align", "center")
-                            .appendContent(schicht.getInformation("SCHICHT_TIEFE_START"))
+                            .appendContent(layer.getInformation("SCHICHT_TIEFE_START"))
                             .build();
 
                     HtmlCell cellSchichtTiefeConcatination = new HtmlCell.Builder()
@@ -98,13 +119,13 @@ public final class Anlage_RUK_Template extends AHtmlTemplate
                             .appendAttribute("class", "Normal")
                             .appendAttribute("width", "35")
                             .appendAttribute("align", "center")
-                            .appendContent(schicht.getInformation("SCHICHT_TIEFE_ENDE"))
+                            .appendContent(layer.getInformation("SCHICHT_TIEFE_ENDE"))
                             .build();
 
                     HtmlCell cellSchichtRuk = new HtmlCell.Builder()
                             .appendAttribute("class", "Normal")
                             .appendAttribute("align", "center")
-                            .appendContent(schicht.getInformation("SCHICHT_RUK"))
+                            .appendContent(layer.getInformation("SCHICHT_RUK"))
                             .build();
 
                     HtmlRow htmlRow = new HtmlRow.Builder()
@@ -119,12 +140,15 @@ public final class Anlage_RUK_Template extends AHtmlTemplate
                             .appendContent(cellSchichtRuk.appendTag())
                             .build();
 
-                    table.appendContent(htmlRow.appendTag());
+                    tableRuK.appendContent(htmlRow.appendTag());
+
+                    rowCounter++;
                 }
             }
         }
+        stringBuilder.append(tableRuK.appendTag());
 
-        setHtmlTable(table.appendTag());
+        setHtmlTable(stringBuilder.toString());
     }
 
     @Override
@@ -172,14 +196,14 @@ public final class Anlage_RUK_Template extends AHtmlTemplate
                 .build();
 
         HtmlTableHeader cellTiefeCm = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("class", "NormalTableHeaderUnits")
                 .appendAttribute("width", "100")
                 .appendAttribute("colspan", "3")
                 .appendContent("cm")
                 .build();
 
         HtmlTableHeader cellRuKC = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("class", "NormalTableHeaderUnits")
                 .appendAttribute("width", "95")
                 .appendContent("°C")
                 .build();
@@ -209,7 +233,7 @@ public final class Anlage_RUK_Template extends AHtmlTemplate
     }
 
     @Override
-    public void buildHtmlTable(final Erkundungsstelle data)
+    public void buildHtmlTable(final ExplorationSite site)
     {
 
     }

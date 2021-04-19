@@ -1,7 +1,7 @@
 package sbt.automization.templates.helper;
 
-import sbt.automization.data.Erkundungsstelle;
-import sbt.automization.data.Schicht;
+import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.Layer;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
@@ -9,13 +9,13 @@ import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
 
-public class Bericht_UG_Factory
+public class UgFactory
 {
 	private static final String aufschluss = "UG";
 	private static final String headerCellClass = "NormalHeader";
 	private static final String normalCellClass = "NormalBold";
 
-	public static String createIDRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createIDRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//Erkundungsstellen ID
 		HtmlRow row = new HtmlRow.Builder()
@@ -28,13 +28,13 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle :
+		for (ExplorationSite explorationSite :
 				erkundungsstellen)
 		{
 			HtmlCell htmlCell_ERK_ID = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(erkundungsstelle.getInformation("ERK_ID"))
+					.appendContent(explorationSite.getInformation("ERK_ID"))
 					.build();
 
 			row.appendContent(htmlCell_ERK_ID.appendTag());
@@ -43,7 +43,7 @@ public class Bericht_UG_Factory
 		return row.appendTag();
 	}
 
-	public static String createDickeRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createDickeRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//Erkundungsstellen Aufschlussart
 		HtmlRow row = new HtmlRow.Builder()
@@ -62,10 +62,10 @@ public class Bericht_UG_Factory
 				.build();
 
 
-		for (Erkundungsstelle erkundungsstelle :
+		for (ExplorationSite explorationSite :
 				erkundungsstellen)
 		{
-			String aufschlussDicke = TextFormatUtil.formatErkAufschlussDicke(erkundungsstelle, aufschluss);
+			String aufschlussDicke = TextFormatUtil.formatSiteOutcropThickness(explorationSite, aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -79,7 +79,7 @@ public class Bericht_UG_Factory
 		return row.appendTag();
 	}
 
-	public static String createGesamtDickeRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createGesamtDickeRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//Erkundungsstellen Aufschlussart
 		HtmlRow row = new HtmlRow.Builder()
@@ -98,14 +98,14 @@ public class Bericht_UG_Factory
 				.build();
 
 
-		for (Erkundungsstelle erkundungsstelle :
+		for (ExplorationSite explorationSite :
 				erkundungsstellen)
 		{
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
-					.appendContent(String.valueOf(erkundungsstelle.getDicke()).replace(".", ","))
+					.appendContent(String.valueOf(explorationSite.getDicke()).replace(".", ","))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -114,7 +114,7 @@ public class Bericht_UG_Factory
 		return row.appendTag();
 	}
 
-	public static String createZielTiefeRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createZielTiefeRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//ZIELTIEFE
 		HtmlRow row = new HtmlRow.Builder()
@@ -134,15 +134,15 @@ public class Bericht_UG_Factory
 
 		//Wenn GesamtDicke gleich Zieltiefe, dann grün ansonsten rot da Zieltiefe nicht erreicht wurde
 
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			String zieltiefe = erkundungsstelle.getInformation("ERK_ZIELTIEFE");
+			String zieltiefe = explorationSite.getInformation("ERK_ZIELTIEFE");
 			double tiefe = Double.parseDouble(zieltiefe);
 
 			String backgroundColor;
 			String textColor;
 
-			if (tiefe <= erkundungsstelle.getDicke()) {
+			if (tiefe <= explorationSite.getDicke()) {
 				backgroundColor = "green";
 				textColor = "black";
 			} else {
@@ -168,7 +168,7 @@ public class Bericht_UG_Factory
 		return row.appendTag();
 	}
 
-	public static String createAufschlussRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createAufschlussRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//Erkundungsstellen Aufschlussart
 		HtmlRow row = new HtmlRow.Builder()
@@ -181,13 +181,13 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle :
+		for (ExplorationSite explorationSite :
 				erkundungsstellen)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
-					.appendContent(erkundungsstelle.getInformation("ERK_AUFSCHLUSS_UG_OH_BA"))
+					.appendContent(explorationSite.getInformation("ERK_AUFSCHLUSS_UG_OH_BA"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -196,7 +196,7 @@ public class Bericht_UG_Factory
 		return row.appendTag();
 	}
 
-	public static String createWasserGehaltRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createWasserGehaltRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//WASSERGEHALT
 		HtmlRow row = new HtmlRow.Builder()
@@ -214,14 +214,14 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_WASSERGEHALT"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_WASSERGEHALT"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -230,7 +230,7 @@ public class Bericht_UG_Factory
 		return row.appendTag();
 	}
 
-	public static String createFeuchteZustandRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createFeuchteZustandRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//FEUCHTEZUSTAND
 		HtmlRow row = new HtmlRow.Builder()
@@ -243,14 +243,14 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_FEUCHTIGKEIT"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_FEUCHTIGKEIT"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -259,7 +259,7 @@ public class Bericht_UG_Factory
 		return row.appendTag();
 	}
 
-	public static String createKonsistenzRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createKonsistenzRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//KONSISTENZ
 		HtmlRow row = new HtmlRow.Builder()
@@ -272,14 +272,14 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_KONSISTENZ"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_KONSISTENZ"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -288,7 +288,7 @@ public class Bericht_UG_Factory
 		return row.appendTag();
 	}
 
-	public static String createProctordichteRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createProctordichteRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//PROCTORDICHTE
 		HtmlRow row = new HtmlRow.Builder()
@@ -306,14 +306,14 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_WASSERPROCTOR"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_WASSERPROCTOR"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -322,7 +322,7 @@ public class Bericht_UG_Factory
 		return row.appendTag();
 	}
 
-	public static String createProtorDifferenzRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createProtorDifferenzRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//DIFFERENCE
 		HtmlRow row = new HtmlRow.Builder()
@@ -340,14 +340,14 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_DIFFERENZ_WN_WOPT"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_DIFFERENZ_WN_WOPT"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -356,7 +356,7 @@ public class Bericht_UG_Factory
 		return row.appendTag();
 	}
 
-	public static String createVerdichtungsfaehigkeitRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createVerdichtungsfaehigkeitRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//VERDICHTUNGSFÄHIGKEIT
 		HtmlRow row = new HtmlRow.Builder()
@@ -369,14 +369,14 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_VERDICHTUNGSFAEHIGKEIT"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_VERDICHTUNGSFAEHIGKEIT"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -385,7 +385,7 @@ public class Bericht_UG_Factory
 		return row.appendTag();
 	}
 
-	public static String createTragPlanumRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createTragPlanumRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//TRAGFAEHIGKEIT_PLANUM
 		HtmlRow row = new HtmlRow.Builder()
@@ -413,14 +413,14 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(erkundungsstelle.getInformation("ERK_TRAG_PLANUM"))
+					.appendContent(explorationSite.getInformation("ERK_TRAG_PLANUM"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -429,7 +429,7 @@ public class Bericht_UG_Factory
 		return row.appendTag();
 	}
 
-	public static String createTragSohleRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createTragSohleRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//TRAGFAEHIGKEIT_GRABENSOHLE
 		HtmlRow row = new HtmlRow.Builder()
@@ -452,18 +452,18 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(erkundungsstelle.getInformation("ERK_TRAG_GRABENSOHLE"))
+					.appendContent(explorationSite.getInformation("ERK_TRAG_GRABENSOHLE"))
 					.appendContent(TextFormatUtil.printEmptyRow())
 					.appendContent(new HtmlText.Builder().appendAttribute("class", "Normal6")
 							.appendContent("[T:")
-							.appendContent(erkundungsstelle.getInformation("ERK_SOHLE_TIEFE"))
+							.appendContent(explorationSite.getInformation("ERK_SOHLE_TIEFE"))
 							.appendContent("]").build().appendTag())
 					.build();
 
@@ -473,7 +473,7 @@ public class Bericht_UG_Factory
 		return row.appendTag();
 	}
 
-	public static String createDIN18196Row(List<Erkundungsstelle> erkundungsstellen)
+	public static String createDIN18196Row(List<ExplorationSite> erkundungsstellen)
 	{
 		//DIN18196
 		HtmlRow row = new HtmlRow.Builder()
@@ -491,14 +491,14 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_ART"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_ART"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -507,7 +507,7 @@ public class Bericht_UG_Factory
 		return row.appendTag();
 	}
 
-	public static String createDIN18300Row(List<Erkundungsstelle> erkundungsstellen)
+	public static String createDIN18300Row(List<ExplorationSite> erkundungsstellen)
 	{
 		//DIN18300
 		HtmlRow row = new HtmlRow.Builder()
@@ -525,14 +525,14 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_BODENKLASSE"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_BODENKLASSE"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -541,7 +541,7 @@ public class Bericht_UG_Factory
 		return row.appendTag();
 	}
 
-	public static String createDIN19682Row(List<Erkundungsstelle> erkundungsstellen)
+	public static String createDIN19682Row(List<ExplorationSite> erkundungsstellen)
 	{
 		//DIN19682
 		HtmlRow row = new HtmlRow.Builder()
@@ -564,14 +564,14 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_BODENART"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_BODENART"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -580,7 +580,7 @@ public class Bericht_UG_Factory
 		return row.appendTag();
 	}
 
-	public static String createDIN18300_09Row(List<Erkundungsstelle> erkundungsstellen)
+	public static String createDIN18300_09Row(List<ExplorationSite> erkundungsstellen)
 	{
 		//DIN18300:2019-09
 		HtmlRow row = new HtmlRow.Builder()
@@ -598,14 +598,14 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_HOMOGENBEREICH"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_HOMOGENBEREICH"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -614,7 +614,7 @@ public class Bericht_UG_Factory
 		return row.appendTag();
 	}
 
-	public static String createZTVRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createZTVRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//ZTV-E
 		HtmlRow row = new HtmlRow.Builder()
@@ -637,14 +637,14 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_FROSTEMPFINDLICHKEITSKLASSE"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_FROSTEMPFINDLICHKEITSKLASSE"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -653,7 +653,7 @@ public class Bericht_UG_Factory
 		return row.appendTag();
 	}
 
-	public static String createChemieIDRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createChemieIDRow(List<ExplorationSite> erkundungsstellen)
 	{
 		HtmlRow rowCHEMIE_ID = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
@@ -665,14 +665,14 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_ID = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_ID"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_ID"))
 					.build();
 
 			rowCHEMIE_ID.appendContent(htmlCell_CHEMIE_ID.appendTag());
@@ -682,7 +682,7 @@ public class Bericht_UG_Factory
 
 	}
 
-	public static String createChemieMufvRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createChemieMufvRow(List<ExplorationSite> erkundungsstellen)
 	{
 		HtmlRow rowCHEMIE_MUFV = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
@@ -704,14 +704,14 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_MUFV = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_MUFV"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_MUFV"))
 					.build();
 
 			rowCHEMIE_MUFV.appendContent(htmlCell_CHEMIE_MUFV.appendTag());
@@ -720,7 +720,7 @@ public class Bericht_UG_Factory
 		return rowCHEMIE_MUFV.appendTag();
 	}
 
-	public static String createChemieLagaBoRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createChemieLagaBoRow(List<ExplorationSite> erkundungsstellen)
 	{
 		HtmlRow rowCHEMIE_LAGA_BO = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
@@ -737,14 +737,14 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_LAGA_BO = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_LAGA_BO"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_LAGA_BO"))
 					.build();
 
 			rowCHEMIE_LAGA_BO.appendContent(htmlCell_CHEMIE_LAGA_BO.appendTag());
@@ -753,7 +753,7 @@ public class Bericht_UG_Factory
 		return rowCHEMIE_LAGA_BO.appendTag();
 	}
 
-	public static String createChemieLagaRcRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createChemieLagaRcRow(List<ExplorationSite> erkundungsstellen)
 	{
 		HtmlRow rowCHEMIE_LAGA_RC = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
@@ -770,14 +770,14 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_LAGA_RC = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_LAGA_RC"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_LAGA_RC"))
 					.build();
 
 			rowCHEMIE_LAGA_RC.appendContent(htmlCell_CHEMIE_LAGA_RC.appendTag());
@@ -786,7 +786,7 @@ public class Bericht_UG_Factory
 		return rowCHEMIE_LAGA_RC.appendTag();
 	}
 
-	public static String createChemieLagaRcOrientierungRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createChemieLagaRcOrientierungRow(List<ExplorationSite> erkundungsstellen)
 	{
 		HtmlRow rowCHEMIE_LAGA_RC_ORIENTIERUNG = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
@@ -803,14 +803,14 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_LAGARC_ORIENTIERUNGSWERT"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_LAGARC_ORIENTIERUNGSWERT"))
 					.build();
 
 			rowCHEMIE_LAGA_RC_ORIENTIERUNG.appendContent(htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG.appendTag());
@@ -820,7 +820,7 @@ public class Bericht_UG_Factory
 
 	}
 
-	public static String createChemieTlGesteinRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createChemieTlGesteinRow(List<ExplorationSite> erkundungsstellen)
 	{
 		HtmlRow rowCHEMIE_TL_GESTEIN = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
@@ -837,14 +837,14 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_TL_GESTEIN = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_TLGESTEIN"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_TLGESTEIN"))
 					.build();
 
 
@@ -854,7 +854,7 @@ public class Bericht_UG_Factory
 		return rowCHEMIE_TL_GESTEIN.appendTag();
 	}
 
-	public static String createChemieDepvRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createChemieDepvRow(List<ExplorationSite> erkundungsstellen)
 	{
 		HtmlRow rowCHEMIE_DEPV = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
@@ -876,14 +876,14 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_DEPV = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_DEPV"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_DEPV"))
 					.build();
 
 
@@ -893,7 +893,7 @@ public class Bericht_UG_Factory
 		return rowCHEMIE_DEPV.appendTag();
 	}
 
-	public static String createChemieEntscheidungshilfeRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createChemieEntscheidungshilfeRow(List<ExplorationSite> erkundungsstellen)
 	{
 		HtmlRow rowCHEMIE_ENTSCHEIDUNGSHILFE = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
@@ -910,14 +910,14 @@ public class Bericht_UG_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_ENTSCHEIDUNGSILFE = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_ENTSCHEIDUNGSHILFE"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_ENTSCHEIDUNGSHILFE"))
 					.build();
 
 			rowCHEMIE_ENTSCHEIDUNGSHILFE.appendContent(htmlCell_CHEMIE_ENTSCHEIDUNGSILFE.appendTag());
@@ -926,7 +926,7 @@ public class Bericht_UG_Factory
 		return rowCHEMIE_ENTSCHEIDUNGSHILFE.appendTag();
 	}
 
-	public static String createLegendeRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createLegendeRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//Umwelttechnische Merkmale Trennzeile
 		HtmlRow rowLegende = new HtmlRow.Builder()

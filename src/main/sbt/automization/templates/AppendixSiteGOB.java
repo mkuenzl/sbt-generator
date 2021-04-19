@@ -1,7 +1,7 @@
 package sbt.automization.templates;
 
-import sbt.automization.data.Erkundungsstelle;
-import sbt.automization.data.Schicht;
+import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.Layer;
 import sbt.automization.format.HtmlCellFormatUtil;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
@@ -11,19 +11,19 @@ import sbt.automization.util.html.HtmlTableHeader;
 
 import java.util.List;
 
-class Anlage_ERK_GOB_Template extends AHtmlTemplate
+final class AppendixSiteGOB extends AHtmlTemplate
 {
-    private String aufschluss = "";
+    private String outcrop = "";
 
     @Override
-    public void buildHtmlTable(final List<Erkundungsstelle> erkundungsstellen)
+    public void buildHtmlTable(final List<ExplorationSite> sites)
     {
     }
 
     @Override
-    public void buildHtmlTable(final Erkundungsstelle erkundungsstelle)
+    public void buildHtmlTable(final ExplorationSite site)
     {
-        aufschluss = erkundungsstelle.getInformation("ERK_AUFSCHLUSS_OB");
+        outcrop = site.getInformation("ERK_AUFSCHLUSS_OB");
 
         HtmlTable tableErkOb = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
@@ -35,56 +35,56 @@ class Anlage_ERK_GOB_Template extends AHtmlTemplate
                 .appendContent(setHtmlTableHeader())
                 .build();
 
-        for (Schicht schicht : erkundungsstelle.getSchichtList())
+        for (Layer layer : site.getSchichtList())
         {
-            String schicht_aufschluss = schicht.getInformation("SCHICHT_AUFSCHLUSS");
+            String schicht_aufschluss = layer.getInformation("SCHICHT_AUFSCHLUSS");
             if ("GOB".equals(schicht_aufschluss) || "TMHB".equals(schicht_aufschluss) || "BETON".equals(schicht_aufschluss) ||"BESCHICHTUNG".equals(schicht_aufschluss) ||"ABDICHTUNG".equals(schicht_aufschluss))
             {
                 //Art der Schicht
                 HtmlCell cellSchichtArt = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent(schicht.getInformation("SCHICHT_ART").concat("  ").concat(schicht.getInformation("SCHICHT_KOERNUNG")))
+                        .appendContent(layer.getInformation("SCHICHT_ART").concat("  ").concat(layer.getInformation("SCHICHT_KOERNUNG")))
                         .build();
 
                 //Dicke
                 HtmlCell cellDicke = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(schicht.getInformation("SCHICHT_DICKE"))
+                        .appendContent(layer.getInformation("SCHICHT_DICKE"))
                         .build();
 
                 //Tiefe
                 HtmlCell cellTiefe = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(schicht.getInformation("SCHICHT_TIEFE_ENDE"))
+                        .appendContent(layer.getInformation("SCHICHT_TIEFE_ENDE"))
                         .build();
 
 
                 //MUFV
-                String chemie_mufv = schicht.getInformation("CHEMIE_MUFV");
-                HtmlCell cellMUFV = HtmlCellFormatUtil.formatChemie(chemie_mufv);
+                String chemie_mufv = layer.getInformation("CHEMIE_MUFV");
+                HtmlCell cellMUFV = HtmlCellFormatUtil.formatChemistry(chemie_mufv);
 
                 //Pech
-                String schicht_pech = schicht.getInformation("SCHICHT_PECH");
-                HtmlCell cellPech = HtmlCellFormatUtil.formatPech(schicht_pech);
+                String schicht_pech = layer.getInformation("SCHICHT_PECH");
+                HtmlCell cellPech = HtmlCellFormatUtil.formatPitch(schicht_pech);
 
                 //LAGA RC
-                String chemie_laga_rc = schicht.getInformation("CHEMIE_LAGA_RC");
-                HtmlCell cellLAGARC = HtmlCellFormatUtil.formatChemie(chemie_laga_rc);
+                String chemie_laga_rc = layer.getInformation("CHEMIE_LAGA_RC");
+                HtmlCell cellLAGARC = HtmlCellFormatUtil.formatChemistry(chemie_laga_rc);
 
                 //TL GESTEIN
-                String chemie_tlgestein = schicht.getInformation("CHEMIE_TLGESTEIN");
-                HtmlCell cellTLGESTEIN = HtmlCellFormatUtil.formatChemie(chemie_tlgestein);
+                String chemie_tlgestein = layer.getInformation("CHEMIE_TLGESTEIN");
+                HtmlCell cellTLGESTEIN = HtmlCellFormatUtil.formatChemistry(chemie_tlgestein);
 
                 //PAK
                 HtmlCell cellPAK = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(schicht.getInformation("SCHICHT_PAK"))
+                        .appendContent(layer.getInformation("SCHICHT_PAK"))
                         .build();
 
                 //RuK
                 HtmlCell cellRUK = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(schicht.getInformation("SCHICHT_RUK"))
+                        .appendContent(layer.getInformation("SCHICHT_RUK"))
                         .build();
 
                 HtmlRow schichtRow = new HtmlRow.Builder()
@@ -115,14 +115,16 @@ class Anlage_ERK_GOB_Template extends AHtmlTemplate
         HtmlCell cellBelastungsklasse = new HtmlCell.Builder()
                 .appendAttribute("class", "NormalErkundungsstelle")
                 .appendAttribute("colspan", "2")
-                .appendContent(TextFormatUtil.formatBelastungsklasse(erkundungsstelle))
+                .appendContent(TextFormatUtil.formatLoadClass(site))
                 .build();
 
         //Belastungsklassen Tafel
         HtmlCell cellBelastungklasseTafel = new HtmlCell.Builder()
                 .appendAttribute("class", "NormalErkundungsstelle")
                 .appendAttribute("colspan", "2")
-                .appendContent(erkundungsstelle.getInformation("ERK_BELASTUNGSKLASSE_TAFEL"))
+                .appendContent("RStO")
+                .appendContent(TextFormatUtil.printLineBreak())
+                .appendContent(site.getInformation("ERK_BELASTUNGSKLASSE_TAFEL"))
                 .build();
 
         HtmlRow rowBelastungklasse = new HtmlRow.Builder()
@@ -152,7 +154,7 @@ class Anlage_ERK_GOB_Template extends AHtmlTemplate
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("align", "left")
                 .appendAttribute("colspan", "8")        //Zelle geht über 3 Reihen
-                .appendContent("Aufschlussverfahren:".concat(" ").concat(aufschluss))
+                .appendContent("Aufschlussverfahren:".concat(" ").concat(outcrop))
                 .build();
 
 
@@ -225,22 +227,22 @@ class Anlage_ERK_GOB_Template extends AHtmlTemplate
 //                .build();
 
         HtmlTableHeader cellDickeCm = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("class", "NormalTableHeaderUnits")
                 .appendContent("cm")
                 .build();
 
         HtmlTableHeader cellTiefeCm = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("class", "NormalTableHeaderUnits")
                 .appendContent("cm")
                 .build();
 
         HtmlTableHeader cellPAKmgkg = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("class", "NormalTableHeaderUnits")
                 .appendContent("mg/kg")
                 .build();
 
         HtmlTableHeader cellRukCGrad = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("class", "NormalTableHeaderUnits")
                 .appendContent("°C")
                 .build();
 

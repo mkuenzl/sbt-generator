@@ -1,16 +1,13 @@
 package sbt.automization.format;
 
-import sbt.automization.data.Schicht;
 import sbt.automization.util.html.HtmlText;
 
 public final class NameFormatUtil
 {
-	//Gem. a. G. (NS)
-
 	/**
-	 * Formats different names for better visualisation in each template, replacement for automatic line breaks.
-	 * @param name
-	 * @return
+	 * Formats different names for better visualisation in each template, replacement for automatic line breaks. (Gem. a. G. (NS))
+	 * @param name layer kind
+	 * @return formatted String with line breaks
 	 */
 	public static String formatArt(final String name)
 	{

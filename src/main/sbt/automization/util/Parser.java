@@ -43,11 +43,8 @@ public class Parser
                 for (CSVRecord record : csvParser)
                 {
                     /* Prevent wrong excel formatting of .csv files to crash the program */
-                    if ("".equals(record.get(0))){
-                    } else {
+                    if (!"".equals(record.get(0))){
                         Map<String,String> map = record.toMap();
-                        //System.out.println(map.get("ERK_ID"));
-                        //System.out.println(map.toString());
                         dataPoints.add(map);
                     }
                 }
@@ -63,6 +60,7 @@ public class Parser
                     assert inputStreamReader != null;
                     inputStreamReader.close();
                     fileInputStream.close();
+                    bomInputStream.close();
                 } catch (IOException e)
                 {
                     e.printStackTrace();

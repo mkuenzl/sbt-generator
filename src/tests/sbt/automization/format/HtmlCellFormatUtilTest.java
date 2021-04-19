@@ -1,10 +1,10 @@
 package sbt.automization.format;
 
 import org.junit.Test;
-import sbt.automization.data.Erkundungsstelle;
+import sbt.automization.data.ExplorationSite;
 import sbt.automization.export.HtmlTemplateExportStrategy;
 import sbt.automization.templates.ErkundungsstellenTestFactory;
-import sbt.automization.templates.Example_Template;
+import sbt.automization.templates.ExampleTemplate;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
@@ -13,7 +13,7 @@ public class HtmlCellFormatUtilTest
 {
 
 
-	private Example_Template template = Example_Template.getInstance();
+	private ExampleTemplate template = ExampleTemplate.getInstance();
 
 	private HtmlTable table = new HtmlTable.Builder()
 			.appendAttribute("class", "MsoNormalTable")
@@ -40,28 +40,28 @@ public class HtmlCellFormatUtilTest
 	public void presentSchichtenToBTest()
 	{
 
-		Erkundungsstelle testErkundungsstelle1 = new ErkundungsstellenTestFactory().getTestErkundungsstelle1();
+		ExplorationSite testExplorationSite1 = new ErkundungsstellenTestFactory().getTestErkundungsstelle1();
 		HtmlCell htmlCell1 = new HtmlCell.Builder()
 				.appendAttribute("class", "Normal")
-				.appendContent(TextFormatUtil.presentSchichtenToB(testErkundungsstelle1))
+				.appendContent(TextFormatUtil.presentTobLayers(testExplorationSite1))
 				.build();
 
-		Erkundungsstelle testErkundungsstelle2 = new ErkundungsstellenTestFactory().getTestErkundungsstelle2();
+		ExplorationSite testExplorationSite2 = new ErkundungsstellenTestFactory().getTestErkundungsstelle2();
 		HtmlCell htmlCell2 = new HtmlCell.Builder()
 				.appendAttribute("class", "Normal")
-				.appendContent(TextFormatUtil.presentSchichtenToB(testErkundungsstelle2))
+				.appendContent(TextFormatUtil.presentTobLayers(testExplorationSite2))
 				.build();
 
-		Erkundungsstelle testErkundungsstelle3 = new ErkundungsstellenTestFactory().getTestErkundungsstelle3();
+		ExplorationSite testExplorationSite3 = new ErkundungsstellenTestFactory().getTestErkundungsstelle3();
 		HtmlCell htmlCell3 = new HtmlCell.Builder()
 				.appendAttribute("class", "Normal")
-				.appendContent(TextFormatUtil.presentSchichtenToB(testErkundungsstelle3))
+				.appendContent(TextFormatUtil.presentTobLayers(testExplorationSite3))
 				.build();
 
-		Erkundungsstelle testErkundungsstelle4 = new ErkundungsstellenTestFactory().getTestErkundungsstelle4();
+		ExplorationSite testExplorationSite4 = new ErkundungsstellenTestFactory().getTestErkundungsstelle4();
 		HtmlCell htmlCell4 = new HtmlCell.Builder()
 				.appendAttribute("class", "Normal")
-				.appendContent(TextFormatUtil.presentSchichtenToB(testErkundungsstelle4))
+				.appendContent(TextFormatUtil.presentTobLayers(testExplorationSite4))
 				.build();
 
 

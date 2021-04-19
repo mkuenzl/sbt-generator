@@ -1,7 +1,7 @@
 package sbt.automization.templates;
 
-import sbt.automization.data.Erkundungsstelle;
-import sbt.automization.data.Schicht;
+import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.Layer;
 import sbt.automization.format.HtmlCellFormatUtil;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
@@ -11,20 +11,20 @@ import sbt.automization.util.html.HtmlTableHeader;
 
 import java.util.List;
 
-class Anlage_ERK_UG_Template extends AHtmlTemplate
+final class AppendixSiteUG extends AHtmlTemplate
 {
-    private String aufschluss = "";
+    private String outcrop = "";
 
     @Override
-    public void buildHtmlTable(final List<Erkundungsstelle> data)
+    public void buildHtmlTable(final List<ExplorationSite> sites)
     {
 
     }
 
     @Override
-    public void buildHtmlTable(final Erkundungsstelle data)
+    public void buildHtmlTable(final ExplorationSite site)
     {
-        aufschluss = data.getInformation("ERK_AUFSCHLUSS_UG_OH_BA");
+        outcrop = site.getInformation("ERK_AUFSCHLUSS_UG_OH_BA");
 
         HtmlTable table = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
@@ -36,50 +36,50 @@ class Anlage_ERK_UG_Template extends AHtmlTemplate
                 .appendContent(setHtmlTableHeader())
                 .build();
 
-        for (Schicht schicht : data.getSchichtList())
+        for (Layer layer : site.getSchichtList())
         {
-            if ("UG".equals(schicht.getInformation("SCHICHT_AUFSCHLUSS")))
+            if ("UG".equals(layer.getInformation("SCHICHT_AUFSCHLUSS")))
             {
                 //Art der Schicht
                 HtmlCell cell1 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent(TextFormatUtil.formatSchichtBodenGruppe(schicht.getInformation("SCHICHT_ART")))
+                        .appendContent(TextFormatUtil.formatLayerSoilGroup(layer.getInformation("SCHICHT_ART")))
                         .build();
 
                 //Dicke
                 HtmlCell cell2 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(schicht.getInformation("SCHICHT_DICKE"))
+                        .appendContent(layer.getInformation("SCHICHT_DICKE"))
                         .build();
 
                 //Tiefe
                 HtmlCell cell3 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(schicht.getInformation("SCHICHT_TIEFE_ENDE"))
+                        .appendContent(layer.getInformation("SCHICHT_TIEFE_ENDE"))
                         .build();
 
                 //MUFV
-                String chemie_mufv = schicht.getInformation("CHEMIE_MUFV");
-                HtmlCell cell4 = HtmlCellFormatUtil.formatChemie(chemie_mufv);
+                String chemie_mufv = layer.getInformation("CHEMIE_MUFV");
+                HtmlCell cell4 = HtmlCellFormatUtil.formatChemistry(chemie_mufv);
 
                 //LAGA BO
-                String chemie_laga_bo = schicht.getInformation("CHEMIE_LAGA_BO");
-                HtmlCell cell5 = HtmlCellFormatUtil.formatChemie(chemie_laga_bo);
+                String chemie_laga_bo = layer.getInformation("CHEMIE_LAGA_BO");
+                HtmlCell cell5 = HtmlCellFormatUtil.formatChemistry(chemie_laga_bo);
 
                 //Notiz
-                String chemie_laga_rc = schicht.getInformation("CHEMIE_LAGA_RC");
-                HtmlCell cell6 = HtmlCellFormatUtil.formatChemie(chemie_laga_rc);
+                String chemie_laga_rc = layer.getInformation("CHEMIE_LAGA_RC");
+                HtmlCell cell6 = HtmlCellFormatUtil.formatChemistry(chemie_laga_rc);
 
                 //Wassergehalt
                 HtmlCell cell7 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(schicht.getInformation("SCHICHT_WASSERGEHALT"))
+                        .appendContent(layer.getInformation("SCHICHT_WASSERGEHALT"))
                         .build();
 
                 //WasserProctor
                 HtmlCell cell8 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(TextFormatUtil.formatSchichtProctor(schicht))
+                        .appendContent(TextFormatUtil.formatLayerProctor(layer))
                         .build();
 
                 //Proctor
@@ -123,7 +123,7 @@ class Anlage_ERK_UG_Template extends AHtmlTemplate
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("align", "left")
                 .appendAttribute("colspan", "8")        //Zelle geht über 3 Reihen
-                .appendContent("Aufschlussverfahren:".concat(" ").concat(aufschluss))
+                .appendContent("Aufschlussverfahren:".concat(" ").concat(outcrop))
                 .build();
 
 
@@ -196,12 +196,12 @@ class Anlage_ERK_UG_Template extends AHtmlTemplate
 //                .build();
 
         HtmlTableHeader cell32 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("class", "NormalTableHeaderUnits")
                 .appendContent("cm")
                 .build();
 
         HtmlTableHeader cell33 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("class", "NormalTableHeaderUnits")
                 .appendContent("cm")
                 .build();
 
@@ -211,17 +211,17 @@ class Anlage_ERK_UG_Template extends AHtmlTemplate
 //                .build();
 
         HtmlTableHeader cell35 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("class", "NormalTableHeaderUnits")
                 .appendContent("M.-%")
                 .build();
 
         HtmlTableHeader cell36 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("class", "NormalTableHeaderUnits")
                 .appendContent("M.-%")
                 .build();
 
         HtmlTableHeader cell37 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
+                .appendAttribute("class", "NormalTableHeaderUnits")
                 .appendContent("Mg/m³")
                 .build();
 

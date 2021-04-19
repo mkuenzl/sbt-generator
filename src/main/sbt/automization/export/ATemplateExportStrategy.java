@@ -1,8 +1,7 @@
 package sbt.automization.export;
 
 import sbt.automization.TableEngine;
-import sbt.automization.data.Erkundungsstelle;
-import sbt.automization.templates.AHtmlTemplate;
+import sbt.automization.data.ExplorationSite;
 import sbt.automization.templates.IHtmlTemplate;
 
 import java.io.*;
@@ -29,9 +28,9 @@ public abstract class ATemplateExportStrategy
         export(System.getProperty("user.dir").concat(File.separator).concat(strategy.getExportFileName()), strategy.buildHtmlTemplate());
     }
 
-    public void export(List<Erkundungsstelle> erkundungsstellen)
+    public void export(List<ExplorationSite> explorationSites)
     {
-        export(getPath(), format(erkundungsstellen));
+        export(getPath(), format(explorationSites));
     }
 
     private void export(String path, String content)
@@ -80,6 +79,6 @@ public abstract class ATemplateExportStrategy
 
     abstract String format(TableEngine tableEngine);
 
-    abstract String format(List<Erkundungsstelle> erkundungsstellen);
+    abstract String format(List<ExplorationSite> explorationSites);
 
 }

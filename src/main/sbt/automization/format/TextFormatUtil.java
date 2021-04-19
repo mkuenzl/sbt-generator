@@ -1,21 +1,21 @@
 package sbt.automization.format;
 
-import sbt.automization.data.Erkundungsstelle;
-import sbt.automization.data.Schicht;
+import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.Layer;
 import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
 
 public final class TextFormatUtil
 {
-	public static String formatBelastungsklasse(final Erkundungsstelle erkundungsstelle)
+	public static String formatLoadClass(final ExplorationSite explorationSite)
 	{
 		String s1 = new HtmlText.Builder().appendAttribute("class", "Normal")
 				.appendContent("Belastungsklasse")
 				.build()
 				.appendTag();
 
-		String erk_belastungsklasse = erkundungsstelle.getInformation("ERK_BELASTUNGSKLASSE");
+		String erk_belastungsklasse = explorationSite.getInformation("ERK_BELASTUNGSKLASSE");
 		String content;
 		if ("keine".equals(erk_belastungsklasse) || "-".equals(erk_belastungsklasse))
 		{
@@ -33,9 +33,9 @@ public final class TextFormatUtil
 		return s1 + s2;
 	}
 
-	public static String formatSchichtProctor(final Schicht schicht)
+	public static String formatLayerProctor(final Layer layer)
 	{
-        String schicht_feuchtigkeit = schicht.getInformation("SCHICHT_FEUCHTIGKEIT");
+        String schicht_feuchtigkeit = layer.getInformation("SCHICHT_FEUCHTIGKEIT");
         if ("".equals(schicht_feuchtigkeit))
 		{
 			return "-";
@@ -45,15 +45,15 @@ public final class TextFormatUtil
 		}
 	}
 
-	public static String formatErkLP(final Erkundungsstelle erkundungsstelle)
+	public static String formatErkLP(final ExplorationSite explorationSite)
 	{
 		StringBuilder strb = new StringBuilder();
 
-		String ev2 = erkundungsstelle.getInformation("ERK_LP_EV2");
+		String ev2 = explorationSite.getInformation("ERK_LP_EV2");
 
 		if ("< 80".equals(ev2))
 		{
-			String erk_lp_ev15 = erkundungsstelle.getInformation("ERK_LP_EV15").replace(",", ".");
+			String erk_lp_ev15 = explorationSite.getInformation("ERK_LP_EV15").replace(",", ".");
 			String replace = erk_lp_ev15.replace("~ ", "");
 			double ev = Double.parseDouble(replace);
 			String range = "";
@@ -101,23 +101,23 @@ public final class TextFormatUtil
 		return strb.toString();
 	}
 
-	public static String formatErkAufschlussDicke(final Erkundungsstelle erkundungsstelle, String aufschluss)
+	public static String formatSiteOutcropThickness(final ExplorationSite explorationSite, String outcrop)
 	{
 		double height = 0.0;
-		List<Schicht> schichtList = erkundungsstelle.getSchichtAufschluss(aufschluss);
-		for (Schicht schicht : schichtList)
+		List<Layer> layerList = explorationSite.getSchichtAufschluss(outcrop);
+		for (Layer layer : layerList)
 		{
 
-			height = height + Double.parseDouble(schicht.getInformation("SCHICHT_DICKE").replace(",", "."));
+			height = height + Double.parseDouble(layer.getInformation("SCHICHT_DICKE").replace(",", "."));
 		}
 		String h = String.valueOf(height);
 		return h.replace(".",",");
 	}
 
-	public static String formatSchichtProbePN(final Schicht schicht)
+	public static String formatLayerProbe(final Layer layer)
 	{
 		String probenart;
-		if ("".equals(schicht.getInformation("SCHICHT_BEHAELTNIS")))
+		if ("".equals(layer.getInformation("SCHICHT_BEHAELTNIS")))
 		{
 			probenart = "EP";
 		} else
@@ -127,7 +127,7 @@ public final class TextFormatUtil
 		return probenart;
 	}
 
-	public static String formatErkFootnotes(final Erkundungsstelle erkundungsstelle)
+	public static String formatSiteFootnotes(final ExplorationSite explorationSite)
 	{
 
 		int footnoteCounter = 1;
@@ -156,7 +156,7 @@ public final class TextFormatUtil
 				.build()
 				.appendTag());
 
-		if ("#".equals(erkundungsstelle.getInformation("ERK_LEITFADEN_AUSBAUASPHALT")))
+		if ("#".equals(explorationSite.getInformation("ERK_LEITFADEN_AUSBAUASPHALT")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
@@ -167,7 +167,7 @@ public final class TextFormatUtil
 					.appendTag());
 		}
 
-		if ("#".equals(erkundungsstelle.getInformation("ERK_TEILWEISE_VERFESTIGT")))
+		if ("#".equals(explorationSite.getInformation("ERK_TEILWEISE_VERFESTIGT")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
@@ -178,7 +178,7 @@ public final class TextFormatUtil
 					.appendTag());
 		}
 
-		if ("#".equals(erkundungsstelle.getInformation("ERK_UEBERSCHREITUNG_ORIENT")))
+		if ("#".equals(explorationSite.getInformation("ERK_UEBERSCHREITUNG_ORIENT")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
@@ -195,7 +195,7 @@ public final class TextFormatUtil
 
 		}
 
-		if ("#".equals(erkundungsstelle.getInformation("ERK_RAMMHINDERNIS")))
+		if ("#".equals(explorationSite.getInformation("ERK_RAMMHINDERNIS")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
@@ -206,7 +206,7 @@ public final class TextFormatUtil
 					.appendTag());
 		}
 
-		if ("#".equals(erkundungsstelle.getInformation("ERK_KABELTRASSE")))
+		if ("#".equals(explorationSite.getInformation("ERK_KABELTRASSE")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
@@ -217,7 +217,7 @@ public final class TextFormatUtil
 					.appendTag());
 		}
 
-		if ("#".equals(erkundungsstelle.getInformation("ERK_FREMDBESTANDTEILE")))
+		if ("#".equals(explorationSite.getInformation("ERK_FREMDBESTANDTEILE")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
@@ -228,7 +228,7 @@ public final class TextFormatUtil
 					.appendTag());
 		}
 
-		if ("#".equals(erkundungsstelle.getInformation("ERK_GUENSTIGE_EINSTUFUNG")))
+		if ("#".equals(explorationSite.getInformation("ERK_GUENSTIGE_EINSTUFUNG")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
@@ -239,7 +239,7 @@ public final class TextFormatUtil
 					.appendTag());
 		}
 
-		if ("#".equals(erkundungsstelle.getInformation("ERK_VERNACHLAESSIGUNG_LEITFAEHIGKEIT")))
+		if ("#".equals(explorationSite.getInformation("ERK_VERNACHLAESSIGUNG_LEITFAEHIGKEIT")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
@@ -250,7 +250,7 @@ public final class TextFormatUtil
 					.appendTag());
 		}
 
-        String erk_variable_footnote1 = erkundungsstelle.getInformation("ERK_VARIABLE_FOOTNOTE1");
+        String erk_variable_footnote1 = explorationSite.getInformation("ERK_VARIABLE_FOOTNOTE1");
         if (erk_variable_footnote1 != null && !erk_variable_footnote1.equals("#") && !erk_variable_footnote1.equals("-"))
         {
             stringBuilder.append(new HtmlText.Builder()
@@ -262,7 +262,7 @@ public final class TextFormatUtil
                     .appendTag());
         }
 
-		String erk_variable_footnote2 = erkundungsstelle.getInformation("ERK_VARIABLE_FOOTNOTE2");
+		String erk_variable_footnote2 = explorationSite.getInformation("ERK_VARIABLE_FOOTNOTE2");
 		if (erk_variable_footnote2 != null && !erk_variable_footnote2.equals("#") && !erk_variable_footnote2.equals("-"))
 		{
 			stringBuilder.append(new HtmlText.Builder()
@@ -274,7 +274,7 @@ public final class TextFormatUtil
 					.appendTag());
 		}
 
-		String erk_variable_footnote3 = erkundungsstelle.getInformation("ERK_VARIABLE_FOOTNOTE3");
+		String erk_variable_footnote3 = explorationSite.getInformation("ERK_VARIABLE_FOOTNOTE3");
 		if (erk_variable_footnote3 != null && !erk_variable_footnote3.equals("#") && !erk_variable_footnote3.equals("-"))
 		{
 			stringBuilder.append(new HtmlText.Builder()
@@ -287,7 +287,7 @@ public final class TextFormatUtil
 		}
 
 
-		if (! "".equals(erkundungsstelle.getInformation("ERK_LP")))
+		if (! "".equals(explorationSite.getInformation("ERK_LP")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
@@ -306,14 +306,14 @@ public final class TextFormatUtil
 		return stringBuilder.toString();
 	}
 
-	public static String formatSchichtTiefe(final Schicht schicht)
+	public static String formatLayerDepth(final Layer layer)
 	{
 		HtmlText htmlText = new HtmlText.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent("")
-				.appendContent(schicht.getInformation("SCHICHT_TIEFE_START"))
+				.appendContent(layer.getInformation("SCHICHT_TIEFE_START"))
 				.appendContent("-")
-				.appendContent(schicht.getInformation("SCHICHT_TIEFE_ENDE"))
+				.appendContent(layer.getInformation("SCHICHT_TIEFE_ENDE"))
 				.appendContent("")
 				.build();
 
@@ -323,32 +323,32 @@ public final class TextFormatUtil
 	/**
 	 * Expects a valid Bodengruppe and formats the String for representation in the ERK_Anlage
 	 *
-	 * @param schichtArt a valid Bodengruppe as String either with [] or without
+	 * @param layerKind a valid Bodengruppe as String either with [] or without
 	 * @return a formated String of the long text and short text of a Bodengruppe
 	 */
-	public static String formatSchichtBodenGruppe(final String schichtArt)
+	public static String formatLayerSoilGroup(final String layerKind)
 	{
 		boolean isFillUp;
 		String kind;
 		String kindText;
 
-		if (schichtArt == null)
+		if (layerKind == null)
 		{
 			return "-";
 		}
 
-		if (schichtArt.contains("-"))
+		if (layerKind.contains("-"))
 		{
-			return schichtArt;
+			return layerKind;
 		}
 
-		if (schichtArt.contains("["))
+		if (layerKind.contains("["))
 		{
-			kind = schichtArt.replaceAll("[\\[\\]]", "");
+			kind = layerKind.replaceAll("[\\[\\]]", "");
 			isFillUp = true;
 		} else
 		{
-			kind = schichtArt;
+			kind = layerKind;
 			isFillUp = false;
 		}
 
@@ -389,22 +389,22 @@ public final class TextFormatUtil
 				kindText = "Sand-Ton-Gemisch";
 				break;
 			case "UL":
-				kindText = "Leicht plastische Schluffe";
+				kindText = "Leicht plast. Schluffe";
 				break;
 			case "UM":
-				kindText = "Mittelplastische Schluffe";
+				kindText = "Mittel plast. Schluffe";
 				break;
 			case "UA":
 				kindText = "Ausgeprägt plastische Schluffe";
 				break;
 			case "TL":
-				kindText = "Leicht plastische Tone";
+				kindText = "Leicht plast. Ton";
 				break;
 			case "TM":
-				kindText = "Mittelplastische Tone";
+				kindText = "Mittel plast. Ton";
 				break;
 			case "TA":
-				kindText = "Ausgeprägt plastische Tone";
+				kindText = "Ausgeprägt plast. Ton";
 				break;
 			case "OU":
 				kindText = "Organogene Schluffe";
@@ -443,40 +443,40 @@ public final class TextFormatUtil
 		return kindText + " " + kind;
 	}
 
-	public static String presentSchichtenToB(final Erkundungsstelle erkundungsstelle)
+	public static String presentTobLayers(final ExplorationSite explorationSite)
 	{
 		StringBuilder formatedSchichtenMaterial = new StringBuilder();
 
-		List<Schicht> tob = erkundungsstelle.getSchichtAufschluss("TOB");
+		List<Layer> tob = explorationSite.getSchichtAufschluss("TOB");
 
 
 		int size = tob.size();
 		for (int i = 0 ; i < size ; i++)
 		{
-			Schicht schicht = tob.get(i);
+			Layer layer = tob.get(i);
 
-			formatedSchichtenMaterial.append(NameFormatUtil.formatArt(schicht.getInformation("SCHICHT_ART")));
+			formatedSchichtenMaterial.append(NameFormatUtil.formatArt(layer.getInformation("SCHICHT_ART")));
 
 			formatedSchichtenMaterial.append(printEmptyRow());
 
 			HtmlText text2 = new HtmlText.Builder()
 					.appendAttribute("class", "Normal6")
-					.appendContent(schicht.getInformation("SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT"))
+					.appendContent(layer.getInformation("SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT"))
 					.appendContent(" ")
-					.appendContent(schicht.getInformation("SCHICHT_KOERNUNG"))
+					.appendContent(layer.getInformation("SCHICHT_KOERNUNG"))
 					.build();
 
 			HtmlText text3 = new HtmlText.Builder()
 					.appendAttribute("class", "Normal6")
 					.appendContent("[T:")
-					.appendContent(schicht.getInformation("SCHICHT_TIEFE_START"))
+					.appendContent(layer.getInformation("SCHICHT_TIEFE_START"))
 					.appendContent("-")
-					.appendContent(schicht.getInformation("SCHICHT_TIEFE_ENDE"))
+					.appendContent(layer.getInformation("SCHICHT_TIEFE_ENDE"))
 					.appendContent("]")
 					.build();
 
 			formatedSchichtenMaterial.append(text2.appendTag());
-			formatedSchichtenMaterial.append(printFormatedSchichtTiefe(schicht));
+			formatedSchichtenMaterial.append(printFormattedLayerDepth(layer));
 
 			if (i + 1 < size)
 			{
@@ -516,9 +516,9 @@ public final class TextFormatUtil
 		return strb.toString();
 	}
 
-	public static String printSchichtInformation(final Erkundungsstelle erkundungsstelle, final String aufschluss, final String tag)
+	public static String printLayerInformation(final ExplorationSite explorationSite, final String outcrop, final String tag)
 	{
-		List<Schicht> schichten = erkundungsstelle.getSchichtAufschluss(aufschluss);
+		List<Layer> schichten = explorationSite.getSchichtAufschluss(outcrop);
 
 		StringBuilder stringBuilder = new StringBuilder();
 
@@ -526,19 +526,19 @@ public final class TextFormatUtil
 
 		for (int i = 0; i < number; i++)
 		{
-			Schicht schicht = schichten.get(i);
+			Layer layer = schichten.get(i);
 
 			String formatedTag;
 
 			//TODO
 			if (tag.contains("CHEMIE"))
 			{
-				formatedTag = printChemieMarkup(schicht.getInformation(tag));
+				formatedTag = printChemistryMarkup(layer.getInformation(tag));
 			} else
 			{
 				formatedTag = new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(schicht.getInformation(tag))
+						.appendContent(layer.getInformation(tag))
 						.build().appendTag();
 			}
 
@@ -557,14 +557,14 @@ public final class TextFormatUtil
 					HtmlText formatedTiefe = new HtmlText.Builder()
 							.appendAttribute("class", "Normal6")
 							.appendContent("[T:")
-							.appendContent(schicht.getInformation("SCHICHT_TIEFE_START"))
+							.appendContent(layer.getInformation("SCHICHT_TIEFE_START"))
 							.appendContent("-")
-							.appendContent(schicht.getInformation("SCHICHT_TIEFE_ENDE"))
+							.appendContent(layer.getInformation("SCHICHT_TIEFE_ENDE"))
 							.appendContent("]")
 							.build();
 
 					stringBuilder.append(printEmptyRow());
-					stringBuilder.append(printFormatedSchichtTiefe(schicht));
+					stringBuilder.append(printFormattedLayerDepth(layer));
 //				}
 
 
@@ -573,9 +573,9 @@ public final class TextFormatUtil
 		return stringBuilder.toString();
 	}
 
-	public static String printFormatedSchichtTiefe(final Schicht schicht)
+	public static String printFormattedLayerDepth(final Layer layer)
 	{
-		String tiefe = "[T: " + schicht.getInformation("SCHICHT_TIEFE_START") +" - "+ schicht.getInformation("SCHICHT_TIEFE_ENDE")+"]";
+		String tiefe = "[T: " + layer.getInformation("SCHICHT_TIEFE_START") +" - "+ layer.getInformation("SCHICHT_TIEFE_ENDE")+"]";
 
 		HtmlText formatedTiefe = new HtmlText.Builder()
 				.appendAttribute("class", "Normal6")
@@ -585,15 +585,15 @@ public final class TextFormatUtil
 		return formatedTiefe.appendTag();
 	}
 
-	public static String printSchichtRUK(final Erkundungsstelle erkundungsstelle, final String aufschluss)
+	public static String printRukLayers(final ExplorationSite explorationSite, final String outcrop)
 	{
-		List<Schicht> tob = erkundungsstelle.getSchichtAufschluss(aufschluss);
+		List<Layer> tob = explorationSite.getSchichtAufschluss(outcrop);
 
 		StringBuilder stringBuilder = new StringBuilder();
 
-		for (Schicht schicht : tob)
+		for (Layer layer : tob)
 		{
-			String ruk = schicht.getInformation("SCHICHT_RUK");
+			String ruk = layer.getInformation("SCHICHT_RUK");
 
 			if (!"-".equals(ruk) && !"".equals(ruk))
 			{
@@ -604,7 +604,7 @@ public final class TextFormatUtil
 
 				HtmlText text1 = new HtmlText.Builder()
 						.appendAttribute("class", "Normal6")
-						.appendContent(schicht.getInformation("SCHICHT_ART"))
+						.appendContent(layer.getInformation("SCHICHT_ART"))
 						.build();
 
 				HtmlText text2 = new HtmlText.Builder()
@@ -621,11 +621,11 @@ public final class TextFormatUtil
 		return stringBuilder.toString();
 	}
 
-	public static String printChemieMarkup(final String data)
+	public static String printChemistryMarkup(final String classification)
 	{
 		StringBuilder stringBuilder = new StringBuilder();
 
-		switch (data)
+		switch (classification)
 		{
 			case "Z0":
 			case "DK0":
@@ -633,7 +633,7 @@ public final class TextFormatUtil
 						.appendAttribute("class", "Normal")
 						.appendContent("<span style=\"background-color: white;font-weight: bold;\n\n" +
 								"  color: black\">")
-						.appendContent(data)
+						.appendContent(classification)
 						.appendContent("</span>")
 						.build().appendTag());
 				break;
@@ -642,7 +642,7 @@ public final class TextFormatUtil
 						.appendAttribute("class", "Normal")
 						.appendContent("<span style=\"background-color: #00FFFF;font-weight: bold;\n" +
 								"  color: black\">")
-						.appendContent(data)
+						.appendContent(classification)
 						.appendContent("</span>")
 						.build().appendTag());
 				break;
@@ -654,7 +654,7 @@ public final class TextFormatUtil
 						.appendAttribute("class", "Normal")
 						.appendContent("<span style=\"background-color: #00FF00;font-weight: bold;\n" +
 								"  color: black\">")
-						.appendContent(data)
+						.appendContent(classification)
 						.appendContent("</span>")
 						.build().appendTag());
 				break;
@@ -665,7 +665,7 @@ public final class TextFormatUtil
 						.appendAttribute("class", "Normal")
 						.appendContent("<span style=\"background-color: yellow;font-weight: bold;\n" +
 								"  color: black\">")
-						.appendContent(data)
+						.appendContent(classification)
 						.appendContent("</span>")
 						.build().appendTag());
 				break;
@@ -676,7 +676,7 @@ public final class TextFormatUtil
 						.appendAttribute("class", "Normal")
 						.appendContent("<span style=\"background-color: red;font-weight: bold;\n" +
 								"  color: white\">")
-						.appendContent(data)
+						.appendContent(classification)
 						.appendContent("</span>")
 						.build().appendTag());
 				break;
@@ -687,7 +687,7 @@ public final class TextFormatUtil
 						.appendAttribute("class", "Normal")
 						.appendContent("<span style=\"background-color: black;font-weight: bold;\n" +
 								"  color: white\">")
-						.appendContent(data)
+						.appendContent(classification)
 						.appendContent("</span>")
 						.build().appendTag());
 				break;
@@ -724,14 +724,14 @@ public final class TextFormatUtil
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
 						.appendContent("<span style=\"font-weight: bold\";>")
-						.appendContent(data)
+						.appendContent(classification)
 						.appendContent("</span>")
 						.build().appendTag());
 				break;
 			default:
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(data)
+						.appendContent(classification)
 						.build().appendTag());
 				break;
 		}

@@ -1,7 +1,7 @@
 package sbt.automization.templates;
 
 
-import sbt.automization.data.Erkundungsstelle;
+import sbt.automization.data.ExplorationSite;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ public interface IHtmlTemplate
 {
     String buildHtmlTemplate();
 
-    void buildHtmlTable(List<Erkundungsstelle> data);
+    void buildHtmlTable(List<ExplorationSite> sites);
 
-    void buildHtmlTable(Erkundungsstelle data);
+    void buildHtmlTable(ExplorationSite site);
 
     String getExportFileName();
 }

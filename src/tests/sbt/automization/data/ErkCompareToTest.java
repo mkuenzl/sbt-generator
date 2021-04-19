@@ -8,16 +8,16 @@ import java.util.*;
 
 public class ErkCompareToTest
 {
-	Erkundungsstelle erkundungsstelleFB1;
-	Erkundungsstelle erkundungsstelleFB2;
-	Erkundungsstelle erkundungsstelleFB3;
-	Erkundungsstelle erkundungsstelleFB4;
-	Erkundungsstelle erkundungsstelleFB17;
-	Erkundungsstelle erkundungsstelleFB22;
+	ExplorationSite explorationSiteFB1;
+	ExplorationSite explorationSiteFB2;
+	ExplorationSite explorationSiteFB3;
+	ExplorationSite explorationSiteFB4;
+	ExplorationSite explorationSiteFB17;
+	ExplorationSite explorationSiteFB22;
 
-	Erkundungsstelle erkundungsstelle1;
-	Erkundungsstelle erkundungsstelle2;
-	Erkundungsstelle erkundungsstelle3;
+	ExplorationSite explorationSite1;
+	ExplorationSite explorationSite2;
+	ExplorationSite explorationSite3;
 
 
 	@Before
@@ -27,55 +27,55 @@ public class ErkCompareToTest
 			put("ERK_ID", "FB1");
 		}};
 
-		erkundungsstelleFB1 = new Erkundungsstelle(erk1Daten);
+		explorationSiteFB1 = new ExplorationSite(erk1Daten);
 
 		Map<String, String> erk2Daten = new HashMap<>(){{
 			put("ERK_ID", "FB2");
 		}};
 
-		erkundungsstelleFB2 = new Erkundungsstelle(erk2Daten);
+		explorationSiteFB2 = new ExplorationSite(erk2Daten);
 
 		Map<String, String> erk3Daten = new HashMap<>(){{
 			put("ERK_ID", "FB3");
 		}};
 
-		erkundungsstelleFB3 = new Erkundungsstelle(erk3Daten);
+		explorationSiteFB3 = new ExplorationSite(erk3Daten);
 
 		Map<String, String> erk4Daten = new HashMap<>(){{
 			put("ERK_ID", "FB4");
 		}};
 
-		erkundungsstelleFB4 = new Erkundungsstelle(erk4Daten);
+		explorationSiteFB4 = new ExplorationSite(erk4Daten);
 
 		Map<String, String> erk17Daten = new HashMap<>(){{
 			put("ERK_ID", "FB17");
 		}};
 
-		erkundungsstelleFB17 = new Erkundungsstelle(erk17Daten);
+		explorationSiteFB17 = new ExplorationSite(erk17Daten);
 
 		Map<String, String> erk22Daten = new HashMap<>(){{
 			put("ERK_ID", "FB22");
 		}};
 
-		erkundungsstelleFB22 = new Erkundungsstelle(erk22Daten);
+		explorationSiteFB22 = new ExplorationSite(erk22Daten);
 
 		Map<String, String> erk01Daten = new HashMap<>(){{
 			put("ERK_ID", "1");
 		}};
 
-		erkundungsstelle1 = new Erkundungsstelle(erk01Daten);
+		explorationSite1 = new ExplorationSite(erk01Daten);
 
 		Map<String, String> erk02Daten = new HashMap<>(){{
 			put("ERK_ID", "2");
 		}};
 
-		erkundungsstelle2 = new Erkundungsstelle(erk02Daten);
+		explorationSite2 = new ExplorationSite(erk02Daten);
 
 		Map<String, String> erk03Daten = new HashMap<>(){{
 			put("ERK_ID", "3");
 		}};
 
-		erkundungsstelle3 = new Erkundungsstelle(erk03Daten);
+		explorationSite3 = new ExplorationSite(erk03Daten);
 
 
 	}
@@ -83,24 +83,24 @@ public class ErkCompareToTest
 	@Test
 	public void sortWithText()
 	{
-		List<Erkundungsstelle> erkundungsstellen = new ArrayList<>();
+		List<ExplorationSite> erkundungsstellen = new ArrayList<>();
 
-		erkundungsstellen.add(erkundungsstelleFB1);
-		erkundungsstellen.add(erkundungsstelleFB2);
-		erkundungsstellen.add(erkundungsstelleFB17);
-		erkundungsstellen.add(erkundungsstelleFB22);
-		erkundungsstellen.add(erkundungsstelleFB3);
-		erkundungsstellen.add(erkundungsstelleFB4);
+		erkundungsstellen.add(explorationSiteFB1);
+		erkundungsstellen.add(explorationSiteFB2);
+		erkundungsstellen.add(explorationSiteFB17);
+		erkundungsstellen.add(explorationSiteFB22);
+		erkundungsstellen.add(explorationSiteFB3);
+		erkundungsstellen.add(explorationSiteFB4);
 
 
-		List<Erkundungsstelle> erkundungsstellenCompareTo = new ArrayList<>();
+		List<ExplorationSite> erkundungsstellenCompareTo = new ArrayList<>();
 
-		erkundungsstellenCompareTo.add(erkundungsstelleFB1);
-		erkundungsstellenCompareTo.add(erkundungsstelleFB2);
-		erkundungsstellenCompareTo.add(erkundungsstelleFB3);
-		erkundungsstellenCompareTo.add(erkundungsstelleFB4);
-		erkundungsstellenCompareTo.add(erkundungsstelleFB17);
-		erkundungsstellenCompareTo.add(erkundungsstelleFB22);
+		erkundungsstellenCompareTo.add(explorationSiteFB1);
+		erkundungsstellenCompareTo.add(explorationSiteFB2);
+		erkundungsstellenCompareTo.add(explorationSiteFB3);
+		erkundungsstellenCompareTo.add(explorationSiteFB4);
+		erkundungsstellenCompareTo.add(explorationSiteFB17);
+		erkundungsstellenCompareTo.add(explorationSiteFB22);
 
 		Collections.sort(erkundungsstellen);
 
@@ -110,19 +110,19 @@ public class ErkCompareToTest
 	@Test
 	public void sortWithOutText()
 	{
-		List<Erkundungsstelle> erkundungsstellen = new ArrayList<>();
+		List<ExplorationSite> erkundungsstellen = new ArrayList<>();
 
-		erkundungsstellen.add(erkundungsstelle3);
-		erkundungsstellen.add(erkundungsstelle2);
-		erkundungsstellen.add(erkundungsstelle1);
+		erkundungsstellen.add(explorationSite3);
+		erkundungsstellen.add(explorationSite2);
+		erkundungsstellen.add(explorationSite1);
 
 
 
-		List<Erkundungsstelle> erkundungsstellenCompareTo = new ArrayList<>();
+		List<ExplorationSite> erkundungsstellenCompareTo = new ArrayList<>();
 
-		erkundungsstellenCompareTo.add(erkundungsstelle1);
-		erkundungsstellenCompareTo.add(erkundungsstelle2);
-		erkundungsstellenCompareTo.add(erkundungsstelle3);
+		erkundungsstellenCompareTo.add(explorationSite1);
+		erkundungsstellenCompareTo.add(explorationSite2);
+		erkundungsstellenCompareTo.add(explorationSite3);
 
 
 		Collections.sort(erkundungsstellen);

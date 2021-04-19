@@ -1,7 +1,7 @@
 package sbt.automization.templates.helper;
 
-import sbt.automization.data.Erkundungsstelle;
-import sbt.automization.data.Schicht;
+import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.Layer;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
@@ -9,13 +9,14 @@ import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
 
-public class Bericht_TMHB_Factory {
+public class TmhbFactory
+{
 
     private static final String aufschluss = "TMHB";
     private static final String headerCellClass = "NormalHeader";
     private static final String normalCellClass = "NormalBold";
 
-    public static String createIDRow(List<Erkundungsstelle> erkundungsstellen)
+    public static String createIDRow(List<ExplorationSite> erkundungsstellen)
     {
         //Erkundungsstellen ID
         HtmlRow row = new HtmlRow.Builder()
@@ -28,13 +29,13 @@ public class Bericht_TMHB_Factory {
                         .appendTag())
                 .build();
 
-        for (Erkundungsstelle erkundungsstelle :
+        for (ExplorationSite explorationSite :
                 erkundungsstellen)
         {
             HtmlCell htmlCell_ERK_ID = new HtmlCell.Builder()
                     .appendAttribute("class", "NormalBold")
                     .appendAttribute("width", "60")
-                    .appendContent(erkundungsstelle.getInformation("ERK_ID"))
+                    .appendContent(explorationSite.getInformation("ERK_ID"))
                     .build();
 
             row.appendContent(htmlCell_ERK_ID.appendTag());
@@ -43,7 +44,7 @@ public class Bericht_TMHB_Factory {
         return row.appendTag();
     }
 
-    public static String createAufschlussRow(List<Erkundungsstelle> erkundungsstellen)
+    public static String createAufschlussRow(List<ExplorationSite> erkundungsstellen)
     {
         //Erkundungsstellen Aufschlussart
         HtmlRow row = new HtmlRow.Builder()
@@ -56,13 +57,13 @@ public class Bericht_TMHB_Factory {
                         .appendTag())
                 .build();
 
-        for (Erkundungsstelle erkundungsstelle :
+        for (ExplorationSite explorationSite :
                 erkundungsstellen)
         {
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "50")
-                    .appendContent(erkundungsstelle.getInformation("ERK_AUFSCHLUSS_TOB"))
+                    .appendContent(explorationSite.getInformation("ERK_AUFSCHLUSS_TOB"))
                     .build();
 
             row.appendContent(cell.appendTag());
@@ -71,7 +72,7 @@ public class Bericht_TMHB_Factory {
         return row.appendTag();
     }
 
-    public static String createGesamtDickeRow(List<Erkundungsstelle> erkundungsstellen)
+    public static String createGesamtDickeRow(List<ExplorationSite> erkundungsstellen)
     {
         //Gesamtdicke Oberbau
         HtmlRow row = new HtmlRow.Builder()
@@ -89,10 +90,10 @@ public class Bericht_TMHB_Factory {
                         .appendTag())
                 .build();
 
-        for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+        for (ExplorationSite explorationSite : erkundungsstellen)
         {
-            Double gob_dicke = erkundungsstelle.getAufschlussDicke("GOB");
-            Double tmhb_dicke = erkundungsstelle.getAufschlussDicke(aufschluss);
+            Double gob_dicke = explorationSite.getAufschlussDicke("GOB");
+            Double tmhb_dicke = explorationSite.getAufschlussDicke(aufschluss);
 
             String doubleValue = String.valueOf(Math.round(gob_dicke + tmhb_dicke));
             String gesamtDicke = doubleValue.replace(".",",");
@@ -110,7 +111,7 @@ public class Bericht_TMHB_Factory {
 
     }
 
-    public static String createDruckfestigkeitRow(List<Erkundungsstelle> erkundungsstellen)
+    public static String createDruckfestigkeitRow(List<ExplorationSite> erkundungsstellen)
     {
         //Druckfestigkeit
         HtmlRow row = new HtmlRow.Builder()
@@ -128,12 +129,12 @@ public class Bericht_TMHB_Factory {
                         .appendTag())
                 .build();
 
-        for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+        for (ExplorationSite explorationSite : erkundungsstellen)
         {
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "SCHICHT_DRUCKFESTIGKEIT"))
+                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_DRUCKFESTIGKEIT"))
                     .build();
 
             row.appendContent(cell.appendTag());
@@ -142,7 +143,7 @@ public class Bericht_TMHB_Factory {
 
     }
 
-    public static String createDickeRow(List<Erkundungsstelle> erkundungsstellen)
+    public static String createDickeRow(List<ExplorationSite> erkundungsstellen)
     {
         //Gesamtdicke Oberbau
         HtmlRow row = new HtmlRow.Builder()
@@ -160,9 +161,9 @@ public class Bericht_TMHB_Factory {
                         .appendTag())
                 .build();
 
-        for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+        for (ExplorationSite explorationSite : erkundungsstellen)
         {
-            String tob_dicke = TextFormatUtil.formatErkAufschlussDicke(erkundungsstelle, aufschluss);
+            String tob_dicke = TextFormatUtil.formatSiteOutcropThickness(explorationSite, aufschluss);
 
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
@@ -177,7 +178,7 @@ public class Bericht_TMHB_Factory {
 
     }
 
-    public static String createBelastungklasseRow(List<Erkundungsstelle> erkundungsstellen)
+    public static String createBelastungklasseRow(List<ExplorationSite> erkundungsstellen)
     {
         //Belastungklasse
         HtmlRow row = new HtmlRow.Builder()
@@ -195,12 +196,12 @@ public class Bericht_TMHB_Factory {
                         .appendTag())
                 .build();
 
-        for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+        for (ExplorationSite explorationSite : erkundungsstellen)
         {
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(erkundungsstelle.getInformation("ERK_BELASTUNGSKLASSE"))
+                    .appendContent(explorationSite.getInformation("ERK_BELASTUNGSKLASSE"))
                     .build();
 
             row.appendContent(cell.appendTag());
@@ -209,7 +210,7 @@ public class Bericht_TMHB_Factory {
 
     }
 
-    public static String createChemieIDRow(List<Erkundungsstelle> erkundungsstellen)
+    public static String createChemieIDRow(List<ExplorationSite> erkundungsstellen)
     {
         HtmlRow rowCHEMIE_ID = new HtmlRow.Builder()
                 .appendAttribute("class", "Normal")
@@ -221,14 +222,14 @@ public class Bericht_TMHB_Factory {
                         .appendTag())
                 .build();
 
-        for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+        for (ExplorationSite explorationSite : erkundungsstellen)
         {
-            List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+            List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
             HtmlCell htmlCell_CHEMIE_ID = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_ID"))
+                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_ID"))
                     .build();
 
             rowCHEMIE_ID.appendContent(htmlCell_CHEMIE_ID.appendTag());
@@ -238,7 +239,7 @@ public class Bericht_TMHB_Factory {
 
     }
 
-    public static String createChemieMufvRow(List<Erkundungsstelle> erkundungsstellen)
+    public static String createChemieMufvRow(List<ExplorationSite> erkundungsstellen)
     {
         HtmlRow rowCHEMIE_MUFV = new HtmlRow.Builder()
                 .appendAttribute("class", "Normal")
@@ -260,14 +261,14 @@ public class Bericht_TMHB_Factory {
                         .appendTag())
                 .build();
 
-        for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+        for (ExplorationSite explorationSite : erkundungsstellen)
         {
-            List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+            List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
             HtmlCell htmlCell_CHEMIE_MUFV = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_MUFV"))
+                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_MUFV"))
                     .build();
 
             rowCHEMIE_MUFV.appendContent(htmlCell_CHEMIE_MUFV.appendTag());
@@ -276,7 +277,7 @@ public class Bericht_TMHB_Factory {
         return rowCHEMIE_MUFV.appendTag();
     }
 
-    public static String createChemieLagaRcRow(List<Erkundungsstelle> erkundungsstellen)
+    public static String createChemieLagaRcRow(List<ExplorationSite> erkundungsstellen)
     {
         HtmlRow rowCHEMIE_LAGA_RC = new HtmlRow.Builder()
                 .appendAttribute("class", "Normal")
@@ -293,14 +294,14 @@ public class Bericht_TMHB_Factory {
                         .appendTag())
                 .build();
 
-        for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+        for (ExplorationSite explorationSite : erkundungsstellen)
         {
-            List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+            List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
             HtmlCell htmlCell_CHEMIE_LAGA_RC = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_LAGA_RC"))
+                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_LAGA_RC"))
                     .build();
 
             rowCHEMIE_LAGA_RC.appendContent(htmlCell_CHEMIE_LAGA_RC.appendTag());
@@ -309,7 +310,7 @@ public class Bericht_TMHB_Factory {
         return rowCHEMIE_LAGA_RC.appendTag();
     }
 
-    public static String createChemieLagaRcOrientierungRow(List<Erkundungsstelle> erkundungsstellen)
+    public static String createChemieLagaRcOrientierungRow(List<ExplorationSite> erkundungsstellen)
     {
         HtmlRow rowCHEMIE_LAGA_RC_ORIENTIERUNG = new HtmlRow.Builder()
                 .appendAttribute("class", "Normal")
@@ -326,14 +327,14 @@ public class Bericht_TMHB_Factory {
                         .appendTag())
                 .build();
 
-        for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+        for (ExplorationSite explorationSite : erkundungsstellen)
         {
-            List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+            List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
             HtmlCell htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_LAGARC_ORIENTIERUNGSWERT"))
+                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_LAGARC_ORIENTIERUNGSWERT"))
                     .build();
 
             rowCHEMIE_LAGA_RC_ORIENTIERUNG.appendContent(htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG.appendTag());
@@ -343,7 +344,7 @@ public class Bericht_TMHB_Factory {
 
     }
 
-    public static String createChemieTlGesteinRow(List<Erkundungsstelle> erkundungsstellen)
+    public static String createChemieTlGesteinRow(List<ExplorationSite> erkundungsstellen)
     {
         HtmlRow rowCHEMIE_TL_GESTEIN = new HtmlRow.Builder()
                 .appendAttribute("class", "Normal")
@@ -360,14 +361,14 @@ public class Bericht_TMHB_Factory {
                         .appendTag())
                 .build();
 
-        for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+        for (ExplorationSite explorationSite : erkundungsstellen)
         {
-            List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+            List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
             HtmlCell htmlCell_CHEMIE_TL_GESTEIN = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_TLGESTEIN"))
+                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_TLGESTEIN"))
                     .build();
 
 
@@ -377,7 +378,7 @@ public class Bericht_TMHB_Factory {
         return rowCHEMIE_TL_GESTEIN.appendTag();
     }
 
-    public static String createChemieDepvRow(List<Erkundungsstelle> erkundungsstellen)
+    public static String createChemieDepvRow(List<ExplorationSite> erkundungsstellen)
     {
         HtmlRow rowCHEMIE_DEPV = new HtmlRow.Builder()
                 .appendAttribute("class", "Normal")
@@ -394,14 +395,14 @@ public class Bericht_TMHB_Factory {
                         .appendTag())
                 .build();
 
-        for (Erkundungsstelle erkundungsstelle : erkundungsstellen)
+        for (ExplorationSite explorationSite : erkundungsstellen)
         {
-            List<Schicht> schichtAufschluss = erkundungsstelle.getSchichtAufschluss(aufschluss);
+            List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
 
             HtmlCell htmlCell_CHEMIE_DEPV = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_DEPV"))
+                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_DEPV"))
                     .build();
 
 
@@ -411,7 +412,7 @@ public class Bericht_TMHB_Factory {
         return rowCHEMIE_DEPV.appendTag();
     }
 
-    public static String createAVVRow(List<Erkundungsstelle> erkundungsstellen)
+    public static String createAVVRow(List<ExplorationSite> erkundungsstellen)
     {
         //AVV
         HtmlRow rowERK_AVV_PECH = new HtmlRow.Builder()
@@ -429,14 +430,14 @@ public class Bericht_TMHB_Factory {
                         .appendTag())
                 .build();
 
-        for (Erkundungsstelle erkundungsstelle :
+        for (ExplorationSite explorationSite :
                 erkundungsstellen)
         {
             //TODO AVV
             HtmlCell htmlCell_AVV = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "50")
-                    .appendContent(TextFormatUtil.printSchichtInformation(erkundungsstelle, aufschluss, "CHEMIE_ABFALLSCHLUESSEL"))
+                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_ABFALLSCHLUESSEL"))
                     .build();
 
             rowERK_AVV_PECH.appendContent(htmlCell_AVV.appendTag());
@@ -445,7 +446,7 @@ public class Bericht_TMHB_Factory {
         return rowERK_AVV_PECH.appendTag();
     }
 
-    public static String createLegendeRow(List<Erkundungsstelle> erkundungsstellen)
+    public static String createLegendeRow(List<ExplorationSite> erkundungsstellen)
     {
         //Umwelttechnische Merkmale Trennzeile
         HtmlRow rowLegende = new HtmlRow.Builder()

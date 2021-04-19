@@ -1,19 +1,13 @@
 package sbt.automization.format;
 
-import sbt.automization.data.Erkundungsstelle;
-import sbt.automization.data.Schicht;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlTable;
 import sbt.automization.util.html.HtmlText;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public final class HtmlCellFormatUtil
 {
 
-    public static HtmlCell formatPech(final String data)
+    public static HtmlCell formatPitch(final String data)
     {
         HtmlCell htmlCell = new HtmlCell();
 
@@ -36,7 +30,7 @@ public final class HtmlCellFormatUtil
         return htmlCell;
     }
 
-    public static HtmlCell formatChemie(final String data)
+    public static HtmlCell formatChemistry(final String data)
     {
         HtmlCell htmlCell;
 

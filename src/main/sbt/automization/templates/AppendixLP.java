@@ -1,27 +1,27 @@
 package sbt.automization.templates;
 
 
-import sbt.automization.data.Erkundungsstelle;
+import sbt.automization.data.ExplorationSite;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.*;
 
 import java.util.List;
 
-public final class Anlage_LP_Template extends AHtmlTemplate
+public final class AppendixLP extends AHtmlTemplate
 {
-    private static Anlage_LP_Template instance;
+    private static AppendixLP instance;
 
-    private Anlage_LP_Template() {}
+    private AppendixLP() {}
 
-    public static Anlage_LP_Template getInstance()
+    public static AppendixLP getInstance()
     {
         if (instance == null)
         {
-            synchronized (Anlage_LP_Template.class)
+            synchronized (AppendixLP.class)
             {
                 if (instance == null)
                 {
-                    instance = new Anlage_LP_Template();
+                    instance = new AppendixLP();
                 }
             }
         }
@@ -29,7 +29,7 @@ public final class Anlage_LP_Template extends AHtmlTemplate
     }
 
     @Override
-    public void buildHtmlTable(final List<Erkundungsstelle> data)
+    public void buildHtmlTable(final List<ExplorationSite> sites)
     {
         HtmlTable table = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
@@ -42,9 +42,9 @@ public final class Anlage_LP_Template extends AHtmlTemplate
                 .build();
 
 
-        for (Erkundungsstelle erkundungsstelle : data)
+        for (ExplorationSite explorationSite : sites)
         {
-            String erk_lp = erkundungsstelle.getInformation("ERK_LP");
+            String erk_lp = explorationSite.getInformation("ERK_LP");
 
             if (! "".equals(erk_lp) && ! "-".equals(erk_lp))
             {
@@ -58,58 +58,58 @@ public final class Anlage_LP_Template extends AHtmlTemplate
                 HtmlCell cellERKID = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("align", "center")
-                        .appendContent(erkundungsstelle.getInformation("ERK_ID"))
+                        .appendContent(explorationSite.getInformation("ERK_ID"))
                         .build();
 
                 HtmlCell cellERKORT = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent(erkundungsstelle.getInformation("ERK_ORT"))
+                        .appendContent(explorationSite.getInformation("ERK_ORT"))
                         .build();
 
                 HtmlCell cellERKLP1 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("align", "center")
                         .appendAttribute("width", "40")
-                        .appendContent(erkundungsstelle.getInformation("ERK_LP1"))
+                        .appendContent(explorationSite.getInformation("ERK_LP1"))
                         .build();
 
                 HtmlCell cellERKLP2 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("align", "center")
                         .appendAttribute("width", "40")
-                        .appendContent(erkundungsstelle.getInformation("ERK_LP2"))
+                        .appendContent(explorationSite.getInformation("ERK_LP2"))
                         .build();
 
                 HtmlCell cellERKLP3 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("align", "center")
                         .appendAttribute("width", "40")
-                        .appendContent(erkundungsstelle.getInformation("ERK_LP3"))
+                        .appendContent(explorationSite.getInformation("ERK_LP3"))
                         .build();
 
                 HtmlCell cellERKLPMEAN = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("align", "center")
                         .appendAttribute("width", "40")
-                        .appendContent(erkundungsstelle.getInformation("ERK_LP_MEAN"))
+                        .appendContent(explorationSite.getInformation("ERK_LP_MEAN"))
                         .build();
 
                 HtmlCell cellERKLPEV = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("align", "center")
-                        .appendContent(erkundungsstelle.getInformation("ERK_LP_EV"))
+                        .appendContent(explorationSite.getInformation("ERK_LP_EV"))
                         .build();
 
                 HtmlCell cellERKLPEV15 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("align", "center")
-                        .appendContent(erkundungsstelle.getInformation("ERK_LP_EV15"))
+                        .appendContent(explorationSite.getInformation("ERK_LP_EV15"))
                         .build();
 
                 HtmlCell cellERKLPEV2 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("align", "center")
-                        .appendContent(TextFormatUtil.formatErkLP(erkundungsstelle))
+                        .appendContent(TextFormatUtil.formatErkLP(explorationSite))
                         .build();
 
                 HtmlRow htmlRow = new HtmlRow.Builder()
@@ -294,7 +294,7 @@ public final class Anlage_LP_Template extends AHtmlTemplate
     }
 
     @Override
-    public void buildHtmlTable(final Erkundungsstelle data)
+    public void buildHtmlTable(final ExplorationSite site)
     {
 
     }

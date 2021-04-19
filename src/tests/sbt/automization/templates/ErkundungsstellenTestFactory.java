@@ -1,7 +1,7 @@
 package sbt.automization.templates;
 
-import sbt.automization.data.Erkundungsstelle;
-import sbt.automization.data.Schicht;
+import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.Layer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,104 +47,104 @@ public class ErkundungsstellenTestFactory
 		schichtDaten.put("CHEMIE_BTEX", "");
 		*/
 
-	Erkundungsstelle erkundungsstelle1 = new Erkundungsstelle();
-	Erkundungsstelle erkundungsstelle2 = new Erkundungsstelle();
-	Erkundungsstelle erkundungsstelle3 = new Erkundungsstelle();
-	Erkundungsstelle erkundungsstelle4 = new Erkundungsstelle();
-	Erkundungsstelle erkundungsstelle5 = new Erkundungsstelle();
+	ExplorationSite explorationSite1 = new ExplorationSite();
+	ExplorationSite explorationSite2 = new ExplorationSite();
+	ExplorationSite explorationSite3 = new ExplorationSite();
+	ExplorationSite explorationSite4 = new ExplorationSite();
+	ExplorationSite explorationSite5 = new ExplorationSite();
 
 
-	Schicht schicht1_GOB;
-	Schicht schicht2_GOB;
-	Schicht schicht3_GOB;
-	Schicht schicht4_GOB;
-	Schicht schicht5_1_TOB;
-	Schicht schicht5_2_TOB;
+	Layer layer1_GOB;
+	Layer layer2_GOB;
+	Layer layer3_GOB;
+	Layer layer4_GOB;
+	Layer layer5_1_TOB;
+	Layer layer5_2_TOB;
 
-	Schicht schicht6_1_TOB;
-	Schicht schicht6_2_TOB;
+	Layer layer6_1_TOB;
+	Layer layer6_2_TOB;
 
-	Schicht schicht7_1_TOB;
-	Schicht schicht7_2_TOB;
+	Layer layer7_1_TOB;
+	Layer layer7_2_TOB;
 
-	Schicht schicht8_UG;
-	Schicht schicht8_1_UG;
-	Schicht schicht8_2_UG;
-	Schicht schicht9_UG;
-	Schicht schicht10_UG;
+	Layer layer8_UG;
+	Layer layer8_1_UG;
+	Layer layer8_2_UG;
+	Layer layer9_UG;
+	Layer layer10_UG;
 
 
-	public Erkundungsstelle getTestErkundungsstelle1()
+	public ExplorationSite getTestErkundungsstelle1()
 	{
-		erkundungsstelle1.setDataMap(buildErkDaten());
+		explorationSite1.setDataMap(buildErkDaten());
 		buildSchichtDaten();
-		erkundungsstelle1.addSchicht(schicht1_GOB);
-		erkundungsstelle1.addSchicht(schicht2_GOB);
-		erkundungsstelle1.addSchicht(schicht3_GOB);
-		erkundungsstelle1.addSchicht(schicht4_GOB);
-		erkundungsstelle1.addSchicht(schicht5_1_TOB);
-		erkundungsstelle1.addSchicht(schicht6_1_TOB);
-		erkundungsstelle1.addSchicht(schicht7_1_TOB);
-		erkundungsstelle1.addSchicht(schicht8_UG);
+		explorationSite1.addSchicht(layer1_GOB);
+		explorationSite1.addSchicht(layer2_GOB);
+		explorationSite1.addSchicht(layer3_GOB);
+		explorationSite1.addSchicht(layer4_GOB);
+		explorationSite1.addSchicht(layer5_1_TOB);
+		explorationSite1.addSchicht(layer6_1_TOB);
+		explorationSite1.addSchicht(layer7_1_TOB);
+		explorationSite1.addSchicht(layer8_UG);
 
-		return erkundungsstelle1;
+		return explorationSite1;
 	}
 
-	public Erkundungsstelle getTestErkundungsstelle2()
+	public ExplorationSite getTestErkundungsstelle2()
 	{
-		erkundungsstelle2.setDataMap(buildErkDaten());
+		explorationSite2.setDataMap(buildErkDaten());
 		buildSchichtDaten();
-		erkundungsstelle2.addSchicht(schicht1_GOB);
-		erkundungsstelle2.addSchicht(schicht2_GOB);
-		erkundungsstelle2.addSchicht(schicht3_GOB);
-		erkundungsstelle2.addSchicht(schicht4_GOB);
+		explorationSite2.addSchicht(layer1_GOB);
+		explorationSite2.addSchicht(layer2_GOB);
+		explorationSite2.addSchicht(layer3_GOB);
+		explorationSite2.addSchicht(layer4_GOB);
 
-		return erkundungsstelle2;
+		return explorationSite2;
 	}
 
 
-	public Erkundungsstelle getTestErkundungsstelle3()
+	public ExplorationSite getTestErkundungsstelle3()
 	{
-		erkundungsstelle3.setDataMap(buildErkDaten());
+		explorationSite3.setDataMap(buildErkDaten());
 		buildSchichtDaten();
-		erkundungsstelle3.addSchicht(schicht1_GOB);
-		erkundungsstelle3.addSchicht(schicht2_GOB);
-		erkundungsstelle3.addSchicht(schicht3_GOB);
-		erkundungsstelle3.addSchicht(schicht4_GOB);
-		erkundungsstelle3.addSchicht(schicht5_1_TOB);
-		erkundungsstelle3.addSchicht(schicht6_2_TOB);
+		explorationSite3.addSchicht(layer1_GOB);
+		explorationSite3.addSchicht(layer2_GOB);
+		explorationSite3.addSchicht(layer3_GOB);
+		explorationSite3.addSchicht(layer4_GOB);
+		explorationSite3.addSchicht(layer5_1_TOB);
+		explorationSite3.addSchicht(layer6_2_TOB);
 
-		return erkundungsstelle3;
+		return explorationSite3;
 	}
 
-	public Erkundungsstelle getTestErkundungsstelle4()
+	public ExplorationSite getTestErkundungsstelle4()
 	{
-		erkundungsstelle4.setDataMap(buildErkDaten());
+		explorationSite4.setDataMap(buildErkDaten());
 		buildSchichtDaten();
-		erkundungsstelle4.addSchicht(schicht1_GOB);
-		erkundungsstelle4.addSchicht(schicht2_GOB);
-		erkundungsstelle4.addSchicht(schicht3_GOB);
-		erkundungsstelle4.addSchicht(schicht4_GOB);
-		erkundungsstelle4.addSchicht(schicht5_2_TOB);
-		erkundungsstelle3.addSchicht(schicht6_2_TOB);
+		explorationSite4.addSchicht(layer1_GOB);
+		explorationSite4.addSchicht(layer2_GOB);
+		explorationSite4.addSchicht(layer3_GOB);
+		explorationSite4.addSchicht(layer4_GOB);
+		explorationSite4.addSchicht(layer5_2_TOB);
+		explorationSite3.addSchicht(layer6_2_TOB);
 
 
-		return erkundungsstelle4;
+		return explorationSite4;
 	}
 
-	public Erkundungsstelle getTestErkundungsstelle5()
+	public ExplorationSite getTestErkundungsstelle5()
 	{
-		erkundungsstelle5.setDataMap(buildErkDaten());
+		explorationSite5.setDataMap(buildErkDaten());
 		buildSchichtDaten();
-		erkundungsstelle5.addSchicht(schicht1_GOB);
-		erkundungsstelle5.addSchicht(schicht2_GOB);
-		erkundungsstelle5.addSchicht(schicht3_GOB);
-		erkundungsstelle5.addSchicht(schicht4_GOB);
-		erkundungsstelle5.addSchicht(schicht5_2_TOB);
-		erkundungsstelle5.addSchicht(schicht7_2_TOB);
+		explorationSite5.addSchicht(layer1_GOB);
+		explorationSite5.addSchicht(layer2_GOB);
+		explorationSite5.addSchicht(layer3_GOB);
+		explorationSite5.addSchicht(layer4_GOB);
+		explorationSite5.addSchicht(layer5_2_TOB);
+		explorationSite5.addSchicht(layer7_2_TOB);
 
 
-		return erkundungsstelle5;
+		return explorationSite5;
 	}
 
 	private Map<String, String> buildErkDaten()
@@ -177,7 +177,7 @@ public class ErkundungsstellenTestFactory
 		schicht1Daten.put("ERK_ID", "FB8");
 		schicht1Daten.put("CHEMIE_ID", "");
 		schicht1Daten.put("SCHICHT_NR", "1");
-		schicht1Daten.put("SCHICHT_AUFSCHLUSS", "GOB");
+		schicht1Daten.put("SCHICHT_AUFSCHLUSS", "BETON");
 		schicht1Daten.put("SCHICHT_ART", "Deckschicht");
 		schicht1Daten.put("SCHICHT_KOERNUNG", "0/8");
 		schicht1Daten.put("SCHICHT_DICKE", "3");
@@ -208,7 +208,7 @@ public class ErkundungsstellenTestFactory
 		schicht1Daten.put("CHEMIE_PCB", "");
 		schicht1Daten.put("CHEMIE_BTEX", "");
 
-		schicht1_GOB = new Schicht(schicht1Daten);
+		layer1_GOB = new Layer(schicht1Daten);
 
 		Map<String, String> schicht2Daten = new HashMap<>();
 
@@ -247,7 +247,7 @@ public class ErkundungsstellenTestFactory
 		schicht2Daten.put("CHEMIE_PCB", "");
 		schicht2Daten.put("CHEMIE_BTEX", "");
 
-		schicht2_GOB = new Schicht(schicht2Daten);
+		layer2_GOB = new Layer(schicht2Daten);
 
 		Map<String, String> schicht3Daten = new HashMap<>();
 
@@ -286,7 +286,7 @@ public class ErkundungsstellenTestFactory
 		schicht3Daten.put("CHEMIE_PCB", "");
 		schicht3Daten.put("CHEMIE_BTEX", "");
 
-		schicht3_GOB = new Schicht(schicht3Daten);
+		layer3_GOB = new Layer(schicht3Daten);
 
 		Map<String, String> schicht4Daten = new HashMap<>();
 
@@ -325,7 +325,7 @@ public class ErkundungsstellenTestFactory
 		schicht4Daten.put("CHEMIE_PCB", "");
 		schicht4Daten.put("CHEMIE_BTEX", "");
 
-		schicht4_GOB = new Schicht(schicht4Daten);
+		layer4_GOB = new Layer(schicht4Daten);
 
 		Map<String, String> schicht5Daten = new HashMap<>();
 
@@ -364,7 +364,7 @@ public class ErkundungsstellenTestFactory
 		schicht5Daten.put("CHEMIE_PCB", "");
 		schicht5Daten.put("CHEMIE_BTEX", "");
 
-		schicht5_1_TOB = new Schicht(schicht5Daten);
+		layer5_1_TOB = new Layer(schicht5Daten);
 
 		Map<String, String> schicht5_2_Daten = new HashMap<>();
 
@@ -403,7 +403,7 @@ public class ErkundungsstellenTestFactory
 		schicht5_2_Daten.put("CHEMIE_PCB", "");
 		schicht5_2_Daten.put("CHEMIE_BTEX", "");
 
-		schicht5_2_TOB = new Schicht(schicht5_2_Daten);
+		layer5_2_TOB = new Layer(schicht5_2_Daten);
 
 		Map<String, String> schicht6Daten = new HashMap<>();
 
@@ -442,7 +442,7 @@ public class ErkundungsstellenTestFactory
 		schicht6Daten.put("CHEMIE_PCB", "");
 		schicht6Daten.put("CHEMIE_BTEX", "");
 
-		schicht6_1_TOB = new Schicht(schicht6Daten);
+		layer6_1_TOB = new Layer(schicht6Daten);
 
 		Map<String, String> schicht7Daten = new HashMap<>();
 
@@ -481,7 +481,7 @@ public class ErkundungsstellenTestFactory
 		schicht7Daten.put("CHEMIE_PCB", "");
 		schicht7Daten.put("CHEMIE_BTEX", "");
 
-		schicht7_1_TOB = new Schicht(schicht7Daten);
+		layer7_1_TOB = new Layer(schicht7Daten);
 
 		Map<String, String> schicht8Daten = new HashMap<>();
 
@@ -520,7 +520,7 @@ public class ErkundungsstellenTestFactory
 		schicht8Daten.put("CHEMIE_PCB", "");
 		schicht8Daten.put("CHEMIE_BTEX", "");
 
-		schicht8_UG = new Schicht(schicht8Daten);
+		layer8_UG = new Layer(schicht8Daten);
 
 		Map<String, String> schicht8_1_Daten = new HashMap<>();
 
@@ -559,7 +559,7 @@ public class ErkundungsstellenTestFactory
 		schicht8_1_Daten.put("CHEMIE_PCB", "");
 		schicht8_1_Daten.put("CHEMIE_BTEX", "");
 
-		schicht8_1_UG = new Schicht(schicht8_1_Daten);
+		layer8_1_UG = new Layer(schicht8_1_Daten);
 
 		Map<String, String> schicht8_2_Daten = new HashMap<>();
 
@@ -598,7 +598,7 @@ public class ErkundungsstellenTestFactory
 		schicht8_2_Daten.put("CHEMIE_PCB", "");
 		schicht8_2_Daten.put("CHEMIE_BTEX", "");
 
-		schicht8_2_UG = new Schicht(schicht8_2_Daten);
+		layer8_2_UG = new Layer(schicht8_2_Daten);
 
 		Map<String, String> schicht9Daten = new HashMap<>();
 
@@ -637,7 +637,7 @@ public class ErkundungsstellenTestFactory
 		schicht9Daten.put("CHEMIE_PCB", "");
 		schicht9Daten.put("CHEMIE_BTEX", "");
 
-		schicht9_UG = new Schicht(schicht9Daten);
+		layer9_UG = new Layer(schicht9Daten);
 
 		Map<String, String> schicht10Daten = new HashMap<>();
 
@@ -676,6 +676,6 @@ public class ErkundungsstellenTestFactory
 		schicht10Daten.put("CHEMIE_PCB", "");
 		schicht10Daten.put("CHEMIE_BTEX", "");
 
-		schicht10_UG = new Schicht(schicht10Daten);
+		layer10_UG = new Layer(schicht10Daten);
 	}
 }

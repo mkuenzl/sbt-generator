@@ -1,7 +1,6 @@
 package sbt.automization.gui;
 
 import sbt.automization.templates.*;
-import sbt.automization.templates.helper.Bericht_TMHB_Factory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,37 +36,37 @@ public class StrategyStorage
         switch (strategyName)
         {
             case "PN_TABELLE":
-                strategyList.add(Anlage_PN_Template.getInstance());
+                strategyList.add(AppendixPN.getInstance());
                 break;
             case "RUK_TABELLE":
-                strategyList.add(Anlage_RUK_Template.getInstance());
+                strategyList.add(AppendixRuk.getInstance());
                 break;
             case "ERK_TABELLE":
-                strategyList.add(Anlage_ERK_Template.getInstance());
+                strategyList.add(AppendixExplorationSite.getInstance());
                 break;
             case "LP_TABELLE":
-                strategyList.add(Anlage_LP_Template.getInstance());
+                strategyList.add(AppendixLP.getInstance());
                 break;
             case "BERICHT_GOB":
-                strategyList.add(Bericht_OB_Template.getInstance());
+                strategyList.add(GOBReport.getInstance());
                 break;
             case "BERICHT_TOB":
-                strategyList.add(Bericht_TOB_Template.getInstance());
+                strategyList.add(TOBReport.getInstance());
                 break;
             case "BERICHT_UG":
-                strategyList.add(Bericht_UG_Template.getInstance());
+                strategyList.add(UGReport.getInstance());
                 break;
             case "BERICHT_OH":
-                strategyList.add(Bericht_OH_Template.getInstance());
+                strategyList.add(OHReport.getInstance());
                 break;
             case "BERICHT_TMBH_TEST":
-                strategyList.add(Bericht_TMHB_Template.getInstance());
+                strategyList.add(TMHBReport.getInstance());
                 break;
             case "BERICHT_BETON_TEST":
-                strategyList.add(Bericht_BETON_Template.getInstance());
+                strategyList.add(CONCRETEReport.getInstance());
                 break;
             case "BERICHT_FUGE_TEST":
-                strategyList.add(Bericht_FUGE_Template.getInstance());
+                strategyList.add(FUGEReport.getInstance());
                 break;
         }
     }
@@ -78,37 +77,37 @@ public class StrategyStorage
         switch (strategyName)
         {
             case "PN_TABELLE":
-                strategyList.remove(Anlage_PN_Template.getInstance());
+                strategyList.remove(AppendixPN.getInstance());
                 break;
             case "RUK_TABELLE":
-                strategyList.remove(Anlage_RUK_Template.getInstance());
+                strategyList.remove(AppendixRuk.getInstance());
                 break;
             case "ERK_TABELLE":
-                strategyList.remove(Anlage_ERK_Template.getInstance());
+                strategyList.remove(AppendixExplorationSite.getInstance());
                 break;
             case "LP_TABELLE":
-                strategyList.remove(Anlage_LP_Template.getInstance());
+                strategyList.remove(AppendixLP.getInstance());
                 break;
             case "BERICHT_GOB":
-                strategyList.remove(Bericht_OB_Template.getInstance());
+                strategyList.remove(GOBReport.getInstance());
                 break;
             case "BERICHT_TOB":
-                strategyList.remove(Bericht_TOB_Template.getInstance());
+                strategyList.remove(TOBReport.getInstance());
                 break;
             case "BERICHT_UG":
-                strategyList.remove(Bericht_UG_Template.getInstance());
+                strategyList.remove(UGReport.getInstance());
                 break;
             case "BERICHT_OH":
-                strategyList.remove(Bericht_OH_Template.getInstance());
+                strategyList.remove(OHReport.getInstance());
                 break;
             case "BERICHT_TMBH_TEST":
-                strategyList.remove(Bericht_TMHB_Template.getInstance());
+                strategyList.remove(TMHBReport.getInstance());
                 break;
             case "BERICHT_BETON_TEST":
-                strategyList.remove(Bericht_BETON_Template.getInstance());
+                strategyList.remove(CONCRETEReport.getInstance());
                 break;
             case "BERICHT_FUGE_TEST":
-                strategyList.remove(Bericht_FUGE_Template.getInstance());
+                strategyList.remove(FUGEReport.getInstance());
                 break;
         }
     }

@@ -1,17 +1,21 @@
 package sbt.automization.util;
 
 import org.apache.commons.io.FileUtils;
-import sbt.automization.data.Erkundungsstelle;
+import sbt.automization.data.ExplorationSite;
 
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public final class Util
 {
-	public static void serializeErkundungsstelleToFile(Erkundungsstelle erkundungsstelle, String fileName)
+	public static void serializeExplorationSiteToFile(ExplorationSite explorationSite, String fileName)
 	{
 		FileOutputStream fileOutputStream = null;
 		ObjectOutputStream outputStream = null;
@@ -21,7 +25,7 @@ public final class Util
 			fileOutputStream = new FileOutputStream(fileName);
 			outputStream = new ObjectOutputStream(fileOutputStream);
 
-			outputStream.writeObject(erkundungsstelle);
+			outputStream.writeObject(explorationSite);
 
 		} catch (IOException e)
 		{
@@ -46,17 +50,17 @@ public final class Util
 
 	}
 
-	public static Erkundungsstelle readSerializedErkundungsstelle(String filePath)
+	public static ExplorationSite readSerializedExplorationSite(String filePath)
 	{
 		FileInputStream fileInputStream = null;
 		ObjectInputStream objectInputStream = null;
-		Erkundungsstelle erkundungsstelle = null;
+		ExplorationSite explorationSite = null;
 
 		try
 		{
 			fileInputStream = new FileInputStream(filePath);
 			objectInputStream = new ObjectInputStream(fileInputStream);
-			erkundungsstelle = (Erkundungsstelle) objectInputStream.readObject();
+			explorationSite = (ExplorationSite) objectInputStream.readObject();
 		} catch (IOException | ClassNotFoundException e)
 		{
 			e.printStackTrace();
@@ -76,7 +80,7 @@ public final class Util
 			}
 		}
 
-		return erkundungsstelle;
+		return explorationSite;
 	}
 
 	public static void exportExcelTemplate() throws IOException
@@ -102,5 +106,11 @@ public final class Util
 				FileUtils.copyURLToFile(inputUrl, dest);
 			}
 		}
+	}
+
+	public static <T>Collection<List<T>> separateBasedOnSize(List<T> inputList, int size)
+	{
+		final AtomicInteger counter = new AtomicInteger(0);
+		return inputList.stream().collect(Collectors.groupingBy(l -> counter.getAndIncrement()/size)).values();
 	}
 }

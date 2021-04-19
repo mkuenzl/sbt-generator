@@ -3,16 +3,16 @@ package sbt.automization.data;
 import java.io.Serializable;
 import java.util.Map;
 
-public class Schicht implements Comparable<Schicht>, IProjektData, Cloneable, Serializable
+public class Layer implements Comparable<Layer>, IProjektData, Cloneable, Serializable
 {
     private Map<String, String> dataMap;
 
-    public Schicht(Map<String, String> dataMap)
+    public Layer(Map<String, String> dataMap)
     {
         this.dataMap = dataMap;
     }
 
-    public Schicht()
+    public Layer()
     {
 
     }
@@ -23,10 +23,10 @@ public class Schicht implements Comparable<Schicht>, IProjektData, Cloneable, Se
     }
 
     @Override
-    public int compareTo(final Schicht schicht)
+    public int compareTo(final Layer layer)
     {
         int s1 = Integer.parseInt(this.getInformation("SCHICHT_NR"));
-        int s2 = Integer.parseInt(schicht.getInformation("SCHICHT_NR"));
+        int s2 = Integer.parseInt(layer.getInformation("SCHICHT_NR"));
         return s1 - s2;
     }
 
@@ -40,7 +40,7 @@ public class Schicht implements Comparable<Schicht>, IProjektData, Cloneable, Se
     @Override
     public Object clone() throws CloneNotSupportedException
     {
-        Schicht cloned = (Schicht) super.clone();
+        Layer cloned = (Layer) super.clone();
         return cloned;
     }
 }

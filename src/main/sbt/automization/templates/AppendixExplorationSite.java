@@ -1,6 +1,6 @@
 package sbt.automization.templates;
 
-import sbt.automization.data.Erkundungsstelle;
+import sbt.automization.data.ExplorationSite;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
@@ -8,21 +8,21 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class Anlage_ERK_Template extends AHtmlTemplate
+public final class AppendixExplorationSite extends AHtmlTemplate
 {
-    private static Anlage_ERK_Template instance;
+    private static AppendixExplorationSite instance;
 
-    private Anlage_ERK_Template() {}
+    private AppendixExplorationSite() {}
 
-    public static Anlage_ERK_Template getInstance()
+    public static AppendixExplorationSite getInstance()
     {
         if (instance == null)
         {
-            synchronized (Anlage_ERK_Template.class)
+            synchronized (AppendixExplorationSite.class)
             {
                 if (instance == null)
                 {
-                    instance = new Anlage_ERK_Template();
+                    instance = new AppendixExplorationSite();
                 }
             }
         }
@@ -38,13 +38,13 @@ public final class Anlage_ERK_Template extends AHtmlTemplate
 
     //Erstellt die Informationen und ruft dann Methoden einzelner Klassen auf
     @Override
-    public void buildHtmlTable(final List<Erkundungsstelle> data)
+    public void buildHtmlTable(final List<ExplorationSite> sites)
     {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (int i = 0 ; i < data.size() ; i++)
+        for (int i = 0 ; i < sites.size() ; i++)
         {
-            Erkundungsstelle erkundungsstelle = data.get(i);
+            ExplorationSite explorationSite = sites.get(i);
 
             HtmlCell cellTextERKORT = new HtmlCell.Builder()
                     .appendAttribute("width", "75")
@@ -55,7 +55,7 @@ public final class Anlage_ERK_Template extends AHtmlTemplate
             HtmlCell cellERKORT = new HtmlCell.Builder()
                     .appendAttribute("class", "Normal")
                     .appendAttribute("colspan", "3")
-                    .appendContent(erkundungsstelle.getInformation("ERK_ORT"))
+                    .appendContent(explorationSite.getInformation("ERK_ORT"))
                     .build();
 
             HtmlRow firstErkRow = new HtmlRow.Builder()
@@ -73,7 +73,7 @@ public final class Anlage_ERK_Template extends AHtmlTemplate
             HtmlCell cellERKID = new HtmlCell.Builder()
                     .appendAttribute("width", "150")
                     .appendAttribute("class", "Normal")
-                    .appendContent(erkundungsstelle.getInformation("ERK_ID"))
+                    .appendContent(explorationSite.getInformation("ERK_ID"))
                     .build();
 
             HtmlCell cellTextERKDATUM = new HtmlCell.Builder()
@@ -85,7 +85,7 @@ public final class Anlage_ERK_Template extends AHtmlTemplate
             HtmlCell cellERKDATUM = new HtmlCell.Builder()
                     .appendAttribute("width", "150")
                     .appendAttribute("class", "Normal")
-                    .appendContent(erkundungsstelle.getInformation("ERK_DATUM"))
+                    .appendContent(explorationSite.getInformation("ERK_DATUM"))
                     .build();
 
             HtmlRow secondErkRow = new HtmlRow.Builder()
@@ -104,7 +104,7 @@ public final class Anlage_ERK_Template extends AHtmlTemplate
 
             HtmlCell cellERK_KOORDINATEN = new HtmlCell.Builder()
                     .appendAttribute("class", "Normal")
-                    .appendContent(erkundungsstelle.getInformation("ERK_KOORDINATEN"))
+                    .appendContent(explorationSite.getInformation("ERK_KOORDINATEN"))
                     .build();
 
 
@@ -115,7 +115,7 @@ public final class Anlage_ERK_Template extends AHtmlTemplate
 
             HtmlCell cellERK_PRUEFER = new HtmlCell.Builder()
                     .appendAttribute("class", "Normal")
-                    .appendContent(erkundungsstelle.getInformation("ERK_PRUEFER"))
+                    .appendContent(explorationSite.getInformation("ERK_PRUEFER"))
                     .build();
 
             HtmlRow thirdErkRow = new HtmlRow.Builder()
@@ -133,7 +133,7 @@ public final class Anlage_ERK_Template extends AHtmlTemplate
 
             HtmlCell cellERK_BEREICH = new HtmlCell.Builder()
                     .appendAttribute("class", "Normal")
-                    .appendContent(erkundungsstelle.getInformation("ERK_BEREICH"))
+                    .appendContent(explorationSite.getInformation("ERK_BEREICH"))
                     .build();
 
 
@@ -144,7 +144,7 @@ public final class Anlage_ERK_Template extends AHtmlTemplate
 
             HtmlCell cellERK_ANSPRECHPARNTER = new HtmlCell.Builder()
                     .appendAttribute("class", "Normal")
-                    .appendContent(erkundungsstelle.getInformation("ERK_ANSPRECHPARTNER"))
+                    .appendContent(explorationSite.getInformation("ERK_ANSPRECHPARTNER"))
                     .build();
 
             HtmlRow fourthErkRow = new HtmlRow.Builder()
@@ -170,42 +170,42 @@ public final class Anlage_ERK_Template extends AHtmlTemplate
 
             stringBuilder.append(table.appendTag());
 
-            if (erkundungsstelle.getSchichtAufschluss("FUGE").size() > 0)
+            if (explorationSite.getSchichtAufschluss("FUGE").size() > 0)
             {
-                Anlage_ERK_FUGE_Template erk_FUGE_Tabelle = new Anlage_ERK_FUGE_Template();
-                erk_FUGE_Tabelle.buildHtmlTable(erkundungsstelle);
+                AppendixSiteFUGE erk_FUGE_Tabelle = new AppendixSiteFUGE();
+                erk_FUGE_Tabelle.buildHtmlTable(explorationSite);
                 stringBuilder.append(erk_FUGE_Tabelle.getHtmlTable());
             }
 
-            if (erkundungsstelle.getSchichtAufschluss("OH").size() > 0)
+            if (explorationSite.getSchichtAufschluss("OH").size() > 0)
             {
-                Anlage_ERK_OH_Template erk_OH_Tabelle = new Anlage_ERK_OH_Template();
-                erk_OH_Tabelle.buildHtmlTable(erkundungsstelle);
+                AppendixSiteOH erk_OH_Tabelle = new AppendixSiteOH();
+                erk_OH_Tabelle.buildHtmlTable(explorationSite);
                 stringBuilder.append(erk_OH_Tabelle.getHtmlTable());
             }
 
-            if (erkundungsstelle.getSchichtAufschluss("GOB").size() > 0) {
-                Anlage_ERK_GOB_Template erk_OB_Tabelle = new Anlage_ERK_GOB_Template();
-                erk_OB_Tabelle.buildHtmlTable(erkundungsstelle);
+            if (explorationSite.getSchichtAufschluss("GOB").size() > 0) {
+                AppendixSiteGOB erk_OB_Tabelle = new AppendixSiteGOB();
+                erk_OB_Tabelle.buildHtmlTable(explorationSite);
                 stringBuilder.append(erk_OB_Tabelle.getHtmlTable());
             }
 
-            if (erkundungsstelle.getSchichtAufschluss("TOB").size() > 0) {
-                Anlage_ERK_TOB_Template erk_TOB_Tabelle = new Anlage_ERK_TOB_Template();
-                erk_TOB_Tabelle.buildHtmlTable(erkundungsstelle);
+            if (explorationSite.getSchichtAufschluss("TOB").size() > 0) {
+                AppendixSiteTOB erk_TOB_Tabelle = new AppendixSiteTOB();
+                erk_TOB_Tabelle.buildHtmlTable(explorationSite);
                 stringBuilder.append(erk_TOB_Tabelle.getHtmlTable());
             }
 
-            if (erkundungsstelle.getSchichtAufschluss("UG").size() > 0) {
-                Anlage_ERK_UG_Template erk_UG_Tabelle = new Anlage_ERK_UG_Template();
-                erk_UG_Tabelle.buildHtmlTable(erkundungsstelle);
+            if (explorationSite.getSchichtAufschluss("UG").size() > 0) {
+                AppendixSiteUG erk_UG_Tabelle = new AppendixSiteUG();
+                erk_UG_Tabelle.buildHtmlTable(explorationSite);
                 stringBuilder.append(erk_UG_Tabelle.getHtmlTable());
             }
 
             HtmlCell footer = new HtmlCell.Builder()
-                    .appendAttribute("class", "Normal")
+                    .appendAttribute("class", "NormalHeader")
                     .appendAttribute("colspan", "3")
-                    .appendContent(TextFormatUtil.formatErkFootnotes(erkundungsstelle))
+                    .appendContent(TextFormatUtil.formatSiteFootnotes(explorationSite))
                     .build();
 
             HtmlRow footerRow = new HtmlRow.Builder()
@@ -232,7 +232,7 @@ public final class Anlage_ERK_Template extends AHtmlTemplate
     }
 
     @Override
-    public void buildHtmlTable(final Erkundungsstelle data)
+    public void buildHtmlTable(final ExplorationSite site)
     {
 
     }

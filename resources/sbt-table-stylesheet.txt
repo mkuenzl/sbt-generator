@@ -112,12 +112,14 @@
                 height:1cm;
                 background:white;
                 padding:0cm 1.4pt 0cm 3.4pt;
+                text-align:center;
                 overflow:hidden;
 			}
 			td.NormalNoBorder
             {
                 background:white;
                 padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
                 overflow:hidden;
             }
 			td.NormalCentered
@@ -237,7 +239,7 @@
                 width:100.0%;
                 height:100.0%;
                 border:solid windowtext 1.0pt;
-                padding-alt:0cm 0pt 0cm 0pt;
+                padding-alt:0cm 1.4pt 0cm 1.4pt;
                 para-margin:0cm;
                 pagination:widow-orphan;
                 font-size:8.0pt;

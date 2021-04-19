@@ -1,7 +1,7 @@
 package sbt.automization.templates.helper;
 
-import sbt.automization.data.Erkundungsstelle;
-import sbt.automization.data.Schicht;
+import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.Layer;
 import sbt.automization.format.HtmlCellFormatUtil;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
@@ -10,13 +10,13 @@ import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
 
-public class Bericht_OB_Factory
+public class ObFactory
 {
 	private static final String aufschluss = "OB";
 	private static final String normalCellClass = "NormalBold";
 	private static final String headerCellClass = "NormalHeader";
 	
-	public static String createIDRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createIDRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//Erkundungsstellen ID
 		HtmlRow row = new HtmlRow.Builder()
@@ -29,13 +29,13 @@ public class Bericht_OB_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle :
+		for (ExplorationSite explorationSite :
 				erkundungsstellen)
 		{
 			HtmlCell htmlCell_ERK_ID = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(erkundungsstelle.getInformation("ERK_ID"))
+					.appendContent(explorationSite.getInformation("ERK_ID"))
 					.build();
 
 			row.appendContent(htmlCell_ERK_ID.appendTag());
@@ -44,7 +44,7 @@ public class Bericht_OB_Factory
 		return row.appendTag();
 	}
 
-	public static String createAufschlussRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createAufschlussRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//Erkundungsstellen Aufschlussart
 		HtmlRow row = new HtmlRow.Builder()
@@ -57,13 +57,13 @@ public class Bericht_OB_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle :
+		for (ExplorationSite explorationSite :
 				erkundungsstellen)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
-					.appendContent(erkundungsstelle.getInformation("ERK_AUFSCHLUSS_OB"))
+					.appendContent(explorationSite.getInformation("ERK_AUFSCHLUSS_OB"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -72,7 +72,7 @@ public class Bericht_OB_Factory
 		return row.appendTag();
 	}
 
-	public static String createDickeOberbauRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createDickeOberbauRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//Gesamtdicke Oberbau
 		HtmlRow row = new HtmlRow.Builder()
@@ -95,13 +95,13 @@ public class Bericht_OB_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle :
+		for (ExplorationSite explorationSite :
 				erkundungsstellen)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
-					.appendContent(TextFormatUtil.formatErkAufschlussDicke(erkundungsstelle, "GOB"))
+					.appendContent(TextFormatUtil.formatSiteOutcropThickness(explorationSite, "GOB"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -110,7 +110,7 @@ public class Bericht_OB_Factory
 		return row.appendTag();
 	}
 
-	public static String createBelastungsklasseRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createBelastungsklasseRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//RSTO Belastungsklasse
 		HtmlRow row = new HtmlRow.Builder()
@@ -128,13 +128,13 @@ public class Bericht_OB_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle :
+		for (ExplorationSite explorationSite :
 				erkundungsstellen)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
-					.appendContent(erkundungsstelle.getInformation("ERK_BELASTUNGSKLASSE"))
+					.appendContent(explorationSite.getInformation("ERK_BELASTUNGSKLASSE"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -143,7 +143,7 @@ public class Bericht_OB_Factory
 		return row.appendTag();
 	}
 
-	public static String createRukRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createRukRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//RUK
 		HtmlRow row = new HtmlRow.Builder()
@@ -166,13 +166,13 @@ public class Bericht_OB_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle :
+		for (ExplorationSite explorationSite :
 				erkundungsstellen)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
-					.appendContent(TextFormatUtil.printSchichtRUK(erkundungsstelle, "GOB"))
+					.appendContent(TextFormatUtil.printRukLayers(explorationSite, "GOB"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -181,7 +181,7 @@ public class Bericht_OB_Factory
 		return row.appendTag();
 	}
 
-	public static String createRukEinzelWertRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createRukEinzelWertRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//RUK EinzelWert
 		HtmlRow row = new HtmlRow.Builder()
@@ -199,7 +199,7 @@ public class Bericht_OB_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle :
+		for (ExplorationSite explorationSite :
 				erkundungsstellen)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
@@ -214,7 +214,7 @@ public class Bericht_OB_Factory
 		return row.appendTag();
 	}
 
-	public static String createPechQualitativRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createPechQualitativRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//Pechnachweis qualitativ
 		HtmlRow row = new HtmlRow.Builder()
@@ -232,13 +232,13 @@ public class Bericht_OB_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle :
+		for (ExplorationSite explorationSite :
 				erkundungsstellen)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
 					.appendAttribute("width", "50")
-					.appendContent(erkundungsstelle.getInformation("ERK_PECH_QUALITATIV"))
+					.appendContent(explorationSite.getInformation("ERK_PECH_QUALITATIV"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -246,7 +246,7 @@ public class Bericht_OB_Factory
 		return row.appendTag();
 	}
 
-	public static String createPechHalbQuantitativRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createPechHalbQuantitativRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//Pechnachweis quantitativ
 		HtmlRow row = new HtmlRow.Builder()
@@ -264,13 +264,13 @@ public class Bericht_OB_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle :
+		for (ExplorationSite explorationSite :
 				erkundungsstellen)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
-					.appendContent(erkundungsstelle.getInformation("ERK_PECH_HALBQUANTITATIV"))
+					.appendContent(explorationSite.getInformation("ERK_PECH_HALBQUANTITATIV"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -278,7 +278,7 @@ public class Bericht_OB_Factory
 		return row.appendTag();
 	}
 
-	public static String createPechQuantitativRow(List<Erkundungsstelle> erkundungsstellen)
+	public static String createPechQuantitativRow(List<ExplorationSite> erkundungsstellen)
 	{
 		//Pechnachweis quantitativ
 		HtmlRow row = new HtmlRow.Builder()
@@ -296,13 +296,13 @@ public class Bericht_OB_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle :
+		for (ExplorationSite explorationSite :
 				erkundungsstellen)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
-					.appendContent(erkundungsstelle.getInformation("ERK_PECH_QUANTITATIV"))
+					.appendContent(explorationSite.getInformation("ERK_PECH_QUANTITATIV"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -310,7 +310,7 @@ public class Bericht_OB_Factory
 		return row.appendTag();
 	}
 
-	public static String createPechQuerschnittRows(List<Erkundungsstelle> erkundungsstellen, boolean pech)
+	public static String createPechQuerschnittRows(List<ExplorationSite> erkundungsstellen, boolean pech)
 	{
 		StringBuilder querschnittBuilder = new StringBuilder();
 
@@ -402,12 +402,12 @@ public class Bericht_OB_Factory
 						.appendTag())
 				.build();
 
-		for (Erkundungsstelle erkundungsstelle :
+		for (ExplorationSite explorationSite :
 				erkundungsstellen)
 		{
 			boolean empty = true;
 
-			List<Schicht> gob = erkundungsstelle.getSchichtAufschluss("GOB");
+			List<Layer> gob = explorationSite.getSchichtAufschluss("GOB");
 
 			if (gob != null)
 			{
@@ -418,13 +418,13 @@ public class Bericht_OB_Factory
 				//Dicke anpassen
 				//Wenn eine Erkundungsstelle nicht keine pech freien / haltigen Schichten hat, dann "-"
 
-				for (Schicht schicht : gob)
+				for (Layer layer : gob)
 				{
 					//TODO CHANGE TO TRUE & FALSE PECH
-					String schicht_dicke = schicht.getInformation("SCHICHT_DICKE");
+					String schicht_dicke = layer.getInformation("SCHICHT_DICKE");
 					schicht_dicke = schicht_dicke.replace(",", ".");
 
-					String schicht_pech = schicht.getInformation("SCHICHT_PECH");
+					String schicht_pech = layer.getInformation("SCHICHT_PECH");
 
 					if (pech && "ja".equals(schicht_pech))
 					{
@@ -464,7 +464,7 @@ public class Bericht_OB_Factory
 			rowERK_DICKE_PECH.appendContent(htmlCell_Dicke.appendTag());
 
 			//MUFV
-			HtmlCell htmlCell_MUFV = HtmlCellFormatUtil.formatChemie(mufv);
+			HtmlCell htmlCell_MUFV = HtmlCellFormatUtil.formatChemistry(mufv);
 
 			rowERK_MUFV_PECH.appendContent(htmlCell_MUFV.appendTag());
 

@@ -292,17 +292,6 @@ public class GUI extends JFrame implements ActionListener
 
 		if (e.getSource() == executeButton)
 		{
-
-//            JFileChooser saver = new JFileChooser();
-//            int userSelection = saver.showSaveDialog(null);
-//            saver.setCurrentDirectory(new File("."));
-//
-//            if (userSelection == JFileChooser.APPROVE_OPTION) {
-//                File file = new File(saver.getSelectedFile().getAbsolutePath());
-//                // WAS ER SPEICHERN SOLL
-//                System.out.println(file);
-//            }
-
 			File csv = new File(textfield.getText());
 			Parser parser = new Parser(csv);
 
@@ -312,7 +301,6 @@ public class GUI extends JFrame implements ActionListener
 			{
 				database.export(new HtmlTemplateExportStrategy(strategy));
 			}
-
 		}
 	}
 }

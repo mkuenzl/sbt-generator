@@ -1,7 +1,6 @@
 package sbt.automization.templates;
 
-import sbt.automization.data.Erkundungsstelle;
-import sbt.automization.format.HtmlCellFormatUtil;
+import sbt.automization.data.ExplorationSite;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
@@ -9,22 +8,22 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class Example_Template extends AHtmlTemplate
+public final class ExampleTemplate extends AHtmlTemplate
 {
 
-	private static Example_Template instance;
+	private static ExampleTemplate instance;
 
-	private Example_Template() {}
+	private ExampleTemplate() {}
 
-	public static Example_Template getInstance()
+	public static ExampleTemplate getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (Example_Template.class)
+			synchronized (ExampleTemplate.class)
 			{
 				if (instance == null)
 				{
-					instance = new Example_Template();
+					instance = new ExampleTemplate();
 				}
 			}
 		}
@@ -40,7 +39,7 @@ public final class Example_Template extends AHtmlTemplate
 
 
 	@Override
-	public void buildHtmlTable(List<Erkundungsstelle> data)
+	public void buildHtmlTable(List<ExplorationSite> sites)
 	{
 		HtmlTable table = new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
@@ -53,7 +52,7 @@ public final class Example_Template extends AHtmlTemplate
 
 		HtmlCell htmlCell = new HtmlCell.Builder()
 				.appendAttribute("class", "Normal")
-				.appendContent(TextFormatUtil.presentSchichtenToB(data.get(0)))
+				.appendContent(TextFormatUtil.presentTobLayers(sites.get(0)))
 				.build();
 
 		HtmlRow htmlRow = new HtmlRow.Builder()
@@ -67,7 +66,7 @@ public final class Example_Template extends AHtmlTemplate
 	}
 
 	@Override
-	public void buildHtmlTable(Erkundungsstelle data)
+	public void buildHtmlTable(ExplorationSite site)
 	{
 
 	}

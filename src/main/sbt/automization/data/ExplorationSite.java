@@ -5,7 +5,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektData, Serializable
+public class ExplorationSite implements Comparable<ExplorationSite>, IProjektData, Serializable
 {
     /*
     Testing variables instead of map
@@ -40,9 +40,9 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
 
 
     private Map<String, String> dataMap;
-    private final List<Schicht> schichtList = new ArrayList<>();
+    private final List<Layer> layerList = new ArrayList<>();
 
-    public Erkundungsstelle(Map<String, String> data)
+    public ExplorationSite(Map<String, String> data)
     {
 
         this.dataMap = new HashMap<>();
@@ -53,33 +53,33 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
         }
     }
 
-    public Erkundungsstelle()
+    public ExplorationSite()
     {
 
     }
 
     /**
      * Valid ERK_ID is String[A-Z]+ followed by Number[0-9]+, other IDs will not be sorted and put at the end of list
-     * @param erkundungsstelle expects a Erkundungsstelle with a data map, containing a valid ERK_ID
+     * @param explorationSite expects a Erkundungsstelle with a data map, containing a valid ERK_ID
      * @return a compare to key for Collections.sort
      */
     @Override
-    public int compareTo(final Erkundungsstelle erkundungsstelle)
+    public int compareTo(final ExplorationSite explorationSite)
     {
         Pattern VALID_PATTERN = Pattern.compile("[0-9]+|[A-Z]+");
 
         String firstIdentifier = this.getInformation("ERK_ID");
-        String secondIdentifier = erkundungsstelle.getInformation("ERK_ID");
+        String secondIdentifier = explorationSite.getInformation("ERK_ID");
 
         Matcher firstMatcher = VALID_PATTERN.matcher(firstIdentifier);
         Matcher secondMatcher = VALID_PATTERN.matcher(secondIdentifier);
 
-        List<String> firstIdentifierSplit = new LinkedList<String>();
+        List<String> firstIdentifierSplit = new LinkedList<>();
         while (firstMatcher.find()) {
             firstIdentifierSplit.add( firstMatcher.group() );
         }
 
-        List<String> secondIdentifierSplit = new LinkedList<String>();
+        List<String> secondIdentifierSplit = new LinkedList<>();
         while (secondMatcher.find()) {
             secondIdentifierSplit.add( secondMatcher.group() );
         }
@@ -121,35 +121,35 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
         return s;
     }
 
-    public void addSchicht(Schicht schicht)
+    public void addSchicht(Layer layer)
     {
-        schichtList.add(schicht);
+        layerList.add(layer);
     }
 
-    public List<Schicht> getSchichtList()
+    public List<Layer> getSchichtList()
     {
-        return schichtList;
+        return layerList;
     }
 
-    public List<Schicht> getSchichtAufschluss(final String aufschluss)
+    public List<Layer> getSchichtAufschluss(final String aufschluss)
     {
-        List<Schicht> schichtAufschlussList = new ArrayList<>();
-        for (Schicht schicht : schichtList)
+        List<Layer> layerAufschlussList = new ArrayList<>();
+        for (Layer layer : layerList)
         {
-            if (aufschluss.equals(schicht.getInformation("SCHICHT_AUFSCHLUSS")))
+            if (aufschluss.equals(layer.getInformation("SCHICHT_AUFSCHLUSS")))
             {
-                schichtAufschlussList.add(schicht);
+                layerAufschlussList.add(layer);
             }
         }
-        return schichtAufschlussList;
+        return layerAufschlussList;
     }
 
     public Double getDicke()
     {
         double d = 0;
 
-        for (Schicht schicht : schichtList) {
-            String schicht_dicke = schicht.getInformation("SCHICHT_DICKE").replace(",",".");
+        for (Layer layer : layerList) {
+            String schicht_dicke = layer.getInformation("SCHICHT_DICKE").replace(",",".");
             d += Double.parseDouble(schicht_dicke);
         }
 
@@ -160,8 +160,8 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
     {
         double d = 0;
 
-        for (Schicht schicht : getSchichtAufschluss(aufschluss)) {
-            String schicht_dicke = schicht.getInformation("SCHICHT_DICKE").replace(",",".");
+        for (Layer layer : getSchichtAufschluss(aufschluss)) {
+            String schicht_dicke = layer.getInformation("SCHICHT_DICKE").replace(",",".");
             d += Double.parseDouble(schicht_dicke);
         }
 
@@ -170,7 +170,7 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
 
     public void sortSchichten()
     {
-        Collections.sort(schichtList);
+        Collections.sort(layerList);
     }
 
     public String getIdentifier()
@@ -178,7 +178,7 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
         return identifier;
     }
 
-    public Erkundungsstelle setIdentifier(String identifier)
+    public ExplorationSite setIdentifier(String identifier)
     {
         this.identifier = identifier;
         return this;
@@ -189,7 +189,7 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
         return datum;
     }
 
-    public Erkundungsstelle setDatum(String datum)
+    public ExplorationSite setDatum(String datum)
     {
         this.datum = datum;
         return this;
@@ -200,7 +200,7 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
         return pruefer;
     }
 
-    public Erkundungsstelle setPruefer(String pruefer)
+    public ExplorationSite setPruefer(String pruefer)
     {
         this.pruefer = pruefer;
         return this;
@@ -211,7 +211,7 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
         return koordinaten;
     }
 
-    public Erkundungsstelle setKoordinaten(String koordinaten)
+    public ExplorationSite setKoordinaten(String koordinaten)
     {
         this.koordinaten = koordinaten;
         return this;
@@ -222,7 +222,7 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
         return ort;
     }
 
-    public Erkundungsstelle setOrt(String ort)
+    public ExplorationSite setOrt(String ort)
     {
         this.ort = ort;
         return this;
@@ -233,7 +233,7 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
         return aufschlussOb;
     }
 
-    public Erkundungsstelle setAufschlussOb(String aufschlussOb)
+    public ExplorationSite setAufschlussOb(String aufschlussOb)
     {
         this.aufschlussOb = aufschlussOb;
         return this;
@@ -244,7 +244,7 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
         return aufschlussTob;
     }
 
-    public Erkundungsstelle setAufschlussTob(String aufschlussTob)
+    public ExplorationSite setAufschlussTob(String aufschlussTob)
     {
         this.aufschlussTob = aufschlussTob;
         return this;
@@ -255,7 +255,7 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
         return aufschlussUg;
     }
 
-    public Erkundungsstelle setAufschlussUg(String aufschlussUg)
+    public ExplorationSite setAufschlussUg(String aufschlussUg)
     {
         this.aufschlussUg = aufschlussUg;
         return this;
@@ -266,7 +266,7 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
         return oberkante;
     }
 
-    public Erkundungsstelle setOberkante(String oberkante)
+    public ExplorationSite setOberkante(String oberkante)
     {
         this.oberkante = oberkante;
         return this;
@@ -277,7 +277,7 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
         return belastungsklasse;
     }
 
-    public Erkundungsstelle setBelastungsklasse(String belastungsklasse)
+    public ExplorationSite setBelastungsklasse(String belastungsklasse)
     {
         this.belastungsklasse = belastungsklasse;
         return this;
@@ -288,7 +288,7 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
         return lpIdentifier;
     }
 
-    public Erkundungsstelle setLpIdentifier(String lpIdentifier)
+    public ExplorationSite setLpIdentifier(String lpIdentifier)
     {
         this.lpIdentifier = lpIdentifier;
         return this;
@@ -299,7 +299,7 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
         return lpEv;
     }
 
-    public Erkundungsstelle setLpEv(String lpEv)
+    public ExplorationSite setLpEv(String lpEv)
     {
         this.lpEv = lpEv;
         return this;
@@ -310,7 +310,7 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
         return lpEv15;
     }
 
-    public Erkundungsstelle setLpEv15(String lpEv15)
+    public ExplorationSite setLpEv15(String lpEv15)
     {
         this.lpEv15 = lpEv15;
         return this;
@@ -321,7 +321,7 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
         return lpEv2;
     }
 
-    public Erkundungsstelle setLpEv2(String lpEv2)
+    public ExplorationSite setLpEv2(String lpEv2)
     {
         this.lpEv2 = lpEv2;
         return this;
@@ -332,7 +332,7 @@ public class Erkundungsstelle implements Comparable<Erkundungsstelle>, IProjektD
         return dataMap;
     }
 
-    public Erkundungsstelle setDataMap(Map<String, String> dataMap)
+    public ExplorationSite setDataMap(Map<String, String> dataMap)
     {
         this.dataMap = dataMap;
         return this;
