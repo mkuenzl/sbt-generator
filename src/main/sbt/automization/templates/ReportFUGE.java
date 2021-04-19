@@ -8,23 +8,23 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class FUGEReport extends AReportTemplate
+public final class ReportFUGE extends AReportTemplate
 {
-	private static FUGEReport instance;
+	private static ReportFUGE instance;
 
-	private FUGEReport() {
+	private ReportFUGE() {
 		layerId = "FUGE";
 	}
 
-	public static FUGEReport getInstance()
+	public static ReportFUGE getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (FUGEReport.class)
+			synchronized (ReportFUGE.class)
 			{
 				if (instance == null)
 				{
-					instance = new FUGEReport();
+					instance = new ReportFUGE();
 				}
 			}
 		}

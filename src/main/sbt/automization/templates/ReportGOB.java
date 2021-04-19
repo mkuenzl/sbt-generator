@@ -1,31 +1,31 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.templates.helper.TobFactory;
+import sbt.automization.templates.helper.ObFactory;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class TOBReport extends AReportTemplate
+public final class ReportGOB extends AReportTemplate
 {
-	private static TOBReport instance;
+	private static ReportGOB instance;
 
-	private TOBReport()
+	private ReportGOB()
 	{
-		layerId = "TOB";
+		layerId = "GOB";
 	}
 
-	public static TOBReport getInstance()
+	public static ReportGOB getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (TOBReport.class)
+			synchronized (ReportGOB.class)
 			{
 				if (instance == null)
 				{
-					instance = new TOBReport();
+					instance = new ReportGOB();
 				}
 			}
 		}
@@ -39,13 +39,13 @@ public final class TOBReport extends AReportTemplate
 	}
 
 	@Override
-	public void buildHtmlTable(List<ExplorationSite> sites)
+	public void buildHtmlTable(final List<ExplorationSite> sites)
 	{
 		StringBuilder strb = new StringBuilder();
 
 		for (List<ExplorationSite> portion : divideExplorationSites(sites))
 		{
-			//Sort Data nach TOB
+			//Sort Data nach GOB
 			HtmlTable reportTable = new HtmlTable.Builder()
 					.appendAttribute("class", "MsoNormalTable")
 					.appendAttribute("border", "1")
@@ -54,30 +54,20 @@ public final class TOBReport extends AReportTemplate
 					.appendAttribute("cellpadding", "0")
 					.build();
 
-			reportTable.appendContent(TobFactory.createIDRow(portion));
-			reportTable.appendContent(TobFactory.createAufschlussRow(portion));
+
+			reportTable.appendContent(ObFactory.createIDRow(portion));
+			reportTable.appendContent(ObFactory.createAufschlussRow(portion));
 
 			reportTable.appendContent(buildTechnicalFeatures(portion));
 			reportTable.appendContent(buildEnvironmentTechnicalFeatures(portion));
 
-			reportTable.appendContent(TobFactory.createLegendeRow(portion));
+			//TODO pech, no pech, pech by depth
+			reportTable.appendContent(ObFactory.createPechQuerschnittRows(portion, false));
+			reportTable.appendContent(ObFactory.createPechQuerschnittRows(portion, true));
 
 			strb.append(reportTable.appendTag());
 		}
-
 		setHtmlTable(strb.toString());
-	}
-
-	@Override
-	public void buildHtmlTable(ExplorationSite site)
-	{
-
-	}
-
-	@Override
-	public String getExportFileName()
-	{
-		return "Bericht_TOB_Table.html";
 	}
 
 	@Override
@@ -85,7 +75,6 @@ public final class TOBReport extends AReportTemplate
 	{
 		StringBuilder techBuilder = new StringBuilder();
 
-		//Technische Merkmale Trennzeile
 		HtmlRow rowTECHMERKMALE = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
@@ -97,14 +86,10 @@ public final class TOBReport extends AReportTemplate
 				.build();
 
 		techBuilder.append(rowTECHMERKMALE.appendTag())
-				.append(TobFactory.createEvDynRow(explorationSites))
-				.append(TobFactory.createEvDyn85Row(explorationSites))
-				.append(TobFactory.createEv2Row(explorationSites))
-				.append(TobFactory.createEvSollRow(explorationSites))
-				.append(TobFactory.createMaterialRow(explorationSites))
-				.append(TobFactory.createDickeRow(explorationSites))
-				.append(TobFactory.createKGVRow(explorationSites))
-				.append(TobFactory.createGesamtDickeRow(explorationSites));
+				.append(ObFactory.createDickeOberbauRow(explorationSites))
+				.append(ObFactory.createBelastungsklasseRow(explorationSites))
+				.append(ObFactory.createRukRow(explorationSites))
+				.append(ObFactory.createRukEinzelWertRow(explorationSites));
 
 		return techBuilder.toString();
 	}
@@ -126,15 +111,23 @@ public final class TOBReport extends AReportTemplate
 				.build();
 
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())
-				.append(TobFactory.createChemieIDRow(explorationSites))
-				.append(TobFactory.createChemieMufvRow(explorationSites))
-				.append(TobFactory.createChemieLagaBoRow(explorationSites))
-				.append(TobFactory.createChemieLagaRcRow(explorationSites))
-				.append(TobFactory.createChemieLagaRcOrientierungRow(explorationSites))
-				.append(TobFactory.createChemieTlGesteinRow(explorationSites))
-				.append(TobFactory.createChemieDepvRow(explorationSites))
-				.append(TobFactory.createChemieEntscheidungshilfeRow(explorationSites));
+				.append(ObFactory.createPechQualitativRow(explorationSites))
+				.append(ObFactory.createPechHalbQuantitativRow(explorationSites))
+				.append(ObFactory.createPechQuantitativRow(explorationSites));
 
 		return umweltTechBuilder.toString();
 	}
+
+	@Override
+	public void buildHtmlTable(final ExplorationSite site)
+	{
+
+	}
+
+	@Override
+	public String getExportFileName()
+	{
+		return "Bericht_GOB_Table.html";
+	}
+
 }

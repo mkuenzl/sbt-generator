@@ -1,32 +1,31 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.templates.helper.ConcreteFactory;
+import sbt.automization.templates.helper.OhFactory;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class CONCRETEReport extends AReportTemplate
+public final class ReportOH extends AReportTemplate
 {
+	private static ReportOH instance;
 
-	private static CONCRETEReport instance;
-
-	private CONCRETEReport()
+	private ReportOH()
 	{
-		layerId = "BETON";
+		layerId = "OH";
 	}
 
-	public static CONCRETEReport getInstance()
+	public static ReportOH getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (CONCRETEReport.class)
+			synchronized (ReportOH.class)
 			{
 				if (instance == null)
 				{
-					instance = new CONCRETEReport();
+					instance = new ReportOH();
 				}
 			}
 		}
@@ -46,8 +45,8 @@ public final class CONCRETEReport extends AReportTemplate
 
 		for (List<ExplorationSite> portion : divideExplorationSites(sites))
 		{
-			//Sort Data nach BETON
-			HtmlTable reportTable = new HtmlTable.Builder()
+			//Sort Data nach OH
+			HtmlTable tableBericht = new HtmlTable.Builder()
 					.appendAttribute("class", "MsoNormalTable")
 					.appendAttribute("border", "1")
 					.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
@@ -55,22 +54,18 @@ public final class CONCRETEReport extends AReportTemplate
 					.appendAttribute("cellpadding", "0")
 					.build();
 
-			reportTable.appendContent(ConcreteFactory.createIDRow(portion));
-			reportTable.appendContent(ConcreteFactory.createAufschlussRow(portion));
+			tableBericht.appendContent(OhFactory.createIDRow(portion));
+			tableBericht.appendContent(OhFactory.createAufschlussRow(portion));
+			tableBericht.appendContent(buildTechnicalFeatures(portion));
+			tableBericht.appendContent(buildEnvironmentTechnicalFeatures(portion));
 
-			reportTable.appendContent(buildTechnicalFeatures(portion));
-			reportTable.appendContent(buildEnvironmentTechnicalFeatures(portion));
-
-			reportTable.appendContent(ConcreteFactory.createLegendeRow(portion));
-
-			strb.append(reportTable.appendTag());
+			strb.append(tableBericht.appendTag());
 		}
-
 		setHtmlTable(strb.toString());
 	}
 
 	@Override
-	String buildTechnicalFeatures(List<ExplorationSite> erkundungsstellen)
+	String buildTechnicalFeatures(List<ExplorationSite> explorationSites)
 	{
 		StringBuilder techBuilder = new StringBuilder();
 
@@ -79,21 +74,22 @@ public final class CONCRETEReport extends AReportTemplate
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "NormalHeader")
-						.appendAttribute("colspan", String.valueOf(1 + erkundungsstellen.size()))
+						.appendAttribute("colspan", String.valueOf(1 + explorationSites.size()))
 						.appendContent("Technische Merkmale")
 						.build()
 						.appendTag())
 				.build();
 
 		techBuilder.append(rowTECHMERKMALE.appendTag())
-				.append(ConcreteFactory.createDickenRow(erkundungsstellen))
-				.append(ConcreteFactory.createDruckfestigkeitRow(erkundungsstellen));
+				.append(OhFactory.createDIN18196Row(explorationSites))
+				.append(OhFactory.createDIN18915Row(explorationSites))
+				.append(OhFactory.createDIN18320Row(explorationSites));
 
 		return techBuilder.toString();
 	}
 
 	@Override
-	String buildEnvironmentTechnicalFeatures(List<ExplorationSite> erkundungsstellen)
+	String buildEnvironmentTechnicalFeatures(List<ExplorationSite> explorationSites)
 	{
 		StringBuilder umweltTechBuilder = new StringBuilder();
 
@@ -102,20 +98,18 @@ public final class CONCRETEReport extends AReportTemplate
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "NormalHeader")
-						.appendAttribute("colspan", String.valueOf(1 + erkundungsstellen.size()))
+						.appendAttribute("colspan", String.valueOf(1 + explorationSites.size()))
 						.appendContent("Umwelttechnische Merkmale")
 						.build()
 						.appendTag())
 				.build();
 
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())
-				.append(ConcreteFactory.createChemieIDRow(erkundungsstellen))
-				.append(ConcreteFactory.createChemieMufvRow(erkundungsstellen))
-				.append(ConcreteFactory.createChemieLagaRcRow(erkundungsstellen))
-				.append(ConcreteFactory.createChemieLagaRcOrientierungRow(erkundungsstellen))
-				.append(ConcreteFactory.createChemieTlGesteinRow(erkundungsstellen))
-				.append(ConcreteFactory.createChemieDepvRow(erkundungsstellen))
-				.append(ConcreteFactory.createAVVRow(erkundungsstellen));
+				.append(OhFactory.createChemieIDRow(explorationSites))
+				.append(OhFactory.createChemieLagaBoRow(explorationSites))
+				.append(OhFactory.createChemieDepvRow(explorationSites))
+				.append(OhFactory.createChemieEntscheidungshilfeRow(explorationSites))
+				.append(OhFactory.createChemieAbfallSchluesselRow(explorationSites));
 
 		return umweltTechBuilder.toString();
 	}
@@ -129,6 +123,6 @@ public final class CONCRETEReport extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht_BETON_Table.html";
+		return "Bericht_OH_Table.html";
 	}
 }

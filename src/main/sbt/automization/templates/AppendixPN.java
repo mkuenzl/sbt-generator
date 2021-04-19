@@ -4,6 +4,7 @@ import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.Layer;
 import sbt.automization.format.NameFormatUtil;
 import sbt.automization.format.TextFormatUtil;
+import sbt.automization.util.ObjectCreatorUtil;
 import sbt.automization.util.html.*;
 
 import java.util.ArrayList;
@@ -306,13 +307,14 @@ public final class AppendixPN extends AHtmlTemplate
         List<Layer> layerList = new ArrayList<>();
         for (Layer layer : layerListe)
         {
-            try
-            {
-                layerList.add((Layer) layer.clone());
-            } catch (CloneNotSupportedException e)
-            {
-                e.printStackTrace();
-            }
+ //           try
+ //           {
+                //layerList.add((Layer) layer.clone());
+                layerList.add(ObjectCreatorUtil.createLayer(layer.getDataMap()));
+//            } catch (CloneNotSupportedException e)
+//            {
+//                e.printStackTrace();
+//            }
         }
 
         int size = layerList.size();

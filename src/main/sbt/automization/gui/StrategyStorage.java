@@ -48,25 +48,25 @@ public class StrategyStorage
                 strategyList.add(AppendixLP.getInstance());
                 break;
             case "BERICHT_GOB":
-                strategyList.add(GOBReport.getInstance());
+                strategyList.add(ReportGOB.getInstance());
                 break;
             case "BERICHT_TOB":
-                strategyList.add(TOBReport.getInstance());
+                strategyList.add(ReportTOB.getInstance());
                 break;
             case "BERICHT_UG":
-                strategyList.add(UGReport.getInstance());
+                strategyList.add(ReportUG.getInstance());
                 break;
             case "BERICHT_OH":
-                strategyList.add(OHReport.getInstance());
+                strategyList.add(ReportOH.getInstance());
                 break;
-            case "BERICHT_TMBH_TEST":
-                strategyList.add(TMHBReport.getInstance());
+            case "BERICHT_TMHB_TEST":
+                strategyList.add(ReportTMHB.getInstance());
                 break;
             case "BERICHT_BETON_TEST":
-                strategyList.add(CONCRETEReport.getInstance());
+                strategyList.add(ReportCONCRETE.getInstance());
                 break;
             case "BERICHT_FUGE_TEST":
-                strategyList.add(FUGEReport.getInstance());
+                strategyList.add(ReportFUGE.getInstance());
                 break;
         }
     }
@@ -89,25 +89,25 @@ public class StrategyStorage
                 strategyList.remove(AppendixLP.getInstance());
                 break;
             case "BERICHT_GOB":
-                strategyList.remove(GOBReport.getInstance());
+                strategyList.remove(ReportGOB.getInstance());
                 break;
             case "BERICHT_TOB":
-                strategyList.remove(TOBReport.getInstance());
+                strategyList.remove(ReportTOB.getInstance());
                 break;
             case "BERICHT_UG":
-                strategyList.remove(UGReport.getInstance());
+                strategyList.remove(ReportUG.getInstance());
                 break;
             case "BERICHT_OH":
-                strategyList.remove(OHReport.getInstance());
+                strategyList.remove(ReportOH.getInstance());
                 break;
-            case "BERICHT_TMBH_TEST":
-                strategyList.remove(TMHBReport.getInstance());
+            case "BERICHT_TMHB_TEST":
+                strategyList.remove(ReportTMHB.getInstance());
                 break;
             case "BERICHT_BETON_TEST":
-                strategyList.remove(CONCRETEReport.getInstance());
+                strategyList.remove(ReportCONCRETE.getInstance());
                 break;
             case "BERICHT_FUGE_TEST":
-                strategyList.remove(FUGEReport.getInstance());
+                strategyList.remove(ReportFUGE.getInstance());
                 break;
         }
     }

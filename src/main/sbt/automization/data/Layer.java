@@ -37,6 +37,11 @@ public class Layer implements Comparable<Layer>, IProjektData, Cloneable, Serial
         return s;
     }
 
+    public Map<String, String> getDataMap()
+    {
+        return dataMap;
+    }
+
     @Override
     public Object clone() throws CloneNotSupportedException
     {

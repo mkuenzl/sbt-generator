@@ -91,7 +91,12 @@ public class TemplateTest
 	@Test
 	public void createPnTemplate() throws IOException
 	{
-		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(AppendixPN.getInstance());
+		HtmlTemplateExportStrategy htmlTemplateExportStrategy2 = new HtmlTemplateExportStrategy(AppendixPN.getInstance());
+		htmlTemplateExportStrategy2.export(explorationSites);
+
+		openExportFile(htmlTemplateExportStrategy2);
+
+		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(AppendixRuk.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
 		openExportFile(htmlTemplateExportStrategy);
@@ -100,7 +105,7 @@ public class TemplateTest
 	@Test
 	public void createBerichtOBTemplate() throws IOException
 	{
-		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(GOBReport.getInstance());
+		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(ReportGOB.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
 		openExportFile(htmlTemplateExportStrategy);
@@ -109,7 +114,7 @@ public class TemplateTest
 	@Test
 	public void createBerichtTOBTemplate() throws IOException
 	{
-		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(TOBReport.getInstance());
+		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(ReportTOB.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
 		openExportFile(htmlTemplateExportStrategy);
@@ -118,7 +123,7 @@ public class TemplateTest
 	@Test
 	public void createBerichtUGTemplate() throws IOException
 	{
-		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(UGReport.getInstance());
+		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(ReportUG.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
 		openExportFile(htmlTemplateExportStrategy);
@@ -127,7 +132,7 @@ public class TemplateTest
 	@Test
 	public void createBerichtOHTemplate() throws IOException
 	{
-		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(OHReport.getInstance());
+		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(ReportOH.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
 		openExportFile(htmlTemplateExportStrategy);
@@ -145,7 +150,7 @@ public class TemplateTest
 	@Test
 	public void createBerichtTMHBTemplate() throws IOException
 	{
-		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(TMHBReport.getInstance());
+		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(ReportTMHB.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
 		openExportFile(htmlTemplateExportStrategy);
@@ -154,7 +159,7 @@ public class TemplateTest
 	@Test
 	public void createBerichtBETONTemplate() throws IOException
 	{
-		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(CONCRETEReport.getInstance());
+		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(ReportCONCRETE.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
 		openExportFile(htmlTemplateExportStrategy);
@@ -163,7 +168,7 @@ public class TemplateTest
 	@Test
 	public void createBerichtFUGETemplate() throws IOException
 	{
-		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(FUGEReport.getInstance());
+		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(ReportFUGE.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
 		openExportFile(htmlTemplateExportStrategy);

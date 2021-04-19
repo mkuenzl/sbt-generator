@@ -59,7 +59,7 @@ public class CLI
                         this.strategy = AppendixExplorationSite.getInstance();
                         break;
                     case "Bericht_Template":
-                        this.strategy = GOBReport.getInstance();
+                        this.strategy = ReportGOB.getInstance();
                         break;
                     default:
                         System.err.println("Please provide a template.");

@@ -1,31 +1,31 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.templates.helper.UgFactory;
+import sbt.automization.templates.helper.TobFactory;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class UGReport extends AReportTemplate
+public final class ReportTOB extends AReportTemplate
 {
-	private static UGReport instance;
+	private static ReportTOB instance;
 
-	private UGReport()
+	private ReportTOB()
 	{
-		layerId = "UG";
+		layerId = "TOB";
 	}
 
-	public static UGReport getInstance()
+	public static ReportTOB getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (UGReport.class)
+			synchronized (ReportTOB.class)
 			{
 				if (instance == null)
 				{
-					instance = new UGReport();
+					instance = new ReportTOB();
 				}
 			}
 		}
@@ -45,7 +45,7 @@ public final class UGReport extends AReportTemplate
 
 		for (List<ExplorationSite> portion : divideExplorationSites(sites))
 		{
-			//Sort Data nach UG
+			//Sort Data nach TOB
 			HtmlTable reportTable = new HtmlTable.Builder()
 					.appendAttribute("class", "MsoNormalTable")
 					.appendAttribute("border", "1")
@@ -54,20 +54,18 @@ public final class UGReport extends AReportTemplate
 					.appendAttribute("cellpadding", "0")
 					.build();
 
-			reportTable.appendContent(UgFactory.createIDRow(portion));
-			reportTable.appendContent(UgFactory.createAufschlussRow(portion));
-			reportTable.appendContent(UgFactory.createDickeRow(portion));
-			reportTable.appendContent(UgFactory.createGesamtDickeRow(portion));
-			reportTable.appendContent(UgFactory.createZielTiefeRow(portion));
+			reportTable.appendContent(TobFactory.createIDRow(portion));
+			reportTable.appendContent(TobFactory.createAufschlussRow(portion));
+
 			reportTable.appendContent(buildTechnicalFeatures(portion));
 			reportTable.appendContent(buildEnvironmentTechnicalFeatures(portion));
-			reportTable.appendContent(UgFactory.createLegendeRow(sites));
+
+			reportTable.appendContent(TobFactory.createLegendeRow(portion));
 
 			strb.append(reportTable.appendTag());
 		}
 
 		setHtmlTable(strb.toString());
-
 	}
 
 	@Override
@@ -79,11 +77,11 @@ public final class UGReport extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht_UG_Table.html";
+		return "Bericht_TOB_Table.html";
 	}
 
 	@Override
-	String buildTechnicalFeatures(List<ExplorationSite> sites)
+	String buildTechnicalFeatures(List<ExplorationSite> explorationSites)
 	{
 		StringBuilder techBuilder = new StringBuilder();
 
@@ -92,30 +90,27 @@ public final class UGReport extends AReportTemplate
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "NormalHeader")
-						.appendAttribute("colspan", String.valueOf(1 + sites.size()))
+						.appendAttribute("colspan", String.valueOf(1 + explorationSites.size()))
 						.appendContent("Technische Merkmale")
 						.build()
 						.appendTag())
 				.build();
 
 		techBuilder.append(rowTECHMERKMALE.appendTag())
-				.append(UgFactory.createDIN18196Row(sites))
-				.append(UgFactory.createDIN18300Row(sites))
-				.append(UgFactory.createDIN19682Row(sites))
-				.append(UgFactory.createDIN18300_09Row(sites))
-				.append(UgFactory.createZTVRow(sites))
-				.append(UgFactory.createWasserGehaltRow(sites))
-				.append(UgFactory.createFeuchteZustandRow(sites))
-				.append(UgFactory.createKonsistenzRow(sites))
-				.append(UgFactory.createVerdichtungsfaehigkeitRow(sites))
-				.append(UgFactory.createTragPlanumRow(sites))
-				.append(UgFactory.createTragSohleRow(sites));
+				.append(TobFactory.createEvDynRow(explorationSites))
+				.append(TobFactory.createEvDyn85Row(explorationSites))
+				.append(TobFactory.createEv2Row(explorationSites))
+				.append(TobFactory.createEvSollRow(explorationSites))
+				.append(TobFactory.createMaterialRow(explorationSites))
+				.append(TobFactory.createDickeRow(explorationSites))
+				.append(TobFactory.createKGVRow(explorationSites))
+				.append(TobFactory.createGesamtDickeRow(explorationSites));
 
 		return techBuilder.toString();
 	}
 
 	@Override
-	String buildEnvironmentTechnicalFeatures(List<ExplorationSite> sites)
+	String buildEnvironmentTechnicalFeatures(List<ExplorationSite> explorationSites)
 	{
 		StringBuilder umweltTechBuilder = new StringBuilder();
 
@@ -124,23 +119,22 @@ public final class UGReport extends AReportTemplate
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "NormalHeader")
-						.appendAttribute("colspan", String.valueOf(1 + sites.size()))
+						.appendAttribute("colspan", String.valueOf(1 + explorationSites.size()))
 						.appendContent("Umwelttechnische Merkmale")
 						.build()
 						.appendTag())
 				.build();
 
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())
-				.append(UgFactory.createChemieIDRow(sites))
-				.append(UgFactory.createChemieMufvRow(sites))
-				.append(UgFactory.createChemieLagaBoRow(sites))
-				.append(UgFactory.createChemieLagaRcRow(sites))
-				.append(UgFactory.createChemieLagaRcOrientierungRow(sites))
-				.append(UgFactory.createChemieTlGesteinRow(sites))
-				.append(UgFactory.createChemieDepvRow(sites))
-				.append(UgFactory.createChemieEntscheidungshilfeRow(sites));
+				.append(TobFactory.createChemieIDRow(explorationSites))
+				.append(TobFactory.createChemieMufvRow(explorationSites))
+				.append(TobFactory.createChemieLagaBoRow(explorationSites))
+				.append(TobFactory.createChemieLagaRcRow(explorationSites))
+				.append(TobFactory.createChemieLagaRcOrientierungRow(explorationSites))
+				.append(TobFactory.createChemieTlGesteinRow(explorationSites))
+				.append(TobFactory.createChemieDepvRow(explorationSites))
+				.append(TobFactory.createChemieEntscheidungshilfeRow(explorationSites));
 
 		return umweltTechBuilder.toString();
 	}
-
 }

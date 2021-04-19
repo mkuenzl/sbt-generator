@@ -1,31 +1,31 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.templates.helper.OhFactory;
+import sbt.automization.templates.helper.TmhbFactory;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class OHReport extends AReportTemplate
+public final class ReportTMHB extends AReportTemplate
 {
-	private static OHReport instance;
+	private static ReportTMHB instance;
 
-	private OHReport()
+	private ReportTMHB()
 	{
-		layerId = "OH";
+		layerId = "TMHB";
 	}
 
-	public static OHReport getInstance()
+	public static ReportTMHB getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (OHReport.class)
+			synchronized (ReportTMHB.class)
 			{
 				if (instance == null)
 				{
-					instance = new OHReport();
+					instance = new ReportTMHB();
 				}
 			}
 		}
@@ -45,8 +45,8 @@ public final class OHReport extends AReportTemplate
 
 		for (List<ExplorationSite> portion : divideExplorationSites(sites))
 		{
-			//Sort Data nach OH
-			HtmlTable tableBericht = new HtmlTable.Builder()
+			//Sort Data nach TOB
+			HtmlTable reportTable = new HtmlTable.Builder()
 					.appendAttribute("class", "MsoNormalTable")
 					.appendAttribute("border", "1")
 					.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
@@ -54,14 +54,20 @@ public final class OHReport extends AReportTemplate
 					.appendAttribute("cellpadding", "0")
 					.build();
 
-			tableBericht.appendContent(OhFactory.createIDRow(portion));
-			tableBericht.appendContent(OhFactory.createAufschlussRow(portion));
-			tableBericht.appendContent(buildTechnicalFeatures(portion));
-			tableBericht.appendContent(buildEnvironmentTechnicalFeatures(portion));
+			reportTable.appendContent(TmhbFactory.createIDRow(portion));
+			reportTable.appendContent(TmhbFactory.createAufschlussRow(portion));
+			reportTable.appendContent(TmhbFactory.createGesamtDickeRow(portion));
+			reportTable.appendContent(TmhbFactory.createBelastungklasseRow(portion));
 
-			strb.append(tableBericht.appendTag());
+			reportTable.appendContent(buildTechnicalFeatures(portion));
+			reportTable.appendContent(buildEnvironmentTechnicalFeatures(portion));
+
+			reportTable.appendContent(TmhbFactory.createLegendeRow(portion));
+
+			strb.append(reportTable.appendTag());
 		}
 		setHtmlTable(strb.toString());
+
 	}
 
 	@Override
@@ -81,9 +87,8 @@ public final class OHReport extends AReportTemplate
 				.build();
 
 		techBuilder.append(rowTECHMERKMALE.appendTag())
-				.append(OhFactory.createDIN18196Row(explorationSites))
-				.append(OhFactory.createDIN18915Row(explorationSites))
-				.append(OhFactory.createDIN18320Row(explorationSites));
+				.append(TmhbFactory.createDickeRow(explorationSites))
+				.append(TmhbFactory.createDruckfestigkeitRow(explorationSites));
 
 		return techBuilder.toString();
 	}
@@ -105,11 +110,13 @@ public final class OHReport extends AReportTemplate
 				.build();
 
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())
-				.append(OhFactory.createChemieIDRow(explorationSites))
-				.append(OhFactory.createChemieLagaBoRow(explorationSites))
-				.append(OhFactory.createChemieDepvRow(explorationSites))
-				.append(OhFactory.createChemieEntscheidungshilfeRow(explorationSites))
-				.append(OhFactory.createChemieAbfallSchluesselRow(explorationSites));
+				.append(TmhbFactory.createChemieIDRow(explorationSites))
+				.append(TmhbFactory.createChemieMufvRow(explorationSites))
+				.append(TmhbFactory.createChemieLagaRcRow(explorationSites))
+				.append(TmhbFactory.createChemieLagaRcOrientierungRow(explorationSites))
+				.append(TmhbFactory.createChemieTlGesteinRow(explorationSites))
+				.append(TmhbFactory.createChemieDepvRow(explorationSites))
+				.append(TmhbFactory.createAVVRow(explorationSites));
 
 		return umweltTechBuilder.toString();
 	}
@@ -123,6 +130,8 @@ public final class OHReport extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht_OH_Table.html";
+		return "Bericht_TMHB_Table.html";
 	}
+
+
 }
