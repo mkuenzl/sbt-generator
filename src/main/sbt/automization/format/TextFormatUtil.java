@@ -2,6 +2,7 @@ package sbt.automization.format;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.Layer;
+import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
@@ -36,7 +37,7 @@ public final class TextFormatUtil
 	public static String formatLayerProctor(final Layer layer)
 	{
         String schicht_feuchtigkeit = layer.getInformation("SCHICHT_FEUCHTIGKEIT");
-        if ("".equals(schicht_feuchtigkeit))
+        if ("-".equals(schicht_feuchtigkeit))
 		{
 			return "-";
 		} else
@@ -117,7 +118,7 @@ public final class TextFormatUtil
 	public static String formatLayerProbe(final Layer layer)
 	{
 		String probenart;
-		if ("".equals(layer.getInformation("SCHICHT_BEHAELTNIS")))
+		if ("-".equals(layer.getInformation("SCHICHT_BEHAELTNIS")))
 		{
 			probenart = "EP";
 		} else
@@ -287,7 +288,7 @@ public final class TextFormatUtil
 		}
 
 
-		if (! "".equals(explorationSite.getInformation("ERK_LP")))
+		if (! "-".equals(explorationSite.getInformation("ERK_LP")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
@@ -486,6 +487,21 @@ public final class TextFormatUtil
 
 		return formatedSchichtenMaterial.toString();
 	}
+
+	public static String printLayerKindWithGranulation(final Layer layer)
+	{
+		String format = "";
+
+		String schicht_art = layer.getInformation("SCHICHT_ART");
+
+		String schicht_koernung = layer.getInformation("SCHICHT_KOERNUNG");
+		if ("-".equals(schicht_koernung)) schicht_koernung = "";
+
+		format = schicht_art.concat(" ").concat(schicht_koernung);
+
+		return format;
+	}
+
 
 	public static String printEmptyRow()
 	{

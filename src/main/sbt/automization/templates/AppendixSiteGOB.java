@@ -40,10 +40,9 @@ final class AppendixSiteGOB extends AHtmlTemplate
             String schicht_aufschluss = layer.getInformation("SCHICHT_AUFSCHLUSS");
             if ("GOB".equals(schicht_aufschluss) || "TMHB".equals(schicht_aufschluss) || "BETON".equals(schicht_aufschluss) ||"BESCHICHTUNG".equals(schicht_aufschluss) ||"ABDICHTUNG".equals(schicht_aufschluss))
             {
-                //Art der Schicht
                 HtmlCell cellSchichtArt = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent(layer.getInformation("SCHICHT_ART").concat("  ").concat(layer.getInformation("SCHICHT_KOERNUNG")))
+                        .appendContent(TextFormatUtil.printLayerKindWithGranulation(layer))
                         .build();
 
                 //Dicke

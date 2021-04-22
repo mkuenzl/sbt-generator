@@ -2,6 +2,7 @@ package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.Layer;
+import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
@@ -97,7 +98,7 @@ public final class AppendixRuk extends AHtmlTemplate
                     HtmlCell cellSchichtArtAndKoernung = new HtmlCell.Builder()
                             .appendAttribute("class", "Normal")
                             .appendAttribute("width", "170")
-                            .appendContent(layer.getInformation("SCHICHT_ART").concat("  ").concat(layer.getInformation("SCHICHT_KOERNUNG")))
+                            .appendContent(TextFormatUtil.printLayerKindWithGranulation(layer))
                             .build();
 
 
