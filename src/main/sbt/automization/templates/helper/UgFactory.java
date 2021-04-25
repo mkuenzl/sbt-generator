@@ -15,7 +15,7 @@ public class UgFactory
 	private static final String headerCellClass = "NormalHeader";
 	private static final String normalCellClass = "NormalBold";
 
-	public static String createIDRow(List<ExplorationSite> erkundungsstellen)
+	public static String createIDRow(List<ExplorationSite> explorationSites)
 	{
 		//Erkundungsstellen ID
 		HtmlRow row = new HtmlRow.Builder()
@@ -29,7 +29,7 @@ public class UgFactory
 				.build();
 
 		for (ExplorationSite explorationSite :
-				erkundungsstellen)
+				explorationSites)
 		{
 			HtmlCell htmlCell_ERK_ID = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -43,7 +43,7 @@ public class UgFactory
 		return row.appendTag();
 	}
 
-	public static String createDickeRow(List<ExplorationSite> erkundungsstellen)
+	public static String createDickeRow(List<ExplorationSite> explorationSites)
 	{
 		//Erkundungsstellen Aufschlussart
 		HtmlRow row = new HtmlRow.Builder()
@@ -63,14 +63,14 @@ public class UgFactory
 
 
 		for (ExplorationSite explorationSite :
-				erkundungsstellen)
+				explorationSites)
 		{
-			String aufschlussDicke = TextFormatUtil.formatSiteOutcropThickness(explorationSite, aufschluss);
+			String outcropThickness = TextFormatUtil.formatSiteOutcropThickness(explorationSite, aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
-					.appendContent(String.valueOf(aufschlussDicke))
+					.appendContent(outcropThickness)
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -79,7 +79,7 @@ public class UgFactory
 		return row.appendTag();
 	}
 
-	public static String createGesamtDickeRow(List<ExplorationSite> erkundungsstellen)
+	public static String createGesamtDickeRow(List<ExplorationSite> explorationSites)
 	{
 		//Erkundungsstellen Aufschlussart
 		HtmlRow row = new HtmlRow.Builder()
@@ -99,13 +99,13 @@ public class UgFactory
 
 
 		for (ExplorationSite explorationSite :
-				erkundungsstellen)
+				explorationSites)
 		{
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
-					.appendContent(String.valueOf(explorationSite.getDicke()).replace(".", ","))
+					.appendContent(String.valueOf(explorationSite.getThickness()).replace(".", ","))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -114,7 +114,7 @@ public class UgFactory
 		return row.appendTag();
 	}
 
-	public static String createZielTiefeRow(List<ExplorationSite> erkundungsstellen)
+	public static String createZielTiefeRow(List<ExplorationSite> explorationSites)
 	{
 		//ZIELTIEFE
 		HtmlRow row = new HtmlRow.Builder()
@@ -134,7 +134,7 @@ public class UgFactory
 
 		//Wenn GesamtDicke gleich Zieltiefe, dann grün ansonsten rot da Zieltiefe nicht erreicht wurde
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
 			String zieltiefe = explorationSite.getInformation("ERK_ZIELTIEFE");
 			double tiefe = Double.parseDouble(zieltiefe);
@@ -142,7 +142,7 @@ public class UgFactory
 			String backgroundColor;
 			String textColor;
 
-			if (tiefe <= explorationSite.getDicke()) {
+			if (tiefe <= explorationSite.getThickness()) {
 				backgroundColor = "green";
 				textColor = "black";
 			} else {
@@ -168,7 +168,7 @@ public class UgFactory
 		return row.appendTag();
 	}
 
-	public static String createAufschlussRow(List<ExplorationSite> erkundungsstellen)
+	public static String createAufschlussRow(List<ExplorationSite> explorationSites)
 	{
 		//Erkundungsstellen Aufschlussart
 		HtmlRow row = new HtmlRow.Builder()
@@ -182,7 +182,7 @@ public class UgFactory
 				.build();
 
 		for (ExplorationSite explorationSite :
-				erkundungsstellen)
+				explorationSites)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -196,7 +196,7 @@ public class UgFactory
 		return row.appendTag();
 	}
 
-	public static String createWasserGehaltRow(List<ExplorationSite> erkundungsstellen)
+	public static String createWasserGehaltRow(List<ExplorationSite> explorationSites)
 	{
 		//WASSERGEHALT
 		HtmlRow row = new HtmlRow.Builder()
@@ -214,9 +214,9 @@ public class UgFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -230,7 +230,7 @@ public class UgFactory
 		return row.appendTag();
 	}
 
-	public static String createFeuchteZustandRow(List<ExplorationSite> erkundungsstellen)
+	public static String createFeuchteZustandRow(List<ExplorationSite> explorationSites)
 	{
 		//FEUCHTEZUSTAND
 		HtmlRow row = new HtmlRow.Builder()
@@ -243,9 +243,9 @@ public class UgFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -259,7 +259,7 @@ public class UgFactory
 		return row.appendTag();
 	}
 
-	public static String createKonsistenzRow(List<ExplorationSite> erkundungsstellen)
+	public static String createKonsistenzRow(List<ExplorationSite> explorationSites)
 	{
 		//KONSISTENZ
 		HtmlRow row = new HtmlRow.Builder()
@@ -272,9 +272,9 @@ public class UgFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -288,7 +288,7 @@ public class UgFactory
 		return row.appendTag();
 	}
 
-	public static String createProctordichteRow(List<ExplorationSite> erkundungsstellen)
+	public static String createProctordichteRow(List<ExplorationSite> explorationSites)
 	{
 		//PROCTORDICHTE
 		HtmlRow row = new HtmlRow.Builder()
@@ -306,9 +306,9 @@ public class UgFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -322,7 +322,7 @@ public class UgFactory
 		return row.appendTag();
 	}
 
-	public static String createProtorDifferenzRow(List<ExplorationSite> erkundungsstellen)
+	public static String createProtorDifferenzRow(List<ExplorationSite> explorationSites)
 	{
 		//DIFFERENCE
 		HtmlRow row = new HtmlRow.Builder()
@@ -340,9 +340,9 @@ public class UgFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -356,7 +356,7 @@ public class UgFactory
 		return row.appendTag();
 	}
 
-	public static String createVerdichtungsfaehigkeitRow(List<ExplorationSite> erkundungsstellen)
+	public static String createVerdichtungsfaehigkeitRow(List<ExplorationSite> explorationSites)
 	{
 		//VERDICHTUNGSFÄHIGKEIT
 		HtmlRow row = new HtmlRow.Builder()
@@ -369,9 +369,9 @@ public class UgFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -385,7 +385,7 @@ public class UgFactory
 		return row.appendTag();
 	}
 
-	public static String createTragPlanumRow(List<ExplorationSite> erkundungsstellen)
+	public static String createTragPlanumRow(List<ExplorationSite> explorationSites)
 	{
 		//TRAGFAEHIGKEIT_PLANUM
 		HtmlRow row = new HtmlRow.Builder()
@@ -413,9 +413,9 @@ public class UgFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -429,7 +429,7 @@ public class UgFactory
 		return row.appendTag();
 	}
 
-	public static String createTragSohleRow(List<ExplorationSite> erkundungsstellen)
+	public static String createTragSohleRow(List<ExplorationSite> explorationSites)
 	{
 		//TRAGFAEHIGKEIT_GRABENSOHLE
 		HtmlRow row = new HtmlRow.Builder()
@@ -452,9 +452,9 @@ public class UgFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -473,7 +473,7 @@ public class UgFactory
 		return row.appendTag();
 	}
 
-	public static String createDIN18196Row(List<ExplorationSite> erkundungsstellen)
+	public static String createDIN18196Row(List<ExplorationSite> explorationSites)
 	{
 		//DIN18196
 		HtmlRow row = new HtmlRow.Builder()
@@ -491,9 +491,9 @@ public class UgFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -507,7 +507,7 @@ public class UgFactory
 		return row.appendTag();
 	}
 
-	public static String createDIN18300Row(List<ExplorationSite> erkundungsstellen)
+	public static String createDIN18300Row(List<ExplorationSite> explorationSites)
 	{
 		//DIN18300
 		HtmlRow row = new HtmlRow.Builder()
@@ -525,9 +525,9 @@ public class UgFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -541,7 +541,7 @@ public class UgFactory
 		return row.appendTag();
 	}
 
-	public static String createDIN19682Row(List<ExplorationSite> erkundungsstellen)
+	public static String createDIN19682Row(List<ExplorationSite> explorationSites)
 	{
 		//DIN19682
 		HtmlRow row = new HtmlRow.Builder()
@@ -564,9 +564,9 @@ public class UgFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -580,7 +580,7 @@ public class UgFactory
 		return row.appendTag();
 	}
 
-	public static String createDIN18300_09Row(List<ExplorationSite> erkundungsstellen)
+	public static String createDIN18300_09Row(List<ExplorationSite> explorationSites)
 	{
 		//DIN18300:2019-09
 		HtmlRow row = new HtmlRow.Builder()
@@ -598,9 +598,9 @@ public class UgFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -614,7 +614,7 @@ public class UgFactory
 		return row.appendTag();
 	}
 
-	public static String createZTVRow(List<ExplorationSite> erkundungsstellen)
+	public static String createZTVRow(List<ExplorationSite> explorationSites)
 	{
 		//ZTV-E
 		HtmlRow row = new HtmlRow.Builder()
@@ -637,9 +637,9 @@ public class UgFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -653,7 +653,7 @@ public class UgFactory
 		return row.appendTag();
 	}
 
-	public static String createChemieIDRow(List<ExplorationSite> erkundungsstellen)
+	public static String createChemieIDRow(List<ExplorationSite> explorationSites)
 	{
 		HtmlRow rowCHEMIE_ID = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
@@ -665,9 +665,9 @@ public class UgFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_ID = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -682,7 +682,7 @@ public class UgFactory
 
 	}
 
-	public static String createChemieMufvRow(List<ExplorationSite> erkundungsstellen)
+	public static String createChemieMufvRow(List<ExplorationSite> explorationSites)
 	{
 		HtmlRow rowCHEMIE_MUFV = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
@@ -704,9 +704,9 @@ public class UgFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_MUFV = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -720,7 +720,7 @@ public class UgFactory
 		return rowCHEMIE_MUFV.appendTag();
 	}
 
-	public static String createChemieLagaBoRow(List<ExplorationSite> erkundungsstellen)
+	public static String createChemieLagaBoRow(List<ExplorationSite> explorationSites)
 	{
 		HtmlRow rowCHEMIE_LAGA_BO = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
@@ -737,9 +737,9 @@ public class UgFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_LAGA_BO = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -753,7 +753,7 @@ public class UgFactory
 		return rowCHEMIE_LAGA_BO.appendTag();
 	}
 
-	public static String createChemieLagaRcRow(List<ExplorationSite> erkundungsstellen)
+	public static String createChemieLagaRcRow(List<ExplorationSite> explorationSites)
 	{
 		HtmlRow rowCHEMIE_LAGA_RC = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
@@ -770,9 +770,9 @@ public class UgFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_LAGA_RC = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -786,7 +786,7 @@ public class UgFactory
 		return rowCHEMIE_LAGA_RC.appendTag();
 	}
 
-	public static String createChemieLagaRcOrientierungRow(List<ExplorationSite> erkundungsstellen)
+	public static String createChemieLagaRcOrientierungRow(List<ExplorationSite> explorationSites)
 	{
 		HtmlRow rowCHEMIE_LAGA_RC_ORIENTIERUNG = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
@@ -803,9 +803,9 @@ public class UgFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -820,7 +820,7 @@ public class UgFactory
 
 	}
 
-	public static String createChemieTlGesteinRow(List<ExplorationSite> erkundungsstellen)
+	public static String createChemieTlGesteinRow(List<ExplorationSite> explorationSites)
 	{
 		HtmlRow rowCHEMIE_TL_GESTEIN = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
@@ -837,9 +837,9 @@ public class UgFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_TL_GESTEIN = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -854,7 +854,7 @@ public class UgFactory
 		return rowCHEMIE_TL_GESTEIN.appendTag();
 	}
 
-	public static String createChemieDepvRow(List<ExplorationSite> erkundungsstellen)
+	public static String createChemieDepvRow(List<ExplorationSite> explorationSites)
 	{
 		HtmlRow rowCHEMIE_DEPV = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
@@ -876,9 +876,9 @@ public class UgFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_DEPV = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -893,7 +893,7 @@ public class UgFactory
 		return rowCHEMIE_DEPV.appendTag();
 	}
 
-	public static String createChemieEntscheidungshilfeRow(List<ExplorationSite> erkundungsstellen)
+	public static String createChemieEntscheidungshilfeRow(List<ExplorationSite> explorationSites)
 	{
 		HtmlRow rowCHEMIE_ENTSCHEIDUNGSHILFE = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
@@ -910,9 +910,9 @@ public class UgFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_ENTSCHEIDUNGSILFE = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -926,14 +926,14 @@ public class UgFactory
 		return rowCHEMIE_ENTSCHEIDUNGSHILFE.appendTag();
 	}
 
-	public static String createLegendeRow(List<ExplorationSite> erkundungsstellen)
+	public static String createLegendeRow(List<ExplorationSite> explorationSites)
 	{
 		//Umwelttechnische Merkmale Trennzeile
 		HtmlRow rowLegende = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "NormalHeader")
-						.appendAttribute("colspan", String.valueOf(1 + erkundungsstellen.size()))
+						.appendAttribute("colspan", String.valueOf(1 + explorationSites.size()))
 						.appendContent("Für die angegebenen Tiefen (T[]) gilt die Einheit cm.")
 						.build()
 						.appendTag())

@@ -34,7 +34,7 @@ final class AppendixSiteTOB extends AHtmlTemplate
 				.build();
 
 
-		for (Layer layer : site.getSchichtList())
+		for (Layer layer : site.getLayers())
 		{
 			if ("TOB".equals(layer.getInformation("SCHICHT_AUFSCHLUSS").toUpperCase()))
 			{

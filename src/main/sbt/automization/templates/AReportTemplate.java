@@ -15,7 +15,7 @@ public abstract class AReportTemplate extends AHtmlTemplate
 	{
 
 		List<ExplorationSite> templateExplorationSites = sites.stream()
-				.filter(e -> e.getSchichtAufschluss(layerId).size() > 0)
+				.filter(e -> e.getLayersWithOutcrop(layerId).size() > 0)
 				.collect(Collectors.toList());
 
 		Collection<List<ExplorationSite>> dividedExplorationSites = Util.separateBasedOnSize(templateExplorationSites, 17);

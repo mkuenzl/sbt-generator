@@ -104,7 +104,7 @@ public final class TextFormatUtil
 	public static String formatSiteOutcropThickness(final ExplorationSite explorationSite, String outcrop)
 	{
 		double height = 0.0;
-		List<Layer> layerList = explorationSite.getSchichtAufschluss(outcrop);
+		List<Layer> layerList = explorationSite.getLayersWithOutcrop(outcrop);
 		for (Layer layer : layerList)
 		{
 
@@ -460,7 +460,7 @@ public final class TextFormatUtil
 	{
 		StringBuilder formatedSchichtenMaterial = new StringBuilder();
 
-		List<Layer> tob = explorationSite.getSchichtAufschluss("TOB");
+		List<Layer> tob = explorationSite.getLayersWithOutcrop("TOB");
 
 
 		int size = tob.size();
@@ -542,7 +542,7 @@ public final class TextFormatUtil
 
 	public static String printLayerInformation(final ExplorationSite explorationSite, final String outcrop, final String tag)
 	{
-		List<Layer> schichten = explorationSite.getSchichtAufschluss(outcrop);
+		List<Layer> schichten = explorationSite.getLayersWithOutcrop(outcrop);
 
 		StringBuilder stringBuilder = new StringBuilder();
 
@@ -717,7 +717,7 @@ public final class TextFormatUtil
 
 	public static String printRukLayers(final ExplorationSite explorationSite, final String outcrop)
 	{
-		List<Layer> tob = explorationSite.getSchichtAufschluss(outcrop);
+		List<Layer> tob = explorationSite.getLayersWithOutcrop(outcrop);
 
 		StringBuilder stringBuilder = new StringBuilder();
 

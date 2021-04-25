@@ -38,7 +38,6 @@ public class ExplorationSite implements Comparable<ExplorationSite>, IProjektDat
     private String lpEv2;
     private String lpEv2SollTiefe;
 
-
     private Map<String, String> dataMap;
     private final List<Layer> layerList = new ArrayList<>();
 
@@ -121,54 +120,54 @@ public class ExplorationSite implements Comparable<ExplorationSite>, IProjektDat
         return s;
     }
 
-    public void addSchicht(Layer layer)
+    public void addLayer(Layer layer)
     {
         layerList.add(layer);
     }
 
-    public List<Layer> getSchichtList()
+    public List<Layer> getLayers()
     {
         return layerList;
     }
 
-    public List<Layer> getSchichtAufschluss(final String aufschluss)
+    public List<Layer> getLayersWithOutcrop(final String outcrop)
     {
-        List<Layer> layerAufschlussList = new ArrayList<>();
+        List<Layer> layers = new ArrayList<>();
         for (Layer layer : layerList)
         {
-            if (aufschluss.equals(layer.getInformation("SCHICHT_AUFSCHLUSS")))
+            if (outcrop.equals(layer.getInformation("SCHICHT_AUFSCHLUSS")))
             {
-                layerAufschlussList.add(layer);
+                layers.add(layer);
             }
         }
-        return layerAufschlussList;
+        return layers;
     }
 
-    public Double getDicke()
+    public Double getThickness()
     {
         double d = 0;
 
         for (Layer layer : layerList) {
-            String schicht_dicke = layer.getInformation("SCHICHT_DICKE").replace(",",".");
-            d += Double.parseDouble(schicht_dicke);
+            String layerThickness = layer.getInformation("SCHICHT_DICKE").replace(",",".");
+            d += Double.parseDouble(layerThickness);
         }
 
         return d;
     }
 
-    public Double getAufschlussDicke(final String aufschluss)
+    public Double getOutcropThickness(final String outcrop)
     {
         double d = 0;
 
-        for (Layer layer : getSchichtAufschluss(aufschluss)) {
-            String schicht_dicke = layer.getInformation("SCHICHT_DICKE").replace(",",".");
-            d += Double.parseDouble(schicht_dicke);
+        for (Layer layer : getLayersWithOutcrop(outcrop)) {
+            String layerThickness = layer.getInformation("SCHICHT_DICKE").replace(",",".");
+            d += Double.parseDouble(layerThickness);
         }
 
         return d;
     }
 
-    public void sortSchichten()
+    public void sortLayer()
     {
         Collections.sort(layerList);
     }
@@ -183,6 +182,10 @@ public class ExplorationSite implements Comparable<ExplorationSite>, IProjektDat
         this.identifier = identifier;
         return this;
     }
+
+
+    //TODO
+
 
     public String getDatum()
     {

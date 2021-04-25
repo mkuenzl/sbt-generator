@@ -78,14 +78,14 @@ public class ErkundungsstellenTestFactory
 	{
 		explorationSite1.setDataMap(buildErkDaten());
 		buildSchichtDaten();
-		explorationSite1.addSchicht(layer1_GOB);
-		explorationSite1.addSchicht(layer2_GOB);
-		explorationSite1.addSchicht(layer3_GOB);
-		explorationSite1.addSchicht(layer4_GOB);
-		explorationSite1.addSchicht(layer5_1_TOB);
-		explorationSite1.addSchicht(layer6_1_TOB);
-		explorationSite1.addSchicht(layer7_1_TOB);
-		explorationSite1.addSchicht(layer8_UG);
+		explorationSite1.addLayer(layer1_GOB);
+		explorationSite1.addLayer(layer2_GOB);
+		explorationSite1.addLayer(layer3_GOB);
+		explorationSite1.addLayer(layer4_GOB);
+		explorationSite1.addLayer(layer5_1_TOB);
+		explorationSite1.addLayer(layer6_1_TOB);
+		explorationSite1.addLayer(layer7_1_TOB);
+		explorationSite1.addLayer(layer8_UG);
 
 		return explorationSite1;
 	}
@@ -94,10 +94,10 @@ public class ErkundungsstellenTestFactory
 	{
 		explorationSite2.setDataMap(buildErkDaten());
 		buildSchichtDaten();
-		explorationSite2.addSchicht(layer1_GOB);
-		explorationSite2.addSchicht(layer2_GOB);
-		explorationSite2.addSchicht(layer3_GOB);
-		explorationSite2.addSchicht(layer4_GOB);
+		explorationSite2.addLayer(layer1_GOB);
+		explorationSite2.addLayer(layer2_GOB);
+		explorationSite2.addLayer(layer3_GOB);
+		explorationSite2.addLayer(layer4_GOB);
 
 		return explorationSite2;
 	}
@@ -107,12 +107,12 @@ public class ErkundungsstellenTestFactory
 	{
 		explorationSite3.setDataMap(buildErkDaten());
 		buildSchichtDaten();
-		explorationSite3.addSchicht(layer1_GOB);
-		explorationSite3.addSchicht(layer2_GOB);
-		explorationSite3.addSchicht(layer3_GOB);
-		explorationSite3.addSchicht(layer4_GOB);
-		explorationSite3.addSchicht(layer5_1_TOB);
-		explorationSite3.addSchicht(layer6_2_TOB);
+		explorationSite3.addLayer(layer1_GOB);
+		explorationSite3.addLayer(layer2_GOB);
+		explorationSite3.addLayer(layer3_GOB);
+		explorationSite3.addLayer(layer4_GOB);
+		explorationSite3.addLayer(layer5_1_TOB);
+		explorationSite3.addLayer(layer6_2_TOB);
 
 		return explorationSite3;
 	}
@@ -121,12 +121,12 @@ public class ErkundungsstellenTestFactory
 	{
 		explorationSite4.setDataMap(buildErkDaten());
 		buildSchichtDaten();
-		explorationSite4.addSchicht(layer1_GOB);
-		explorationSite4.addSchicht(layer2_GOB);
-		explorationSite4.addSchicht(layer3_GOB);
-		explorationSite4.addSchicht(layer4_GOB);
-		explorationSite4.addSchicht(layer5_2_TOB);
-		explorationSite3.addSchicht(layer6_2_TOB);
+		explorationSite4.addLayer(layer1_GOB);
+		explorationSite4.addLayer(layer2_GOB);
+		explorationSite4.addLayer(layer3_GOB);
+		explorationSite4.addLayer(layer4_GOB);
+		explorationSite4.addLayer(layer5_2_TOB);
+		explorationSite3.addLayer(layer6_2_TOB);
 
 
 		return explorationSite4;
@@ -136,12 +136,12 @@ public class ErkundungsstellenTestFactory
 	{
 		explorationSite5.setDataMap(buildErkDaten());
 		buildSchichtDaten();
-		explorationSite5.addSchicht(layer1_GOB);
-		explorationSite5.addSchicht(layer2_GOB);
-		explorationSite5.addSchicht(layer3_GOB);
-		explorationSite5.addSchicht(layer4_GOB);
-		explorationSite5.addSchicht(layer5_2_TOB);
-		explorationSite5.addSchicht(layer7_2_TOB);
+		explorationSite5.addLayer(layer1_GOB);
+		explorationSite5.addLayer(layer2_GOB);
+		explorationSite5.addLayer(layer3_GOB);
+		explorationSite5.addLayer(layer4_GOB);
+		explorationSite5.addLayer(layer5_2_TOB);
+		explorationSite5.addLayer(layer7_2_TOB);
 
 
 		return explorationSite5;

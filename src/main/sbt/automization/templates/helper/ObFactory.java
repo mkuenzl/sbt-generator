@@ -407,7 +407,7 @@ public class ObFactory
 		{
 			boolean empty = true;
 
-			List<Layer> gob = explorationSite.getSchichtAufschluss("GOB");
+			List<Layer> gob = explorationSite.getLayersWithOutcrop("GOB");
 
 			if (gob != null)
 			{

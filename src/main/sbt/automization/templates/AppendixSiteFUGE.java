@@ -35,7 +35,7 @@ final class AppendixSiteFUGE extends AHtmlTemplate
 				.appendContent(setHtmlTableHeader())
 				.build();
 
-		for (Layer layer : site.getSchichtList())
+		for (Layer layer : site.getLayers())
 		{
 			if ("FUGE".equals(layer.getInformation("SCHICHT_AUFSCHLUSS")))
 			{

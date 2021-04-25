@@ -51,7 +51,7 @@ public final class AppendixPN extends AHtmlTemplate
 
         for (ExplorationSite explorationSite : sites)
         {
-            List<Layer> layerList = formatSchichtList(explorationSite.getSchichtList());
+            List<Layer> layerList = formatSchichtList(explorationSite.getLayers());
 
             for (Layer layer : layerList)
             {

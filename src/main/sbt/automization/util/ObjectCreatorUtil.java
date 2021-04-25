@@ -25,7 +25,7 @@ public class ObjectCreatorUtil
                 ExplorationSite explorationSite = new ExplorationSite(dataRow);
 
                 Layer layer = createLayer(dataRow);
-                explorationSite.addSchicht(layer);
+                explorationSite.addLayer(layer);
                 explorationSites.add(explorationSite);
             } else
             {
@@ -34,7 +34,7 @@ public class ObjectCreatorUtil
                     if (explorationSite.getInformation("ERK_ID").equals(erkID))
                     {
                         Layer layer = createLayer(dataRow);
-                        explorationSite.addSchicht(layer);
+                        explorationSite.addLayer(layer);
                     }
                 }
             }
@@ -43,7 +43,7 @@ public class ObjectCreatorUtil
         for (ExplorationSite explorationSite : explorationSites)
         {
             //Sortiert die Schichten in einer Erkundungsstellen
-            explorationSite.sortSchichten();
+            explorationSite.sortLayer();
         }
 
         //Sortiert die Erkundungsstellen

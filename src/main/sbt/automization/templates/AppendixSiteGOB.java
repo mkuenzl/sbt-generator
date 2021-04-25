@@ -35,7 +35,7 @@ final class AppendixSiteGOB extends AHtmlTemplate
                 .appendContent(setHtmlTableHeader())
                 .build();
 
-        for (Layer layer : site.getSchichtList())
+        for (Layer layer : site.getLayers())
         {
             String schicht_aufschluss = layer.getInformation("SCHICHT_AUFSCHLUSS");
             if ("GOB".equals(schicht_aufschluss) || "TMHB".equals(schicht_aufschluss) || "BETON".equals(schicht_aufschluss) ||"BESCHICHTUNG".equals(schicht_aufschluss) ||"ABDICHTUNG".equals(schicht_aufschluss))

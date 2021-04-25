@@ -36,7 +36,7 @@ final class AppendixSiteOH extends AHtmlTemplate
                 .appendContent(setHtmlTableHeader())
                 .build();
 
-        for (Layer layer : site.getSchichtList())
+        for (Layer layer : site.getLayers())
         {
             if ("OH".equals(layer.getInformation("SCHICHT_AUFSCHLUSS")))
             {

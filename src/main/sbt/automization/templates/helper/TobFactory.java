@@ -346,7 +346,7 @@ public class TobFactory
 
 		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_ID = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -385,7 +385,7 @@ public class TobFactory
 
 		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_MUFV = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -418,7 +418,7 @@ public class TobFactory
 
 		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_LAGA_BO = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -451,7 +451,7 @@ public class TobFactory
 
 		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_LAGA_RC = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -484,7 +484,7 @@ public class TobFactory
 
 		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -518,7 +518,7 @@ public class TobFactory
 
 		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_TL_GESTEIN = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -552,7 +552,7 @@ public class TobFactory
 
 		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_DEPV = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -586,7 +586,7 @@ public class TobFactory
 
 		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getSchichtAufschluss(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
 			HtmlCell htmlCell_CHEMIE_ENTSCHEIDUNGSILFE = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)

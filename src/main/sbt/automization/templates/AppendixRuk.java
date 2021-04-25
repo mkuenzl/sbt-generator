@@ -49,7 +49,7 @@ public final class AppendixRUK extends AHtmlTemplate
 
         for (ExplorationSite explorationSite : sites)
         {
-            List<Layer> sList = explorationSite.getSchichtList();
+            List<Layer> sList = explorationSite.getLayers();
 
             for (Layer layer : sList)
             {
