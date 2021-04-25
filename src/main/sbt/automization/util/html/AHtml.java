@@ -7,11 +7,10 @@ abstract class AHtml implements IHtmlCode
 {
 
     String content = "";
-    Map<String, String> attributes;
+    Map<String, String> attributes = new HashMap<>();
 
     public AHtml()
     {
-        attributes = new HashMap();
     }
 
     String appendAttributes()
@@ -47,8 +46,7 @@ abstract class AHtml implements IHtmlCode
 
     public boolean isWithoutContent()
     {
-        if ("".equals(content)) return true;
-        return false;
+        return "".equals(content);
     }
 
     protected static abstract class BaseHtmlBuilder<T extends AHtml, B extends BaseHtmlBuilder>

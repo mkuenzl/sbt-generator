@@ -7,10 +7,9 @@ import java.io.File;
 
 public class CLI
 {
-    private String[] args;
-    private Options options;
-    private String csvFilePath;
-    private File file = new File(System.getProperty("user.dir").concat(File.separator).concat("datenbank.csv"));
+    private final String[] args;
+    private final Options options;
+    private final File file = new File(System.getProperty("user.dir").concat(File.separator).concat("datenbank.csv"));
     private IHtmlTemplate strategy;
 
     public CLI(String[] args)
@@ -33,7 +32,7 @@ public class CLI
 
             if (cmd.hasOption("c"))
             {
-                csvFilePath = cmd.getOptionValue("c");
+                String csvFilePath = cmd.getOptionValue("c");
             }
 
             if (cmd.hasOption("h"))
