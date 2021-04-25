@@ -68,12 +68,6 @@ public class UtilTest
 	{
 		List<ExplorationSite> erkundungsstellen = new ArrayList<>();
 
-//		ErkundungsstellenTestFactory erkundungsstellenTestFactory = new ErkundungsstellenTestFactory();
-//		for (int i = 0 ; i < 100 ; i++)
-//		{
-//			erkundungsstellen.add(erkundungsstellenTestFactory.getTestErkundungsstelle1());
-//		}
-
 		Collection<List<ExplorationSite>> partionBasedOnSize = Util.separateBasedOnSize(erkundungsstellen, 5);
 
 		Assert.assertTrue(partionBasedOnSize.size() == 0);

@@ -53,7 +53,7 @@ public class CLI
                         this.strategy = AppendixPN.getInstance();
                         break;
                     case "RUK_Template":
-                        this.strategy = AppendixRuk.getInstance();
+                        this.strategy = AppendixRUK.getInstance();
                         break;
                     case "ERK_Template":
                         this.strategy = AppendixExplorationSite.getInstance();

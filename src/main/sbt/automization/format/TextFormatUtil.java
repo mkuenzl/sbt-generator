@@ -2,7 +2,6 @@ package sbt.automization.format;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.Layer;
-import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
@@ -36,8 +35,8 @@ public final class TextFormatUtil
 
 	public static String formatLayerProctor(final Layer layer)
 	{
-        String schicht_feuchtigkeit = layer.getInformation("SCHICHT_FEUCHTIGKEIT");
-        if ("-".equals(schicht_feuchtigkeit))
+		String schicht_feuchtigkeit = layer.getInformation("SCHICHT_FEUCHTIGKEIT");
+		if ("-".equals(schicht_feuchtigkeit))
 		{
 			return "-";
 		} else
@@ -81,15 +80,15 @@ public final class TextFormatUtil
 					.appendContent(ev2)
 					.build()
 					.appendTag())
-				.append(new HtmlText.Builder()
-						.appendAttribute("class", "Normal6")
-						.appendContent("&nbsp;")
-						.build()
-						.appendTag())
-				.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal6")
-					.appendContent(range)
-					.build().appendTag());
+					.append(new HtmlText.Builder()
+							.appendAttribute("class", "Normal6")
+							.appendContent("&nbsp;")
+							.build()
+							.appendTag())
+					.append(new HtmlText.Builder()
+							.appendAttribute("class", "Normal6")
+							.appendContent(range)
+							.build().appendTag());
 		} else
 		{
 			strb.append(new HtmlText.Builder()
@@ -112,7 +111,7 @@ public final class TextFormatUtil
 			height = height + Double.parseDouble(layer.getInformation("SCHICHT_DICKE").replace(",", "."));
 		}
 		String h = String.valueOf(height);
-		return h.replace(".",",");
+		return h.replace(".", ",");
 	}
 
 	public static String formatLayerProbe(final Layer layer)
@@ -251,20 +250,20 @@ public final class TextFormatUtil
 					.appendTag());
 		}
 
-        String erk_variable_footnote1 = explorationSite.getInformation("ERK_VARIABLE_FOOTNOTE1");
-        if (erk_variable_footnote1 != null && !erk_variable_footnote1.equals("#") && !erk_variable_footnote1.equals("-"))
-        {
-            stringBuilder.append(new HtmlText.Builder()
-                    .appendAttribute("class", "Normal")
-                    .appendContent(String.valueOf(footnoteCounter++))
-                    .appendContent(".) ")
-                    .appendContent(erk_variable_footnote1)
-                    .build()
-                    .appendTag());
-        }
+		String erk_variable_footnote1 = explorationSite.getInformation("ERK_VARIABLE_FOOTNOTE1");
+		if (erk_variable_footnote1 != null && ! erk_variable_footnote1.equals("#") && ! erk_variable_footnote1.equals("-"))
+		{
+			stringBuilder.append(new HtmlText.Builder()
+					.appendAttribute("class", "Normal")
+					.appendContent(String.valueOf(footnoteCounter++))
+					.appendContent(".) ")
+					.appendContent(erk_variable_footnote1)
+					.build()
+					.appendTag());
+		}
 
 		String erk_variable_footnote2 = explorationSite.getInformation("ERK_VARIABLE_FOOTNOTE2");
-		if (erk_variable_footnote2 != null && !erk_variable_footnote2.equals("#") && !erk_variable_footnote2.equals("-"))
+		if (erk_variable_footnote2 != null && ! erk_variable_footnote2.equals("#") && ! erk_variable_footnote2.equals("-"))
 		{
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
@@ -276,7 +275,7 @@ public final class TextFormatUtil
 		}
 
 		String erk_variable_footnote3 = explorationSite.getInformation("ERK_VARIABLE_FOOTNOTE3");
-		if (erk_variable_footnote3 != null && !erk_variable_footnote3.equals("#") && !erk_variable_footnote3.equals("-"))
+		if (erk_variable_footnote3 != null && ! erk_variable_footnote3.equals("#") && ! erk_variable_footnote3.equals("-"))
 		{
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
@@ -305,6 +304,21 @@ public final class TextFormatUtil
 
 		}
 		return stringBuilder.toString();
+	}
+
+	public static String printLineBreak()
+	{
+		return "<br>";
+	}
+
+	public static String printEmptyRow()
+	{
+		HtmlText lineBreak = new HtmlText.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent("&nbsp;")
+				.build();
+
+		return lineBreak.appendTag();
 	}
 
 	public static String formatLayerDepth(final Layer layer)
@@ -411,8 +425,6 @@ public final class TextFormatUtil
 				kindText = "Organogene Schluffe";
 				break;
 			case "OT":
-				//schicht_art = "Organogene Tone";
-				//break;
 			case "OH":
 				kindText = "Oberboden";
 				break;
@@ -488,34 +500,16 @@ public final class TextFormatUtil
 		return formatedSchichtenMaterial.toString();
 	}
 
-	public static String printLayerKindWithGranulation(final Layer layer)
+	public static String printFormattedLayerDepth(final Layer layer)
 	{
-		String format = "";
+		String tiefe = "[T: " + layer.getInformation("SCHICHT_TIEFE_START") + " - " + layer.getInformation("SCHICHT_TIEFE_ENDE") + "]";
 
-		String schicht_art = layer.getInformation("SCHICHT_ART");
-
-		String schicht_koernung = layer.getInformation("SCHICHT_KOERNUNG");
-		if ("-".equals(schicht_koernung)) schicht_koernung = "";
-
-		format = schicht_art.concat(" ").concat(schicht_koernung);
-
-		return format;
-	}
-
-
-	public static String printEmptyRow()
-	{
-		HtmlText lineBreak = new HtmlText.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent("&nbsp;")
+		HtmlText formatedTiefe = new HtmlText.Builder()
+				.appendAttribute("class", "Normal6")
+				.appendContent(tiefe)
 				.build();
 
-		return lineBreak.appendTag();
-	}
-
-	public static String printLineBreak()
-	{
-		return "<br>";
+		return formatedTiefe.appendTag();
 	}
 
 	public static String printCellTextDivider()
@@ -532,6 +526,20 @@ public final class TextFormatUtil
 		return strb.toString();
 	}
 
+	public static String printLayerKindWithGranulation(final Layer layer)
+	{
+		String format = "";
+
+		String schicht_art = layer.getInformation("SCHICHT_ART");
+
+		String schicht_koernung = layer.getInformation("SCHICHT_KOERNUNG");
+		if ("-".equals(schicht_koernung)) schicht_koernung = "";
+
+		format = schicht_art.concat(" ").concat(schicht_koernung);
+
+		return format;
+	}
+
 	public static String printLayerInformation(final ExplorationSite explorationSite, final String outcrop, final String tag)
 	{
 		List<Layer> schichten = explorationSite.getSchichtAufschluss(outcrop);
@@ -540,7 +548,7 @@ public final class TextFormatUtil
 
 		int number = schichten.size();
 
-		for (int i = 0; i < number; i++)
+		for (int i = 0 ; i < number ; i++)
 		{
 			Layer layer = schichten.get(i);
 
@@ -559,79 +567,31 @@ public final class TextFormatUtil
 			}
 
 
-				if (i > 0)
-				{
-					stringBuilder.append(printCellTextDivider());
-				}
+			if (i > 0)
+			{
+				stringBuilder.append(printCellTextDivider());
+			}
 
-				stringBuilder.append(formatedTag);
+			stringBuilder.append(formatedTag);
 
 
 //				if (number > 1)
 //				{
 
-					HtmlText formatedTiefe = new HtmlText.Builder()
-							.appendAttribute("class", "Normal6")
-							.appendContent("[T:")
-							.appendContent(layer.getInformation("SCHICHT_TIEFE_START"))
-							.appendContent("-")
-							.appendContent(layer.getInformation("SCHICHT_TIEFE_ENDE"))
-							.appendContent("]")
-							.build();
+			HtmlText formatedTiefe = new HtmlText.Builder()
+					.appendAttribute("class", "Normal6")
+					.appendContent("[T:")
+					.appendContent(layer.getInformation("SCHICHT_TIEFE_START"))
+					.appendContent("-")
+					.appendContent(layer.getInformation("SCHICHT_TIEFE_ENDE"))
+					.appendContent("]")
+					.build();
 
-					stringBuilder.append(printEmptyRow());
-					stringBuilder.append(printFormattedLayerDepth(layer));
+			stringBuilder.append(printEmptyRow());
+			stringBuilder.append(printFormattedLayerDepth(layer));
 //				}
 
 
-			}
-
-		return stringBuilder.toString();
-	}
-
-	public static String printFormattedLayerDepth(final Layer layer)
-	{
-		String tiefe = "[T: " + layer.getInformation("SCHICHT_TIEFE_START") +" - "+ layer.getInformation("SCHICHT_TIEFE_ENDE")+"]";
-
-		HtmlText formatedTiefe = new HtmlText.Builder()
-				.appendAttribute("class", "Normal6")
-				.appendContent(tiefe)
-				.build();
-
-		return formatedTiefe.appendTag();
-	}
-
-	public static String printRukLayers(final ExplorationSite explorationSite, final String outcrop)
-	{
-		List<Layer> tob = explorationSite.getSchichtAufschluss(outcrop);
-
-		StringBuilder stringBuilder = new StringBuilder();
-
-		for (Layer layer : tob)
-		{
-			String ruk = layer.getInformation("SCHICHT_RUK");
-
-			if (!"-".equals(ruk) && !"".equals(ruk))
-			{
-				if (0 != stringBuilder.length())
-				{
-					stringBuilder.append(printCellTextDivider());
-				}
-
-				HtmlText text1 = new HtmlText.Builder()
-						.appendAttribute("class", "Normal6")
-						.appendContent(layer.getInformation("SCHICHT_ART"))
-						.build();
-
-				HtmlText text2 = new HtmlText.Builder()
-						.appendAttribute("class", "Normal")
-						.appendContent(ruk)
-						.build();
-
-				stringBuilder.append(text1.appendTag())
-						.append(text2.appendTag());
-
-			}
 		}
 
 		return stringBuilder.toString();
@@ -709,26 +669,26 @@ public final class TextFormatUtil
 				break;
 			case "nicht gefährlich":
 				stringBuilder.append(new HtmlText.Builder()
-							.appendAttribute("class", "Normal")
-							.appendContent("<span style=\"background-color: white;font-weight: bold;\n" +
-									"  color: black\">")
-							.appendContent("nicht")
-							.appendContent("</span>")
-							.build().appendTag())
+						.appendAttribute("class", "Normal")
+						.appendContent("<span style=\"background-color: white;font-weight: bold;\n" +
+								"  color: black\">")
+						.appendContent("nicht")
+						.appendContent("</span>")
+						.build().appendTag())
 						.append(new HtmlText.Builder()
-							.appendAttribute("class", "Normal")
-							.appendContent("<span style=\"font-weight: bold\";>")
-							.appendContent("gefährlich")
-							.appendContent("</span>")
-							.build().appendTag());
+								.appendAttribute("class", "Normal")
+								.appendContent("<span style=\"font-weight: bold\";>")
+								.appendContent("gefährlich")
+								.appendContent("</span>")
+								.build().appendTag());
 				break;
 			case "nicht eingehalten":
 				stringBuilder.append(new HtmlText.Builder()
-							.appendAttribute("class", "Normal")
-							.appendContent("<span style=\"font-weight: bold\";>")
-							.appendContent("nicht")
-							.appendContent("</span>")
-							.build().appendTag())
+						.appendAttribute("class", "Normal")
+						.appendContent("<span style=\"font-weight: bold\";>")
+						.appendContent("nicht")
+						.appendContent("</span>")
+						.build().appendTag())
 						.append(new HtmlText.Builder()
 								.appendAttribute("class", "Normal")
 								.appendContent("<span style=\"font-weight: bold\";>")
@@ -750,6 +710,42 @@ public final class TextFormatUtil
 						.appendContent(classification)
 						.build().appendTag());
 				break;
+		}
+
+		return stringBuilder.toString();
+	}
+
+	public static String printRukLayers(final ExplorationSite explorationSite, final String outcrop)
+	{
+		List<Layer> tob = explorationSite.getSchichtAufschluss(outcrop);
+
+		StringBuilder stringBuilder = new StringBuilder();
+
+		for (Layer layer : tob)
+		{
+			String ruk = layer.getInformation("SCHICHT_RUK");
+
+			if (! "-".equals(ruk) && ! "".equals(ruk))
+			{
+				if (0 != stringBuilder.length())
+				{
+					stringBuilder.append(printCellTextDivider());
+				}
+
+				HtmlText text1 = new HtmlText.Builder()
+						.appendAttribute("class", "Normal6")
+						.appendContent(layer.getInformation("SCHICHT_ART"))
+						.build();
+
+				HtmlText text2 = new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent(ruk)
+						.build();
+
+				stringBuilder.append(text1.appendTag())
+						.append(text2.appendTag());
+
+			}
 		}
 
 		return stringBuilder.toString();

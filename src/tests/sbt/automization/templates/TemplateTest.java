@@ -73,7 +73,7 @@ public class TemplateTest
 	@Test
 	public void createRukTemplate() throws IOException
 	{
-		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(AppendixRuk.getInstance());
+		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(AppendixRUK.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
 		openExportFile(htmlTemplateExportStrategy);
@@ -96,7 +96,7 @@ public class TemplateTest
 
 		openExportFile(htmlTemplateExportStrategy2);
 
-		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(AppendixRuk.getInstance());
+		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(AppendixRUK.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
 		openExportFile(htmlTemplateExportStrategy);
