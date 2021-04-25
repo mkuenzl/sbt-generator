@@ -35,16 +35,16 @@ public class StrategyStorage
     {
         switch (strategyName)
         {
-            case "PN_TABELLE":
+            case "ANLAGE_PN":
                 strategyList.add(AppendixPN.getInstance());
                 break;
-            case "RUK_TABELLE":
-                strategyList.add(AppendixRuk.getInstance());
+            case "ANLAGE_RUK":
+                strategyList.add(AppendixRUK.getInstance());
                 break;
-            case "ERK_TABELLE":
+            case "ANLAGE_ERK":
                 strategyList.add(AppendixExplorationSite.getInstance());
                 break;
-            case "LP_TABELLE":
+            case "ANLAGE_LP":
                 strategyList.add(AppendixLP.getInstance());
                 break;
             case "BERICHT_GOB":
@@ -59,33 +59,32 @@ public class StrategyStorage
             case "BERICHT_OH":
                 strategyList.add(ReportOH.getInstance());
                 break;
-            case "BERICHT_TMHB_TEST":
+            case "BERICHT_TMHB":
                 strategyList.add(ReportTMHB.getInstance());
                 break;
-            case "BERICHT_BETON_TEST":
+            case "BERICHT_BETON":
                 strategyList.add(ReportCONCRETE.getInstance());
                 break;
-            case "BERICHT_FUGE_TEST":
+            case "BERICHT_FUGE":
                 strategyList.add(ReportFUGE.getInstance());
                 break;
         }
     }
 
-    //TODO
     public void removeStrategy(String strategyName)
     {
         switch (strategyName)
         {
-            case "PN_TABELLE":
+            case "ANLAGE_PN":
                 strategyList.remove(AppendixPN.getInstance());
                 break;
-            case "RUK_TABELLE":
-                strategyList.remove(AppendixRuk.getInstance());
+            case "ANLAGE_RUK":
+                strategyList.remove(AppendixRUK.getInstance());
                 break;
-            case "ERK_TABELLE":
+            case "ANLAGE_ERK":
                 strategyList.remove(AppendixExplorationSite.getInstance());
                 break;
-            case "LP_TABELLE":
+            case "ANLAGE_LP":
                 strategyList.remove(AppendixLP.getInstance());
                 break;
             case "BERICHT_GOB":
@@ -100,13 +99,13 @@ public class StrategyStorage
             case "BERICHT_OH":
                 strategyList.remove(ReportOH.getInstance());
                 break;
-            case "BERICHT_TMHB_TEST":
+            case "BERICHT_TMHB":
                 strategyList.remove(ReportTMHB.getInstance());
                 break;
-            case "BERICHT_BETON_TEST":
+            case "BERICHT_BETON":
                 strategyList.remove(ReportCONCRETE.getInstance());
                 break;
-            case "BERICHT_FUGE_TEST":
+            case "BERICHT_FUGE":
                 strategyList.remove(ReportFUGE.getInstance());
                 break;
         }

@@ -61,6 +61,26 @@ final class AppendixSiteFUGE extends AHtmlTemplate
 				String chemie_mufv = layer.getInformation("CHEMIE_MUFV");
 				HtmlCell schichtMufv = HtmlCellFormatUtil.formatChemistry(chemie_mufv);
 
+				//empty
+				HtmlCell cell7 = new HtmlCell.Builder()
+						.appendAttribute("class", "NormalErkundungsstelle")
+						.appendAttribute("colspan", "3")        //Zelle geht über 3 Reihen
+						.appendContent("")
+						.build();
+
+				//empty
+//				HtmlCell cell8 = new HtmlCell.Builder()
+//						.appendAttribute("class", "NormalErkundungsstelle")
+//						.appendContent("")
+//						.build();
+//
+//
+//				//Bemerkung
+//				HtmlCell schichtBemerkungen = new HtmlCell.Builder()
+//						.appendAttribute("class", "NormalErkundungsstelle")
+//						.appendContent("-")
+//						.build();
+
 				//PAK
 				HtmlCell schichtPak = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
@@ -71,23 +91,8 @@ final class AppendixSiteFUGE extends AHtmlTemplate
 				String chemie_asbest = layer.getInformation("CHEMIE_ASBEST");
 				HtmlCell schichtAsbest = HtmlCellFormatUtil.formatChemistry(chemie_asbest);
 
-				//empty
-				HtmlCell cell7 = new HtmlCell.Builder()
-						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent("")
-						.build();
 
-				//empty
-				HtmlCell cell8 = new HtmlCell.Builder()
-						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent("")
-						.build();
 
-				//Bemerkung
-				HtmlCell schichtBemerkungen = new HtmlCell.Builder()
-						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent("-")
-						.build();
 
 				HtmlRow row = new HtmlRow.Builder()
 						.appendAttribute("class", "Normal")
@@ -95,11 +100,9 @@ final class AppendixSiteFUGE extends AHtmlTemplate
 						.appendContent(schichtDicke.appendTag())
 						.appendContent(schichtTiefe.appendTag())
 						.appendContent(schichtMufv.appendTag())
+						.appendContent(cell7.appendTag())
 						.appendContent(schichtPak.appendTag())
 						.appendContent(schichtAsbest.appendTag())
-						.appendContent(cell7.appendTag())
-						.appendContent(cell8.appendTag())
-						.appendContent(schichtBemerkungen.appendTag())
 						.build();
 
 				table.appendContent(row.appendTag());
@@ -159,44 +162,38 @@ final class AppendixSiteFUGE extends AHtmlTemplate
 		HtmlTableHeader cell25 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
-				.appendContent("PAK")
+				.appendAttribute("colspan", "3")
+				.appendAttribute("rowspan", "2")
+				.appendContent("")
 				.build();
 
 		HtmlTableHeader cell26 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
-				.appendAttribute("rowspan", "2")
-				.appendContent("Asbest")
+				.appendContent("PAK")
 				.build();
 
 		HtmlTableHeader cell27 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
 				.appendAttribute("rowspan", "2")
-				.appendContent("")
-				.build();
-
-		HtmlTableHeader cell28 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "60")
-				.appendAttribute("rowspan", "2")
-				.appendContent("")
-				.build();
-
-		HtmlTableHeader cell29 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "60")
-				.appendAttribute("rowspan", "2")
-				.appendContent("Notiz")
+				.appendContent("Asbest")
 				.build();
 
 
-		//Third Row
-//        HtmlTableHeader cell31 = new HtmlTableHeader.Builder()
-//                .appendAttribute("class", "NormalTableHeader")
-//                .appendAttribute("align", "left")
-//                .appendContent("-")
-//                .build();
+//		HtmlTableHeader cell28 = new HtmlTableHeader.Builder()
+//				.appendAttribute("class", "NormalTableHeader")
+//				.appendAttribute("width", "60")
+//				.appendAttribute("rowspan", "2")
+//				.appendContent("")
+//				.build();
+//
+//		HtmlTableHeader cell29 = new HtmlTableHeader.Builder()
+//				.appendAttribute("class", "NormalTableHeader")
+//				.appendAttribute("width", "60")
+//				.appendAttribute("rowspan", "2")
+//				.appendContent("Notiz")
+//				.build();
 
 		HtmlTableHeader cell32 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeaderUnits")
@@ -228,8 +225,6 @@ final class AppendixSiteFUGE extends AHtmlTemplate
 				.appendContent(cell25.appendTag())
 				.appendContent(cell26.appendTag())
 				.appendContent(cell27.appendTag())
-				.appendContent(cell28.appendTag())
-				.appendContent(cell29.appendTag())
 				.build();
 
 		HtmlRow row3 = new HtmlRow.Builder()

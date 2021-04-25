@@ -10,21 +10,21 @@ import sbt.automization.util.html.HtmlTableHeader;
 
 import java.util.List;
 
-public final class AppendixRuk extends AHtmlTemplate
+public final class AppendixRUK extends AHtmlTemplate
 {
-    private static AppendixRuk instance;
+    private static AppendixRUK instance;
 
-    private AppendixRuk() {}
+    private AppendixRUK() {}
 
-    public static AppendixRuk getInstance()
+    public static AppendixRUK getInstance()
     {
         if (instance == null)
         {
-            synchronized (AppendixRuk.class)
+            synchronized (AppendixRUK.class)
             {
                 if (instance == null)
                 {
-                    instance = new AppendixRuk();
+                    instance = new AppendixRUK();
                 }
             }
         }
