@@ -1,2 +1,2 @@
-# sbt-generator
+# sbt-table-generator
  
