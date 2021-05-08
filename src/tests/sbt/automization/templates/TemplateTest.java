@@ -32,7 +32,7 @@ public class TemplateTest
 	{
 		String path = System.getProperty("user.dir").concat(File.separator).concat("tests-resources").concat(File.separator);
 
-		File csv = new File(path + "Datenbank-Test.csv");
+		File csv = new File(path + "excel-template-test.csv");
 		Parser parser = new Parser(csv);
 
 		TableEngine database = new TableEngine(parser.parse(), csv.getParent());
@@ -59,6 +59,7 @@ public class TemplateTest
 		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_6"));
 		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_7"));
 		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_8"));
+		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_9"));
 	}
 
 	@Test
@@ -91,19 +92,23 @@ public class TemplateTest
 	@Test
 	public void createPnTemplate() throws IOException
 	{
-		HtmlTemplateExportStrategy htmlTemplateExportStrategy2 = new HtmlTemplateExportStrategy(AppendixPN.getInstance());
-		htmlTemplateExportStrategy2.export(explorationSites);
-
-		openExportFile(htmlTemplateExportStrategy2);
-
-		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(AppendixRUK.getInstance());
+		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(AppendixPN.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
 		openExportFile(htmlTemplateExportStrategy);
 	}
 
 	@Test
-	public void createBerichtOBTemplate() throws IOException
+	public void createPnHeapTemplate() throws IOException
+	{
+		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(AppendixPNHEAP.getInstance());
+		htmlTemplateExportStrategy.export(explorationSites);
+
+		openExportFile(htmlTemplateExportStrategy);
+	}
+
+	@Test
+	public void createReportOBTemplate() throws IOException
 	{
 		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(ReportGOB.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
@@ -112,7 +117,7 @@ public class TemplateTest
 	}
 
 	@Test
-	public void createBerichtTOBTemplate() throws IOException
+	public void createReportTOBTemplate() throws IOException
 	{
 		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(ReportTOB.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
@@ -121,7 +126,7 @@ public class TemplateTest
 	}
 
 	@Test
-	public void createBerichtUGTemplate() throws IOException
+	public void createReportUGTemplate() throws IOException
 	{
 		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(ReportUG.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
@@ -130,7 +135,7 @@ public class TemplateTest
 	}
 
 	@Test
-	public void createBerichtOHTemplate() throws IOException
+	public void createReportOHTemplate() throws IOException
 	{
 		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(ReportOH.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
@@ -148,7 +153,7 @@ public class TemplateTest
 	}
 
 	@Test
-	public void createBerichtTMHBTemplate() throws IOException
+	public void createReportTMHBTemplate() throws IOException
 	{
 		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(ReportTMHB.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
@@ -157,7 +162,7 @@ public class TemplateTest
 	}
 
 	@Test
-	public void createBerichtBETONTemplate() throws IOException
+	public void createReportBETONTemplate() throws IOException
 	{
 		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(ReportCONCRETE.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
@@ -166,9 +171,18 @@ public class TemplateTest
 	}
 
 	@Test
-	public void createBerichtFUGETemplate() throws IOException
+	public void createReportFUGETemplate() throws IOException
 	{
 		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(ReportFUGE.getInstance());
+		htmlTemplateExportStrategy.export(explorationSites);
+
+		openExportFile(htmlTemplateExportStrategy);
+	}
+
+	@Test
+	public void createReportHeapTemplate() throws IOException
+	{
+		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(ReportHEAP.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
 		openExportFile(htmlTemplateExportStrategy);

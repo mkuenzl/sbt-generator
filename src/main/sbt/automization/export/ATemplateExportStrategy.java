@@ -25,7 +25,7 @@ public abstract class ATemplateExportStrategy
 
     public void export()
     {
-        export(System.getProperty("user.dir").concat(File.separator).concat(strategy.getExportFileName()), strategy.buildHtmlTemplate());
+        export(System.getProperty("user.dir").concat(File.separator).concat(strategy.getExportFileName()), strategy.constructAndGetTemplate());
     }
 
     public void export(List<ExplorationSite> explorationSites)

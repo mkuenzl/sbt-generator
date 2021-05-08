@@ -32,145 +32,118 @@ public final class AppendixPN extends AHtmlTemplate
     }
 
     @Override
-    public void buildHtmlTable(final List<ExplorationSite> sites)
+    public void constructTable(final List<ExplorationSite> sites)
     {
-        int counter = 1;
+        int sampleIdCounter = 1;
 
-        HtmlTable tablePN = new HtmlTable.Builder()
-                .appendAttribute("class", "MsoNormalTable")
-                .appendAttribute("width", "605")
-                .appendAttribute("border", "1")
-                .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
-                .appendAttribute("cellspacing", "0")
-                .appendAttribute("cellpadding", "0")
-                .appendContent(setHtmlTableHeader())
-                .build();
+        HtmlTable table = constructAndGetTableObject();
 
         int rowCounter = 0;
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder htmlStringBuilder = new StringBuilder();
 
         for (ExplorationSite explorationSite : sites)
         {
-            List<Layer> layerList = formatSchichtList(explorationSite.getLayers());
+            List<Layer> layerList = formatLayerList(explorationSite.getLayers());
 
             for (Layer layer : layerList)
             {
 
                 if (rowCounter >= 20)
                 {
-                    stringBuilder.append(tablePN.appendTag())
+                    htmlStringBuilder.append(table.appendTag())
                             .append("<br>")
                             .append("<br>");
 
-                    tablePN = new HtmlTable.Builder()
-                            .appendAttribute("class", "MsoNormalTable")
-                            .appendAttribute("width", "605")
-                            .appendAttribute("border", "1")
-                            .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
-                            .appendAttribute("cellspacing", "0")
-                            .appendAttribute("cellpadding", "0")
-                            .appendContent(setHtmlTableHeader())
-                            .build();
+                    table = constructAndGetTableObject();
 
                     rowCounter = 0;
                 }
 
 
-                HtmlCell cellPNCounter = new HtmlCell.Builder()
+                HtmlCell sampleId = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
-                        .appendContent("P".concat(String.valueOf(counter++)))
+                        .appendContent("P".concat(String.valueOf(sampleIdCounter++)))
                         .build();
 
-                HtmlCell cellSchichtProbenArt = new HtmlCell.Builder()
+                HtmlCell layerSampleType = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
-                        .appendContent(TextFormatUtil.formatLayerProbe(layer))
+                        .appendContent(TextFormatUtil.formatLayerSampleType(layer))
                         .build();
 
-                HtmlCell cellBehaeltnis = new HtmlCell.Builder()
+                HtmlCell layerContainer = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendContent(layer.getInformation("SCHICHT_BEHAELTNIS"))
                         .build();
 
-                HtmlCell cellHaufwerk = new HtmlCell.Builder()
+                HtmlCell heapVolume = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
                         .appendContent("-")
                         .build();
 
-                //TODO already done in excel sheet
-                HtmlCell cellSchichtAbfallArt = new HtmlCell.Builder()
+                HtmlCell layerWasteType = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("width", "110")
                         .appendContent(NameFormatUtil.formatArt(layer.getInformation("SCHICHT_ABFALLART")))
                         .build();
 
-                HtmlCell cellSchichtKoernung = new HtmlCell.Builder()
+                HtmlCell layerGrainSize = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
                         .appendAttribute("width", "50")
                         .appendContent(layer.getInformation("SCHICHT_KOERNUNG"))
                         .build();
 
-                HtmlCell cellSchichtFarbeGeruchKonsistenz = new HtmlCell.Builder()
+                HtmlCell layerAttributes = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent(new HtmlText.Builder()
-                                .appendAttribute("class", "Normal")
-                                .appendContent(layer.getInformation("SCHICHT_FARBE"))
-                                .build()
-                                .appendTag())
-                        .appendContent(new HtmlText.Builder()
-                                .appendAttribute("class", "Normal")
-                                .appendContent(layer.getInformation("SCHICHT_GERUCH"))
-                                .build()
-                                .appendTag())
-                        .appendContent(new HtmlText.Builder()
-                                .appendAttribute("class", "Normal")
-                                .appendContent(layer.getInformation("SCHICHT_BODENART"))
-                                .build()
-                                .appendTag())
+                        .appendContent(layer.getInformation("SCHICHT_FARBE"))
+                        .appendContent(TextFormatUtil.printLineBreak())
+                        .appendContent(layer.getInformation("SCHICHT_GERUCH"))
+                        .appendContent(TextFormatUtil.printLineBreak())
+                        .appendContent(layer.getInformation("SCHICHT_BODENART"))
                         .build();
 
-                HtmlCell cellErkundungsstellenIdentifier = new HtmlCell.Builder()
+                HtmlCell explorationSiteIdentifier = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
                         .appendAttribute("width", "30")
                         .appendContent(explorationSite.getInformation("ERK_ID"))
                         .build();
 
-                HtmlCell cellSchichtTiefe = new HtmlCell.Builder()
+                HtmlCell layerDepth = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
                         .appendContent(TextFormatUtil.formatLayerDepth(layer))
                         .build();
 
-                HtmlCell cellErkundungsstellenOberkante = new HtmlCell.Builder()
+                HtmlCell explorationSiteTopEdge = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalCentered")
                         .appendContent(explorationSite.getInformation("ERK_OBERKANTE"))
                         .build();
 
                 HtmlRow row = new HtmlRow.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent(cellPNCounter.appendTag())
-                        .appendContent(cellSchichtProbenArt.appendTag())
-                        .appendContent(cellBehaeltnis.appendTag())
-                        .appendContent(cellHaufwerk.appendTag())
-                        .appendContent(cellSchichtAbfallArt.appendTag())
-                        .appendContent(cellSchichtKoernung.appendTag())
-                        .appendContent(cellSchichtFarbeGeruchKonsistenz.appendTag())
-                        .appendContent(cellErkundungsstellenIdentifier.appendTag())
-                        .appendContent(cellSchichtTiefe.appendTag())
-                        .appendContent(cellErkundungsstellenOberkante.appendTag())
+                        .appendContent(sampleId.appendTag())
+                        .appendContent(layerSampleType.appendTag())
+                        .appendContent(layerContainer.appendTag())
+                        .appendContent(heapVolume.appendTag())
+                        .appendContent(layerWasteType.appendTag())
+                        .appendContent(layerGrainSize.appendTag())
+                        .appendContent(layerAttributes.appendTag())
+                        .appendContent(explorationSiteIdentifier.appendTag())
+                        .appendContent(layerDepth.appendTag())
+                        .appendContent(explorationSiteTopEdge.appendTag())
                         .build();
 
                 rowCounter++;
 
-                tablePN.appendContent(row.appendTag());
+                table.appendContent(row.appendTag());
             }
         }
 
-        stringBuilder.append(tablePN.appendTag());
+        htmlStringBuilder.append(table.appendTag());
 
-        setHtmlTable(stringBuilder.toString());
+        setTable(htmlStringBuilder.toString());
     }
 
     @Override
-    public void buildHtmlTable(final ExplorationSite site)
+    public void constructTable(final ExplorationSite site)
     {
 
     }
@@ -182,23 +155,23 @@ public final class AppendixPN extends AHtmlTemplate
     }
 
     @Override
-    String setHtmlTableHeader()
+    String constructAndGetTableHeader()
     {
-        HtmlTableHeader cell1 = new HtmlTableHeader.Builder()
+        HtmlTableHeader headerCellSample = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "40")
                 .appendAttribute("rowspan", "2")
                 .appendContent("Probe")
                 .build();
 
-        HtmlTableHeader cell2 = new HtmlTableHeader.Builder()
+        HtmlTableHeader headerCellType = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "40")
                 .appendAttribute("rowspan", "2")
                 .appendContent("Art")
                 .build();
 
-        HtmlTableHeader cell3 = new HtmlTableHeader.Builder()
+        HtmlTableHeader headerCellContainer = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "105")
                 .appendContent("Behältnis")
@@ -206,13 +179,7 @@ public final class AppendixPN extends AHtmlTemplate
                 .appendContent("Vol.")
                 .build();
 
-//        HtmlTableHeader cell4 = new HtmlTableHeader.Builder()
-//                .appendAttribute("class", "NormalTableHeader")
-//                .appendAttribute("width", "40")
-//                .appendContent("Vol.")
-//                .build();
-
-        HtmlTableHeader cell5 = new HtmlTableHeader.Builder()
+        HtmlTableHeader headerCellHeap = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendContent("Haufwerk")
@@ -220,7 +187,7 @@ public final class AppendixPN extends AHtmlTemplate
                 .appendContent("Vol.")
                 .build();
 
-        HtmlTableHeader cell6 = new HtmlTableHeader.Builder()
+        HtmlTableHeader headerCellWasteType = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "140")
                 .appendAttribute("colspan", "2")
@@ -228,7 +195,7 @@ public final class AppendixPN extends AHtmlTemplate
                 .appendContent("Abfallart")
                 .build();
 
-        HtmlTableHeader cell7 = new HtmlTableHeader.Builder()
+        HtmlTableHeader headerCellAttributes = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "76")
                 .appendAttribute("rowspan", "2")
@@ -239,82 +206,90 @@ public final class AppendixPN extends AHtmlTemplate
                 .appendContent("Bodenart")
                 .build();
 
-        HtmlTableHeader cell8 = new HtmlTableHeader.Builder()
+        HtmlTableHeader headerCellExplorationSite = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "30")
                 .appendAttribute("rowspan", "2")
                 .appendContent("Erk. St.")
                 .build();
 
-        HtmlTableHeader cell9 = new HtmlTableHeader.Builder()
+        HtmlTableHeader headerCellDepth = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "70")
                 .appendContent("Tiefe")
                 .build();
 
-        HtmlTableHeader cell10 = new HtmlTableHeader.Builder()
+        HtmlTableHeader headerCellComment = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "65")
                 .appendAttribute("rowspan", "2")
                 .appendContent("Notiz")
                 .build();
 
-        HtmlTableHeader cell22 = new HtmlTableHeader.Builder()
+        HtmlTableHeader headerCellVolumeUnit = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeaderUnits")
                 .appendContent("l")
                 .build();
 
-        HtmlTableHeader cell23 = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeaderUnits")
-                .appendContent("l")
-                .build();
-
-        HtmlTableHeader cell25 = new HtmlTableHeader.Builder()
+        HtmlTableHeader headerCellDepthUnit = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeaderUnits")
                 .appendContent("cm")
                 .build();
 
-        HtmlRow row1 = new HtmlRow.Builder()
+        HtmlRow headerCellFirstRow = new HtmlRow.Builder()
                 .appendAttribute("class", "NormalHeader")
-                .appendContent(cell1.appendTag())
-                .appendContent(cell2.appendTag())
-                .appendContent(cell3.appendTag())
-                .appendContent(cell5.appendTag())
-                .appendContent(cell6.appendTag())
-                .appendContent(cell7.appendTag())
-                .appendContent(cell8.appendTag())
-                .appendContent(cell9.appendTag())
-                .appendContent(cell10.appendTag())
+                .appendContent(headerCellSample.appendTag())
+                .appendContent(headerCellType.appendTag())
+                .appendContent(headerCellContainer.appendTag())
+                .appendContent(headerCellHeap.appendTag())
+                .appendContent(headerCellWasteType.appendTag())
+                .appendContent(headerCellAttributes.appendTag())
+                .appendContent(headerCellExplorationSite.appendTag())
+                .appendContent(headerCellDepth.appendTag())
+                .appendContent(headerCellComment.appendTag())
                 .build();
 
-        HtmlRow row2 = new HtmlRow.Builder()
+        HtmlRow headerCellSecondRow = new HtmlRow.Builder()
                 .appendAttribute("class", "NormalHeaderUnits")
-                .appendContent(cell22.appendTag())
-                .appendContent(cell23.appendTag())
-                .appendContent(cell25.appendTag())
+                .appendContent(headerCellVolumeUnit.appendTag())
+                .appendContent(headerCellVolumeUnit.appendTag())
+                .appendContent(headerCellDepthUnit.appendTag())
                 .build();
 
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(row1.appendTag())
-                .append(row2.appendTag());
+        stringBuilder.append(headerCellFirstRow.appendTag())
+                .append(headerCellSecondRow.appendTag());
 
         return stringBuilder.toString();
     }
 
-    public List<Layer> formatSchichtList(List<Layer> layerListe)
+    @Override
+    HtmlTable constructAndGetTableObject()
     {
+        HtmlTable table = new HtmlTable.Builder()
+                .appendAttribute("class", "MsoNormalTable")
+                .appendAttribute("width", "605")
+                .appendAttribute("border", "1")
+                .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+                .appendAttribute("cellspacing", "0")
+                .appendAttribute("cellpadding", "0")
+                .appendContent(constructAndGetTableHeader())
+                .build();
 
+        return table;
+    }
+
+    /**
+     * This method creates a new list of layer objects for the pn appendix. Because some layers are combined in the output table.
+     * @param layers expects a not empty list of layer objects
+     * @return a smaller formatted list of layers
+     */
+    public List<Layer> formatLayerList(List<Layer> layers)
+    {
         List<Layer> layerList = new ArrayList<>();
-        for (Layer layer : layerListe)
+        for (Layer layer : layers)
         {
- //           try
- //           {
-                //layerList.add((Layer) layer.clone());
-                layerList.add(ObjectCreatorUtil.createLayer(layer.getDataMap()));
-//            } catch (CloneNotSupportedException e)
-//            {
-//                e.printStackTrace();
-//            }
+            layerList.add(ObjectCreatorUtil.createLayer(layer.getDataMap()));
         }
 
         int size = layerList.size();

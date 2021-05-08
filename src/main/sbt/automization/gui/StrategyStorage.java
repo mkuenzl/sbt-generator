@@ -47,6 +47,9 @@ public class StrategyStorage
             case "ANLAGE_LP":
                 strategyList.add(AppendixLP.getInstance());
                 break;
+            case "ANLAGE_PN_HEAP":
+                strategyList.add(AppendixPNHEAP.getInstance());
+                break;
             case "BERICHT_GOB":
                 strategyList.add(ReportGOB.getInstance());
                 break;
@@ -68,6 +71,9 @@ public class StrategyStorage
             case "BERICHT_FUGE":
                 strategyList.add(ReportFUGE.getInstance());
                 break;
+            case "BERICHT_HAUFWERK":
+                strategyList.add(ReportHEAP.getInstance());
+                break;
         }
     }
 
@@ -86,6 +92,9 @@ public class StrategyStorage
                 break;
             case "ANLAGE_LP":
                 strategyList.remove(AppendixLP.getInstance());
+                break;
+            case "ANLAGE_PN_HEAP":
+                strategyList.remove(AppendixPNHEAP.getInstance());
                 break;
             case "BERICHT_GOB":
                 strategyList.remove(ReportGOB.getInstance());
@@ -107,6 +116,9 @@ public class StrategyStorage
                 break;
             case "BERICHT_FUGE":
                 strategyList.remove(ReportFUGE.getInstance());
+                break;
+            case "BERICHT_HAUFWERK":
+                strategyList.remove(ReportHEAP.getInstance());
                 break;
         }
     }

@@ -2,6 +2,7 @@ package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.util.Util;
+import sbt.automization.util.html.HtmlTable;
 
 import java.util.Collection;
 import java.util.List;
@@ -26,4 +27,18 @@ public abstract class AReportTemplate extends AHtmlTemplate
 	abstract String buildTechnicalFeatures(List<ExplorationSite> explorationSites);
 
 	abstract String buildEnvironmentTechnicalFeatures(List<ExplorationSite> explorationSites);
+
+	@Override
+	HtmlTable constructAndGetTableObject()
+	{
+		HtmlTable table = new HtmlTable.Builder()
+				.appendAttribute("class", "MsoNormalTable")
+				.appendAttribute("border", "1")
+				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+				.appendAttribute("cellspacing", "0")
+				.appendAttribute("cellpadding", "0")
+				.build();
+
+		return table;
+	}
 }

@@ -17,14 +17,14 @@ public class HtmlTemplateExportStrategy extends ATemplateExportStrategy
     @Override
     String format(final TableEngine tableEngine)
     {
-        strategy.buildHtmlTable(tableEngine.getExplorationSites());
-        return strategy.buildHtmlTemplate();
+        strategy.constructTable(tableEngine.getExplorationSites());
+        return strategy.constructAndGetTemplate();
     }
 
     @Override
     String format(List<ExplorationSite> explorationSites)
     {
-        strategy.buildHtmlTable(explorationSites);
-        return strategy.buildHtmlTemplate();
+        strategy.constructTable(explorationSites);
+        return strategy.constructAndGetTemplate();
     }
 }

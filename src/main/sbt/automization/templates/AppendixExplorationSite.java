@@ -29,16 +29,14 @@ public final class AppendixExplorationSite extends AHtmlTemplate
         return instance;
     }
 
-    //Hat sogesehen keinen Header
     @Override
-    String setHtmlTableHeader()
+    String constructAndGetTableHeader()
     {
         return null;
     }
 
-    //Erstellt die Informationen und ruft dann Methoden einzelner Klassen auf
     @Override
-    public void buildHtmlTable(final List<ExplorationSite> sites)
+    public void constructTable(final List<ExplorationSite> sites)
     {
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -173,33 +171,33 @@ public final class AppendixExplorationSite extends AHtmlTemplate
             if (explorationSite.getLayersWithOutcrop("FUGE").size() > 0)
             {
                 AppendixSiteFUGE erk_FUGE_Tabelle = new AppendixSiteFUGE();
-                erk_FUGE_Tabelle.buildHtmlTable(explorationSite);
-                stringBuilder.append(erk_FUGE_Tabelle.getHtmlTable());
+                erk_FUGE_Tabelle.constructTable(explorationSite);
+                stringBuilder.append(erk_FUGE_Tabelle.getTable());
             }
 
             if (explorationSite.getLayersWithOutcrop("OH").size() > 0)
             {
                 AppendixSiteOH erk_OH_Tabelle = new AppendixSiteOH();
-                erk_OH_Tabelle.buildHtmlTable(explorationSite);
-                stringBuilder.append(erk_OH_Tabelle.getHtmlTable());
+                erk_OH_Tabelle.constructTable(explorationSite);
+                stringBuilder.append(erk_OH_Tabelle.getTable());
             }
 
             if (explorationSite.getLayersWithOutcrop("GOB").size() > 0) {
                 AppendixSiteGOB erk_OB_Tabelle = new AppendixSiteGOB();
-                erk_OB_Tabelle.buildHtmlTable(explorationSite);
-                stringBuilder.append(erk_OB_Tabelle.getHtmlTable());
+                erk_OB_Tabelle.constructTable(explorationSite);
+                stringBuilder.append(erk_OB_Tabelle.getTable());
             }
 
             if (explorationSite.getLayersWithOutcrop("TOB").size() > 0) {
                 AppendixSiteTOB erk_TOB_Tabelle = new AppendixSiteTOB();
-                erk_TOB_Tabelle.buildHtmlTable(explorationSite);
-                stringBuilder.append(erk_TOB_Tabelle.getHtmlTable());
+                erk_TOB_Tabelle.constructTable(explorationSite);
+                stringBuilder.append(erk_TOB_Tabelle.getTable());
             }
 
             if (explorationSite.getLayersWithOutcrop("UG").size() > 0) {
                 AppendixSiteUG erk_UG_Tabelle = new AppendixSiteUG();
-                erk_UG_Tabelle.buildHtmlTable(explorationSite);
-                stringBuilder.append(erk_UG_Tabelle.getHtmlTable());
+                erk_UG_Tabelle.constructTable(explorationSite);
+                stringBuilder.append(erk_UG_Tabelle.getTable());
             }
 
             HtmlCell footer = new HtmlCell.Builder()
@@ -228,13 +226,29 @@ public final class AppendixExplorationSite extends AHtmlTemplate
                     .append("<br></br>");
         }
 
-        setHtmlTable(stringBuilder.toString());
+        setTable(stringBuilder.toString());
     }
 
     @Override
-    public void buildHtmlTable(final ExplorationSite site)
+    public void constructTable(final ExplorationSite site)
     {
 
+    }
+
+    @Override
+    HtmlTable constructAndGetTableObject()
+    {
+        HtmlTable table = new HtmlTable.Builder()
+                .appendAttribute("class", "MsoNormalTable")
+                .appendAttribute("width", "605")
+                .appendAttribute("border", "1")
+                .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+                .appendAttribute("cellspacing", "0")
+                .appendAttribute("cellpadding", "0")
+                .appendContent(constructAndGetTableHeader())
+                .build();
+
+        return table;
     }
 
     @Override

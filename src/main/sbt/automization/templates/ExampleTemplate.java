@@ -30,16 +30,32 @@ public final class ExampleTemplate extends AHtmlTemplate
 		return instance;
 	}
 
+	@Override
+	HtmlTable constructAndGetTableObject()
+	{
+		HtmlTable table = new HtmlTable.Builder()
+				.appendAttribute("class", "MsoNormalTable")
+				.appendAttribute("width", "605")
+				.appendAttribute("border", "1")
+				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+				.appendAttribute("cellspacing", "0")
+				.appendAttribute("cellpadding", "0")
+				.appendContent(constructAndGetTableHeader())
+				.build();
+
+		return table;
+	}
+
 
 	@Override
-	String setHtmlTableHeader()
+	String constructAndGetTableHeader()
 	{
 		return null;
 	}
 
 
 	@Override
-	public void buildHtmlTable(List<ExplorationSite> sites)
+	public void constructTable(List<ExplorationSite> sites)
 	{
 		HtmlTable table = new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
@@ -62,11 +78,11 @@ public final class ExampleTemplate extends AHtmlTemplate
 
 		table.appendContent(htmlRow.appendTag());
 
-		setHtmlTable(table.appendTag());
+		setTable(table.appendTag());
 	}
 
 	@Override
-	public void buildHtmlTable(ExplorationSite site)
+	public void constructTable(ExplorationSite site)
 	{
 
 	}

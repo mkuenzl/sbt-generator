@@ -16,12 +16,12 @@ final class AppendixSiteGOB extends AHtmlTemplate
     private String outcrop = "";
 
     @Override
-    public void buildHtmlTable(final List<ExplorationSite> sites)
+    public void constructTable(final List<ExplorationSite> sites)
     {
     }
 
     @Override
-    public void buildHtmlTable(final ExplorationSite site)
+    public void constructTable(final ExplorationSite site)
     {
         outcrop = site.getInformation("ERK_AUFSCHLUSS_OB");
 
@@ -32,7 +32,7 @@ final class AppendixSiteGOB extends AHtmlTemplate
                 .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
                 .appendAttribute("cellspacing", "0")
                 .appendAttribute("cellpadding", "0")
-                .appendContent(setHtmlTableHeader())
+                .appendContent(constructAndGetTableHeader())
                 .build();
 
         for (Layer layer : site.getLayers())
@@ -135,11 +135,11 @@ final class AppendixSiteGOB extends AHtmlTemplate
 
         tableErkOb.appendContent(rowBelastungklasse.appendTag());
 
-        setHtmlTable(tableErkOb.appendTag());
+        setTable(tableErkOb.appendTag());
     }
 
     @Override
-    String setHtmlTableHeader()
+    String constructAndGetTableHeader()
     {
         //First Row
         HtmlTableHeader cellGebundenerOberbauHeader = new HtmlTableHeader.Builder()
@@ -278,6 +278,22 @@ final class AppendixSiteGOB extends AHtmlTemplate
                 .append(thirdHeaderRow.appendTag());
 
         return stringBuilder.toString();
+    }
+
+    @Override
+    HtmlTable constructAndGetTableObject()
+    {
+        HtmlTable table = new HtmlTable.Builder()
+                .appendAttribute("class", "MsoNormalTable")
+                .appendAttribute("width", "605")
+                .appendAttribute("border", "1")
+                .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+                .appendAttribute("cellspacing", "0")
+                .appendAttribute("cellpadding", "0")
+                .appendContent(constructAndGetTableHeader())
+                .build();
+
+        return table;
     }
 
     @Override

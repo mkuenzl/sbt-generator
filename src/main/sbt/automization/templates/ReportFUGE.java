@@ -32,13 +32,13 @@ public final class ReportFUGE extends AReportTemplate
 	}
 
 	@Override
-	String setHtmlTableHeader()
+	String constructAndGetTableHeader()
 	{
 		return null;
 	}
 
 	@Override
-	public void buildHtmlTable(List<ExplorationSite> sites)
+	public void constructTable(List<ExplorationSite> sites)
 	{
 		StringBuilder strb = new StringBuilder();
 
@@ -62,11 +62,11 @@ public final class ReportFUGE extends AReportTemplate
 			strb.append(reportTable.appendTag());
 		}
 
-		setHtmlTable(strb.toString());
+		setTable(strb.toString());
 	}
 
 	@Override
-	public void buildHtmlTable(ExplorationSite site)
+	public void constructTable(ExplorationSite site)
 	{
 
 	}
@@ -105,6 +105,22 @@ public final class ReportFUGE extends AReportTemplate
 				.append(FugeFactory.createAVVRow(explorationSites));
 
 		return umweltTechBuilder.toString();
+	}
+
+	@Override
+	HtmlTable constructAndGetTableObject()
+	{
+		HtmlTable table = new HtmlTable.Builder()
+				.appendAttribute("class", "MsoNormalTable")
+				.appendAttribute("width", "605")
+				.appendAttribute("border", "1")
+				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+				.appendAttribute("cellspacing", "0")
+				.appendAttribute("cellpadding", "0")
+				.appendContent(constructAndGetTableHeader())
+				.build();
+
+		return table;
 	}
 
 }

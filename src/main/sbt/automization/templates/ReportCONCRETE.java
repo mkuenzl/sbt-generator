@@ -34,13 +34,13 @@ public final class ReportCONCRETE extends AReportTemplate
 	}
 
 	@Override
-	String setHtmlTableHeader()
+	String constructAndGetTableHeader()
 	{
 		return null;
 	}
 
 	@Override
-	public void buildHtmlTable(List<ExplorationSite> sites)
+	public void constructTable(List<ExplorationSite> sites)
 	{
 		StringBuilder strb = new StringBuilder();
 
@@ -66,7 +66,7 @@ public final class ReportCONCRETE extends AReportTemplate
 			strb.append(reportTable.appendTag());
 		}
 
-		setHtmlTable(strb.toString());
+		setTable(strb.toString());
 	}
 
 	@Override
@@ -93,7 +93,7 @@ public final class ReportCONCRETE extends AReportTemplate
 	}
 
 	@Override
-	String buildEnvironmentTechnicalFeatures(List<ExplorationSite> erkundungsstellen)
+	String buildEnvironmentTechnicalFeatures(List<ExplorationSite> explorationSites)
 	{
 		StringBuilder umweltTechBuilder = new StringBuilder();
 
@@ -102,28 +102,44 @@ public final class ReportCONCRETE extends AReportTemplate
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "NormalHeader")
-						.appendAttribute("colspan", String.valueOf(1 + erkundungsstellen.size()))
+						.appendAttribute("colspan", String.valueOf(1 + explorationSites.size()))
 						.appendContent("Umwelttechnische Merkmale")
 						.build()
 						.appendTag())
 				.build();
 
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())
-				.append(ConcreteFactory.createChemieIDRow(erkundungsstellen))
-				.append(ConcreteFactory.createChemieMufvRow(erkundungsstellen))
-				.append(ConcreteFactory.createChemieLagaRcRow(erkundungsstellen))
-				.append(ConcreteFactory.createChemieLagaRcOrientierungRow(erkundungsstellen))
-				.append(ConcreteFactory.createChemieTlGesteinRow(erkundungsstellen))
-				.append(ConcreteFactory.createChemieDepvRow(erkundungsstellen))
-				.append(ConcreteFactory.createAVVRow(erkundungsstellen));
+				.append(ConcreteFactory.createChemieIDRow(explorationSites))
+				.append(ConcreteFactory.createChemieMufvRow(explorationSites))
+				.append(ConcreteFactory.createChemieLagaRcRow(explorationSites))
+				.append(ConcreteFactory.createChemieLagaRcOrientierungRow(explorationSites))
+				.append(ConcreteFactory.createChemieTlGesteinRow(explorationSites))
+				.append(ConcreteFactory.createChemieDepvRow(explorationSites))
+				.append(ConcreteFactory.createAVVRow(explorationSites));
 
 		return umweltTechBuilder.toString();
 	}
 
 	@Override
-	public void buildHtmlTable(ExplorationSite site)
+	public void constructTable(ExplorationSite site)
 	{
 
+	}
+
+	@Override
+	HtmlTable constructAndGetTableObject()
+	{
+		HtmlTable table = new HtmlTable.Builder()
+				.appendAttribute("class", "MsoNormalTable")
+				.appendAttribute("width", "605")
+				.appendAttribute("border", "1")
+				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+				.appendAttribute("cellspacing", "0")
+				.appendAttribute("cellpadding", "0")
+				.appendContent(constructAndGetTableHeader())
+				.build();
+
+		return table;
 	}
 
 	@Override

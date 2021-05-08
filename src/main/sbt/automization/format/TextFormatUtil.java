@@ -114,7 +114,7 @@ public final class TextFormatUtil
 		return h.replace(".", ",");
 	}
 
-	public static String formatLayerProbe(final Layer layer)
+	public static String formatLayerSampleType(final Layer layer)
 	{
 		String probenart;
 		if ("-".equals(layer.getInformation("SCHICHT_BEHAELTNIS")))

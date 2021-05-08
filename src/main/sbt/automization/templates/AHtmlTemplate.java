@@ -3,6 +3,7 @@ package sbt.automization.templates;
 import sbt.automization.util.html.Html;
 import sbt.automization.util.html.HtmlBody;
 import sbt.automization.util.html.HtmlDiv;
+import sbt.automization.util.html.HtmlTable;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,14 +28,13 @@ public abstract class AHtmlTemplate implements IHtmlTemplate
 			.append("'")
 			.toString();
 
-	private String htmlTable;
+	private String table;
 
-	public String buildHtmlTemplate()
+	public String constructAndGetTemplate()
 	{
-
 		HtmlDiv div = new HtmlDiv.Builder()
 				.appendAttribute("class", "WordSection1")
-				.appendContent(htmlTable)
+				.appendContent(table)
 				.build();
 
 
@@ -47,14 +47,14 @@ public abstract class AHtmlTemplate implements IHtmlTemplate
 		Html template = new Html.Builder()
 				.appendAttribute("xmlns:o", HTML_ATTRIBUTE_XMLNSO)
 				.appendAttribute("xmlns", HTML_ATTRIBUTE_XMLNS)
-				.appendContent(getHtmlHead())
+				.appendContent(constructAndGetHtmlHead())
 				.appendContent(body.appendTag())
 				.build();
 
 		return template.appendTag();
 	}
 
-	String getHtmlHead()
+	private String constructAndGetHtmlHead()
 	{
 
 		InputStreamReader inputStreamReader = null;
@@ -62,7 +62,6 @@ public abstract class AHtmlTemplate implements IHtmlTemplate
 		StringBuilder stringBuilder = new StringBuilder();
 		try
 		{
-			// "/css.txt" sollte ausreichen als Pfad für die JAR
 			inputStreamReader = new InputStreamReader(getClass().getResourceAsStream("/sbt-table-stylesheet.txt"));
 			bufferedReader = new BufferedReader(inputStreamReader);
 
@@ -86,8 +85,6 @@ public abstract class AHtmlTemplate implements IHtmlTemplate
 				try
 				{
 					inputStreamReader.close();
-					assert bufferedReader != null;
-					bufferedReader.close();
 				} catch (IOException e)
 				{
 					e.printStackTrace();
@@ -100,16 +97,31 @@ public abstract class AHtmlTemplate implements IHtmlTemplate
 		return stringBuilder.toString();
 	}
 
-	String getHtmlTable()
+	public String getTable()
 	{
-		return htmlTable;
+		return table;
 	}
 
-	public void setHtmlTable(final String htmlTable)
+	public void setTable(final String table)
 	{
-		this.htmlTable = htmlTable;
+		this.table = table;
 	}
 
-	abstract String setHtmlTableHeader();
+	abstract String constructAndGetTableHeader();
 
+	HtmlTable constructAndGetTableObject()
+	{
+		HtmlTable table = new HtmlTable.Builder()
+				.appendAttribute("class", "MsoNormalTable")
+				.appendAttribute("width", "605")
+				.appendAttribute("border", "1")
+				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+				.appendAttribute("cellspacing", "0")
+				.appendAttribute("cellpadding", "0")
+				.build();
+
+		return table;
+	}
+
+	;
 }

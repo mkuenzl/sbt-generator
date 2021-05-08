@@ -13,13 +13,13 @@ final class AppendixSiteTOB extends AHtmlTemplate
 	private String outcrop = "";
 
 	@Override
-	public void buildHtmlTable(final List<ExplorationSite> sites)
+	public void constructTable(final List<ExplorationSite> sites)
 	{
 
 	}
 
 	@Override
-	public void buildHtmlTable(final ExplorationSite site)
+	public void constructTable(final ExplorationSite site)
 	{
 		outcrop = site.getInformation("ERK_AUFSCHLUSS_TOB");
 
@@ -30,7 +30,7 @@ final class AppendixSiteTOB extends AHtmlTemplate
 				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
 				.appendAttribute("cellspacing", "0")
 				.appendAttribute("cellpadding", "0")
-				.appendContent(setHtmlTableHeader())
+				.appendContent(constructAndGetTableHeader())
 				.build();
 
 
@@ -120,11 +120,11 @@ final class AppendixSiteTOB extends AHtmlTemplate
 				table.appendContent(row.appendTag());
 			}
 		}
-		setHtmlTable(table.appendTag());
+		setTable(table.appendTag());
 	}
 
 	@Override
-	String setHtmlTableHeader()
+	String constructAndGetTableHeader()
 	{
 		//First Row
 		HtmlTableHeader cell11 = new HtmlTableHeader.Builder()
@@ -278,6 +278,22 @@ final class AppendixSiteTOB extends AHtmlTemplate
 				.append(row3.appendTag());
 
 		return stringBuilder.toString();
+	}
+
+	@Override
+	HtmlTable constructAndGetTableObject()
+	{
+		HtmlTable table = new HtmlTable.Builder()
+				.appendAttribute("class", "MsoNormalTable")
+				.appendAttribute("width", "605")
+				.appendAttribute("border", "1")
+				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+				.appendAttribute("cellspacing", "0")
+				.appendAttribute("cellpadding", "0")
+				.appendContent(constructAndGetTableHeader())
+				.build();
+
+		return table;
 	}
 
 	@Override

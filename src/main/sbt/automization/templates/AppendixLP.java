@@ -29,7 +29,7 @@ public final class AppendixLP extends AHtmlTemplate
     }
 
     @Override
-    public void buildHtmlTable(final List<ExplorationSite> sites)
+    public void constructTable(final List<ExplorationSite> sites)
     {
         HtmlTable table = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
@@ -38,7 +38,7 @@ public final class AppendixLP extends AHtmlTemplate
                 .appendAttribute("border", "1")
                 .appendAttribute("cellspacing", "0")
                 .appendAttribute("cellpadding", "0")
-                .appendContent(setHtmlTableHeader())
+                .appendContent(constructAndGetTableHeader())
                 .build();
 
 
@@ -129,11 +129,11 @@ public final class AppendixLP extends AHtmlTemplate
                 table.appendContent(htmlRow.appendTag());
             }
         }
-        setHtmlTable(table.appendTag());
+        setTable(table.appendTag());
     }
 
     @Override
-    String setHtmlTableHeader()
+    String constructAndGetTableHeader()
     {
         HtmlTableHeader cell1 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
@@ -294,9 +294,25 @@ public final class AppendixLP extends AHtmlTemplate
     }
 
     @Override
-    public void buildHtmlTable(final ExplorationSite site)
+    public void constructTable(final ExplorationSite site)
     {
 
+    }
+
+    @Override
+    HtmlTable constructAndGetTableObject()
+    {
+        HtmlTable table = new HtmlTable.Builder()
+                .appendAttribute("class", "MsoNormalTable")
+                .appendAttribute("width", "605")
+                .appendAttribute("border", "1")
+                .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+                .appendAttribute("cellspacing", "0")
+                .appendAttribute("cellpadding", "0")
+                .appendContent(constructAndGetTableHeader())
+                .build();
+
+        return table;
     }
 
     @Override

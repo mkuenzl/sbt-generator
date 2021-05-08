@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface IHtmlTemplate
 {
-    String buildHtmlTemplate();
+    String constructAndGetTemplate();
 
-    void buildHtmlTable(List<ExplorationSite> sites);
+    void constructTable(List<ExplorationSite> sites);
 
-    void buildHtmlTable(ExplorationSite site);
+    void constructTable(ExplorationSite site);
 
     String getExportFileName();
 }

@@ -44,8 +44,6 @@ public class TableToolVisualInterface extends JFrame
 	private static void setLookAndFeel()
 	{
 		String design = UIManager.getSystemLookAndFeelClassName();
-		//String design = "javax.swing.plaf.nimbus.NimbusLookAndFeel";
-
 		try
 		{
 			UIManager.setLookAndFeel(
@@ -120,6 +118,11 @@ public class TableToolVisualInterface extends JFrame
 		checkBox4.addItemListener(new CheckBoxItemListener());
 		panel.add(checkBox4);
 
+		JCheckBox checkBoxAppendixPNHEAP = new CustomCheckBox("ANLAGE_PN_HAUFWERK", false);
+		checkBoxAppendixPNHEAP.setBounds(10, 330, 265, 20);
+		checkBoxAppendixPNHEAP.addItemListener(new CheckBoxItemListener());
+		panel.add(checkBoxAppendixPNHEAP);
+
 		JCheckBox checkBox5 = new CustomCheckBox("BERICHT_GOB", false);
 		checkBox5.setBounds(310, 210, 265, 20);
 		checkBox5.addItemListener(new CheckBoxItemListener());
@@ -154,6 +157,11 @@ public class TableToolVisualInterface extends JFrame
 		checkBox11.setBounds(310, 390, 265, 20);
 		checkBox11.addItemListener(new CheckBoxItemListener());
 		panel.add(checkBox11);
+
+		JCheckBox checkBoxReportHeap = new CustomCheckBox("BERICHT_HAUFWERK", false);
+		checkBoxReportHeap.setBounds(310, 420, 265, 20);
+		checkBoxReportHeap.addItemListener(new CheckBoxItemListener());
+		panel.add(checkBoxReportHeap);
 
 		// BUTTONS.
 		JButton executeButton = new CustomButton("Erstelle Tabellen");

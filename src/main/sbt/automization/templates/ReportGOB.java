@@ -33,13 +33,13 @@ public final class ReportGOB extends AReportTemplate
 	}
 
 	@Override
-	String setHtmlTableHeader()
+	String constructAndGetTableHeader()
 	{
 		return null;
 	}
 
 	@Override
-	public void buildHtmlTable(final List<ExplorationSite> sites)
+	public void constructTable(final List<ExplorationSite> sites)
 	{
 		StringBuilder strb = new StringBuilder();
 
@@ -67,7 +67,7 @@ public final class ReportGOB extends AReportTemplate
 
 			strb.append(reportTable.appendTag());
 		}
-		setHtmlTable(strb.toString());
+		setTable(strb.toString());
 	}
 
 	@Override
@@ -119,7 +119,7 @@ public final class ReportGOB extends AReportTemplate
 	}
 
 	@Override
-	public void buildHtmlTable(final ExplorationSite site)
+	public void constructTable(final ExplorationSite site)
 	{
 
 	}
@@ -128,6 +128,20 @@ public final class ReportGOB extends AReportTemplate
 	public String getExportFileName()
 	{
 		return "Bericht_GOB_Table.html";
+	}
+
+	@Override
+	HtmlTable constructAndGetTableObject()
+	{
+		HtmlTable table = new HtmlTable.Builder()
+				.appendAttribute("class", "MsoNormalTable")
+				.appendAttribute("border", "1")
+				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+				.appendAttribute("cellspacing", "0")
+				.appendAttribute("cellpadding", "0")
+				.build();
+
+		return table;
 	}
 
 }

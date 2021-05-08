@@ -58,6 +58,20 @@ public enum Template
 				{
 					return AppendixRUK.getInstance();
 				}
+			},
+	APPENDIX_PN_HEAP
+			{
+				@Override
+				public String getName()
+				{
+					return null;
+				}
+
+				@Override
+				public IHtmlTemplate getStrategy()
+				{
+					return null;
+				}
 			};
 
 	public abstract String getName();
