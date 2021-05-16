@@ -300,6 +300,7 @@ public final class AppendixPN extends AHtmlTemplate
             {
                 if ("GOB".equals(layerList.get(i).getInformation("SCHICHT_AUFSCHLUSS")))
                 {
+                    if (layerList.size() <= i+1) break;
                     if (layerList.get(i).getInformation("SCHICHT_ABFALLART").equals(layerList.get(i + 1).getInformation("SCHICHT_ABFALLART")))
                     {
                         layerList.get(i + 1).setInformation("SCHICHT_TIEFE_START", layerList.get(i).getInformation("SCHICHT_TIEFE_START"));
