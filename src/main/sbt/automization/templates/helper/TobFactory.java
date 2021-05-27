@@ -3,6 +3,7 @@ package sbt.automization.templates.helper;
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.Layer;
 import sbt.automization.format.TextFormatUtil;
+import sbt.automization.util.Util;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlText;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class TobFactory
 {
-	private static final String aufschluss = "TOB";
+	private static final String outcrop = "TOB";
 	private static final String headerCellClass = "NormalHeader";
 	private static final String normalCellClass = "NormalBold";
 	
@@ -97,7 +98,7 @@ public class TobFactory
 		return row.appendTag();
 	}
 
-	public static String createKGVRow(List<ExplorationSite> erkundungsstellen)
+	public static String createKGVRow(List<ExplorationSite> explorationSites)
 	{
 		//Korngroeßenverteilungen
 		HtmlRow row = new HtmlRow.Builder()
@@ -115,12 +116,12 @@ public class TobFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_KORNGROESSENVERTEILUNG"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_KORNGROESSENVERTEILUNG"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -129,7 +130,7 @@ public class TobFactory
 
 	}
 
-	public static String createGesamtDickeRow(List<ExplorationSite> erkundungsstellen)
+	public static String createGesamtDickeRow(List<ExplorationSite> explorationSites)
 	{
 		//Gesamtdicke Oberbau
 		HtmlRow row = new HtmlRow.Builder()
@@ -147,10 +148,10 @@ public class TobFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
 			String gob_dicke = TextFormatUtil.formatSiteOutcropThickness(explorationSite, "GOB").replace(",",".");
-			String tob_dicke = TextFormatUtil.formatSiteOutcropThickness(explorationSite, aufschluss).replace(",",".");
+			String tob_dicke = TextFormatUtil.formatSiteOutcropThickness(explorationSite, outcrop).replace(",",".");
 
 			String doubleValue = String.valueOf(Math.round(Double.parseDouble(gob_dicke) + Double.parseDouble(tob_dicke)));
 			String gesamtDicke = doubleValue.replace(".",",");
@@ -168,7 +169,7 @@ public class TobFactory
 
 	}
 
-	public static String createDickeRow(List<ExplorationSite> erkundungsstellen)
+	public static String createDickeRow(List<ExplorationSite> explorationSites)
 	{
 		//Gesamtdicke Oberbau
 		HtmlRow row = new HtmlRow.Builder()
@@ -186,9 +187,9 @@ public class TobFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
-			String tob_dicke = TextFormatUtil.formatSiteOutcropThickness(explorationSite, aufschluss);
+			String tob_dicke = TextFormatUtil.formatSiteOutcropThickness(explorationSite, outcrop);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -203,8 +204,10 @@ public class TobFactory
 
 	}
 
-	public static String createEvDynRow(List<ExplorationSite> erkundungsstellen)
+	public static String createEvDynRow(List<ExplorationSite> explorationSites)
 	{
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "ERK_LP_EV")) return "";
+
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
@@ -222,7 +225,7 @@ public class TobFactory
 
 
 		for (ExplorationSite explorationSite :
-				erkundungsstellen)
+				explorationSites)
 		{
 
 			HtmlCell cell = new HtmlCell.Builder()
@@ -236,8 +239,10 @@ public class TobFactory
 		return row.appendTag();
 	}
 
-	public static String createEvDyn85Row(List<ExplorationSite> erkundungsstellen)
+	public static String createEvDyn85Row(List<ExplorationSite> explorationSites)
 	{
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "ERK_LP_EV15")) return "";
+
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
@@ -255,7 +260,7 @@ public class TobFactory
 
 
 		for (ExplorationSite explorationSite :
-				erkundungsstellen)
+				explorationSites)
 		{
 
 			HtmlCell cell = new HtmlCell.Builder()
@@ -269,8 +274,10 @@ public class TobFactory
 		return row.appendTag();
 	}
 
-	public static String createEv2Row(List<ExplorationSite> erkundungsstellen)
+	public static String createEv2Row(List<ExplorationSite> explorationSites)
 	{
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "ERK_LP_EV2")) return "";
+
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
@@ -288,7 +295,7 @@ public class TobFactory
 
 
 		for (ExplorationSite explorationSite :
-				erkundungsstellen)
+				explorationSites)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -301,8 +308,10 @@ public class TobFactory
 		return row.appendTag();
 	}
 
-	public static String createEvSollRow(List<ExplorationSite> erkundungsstellen)
+	public static String createEvSollRow(List<ExplorationSite> explorationSites)
 	{
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "ERK_LP_EV2_SOLL")) return "";
+
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
@@ -319,7 +328,7 @@ public class TobFactory
 				.build();
 
 		for (ExplorationSite explorationSite :
-				erkundungsstellen)
+				explorationSites)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -346,12 +355,12 @@ public class TobFactory
 
 		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell htmlCell_CHEMIE_ID = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_ID"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_ID"))
 					.build();
 
 			rowCHEMIE_ID.appendContent(htmlCell_CHEMIE_ID.appendTag());
@@ -385,12 +394,12 @@ public class TobFactory
 
 		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell htmlCell_CHEMIE_MUFV = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_MUFV"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_MUFV"))
 					.build();
 
 			rowCHEMIE_MUFV.appendContent(htmlCell_CHEMIE_MUFV.appendTag());
@@ -418,12 +427,12 @@ public class TobFactory
 
 		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell htmlCell_CHEMIE_LAGA_BO = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_LAGA_BO"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_LAGA_BO"))
 					.build();
 
 			rowCHEMIE_LAGA_BO.appendContent(htmlCell_CHEMIE_LAGA_BO.appendTag());
@@ -451,12 +460,12 @@ public class TobFactory
 
 		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell htmlCell_CHEMIE_LAGA_RC = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_LAGA_RC"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_LAGA_RC"))
 					.build();
 
 			rowCHEMIE_LAGA_RC.appendContent(htmlCell_CHEMIE_LAGA_RC.appendTag());
@@ -484,12 +493,12 @@ public class TobFactory
 
 		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_LAGARC_ORIENTIERUNGSWERT"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_LAGARC_ORIENTIERUNGSWERT"))
 					.build();
 
 			rowCHEMIE_LAGA_RC_ORIENTIERUNG.appendContent(htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG.appendTag());
@@ -518,12 +527,12 @@ public class TobFactory
 
 		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell htmlCell_CHEMIE_TL_GESTEIN = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_TLGESTEIN"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_TLGESTEIN"))
 					.build();
 
 
@@ -552,12 +561,12 @@ public class TobFactory
 
 		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell htmlCell_CHEMIE_DEPV = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_DEPV"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_DEPV"))
 					.build();
 
 
@@ -586,18 +595,51 @@ public class TobFactory
 
 		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell htmlCell_CHEMIE_ENTSCHEIDUNGSILFE = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_ENTSCHEIDUNGSHILFE"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_ENTSCHEIDUNGSHILFE"))
 					.build();
 
 			rowCHEMIE_ENTSCHEIDUNGSHILFE.appendContent(htmlCell_CHEMIE_ENTSCHEIDUNGSILFE.appendTag());
 		}
 
 		return rowCHEMIE_ENTSCHEIDUNGSHILFE.appendTag();
+	}
+
+	public static String createChemieAbfallSchluesselRow(List<ExplorationSite> explorationSites)
+	{
+		HtmlRow rowChemistryAVV = new HtmlRow.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent(new HtmlCell.Builder()
+						.appendAttribute("class", headerCellClass)
+						.appendAttribute("width", "100")
+						.appendContent("Abfallschlüssel,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("AVV")
+								.build()
+								.appendTag())
+						.build()
+						.appendTag())
+				.build();
+
+		for (ExplorationSite explorationSite : explorationSites)
+		{
+			List<Layer> layersWithOutcrop = explorationSite.getLayersWithOutcrop(outcrop);
+
+			HtmlCell htmlCell_CHEMIE_ABFALLSCHLUESSEL = new HtmlCell.Builder()
+					.appendAttribute("class", normalCellClass)
+					.appendAttribute("width", "60")
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_ABFALLSCHLUESSEL"))
+					.build();
+
+			rowChemistryAVV.appendContent(htmlCell_CHEMIE_ABFALLSCHLUESSEL.appendTag());
+		}
+
+		return rowChemistryAVV.appendTag();
 	}
 
 	public static String createLegendeRow(List<ExplorationSite> erkundungsstellen)

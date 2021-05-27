@@ -32,16 +32,16 @@ public class TemplateTest
 	{
 		String path = System.getProperty("user.dir").concat(File.separator).concat("tests-resources").concat(File.separator);
 
-		File csv = new File(path + "excel-template-test-empty.csv");
+		File csv = new File(path + "excel-template-test.csv");
 		Parser parser = new Parser(csv);
 
 		TableEngine database = new TableEngine(parser.parse(), csv.getParent());
 
-		List<ExplorationSite> databaseErkundungsstellen = database.getExplorationSites();
-		int size = databaseErkundungsstellen.size();
+		List<ExplorationSite> databaseExplorationSites = database.getExplorationSites();
+		int size = databaseExplorationSites.size();
 		for (int i = 0 ; i < size ; i++)
 		{
-			Util.serializeExplorationSiteToFile(databaseErkundungsstellen.get(i), "tests-resources/TestErkundungsstelle_" + i);
+			Util.serializeExplorationSiteToFile(databaseExplorationSites.get(i), "tests-resources/TestErkundungsstelle_" + i);
 		}
 	}
 
@@ -51,15 +51,15 @@ public class TemplateTest
 		String path = System.getProperty("user.dir").concat(File.separator).concat("tests-resources").concat(File.separator);
 
 		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_0"));
-//		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_1"));
-//		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_2"));
-//		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_3"));
-//		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_4"));
-//		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_5"));
-//		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_6"));
-//		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_7"));
-//		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_8"));
-//		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_9"));
+		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_1"));
+		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_2"));
+		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_3"));
+		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_4"));
+		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_5"));
+		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_6"));
+		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_7"));
+		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_8"));
+		explorationSites.add(Util.readSerializedExplorationSite(path + "TestErkundungsstelle_9"));
 	}
 
 	@Test

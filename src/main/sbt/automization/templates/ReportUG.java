@@ -61,7 +61,7 @@ public final class ReportUG extends AReportTemplate
 			reportTable.appendContent(UgFactory.createZielTiefeRow(portion));
 			reportTable.appendContent(buildTechnicalFeatures(portion));
 			reportTable.appendContent(buildEnvironmentTechnicalFeatures(portion));
-			reportTable.appendContent(UgFactory.createLegendeRow(sites));
+			reportTable.appendContent(UgFactory.createLegendRow(sites));
 
 			strb.append(reportTable.appendTag());
 		}
@@ -137,8 +137,10 @@ public final class ReportUG extends AReportTemplate
 				.append(UgFactory.createChemieLagaRcRow(sites))
 				.append(UgFactory.createChemieLagaRcOrientierungRow(sites))
 				.append(UgFactory.createChemieTlGesteinRow(sites))
+				.append(UgFactory.createChemieRekuRow(sites))
 				.append(UgFactory.createChemieDepvRow(sites))
-				.append(UgFactory.createChemieEntscheidungshilfeRow(sites));
+				.append(UgFactory.createChemieEntscheidungshilfeRow(sites))
+				.append(UgFactory.createChemieAbfallSchluesselRow(sites));
 
 		return umweltTechBuilder.toString();
 	}

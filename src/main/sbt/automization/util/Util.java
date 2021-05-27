@@ -2,6 +2,7 @@ package sbt.automization.util;
 
 import org.apache.commons.io.FileUtils;
 import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.Layer;
 
 import java.io.*;
 import java.net.URL;
@@ -111,5 +112,27 @@ public final class Util
 	{
 		final AtomicInteger counter = new AtomicInteger(0);
 		return inputList.stream().collect(Collectors.groupingBy(l -> counter.getAndIncrement()/size)).values();
+	}
+
+	public static boolean thereExistsAnExplorationSiteWithData(List<ExplorationSite> explorationSites, String key)
+	{
+		for (ExplorationSite explorationSite : explorationSites)
+		{
+			if (!"-".equals(explorationSite.getInformation(key))) return true;
+		}
+		return false;
+	}
+
+	public static boolean thereExistsAnExplorationSiteLayerWithData(List<ExplorationSite> explorationSites, String outcrop, String key)
+	{
+		for (ExplorationSite explorationSite : explorationSites)
+		{
+			List<Layer> layersWithOutcrop = explorationSite.getLayersWithOutcrop(outcrop);
+			for (Layer layer : layersWithOutcrop)
+			{
+				if (!"-".equals(layer.getInformation(key))) return true;
+			}
+		}
+		return false;
 	}
 }

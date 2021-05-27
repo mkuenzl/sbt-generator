@@ -11,7 +11,7 @@ import java.util.List;
 
 public class UgFactory
 {
-	private static final String aufschluss = "UG";
+	private static final String outcrop = "UG";
 	private static final String headerCellClass = "NormalHeader";
 	private static final String normalCellClass = "NormalBold";
 
@@ -65,7 +65,7 @@ public class UgFactory
 		for (ExplorationSite explorationSite :
 				explorationSites)
 		{
-			String outcropThickness = TextFormatUtil.formatSiteOutcropThickness(explorationSite, aufschluss);
+			String outcropThickness = TextFormatUtil.formatSiteOutcropThickness(explorationSite, outcrop);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -216,12 +216,12 @@ public class UgFactory
 
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_WASSERGEHALT"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_WASSERGEHALT"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -245,12 +245,12 @@ public class UgFactory
 
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_FEUCHTIGKEIT"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_FEUCHTIGKEIT"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -274,12 +274,12 @@ public class UgFactory
 
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_KONSISTENZ"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_KONSISTENZ"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -308,12 +308,12 @@ public class UgFactory
 
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_WASSERPROCTOR"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_WASSERPROCTOR"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -342,12 +342,12 @@ public class UgFactory
 
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_DIFFERENZ_WN_WOPT"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_DIFFERENZ_WN_WOPT"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -371,12 +371,12 @@ public class UgFactory
 
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_VERDICHTUNGSFAEHIGKEIT"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_VERDICHTUNGSFAEHIGKEIT"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -415,7 +415,7 @@ public class UgFactory
 
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -454,7 +454,7 @@ public class UgFactory
 
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -493,12 +493,12 @@ public class UgFactory
 
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_ART"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_ART"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -527,12 +527,12 @@ public class UgFactory
 
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_BODENKLASSE"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_BODENKLASSE"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -566,12 +566,12 @@ public class UgFactory
 
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_BODENART"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_BODENART"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -600,12 +600,12 @@ public class UgFactory
 
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_HOMOGENBEREICH"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_HOMOGENBEREICH"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -639,12 +639,12 @@ public class UgFactory
 
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_FROSTEMPFINDLICHKEITSKLASSE"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_FROSTEMPFINDLICHKEITSKLASSE"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -667,12 +667,12 @@ public class UgFactory
 
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell htmlCell_CHEMIE_ID = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_ID"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_ID"))
 					.build();
 
 			rowCHEMIE_ID.appendContent(htmlCell_CHEMIE_ID.appendTag());
@@ -706,12 +706,12 @@ public class UgFactory
 
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell htmlCell_CHEMIE_MUFV = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_MUFV"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_MUFV"))
 					.build();
 
 			rowCHEMIE_MUFV.appendContent(htmlCell_CHEMIE_MUFV.appendTag());
@@ -739,12 +739,12 @@ public class UgFactory
 
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell htmlCell_CHEMIE_LAGA_BO = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_LAGA_BO"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_LAGA_BO"))
 					.build();
 
 			rowCHEMIE_LAGA_BO.appendContent(htmlCell_CHEMIE_LAGA_BO.appendTag());
@@ -772,12 +772,12 @@ public class UgFactory
 
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell htmlCell_CHEMIE_LAGA_RC = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_LAGA_RC"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_LAGA_RC"))
 					.build();
 
 			rowCHEMIE_LAGA_RC.appendContent(htmlCell_CHEMIE_LAGA_RC.appendTag());
@@ -805,12 +805,12 @@ public class UgFactory
 
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_LAGARC_ORIENTIERUNGSWERT"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_LAGARC_ORIENTIERUNGSWERT"))
 					.build();
 
 			rowCHEMIE_LAGA_RC_ORIENTIERUNG.appendContent(htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG.appendTag());
@@ -839,12 +839,12 @@ public class UgFactory
 
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell htmlCell_CHEMIE_TL_GESTEIN = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_TLGESTEIN"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_TLGESTEIN"))
 					.build();
 
 
@@ -878,12 +878,12 @@ public class UgFactory
 
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell htmlCell_CHEMIE_DEPV = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_DEPV"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_DEPV"))
 					.build();
 
 
@@ -912,12 +912,12 @@ public class UgFactory
 
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
+			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
 
 			HtmlCell htmlCell_CHEMIE_ENTSCHEIDUNGSILFE = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_ENTSCHEIDUNGSHILFE"))
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_ENTSCHEIDUNGSHILFE"))
 					.build();
 
 			rowCHEMIE_ENTSCHEIDUNGSHILFE.appendContent(htmlCell_CHEMIE_ENTSCHEIDUNGSILFE.appendTag());
@@ -926,7 +926,73 @@ public class UgFactory
 		return rowCHEMIE_ENTSCHEIDUNGSHILFE.appendTag();
 	}
 
-	public static String createLegendeRow(List<ExplorationSite> explorationSites)
+	public static String createChemieAbfallSchluesselRow(List<ExplorationSite> explorationSites)
+	{
+		HtmlRow rowChemistryAVV = new HtmlRow.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent(new HtmlCell.Builder()
+						.appendAttribute("class", headerCellClass)
+						.appendAttribute("width", "100")
+						.appendContent("Abfallschlüssel,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("AVV")
+								.build()
+								.appendTag())
+						.build()
+						.appendTag())
+				.build();
+
+		for (ExplorationSite explorationSite : explorationSites)
+		{
+			List<Layer> layersWithOutcrop = explorationSite.getLayersWithOutcrop(outcrop);
+
+			HtmlCell htmlCell_CHEMIE_ABFALLSCHLUESSEL = new HtmlCell.Builder()
+					.appendAttribute("class", normalCellClass)
+					.appendAttribute("width", "60")
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_ABFALLSCHLUESSEL"))
+					.build();
+
+			rowChemistryAVV.appendContent(htmlCell_CHEMIE_ABFALLSCHLUESSEL.appendTag());
+		}
+
+		return rowChemistryAVV.appendTag();
+	}
+
+	public static String createChemieRekuRow(List<ExplorationSite> explorationSites)
+	{
+		HtmlRow rowChemistryAVV = new HtmlRow.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent(new HtmlCell.Builder()
+						.appendAttribute("class", headerCellClass)
+						.appendAttribute("width", "100")
+						.appendContent("Rekultivierungsschicht,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal6")
+								.appendContent("Reku")
+								.build()
+								.appendTag())
+						.build()
+						.appendTag())
+				.build();
+
+		for (ExplorationSite explorationSite : explorationSites)
+		{
+			List<Layer> layersWithOutcrop = explorationSite.getLayersWithOutcrop(outcrop);
+
+			HtmlCell htmlCell_CHEMIE_REKU = new HtmlCell.Builder()
+					.appendAttribute("class", normalCellClass)
+					.appendAttribute("width", "60")
+					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_REKU"))
+					.build();
+
+			rowChemistryAVV.appendContent(htmlCell_CHEMIE_REKU.appendTag());
+		}
+
+		return rowChemistryAVV.appendTag();
+	}
+
+	public static String createLegendRow(List<ExplorationSite> explorationSites)
 	{
 		//Umwelttechnische Merkmale Trennzeile
 		HtmlRow rowLegende = new HtmlRow.Builder()

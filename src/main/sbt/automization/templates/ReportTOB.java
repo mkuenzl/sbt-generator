@@ -133,7 +133,9 @@ public final class ReportTOB extends AReportTemplate
 				.append(TobFactory.createChemieLagaRcOrientierungRow(explorationSites))
 				.append(TobFactory.createChemieTlGesteinRow(explorationSites))
 				.append(TobFactory.createChemieDepvRow(explorationSites))
-				.append(TobFactory.createChemieEntscheidungshilfeRow(explorationSites));
+				.append(TobFactory.createChemieEntscheidungshilfeRow(explorationSites))
+				.append(TobFactory.createChemieAbfallSchluesselRow(explorationSites));
+
 
 		return umweltTechBuilder.toString();
 	}

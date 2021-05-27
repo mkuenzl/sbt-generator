@@ -116,15 +116,15 @@ public final class TextFormatUtil
 
 	public static String formatLayerSampleType(final Layer layer)
 	{
-		String probenart;
+		String sampleType;
 		if ("-".equals(layer.getInformation("SCHICHT_BEHAELTNIS")))
 		{
-			probenart = "EP";
+			sampleType = "EP";
 		} else
 		{
-			probenart = "MP";
+			sampleType = "MP";
 		}
-		return probenart;
+		return sampleType;
 	}
 
 	public static String formatSiteFootnotes(final ExplorationSite explorationSite)
@@ -444,21 +444,26 @@ public final class TextFormatUtil
 				kindText = "Bankettandeckung";
 				break;
 			default:
-				kindText = "Invalid Bodengruppe";
+				kindText = "";
 				break;
 		}
+
+
 
 		if (isFillUp)
 		{
 			return kindText + " " + "[" + kind + "]";
 		}
 
+		if ("".equals(kindText))
+			return kind;
+
 		return kindText + " " + kind;
 	}
 
 	public static String presentTobLayers(final ExplorationSite explorationSite)
 	{
-		StringBuilder formatedSchichtenMaterial = new StringBuilder();
+		StringBuilder formattedLayerMaterial = new StringBuilder();
 
 		List<Layer> tob = explorationSite.getLayersWithOutcrop("TOB");
 
@@ -468,48 +473,39 @@ public final class TextFormatUtil
 		{
 			Layer layer = tob.get(i);
 
-			formatedSchichtenMaterial.append(NameFormatUtil.formatArt(layer.getInformation("SCHICHT_ART")));
+			formattedLayerMaterial.append(NameFormatUtil.formatArt(layer.getInformation("SCHICHT_ART")));
 
-			formatedSchichtenMaterial.append(printEmptyRow());
+			formattedLayerMaterial.append(printEmptyRow());
 
-			HtmlText text2 = new HtmlText.Builder()
+			HtmlText layerAttributes = new HtmlText.Builder()
 					.appendAttribute("class", "Normal6")
 					.appendContent(layer.getInformation("SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT"))
 					.appendContent(" ")
 					.appendContent(layer.getInformation("SCHICHT_KOERNUNG"))
 					.build();
 
-			HtmlText text3 = new HtmlText.Builder()
-					.appendAttribute("class", "Normal6")
-					.appendContent("[T:")
-					.appendContent(layer.getInformation("SCHICHT_TIEFE_START"))
-					.appendContent("-")
-					.appendContent(layer.getInformation("SCHICHT_TIEFE_ENDE"))
-					.appendContent("]")
-					.build();
-
-			formatedSchichtenMaterial.append(text2.appendTag());
-			formatedSchichtenMaterial.append(printFormattedLayerDepth(layer));
+			formattedLayerMaterial.append(layerAttributes.appendTag());
+			formattedLayerMaterial.append(printFormattedLayerDepth(layer));
 
 			if (i + 1 < size)
 			{
-				formatedSchichtenMaterial.append(printCellTextDivider());
+				formattedLayerMaterial.append(printCellTextDivider());
 			}
 		}
 
-		return formatedSchichtenMaterial.toString();
+		return formattedLayerMaterial.toString();
 	}
 
 	public static String printFormattedLayerDepth(final Layer layer)
 	{
-		String tiefe = "[T: " + layer.getInformation("SCHICHT_TIEFE_START") + " - " + layer.getInformation("SCHICHT_TIEFE_ENDE") + "]";
+		String depth = "[T: " + layer.getInformation("SCHICHT_TIEFE_START") + " - " + layer.getInformation("SCHICHT_TIEFE_ENDE") + "]";
 
-		HtmlText formatedTiefe = new HtmlText.Builder()
+		HtmlText formattedDepth = new HtmlText.Builder()
 				.appendAttribute("class", "Normal6")
-				.appendContent(tiefe)
+				.appendContent(depth)
 				.build();
 
-		return formatedTiefe.appendTag();
+		return formattedDepth.appendTag();
 	}
 
 	public static String printCellTextDivider()
@@ -530,37 +526,37 @@ public final class TextFormatUtil
 	{
 		String format = "";
 
-		String schicht_art = layer.getInformation("SCHICHT_ART");
+		String layerKind = layer.getInformation("SCHICHT_ART");
 
-		String schicht_koernung = layer.getInformation("SCHICHT_KOERNUNG");
-		if ("-".equals(schicht_koernung)) schicht_koernung = "";
+		String layerGranulation = layer.getInformation("SCHICHT_KOERNUNG");
+		if ("-".equals(layerGranulation)) layerGranulation = "";
 
-		format = schicht_art.concat(" ").concat(schicht_koernung);
+		format = layerKind.concat(" ").concat(layerGranulation);
 
 		return format;
 	}
 
 	public static String printLayerInformation(final ExplorationSite explorationSite, final String outcrop, final String tag)
 	{
-		List<Layer> schichten = explorationSite.getLayersWithOutcrop(outcrop);
+		List<Layer> layers = explorationSite.getLayersWithOutcrop(outcrop);
 
 		StringBuilder stringBuilder = new StringBuilder();
 
-		int number = schichten.size();
+		int number = layers.size();
 
 		for (int i = 0 ; i < number ; i++)
 		{
-			Layer layer = schichten.get(i);
+			Layer layer = layers.get(i);
 
-			String formatedTag;
+			String formattedTag;
 
 			//TODO
 			if (tag.contains("CHEMIE"))
 			{
-				formatedTag = printChemistryMarkup(layer.getInformation(tag));
+				formattedTag = printChemistryMarkup(layer.getInformation(tag));
 			} else
 			{
-				formatedTag = new HtmlText.Builder()
+				formattedTag = new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
 						.appendContent(layer.getInformation(tag))
 						.build().appendTag();
@@ -572,25 +568,9 @@ public final class TextFormatUtil
 				stringBuilder.append(printCellTextDivider());
 			}
 
-			stringBuilder.append(formatedTag);
-
-
-//				if (number > 1)
-//				{
-
-			HtmlText formatedTiefe = new HtmlText.Builder()
-					.appendAttribute("class", "Normal6")
-					.appendContent("[T:")
-					.appendContent(layer.getInformation("SCHICHT_TIEFE_START"))
-					.appendContent("-")
-					.appendContent(layer.getInformation("SCHICHT_TIEFE_ENDE"))
-					.appendContent("]")
-					.build();
-
+			stringBuilder.append(formattedTag);
 			stringBuilder.append(printEmptyRow());
 			stringBuilder.append(printFormattedLayerDepth(layer));
-//				}
-
 
 		}
 
