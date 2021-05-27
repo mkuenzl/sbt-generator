@@ -114,6 +114,12 @@ public final class Util
 		return inputList.stream().collect(Collectors.groupingBy(l -> counter.getAndIncrement()/size)).values();
 	}
 
+	/**
+	 * Used to detect if there are exploration sites where the key value is not empty
+	 * @param explorationSites list of exploration sites
+	 * @param key String that represents a key to get information from the exploration site
+	 * @return true, if there is a non empty value, false, if all values are empty
+	 */
 	public static boolean thereExistsAnExplorationSiteWithData(List<ExplorationSite> explorationSites, String key)
 	{
 		for (ExplorationSite explorationSite : explorationSites)
@@ -122,7 +128,13 @@ public final class Util
 		}
 		return false;
 	}
-
+	/**
+	 * Used to detect if there are layers inside of exploration sites where the key value is not empty
+	 * @param explorationSites list of exploration sites
+	 * @param outcrop specifies which layers should be looked at
+	 * @param key String that represents a key to get information from the layers
+	 * @return true, if there is a non empty value, false, if all values are empty
+	 */
 	public static boolean thereExistsAnExplorationSiteLayerWithData(List<ExplorationSite> explorationSites, String outcrop, String key)
 	{
 		for (ExplorationSite explorationSite : explorationSites)
