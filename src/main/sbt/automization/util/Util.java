@@ -83,10 +83,9 @@ public final class Util
 		return explorationSite;
 	}
 
-	public static void exportExcelTemplate() throws IOException
+	public static void exportFile(String filePath) throws IOException
 	{
-		String filePath = "/sbt-excel-template.xlsx";
-		String pathname = System.getProperty("user.dir") + filePath;
+		String pathname = System.getProperty("user.dir").concat(File.separator).concat(filePath);
 
 		if (new File(pathname).exists()) return;
 

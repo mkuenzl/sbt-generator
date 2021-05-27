@@ -5,6 +5,7 @@ import org.junit.Test;
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.templates.ErkundungsstellenTestFactory;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,61 +16,61 @@ public class UtilTest
 	@Test
 	public void exportCSVTemplate() throws IOException
 	{
-		Util.exportExcelTemplate();
+		Util.exportFile("/sbt-excel-template.xlsx");
 	}
 
 	@Test
-	public void partioningTest()
+	public void partitioningTest()
 	{
-		List<ExplorationSite> erkundungsstellen = new ArrayList<>();
+		List<ExplorationSite> explorationSites = new ArrayList<>();
 		ErkundungsstellenTestFactory erkundungsstellenTestFactory = new ErkundungsstellenTestFactory();
 		for (int i = 0 ; i < 100 ; i++)
 		{
-			erkundungsstellen.add(erkundungsstellenTestFactory.getTestErkundungsstelle1());
+			explorationSites.add(erkundungsstellenTestFactory.getTestErkundungsstelle1());
 		}
 
-		Collection<List<ExplorationSite>> partionBasedOnSize = Util.separateBasedOnSize(erkundungsstellen, 5);
+		Collection<List<ExplorationSite>> partitionBasedOnSize = Util.separateBasedOnSize(explorationSites, 5);
 
-		Assert.assertTrue(partionBasedOnSize.size() == 20);
+		Assert.assertTrue(partitionBasedOnSize.size() == 20);
 	}
 
 	@Test
-	public void partioningLessThenExpectedTest()
+	public void partitioningLessThenExpectedTest()
 	{
-		List<ExplorationSite> erkundungsstellen = new ArrayList<>();
+		List<ExplorationSite> explorationSites = new ArrayList<>();
 		ErkundungsstellenTestFactory erkundungsstellenTestFactory = new ErkundungsstellenTestFactory();
 		for (int i = 0 ; i < 3 ; i++)
 		{
-			erkundungsstellen.add(erkundungsstellenTestFactory.getTestErkundungsstelle1());
+			explorationSites.add(erkundungsstellenTestFactory.getTestErkundungsstelle1());
 		}
 
-		Collection<List<ExplorationSite>> partionBasedOnSize = Util.separateBasedOnSize(erkundungsstellen, 5);
+		Collection<List<ExplorationSite>> partitionBasedOnSize = Util.separateBasedOnSize(explorationSites, 5);
 
-		Assert.assertTrue(partionBasedOnSize.size() == 1);
+		Assert.assertTrue(partitionBasedOnSize.size() == 1);
 	}
 
 	@Test
-	public void partioningUnregularAmountTest()
+	public void partitioningIrregularAmountTest()
 	{
-		List<ExplorationSite> erkundungsstellen = new ArrayList<>();
+		List<ExplorationSite> explorationSites = new ArrayList<>();
 		ErkundungsstellenTestFactory erkundungsstellenTestFactory = new ErkundungsstellenTestFactory();
 		for (int i = 0 ; i < 17 ; i++)
 		{
-			erkundungsstellen.add(erkundungsstellenTestFactory.getTestErkundungsstelle1());
+			explorationSites.add(erkundungsstellenTestFactory.getTestErkundungsstelle1());
 		}
 
-		Collection<List<ExplorationSite>> partionBasedOnSize = Util.separateBasedOnSize(erkundungsstellen, 5);
+		Collection<List<ExplorationSite>> partitionBasedOnSize = Util.separateBasedOnSize(explorationSites, 5);
 
-		Assert.assertTrue(partionBasedOnSize.size() == 4);
+		Assert.assertTrue(partitionBasedOnSize.size() == 4);
 	}
 
 	@Test
-	public void partioningNullTest()
+	public void partitioningNullTest()
 	{
-		List<ExplorationSite> erkundungsstellen = new ArrayList<>();
+		List<ExplorationSite> explorationSites = new ArrayList<>();
 
-		Collection<List<ExplorationSite>> partionBasedOnSize = Util.separateBasedOnSize(erkundungsstellen, 5);
+		Collection<List<ExplorationSite>> partitionBasedOnSize = Util.separateBasedOnSize(explorationSites, 5);
 
-		Assert.assertTrue(partionBasedOnSize.size() == 0);
+		Assert.assertTrue(partitionBasedOnSize.size() == 0);
 	}
 }

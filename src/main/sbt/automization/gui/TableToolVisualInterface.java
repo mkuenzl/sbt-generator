@@ -74,7 +74,7 @@ public class TableToolVisualInterface extends JFrame
 		ImageIcon infoIconScaled = new ImageIcon(scaledInstance);
 		JButton infoButton = new CustomButton("");
 		infoButton.setIcon(infoIconScaled);
-		infoButton.setBounds(540, 10, 40, 40);
+		infoButton.setBounds(535, 10, 40, 40);
 		infoButton.addActionListener(new InfoButtonActionListener());
 		panel.add(infoButton);
 
@@ -82,6 +82,18 @@ public class TableToolVisualInterface extends JFrame
 		explorerButton.setBounds(10, 60, 265, 40);
 		explorerButton.addActionListener(new ExplorerButtonActionListener());
 		panel.add(explorerButton);
+
+		// BUTTONS.
+		String[] pattern = {
+				"Lade Dokument ...",
+				"Regelwerk_Klein",
+				"Regelwerk_Groß"
+		};
+
+		JComboBox fileDropDown = new FileDropDownMenu(pattern);
+		fileDropDown.setBounds(310, 60, 265, 40);
+		fileDropDown.addActionListener(new FileDropDownActionListener(fileDropDown));
+		panel.add(fileDropDown);
 
 		textField = new JTextArea();
 		textField.setBounds(10, 110, 565, 40);
