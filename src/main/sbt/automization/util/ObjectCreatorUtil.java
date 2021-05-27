@@ -42,18 +42,11 @@ public class ObjectCreatorUtil
 
         for (ExplorationSite explorationSite : explorationSites)
         {
-            //Sortiert die Schichten in einer Erkundungsstellen
-            explorationSite.sortLayer();
+            explorationSite.sortLayers();
         }
 
-        //Sortiert die Erkundungsstellen
-        //BA12 FB123 GEW12345
-        //BA1 FB2 FB1 BA2 GEW1 FB3 GEW2
-        //Liste{Liste{BA1, BA2}, Liste{FB2, FB1, FB3}, Liste{GEW1, GEW2}}
-        //Collections.sort(explorationSites);
-
-        //TODO kännte funktionieren, muss aber nicht unbedingt
-        //java.util.Collections.sort(explorationSites);
+        //uses the compareTo function of explorationSite
+        Collections.sort(explorationSites);
 
         return explorationSites;
     }
@@ -73,26 +66,26 @@ public class ObjectCreatorUtil
         return new Layer(tmpMap);
     }
 
-    //Finish implementation
+    //Unfinished implementation
     @Deprecated
     private static ExplorationSite createExplorationSite(Map<String, String> dataRow)
     {
         ExplorationSite explorationSite = new ExplorationSite();
 
-        explorationSite.setIdentifier(dataRow.get("ERK_ID"))
-                    .setDatum(dataRow.get("ERK_DATUM"))
-                    .setPruefer(dataRow.get("ERK_PRUEFER"))
-                    .setKoordinaten(dataRow.get("ERK_KOORDINATEN"))
-                    .setOrt(dataRow.get("ERK_ORT"))
-                    .setAufschlussOb(dataRow.get("ERK_AUFSCHLUSS_OB"))
-                    .setAufschlussTob(dataRow.get("ERK_AUFSCHLUSS_TOB"))
-                    .setAufschlussUg(dataRow.get("ERK_AUFSCHLUSS_UG"))
-                    .setOberkante(dataRow.get("ERK_OBERKANTE"))
-                    .setBelastungsklasse(dataRow.get("ERK_BELASTUNGSKLASSE"))
-                    .setLpIdentifier(dataRow.get("ERK_LP"))
-                    .setLpEv(dataRow.get("ERK_LP_EV"))
-                    .setLpEv15(dataRow.get("ERK_LP_EV15"))
-                    .setLpEv2(dataRow.get("ERK_LP_EV2"));
+//        explorationSite.setIdentifier(dataRow.get("ERK_ID"))
+//                    .setDatum(dataRow.get("ERK_DATUM"))
+//                    .setPruefer(dataRow.get("ERK_PRUEFER"))
+//                    .setKoordinaten(dataRow.get("ERK_KOORDINATEN"))
+//                    .setOrt(dataRow.get("ERK_ORT"))
+//                    .setAufschlussOb(dataRow.get("ERK_AUFSCHLUSS_OB"))
+//                    .setAufschlussTob(dataRow.get("ERK_AUFSCHLUSS_TOB"))
+//                    .setAufschlussUg(dataRow.get("ERK_AUFSCHLUSS_UG"))
+//                    .setOberkante(dataRow.get("ERK_OBERKANTE"))
+//                    .setBelastungsklasse(dataRow.get("ERK_BELASTUNGSKLASSE"))
+//                    .setLpIdentifier(dataRow.get("ERK_LP"))
+//                    .setLpEv(dataRow.get("ERK_LP_EV"))
+//                    .setLpEv15(dataRow.get("ERK_LP_EV15"))
+//                    .setLpEv2(dataRow.get("ERK_LP_EV2"));
 
         return explorationSite;
     }

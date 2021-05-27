@@ -21,7 +21,12 @@ public class ExecuteButtonActionListener implements ActionListener
 
 		for (IHtmlTemplate strategy : StrategyStorage.getInstance().getStrategies())
 		{
-			database.export(new HtmlTemplateExportStrategy(strategy));
+			try{
+				database.export(new HtmlTemplateExportStrategy(strategy));
+			} catch (Exception exception)
+			{
+				ErrorPopup.showErrorMessage("Es gab einen Fehler bei der Erstellung von " + strategy.getClass().getSimpleName());
+			}
 		}
 	}
 }

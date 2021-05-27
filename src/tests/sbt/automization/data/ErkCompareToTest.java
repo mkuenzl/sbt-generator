@@ -21,61 +21,70 @@ public class ErkCompareToTest
 
 
 	@Before
-	public void createErkundungsstellen()
+	public void createExplorationSites()
 	{
 		Map<String, String> erk1Daten = new HashMap<>(){{
 			put("ERK_ID", "FB1");
+			put("ERK_NUMMER", "1");
 		}};
 
 		explorationSiteFB1 = new ExplorationSite(erk1Daten);
 
 		Map<String, String> erk2Daten = new HashMap<>(){{
 			put("ERK_ID", "FB2");
+			put("ERK_NUMMER", "2");
 		}};
 
 		explorationSiteFB2 = new ExplorationSite(erk2Daten);
 
 		Map<String, String> erk3Daten = new HashMap<>(){{
 			put("ERK_ID", "FB3");
+			put("ERK_NUMMER", "3");
 		}};
 
 		explorationSiteFB3 = new ExplorationSite(erk3Daten);
 
 		Map<String, String> erk4Daten = new HashMap<>(){{
 			put("ERK_ID", "FB4");
+			put("ERK_NUMMER", "4");
 		}};
 
 		explorationSiteFB4 = new ExplorationSite(erk4Daten);
 
 		Map<String, String> erk17Daten = new HashMap<>(){{
 			put("ERK_ID", "FB17");
+			put("ERK_NUMMER", "17");
 		}};
 
 		explorationSiteFB17 = new ExplorationSite(erk17Daten);
 
 		Map<String, String> erk22Daten = new HashMap<>(){{
 			put("ERK_ID", "FB22");
+			put("ERK_NUMMER", "22");
 		}};
 
 		explorationSiteFB22 = new ExplorationSite(erk22Daten);
 
-		Map<String, String> erk01Daten = new HashMap<>(){{
-			put("ERK_ID", "1");
+		Map<String, String> erk05Data = new HashMap<>(){{
+			put("ERK_ID", "5");
+			put("ERK_NUMMER", "5");
 		}};
 
-		explorationSite1 = new ExplorationSite(erk01Daten);
+		explorationSite1 = new ExplorationSite(erk05Data);
 
-		Map<String, String> erk02Daten = new HashMap<>(){{
-			put("ERK_ID", "2");
+		Map<String, String> erk06Data = new HashMap<>(){{
+			put("ERK_ID", "6");
+			put("ERK_NUMMER", "6");
 		}};
 
-		explorationSite2 = new ExplorationSite(erk02Daten);
+		explorationSite2 = new ExplorationSite(erk06Data);
 
-		Map<String, String> erk03Daten = new HashMap<>(){{
-			put("ERK_ID", "3");
+		Map<String, String> erk07Data = new HashMap<>(){{
+			put("ERK_ID", "7");
+			put("ERK_NUMMER", "7");
 		}};
 
-		explorationSite3 = new ExplorationSite(erk03Daten);
+		explorationSite3 = new ExplorationSite(erk07Data);
 
 
 	}
@@ -128,6 +137,6 @@ public class ErkCompareToTest
 
 		Collections.sort(erkundungsstellen);
 
-		Assert.assertNotEquals(erkundungsstellenCompareTo, erkundungsstellen);
+		Assert.assertEquals(erkundungsstellenCompareTo, erkundungsstellen);
 	}
 }
