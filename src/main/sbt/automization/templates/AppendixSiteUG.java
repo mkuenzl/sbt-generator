@@ -152,27 +152,27 @@ final class AppendixSiteUG extends AHtmlTemplate
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendAttribute("rowspan", "2")
-                .appendContent("MUFV")
+                .appendContent("MUFV<sup>[46]</sup>")
                 .build();
 
         HtmlTableHeader cell25 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendAttribute("rowspan", "2")
-                .appendContent("LAGA BO")
+                .appendContent("LAGA BO<sup>[2]</sup>")
                 .build();
 
         HtmlTableHeader cell26 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendAttribute("rowspan", "2")
-                .appendContent("LAGA RC")
+                .appendContent("LAGA RC<sup>[16]</sup>")
                 .build();
 
         HtmlTableHeader cell27 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
-                .appendContent("WG")
+                .appendContent("WG<sup>[28]</sup>")
                 .build();
 
         HtmlTableHeader cell28 = new HtmlTableHeader.Builder()
@@ -184,7 +184,7 @@ final class AppendixSiteUG extends AHtmlTemplate
         HtmlTableHeader cell29 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
-                .appendContent("Proctor")
+                .appendContent("Proctor<sup>[29]</sup>")
                 .build();
 
 

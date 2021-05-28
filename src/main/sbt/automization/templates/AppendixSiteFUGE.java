@@ -156,7 +156,7 @@ final class AppendixSiteFUGE extends AHtmlTemplate
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
 				.appendAttribute("rowspan", "2")
-				.appendContent("MUFV")
+				.appendContent("MUFV<sup>[46]</sup>")
 				.build();
 
 		HtmlTableHeader cell25 = new HtmlTableHeader.Builder()

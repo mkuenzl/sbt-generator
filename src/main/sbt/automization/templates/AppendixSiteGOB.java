@@ -121,7 +121,7 @@ final class AppendixSiteGOB extends AHtmlTemplate
         HtmlCell cellBelastungklasseTafel = new HtmlCell.Builder()
                 .appendAttribute("class", "NormalErkundungsstelle")
                 .appendAttribute("colspan", "2")
-                .appendContent("RStO")
+                .appendContent("RStO<sup>[21]</sup>")
                 .appendContent(TextFormatUtil.printLineBreak())
                 .appendContent(site.getInformation("ERK_BELASTUNGSKLASSE_TAFEL"))
                 .build();
@@ -169,7 +169,7 @@ final class AppendixSiteGOB extends AHtmlTemplate
         HtmlTableHeader cellDicke = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
-                .appendContent("Dicke")
+                .appendContent("Dicke<sup>[23]</sup>")
                 .build();
 
         HtmlTableHeader cellTiefe = new HtmlTableHeader.Builder()
@@ -182,28 +182,28 @@ final class AppendixSiteGOB extends AHtmlTemplate
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendAttribute("rowspan", "2")
-                .appendContent("MUFV")
+                .appendContent("MUFV<sup>[46]</sup>")
                 .build();
 
         HtmlTableHeader cellPech = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendAttribute("rowspan", "2")
-                .appendContent("PECH")
+                .appendContent("PECH<sup>[26]</sup>")
                 .build();
 
         HtmlTableHeader cellLAGARC = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendAttribute("rowspan", "2")
-                .appendContent("LAGA RC")
+                .appendContent("LAGA RC<sup>[16]</sup>")
                 .build();
 
         HtmlTableHeader cellTLGe = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendAttribute("rowspan", "2")
-                .appendContent("TL Ge.")
+                .appendContent("TL Ge.<sup>[15]</sup>")
                 .build();
 
         HtmlTableHeader cellPAK = new HtmlTableHeader.Builder()
@@ -215,7 +215,7 @@ final class AppendixSiteGOB extends AHtmlTemplate
         HtmlTableHeader cellRUK = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
-                .appendContent("RuK")
+                .appendContent("RuK<sup>[34]</sup>")
                 .build();
 
         //Third Row

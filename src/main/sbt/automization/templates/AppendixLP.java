@@ -183,7 +183,7 @@ public final class AppendixLP extends AHtmlTemplate
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "45")
                 .appendAttribute("rowspan", "2")
-                .appendContent("E<sub>V2</sub>")
+                .appendContent("E<sub>V2</sub><sup>[42]</sup>")
                 .build();
 
         //First Header Row

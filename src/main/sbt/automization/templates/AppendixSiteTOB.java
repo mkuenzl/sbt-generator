@@ -157,7 +157,7 @@ final class AppendixSiteTOB extends AHtmlTemplate
 		HtmlTableHeader cell22 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
-				.appendContent("Dicke")
+				.appendContent("Dicke<sup>[23]</sup>")
 				.build();
 
 		HtmlTableHeader cell23 = new HtmlTableHeader.Builder()
@@ -170,34 +170,34 @@ final class AppendixSiteTOB extends AHtmlTemplate
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
 				.appendAttribute("rowspan", "2")
-				.appendContent("MUFV")
+				.appendContent("MUFV<sup>[46]</sup>")
 				.build();
 
 		HtmlTableHeader cell25 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
 				.appendAttribute("rowspan", "2")
-				.appendContent("LAGA BO")
+				.appendContent("LAGA BO<sup>[2]</sup>")
 				.build();
 
 		HtmlTableHeader cell26 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
 				.appendAttribute("rowspan", "2")
-				.appendContent("LAGA RC")
+				.appendContent("LAGA RC<sup>[16]</sup>")
 				.build();
 
 		HtmlTableHeader cell27 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
 				.appendAttribute("rowspan", "2")
-				.appendContent("TL Ge.")
+				.appendContent("TL Ge.<sup>[15]</sup>")
 				.build();
 
 		HtmlTableHeader cell28 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
-				.appendContent("E<sub>V2</sub>")
+				.appendContent("E<sub>V2</sub><sup>[42]</sup>")
 				.appendContent(TextFormatUtil.printLineBreak())
 				.appendContent("E<sub>Vdyn</sub>")
 				.appendContent(TextFormatUtil.printLineBreak())
@@ -208,7 +208,7 @@ final class AppendixSiteTOB extends AHtmlTemplate
 		HtmlTableHeader cell29 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
-				.appendContent("KGV")
+				.appendContent("KGV<sup>[14]</sup>")
 				.build();
 
 		HtmlTableHeader cell32 = new HtmlTableHeader.Builder()

@@ -16,7 +16,7 @@ public class ConcreteFactory
     private static final String headerCellClass = "NormalHeader";
     private static final String normalCellClass = "NormalBold";
 
-    public static String createIDRow(List<ExplorationSite> erkundungsstellen)
+    public static String createIDRow(List<ExplorationSite> explorationSites)
     {
         //Erkundungsstellen ID
         HtmlRow row = new HtmlRow.Builder()
@@ -30,7 +30,7 @@ public class ConcreteFactory
                 .build();
 
         for (ExplorationSite explorationSite :
-                erkundungsstellen)
+                explorationSites)
         {
             HtmlCell htmlCell_ERK_ID = new HtmlCell.Builder()
                     .appendAttribute("class", "NormalBold")
@@ -213,7 +213,7 @@ public class ConcreteFactory
                                 .appendTag())
                         .appendContent(new HtmlText.Builder()
                                 .appendAttribute("class", "Normal6")
-                                .appendContent("Schreiben des MUFV")
+                                .appendContent("Schreiben des MUFV<sup>[9]</sup>")
                                 .build()
                                 .appendTag())
                         .build()
@@ -246,7 +246,7 @@ public class ConcreteFactory
                         .appendContent("Zuordnung,")
                         .appendContent(new HtmlText.Builder()
                                 .appendAttribute("class", "Normal6")
-                                .appendContent("LAGA Bauschutt")
+                                .appendContent("LAGA Bauschutt<sup>[16]</sup>")
                                 .build()
                                 .appendTag())
                         .build()
@@ -279,7 +279,7 @@ public class ConcreteFactory
                         .appendContent("Orientierungswert,")
                         .appendContent(new HtmlText.Builder()
                                 .appendAttribute("class", "Normal6")
-                                .appendContent("LAGA Bauschutt")
+                                .appendContent("LAGA Bauschutt<sup>[16]</sup>")
                                 .build()
                                 .appendTag())
                         .build()
@@ -313,7 +313,7 @@ public class ConcreteFactory
                         .appendContent("Verwertungsklasse,")
                         .appendContent(new HtmlText.Builder()
                                 .appendAttribute("class", "Normal6")
-                                .appendContent("TL Gestein")
+                                .appendContent("TL Gestein<sup>[15]</sup>")
                                 .build()
                                 .appendTag())
                         .build()
@@ -347,7 +347,7 @@ public class ConcreteFactory
                         .appendContent("Deponieklasse,")
                         .appendContent(new HtmlText.Builder()
                                 .appendAttribute("class", "Normal6")
-                                .appendContent("DepV")
+                                .appendContent("DepV<sup>[7]</sup>")
                                 .build()
                                 .appendTag())
                         .build()
@@ -382,7 +382,7 @@ public class ConcreteFactory
                         .appendContent("Abfallschlüssel,")
                         .appendContent(new HtmlText.Builder()
                                 .appendAttribute("class", "Normal6")
-                                .appendContent("AVV")
+                                .appendContent("AVV<sup>[6]</sup>")
                                 .build()
                                 .appendTag())
                         .build()

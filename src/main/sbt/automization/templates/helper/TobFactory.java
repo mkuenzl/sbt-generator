@@ -206,7 +206,7 @@ public class TobFactory
 
 	public static String createEvDynRow(List<ExplorationSite> explorationSites)
 	{
-		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "ERK_LP_EV")) return "";
+		//if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "ERK_LP_EV")) return "";
 
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
@@ -241,7 +241,7 @@ public class TobFactory
 
 	public static String createEvDyn85Row(List<ExplorationSite> explorationSites)
 	{
-		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "ERK_LP_EV15")) return "";
+		//if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "ERK_LP_EV15")) return "";
 
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
@@ -276,14 +276,14 @@ public class TobFactory
 
 	public static String createEv2Row(List<ExplorationSite> explorationSites)
 	{
-		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "ERK_LP_EV2")) return "";
+		//if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "ERK_LP_EV2")) return "";
 
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
-						.appendContent("E<sub>V2</sub>,")
+						.appendContent("E<sub>V2</sub><sup>[42]</sup>,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal6")
 								.appendContent("MN/m²")
@@ -385,7 +385,7 @@ public class TobFactory
 								.appendTag())
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal6")
-								.appendContent("Schreiben des MUFV")
+								.appendContent("Schreiben des MUFV<sup>[9]</sup>")
 								.build()
 								.appendTag())
 						.build()
@@ -418,7 +418,7 @@ public class TobFactory
 						.appendContent("Zuordnung,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal6")
-								.appendContent("LAGA Boden")
+								.appendContent("LAGA Boden<sup>[2]</sup>")
 								.build()
 								.appendTag())
 						.build()
@@ -451,7 +451,7 @@ public class TobFactory
 						.appendContent("Zuordnung,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal6")
-								.appendContent("LAGA Bauschutt")
+								.appendContent("LAGA Bauschutt<sup>[16]</sup>")
 								.build()
 								.appendTag())
 						.build()
@@ -484,7 +484,7 @@ public class TobFactory
 						.appendContent("Orientierungswert,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal6")
-								.appendContent("LAGA Bauschutt")
+								.appendContent("LAGA Bauschutt<sup>[16]</sup>")
 								.build()
 								.appendTag())
 						.build()
@@ -518,7 +518,7 @@ public class TobFactory
 						.appendContent("Verwertungsklasse,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal6")
-								.appendContent("TL Gestein")
+								.appendContent("TL Gestein<sup>[15]</sup>")
 								.build()
 								.appendTag())
 						.build()
@@ -552,7 +552,7 @@ public class TobFactory
 						.appendContent("Deponieklasse,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal6")
-								.appendContent("DepV")
+								.appendContent("DepV<sup>[7]</sup>")
 								.build()
 								.appendTag())
 						.build()
@@ -586,7 +586,7 @@ public class TobFactory
 						.appendContent("Entscheidungshilfe,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal6")
-								.appendContent("DepV")
+								.appendContent("DepV<sup>[8]</sup>")
 								.build()
 								.appendTag())
 						.build()
@@ -619,7 +619,7 @@ public class TobFactory
 						.appendContent("Abfallschlüssel,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal6")
-								.appendContent("AVV")
+								.appendContent("AVV<sup>[6]</sup>")
 								.build()
 								.appendTag())
 						.build()
