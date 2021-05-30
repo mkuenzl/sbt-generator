@@ -152,27 +152,31 @@ final class AppendixSiteUG extends AHtmlTemplate
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendAttribute("rowspan", "2")
-                .appendContent("MUFV<sup>[46]</sup>")
+                .appendContent("MUFV")
+                .appendContent("<div>[46]</div>")
                 .build();
 
         HtmlTableHeader cell25 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendAttribute("rowspan", "2")
-                .appendContent("LAGA BO<sup>[2]</sup>")
+                .appendContent("LAGA BO")
+                .appendContent("<div>[2]</div>")
                 .build();
 
         HtmlTableHeader cell26 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendAttribute("rowspan", "2")
-                .appendContent("LAGA RC<sup>[16]</sup>")
+                .appendContent("LAGA RC")
+                .appendContent("<div>[16]</div>")
                 .build();
 
         HtmlTableHeader cell27 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
-                .appendContent("WG<sup>[28]</sup>")
+                .appendContent("WG")
+                .appendContent("<div>[28]</div>")
                 .build();
 
         HtmlTableHeader cell28 = new HtmlTableHeader.Builder()
@@ -184,7 +188,8 @@ final class AppendixSiteUG extends AHtmlTemplate
         HtmlTableHeader cell29 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
-                .appendContent("Proctor<sup>[29]</sup>")
+                .appendContent("Proctor")
+                .appendContent("<div>[29]</div>")
                 .build();
 
 

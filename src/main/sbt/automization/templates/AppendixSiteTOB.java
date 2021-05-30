@@ -157,7 +157,8 @@ final class AppendixSiteTOB extends AHtmlTemplate
 		HtmlTableHeader cell22 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
-				.appendContent("Dicke<sup>[23]</sup>")
+				.appendContent("Dicke")
+				.appendContent("<div>[23]</div>")
 				.build();
 
 		HtmlTableHeader cell23 = new HtmlTableHeader.Builder()
@@ -170,45 +171,51 @@ final class AppendixSiteTOB extends AHtmlTemplate
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
 				.appendAttribute("rowspan", "2")
-				.appendContent("MUFV<sup>[46]</sup>")
+				.appendContent("MUFV")
+				.appendContent("<div>[46]</div>")
 				.build();
 
-		HtmlTableHeader cell25 = new HtmlTableHeader.Builder()
+		HtmlTableHeader lagaBoHeader = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
 				.appendAttribute("rowspan", "2")
-				.appendContent("LAGA BO<sup>[2]</sup>")
+				.appendContent("LAGA BO")
+				.appendContent("<div>[2]</div>")
 				.build();
 
 		HtmlTableHeader cell26 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
 				.appendAttribute("rowspan", "2")
-				.appendContent("LAGA RC<sup>[16]</sup>")
+				.appendContent("LAGA RC")
+				.appendContent("<div>[16]</div>")
 				.build();
 
 		HtmlTableHeader cell27 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
 				.appendAttribute("rowspan", "2")
-				.appendContent("TL Ge.<sup>[15]</sup>")
+				.appendContent("TL Ge.")
+				.appendContent("<div>[15]</div>")
 				.build();
 
 		HtmlTableHeader cell28 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
-				.appendContent("E<sub>V2</sub><sup>[42]</sup>")
+				.appendContent("E<sub>V2</sub>")
 				.appendContent(TextFormatUtil.printLineBreak())
 				.appendContent("E<sub>Vdyn</sub>")
 				.appendContent(TextFormatUtil.printLineBreak())
 				.appendContent("<sub>(-15%)</sub>")
+				.appendContent("<div>[42]</div>")
 				.build();
 
 
 		HtmlTableHeader cell29 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
-				.appendContent("KGV<sup>[14]</sup>")
+				.appendContent("KGV")
+				.appendContent("<div>[14]</div>")
 				.build();
 
 		HtmlTableHeader cell32 = new HtmlTableHeader.Builder()
@@ -235,12 +242,6 @@ final class AppendixSiteTOB extends AHtmlTemplate
 				.appendContent("M.-%")
 				.build();
 
-//        HtmlTableHeader cell38 = new HtmlTableHeader.Builder()
-//                .appendAttribute("class", "NormalTableHeader")
-//                .appendAttribute("width", "60")
-//                .appendContent("-")
-//                .build();
-
 		HtmlRow row1 = new HtmlRow.Builder()
 				.appendAttribute("class", "NormalHeader")
 				.appendContent(cell11.appendTag())
@@ -253,7 +254,7 @@ final class AppendixSiteTOB extends AHtmlTemplate
 				.appendContent(cell22.appendTag())
 				.appendContent(cell23.appendTag())
 				.appendContent(cell24.appendTag())
-				.appendContent(cell25.appendTag())
+				.appendContent(lagaBoHeader.appendTag())
 				.appendContent(cell26.appendTag())
 				.appendContent(cell27.appendTag())
 				.appendContent(cell28.appendTag())
@@ -262,12 +263,8 @@ final class AppendixSiteTOB extends AHtmlTemplate
 
 		HtmlRow row3 = new HtmlRow.Builder()
 				.appendAttribute("class", "NormalHeaderUnits")
-				//     .appendContent(cell31.appendTag())
 				.appendContent(cell32.appendTag())
 				.appendContent(cell33.appendTag())
-				//    .appendContent(cell34.appendTag())
-				//     .appendContent(cell35.appendTag())
-				//    .appendContent(cell36.appendTag())
 				.appendContent(cell37.appendTag())
 				.appendContent(cell38.appendTag())
 				.build();
