@@ -228,7 +228,7 @@
                 padding-alt:0cm 1.4pt 0cm 1.4pt;
                 para-margin:0cm;
                 pagination:widow-orphan;
-                font-size:8.0pt;
+                font-size:7.0pt;
                 font-family:"Arial",sans-serif;
                 word-break:break-all;
                 border-collapse: collapse;
@@ -242,7 +242,7 @@
                 padding-alt:0cm 1.4pt 0cm 1.4pt;
                 para-margin:0cm;
                 pagination:widow-orphan;
-                font-size:8.0pt;
+                font-size:7.0pt;
                 font-family:"Arial",sans-serif;
                 word-break:break-all;
                 border-collapse: collapse;
