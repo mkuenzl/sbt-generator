@@ -5,7 +5,6 @@ import java.util.List;
 
 public final class CsvHeader
 {
-
 	/**
 	 * This function compares a list of necessary csv headers with the input csv headers, if the input contains all of
 	 * them it returns true, else false.
