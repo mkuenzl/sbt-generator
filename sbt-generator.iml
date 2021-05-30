@@ -8,7 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests-resources" type="java-test-resource" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="11 (2)" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library name="commons-cli-1.4">
