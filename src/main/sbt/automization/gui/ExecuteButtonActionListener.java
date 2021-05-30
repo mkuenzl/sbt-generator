@@ -17,16 +17,18 @@ public class ExecuteButtonActionListener implements ActionListener
 		File csv = new File(TableToolVisualInterface.textField.getText());
 		Parser parser = new Parser(csv);
 
-		TableEngine database = new TableEngine(parser.parse(), csv.getParent());
+		TableEngine database = null;
 
-		for (IHtmlTemplate strategy : StrategyStorage.getInstance().getStrategies())
+		try
 		{
-			try{
-				database.export(new HtmlTemplateExportStrategy(strategy));
-			} catch (Exception exception)
+			database = new TableEngine(parser.parse(), csv.getParent());
+			for (IHtmlTemplate strategy : StrategyStorage.getInstance().getStrategies())
 			{
-				ErrorPopup.showErrorMessage("Es gab einen Fehler bei der Erstellung von " + strategy.getClass().getSimpleName());
+				database.export(new HtmlTemplateExportStrategy(strategy));
 			}
+		} catch (Exception exception)
+		{
+			exception.printStackTrace();
 		}
 	}
 }

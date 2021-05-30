@@ -28,7 +28,7 @@ public class TemplateTest
 	}
 
 	@BeforeClass
-	public static void createErk()
+	public static void createErk() throws Exception
 	{
 		String path = System.getProperty("user.dir").concat(File.separator).concat("tests-resources").concat(File.separator);
 

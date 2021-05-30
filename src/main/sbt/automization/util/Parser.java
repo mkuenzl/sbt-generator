@@ -4,8 +4,10 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.io.input.BOMInputStream;
+import sbt.automization.gui.ErrorPopup;
 
 import java.io.*;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +23,7 @@ public class Parser
         this.csv = csv;
     }
 
-    public List<Map<String,String>> parse()
+    public List<Map<String,String>> parse() throws Exception
     {
         List<Map<String,String>> dataPoints = new ArrayList<>();
 
@@ -37,6 +39,14 @@ public class Parser
             bomInputStream = new BOMInputStream(fileInputStream);
             inputStreamReader = new InputStreamReader(bomInputStream, StandardCharsets.UTF_8);
             csvParser = CSVFormat.EXCEL.withDelimiter(';').withFirstRecordAsHeader().withIgnoreEmptyLines(true).parse(inputStreamReader);
+
+            List<String> providedCsv = csvParser.getHeaderNames();
+            if (!CsvHeader.compare(providedCsv))
+            {
+                ErrorPopup.showErrorMessage("Es wurde die falsche Version des Excel Templates verwendet.");
+                throw new Exception("Wrong csv-format exception.");
+            }
+
 
             if (csvParser != null){
                 //Zeile

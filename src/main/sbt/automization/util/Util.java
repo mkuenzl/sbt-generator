@@ -92,18 +92,18 @@ public final class Util
 
 		URL inputUrl = Util.class.getResource(filePath);
 
-		File dest = new File(pathname);
+		File destinationFile = new File(pathname);
 
-		if (! dest.exists() && ! dest.isDirectory())
+		if (! destinationFile.exists() && ! destinationFile.isDirectory())
 		{
-			Path path = Paths.get(dest.getPath()).getParent();
+			Path path = Paths.get(destinationFile.getPath()).getParent();
 			if (! Files.exists(path))
 			{
 				Files.createDirectories(path);
 			}
-			if (inputUrl != null && dest != null)
+			if (inputUrl != null && destinationFile != null)
 			{
-				FileUtils.copyURLToFile(inputUrl, dest);
+				FileUtils.copyURLToFile(inputUrl, destinationFile);
 			}
 		}
 	}
