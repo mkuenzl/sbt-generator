@@ -187,4 +187,13 @@ public class TemplateTest
 
 		openExportFile(htmlTemplateExportStrategy);
 	}
+
+	@Test
+	public void createReportCoordinateTemplate() throws IOException
+	{
+		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(ReportCoordinates.getInstance());
+		htmlTemplateExportStrategy.export(explorationSites);
+
+		openExportFile(htmlTemplateExportStrategy);
+	}
 }
