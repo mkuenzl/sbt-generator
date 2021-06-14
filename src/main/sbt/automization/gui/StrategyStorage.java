@@ -74,6 +74,9 @@ public class StrategyStorage
             case "BERICHT_HAUFWERK":
                 strategyList.add(ReportHEAP.getInstance());
                 break;
+            case "BERICHT_KOORDINATEN":
+                strategyList.add(ReportCOORDINATES.getInstance());
+                break;
         }
     }
 
@@ -119,6 +122,9 @@ public class StrategyStorage
                 break;
             case "BERICHT_HAUFWERK":
                 strategyList.remove(ReportHEAP.getInstance());
+                break;
+            case "BERICHT_KOORDINATEN":
+                strategyList.remove(ReportCOORDINATES.getInstance());
                 break;
         }
     }

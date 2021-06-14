@@ -191,7 +191,7 @@ public class TemplateTest
 	@Test
 	public void createReportCoordinateTemplate() throws IOException
 	{
-		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(ReportCoordinates.getInstance());
+		HtmlTemplateExportStrategy htmlTemplateExportStrategy = new HtmlTemplateExportStrategy(ReportCOORDINATES.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
 		openExportFile(htmlTemplateExportStrategy);

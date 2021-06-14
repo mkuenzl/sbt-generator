@@ -145,6 +145,6 @@ public final class ReportCONCRETE extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht_BETON_Table.html";
+		return "Bericht-BETON.html";
 	}
 }

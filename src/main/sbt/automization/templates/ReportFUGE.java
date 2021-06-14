@@ -74,7 +74,7 @@ public final class ReportFUGE extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht_FUGE_Table.html";
+		return "Bericht-FUGE.html";
 	}
 
 	@Override

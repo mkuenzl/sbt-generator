@@ -77,7 +77,7 @@ public final class ReportTOB extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht_TOB_Table.html";
+		return "Bericht-TOB.html";
 	}
 
 	@Override

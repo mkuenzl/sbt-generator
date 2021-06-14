@@ -9,21 +9,21 @@ import sbt.automization.util.html.HtmlTableHeader;
 import java.util.Arrays;
 import java.util.List;
 
-public class ReportCoordinates extends AHtmlTemplate
+public class ReportCOORDINATES extends AHtmlTemplate
 {
-	private static ReportCoordinates instance;
+	private static ReportCOORDINATES instance;
 
-	private ReportCoordinates() {}
+	private ReportCOORDINATES() {}
 
-	public static ReportCoordinates getInstance()
+	public static ReportCOORDINATES getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (ReportCoordinates.class)
+			synchronized (ReportCOORDINATES.class)
 			{
 				if (instance == null)
 				{
-					instance = new ReportCoordinates();
+					instance = new ReportCOORDINATES();
 				}
 			}
 		}
@@ -192,7 +192,7 @@ public class ReportCoordinates extends AHtmlTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "report-coordinates.html";
+		return "Bericht-KOORDINATEN.html";
 	}
 
 	private List<String> splitCoordinate(ExplorationSite site)

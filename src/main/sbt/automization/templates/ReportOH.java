@@ -123,7 +123,7 @@ public final class ReportOH extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht_OH_Table.html";
+		return "Bericht-OH.html";
 	}
 
 	@Override

@@ -130,7 +130,7 @@ public final class ReportTMHB extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht_TMHB_Table.html";
+		return "Bericht-TMHB.html";
 	}
 
 	@Override

@@ -127,7 +127,7 @@ public final class ReportGOB extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht_GOB_Table.html";
+		return "Bericht-GOB.html";
 	}
 
 	@Override

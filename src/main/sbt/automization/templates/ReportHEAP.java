@@ -126,6 +126,6 @@ public final class ReportHEAP extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "REPORT_HAUFWERK.html";
+		return "Bericht-HAUFWERK.html";
 	}
 }

@@ -79,7 +79,7 @@ public final class ReportUG extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht_UG_Table.html";
+		return "Bericht-UG.html";
 	}
 
 	@Override
