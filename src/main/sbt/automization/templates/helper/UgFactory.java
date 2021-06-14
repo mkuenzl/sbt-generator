@@ -143,7 +143,7 @@ public class UgFactory
 			String textColor;
 
 			if (tiefe <= explorationSite.getThickness()) {
-				backgroundColor = "green";
+				backgroundColor = "#00FF00";
 				textColor = "black";
 			} else {
 				backgroundColor = "red";
