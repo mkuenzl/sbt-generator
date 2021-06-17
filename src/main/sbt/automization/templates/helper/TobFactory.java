@@ -109,7 +109,7 @@ public class TobFactory
 						.appendContent("Korngrößenverteilung,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal6")
-								.appendContent("Kornanteil < 0,0063 mm")
+								.appendContent("Kornanteil < 0,063 mm")
 								.build()
 								.appendTag())
 						.build()

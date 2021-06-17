@@ -64,6 +64,7 @@ public final class ReportCONCRETE extends AReportTemplate
 			reportTable.appendContent(ConcreteFactory.createLegendeRow(portion));
 
 			strb.append(reportTable.appendTag());
+			strb.append("<br>");
 		}
 
 		setTable(strb.toString());
@@ -145,6 +146,6 @@ public final class ReportCONCRETE extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht_BETON_Table.html";
+		return "Bericht-BETON.html";
 	}
 }

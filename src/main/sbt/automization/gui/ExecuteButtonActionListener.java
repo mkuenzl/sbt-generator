@@ -24,7 +24,13 @@ public class ExecuteButtonActionListener implements ActionListener
 			database = new TableEngine(parser.parse(), csv.getParent());
 			for (IHtmlTemplate strategy : StrategyStorage.getInstance().getStrategies())
 			{
-				database.export(new HtmlTemplateExportStrategy(strategy));
+				try{
+					database.export(new HtmlTemplateExportStrategy(strategy));
+				} catch (Exception exception)
+				{
+					ErrorPopup.showErrorMessage("Es gab einen Fehler bei der Erstellung der " + strategy.getExportFileName() + "\n"
+					                           + exception.toString());
+				}
 			}
 		} catch (Exception exception)
 		{

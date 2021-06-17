@@ -112,6 +112,7 @@ public final class ReportHEAP extends AReportTemplate
 			reportTable.appendContent(HeapFactory.createLegendeRow(portion));
 
 			strb.append(reportTable.appendTag());
+			strb.append("<br>");
 		}
 
 		setTable(strb.toString());
@@ -126,6 +127,6 @@ public final class ReportHEAP extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "REPORT_HAUFWERK.html";
+		return "Bericht-HAUFWERK.html";
 	}
 }

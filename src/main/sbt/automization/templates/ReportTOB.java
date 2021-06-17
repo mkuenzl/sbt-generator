@@ -63,6 +63,7 @@ public final class ReportTOB extends AReportTemplate
 			reportTable.appendContent(TobFactory.createLegendeRow(portion));
 
 			strb.append(reportTable.appendTag());
+			strb.append("<br>");
 		}
 
 		setTable(strb.toString());
@@ -77,7 +78,7 @@ public final class ReportTOB extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht_TOB_Table.html";
+		return "Bericht-TOB.html";
 	}
 
 	@Override

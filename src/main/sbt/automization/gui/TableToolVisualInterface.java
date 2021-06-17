@@ -19,7 +19,7 @@ public class TableToolVisualInterface extends JFrame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setIconImage(img.getImage());
 		this.setLayout(null);
-		this.setSize(600, 510);
+		this.setSize(600, 530);
 		this.setResizable(false);
 		constructPanel();
 		//this.setJMenuBar(menuBar);
@@ -59,7 +59,7 @@ public class TableToolVisualInterface extends JFrame
 	{
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBounds(0, 0, 600, 510);
+		panel.setBounds(0, 0, 600, 530);
 		panel.setBackground(Color.gray);
 
 		// BUTTONS.
@@ -86,8 +86,9 @@ public class TableToolVisualInterface extends JFrame
 		// BUTTONS.
 		String[] pattern = {
 				"Lade Dokument ...",
-				"Regelwerk_Klein",
-				"Regelwerk_Groß"
+				"Chemie_Vorlage.xlsx",
+				"Regelwerk_Klein.docx",
+				"Regelwerk_Groß.docx"
 		};
 
 		JComboBox fileDropDown = new FileDropDownMenu(pattern);
@@ -176,6 +177,12 @@ public class TableToolVisualInterface extends JFrame
 		checkBoxReportHeap.addItemListener(new CheckBoxItemListener());
 		checkBoxReportHeap.setEnabled(false);
 		panel.add(checkBoxReportHeap);
+
+		JCheckBox checkBoxReportCoordinates = new CustomCheckBox("BERICHT_KOORDINATEN", false);
+		checkBoxReportCoordinates.setBounds(310, 450, 265, 20);
+		checkBoxReportCoordinates.addItemListener(new CheckBoxItemListener());
+		checkBoxReportCoordinates.setEnabled(true);
+		panel.add(checkBoxReportCoordinates);
 
 		// BUTTONS.
 		JButton executeButton = new CustomButton("Erstelle Tabellen");

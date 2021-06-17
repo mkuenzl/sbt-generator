@@ -64,6 +64,7 @@ public final class ReportUG extends AReportTemplate
 			reportTable.appendContent(UgFactory.createLegendRow(sites));
 
 			strb.append(reportTable.appendTag());
+			strb.append("<br>");
 		}
 
 		setTable(strb.toString());
@@ -79,7 +80,7 @@ public final class ReportUG extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht_UG_Table.html";
+		return "Bericht-UG.html";
 	}
 
 	@Override

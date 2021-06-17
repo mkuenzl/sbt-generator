@@ -35,13 +35,13 @@ public final class TextFormatUtil
 
 	public static String formatLayerProctor(final Layer layer)
 	{
-		String schicht_feuchtigkeit = layer.getInformation("SCHICHT_FEUCHTIGKEIT");
-		if ("-".equals(schicht_feuchtigkeit))
+		String feuchtigkeit = layer.getInformation("SCHICHT_FEUCHTIGKEIT");
+		if ("-".equals(feuchtigkeit))
 		{
 			return "-";
 		} else
 		{
-			return schicht_feuchtigkeit.concat(" W<sub>Pr</sub>");
+			return feuchtigkeit.concat(" W<sub>Pr</sub>");
 		}
 	}
 
@@ -550,10 +550,14 @@ public final class TextFormatUtil
 
 			String formattedTag;
 
-			//TODO
 			if (tag.contains("CHEMIE"))
 			{
 				formattedTag = printChemistryMarkup(layer.getInformation(tag));
+			} else if (tag.contains("FEUCHTIGKEIT")){
+				formattedTag = new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent(TextFormatUtil.formatLayerProctor(layer))
+						.build().appendTag();
 			} else
 			{
 				formattedTag = new HtmlText.Builder()

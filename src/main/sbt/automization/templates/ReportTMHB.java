@@ -65,6 +65,7 @@ public final class ReportTMHB extends AReportTemplate
 			reportTable.appendContent(TmhbFactory.createLegendeRow(portion));
 
 			strb.append(reportTable.appendTag());
+			strb.append("<br>");
 		}
 		setTable(strb.toString());
 
@@ -130,7 +131,7 @@ public final class ReportTMHB extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht_TMHB_Table.html";
+		return "Bericht-TMHB.html";
 	}
 
 	@Override

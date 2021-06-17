@@ -60,6 +60,7 @@ public final class ReportFUGE extends AReportTemplate
 			//reportTable.appendContent(FugeFactory.createLegendeRow(portion));
 
 			strb.append(reportTable.appendTag());
+			strb.append("<br>");
 		}
 
 		setTable(strb.toString());
@@ -74,7 +75,7 @@ public final class ReportFUGE extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht_FUGE_Table.html";
+		return "Bericht-FUGE.html";
 	}
 
 	@Override
