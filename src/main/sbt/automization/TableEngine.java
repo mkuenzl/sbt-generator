@@ -27,13 +27,7 @@ public class TableEngine
 
 	public void export(ATemplateExportStrategy templateExportStrategy)
 	{
-		try
-		{
 			templateExportStrategy.export(this);
-		} catch (Exception exception)
-		{
-			ErrorPopup.showErrorMessage("Es gab einen Fehler bei der Erstellung von " + templateExportStrategy.getClass().getSimpleName());
-		}
 	}
 
 	public List<ExplorationSite> getExplorationSites()

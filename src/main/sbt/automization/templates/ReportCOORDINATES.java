@@ -163,13 +163,13 @@ public class ReportCOORDINATES extends AHtmlTemplate
 					.build();
 
 			HtmlRow firstDataRow = new HtmlRow.Builder()
-					.appendAttribute("class", "Normal")
+					.appendAttribute("class", "NormalThin")
 					.appendContent(erkId.appendTag())
 					.appendContent(utm.appendTag())
 					.build();
 
 			HtmlRow secondDataRow = new HtmlRow.Builder()
-					.appendAttribute("class", "Normal")
+					.appendAttribute("class", "NormalThin")
 					.appendContent(zone.appendTag())
 					.appendContent(eastValue.appendTag())
 					.appendContent(northValue.appendTag())

@@ -137,30 +137,43 @@ public class UgFactory
 		for (ExplorationSite explorationSite : explorationSites)
 		{
 			String zieltiefe = explorationSite.getInformation("ERK_ZIELTIEFE");
-			double tiefe = Double.parseDouble(zieltiefe);
-
-			String backgroundColor;
-			String textColor;
-
-			if (tiefe <= explorationSite.getThickness()) {
-				backgroundColor = "#00FF00";
-				textColor = "black";
+			HtmlCell cell;
+			if("-".equals(zieltiefe)){
+				cell = new HtmlCell.Builder()
+						.appendAttribute("class", normalCellClass)
+						.appendAttribute("width", "60")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal")
+								.appendContent(zieltiefe)
+								.build().appendTag())
+						.build();
 			} else {
-				backgroundColor = "red";
-				textColor = "white";
-			}
+				double tiefe = Double.parseDouble(zieltiefe);
 
-			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", normalCellClass)
-					.appendAttribute("width", "60")
-					.appendContent(new HtmlText.Builder()
-							.appendAttribute("class", "Normal")
-							.appendContent("<span style=\"background-color: " + backgroundColor + ";font-weight: bold;\n\n" +
-									"  color: " + textColor + "\">")
-							.appendContent(zieltiefe)
-							.appendContent("</span>")
-							.build().appendTag())
-					.build();
+				String backgroundColor;
+				String textColor;
+
+				if (tiefe <= explorationSite.getThickness()) {
+					backgroundColor = "#00FF00";
+					textColor = "black";
+				} else {
+					backgroundColor = "red";
+					textColor = "white";
+				}
+
+				cell = new HtmlCell.Builder()
+						.appendAttribute("class", normalCellClass)
+						.appendAttribute("width", "60")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", "Normal")
+								.appendContent("<span style=\"background-color: " + backgroundColor + ";font-weight: bold;\n\n" +
+										"  color: " + textColor + "\">")
+								.appendContent(zieltiefe)
+								.appendContent("</span>")
+								.build().appendTag())
+						.build();
+
+			}
 
 			row.appendContent(cell.appendTag());
 		}
