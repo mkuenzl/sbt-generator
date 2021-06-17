@@ -64,6 +64,7 @@ public final class ReportCONCRETE extends AReportTemplate
 			reportTable.appendContent(ConcreteFactory.createLegendeRow(portion));
 
 			strb.append(reportTable.appendTag());
+			strb.append("<br>");
 		}
 
 		setTable(strb.toString());

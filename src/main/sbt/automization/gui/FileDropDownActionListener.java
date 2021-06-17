@@ -26,7 +26,7 @@ public class FileDropDownActionListener implements ActionListener
 
 			if ("".equals(item)) return;
 
-			String itemPath = "/".concat(item).concat(".docx");
+			String itemPath = "/".concat(item);
 
 			try
 			{

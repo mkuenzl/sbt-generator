@@ -64,6 +64,7 @@ public final class ReportUG extends AReportTemplate
 			reportTable.appendContent(UgFactory.createLegendRow(sites));
 
 			strb.append(reportTable.appendTag());
+			strb.append("<br>");
 		}
 
 		setTable(strb.toString());

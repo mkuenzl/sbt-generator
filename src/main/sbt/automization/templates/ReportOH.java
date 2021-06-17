@@ -60,6 +60,7 @@ public final class ReportOH extends AReportTemplate
 			tableBericht.appendContent(buildEnvironmentTechnicalFeatures(portion));
 
 			strb.append(tableBericht.appendTag());
+			strb.append("<br>");
 		}
 		setTable(strb.toString());
 	}

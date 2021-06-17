@@ -66,6 +66,7 @@ public final class ReportGOB extends AReportTemplate
 			reportTable.appendContent(ObFactory.createPechQuerschnittRows(portion, true));
 
 			strb.append(reportTable.appendTag());
+			strb.append("<br>");
 		}
 		setTable(strb.toString());
 	}

@@ -112,6 +112,7 @@ public final class ReportHEAP extends AReportTemplate
 			reportTable.appendContent(HeapFactory.createLegendeRow(portion));
 
 			strb.append(reportTable.appendTag());
+			strb.append("<br>");
 		}
 
 		setTable(strb.toString());

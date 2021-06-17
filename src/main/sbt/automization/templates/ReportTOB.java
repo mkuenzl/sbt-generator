@@ -63,6 +63,7 @@ public final class ReportTOB extends AReportTemplate
 			reportTable.appendContent(TobFactory.createLegendeRow(portion));
 
 			strb.append(reportTable.appendTag());
+			strb.append("<br>");
 		}
 
 		setTable(strb.toString());

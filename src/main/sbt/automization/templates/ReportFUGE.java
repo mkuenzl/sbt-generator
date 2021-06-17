@@ -60,6 +60,7 @@ public final class ReportFUGE extends AReportTemplate
 			//reportTable.appendContent(FugeFactory.createLegendeRow(portion));
 
 			strb.append(reportTable.appendTag());
+			strb.append("<br>");
 		}
 
 		setTable(strb.toString());

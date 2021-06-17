@@ -43,8 +43,8 @@ public class Parser
             List<String> providedCsv = csvParser.getHeaderNames();
             if (!CsvHeader.compare(providedCsv))
             {
-                ErrorPopup.showErrorMessage("Es wurde die falsche Version des Excel Templates verwendet.");
-                throw new Exception("Wrong csv-format exception.");
+                ErrorPopup.showErrorMessage("Es wurde die veraltete Version des Excel Templates verwendet.");
+                //throw new Exception("Wrong csv-format exception.");
             }
 
 

@@ -86,8 +86,9 @@ public class TableToolVisualInterface extends JFrame
 		// BUTTONS.
 		String[] pattern = {
 				"Lade Dokument ...",
-				"Regelwerk_Klein",
-				"Regelwerk_Groß"
+				"Chemie_Vorlage.xlsx",
+				"Regelwerk_Klein.docx",
+				"Regelwerk_Groß.docx"
 		};
 
 		JComboBox fileDropDown = new FileDropDownMenu(pattern);

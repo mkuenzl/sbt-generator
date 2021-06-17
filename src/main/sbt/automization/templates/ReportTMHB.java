@@ -65,6 +65,7 @@ public final class ReportTMHB extends AReportTemplate
 			reportTable.appendContent(TmhbFactory.createLegendeRow(portion));
 
 			strb.append(reportTable.appendTag());
+			strb.append("<br>");
 		}
 		setTable(strb.toString());
 
