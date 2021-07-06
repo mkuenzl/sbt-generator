@@ -96,7 +96,7 @@ public final class AppendixPNHEAP extends AHtmlTemplate
 						HtmlCell layerWasteType = new HtmlCell.Builder()
 								.appendAttribute("class", "Normal")
 								.appendAttribute("width", "110")
-								.appendContent(NameFormatUtil.formatArt(layer.getInformation("SCHICHT_ABFALLART")))
+								.appendContent(NameFormatUtil.formatLayerKind(layer.getInformation("SCHICHT_ABFALLART")))
 								.build();
 
 						HtmlCell layerGrainSize = new HtmlCell.Builder()

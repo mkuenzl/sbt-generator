@@ -6,7 +6,8 @@ import org.junit.Test;
 
 import java.util.*;
 
-public class SortErkundungsstellenTest {
+public class ExplorationSiteSortingTest
+{
 
     private static ExplorationSite BA1;
     private static ExplorationSite BA2;
@@ -25,32 +26,32 @@ public class SortErkundungsstellenTest {
     {
         HashMap<String, String> dataMap1 = new HashMap<>();
         dataMap1.put("ERK_ID", "BA1");
-        BA1 = new ExplorationSite().setDataMap(dataMap1);
+        BA1 = new ExplorationSite().setInformationMap(dataMap1);
         HashMap<String, String> dataMap2 = new HashMap<>();
         dataMap2.put("ERK_ID", "BA2");
-        BA2 = new ExplorationSite().setDataMap(dataMap2);
+        BA2 = new ExplorationSite().setInformationMap(dataMap2);
         HashMap<String, String> dataMap3 = new HashMap<>();
         dataMap3.put("ERK_ID", "FB1");
-        FB1 = new ExplorationSite().setDataMap(dataMap3);
+        FB1 = new ExplorationSite().setInformationMap(dataMap3);
         HashMap<String, String> dataMap4 = new HashMap<>();
         dataMap4.put("ERK_ID", "FB2");
-        FB2 = new ExplorationSite().setDataMap(dataMap4);
+        FB2 = new ExplorationSite().setInformationMap(dataMap4);
         HashMap<String, String> dataMap5 = new HashMap<>();
         dataMap5.put("ERK_ID", "FB11");
-        FB11 = new ExplorationSite().setDataMap(dataMap5);
+        FB11 = new ExplorationSite().setInformationMap(dataMap5);
         HashMap<String, String> dataMap6 = new HashMap<>();
         dataMap6.put("ERK_ID", "GEW1");
-        GEW1 = new ExplorationSite().setDataMap(dataMap6);
+        GEW1 = new ExplorationSite().setInformationMap(dataMap6);
 
         HashMap<String, String> dataMap7 = new HashMap<>();
         dataMap7.put("ERK_ID", "GEW");
-        noNumber = new ExplorationSite().setDataMap(dataMap7);
+        noNumber = new ExplorationSite().setInformationMap(dataMap7);
         HashMap<String, String> dataMap8 = new HashMap<>();
         dataMap8.put("ERK_ID", "1");
-        noString = new ExplorationSite().setDataMap(dataMap8);
+        noString = new ExplorationSite().setInformationMap(dataMap8);
         HashMap<String, String> dataMap9 = new HashMap<>();
         dataMap9.put("ERK_ID", "");
-        nothing = new ExplorationSite().setDataMap(dataMap9);
+        nothing = new ExplorationSite().setInformationMap(dataMap9);
     }
 
     @Test

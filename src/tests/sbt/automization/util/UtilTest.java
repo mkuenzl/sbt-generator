@@ -3,9 +3,8 @@ package sbt.automization.util;
 import org.junit.Assert;
 import org.junit.Test;
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.templates.ErkundungsstellenTestFactory;
+import sbt.automization.templates.ExplorationSiteFactory;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,10 +22,10 @@ public class UtilTest
 	public void partitioningTest()
 	{
 		List<ExplorationSite> explorationSites = new ArrayList<>();
-		ErkundungsstellenTestFactory erkundungsstellenTestFactory = new ErkundungsstellenTestFactory();
+		ExplorationSiteFactory explorationSiteFactory = new ExplorationSiteFactory();
 		for (int i = 0 ; i < 100 ; i++)
 		{
-			explorationSites.add(erkundungsstellenTestFactory.getTestErkundungsstelle1());
+			explorationSites.add(explorationSiteFactory.getTestErkundungsstelle1());
 		}
 
 		Collection<List<ExplorationSite>> partitionBasedOnSize = Util.separateBasedOnSize(explorationSites, 5);
@@ -38,10 +37,10 @@ public class UtilTest
 	public void partitioningLessThenExpectedTest()
 	{
 		List<ExplorationSite> explorationSites = new ArrayList<>();
-		ErkundungsstellenTestFactory erkundungsstellenTestFactory = new ErkundungsstellenTestFactory();
+		ExplorationSiteFactory explorationSiteFactory = new ExplorationSiteFactory();
 		for (int i = 0 ; i < 3 ; i++)
 		{
-			explorationSites.add(erkundungsstellenTestFactory.getTestErkundungsstelle1());
+			explorationSites.add(explorationSiteFactory.getTestErkundungsstelle1());
 		}
 
 		Collection<List<ExplorationSite>> partitionBasedOnSize = Util.separateBasedOnSize(explorationSites, 5);
@@ -53,10 +52,10 @@ public class UtilTest
 	public void partitioningIrregularAmountTest()
 	{
 		List<ExplorationSite> explorationSites = new ArrayList<>();
-		ErkundungsstellenTestFactory erkundungsstellenTestFactory = new ErkundungsstellenTestFactory();
+		ExplorationSiteFactory explorationSiteFactory = new ExplorationSiteFactory();
 		for (int i = 0 ; i < 17 ; i++)
 		{
-			explorationSites.add(erkundungsstellenTestFactory.getTestErkundungsstelle1());
+			explorationSites.add(explorationSiteFactory.getTestErkundungsstelle1());
 		}
 
 		Collection<List<ExplorationSite>> partitionBasedOnSize = Util.separateBasedOnSize(explorationSites, 5);

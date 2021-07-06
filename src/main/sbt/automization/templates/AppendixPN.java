@@ -83,7 +83,7 @@ public final class AppendixPN extends AHtmlTemplate
                 HtmlCell layerWasteType = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("width", "110")
-                        .appendContent(NameFormatUtil.formatArt(layer.getInformation("SCHICHT_ABFALLART")))
+                        .appendContent(NameFormatUtil.formatLayerKind(layer.getInformation("SCHICHT_ABFALLART")))
                         .build();
 
                 HtmlCell layerGrainSize = new HtmlCell.Builder()
@@ -289,7 +289,7 @@ public final class AppendixPN extends AHtmlTemplate
         List<Layer> layerList = new ArrayList<>();
         for (Layer layer : layers)
         {
-            layerList.add(ObjectCreatorUtil.createLayer(layer.getDataMap()));
+            layerList.add(ObjectCreatorUtil.createLayer(layer.getInformationMap()));
         }
 
         int size = layerList.size();
@@ -303,8 +303,8 @@ public final class AppendixPN extends AHtmlTemplate
                     if (layerList.size() <= i+1) break;
                     if (layerList.get(i).getInformation("SCHICHT_ABFALLART").equals(layerList.get(i + 1).getInformation("SCHICHT_ABFALLART")))
                     {
-                        layerList.get(i + 1).setInformation("SCHICHT_TIEFE_START", layerList.get(i).getInformation("SCHICHT_TIEFE_START"));
-                        layerList.get(i + 1).setInformation("SCHICHT_KOERNUNG", "");
+                        layerList.get(i + 1).addInformation("SCHICHT_TIEFE_START", layerList.get(i).getInformation("SCHICHT_TIEFE_START"));
+                        layerList.get(i + 1).addInformation("SCHICHT_KOERNUNG", "");
                         layerList.remove(layerList.get(i));
                         i--;
                     }

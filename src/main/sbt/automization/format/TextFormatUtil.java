@@ -6,8 +6,13 @@ import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
 
+/**
+ * Class for formatting information of ExplorationSites and Layers.
+ */
 public final class TextFormatUtil
 {
+	private TextFormatUtil(){}
+
 	public static String formatLoadClass(final ExplorationSite explorationSite)
 	{
 		String s1 = new HtmlText.Builder().appendAttribute("class", "Normal")
@@ -31,18 +36,6 @@ public final class TextFormatUtil
 				.appendTag();
 
 		return s1 + s2;
-	}
-
-	public static String formatLayerProctor(final Layer layer)
-	{
-		String feuchtigkeit = layer.getInformation("SCHICHT_FEUCHTIGKEIT");
-		if ("-".equals(feuchtigkeit))
-		{
-			return "-";
-		} else
-		{
-			return feuchtigkeit.concat(" W<sub>Pr</sub>");
-		}
 	}
 
 	public static String formatErkLP(final ExplorationSite explorationSite)
@@ -336,10 +329,10 @@ public final class TextFormatUtil
 	}
 
 	/**
-	 * Expects a valid Bodengruppe and formats the String for representation in the ERK_Anlage
+	 * Expects a valid soil group and formats the String for representation in the appendix ExplorationSite
 	 *
-	 * @param layerKind a valid Bodengruppe as String either with [] or without
-	 * @return a formated String of the long text and short text of a Bodengruppe
+	 * @param layerKind a valid soil group as String either with [] or without
+	 * @return a formatted String of the long text and short text of a soil group
 	 */
 	public static String formatLayerSoilGroup(final String layerKind)
 	{
@@ -449,7 +442,6 @@ public final class TextFormatUtil
 		}
 
 
-
 		if (isFillUp)
 		{
 			return kindText + " " + "[" + kind + "]";
@@ -473,7 +465,7 @@ public final class TextFormatUtil
 		{
 			Layer layer = tob.get(i);
 
-			formattedLayerMaterial.append(NameFormatUtil.formatArt(layer.getInformation("SCHICHT_ART")));
+			formattedLayerMaterial.append(NameFormatUtil.formatLayerKind(layer.getInformation("SCHICHT_ART")));
 
 			formattedLayerMaterial.append(printEmptyRow());
 
@@ -553,7 +545,8 @@ public final class TextFormatUtil
 			if (tag.contains("CHEMIE"))
 			{
 				formattedTag = printChemistryMarkup(layer.getInformation(tag));
-			} else if (tag.contains("FEUCHTIGKEIT")){
+			} else if (tag.contains("FEUCHTIGKEIT"))
+			{
 				formattedTag = new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
 						.appendContent(TextFormatUtil.formatLayerProctor(layer))
@@ -697,6 +690,18 @@ public final class TextFormatUtil
 		}
 
 		return stringBuilder.toString();
+	}
+
+	public static String formatLayerProctor(final Layer layer)
+	{
+		String feuchtigkeit = layer.getInformation("SCHICHT_FEUCHTIGKEIT");
+		if ("-".equals(feuchtigkeit))
+		{
+			return "-";
+		} else
+		{
+			return feuchtigkeit.concat(" W<sub>Pr</sub>");
+		}
 	}
 
 	public static String printRukLayers(final ExplorationSite explorationSite, final String outcrop)

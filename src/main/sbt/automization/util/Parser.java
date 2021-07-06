@@ -6,8 +6,10 @@ import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.io.input.BOMInputStream;
 import sbt.automization.gui.ErrorPopup;
 
-import java.io.*;
-import java.net.URL;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,67 +18,69 @@ import java.util.Map;
 
 public class Parser
 {
-    final File csv;
+	final File csv;
 
-    public Parser(File csv)
-    {
-        this.csv = csv;
-    }
+	public Parser(File csv)
+	{
+		this.csv = csv;
+	}
 
-    public List<Map<String,String>> parse() throws Exception
-    {
-        List<Map<String,String>> dataPoints = new ArrayList<>();
+	public List<Map<String, String>> parse() throws Exception
+	{
+		List<Map<String, String>> dataPoints = new ArrayList<>();
 
-        FileInputStream fileInputStream = null;
-        InputStreamReader inputStreamReader = null;
-        CSVParser csvParser = null;
+		FileInputStream fileInputStream = null;
+		InputStreamReader inputStreamReader = null;
+		CSVParser csvParser = null;
 
-        /* Excel export of .csv files in UTF-8 is always with BOM information (first bytes of each line) */
-        BOMInputStream bomInputStream = null;
-        try
-        {
-            fileInputStream = new FileInputStream(csv);
-            bomInputStream = new BOMInputStream(fileInputStream);
-            inputStreamReader = new InputStreamReader(bomInputStream, StandardCharsets.UTF_8);
-            csvParser = CSVFormat.EXCEL.withDelimiter(';').withFirstRecordAsHeader().withIgnoreEmptyLines(true).parse(inputStreamReader);
+		/* Excel export of .csv files in UTF-8 is always with BOM information (first bytes of each line) */
+		BOMInputStream bomInputStream = null;
+		try
+		{
+			fileInputStream = new FileInputStream(csv);
+			bomInputStream = new BOMInputStream(fileInputStream);
+			inputStreamReader = new InputStreamReader(bomInputStream, StandardCharsets.UTF_8);
+			csvParser = CSVFormat.EXCEL.withDelimiter(';').withFirstRecordAsHeader().withIgnoreEmptyLines(true).parse(inputStreamReader);
 
-            List<String> providedCsv = csvParser.getHeaderNames();
-            if (!CsvHeader.compare(providedCsv))
-            {
-                ErrorPopup.showErrorMessage("Es wurde die veraltete Version des Excel Templates verwendet.");
-                //throw new Exception("Wrong csv-format exception.");
-            }
+			List<String> providedCsv = csvParser.getHeaderNames();
+			if (! CsvHeader.compare(providedCsv))
+			{
+				ErrorPopup.showErrorMessage("Es wurde die veraltete Version des Excel Templates verwendet.");
+				//throw new Exception("Wrong csv-format exception.");
+			}
 
-
-            if (csvParser != null){
-                //Zeile
-                for (CSVRecord record : csvParser)
-                {
-                    /* Prevent wrong excel formatting of .csv files to crash the program */
-                    if (!"".equals(record.get(0))){
-                        Map<String,String> map = record.toMap();
-                        dataPoints.add(map);
-                    }
-                }
-            }
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-        } finally
-        {
-            if (fileInputStream != null){
-                try
-                {
-                    assert inputStreamReader != null;
-                    inputStreamReader.close();
-                    fileInputStream.close();
-                    bomInputStream.close();
-                } catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return dataPoints;
-    }
+			if (csvParser != null)
+			{
+				//Zeile
+				for (CSVRecord record : csvParser)
+				{
+					/* Prevent wrong excel formatting of .csv files to crash the program */
+					if (! "".equals(record.get(0)))
+					{
+						Map<String, String> map = record.toMap();
+						dataPoints.add(map);
+					}
+				}
+			}
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		} finally
+		{
+			if (fileInputStream != null)
+			{
+				try
+				{
+					assert inputStreamReader != null;
+					inputStreamReader.close();
+					fileInputStream.close();
+					bomInputStream.close();
+				} catch (IOException e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+		return dataPoints;
+	}
 }

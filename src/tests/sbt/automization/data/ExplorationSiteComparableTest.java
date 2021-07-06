@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import java.util.*;
 
-public class ErkCompareToTest
+public class ExplorationSiteComparableTest
 {
 	ExplorationSite explorationSiteFB1;
 	ExplorationSite explorationSiteFB2;

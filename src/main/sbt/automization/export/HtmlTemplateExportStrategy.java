@@ -1,13 +1,13 @@
 package sbt.automization.export;
 
 
-import sbt.automization.TableEngine;
+import sbt.automization.data.TableInformation;
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.templates.IHtmlTemplate;
 
 import java.util.List;
 
-public class HtmlTemplateExportStrategy extends ATemplateExportStrategy
+public final class HtmlTemplateExportStrategy extends ATemplateExportStrategy
 {
     public HtmlTemplateExportStrategy(final IHtmlTemplate strategy)
     {
@@ -15,9 +15,9 @@ public class HtmlTemplateExportStrategy extends ATemplateExportStrategy
     }
 
     @Override
-    String format(final TableEngine tableEngine)
+    String format(final TableInformation tableInformation)
     {
-        strategy.constructTable(tableEngine.getExplorationSites());
+        strategy.constructTable(tableInformation.getExplorationSites());
         return strategy.constructAndGetTemplate();
     }
 

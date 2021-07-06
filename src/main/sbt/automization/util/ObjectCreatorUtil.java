@@ -7,88 +7,87 @@ import java.util.*;
 
 public class ObjectCreatorUtil
 {
-    public static List<ExplorationSite> createExplorationSites(List<Map<String, String>> data)
-    {
-        List<ExplorationSite> explorationSites = new ArrayList<>();
+	/**
+	 * Will create different exploration sites based on their ID values. Each map should contain an ERK_ID key. Maps
+	 * with the same ID key are fused together into ExplorationSite objects.
+	 *
+	 * @param parsedExplorationSiteInformation expects a list of maps which contain data of exploration sites and layers
+	 *                                         based on the parsed excel (database) template
+	 * @return a list of exploration sites based on the provided information.
+	 */
+	public static List<ExplorationSite> createExplorationSites(List<Map<String, String>> parsedExplorationSiteInformation)
+	{
+		List<ExplorationSite> explorationSites = new ArrayList<>();
 
-        Set<String> erkIDs = new HashSet<>();
+		Set<String> createdIds = new HashSet<>();
 
-        // Läuft über die Map Liste einzelner Schichten und ordnet diese Erkundungsstellen zu
-        //EntrySets
-        for (Map<String, String> dataRow : data)
-        {
-            String erkID = String.valueOf(dataRow.get("ERK_ID"));
+		for (Map<String, String> explorationSiteInformation : parsedExplorationSiteInformation)
+		{
+			String explorationSiteId = String.valueOf(explorationSiteInformation.get("ERK_ID"));
 
-            if (! erkIDs.contains(erkID))
-            {
-                erkIDs.add(String.valueOf(erkID));
-                ExplorationSite explorationSite = new ExplorationSite(dataRow);
+			if (! createdIds.contains(explorationSiteId))
+			{
+				createdIds.add(String.valueOf(explorationSiteId));
+				ExplorationSite explorationSite = new ExplorationSite(explorationSiteInformation);
 
-                Layer layer = createLayer(dataRow);
-                explorationSite.addLayer(layer);
-                explorationSites.add(explorationSite);
-            } else
-            {
-                for (ExplorationSite explorationSite : explorationSites)
-                {
-                    if (explorationSite.getInformation("ERK_ID").equals(erkID))
-                    {
-                        Layer layer = createLayer(dataRow);
-                        explorationSite.addLayer(layer);
-                    }
-                }
-            }
-        }
+				Layer layer = createLayer(explorationSiteInformation);
+				explorationSite.addLayer(layer);
+				explorationSites.add(explorationSite);
+			} else
+			{
+				for (ExplorationSite explorationSite : explorationSites)
+				{
+					if (explorationSite.getInformation("ERK_ID").equals(explorationSiteId))
+					{
+						Layer layer = createLayer(explorationSiteInformation);
+						explorationSite.addLayer(layer);
+					}
+				}
+			}
+		}
 
-        for (ExplorationSite explorationSite : explorationSites)
-        {
-            explorationSite.sortLayers();
-        }
+		// sorts layers per exploration site based on their layer number
+		for (ExplorationSite explorationSite : explorationSites)
+		{
+			explorationSite.sortLayers();
+		}
 
-        //uses the compareTo function of explorationSite
-        Collections.sort(explorationSites);
+		// sorts exploration sites based on their number
+		Collections.sort(explorationSites);
 
-        return explorationSites;
-    }
+		return explorationSites;
+	}
 
-    public static Layer createLayer(Map<String, String> dataRow)
-    {
-        //EntrySets
-        Map<String, String> tmpMap = new HashMap<>();
+	/**
+	 * Expects a map which contains data about layers and chemistry and is provided by the function createExplorationSites.
+	 * Uses the information of the keys SCHICHT_ ... and CHEMIE_ ...
+	 * to construct a new layer object.
+	 *
+	 * @param layerInformationMap a map of Strings containing information about layers.
+	 * @return a new layer object based on the layer information of the map.
+	 */
+	public static Layer createLayer(Map<String, String> layerInformationMap)
+	{
+		//EntrySets
+		Map<String, String> tmpMap = new HashMap<>();
 
-        for (String key : dataRow.keySet())
-        {
-            if (key.contains("SCHICHT_") || key.contains("CHEMIE_"))
-            {
-                tmpMap.put(key, dataRow.get(key));
-            }
-        }
-        return new Layer(tmpMap);
-    }
+		for (String key : layerInformationMap.keySet())
+		{
+			if (key.contains("SCHICHT_") || key.contains("CHEMIE_"))
+			{
+				tmpMap.put(key, layerInformationMap.get(key));
+			}
+		}
+		return new Layer(tmpMap);
+	}
 
-    //Unfinished implementation
-    @Deprecated
-    private static ExplorationSite createExplorationSite(Map<String, String> dataRow)
-    {
-        ExplorationSite explorationSite = new ExplorationSite();
+	@Deprecated
+	private static ExplorationSite createExplorationSite(Map<String, String> dataRow)
+	{
+		ExplorationSite explorationSite = new ExplorationSite();
 
-//        explorationSite.setIdentifier(dataRow.get("ERK_ID"))
-//                    .setDatum(dataRow.get("ERK_DATUM"))
-//                    .setPruefer(dataRow.get("ERK_PRUEFER"))
-//                    .setKoordinaten(dataRow.get("ERK_KOORDINATEN"))
-//                    .setOrt(dataRow.get("ERK_ORT"))
-//                    .setAufschlussOb(dataRow.get("ERK_AUFSCHLUSS_OB"))
-//                    .setAufschlussTob(dataRow.get("ERK_AUFSCHLUSS_TOB"))
-//                    .setAufschlussUg(dataRow.get("ERK_AUFSCHLUSS_UG"))
-//                    .setOberkante(dataRow.get("ERK_OBERKANTE"))
-//                    .setBelastungsklasse(dataRow.get("ERK_BELASTUNGSKLASSE"))
-//                    .setLpIdentifier(dataRow.get("ERK_LP"))
-//                    .setLpEv(dataRow.get("ERK_LP_EV"))
-//                    .setLpEv15(dataRow.get("ERK_LP_EV15"))
-//                    .setLpEv2(dataRow.get("ERK_LP_EV2"));
-
-        return explorationSite;
-    }
+		return explorationSite;
+	}
 
 
 }

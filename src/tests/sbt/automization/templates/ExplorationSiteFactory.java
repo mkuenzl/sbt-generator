@@ -6,7 +6,7 @@ import sbt.automization.data.Layer;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ErkundungsstellenTestFactory
+public class ExplorationSiteFactory
 {
 
 /*	Map<String, String> schichtDaten = new HashMap<>();
@@ -76,7 +76,7 @@ public class ErkundungsstellenTestFactory
 
 	public ExplorationSite getTestErkundungsstelle1()
 	{
-		explorationSite1.setDataMap(buildErkDaten());
+		explorationSite1.setInformationMap(buildErkDaten());
 		buildSchichtDaten();
 		explorationSite1.addLayer(layer1_GOB);
 		explorationSite1.addLayer(layer2_GOB);
@@ -92,7 +92,7 @@ public class ErkundungsstellenTestFactory
 
 	public ExplorationSite getTestErkundungsstelle2()
 	{
-		explorationSite2.setDataMap(buildErkDaten());
+		explorationSite2.setInformationMap(buildErkDaten());
 		buildSchichtDaten();
 		explorationSite2.addLayer(layer1_GOB);
 		explorationSite2.addLayer(layer2_GOB);
@@ -105,7 +105,7 @@ public class ErkundungsstellenTestFactory
 
 	public ExplorationSite getTestErkundungsstelle3()
 	{
-		explorationSite3.setDataMap(buildErkDaten());
+		explorationSite3.setInformationMap(buildErkDaten());
 		buildSchichtDaten();
 		explorationSite3.addLayer(layer1_GOB);
 		explorationSite3.addLayer(layer2_GOB);
@@ -119,7 +119,7 @@ public class ErkundungsstellenTestFactory
 
 	public ExplorationSite getTestErkundungsstelle4()
 	{
-		explorationSite4.setDataMap(buildErkDaten());
+		explorationSite4.setInformationMap(buildErkDaten());
 		buildSchichtDaten();
 		explorationSite4.addLayer(layer1_GOB);
 		explorationSite4.addLayer(layer2_GOB);
@@ -134,7 +134,7 @@ public class ErkundungsstellenTestFactory
 
 	public ExplorationSite getTestErkundungsstelle5()
 	{
-		explorationSite5.setDataMap(buildErkDaten());
+		explorationSite5.setInformationMap(buildErkDaten());
 		buildSchichtDaten();
 		explorationSite5.addLayer(layer1_GOB);
 		explorationSite5.addLayer(layer2_GOB);
