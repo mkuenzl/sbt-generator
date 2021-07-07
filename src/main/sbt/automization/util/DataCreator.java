@@ -5,8 +5,10 @@ import sbt.automization.data.Layer;
 
 import java.util.*;
 
-public class ObjectCreatorUtil
+public final class DataCreator
 {
+	private DataCreator(){}
+
 	/**
 	 * Will create different exploration sites based on their ID values. Each map should contain an ERK_ID key. Maps
 	 * with the same ID key are fused together into ExplorationSite objects.

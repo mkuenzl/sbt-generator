@@ -7,7 +7,7 @@ import org.junit.Test;
 import sbt.automization.data.TableInformation;
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.export.HtmlTemplateExport;
-import sbt.automization.util.Parser;
+import sbt.automization.util.CsvParser;
 import sbt.automization.util.Util;
 
 import java.awt.*;
@@ -33,9 +33,9 @@ public class TemplateTest
 		String path = System.getProperty("user.dir").concat(File.separator).concat("tests-resources").concat(File.separator);
 
 		File csv = new File(path + "excel-template-test.csv");
-		Parser parser = new Parser(csv);
+		CsvParser csvParser = new CsvParser(csv);
 
-		TableInformation database = new TableInformation(parser.parse(), csv.getParent());
+		TableInformation database = new TableInformation(csvParser.parse(), csv.getParent());
 
 		List<ExplorationSite> databaseExplorationSites = database.getExplorationSites();
 		int size = databaseExplorationSites.size();

@@ -1,7 +1,7 @@
 package sbt.automization.data;
 
 import sbt.automization.export.ATemplateExport;
-import sbt.automization.util.ObjectCreatorUtil;
+import sbt.automization.util.DataCreator;
 
 import java.util.List;
 import java.util.Map;
@@ -23,7 +23,7 @@ public final class TableInformation
 	 */
 	public TableInformation(List<Map<String, String>> parsedSiteInformation, String fileExportPath)
 	{
-		explorationSites = ObjectCreatorUtil.createExplorationSites(parsedSiteInformation);
+		explorationSites = DataCreator.createExplorationSites(parsedSiteInformation);
 		exportPath = fileExportPath;
 	}
 

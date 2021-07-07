@@ -3,7 +3,7 @@ package sbt.automization.gui;
 import sbt.automization.data.TableInformation;
 import sbt.automization.export.HtmlTemplateExport;
 import sbt.automization.templates.IHtmlTable;
-import sbt.automization.util.Parser;
+import sbt.automization.util.CsvParser;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,12 +17,12 @@ public class ExecuteButtonActionListener implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		File csv = new File(TableToolVisualInterface.textField.getText());
-		Parser parser = new Parser(csv);
+		CsvParser csvParser = new CsvParser(csv);
 
 		try
 		{
 
-			List<Map<String, String>> parsedSiteInformation = parser.parse();
+			List<Map<String, String>> parsedSiteInformation = csvParser.parse();
 			TableInformation tableInformation = new TableInformation(parsedSiteInformation, csv.getParent());
 			for (IHtmlTable strategy : StrategyStorage.getInstance().getStrategies())
 			{

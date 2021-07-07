@@ -4,7 +4,7 @@ import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.Layer;
 import sbt.automization.format.NameFormatUtil;
 import sbt.automization.format.TextFormatUtil;
-import sbt.automization.util.ObjectCreatorUtil;
+import sbt.automization.util.DataCreator;
 import sbt.automization.util.html.*;
 
 import java.util.ArrayList;
@@ -289,7 +289,7 @@ public final class AppendixPN extends AHtmlTable
         List<Layer> layerList = new ArrayList<>();
         for (Layer layer : layers)
         {
-            layerList.add(ObjectCreatorUtil.createLayer(layer.getInformationMap()));
+            layerList.add(DataCreator.createLayer(layer.getInformationMap()));
         }
 
         int size = layerList.size();
