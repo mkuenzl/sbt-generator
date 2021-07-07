@@ -8,7 +8,7 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class AppendixExplorationSite extends AHtmlTemplate
+public final class AppendixExplorationSite extends AHtmlTable
 {
     private static AppendixExplorationSite instance;
 
@@ -40,10 +40,7 @@ public final class AppendixExplorationSite extends AHtmlTemplate
     {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (int i = 0 ; i < sites.size() ; i++)
-        {
-            ExplorationSite explorationSite = sites.get(i);
-
+        for (ExplorationSite explorationSite : sites) {
             HtmlCell cellTextERKORT = new HtmlCell.Builder()
                     .appendAttribute("width", "75")
                     .appendAttribute("class", "NormalHeader")
@@ -168,15 +165,13 @@ public final class AppendixExplorationSite extends AHtmlTemplate
 
             stringBuilder.append(table.appendTag());
 
-            if (explorationSite.getLayersWithOutcrop("FUGE").size() > 0)
-            {
+            if (explorationSite.getLayersWithOutcrop("FUGE").size() > 0) {
                 AppendixSiteFUGE erk_FUGE_Tabelle = new AppendixSiteFUGE();
                 erk_FUGE_Tabelle.constructTable(explorationSite);
                 stringBuilder.append(erk_FUGE_Tabelle.getTable());
             }
 
-            if (explorationSite.getLayersWithOutcrop("OH").size() > 0)
-            {
+            if (explorationSite.getLayersWithOutcrop("OH").size() > 0) {
                 AppendixSiteOH erk_OH_Tabelle = new AppendixSiteOH();
                 erk_OH_Tabelle.constructTable(explorationSite);
                 stringBuilder.append(erk_OH_Tabelle.getTable());
@@ -238,7 +233,7 @@ public final class AppendixExplorationSite extends AHtmlTemplate
     @Override
     HtmlTable constructAndGetTableObject()
     {
-        HtmlTable table = new HtmlTable.Builder()
+        return new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
                 .appendAttribute("width", "605")
                 .appendAttribute("border", "1")
@@ -247,13 +242,11 @@ public final class AppendixExplorationSite extends AHtmlTemplate
                 .appendAttribute("cellpadding", "0")
                 .appendContent(constructAndGetTableHeader())
                 .build();
-
-        return table;
     }
 
     @Override
     public String getExportFileName()
     {
-        return "ERK_Tabelle.html";
+        return "Anlage-ERK";
     }
 }

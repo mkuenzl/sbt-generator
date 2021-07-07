@@ -15,7 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * Class for reading and transforming a csv into a map of data
+ */
 public class Parser
 {
 	final File csv;
@@ -25,62 +27,41 @@ public class Parser
 		this.csv = csv;
 	}
 
+	/**
+	 * Method uses the Apache CSV parser to read the csv and provide each line as record.
+	 * The excel export of .csv files in UTF-8 is always with BOM information (first bytes of each line)
+	 * therefore the BOMInputStream from Apache IO is used.
+	 * @return a list of maps, each map contains the information of one csv row
+	 * @throws Exception if anything happens while reading or exporting the csv
+	 */
 	public List<Map<String, String>> parse() throws Exception
 	{
-		List<Map<String, String>> dataPoints = new ArrayList<>();
+		List<Map<String, String>> csvData = new ArrayList<>();
 
-		FileInputStream fileInputStream = null;
-		InputStreamReader inputStreamReader = null;
-		CSVParser csvParser = null;
-
-		/* Excel export of .csv files in UTF-8 is always with BOM information (first bytes of each line) */
-		BOMInputStream bomInputStream = null;
-		try
+		try (FileInputStream fileInputStream = new FileInputStream(csv);
+			 BOMInputStream bomInputStream = new BOMInputStream(fileInputStream);
+			 InputStreamReader inputStreamReader = new InputStreamReader(bomInputStream, StandardCharsets.UTF_8))
 		{
-			fileInputStream = new FileInputStream(csv);
-			bomInputStream = new BOMInputStream(fileInputStream);
-			inputStreamReader = new InputStreamReader(bomInputStream, StandardCharsets.UTF_8);
-			csvParser = CSVFormat.EXCEL.withDelimiter(';').withFirstRecordAsHeader().withIgnoreEmptyLines(true).parse(inputStreamReader);
+			CSVParser csvParser = CSVFormat.EXCEL.withDelimiter(';').withFirstRecordAsHeader().withIgnoreEmptyLines(true).parse(inputStreamReader);
 
 			List<String> providedCsv = csvParser.getHeaderNames();
 			if (! CsvHeader.compare(providedCsv))
 			{
-				ErrorPopup.showErrorMessage("Es wurde die veraltete Version des Excel Templates verwendet.");
-				//throw new Exception("Wrong csv-format exception.");
+				ErrorPopup.showErrorMessage("Es wurde eine veraltete Version des Excel Templates verwendet.");
 			}
 
-			if (csvParser != null)
-			{
-				//Zeile
-				for (CSVRecord record : csvParser)
-				{
-					/* Prevent wrong excel formatting of .csv files to crash the program */
-					if (! "".equals(record.get(0)))
-					{
-						Map<String, String> map = record.toMap();
-						dataPoints.add(map);
-					}
+			for (CSVRecord record : csvParser)
+			{	// each record represents a line from the csv
+				if (! "".equals(record.get(0)))
+				{ // prevent wrong excel formatting of .csv files to crash the program
+					Map<String, String> map = record.toMap();
+					csvData.add(map);
 				}
 			}
 		} catch (IOException e)
 		{
 			e.printStackTrace();
-		} finally
-		{
-			if (fileInputStream != null)
-			{
-				try
-				{
-					assert inputStreamReader != null;
-					inputStreamReader.close();
-					fileInputStream.close();
-					bomInputStream.close();
-				} catch (IOException e)
-				{
-					e.printStackTrace();
-				}
-			}
 		}
-		return dataPoints;
+		return csvData;
 	}
 }

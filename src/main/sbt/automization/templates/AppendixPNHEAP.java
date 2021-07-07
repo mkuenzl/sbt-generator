@@ -11,7 +11,7 @@ import sbt.automization.util.html.HtmlTableHeader;
 
 import java.util.List;
 
-public final class AppendixPNHEAP extends AHtmlTemplate
+public final class AppendixPNHEAP extends AHtmlTable
 {
 	private static AppendixPNHEAP instance;
 
@@ -275,6 +275,6 @@ public final class AppendixPNHEAP extends AHtmlTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "PN_HAUFWERK_TEMPLATE.html";
+		return "Anlage-Haufwerk-PN";
 	}
 }

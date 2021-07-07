@@ -7,7 +7,7 @@ import sbt.automization.util.html.*;
 
 import java.util.List;
 
-public final class AppendixLP extends AHtmlTemplate
+public final class AppendixLP extends AHtmlTable
 {
     private static AppendixLP instance;
 
@@ -29,7 +29,7 @@ public final class AppendixLP extends AHtmlTemplate
     }
 
     @Override
-    public void constructTable(final List<ExplorationSite> sites)
+    public void constructTable(final List<ExplorationSite> explorationSites)
     {
         HtmlTable table = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
@@ -42,7 +42,7 @@ public final class AppendixLP extends AHtmlTemplate
                 .build();
 
 
-        for (ExplorationSite explorationSite : sites)
+        for (ExplorationSite explorationSite : explorationSites)
         {
             String erk_lp = explorationSite.getInformation("ERK_LP");
 
@@ -303,7 +303,7 @@ public final class AppendixLP extends AHtmlTemplate
     @Override
     HtmlTable constructAndGetTableObject()
     {
-        HtmlTable table = new HtmlTable.Builder()
+        return new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
                 .appendAttribute("width", "605")
                 .appendAttribute("border", "1")
@@ -312,13 +312,11 @@ public final class AppendixLP extends AHtmlTemplate
                 .appendAttribute("cellpadding", "0")
                 .appendContent(constructAndGetTableHeader())
                 .build();
-
-        return table;
     }
 
     @Override
     public String getExportFileName()
     {
-        return "LP_Tabelle.html";
+        return "Anlage-LP";
     }
 }

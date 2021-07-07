@@ -11,7 +11,7 @@ import sbt.automization.util.html.HtmlTableHeader;
 
 import java.util.List;
 
-final class AppendixSiteOH extends AHtmlTemplate
+final class AppendixSiteOH extends AHtmlTable
 {
     private String outcrop = "";
 

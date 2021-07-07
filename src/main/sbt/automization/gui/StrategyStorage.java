@@ -9,7 +9,7 @@ public class StrategyStorage
 {
     private static StrategyStorage instance;
 
-    private final List<IHtmlTemplate> strategyList;
+    private final List<IHtmlTable> strategyList;
 
     private StrategyStorage()
     {
@@ -129,7 +129,7 @@ public class StrategyStorage
         }
     }
 
-    public List<IHtmlTemplate> getStrategies()
+    public List<IHtmlTable> getStrategies()
     {
         return strategyList;
     }

@@ -8,12 +8,12 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class ReportHEAP extends AReportTemplate
+public final class ReportHEAP extends AReportTable
 {
 	private static ReportHEAP instance;
 
 	private ReportHEAP() {
-		layerId = "HAUFWERK";
+		layerKind = "HAUFWERK";
 	}
 
 	public static ReportHEAP getInstance()
@@ -127,6 +127,6 @@ public final class ReportHEAP extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht-HAUFWERK.html";
+		return "Bericht-HAUFWERK";
 	}
 }

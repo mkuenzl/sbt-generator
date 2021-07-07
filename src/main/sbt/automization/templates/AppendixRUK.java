@@ -10,7 +10,7 @@ import sbt.automization.util.html.HtmlTableHeader;
 
 import java.util.List;
 
-public final class AppendixRUK extends AHtmlTemplate
+public final class AppendixRUK extends AHtmlTable
 {
     private static AppendixRUK instance;
 
@@ -259,6 +259,6 @@ public final class AppendixRUK extends AHtmlTemplate
     @Override
     public String getExportFileName()
     {
-        return "RUK_Tabelle.html";
+        return "Anlage-RUK";
     }
 }

@@ -10,7 +10,7 @@ public class CLI
     private final String[] args;
     private final Options options;
     private final File file = new File(System.getProperty("user.dir").concat(File.separator).concat("datenbank.csv"));
-    private IHtmlTemplate strategy;
+    private IHtmlTable strategy;
 
     public CLI(String[] args)
     {
@@ -77,7 +77,7 @@ public class CLI
         return file;
     }
 
-    public IHtmlTemplate getStrategy()
+    public IHtmlTable getStrategy()
     {
         return strategy;
     }

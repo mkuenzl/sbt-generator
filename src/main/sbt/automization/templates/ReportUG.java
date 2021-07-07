@@ -8,13 +8,13 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class ReportUG extends AReportTemplate
+public final class ReportUG extends AReportTable
 {
 	private static ReportUG instance;
 
 	private ReportUG()
 	{
-		layerId = "UG";
+		layerKind = "UG";
 	}
 
 	public static ReportUG getInstance()
@@ -80,7 +80,7 @@ public final class ReportUG extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht-UG.html";
+		return "Bericht-UG";
 	}
 
 	@Override

@@ -8,7 +8,7 @@ import sbt.automization.util.html.*;
 
 import java.util.List;
 
-final class AppendixSiteTOB extends AHtmlTemplate
+final class AppendixSiteTOB extends AHtmlTable
 {
 	private String outcrop = "";
 

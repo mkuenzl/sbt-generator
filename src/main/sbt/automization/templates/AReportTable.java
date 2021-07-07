@@ -8,15 +8,17 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class AReportTemplate extends AHtmlTemplate
+/**
+ * Abstract class for all report tables inherits from AHtmlTable
+ */
+public abstract class AReportTable extends AHtmlTable
 {
-	String layerId;
+	String layerKind;
 
-	Collection<List<ExplorationSite>> divideExplorationSites(List<ExplorationSite> sites)
+	public Collection<List<ExplorationSite>> divideExplorationSites(List<ExplorationSite> sites)
 	{
-
 		List<ExplorationSite> templateExplorationSites = sites.stream()
-				.filter(e -> e.getLayersWithOutcrop(layerId).size() > 0)
+				.filter(e -> e.getLayersWithOutcrop(layerKind).size() > 0)
 				.collect(Collectors.toList());
 
 		Collection<List<ExplorationSite>> dividedExplorationSites = Util.separateBasedOnSize(templateExplorationSites, 17);

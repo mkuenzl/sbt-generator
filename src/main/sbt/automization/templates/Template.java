@@ -12,7 +12,7 @@ public enum Template
 				}
 
 				@Override
-				public IHtmlTemplate getStrategy()
+				public IHtmlTable getStrategy()
 				{
 					return AppendixLP.getInstance();
 				}
@@ -26,7 +26,7 @@ public enum Template
 				}
 
 				@Override
-				public IHtmlTemplate getStrategy()
+				public IHtmlTable getStrategy()
 				{
 					return AppendixExplorationSite.getInstance();
 				}
@@ -40,7 +40,7 @@ public enum Template
 				}
 
 				@Override
-				public IHtmlTemplate getStrategy()
+				public IHtmlTable getStrategy()
 				{
 					return AppendixPN.getInstance();
 				}
@@ -54,7 +54,7 @@ public enum Template
 				}
 
 				@Override
-				public IHtmlTemplate getStrategy()
+				public IHtmlTable getStrategy()
 				{
 					return AppendixRUK.getInstance();
 				}
@@ -68,7 +68,7 @@ public enum Template
 				}
 
 				@Override
-				public IHtmlTemplate getStrategy()
+				public IHtmlTable getStrategy()
 				{
 					return null;
 				}
@@ -76,5 +76,5 @@ public enum Template
 
 	public abstract String getName();
 
-	public abstract IHtmlTemplate getStrategy();
+	public abstract IHtmlTable getStrategy();
 }

@@ -308,7 +308,7 @@ public class TobFactory
 		return row.appendTag();
 	}
 
-	public static String createEvSollRow(List<ExplorationSite> explorationSites)
+	public static String createEvMinimumBorderRow(List<ExplorationSite> explorationSites)
 	{
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "ERK_LP_EV2_SOLL")) return "";
 

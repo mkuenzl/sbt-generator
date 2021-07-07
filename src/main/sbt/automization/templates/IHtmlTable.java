@@ -5,13 +5,13 @@ import sbt.automization.data.ExplorationSite;
 
 import java.util.List;
 
-public interface IHtmlTemplate
+public interface IHtmlTable
 {
-    String constructAndGetTemplate();
-
     void constructTable(List<ExplorationSite> sites);
 
     void constructTable(ExplorationSite site);
 
     String getExportFileName();
+
+    String getTable();
 }

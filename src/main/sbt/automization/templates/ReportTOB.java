@@ -8,13 +8,13 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class ReportTOB extends AReportTemplate
+public final class ReportTOB extends AReportTable
 {
 	private static ReportTOB instance;
 
 	private ReportTOB()
 	{
-		layerId = "TOB";
+		layerKind = "TOB";
 	}
 
 	public static ReportTOB getInstance()
@@ -78,7 +78,7 @@ public final class ReportTOB extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht-TOB.html";
+		return "Bericht-TOB";
 	}
 
 	@Override
@@ -101,7 +101,7 @@ public final class ReportTOB extends AReportTemplate
 				.append(TobFactory.createEvDynRow(explorationSites))
 				.append(TobFactory.createEvDyn85Row(explorationSites))
 				.append(TobFactory.createEv2Row(explorationSites))
-				.append(TobFactory.createEvSollRow(explorationSites))
+				.append(TobFactory.createEvMinimumBorderRow(explorationSites))
 				.append(TobFactory.createMaterialRow(explorationSites))
 				.append(TobFactory.createDickeRow(explorationSites))
 				.append(TobFactory.createKGVRow(explorationSites))

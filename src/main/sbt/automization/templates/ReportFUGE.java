@@ -8,12 +8,12 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class ReportFUGE extends AReportTemplate
+public final class ReportFUGE extends AReportTable
 {
 	private static ReportFUGE instance;
 
 	private ReportFUGE() {
-		layerId = "FUGE";
+		layerKind = "FUGE";
 	}
 
 	public static ReportFUGE getInstance()
@@ -75,7 +75,7 @@ public final class ReportFUGE extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht-FUGE.html";
+		return "Bericht-FUGE";
 	}
 
 	@Override
@@ -111,7 +111,7 @@ public final class ReportFUGE extends AReportTemplate
 	@Override
 	HtmlTable constructAndGetTableObject()
 	{
-		HtmlTable table = new HtmlTable.Builder()
+		return new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
 				.appendAttribute("width", "605")
 				.appendAttribute("border", "1")
@@ -120,8 +120,6 @@ public final class ReportFUGE extends AReportTemplate
 				.appendAttribute("cellpadding", "0")
 				.appendContent(constructAndGetTableHeader())
 				.build();
-
-		return table;
 	}
 
 }

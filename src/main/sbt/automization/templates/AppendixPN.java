@@ -10,7 +10,7 @@ import sbt.automization.util.html.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class AppendixPN extends AHtmlTemplate
+public final class AppendixPN extends AHtmlTable
 {
     private static AppendixPN instance;
 
@@ -151,7 +151,7 @@ public final class AppendixPN extends AHtmlTemplate
     @Override
     public String getExportFileName()
     {
-        return "PN_Tabelle.html";
+        return "Anlage-PN";
     }
 
     @Override

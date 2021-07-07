@@ -8,22 +8,23 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class ExampleTemplate extends AHtmlTemplate
+@Deprecated
+public final class ExampleTable extends AHtmlTable
 {
 
-	private static ExampleTemplate instance;
+	private static ExampleTable instance;
 
-	private ExampleTemplate() {}
+	private ExampleTable() {}
 
-	public static ExampleTemplate getInstance()
+	public static ExampleTable getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (ExampleTemplate.class)
+			synchronized (ExampleTable.class)
 			{
 				if (instance == null)
 				{
-					instance = new ExampleTemplate();
+					instance = new ExampleTable();
 				}
 			}
 		}
@@ -90,6 +91,6 @@ public final class ExampleTemplate extends AHtmlTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "example.html";
+		return "example";
 	}
 }

@@ -1,6 +1,6 @@
 package sbt.automization.data;
 
-import sbt.automization.export.ATemplateExportStrategy;
+import sbt.automization.export.ATemplateExport;
 import sbt.automization.util.ObjectCreatorUtil;
 
 import java.util.List;
@@ -33,8 +33,7 @@ public final class TableInformation
 	 *
 	 * @param template expects a template export strategy
 	 */
-	public void export(ATemplateExportStrategy template)
-	{
+	public void export(ATemplateExport template) throws Exception {
 		template.export(this);
 	}
 

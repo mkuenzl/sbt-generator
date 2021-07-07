@@ -8,13 +8,13 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class ReportGOB extends AReportTemplate
+public final class ReportGOB extends AReportTable
 {
 	private static ReportGOB instance;
 
 	private ReportGOB()
 	{
-		layerId = "GOB";
+		layerKind = "GOB";
 	}
 
 	public static ReportGOB getInstance()
@@ -128,21 +128,19 @@ public final class ReportGOB extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht-GOB.html";
+		return "Bericht-GOB";
 	}
 
 	@Override
 	HtmlTable constructAndGetTableObject()
 	{
-		HtmlTable table = new HtmlTable.Builder()
+		return new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
 				.appendAttribute("border", "1")
 				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
 				.appendAttribute("cellspacing", "0")
 				.appendAttribute("cellpadding", "0")
 				.build();
-
-		return table;
 	}
 
 }

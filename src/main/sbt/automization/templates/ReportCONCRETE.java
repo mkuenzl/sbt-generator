@@ -8,14 +8,14 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class ReportCONCRETE extends AReportTemplate
+public final class ReportCONCRETE extends AReportTable
 {
 
 	private static ReportCONCRETE instance;
 
 	private ReportCONCRETE()
 	{
-		layerId = "BETON";
+		layerKind = "BETON";
 	}
 
 	public static ReportCONCRETE getInstance()
@@ -71,7 +71,7 @@ public final class ReportCONCRETE extends AReportTemplate
 	}
 
 	@Override
-	String buildTechnicalFeatures(List<ExplorationSite> erkundungsstellen)
+	String buildTechnicalFeatures(List<ExplorationSite> explorationSites)
 	{
 		StringBuilder techBuilder = new StringBuilder();
 
@@ -80,15 +80,15 @@ public final class ReportCONCRETE extends AReportTemplate
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "NormalHeader")
-						.appendAttribute("colspan", String.valueOf(1 + erkundungsstellen.size()))
+						.appendAttribute("colspan", String.valueOf(1 + explorationSites.size()))
 						.appendContent("Technische Merkmale")
 						.build()
 						.appendTag())
 				.build();
 
 		techBuilder.append(rowTECHMERKMALE.appendTag())
-				.append(ConcreteFactory.createDickenRow(erkundungsstellen))
-				.append(ConcreteFactory.createDruckfestigkeitRow(erkundungsstellen));
+				.append(ConcreteFactory.createDickenRow(explorationSites))
+				.append(ConcreteFactory.createDruckfestigkeitRow(explorationSites));
 
 		return techBuilder.toString();
 	}
@@ -146,6 +146,6 @@ public final class ReportCONCRETE extends AReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht-BETON.html";
+		return "Bericht-BETON";
 	}
 }

@@ -9,7 +9,7 @@ import sbt.automization.util.html.HtmlTableHeader;
 import java.util.Arrays;
 import java.util.List;
 
-public class ReportCOORDINATES extends AHtmlTemplate
+public class ReportCOORDINATES extends AHtmlTable
 {
 	private static ReportCOORDINATES instance;
 
@@ -192,7 +192,7 @@ public class ReportCOORDINATES extends AHtmlTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht-KOORDINATEN.html";
+		return "Bericht-KOORDINATEN";
 	}
 
 	private List<String> splitCoordinate(ExplorationSite site)

@@ -10,7 +10,7 @@ import sbt.automization.util.html.HtmlTableHeader;
 
 import java.util.List;
 
-final class AppendixSiteFUGE extends AHtmlTemplate
+final class AppendixSiteFUGE extends AHtmlTable
 {
 	private String outcrop = "";
 
