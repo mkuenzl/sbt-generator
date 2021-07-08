@@ -2,8 +2,13 @@ package sbt.automization.format;
 
 import sbt.automization.util.html.HtmlText;
 
+/**
+ * Class for formatting regular names
+ */
 public final class NameFormatUtil
 {
+	private NameFormatUtil(){}
+
 	/**
 	 * Formats different names for better visualisation in each template, replacement for automatic line breaks.
 	 * (Gem. a. G. (NS))

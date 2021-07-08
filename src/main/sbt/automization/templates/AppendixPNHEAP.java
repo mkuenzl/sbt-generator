@@ -80,7 +80,7 @@ public final class AppendixPNHEAP extends AHtmlTable
 
 						HtmlCell layerSampleType = new HtmlCell.Builder()
 								.appendAttribute("class", "NormalCentered")
-								.appendContent(TextFormatUtil.formatLayerSampleType(layer))
+								.appendContent(TextFormatUtil.formatSampleType(layer.getInformation("SCHICHT_BEHAELTNIS")))
 								.build();
 
 						HtmlCell layerContainer = new HtmlCell.Builder()
@@ -122,7 +122,7 @@ public final class AppendixPNHEAP extends AHtmlTable
 
 						HtmlCell layerDepth = new HtmlCell.Builder()
 								.appendAttribute("class", "NormalCentered")
-								.appendContent(TextFormatUtil.formatLayerDepth(layer))
+								.appendContent(TextFormatUtil.formatDepth(layer.getInformation("SCHICHT_TIEFE_START"), layer.getInformation("SCHICHT_TIEFE_ENDE")))
 								.build();
 
 						HtmlCell explorationSiteTopEdge = new HtmlCell.Builder()

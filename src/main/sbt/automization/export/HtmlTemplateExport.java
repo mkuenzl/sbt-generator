@@ -30,6 +30,10 @@ public final class HtmlTemplateExport extends ATemplateExport
         super(strategy);
     }
 
+    public HtmlTemplateExport() {
+        super();
+    }
+
     @Override
     String format(final TableInformation tableInformation)
     {
@@ -73,11 +77,16 @@ public final class HtmlTemplateExport extends ATemplateExport
     {
         tableStrategy.constructTable(explorationSites);
 
+        return format(tableStrategy.getTable());
+    }
+
+    @Override
+    String format(String htmlCode)
+    {
         HtmlDiv div = new HtmlDiv.Builder()
                 .appendAttribute("class", "WordSection1")
-                .appendContent(tableStrategy.getTable())
+                .appendContent(htmlCode)
                 .build();
-
 
         HtmlBody body = new HtmlBody.Builder()
                 .appendAttribute("lang", "DE")

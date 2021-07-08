@@ -90,7 +90,7 @@ public class TobFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.presentTobLayers(explorationSite))
+					.appendContent(TextFormatUtil.formatOutcropLayers(explorationSite, "TOB"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -300,7 +300,8 @@ public class TobFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
-					.appendContent(TextFormatUtil.formatErkLP(explorationSite))
+					.appendContent(TextFormatUtil.formatLP(explorationSite.getInformation("ERK_LP_EV2"),
+							explorationSite.getInformation("ERK_LP_EV15")))
 					.build();
 
 			row.appendContent(cell.appendTag());

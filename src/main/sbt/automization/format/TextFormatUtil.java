@@ -13,104 +13,110 @@ public final class TextFormatUtil
 {
 	private TextFormatUtil(){}
 
+	/**
+	 * Method used for pretty printing the cell text for "Belastungsklasse"
+	 * Schema:
+	 * Belastungsklasse
+	 * Bk1/Bk2/keine
+	 * @param explorationSite expects a exploration site
+	 * @return formatted html code
+	 */
 	public static String formatLoadClass(final ExplorationSite explorationSite)
 	{
-		String s1 = new HtmlText.Builder().appendAttribute("class", "Normal")
-				.appendContent("Belastungsklasse")
-				.build()
-				.appendTag();
-
-		String erk_belastungsklasse = explorationSite.getInformation("ERK_BELASTUNGSKLASSE");
+		String loadClass = explorationSite.getInformation("ERK_BELASTUNGSKLASSE");
 		String content;
-		if ("keine".equals(erk_belastungsklasse) || "-".equals(erk_belastungsklasse))
+
+		if ("keine".equals(loadClass) || "-".equals(loadClass))
 		{
-			content = erk_belastungsklasse;
+			content = loadClass;
 		} else
 		{
-			content = "Bk" + erk_belastungsklasse;
+			content = "Bk" + loadClass;
 		}
 
-		String s2 = new HtmlText.Builder().appendAttribute("class", "Normal")
+		return new HtmlText.Builder().appendAttribute("class", "Normal")
+				.appendContent("Belastungsklasse")
+				.appendContent(printLineBreak())
 				.appendContent(content)
 				.build()
 				.appendTag();
-
-		return s1 + s2;
 	}
 
-	public static String formatErkLP(final ExplorationSite explorationSite)
+	/**
+	 * Method creates a formatted html text of the Ev2 value. When Ev2 is smaller 80 and Ev85 is in between a certain
+	 * range this range will be shown also.
+	 * @param ev2 the Ev2 value from an LP experiment as String
+	 * @param ev85Percent the Ev85 value from an LP experiment as String
+	 * @return a String of the formatted html code
+	 */
+	public static String formatLP(final String ev2, final String ev85Percent)
 	{
-		StringBuilder strb = new StringBuilder();
+		StringBuilder stringBuilder = new StringBuilder();
 
-		String ev2 = explorationSite.getInformation("ERK_LP_EV2");
-
-		if ("< 80".equals(ev2))
+		if ("< 80".equals(ev2) && !"-".equals(ev85Percent))
 		{
-			String erk_lp_ev15 = explorationSite.getInformation("ERK_LP_EV15").replace(",", ".");
-			String replace = erk_lp_ev15.replace("~ ", "");
-			double ev = Double.parseDouble(replace);
+			String ev85PercentInformation = ev85Percent.replace(",", ".");
+			String replace = ev85PercentInformation.replace("~ ", "");
+
+			double ev85PercentValue = Double.parseDouble(replace);
+
 			String range = "";
 
-			if (ev >= 10 && ev < 20)
-			{
-				range = "[30 - 40]";
-			}
-			if (ev >= 20 && ev < 30)
-			{
-				range = "[40 - 50]";
-			}
-			if (ev >= 30 && ev < 40)
-			{
-				range = "[50 - 60]";
-			}
-			if (ev >= 40 && ev < 45)
-			{
-				range = "[60 - 80]";
-			}
+			if (ev85PercentValue >= 10 && ev85PercentValue < 20) range = "[30 - 40]";
+			if (ev85PercentValue >= 20 && ev85PercentValue < 30) range = "[40 - 50]";
+			if (ev85PercentValue >= 30 && ev85PercentValue < 40) range = "[50 - 60]";
+			if (ev85PercentValue >= 40 && ev85PercentValue < 45) range = "[60 - 80]";
 
-			strb.append(new HtmlText.Builder()
+			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
 					.appendContent(ev2)
-					.build()
-					.appendTag())
-					.append(new HtmlText.Builder()
-							.appendAttribute("class", "Normal6")
-							.appendContent("&nbsp;")
-							.build()
-							.appendTag())
-					.append(new HtmlText.Builder()
+					//.appendContent(printLineBreak())
+					.appendContent(new HtmlText.Builder()
 							.appendAttribute("class", "Normal6")
 							.appendContent(range)
-							.build().appendTag());
+							.build().appendTag())
+					.build()
+					.appendTag());
 		} else
 		{
-			strb.append(new HtmlText.Builder()
+			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
 					.appendContent(ev2)
 					.build()
 					.appendTag());
 		}
 
-		return strb.toString();
+		return stringBuilder.toString();
 	}
 
+	/**
+	 * TODO MOVE to ES
+	 * Method calculates the thickness of a specific outcrop from an exploration site.
+	 * @param explorationSite an ExplorationSite object
+	 * @param outcrop a String characterizing a specific outcrop like GOB / TOB ...
+	 * @return the thickness as String
+	 */
 	public static String formatSiteOutcropThickness(final ExplorationSite explorationSite, String outcrop)
 	{
-		double height = 0.0;
-		List<Layer> layerList = explorationSite.getLayersWithOutcrop(outcrop);
-		for (Layer layer : layerList)
+		double heightValue = 0.0;
+		List<Layer> layersInOutcrop = explorationSite.getLayersWithOutcrop(outcrop);
+		for (Layer layer : layersInOutcrop)
 		{
-
-			height = height + Double.parseDouble(layer.getInformation("SCHICHT_DICKE").replace(",", "."));
+			heightValue = heightValue + Double.parseDouble(layer.getInformation("SCHICHT_DICKE").replace(",", "."));
 		}
-		String h = String.valueOf(height);
-		return h.replace(".", ",");
+		String height = String.valueOf(heightValue);
+		return height.replace(".", ",");
 	}
 
-	public static String formatLayerSampleType(final Layer layer)
+	/**
+	 * Method for specifying whether a sample is a single probe or could contain multiple.
+	 * @param container a String of the sample container
+	 * @return a String of the sample classification
+	 */
+	public static String formatSampleType(final String container)
 	{
 		String sampleType;
-		if ("-".equals(layer.getInformation("SCHICHT_BEHAELTNIS")))
+		if ("-".equals(container))
 		{
 			sampleType = "EP";
 		} else
@@ -120,12 +126,15 @@ public final class TextFormatUtil
 		return sampleType;
 	}
 
+	/**
+	 * Method formats all footnotes related to an exploration site in the provided order.
+	 * @param explorationSite an ExplorationSite object
+	 * @return a String of html code representing a list of footnotes
+	 */
 	public static String formatSiteFootnotes(final ExplorationSite explorationSite)
 	{
-
 		int footnoteCounter = 1;
 		StringBuilder stringBuilder = new StringBuilder();
-
 
 		stringBuilder.append(new HtmlText.Builder()
 				.appendAttribute("class", "Normal")
@@ -137,7 +146,7 @@ public final class TextFormatUtil
 				.appendContent(printLineBreak())
 				.appendContent("RC = Rezyklierte Gesteinskörnung, BK = Brechkorn, RK = Rundkorn, sg = stetig gestuft, ug = unstetig gestuft")
 				.appendContent(printLineBreak())
-				.appendContent(TextFormatUtil.printEmptyRow())
+				.appendContent(TextFormatUtil.printLineEmpty())
 				.build()
 				.appendTag());
 
@@ -284,44 +293,54 @@ public final class TextFormatUtil
 		{
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
-					.appendContent(String.valueOf(footnoteCounter++))
+					.appendContent(String.valueOf(footnoteCounter))
 					.appendContent(".) ")
 					.appendContent("Prüfergebnisse unter Berücksichtigung einer ca. 15 % Reduzierung aufgrund der Einspannung durch den ")
+					.appendContent(printLineBreak())
+					.appendContent("gebundenen Oberbau")
 					.build()
-					.appendTag())
-					.append(new HtmlText.Builder()
-							.appendAttribute("class", "Normal")
-							.appendContent("gebundenen Oberbau")
-							.build()
-							.appendTag());
-
+					.appendTag());
 		}
 		return stringBuilder.toString();
 	}
 
+	/**
+	 * Method to provide the standard html line break. May be moved to the html package in the future.
+	 * @return a html line break
+	 */
 	public static String printLineBreak()
 	{
 		return "<br>";
 	}
 
-	public static String printEmptyRow()
+	/**
+	 * Method to provide a line without content.
+	 * @return a html paragraph without content
+	 */
+	public static String printLineEmpty()
 	{
-		HtmlText lineBreak = new HtmlText.Builder()
+		HtmlText emptyRow = new HtmlText.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent("&nbsp;")
 				.build();
 
-		return lineBreak.appendTag();
+		return emptyRow.appendTag();
 	}
 
-	public static String formatLayerDepth(final Layer layer)
+	/**
+	 * Method to format a range between two depths as html text.
+	 * @param startDepth a String representing the start depth
+	 * @param endDepth a String representing the end depth
+	 * @return a html text representing the range
+	 */
+	public static String formatDepth(final String startDepth, final String endDepth)
 	{
 		HtmlText htmlText = new HtmlText.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent("")
-				.appendContent(layer.getInformation("SCHICHT_TIEFE_START"))
+				.appendContent(startDepth)
 				.appendContent("-")
-				.appendContent(layer.getInformation("SCHICHT_TIEFE_ENDE"))
+				.appendContent(endDepth)
 				.appendContent("")
 				.build();
 
@@ -334,7 +353,7 @@ public final class TextFormatUtil
 	 * @param layerKind a valid soil group as String either with [] or without
 	 * @return a formatted String of the long text and short text of a soil group
 	 */
-	public static String formatLayerSoilGroup(final String layerKind)
+	public static String formatSoilGroup(final String layerKind)
 	{
 		boolean isFillUp;
 		String kind;
@@ -453,31 +472,27 @@ public final class TextFormatUtil
 		return kindText + " " + kind;
 	}
 
-	public static String presentTobLayers(final ExplorationSite explorationSite)
+	/**
+	 * Method formats and strings together each layer from an exploration site that is related to an outcrop like "TOB".
+	 * @param explorationSite an ExplorationSite
+	 * @return a html code as String containing all layers from an outcrop
+	 */
+	public static String formatOutcropLayers(final ExplorationSite explorationSite, final String outcrop)
 	{
 		StringBuilder formattedLayerMaterial = new StringBuilder();
 
-		List<Layer> tob = explorationSite.getLayersWithOutcrop("TOB");
+		List<Layer> outcropLayers = explorationSite.getLayersWithOutcrop(outcrop);
+		int size = outcropLayers.size();
 
-
-		int size = tob.size();
 		for (int i = 0 ; i < size ; i++)
 		{
-			Layer layer = tob.get(i);
+			Layer layer = outcropLayers.get(i);
 
-			formattedLayerMaterial.append(NameFormatUtil.formatLayerKind(layer.getInformation("SCHICHT_ART")));
+			formattedLayerMaterial.append(formatLayerAttributes(layer.getInformation("SCHICHT_ART"),
+					layer.getInformation("SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT"),
+					layer.getInformation("SCHICHT_KOERNUNG")));
 
-			formattedLayerMaterial.append(printEmptyRow());
-
-			HtmlText layerAttributes = new HtmlText.Builder()
-					.appendAttribute("class", "Normal6")
-					.appendContent(layer.getInformation("SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT"))
-					.appendContent(" ")
-					.appendContent(layer.getInformation("SCHICHT_KOERNUNG"))
-					.build();
-
-			formattedLayerMaterial.append(layerAttributes.appendTag());
-			formattedLayerMaterial.append(printFormattedLayerDepth(layer));
+			formattedLayerMaterial.append(formatDepthSpecified(layer.getInformation("SCHICHT_TIEFE_START"), layer.getInformation("SCHICHT_TIEFE_ENDE")));
 
 			if (i + 1 < size)
 			{
@@ -488,9 +503,38 @@ public final class TextFormatUtil
 		return formattedLayerMaterial.toString();
 	}
 
-	public static String printFormattedLayerDepth(final Layer layer)
+	/**
+	 * Method formats Strings together in a specified manner.
+	 * kind
+	 *
+	 * rounding granulation
+	 *
+	 * @param kind a String of a layer kind (SCHICHT_ART)
+	 * @param rounding a String of a layer rounding (SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT)
+	 * @param granulation a String of a layer granulation (SCHICHT_KOERNUNG)
+	 * @return a html code as String that formats the Attributes
+	 */
+	public static String formatLayerAttributes(final String kind, final String rounding, final String granulation)
 	{
-		String depth = "[T: " + layer.getInformation("SCHICHT_TIEFE_START") + " - " + layer.getInformation("SCHICHT_TIEFE_ENDE") + "]";
+		StringBuilder stringBuilder = new StringBuilder();
+
+		HtmlText attributes = new HtmlText.Builder()
+				.appendAttribute("class", "Normal6")
+				.appendContent(rounding)
+				.appendContent(" ")
+				.appendContent(granulation)
+				.build();
+
+		stringBuilder.append(NameFormatUtil.formatLayerKind(kind));
+		stringBuilder.append(printLineEmpty());
+		stringBuilder.append(attributes.appendTag());
+
+		return stringBuilder.toString();
+	}
+
+	public static String formatDepthSpecified(final String startDepth, final String endDepth)
+	{
+		String depth = "[T: " + startDepth + " - " + endDepth + "]";
 
 		HtmlText formattedDepth = new HtmlText.Builder()
 				.appendAttribute("class", "Normal6")
@@ -500,19 +544,25 @@ public final class TextFormatUtil
 		return formattedDepth.appendTag();
 	}
 
+	/**
+	 * Method to provide a visual border between layer information.
+	 * @return a String representing a line
+	 */
 	public static String printCellTextDivider()
 	{
-		StringBuilder strb = new StringBuilder();
+		StringBuilder stringBuilder = new StringBuilder();
+
 		HtmlText textDivider = new HtmlText.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent("_________")
 				.build();
 
-		strb.append(textDivider.appendTag())
-				.append(printEmptyRow());
+		stringBuilder.append(textDivider.appendTag())
+				.append(printLineEmpty());
 
-		return strb.toString();
+		return stringBuilder.toString();
 	}
+
 
 	public static String printLayerKindWithGranulation(final Layer layer)
 	{
@@ -559,15 +609,15 @@ public final class TextFormatUtil
 						.build().appendTag();
 			}
 
-
 			if (i > 0)
 			{
 				stringBuilder.append(printCellTextDivider());
 			}
 
 			stringBuilder.append(formattedTag);
-			stringBuilder.append(printEmptyRow());
-			stringBuilder.append(printFormattedLayerDepth(layer));
+			stringBuilder.append(printLineEmpty());
+			stringBuilder.append(formatDepthSpecified(layer.getInformation("SCHICHT_TIEFE_START"),
+					layer.getInformation("SCHICHT_TIEFE_ENDE")));
 
 		}
 

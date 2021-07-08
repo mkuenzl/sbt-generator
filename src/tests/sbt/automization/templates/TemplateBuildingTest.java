@@ -16,13 +16,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TemplateTest
+public class TemplateBuildingTest
 {
 	List<ExplorationSite> explorationSites = new ArrayList<>();
 
-	private static void openExportFile(HtmlTemplateExport htmlTemplateExportStrategy) throws IOException
+	public static void openExportFile(String path) throws IOException
 	{
-		String path = htmlTemplateExportStrategy.getPath();
 		File htmlFile = new File(path);
 		Desktop.getDesktop().browse(htmlFile.toURI());
 	}
@@ -68,7 +67,7 @@ public class TemplateTest
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(AppendixExplorationSite.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
-		openExportFile(htmlTemplateExportStrategy);
+		openExportFile(htmlTemplateExportStrategy.getPath());
 	}
 
 	@Test
@@ -77,7 +76,7 @@ public class TemplateTest
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(AppendixRUK.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
-		openExportFile(htmlTemplateExportStrategy);
+		openExportFile(htmlTemplateExportStrategy.getPath());
 	}
 
 	@Test
@@ -86,7 +85,7 @@ public class TemplateTest
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(AppendixLP.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
-		openExportFile(htmlTemplateExportStrategy);
+		openExportFile(htmlTemplateExportStrategy.getPath());
 	}
 
 	@Test
@@ -95,7 +94,7 @@ public class TemplateTest
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(AppendixPN.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
-		openExportFile(htmlTemplateExportStrategy);
+		openExportFile(htmlTemplateExportStrategy.getPath());
 	}
 
 	@Test
@@ -104,7 +103,7 @@ public class TemplateTest
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(AppendixPNHEAP.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
-		openExportFile(htmlTemplateExportStrategy);
+		openExportFile(htmlTemplateExportStrategy.getPath());
 	}
 
 	@Test
@@ -113,7 +112,7 @@ public class TemplateTest
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ReportGOB.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
-		openExportFile(htmlTemplateExportStrategy);
+		openExportFile(htmlTemplateExportStrategy.getPath());
 	}
 
 	@Test
@@ -122,7 +121,7 @@ public class TemplateTest
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ReportTOB.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
-		openExportFile(htmlTemplateExportStrategy);
+		openExportFile(htmlTemplateExportStrategy.getPath());
 	}
 
 	@Test
@@ -131,7 +130,7 @@ public class TemplateTest
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ReportUG.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
-		openExportFile(htmlTemplateExportStrategy);
+		openExportFile(htmlTemplateExportStrategy.getPath());
 	}
 
 	@Test
@@ -140,16 +139,16 @@ public class TemplateTest
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ReportOH.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
-		openExportFile(htmlTemplateExportStrategy);
+		openExportFile(htmlTemplateExportStrategy.getPath());
 	}
 
 	@Test
 	public void createExampleTemplate() throws IOException
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ExampleTable.getInstance());
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(TestTemplate.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
-		openExportFile(htmlTemplateExportStrategy);
+		openExportFile(htmlTemplateExportStrategy.getPath());
 	}
 
 	@Test
@@ -158,7 +157,7 @@ public class TemplateTest
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ReportTMHB.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
-		openExportFile(htmlTemplateExportStrategy);
+		openExportFile(htmlTemplateExportStrategy.getPath());
 	}
 
 	@Test
@@ -167,7 +166,7 @@ public class TemplateTest
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ReportCONCRETE.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
-		openExportFile(htmlTemplateExportStrategy);
+		openExportFile(htmlTemplateExportStrategy.getPath());
 	}
 
 	@Test
@@ -176,7 +175,7 @@ public class TemplateTest
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ReportFUGE.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
-		openExportFile(htmlTemplateExportStrategy);
+		openExportFile(htmlTemplateExportStrategy.getPath());
 	}
 
 	@Test
@@ -185,7 +184,7 @@ public class TemplateTest
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ReportHEAP.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
-		openExportFile(htmlTemplateExportStrategy);
+		openExportFile(htmlTemplateExportStrategy.getPath());
 	}
 
 	@Test
@@ -194,6 +193,6 @@ public class TemplateTest
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ReportCOORDINATES.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
-		openExportFile(htmlTemplateExportStrategy);
+		openExportFile(htmlTemplateExportStrategy.getPath());
 	}
 }

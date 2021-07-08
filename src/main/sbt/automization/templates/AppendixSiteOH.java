@@ -43,7 +43,7 @@ final class AppendixSiteOH extends AHtmlTable
                 //Art der Schicht
                 HtmlCell cell1 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent(TextFormatUtil.formatLayerSoilGroup(layer.getInformation("SCHICHT_ART")))
+                        .appendContent(TextFormatUtil.formatSoilGroup(layer.getInformation("SCHICHT_ART")))
                         .build();
 
                 //Dicke

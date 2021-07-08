@@ -8,23 +8,22 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-@Deprecated
-public final class ExampleTable extends AHtmlTable
+public final class TestTemplate extends AHtmlTable
 {
 
-	private static ExampleTable instance;
+	private static TestTemplate instance;
 
-	private ExampleTable() {}
+	private TestTemplate() {}
 
-	public static ExampleTable getInstance()
+	public static TestTemplate getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (ExampleTable.class)
+			synchronized (TestTemplate.class)
 			{
 				if (instance == null)
 				{
-					instance = new ExampleTable();
+					instance = new TestTemplate();
 				}
 			}
 		}
@@ -69,7 +68,7 @@ public final class ExampleTable extends AHtmlTable
 
 		HtmlCell htmlCell = new HtmlCell.Builder()
 				.appendAttribute("class", "Normal")
-				.appendContent(TextFormatUtil.presentTobLayers(sites.get(0)))
+				.appendContent("TextFormatUtil.formatOutcropLayers(sites.get(0))")
 				.build();
 
 		HtmlRow htmlRow = new HtmlRow.Builder()

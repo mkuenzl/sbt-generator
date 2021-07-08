@@ -16,11 +16,15 @@ public abstract class ATemplateExport
 	/**
 	 * Template to be exported
 	 */
-	final IHtmlTable tableStrategy;
+	IHtmlTable tableStrategy;
 
 	ATemplateExport(final IHtmlTable tableStrategy)
 	{
 		this.tableStrategy = tableStrategy;
+	}
+
+	public ATemplateExport() {
+
 	}
 
 	public void export(TableInformation tableInformation) throws Exception {
@@ -61,6 +65,27 @@ public abstract class ATemplateExport
 	}
 
 	abstract String format(List<ExplorationSite> explorationSites);
+
+	/**
+	 * Export variant used for testing template generation
+	 * @param htmlCode a html code fragment
+	 */
+	public void exportAsShowcase(String htmlCode)
+	{
+		try {
+			export(System.getProperty("user.dir").concat(File.separator).concat("testShowcase.html"), format(htmlCode));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	abstract String format(String text);
+
+	public String getPathToShowcase()
+	{
+		return System.getProperty("user.dir").concat(File.separator).concat("testShowcase.html");
+
+	}
 
 	abstract String getPath();
 }

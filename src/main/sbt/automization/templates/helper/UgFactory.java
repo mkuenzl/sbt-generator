@@ -473,7 +473,7 @@ public class UgFactory
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
 					.appendContent(explorationSite.getInformation("ERK_TRAG_GRABENSOHLE"))
-					.appendContent(TextFormatUtil.printEmptyRow())
+					.appendContent(TextFormatUtil.printLineEmpty())
 					.appendContent(new HtmlText.Builder().appendAttribute("class", "Normal6")
 							.appendContent("[T:")
 							.appendContent(explorationSite.getInformation("ERK_SOHLE_TIEFE"))

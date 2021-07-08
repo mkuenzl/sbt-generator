@@ -132,7 +132,7 @@ public final class ExplorationSite implements Comparable<ExplorationSite>, Seria
 	}
 
 	/**
-	 * Sorts all layers based on their SCHICHT_NUMMER
+	 * Sorts all layers based on their SCHICHT_NR
 	 */
 	public void sortLayers()
 	{

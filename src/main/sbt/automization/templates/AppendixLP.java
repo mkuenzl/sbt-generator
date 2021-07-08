@@ -109,7 +109,8 @@ public final class AppendixLP extends AHtmlTable
                 HtmlCell cellERKLPEV2 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("align", "center")
-                        .appendContent(TextFormatUtil.formatErkLP(explorationSite))
+                        .appendContent(TextFormatUtil.formatLP(explorationSite.getInformation("ERK_LP_EV2"),
+                                explorationSite.getInformation("ERK_LP_EV15")))
                         .build();
 
                 HtmlRow htmlRow = new HtmlRow.Builder()
