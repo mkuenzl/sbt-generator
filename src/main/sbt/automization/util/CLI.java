@@ -5,6 +5,9 @@ import sbt.automization.templates.*;
 
 import java.io.File;
 
+/**
+ * Class for a command line interface, when using the tool as jar
+ */
 public class CLI
 {
     private final String[] args;

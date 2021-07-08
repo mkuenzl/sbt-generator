@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * TODO remove getTestErkundungsstelle1() implement use of serialization
+ */
 public class UtilTest
 {
 	@Test

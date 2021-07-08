@@ -5,6 +5,9 @@ import sbt.automization.data.Layer;
 
 import java.util.*;
 
+/**
+ * Class to create data objects from parsed csv information
+ */
 public final class DataCreator
 {
 	private DataCreator(){}
