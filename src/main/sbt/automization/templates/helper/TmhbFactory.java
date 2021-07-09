@@ -134,7 +134,7 @@ public class TmhbFactory
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_DRUCKFESTIGKEIT"))
+                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "SCHICHT_DRUCKFESTIGKEIT"))
                     .build();
 
             row.appendContent(cell.appendTag());
@@ -229,7 +229,7 @@ public class TmhbFactory
             HtmlCell htmlCell_CHEMIE_ID = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_ID"))
+                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "CHEMIE_ID"))
                     .build();
 
             rowCHEMIE_ID.appendContent(htmlCell_CHEMIE_ID.appendTag());
@@ -268,7 +268,7 @@ public class TmhbFactory
             HtmlCell htmlCell_CHEMIE_MUFV = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_MUFV"))
+                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "CHEMIE_MUFV"))
                     .build();
 
             rowCHEMIE_MUFV.appendContent(htmlCell_CHEMIE_MUFV.appendTag());
@@ -301,7 +301,7 @@ public class TmhbFactory
             HtmlCell htmlCell_CHEMIE_LAGA_RC = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_LAGA_RC"))
+                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "CHEMIE_LAGA_RC"))
                     .build();
 
             rowCHEMIE_LAGA_RC.appendContent(htmlCell_CHEMIE_LAGA_RC.appendTag());
@@ -334,7 +334,7 @@ public class TmhbFactory
             HtmlCell htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_LAGARC_ORIENTIERUNGSWERT"))
+                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "CHEMIE_LAGARC_ORIENTIERUNGSWERT"))
                     .build();
 
             rowCHEMIE_LAGA_RC_ORIENTIERUNG.appendContent(htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG.appendTag());
@@ -368,7 +368,7 @@ public class TmhbFactory
             HtmlCell htmlCell_CHEMIE_TL_GESTEIN = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_TLGESTEIN"))
+                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "CHEMIE_TLGESTEIN"))
                     .build();
 
 
@@ -402,7 +402,7 @@ public class TmhbFactory
             HtmlCell htmlCell_CHEMIE_DEPV = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_DEPV"))
+                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "CHEMIE_DEPV"))
                     .build();
 
 
@@ -437,7 +437,7 @@ public class TmhbFactory
             HtmlCell htmlCell_AVV = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "50")
-                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_ABFALLSCHLUESSEL"))
+                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "CHEMIE_ABFALLSCHLUESSEL"))
                     .build();
 
             rowERK_AVV_PECH.appendContent(htmlCell_AVV.appendTag());

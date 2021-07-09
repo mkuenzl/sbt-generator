@@ -257,7 +257,7 @@ public class ObFactory
 						.appendContent("Pechnachweiß")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal")
-								.appendContent("halb-quantitativ")
+								.appendContent("halbquantitativ")
 								.build()
 								.appendTag())
 						.build()

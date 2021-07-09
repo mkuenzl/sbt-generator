@@ -11,13 +11,14 @@ import java.util.List;
  */
 public final class TextFormatUtil
 {
-	private TextFormatUtil(){}
+	private TextFormatUtil() {}
 
 	/**
 	 * Method used for pretty printing the cell text for "Belastungsklasse"
 	 * Schema:
 	 * Belastungsklasse
 	 * Bk1/Bk2/keine
+	 *
 	 * @param explorationSite expects a exploration site
 	 * @return formatted html code
 	 */
@@ -43,9 +44,20 @@ public final class TextFormatUtil
 	}
 
 	/**
+	 * Method to provide the standard html line break. May be moved to the html package in the future.
+	 *
+	 * @return a html line break
+	 */
+	public static String printLineBreak()
+	{
+		return "<br>";
+	}
+
+	/**
 	 * Method creates a formatted html text of the Ev2 value. When Ev2 is smaller 80 and Ev85 is in between a certain
 	 * range this range will be shown also.
-	 * @param ev2 the Ev2 value from an LP experiment as String
+	 *
+	 * @param ev2         the Ev2 value from an LP experiment as String
 	 * @param ev85Percent the Ev85 value from an LP experiment as String
 	 * @return a String of the formatted html code
 	 */
@@ -53,7 +65,7 @@ public final class TextFormatUtil
 	{
 		StringBuilder stringBuilder = new StringBuilder();
 
-		if ("< 80".equals(ev2) && !"-".equals(ev85Percent))
+		if ("< 80".equals(ev2) && ! "-".equals(ev85Percent))
 		{
 			String ev85PercentInformation = ev85Percent.replace(",", ".");
 			String replace = ev85PercentInformation.replace("~ ", "");
@@ -92,8 +104,9 @@ public final class TextFormatUtil
 	/**
 	 * TODO MOVE to ES
 	 * Method calculates the thickness of a specific outcrop from an exploration site.
+	 *
 	 * @param explorationSite an ExplorationSite object
-	 * @param outcrop a String characterizing a specific outcrop like GOB / TOB ...
+	 * @param outcrop         a String characterizing a specific outcrop like GOB / TOB ...
 	 * @return the thickness as String
 	 */
 	public static String formatSiteOutcropThickness(final ExplorationSite explorationSite, String outcrop)
@@ -110,6 +123,7 @@ public final class TextFormatUtil
 
 	/**
 	 * Method for specifying whether a sample is a single probe or could contain multiple.
+	 *
 	 * @param container a String of the sample container
 	 * @return a String of the sample classification
 	 */
@@ -128,6 +142,7 @@ public final class TextFormatUtil
 
 	/**
 	 * Method formats all footnotes related to an exploration site in the provided order.
+	 *
 	 * @param explorationSite an ExplorationSite object
 	 * @return a String of html code representing a list of footnotes
 	 */
@@ -305,16 +320,8 @@ public final class TextFormatUtil
 	}
 
 	/**
-	 * Method to provide the standard html line break. May be moved to the html package in the future.
-	 * @return a html line break
-	 */
-	public static String printLineBreak()
-	{
-		return "<br>";
-	}
-
-	/**
 	 * Method to provide a line without content.
+	 *
 	 * @return a html paragraph without content
 	 */
 	public static String printLineEmpty()
@@ -329,8 +336,9 @@ public final class TextFormatUtil
 
 	/**
 	 * Method to format a range between two depths as html text.
+	 *
 	 * @param startDepth a String representing the start depth
-	 * @param endDepth a String representing the end depth
+	 * @param endDepth   a String representing the end depth
 	 * @return a html text representing the range
 	 */
 	public static String formatDepth(final String startDepth, final String endDepth)
@@ -460,7 +468,6 @@ public final class TextFormatUtil
 				break;
 		}
 
-
 		if (isFillUp)
 		{
 			return kindText + " " + "[" + kind + "]";
@@ -474,6 +481,7 @@ public final class TextFormatUtil
 
 	/**
 	 * Method formats and strings together each layer from an exploration site that is related to an outcrop like "TOB".
+	 *
 	 * @param explorationSite an ExplorationSite
 	 * @return a html code as String containing all layers from an outcrop
 	 */
@@ -506,11 +514,11 @@ public final class TextFormatUtil
 	/**
 	 * Method formats Strings together in a specified manner.
 	 * kind
-	 *
+	 * <p>
 	 * rounding granulation
 	 *
-	 * @param kind a String of a layer kind (SCHICHT_ART)
-	 * @param rounding a String of a layer rounding (SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT)
+	 * @param kind        a String of a layer kind (SCHICHT_ART)
+	 * @param rounding    a String of a layer rounding (SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT)
 	 * @param granulation a String of a layer granulation (SCHICHT_KOERNUNG)
 	 * @return a html code as String that formats the Attributes
 	 */
@@ -546,6 +554,7 @@ public final class TextFormatUtil
 
 	/**
 	 * Method to provide a visual border between layer information.
+	 *
 	 * @return a String representing a line
 	 */
 	public static String printCellTextDivider()
@@ -578,7 +587,15 @@ public final class TextFormatUtil
 		return format;
 	}
 
-	public static String printLayerInformation(final ExplorationSite explorationSite, final String outcrop, final String tag)
+	/**
+	 * TODO chain layers together
+	 *
+	 * @param explorationSite
+	 * @param outcrop
+	 * @param tag
+	 * @return
+	 */
+	public static String printLayerInformationWithDepth(final ExplorationSite explorationSite, final String outcrop, final String tag)
 	{
 		List<Layer> layers = explorationSite.getLayersWithOutcrop(outcrop);
 
@@ -756,33 +773,33 @@ public final class TextFormatUtil
 
 	public static String printRukLayers(final ExplorationSite explorationSite, final String outcrop)
 	{
-		List<Layer> tob = explorationSite.getLayersWithOutcrop(outcrop);
+		List<Layer> layersWithOutcrop = explorationSite.getLayersWithOutcrop(outcrop);
 
 		StringBuilder stringBuilder = new StringBuilder();
 
-		for (Layer layer : tob)
+		for (Layer layer : layersWithOutcrop)
 		{
-			String ruk = layer.getInformation("SCHICHT_RUK");
+			String rukValue = layer.getInformation("SCHICHT_RUK");
 
-			if (! "-".equals(ruk) && ! "".equals(ruk))
+			if (! "-".equals(rukValue) && ! "".equals(rukValue))
 			{
 				if (0 != stringBuilder.length())
 				{
 					stringBuilder.append(printCellTextDivider());
 				}
 
-				HtmlText text1 = new HtmlText.Builder()
+				HtmlText layerKind = new HtmlText.Builder()
 						.appendAttribute("class", "Normal6")
 						.appendContent(layer.getInformation("SCHICHT_ART"))
 						.build();
 
-				HtmlText text2 = new HtmlText.Builder()
+				HtmlText rukText = new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(ruk)
+						.appendContent(rukValue)
 						.build();
 
-				stringBuilder.append(text1.appendTag())
-						.append(text2.appendTag());
+				stringBuilder.append(layerKind.appendTag())
+						.append(rukText.appendTag());
 
 			}
 		}

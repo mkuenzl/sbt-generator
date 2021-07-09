@@ -14,7 +14,7 @@ public class FugeFactory
     private static final String headerCellClass = "NormalHeader";
     private static final String normalCellClass = "NormalBold";
 
-    public static String createIDRow(List<ExplorationSite> erkundungsstellen)
+    public static String createIDRow(List<ExplorationSite> explorationSites)
     {
         //Erkundungsstellen ID
         HtmlRow row = new HtmlRow.Builder()
@@ -28,7 +28,7 @@ public class FugeFactory
                 .build();
 
         for (ExplorationSite explorationSite :
-                erkundungsstellen)
+                explorationSites)
         {
             HtmlCell htmlCell_ERK_ID = new HtmlCell.Builder()
                     .appendAttribute("class", "NormalBold")
@@ -42,7 +42,7 @@ public class FugeFactory
         return row.appendTag();
     }
 
-    public static String createAufschlussRow(List<ExplorationSite> erkundungsstellen)
+    public static String createAufschlussRow(List<ExplorationSite> explorationSites)
     {
         //Erkundungsstellen Aufschlussart
         HtmlRow row = new HtmlRow.Builder()
@@ -56,12 +56,12 @@ public class FugeFactory
                 .build();
 
         for (ExplorationSite explorationSite :
-                erkundungsstellen)
+                explorationSites)
         {
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "50")
-                    .appendContent(explorationSite.getInformation("ERK_AUFSCHLUSS_UG_OH_BA"))
+                    .appendContent(explorationSite.getInformation("ERK_AUFSCHLUSS_OB"))
                     .build();
 
             row.appendContent(cell.appendTag());
@@ -70,7 +70,7 @@ public class FugeFactory
         return row.appendTag();
     }
 
-    public static String createChemieIDRow(List<ExplorationSite> erkundungsstellen)
+    public static String createChemieIDRow(List<ExplorationSite> explorationSites)
     {
         HtmlRow rowCHEMIE_ID = new HtmlRow.Builder()
                 .appendAttribute("class", "Normal")
@@ -82,12 +82,12 @@ public class FugeFactory
                         .appendTag())
                 .build();
 
-        for (ExplorationSite explorationSite : erkundungsstellen)
+        for (ExplorationSite explorationSite : explorationSites)
         {
             HtmlCell htmlCell_CHEMIE_ID = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_ID"))
+                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "CHEMIE_ID"))
                     .build();
 
             rowCHEMIE_ID.appendContent(htmlCell_CHEMIE_ID.appendTag());
@@ -97,7 +97,7 @@ public class FugeFactory
 
     }
 
-    public static String createChemieMufvRow(List<ExplorationSite> erkundungsstellen)
+    public static String createChemieMufvRow(List<ExplorationSite> explorationSites)
     {
         HtmlRow rowCHEMIE_MUFV = new HtmlRow.Builder()
                 .appendAttribute("class", "Normal")
@@ -119,12 +119,12 @@ public class FugeFactory
                         .appendTag())
                 .build();
 
-        for (ExplorationSite explorationSite : erkundungsstellen)
+        for (ExplorationSite explorationSite : explorationSites)
         {
             HtmlCell htmlCell_CHEMIE_MUFV = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_MUFV"))
+                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "CHEMIE_MUFV"))
                     .build();
 
             rowCHEMIE_MUFV.appendContent(htmlCell_CHEMIE_MUFV.appendTag());
@@ -157,7 +157,7 @@ public class FugeFactory
             HtmlCell htmlCell_AVV = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "50")
-                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_ABFALLSCHLUESSEL"))
+                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "CHEMIE_ABFALLSCHLUESSEL"))
                     .build();
 
             rowERK_AVV.appendContent(htmlCell_AVV.appendTag());

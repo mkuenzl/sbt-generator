@@ -124,7 +124,7 @@ public class HeapFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_ART"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "SCHICHT_ART"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -158,7 +158,7 @@ public class HeapFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_BODENKLASSE"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "SCHICHT_BODENKLASSE"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -186,7 +186,7 @@ public class HeapFactory
 			HtmlCell htmlCell_CHEMIE_ID = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_ID"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "CHEMIE_ID"))
 					.build();
 
 			rowCHEMIE_ID.appendContent(htmlCell_CHEMIE_ID.appendTag());
@@ -225,7 +225,7 @@ public class HeapFactory
 			HtmlCell htmlCell_CHEMIE_MUFV = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_MUFV"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "CHEMIE_MUFV"))
 					.build();
 
 			rowCHEMIE_MUFV.appendContent(htmlCell_CHEMIE_MUFV.appendTag());
@@ -258,7 +258,7 @@ public class HeapFactory
 			HtmlCell htmlCell_CHEMIE_LAGA_BO = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_LAGA_BO"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "CHEMIE_LAGA_BO"))
 					.build();
 
 			rowCHEMIE_LAGA_BO.appendContent(htmlCell_CHEMIE_LAGA_BO.appendTag());
@@ -291,7 +291,7 @@ public class HeapFactory
 			HtmlCell htmlCell_CHEMIE_LAGA_RC = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_LAGA_RC"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "CHEMIE_LAGA_RC"))
 					.build();
 
 			rowCHEMIE_LAGA_RC.appendContent(htmlCell_CHEMIE_LAGA_RC.appendTag());
@@ -324,7 +324,7 @@ public class HeapFactory
 			HtmlCell htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_LAGARC_ORIENTIERUNGSWERT"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "CHEMIE_LAGARC_ORIENTIERUNGSWERT"))
 					.build();
 
 			rowCHEMIE_LAGA_RC_ORIENTIERUNG.appendContent(htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG.appendTag());
@@ -358,7 +358,7 @@ public class HeapFactory
 			HtmlCell htmlCell_CHEMIE_TL_GESTEIN = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_TLGESTEIN"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "CHEMIE_TLGESTEIN"))
 					.build();
 
 
@@ -397,7 +397,7 @@ public class HeapFactory
 			HtmlCell htmlCell_CHEMIE_DEPV = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_DEPV"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "CHEMIE_DEPV"))
 					.build();
 
 
@@ -430,7 +430,7 @@ public class HeapFactory
 			HtmlCell htmlCell_AVV = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_ABFALLSCHLUESSEL"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "CHEMIE_ABFALLSCHLUESSEL"))
 					.build();
 
 			rowERK_AVV.appendContent(htmlCell_AVV.appendTag());
@@ -462,7 +462,7 @@ public class HeapFactory
 			HtmlCell htmlCell_REKU = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "50")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_REKU"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "CHEMIE_REKU"))
 					.build();
 
 			rowERK_REKU.appendContent(htmlCell_REKU.appendTag());
@@ -495,7 +495,7 @@ public class HeapFactory
 			HtmlCell htmlCell_CHEMIE_ENTSCHEIDUNGSILFE = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_ENTSCHEIDUNGSHILFE"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "CHEMIE_ENTSCHEIDUNGSHILFE"))
 					.build();
 
 			rowCHEMIE_ENTSCHEIDUNGSHILFE.appendContent(htmlCell_CHEMIE_ENTSCHEIDUNGSILFE.appendTag());

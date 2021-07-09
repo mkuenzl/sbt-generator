@@ -87,7 +87,7 @@ public class UgFactory
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
-						.appendContent("Gesamte Dicke,")
+						.appendContent("Gesamtdicke,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal6")
 								.appendContent("cm")
@@ -234,7 +234,7 @@ public class UgFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_WASSERGEHALT"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "SCHICHT_WASSERGEHALT"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -263,7 +263,7 @@ public class UgFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_FEUCHTIGKEIT"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "SCHICHT_FEUCHTIGKEIT"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -292,7 +292,7 @@ public class UgFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_KONSISTENZ"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "SCHICHT_KONSISTENZ"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -326,7 +326,7 @@ public class UgFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_WASSERPROCTOR"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "SCHICHT_WASSERPROCTOR"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -360,7 +360,7 @@ public class UgFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_DIFFERENZ_WN_WOPT"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "SCHICHT_DIFFERENZ_WN_WOPT"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -389,7 +389,7 @@ public class UgFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_VERDICHTUNGSFAEHIGKEIT"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "SCHICHT_VERDICHTUNGSFAEHIGKEIT"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -511,7 +511,7 @@ public class UgFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_ART"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "SCHICHT_ART"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -545,7 +545,7 @@ public class UgFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_BODENKLASSE"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "SCHICHT_BODENKLASSE"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -562,10 +562,10 @@ public class UgFactory
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
-						.appendContent("Bodenart-")
+						.appendContent("Bodenarten-")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal")
-								.appendContent("Hauptgruppe,")
+								.appendContent("hauptgruppe,")
 								.build()
 								.appendTag())
 						.appendContent(new HtmlText.Builder()
@@ -584,7 +584,7 @@ public class UgFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_BODENART"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "SCHICHT_BODENART"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -618,7 +618,7 @@ public class UgFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_HOMOGENBEREICH"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "SCHICHT_HOMOGENBEREICH"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -657,7 +657,7 @@ public class UgFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "SCHICHT_FROSTEMPFINDLICHKEITSKLASSE"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "SCHICHT_FROSTEMPFINDLICHKEITSKLASSE"))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -685,7 +685,7 @@ public class UgFactory
 			HtmlCell htmlCell_CHEMIE_ID = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_ID"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "CHEMIE_ID"))
 					.build();
 
 			rowCHEMIE_ID.appendContent(htmlCell_CHEMIE_ID.appendTag());
@@ -724,7 +724,7 @@ public class UgFactory
 			HtmlCell htmlCell_CHEMIE_MUFV = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_MUFV"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "CHEMIE_MUFV"))
 					.build();
 
 			rowCHEMIE_MUFV.appendContent(htmlCell_CHEMIE_MUFV.appendTag());
@@ -740,7 +740,7 @@ public class UgFactory
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
-						.appendContent("Zuordnung,")
+						.appendContent("Zuordnungsklasse,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", "Normal6")
 								.appendContent("LAGA Boden<sup>[2]</sup>")
@@ -757,7 +757,7 @@ public class UgFactory
 			HtmlCell htmlCell_CHEMIE_LAGA_BO = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_LAGA_BO"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "CHEMIE_LAGA_BO"))
 					.build();
 
 			rowCHEMIE_LAGA_BO.appendContent(htmlCell_CHEMIE_LAGA_BO.appendTag());
@@ -790,7 +790,7 @@ public class UgFactory
 			HtmlCell htmlCell_CHEMIE_LAGA_RC = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_LAGA_RC"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "CHEMIE_LAGA_RC"))
 					.build();
 
 			rowCHEMIE_LAGA_RC.appendContent(htmlCell_CHEMIE_LAGA_RC.appendTag());
@@ -823,7 +823,7 @@ public class UgFactory
 			HtmlCell htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_LAGARC_ORIENTIERUNGSWERT"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "CHEMIE_LAGARC_ORIENTIERUNGSWERT"))
 					.build();
 
 			rowCHEMIE_LAGA_RC_ORIENTIERUNG.appendContent(htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG.appendTag());
@@ -857,7 +857,7 @@ public class UgFactory
 			HtmlCell htmlCell_CHEMIE_TL_GESTEIN = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_TLGESTEIN"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "CHEMIE_TLGESTEIN"))
 					.build();
 
 
@@ -896,7 +896,7 @@ public class UgFactory
 			HtmlCell htmlCell_CHEMIE_DEPV = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_DEPV"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "CHEMIE_DEPV"))
 					.build();
 
 
@@ -930,7 +930,7 @@ public class UgFactory
 			HtmlCell htmlCell_CHEMIE_ENTSCHEIDUNGSILFE = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_ENTSCHEIDUNGSHILFE"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "CHEMIE_ENTSCHEIDUNGSHILFE"))
 					.build();
 
 			rowCHEMIE_ENTSCHEIDUNGSHILFE.appendContent(htmlCell_CHEMIE_ENTSCHEIDUNGSILFE.appendTag());
@@ -963,7 +963,7 @@ public class UgFactory
 			HtmlCell htmlCell_CHEMIE_ABFALLSCHLUESSEL = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_ABFALLSCHLUESSEL"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "CHEMIE_ABFALLSCHLUESSEL"))
 					.build();
 
 			rowChemistryAVV.appendContent(htmlCell_CHEMIE_ABFALLSCHLUESSEL.appendTag());
@@ -996,7 +996,7 @@ public class UgFactory
 			HtmlCell htmlCell_CHEMIE_REKU = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")
-					.appendContent(TextFormatUtil.printLayerInformation(explorationSite, outcrop, "CHEMIE_REKU"))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, "CHEMIE_REKU"))
 					.build();
 
 			rowChemistryAVV.appendContent(htmlCell_CHEMIE_REKU.appendTag());

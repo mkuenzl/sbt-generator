@@ -97,7 +97,7 @@ public class OhFactory
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_ART"))
+                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "SCHICHT_ART"))
                     .build();
 
             rowERK_DIN18196.appendContent(cell.appendTag());
@@ -130,7 +130,7 @@ public class OhFactory
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_BODENKLASSE"))
+                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "SCHICHT_BODENKLASSE"))
                     .build();
 
             rowERK_DIN19682.appendContent(cell.appendTag());
@@ -163,7 +163,7 @@ public class OhFactory
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "SCHICHT_HOMOGENBEREICH"))
+                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "SCHICHT_HOMOGENBEREICH"))
                     .build();
 
             rowERK_DIN18320.appendContent(cell.appendTag());
@@ -190,7 +190,7 @@ public class OhFactory
             HtmlCell htmlCell_CHEMIE_ID = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_ID"))
+                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "CHEMIE_ID"))
                     .build();
 
             rowCHEMIE_ID.appendContent(htmlCell_CHEMIE_ID.appendTag());
@@ -224,7 +224,7 @@ public class OhFactory
             HtmlCell htmlCell_CHEMIE_LAGA_BO = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_LAGA_BO"))
+                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "CHEMIE_LAGA_BO"))
                     .build();
 
             rowCHEMIE_LAGA_BO.appendContent(htmlCell_CHEMIE_LAGA_BO.appendTag());
@@ -262,7 +262,7 @@ public class OhFactory
             HtmlCell htmlCell_CHEMIE_DEPV = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_DEPV"))
+                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "CHEMIE_DEPV"))
                     .build();
 
 
@@ -296,7 +296,7 @@ public class OhFactory
             HtmlCell htmlCell_CHEMIE_ENTSCHEIDUNGSILFE = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_ENTSCHEIDUNGSHILFE"))
+                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "CHEMIE_ENTSCHEIDUNGSHILFE"))
                     .build();
 
             rowCHEMIE_ENTSCHEIDUNGSHILFE.appendContent(htmlCell_CHEMIE_ENTSCHEIDUNGSILFE.appendTag());
@@ -329,7 +329,7 @@ public class OhFactory
             HtmlCell htmlCell_CHEMIE_ENTSCHEIDUNGSILFE = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformation(explorationSite, aufschluss, "CHEMIE_ABFALLSCHLUESSEL"))
+                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "CHEMIE_ABFALLSCHLUESSEL"))
                     .build();
 
             rowCHEMIE_AVV.appendContent(htmlCell_CHEMIE_ENTSCHEIDUNGSILFE.appendTag());
