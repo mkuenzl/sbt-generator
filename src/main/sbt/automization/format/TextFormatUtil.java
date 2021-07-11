@@ -517,15 +517,9 @@ public final class TextFormatUtil
 	 * <p>
 	 * rounding granulation
 	 *
-<<<<<<< Updated upstream
 	 * @param kind        a String of a layer kind (SCHICHT_ART)
 	 * @param rounding    a String of a layer rounding (SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT)
 	 * @param granulation a String of a layer granulation (SCHICHT_KOERNUNG)
-=======
-	 * @param kind a String of a layer kind (SCHICHT_ART)
-	 * @param rounding a String of a layer rounding (SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT)
-	 * @param granulation a String of a layer granulation (SCHICHT_KOERNUNGSGRAD)
->>>>>>> Stashed changes
 	 * @return a html code as String that formats the Attributes
 	 */
 	public static String formatLayerAttributes(final String kind, final String rounding, final String granulation)
