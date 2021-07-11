@@ -21,10 +21,11 @@ public final class Layer implements Comparable<Layer>, Cloneable, Serializable
 		this.informationMap = informationMap;
 	}
 
+	/**
+	 * Constructor
+	 */
 	public Layer()
-	{
-
-	}
+	{ }
 
 	/**
 	 * Used to add information about a layer. Each information is put into a map.

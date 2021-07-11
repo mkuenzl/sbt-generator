@@ -29,10 +29,11 @@ public final class ExplorationSite implements Comparable<ExplorationSite>, Seria
 		}
 	}
 
+	/**
+	 * Constructor
+	 */
 	public ExplorationSite()
-	{
-
-	}
+	{ }
 
 	/**
 	 * Is used to prepare the order of exploration sites shown in templates

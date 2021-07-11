@@ -8,10 +8,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Class to provide static methods for layer manipulation.
+ */
 public final class LayerFormatUtil
 {
 	private LayerFormatUtil() {}
 
+	/**
+	 * Method used to combine layers of an outcrop from an exploration site based on a specific tag
+	 *
+	 * @param explorationSite a ExplorationSite Object
+	 * @param outcrop a String defining an outcrop
+	 * @param tag a String specifying an information tag
+	 * @return an updated list of layers with all possible layers combined
+	 */
 	public static List<Layer> combineLayers(final ExplorationSite explorationSite, final String outcrop, final String tag)
 	{
 		List<Layer> layersWithOutcrop = explorationSite.getLayersWithOutcrop(outcrop);
@@ -19,31 +30,42 @@ public final class LayerFormatUtil
 		return combineLayers(layersWithOutcrop, tag);
 	}
 
+	/**
+	 * Method used to combine consecutive identical layers in a list.
+	 *
+	 * @param layers a List of Layers
+	 * @param tag a String representing the information to compare
+	 * @return an updated list of layers with all possible layers combined
+	 */
 	public static List<Layer> combineLayers(final List<Layer> layers, final String tag)
 	{
 		List<Layer> updatedLayers = new ArrayList<>();
 
 		for (int i = 0 ; i < layers.size() ; i++)
 		{
-			int next = i + 1;
-			if (next < layers.size())
-			{
-				Layer firstLayer = layers.get(i);
-				Layer secondLayer = layers.get(next);
+			Layer layer = layers.get(i);
+			Layer finalLayer = layer;
 
-				Layer combinedLayer = combineLayers(firstLayer, secondLayer, tag);
+			int next = i + 1;
+			while (next < layers.size())
+			{ // Checks how many consecutive layers have the same value as tag
+				Layer nextLayer = layers.get(next);
+				Layer combinedLayer = combineLayers(layer, nextLayer, tag);
 
 				if (combinedLayer != null)
 				{
-					updatedLayers.add(combinedLayer);
+					finalLayer = combinedLayer;
 				} else
 				{
-					updatedLayers.add(firstLayer);
+					break;
 				}
+				// Sets i on the position of the last consecutive element
+				i = next;
+				next++;
 			}
 
+			updatedLayers.add(finalLayer);
 		}
-
 		return updatedLayers;
 	}
 
@@ -61,7 +83,7 @@ public final class LayerFormatUtil
 		if (secondLayer == null) return firstLayer;
 		if (tag == null) return null;
 
-		if (firstLayer.getInformation(tag) != secondLayer.getInformation(tag))
+		if (!firstLayer.getInformation(tag).equals(secondLayer.getInformation(tag)))
 			return null;
 		else
 		{

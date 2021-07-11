@@ -169,7 +169,7 @@ public class ConcreteFactory
         return row.appendTag();
     }
 
-    public static String createChemieIDRow(List<ExplorationSite> erkundungsstellen)
+    public static String createChemieIDRow(List<ExplorationSite> explorationSites)
     {
         HtmlRow rowCHEMIE_ID = new HtmlRow.Builder()
                 .appendAttribute("class", "Normal")
@@ -181,10 +181,8 @@ public class ConcreteFactory
                         .appendTag())
                 .build();
 
-        for (ExplorationSite explorationSite : erkundungsstellen)
+        for (ExplorationSite explorationSite : explorationSites)
         {
-            List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
-
             HtmlCell htmlCell_CHEMIE_ID = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
@@ -222,8 +220,6 @@ public class ConcreteFactory
 
         for (ExplorationSite explorationSite : erkundungsstellen)
         {
-            List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
-
             HtmlCell htmlCell_CHEMIE_MUFV = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")
@@ -255,8 +251,6 @@ public class ConcreteFactory
 
         for (ExplorationSite explorationSite : erkundungsstellen)
         {
-            List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
-
             HtmlCell htmlCell_CHEMIE_LAGA_RC = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", "60")

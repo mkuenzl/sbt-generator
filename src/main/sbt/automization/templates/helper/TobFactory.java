@@ -428,8 +428,6 @@ public class TobFactory
 
 		for (ExplorationSite explorationSite : erkundungsstellen)
 		{
-			List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(outcrop);
-
 			HtmlCell htmlCell_CHEMIE_LAGA_BO = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", "60")

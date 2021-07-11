@@ -595,7 +595,7 @@ public final class TextFormatUtil
 	 */
 	public static String printLayerInformationWithDepth(final ExplorationSite explorationSite, final String outcrop, final String tag)
 	{
-		List<Layer> layers = explorationSite.getLayersWithOutcrop(outcrop);
+		List<Layer> layers = LayerFormatUtil.combineLayers(explorationSite, outcrop, tag);
 
 		StringBuilder stringBuilder = new StringBuilder();
 
