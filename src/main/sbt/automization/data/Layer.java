@@ -2,6 +2,7 @@ package sbt.automization.data;
 
 import java.io.Serializable;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Class which contains all information about a layer.
@@ -53,6 +54,17 @@ public final class Layer implements Comparable<Layer>, Cloneable, Serializable
 	/**
 	 * Used to receive information from a layer.
 	 *
+	 * @param tag an Enum which contains LAYER or CHEMISTRY. Represents a column in the excel template.
+	 * @return the value based on provided tag
+	 */
+	public String getInformation(InformationTag tag)
+	{
+		return getInformation(tag.getIdentifier());
+	}
+
+	/**
+	 * Used to receive information from a layer.
+	 *
 	 * @param key a String which contains SCHICHT_ or CHEMIE_. Represents a column in the excel template.
 	 * @return the value based on provided key
 	 */
@@ -84,5 +96,29 @@ public final class Layer implements Comparable<Layer>, Cloneable, Serializable
 	{
 		Layer cloned = (Layer) super.clone();
 		return cloned;
+	}
+
+	/**
+	 * Method used for testing purposes in reality every layer should be unique.
+	 *
+	 * @param obj an Object to compare to
+	 * @return a boolean if equal or not
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+
+		if (obj.getClass() != this.getClass()) {
+			return false;
+		}
+
+		final Layer other = (Layer) obj;
+		if (! Objects.equals(this.informationMap, other.informationMap)) {
+			return false;
+		}
+
+		return true;
 	}
 }

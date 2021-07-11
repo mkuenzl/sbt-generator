@@ -61,6 +61,17 @@ public final class ExplorationSite implements Comparable<ExplorationSite>, Seria
 	}
 
 	/**
+	 * Used to receive information from a layer.
+	 *
+	 * @param tag an Enum which contains EX_SITE. Represents a column in the excel template.
+	 * @return the value based on provided tag
+	 */
+	public String getInformation(InformationTag tag)
+	{
+		return getInformation(tag.getIdentifier());
+	}
+
+	/**
 	 * Used to receive information from an exploration site.
 	 *
 	 * @param key a String which contains ERK_. Represents a column in the excel template.
