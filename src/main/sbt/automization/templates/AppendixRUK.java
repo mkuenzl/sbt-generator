@@ -98,7 +98,8 @@ public final class AppendixRUK extends AHtmlTable
                     HtmlCell cellSchichtArtAndKoernung = new HtmlCell.Builder()
                             .appendAttribute("class", "Normal")
                             .appendAttribute("width", "170")
-                            .appendContent(TextFormatUtil.printLayerKindWithGranulation(layer))
+                            .appendContent(TextFormatUtil.formatKindAndGranulation(layer.getInformation("SCHICHT_ART"),
+                                    layer.getInformation("SCHICHT_KOERNUNG")))
                             .build();
 
 

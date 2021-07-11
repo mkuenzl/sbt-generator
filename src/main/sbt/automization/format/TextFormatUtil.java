@@ -517,9 +517,15 @@ public final class TextFormatUtil
 	 * <p>
 	 * rounding granulation
 	 *
+<<<<<<< Updated upstream
 	 * @param kind        a String of a layer kind (SCHICHT_ART)
 	 * @param rounding    a String of a layer rounding (SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT)
 	 * @param granulation a String of a layer granulation (SCHICHT_KOERNUNG)
+=======
+	 * @param kind a String of a layer kind (SCHICHT_ART)
+	 * @param rounding a String of a layer rounding (SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT)
+	 * @param granulation a String of a layer granulation (SCHICHT_KOERNUNGSGRAD)
+>>>>>>> Stashed changes
 	 * @return a html code as String that formats the Attributes
 	 */
 	public static String formatLayerAttributes(final String kind, final String rounding, final String granulation)
@@ -539,6 +545,7 @@ public final class TextFormatUtil
 
 		return stringBuilder.toString();
 	}
+
 
 	public static String formatDepthSpecified(final String startDepth, final String endDepth)
 	{
@@ -573,16 +580,13 @@ public final class TextFormatUtil
 	}
 
 
-	public static String printLayerKindWithGranulation(final Layer layer)
+	public static String formatKindAndGranulation(final String kind, String granulation)
 	{
 		String format = "";
 
-		String layerKind = layer.getInformation("SCHICHT_ART");
+		if ("-".equals(granulation)) granulation = "";
 
-		String layerGranulation = layer.getInformation("SCHICHT_KOERNUNG");
-		if ("-".equals(layerGranulation)) layerGranulation = "";
-
-		format = layerKind.concat(" ").concat(layerGranulation);
+		format = kind.concat(" ").concat(granulation);
 
 		return format;
 	}

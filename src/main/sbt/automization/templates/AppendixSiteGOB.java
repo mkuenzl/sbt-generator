@@ -42,7 +42,8 @@ final class AppendixSiteGOB extends AHtmlTable
             {
                 HtmlCell cellSchichtArt = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent(TextFormatUtil.printLayerKindWithGranulation(layer))
+                        .appendContent(TextFormatUtil.formatKindAndGranulation(layer.getInformation("SCHICHT_ART"),
+                                layer.getInformation("SCHICHT_KOERNUNG")))
                         .build();
 
                 //Dicke
