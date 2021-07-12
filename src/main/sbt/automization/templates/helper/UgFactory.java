@@ -1013,7 +1013,11 @@ public class UgFactory
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "NormalHeader")
 						.appendAttribute("colspan", String.valueOf(1 + explorationSites.size()))
-						.appendContent("Für die angegebenen Tiefen (T[]) gilt die Einheit cm.")
+						.appendContent("Anmerkungen:")
+						.appendContent(TextFormatUtil.printLineBreak())
+						.appendContent("Für die angegebenen Tiefen (T[]) gilt die Einheit cm. ")
+						.appendContent("Die Einstufung der Verdichtungsfähigkeit erfolgt unter Berücksichtigung der Bodenfeuchtigkeit und der Konsistenz\n" +
+								"des Materials zum Erkundungszeitpunkt.")
 						.build()
 						.appendTag())
 				.build();

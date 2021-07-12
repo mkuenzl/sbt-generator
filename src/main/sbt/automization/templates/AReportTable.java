@@ -15,6 +15,13 @@ public abstract class AReportTable extends AHtmlTable
 {
 	String layerKind;
 
+	/**
+	 * Method used to retrieve all exploration sites containing an outcrop and dividing them into
+	 * A3 paper sized portions.
+	 *
+	 * @param sites a List of ExplorationSites
+	 * @return a Collection of Lists
+	 */
 	public Collection<List<ExplorationSite>> divideExplorationSites(List<ExplorationSite> sites)
 	{
 		List<ExplorationSite> templateExplorationSites = sites.stream()

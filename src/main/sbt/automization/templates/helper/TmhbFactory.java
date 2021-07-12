@@ -454,6 +454,8 @@ public class TmhbFactory
                 .appendContent(new HtmlCell.Builder()
                         .appendAttribute("class", "NormalHeader")
                         .appendAttribute("colspan", String.valueOf(1 + erkundungsstellen.size()))
+                        .appendContent("Anmerkungen:")
+                        .appendContent(TextFormatUtil.printLineBreak())
                         .appendContent("Für die angegebenen Tiefen (T[]) gilt die Einheit cm.")
                         .build()
                         .appendTag())

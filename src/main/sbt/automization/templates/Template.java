@@ -1,5 +1,8 @@
 package sbt.automization.templates;
 
+/**
+ * Template Enum not in use TODO
+ */
 public enum Template
 {
 	//TODO change for Checkboxes / StrategyStorage

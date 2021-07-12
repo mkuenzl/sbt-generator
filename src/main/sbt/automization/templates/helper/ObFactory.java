@@ -16,7 +16,7 @@ public class ObFactory
 	private static final String normalCellClass = "NormalBold";
 	private static final String headerCellClass = "NormalHeader";
 	
-	public static String createIDRow(List<ExplorationSite> erkundungsstellen)
+	public static String createIDRow(List<ExplorationSite> explorationSites)
 	{
 		//Erkundungsstellen ID
 		HtmlRow row = new HtmlRow.Builder()
@@ -30,7 +30,7 @@ public class ObFactory
 				.build();
 
 		for (ExplorationSite explorationSite :
-				erkundungsstellen)
+				explorationSites)
 		{
 			HtmlCell htmlCell_ERK_ID = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -44,7 +44,7 @@ public class ObFactory
 		return row.appendTag();
 	}
 
-	public static String createAufschlussRow(List<ExplorationSite> erkundungsstellen)
+	public static String createAufschlussRow(List<ExplorationSite> explorationSites)
 	{
 		//Erkundungsstellen Aufschlussart
 		HtmlRow row = new HtmlRow.Builder()
@@ -58,7 +58,7 @@ public class ObFactory
 				.build();
 
 		for (ExplorationSite explorationSite :
-				erkundungsstellen)
+				explorationSites)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -72,7 +72,7 @@ public class ObFactory
 		return row.appendTag();
 	}
 
-	public static String createDickeOberbauRow(List<ExplorationSite> erkundungsstellen)
+	public static String createDickeOberbauRow(List<ExplorationSite> explorationSites)
 	{
 		//Gesamtdicke Oberbau
 		HtmlRow row = new HtmlRow.Builder()
@@ -96,7 +96,7 @@ public class ObFactory
 				.build();
 
 		for (ExplorationSite explorationSite :
-				erkundungsstellen)
+				explorationSites)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -110,7 +110,7 @@ public class ObFactory
 		return row.appendTag();
 	}
 
-	public static String createBelastungsklasseRow(List<ExplorationSite> erkundungsstellen)
+	public static String createBelastungsklasseRow(List<ExplorationSite> explorationSites)
 	{
 		//RSTO Belastungsklasse
 		HtmlRow row = new HtmlRow.Builder()
@@ -129,7 +129,7 @@ public class ObFactory
 				.build();
 
 		for (ExplorationSite explorationSite :
-				erkundungsstellen)
+				explorationSites)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -143,7 +143,7 @@ public class ObFactory
 		return row.appendTag();
 	}
 
-	public static String createRukRow(List<ExplorationSite> erkundungsstellen)
+	public static String createRukRow(List<ExplorationSite> explorationSites)
 	{
 		//RUK
 		HtmlRow row = new HtmlRow.Builder()
@@ -167,7 +167,7 @@ public class ObFactory
 				.build();
 
 		for (ExplorationSite explorationSite :
-				erkundungsstellen)
+				explorationSites)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -181,7 +181,7 @@ public class ObFactory
 		return row.appendTag();
 	}
 
-	public static String createRukEinzelWertRow(List<ExplorationSite> erkundungsstellen)
+	public static String createRukEinzelWertRow(List<ExplorationSite> explorationSites)
 	{
 		//RUK EinzelWert
 		HtmlRow row = new HtmlRow.Builder()
@@ -200,7 +200,7 @@ public class ObFactory
 				.build();
 
 		for (ExplorationSite explorationSite :
-				erkundungsstellen)
+				explorationSites)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -214,7 +214,7 @@ public class ObFactory
 		return row.appendTag();
 	}
 
-	public static String createPechQualitativRow(List<ExplorationSite> erkundungsstellen)
+	public static String createPechQualitativRow(List<ExplorationSite> explorationSites)
 	{
 		//Pechnachweis qualitativ
 		HtmlRow row = new HtmlRow.Builder()
@@ -233,7 +233,7 @@ public class ObFactory
 				.build();
 
 		for (ExplorationSite explorationSite :
-				erkundungsstellen)
+				explorationSites)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalErkundungsstelle")
@@ -246,7 +246,7 @@ public class ObFactory
 		return row.appendTag();
 	}
 
-	public static String createPechHalbQuantitativRow(List<ExplorationSite> erkundungsstellen)
+	public static String createPechHalbQuantitativRow(List<ExplorationSite> explorationSites)
 	{
 		//Pechnachweis quantitativ
 		HtmlRow row = new HtmlRow.Builder()
@@ -265,7 +265,7 @@ public class ObFactory
 				.build();
 
 		for (ExplorationSite explorationSite :
-				erkundungsstellen)
+				explorationSites)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -278,7 +278,7 @@ public class ObFactory
 		return row.appendTag();
 	}
 
-	public static String createPechQuantitativRow(List<ExplorationSite> erkundungsstellen)
+	public static String createPechQuantitativRow(List<ExplorationSite> explorationSites)
 	{
 		//Pechnachweis quantitativ
 		HtmlRow row = new HtmlRow.Builder()
@@ -297,7 +297,7 @@ public class ObFactory
 				.build();
 
 		for (ExplorationSite explorationSite :
-				erkundungsstellen)
+				explorationSites)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -310,7 +310,7 @@ public class ObFactory
 		return row.appendTag();
 	}
 
-	public static String createPechQuerschnittRows(List<ExplorationSite> erkundungsstellen, boolean pech)
+	public static String createPechQuerschnittRows(List<ExplorationSite> explorationSites, boolean pech)
 	{
 		StringBuilder querschnittBuilder = new StringBuilder();
 
@@ -327,7 +327,7 @@ public class ObFactory
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", headerCellClass)
-						.appendAttribute("colspan", String.valueOf(1 + erkundungsstellen.size()))
+						.appendAttribute("colspan", String.valueOf(1 + explorationSites.size()))
 						.appendContent(querschnitt)
 						.build()
 						.appendTag())
@@ -403,7 +403,7 @@ public class ObFactory
 				.build();
 
 		for (ExplorationSite explorationSite :
-				erkundungsstellen)
+				explorationSites)
 		{
 			boolean empty = true;
 

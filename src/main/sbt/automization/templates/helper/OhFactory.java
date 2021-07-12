@@ -16,9 +16,8 @@ public class OhFactory
     private static final String headerCellClass = "NormalHeader";
     private static final String normalCellClass = "NormalBold";
 
-    public static String createIDRow(List<ExplorationSite> erkundungsstellen)
+    public static String createIDRow(List<ExplorationSite> explorationSites)
     {
-        //Erkundungsstellen ID
         HtmlRow row = new HtmlRow.Builder()
                 .appendAttribute("class", "Normal")
                 .appendContent(new HtmlCell.Builder()
@@ -30,7 +29,7 @@ public class OhFactory
                 .build();
 
         for (ExplorationSite explorationSite :
-                erkundungsstellen)
+                explorationSites)
         {
             HtmlCell htmlCell_ERK_ID = new HtmlCell.Builder()
                     .appendAttribute("class", "NormalBold")
@@ -105,7 +104,7 @@ public class OhFactory
         return rowERK_DIN18196.appendTag();
     }
 
-    public static String createDIN18915Row(List<ExplorationSite> erkundungsstellen)
+    public static String createDIN18915Row(List<ExplorationSite> explorationSites)
     {
         //DIN18915
         HtmlRow rowERK_DIN19682 = new HtmlRow.Builder()
@@ -123,7 +122,7 @@ public class OhFactory
                         .appendTag())
                 .build();
 
-        for (ExplorationSite explorationSite : erkundungsstellen)
+        for (ExplorationSite explorationSite : explorationSites)
         {
             List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
@@ -138,7 +137,7 @@ public class OhFactory
         return rowERK_DIN19682.appendTag();
     }
 
-    public static String createDIN18320Row(List<ExplorationSite> erkundungsstellen)
+    public static String createDIN18320Row(List<ExplorationSite> explorationSites)
     {
         //DIN18320:2019-09
         HtmlRow rowERK_DIN18320 = new HtmlRow.Builder()
@@ -156,7 +155,7 @@ public class OhFactory
                         .appendTag())
                 .build();
 
-        for (ExplorationSite explorationSite : erkundungsstellen)
+        for (ExplorationSite explorationSite : explorationSites)
         {
             List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
@@ -171,7 +170,7 @@ public class OhFactory
         return rowERK_DIN18320.appendTag();
     }
 
-    public static String createChemieIDRow(List<ExplorationSite> erkundungsstellen)
+    public static String createChemieIDRow(List<ExplorationSite> explorationSites)
     {
         HtmlRow rowCHEMIE_ID = new HtmlRow.Builder()
                 .appendAttribute("class", "Normal")
@@ -183,7 +182,7 @@ public class OhFactory
                         .appendTag())
                 .build();
 
-        for (ExplorationSite explorationSite : erkundungsstellen)
+        for (ExplorationSite explorationSite : explorationSites)
         {
             List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
@@ -200,7 +199,7 @@ public class OhFactory
 
     }
 
-    public static String createChemieLagaBoRow(List<ExplorationSite> erkundungsstellen)
+    public static String createChemieLagaBoRow(List<ExplorationSite> explorationSites)
     {
         HtmlRow rowCHEMIE_LAGA_BO = new HtmlRow.Builder()
                 .appendAttribute("class", "Normal")
@@ -217,7 +216,7 @@ public class OhFactory
                         .appendTag())
                 .build();
 
-        for (ExplorationSite explorationSite : erkundungsstellen)
+        for (ExplorationSite explorationSite : explorationSites)
         {
             List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
@@ -233,7 +232,7 @@ public class OhFactory
         return rowCHEMIE_LAGA_BO.appendTag();
     }
 
-    public static String createChemieDepvRow(List<ExplorationSite> erkundungsstellen)
+    public static String createChemieDepvRow(List<ExplorationSite> explorationSites)
     {
         HtmlRow rowCHEMIE_DEPV = new HtmlRow.Builder()
                 .appendAttribute("class", "Normal")
@@ -255,7 +254,7 @@ public class OhFactory
                         .appendTag())
                 .build();
 
-        for (ExplorationSite explorationSite : erkundungsstellen)
+        for (ExplorationSite explorationSite : explorationSites)
         {
             List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 
@@ -272,7 +271,7 @@ public class OhFactory
         return rowCHEMIE_DEPV.appendTag();
     }
 
-    public static String createChemieEntscheidungshilfeRow(List<ExplorationSite> erkundungsstellen)
+    public static String createChemieEntscheidungshilfeRow(List<ExplorationSite> explorationSites)
     {
         HtmlRow rowCHEMIE_ENTSCHEIDUNGSHILFE = new HtmlRow.Builder()
                 .appendAttribute("class", "Normal")
@@ -289,7 +288,7 @@ public class OhFactory
                         .appendTag())
                 .build();
 
-        for (ExplorationSite explorationSite : erkundungsstellen)
+        for (ExplorationSite explorationSite : explorationSites)
         {
             List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
 

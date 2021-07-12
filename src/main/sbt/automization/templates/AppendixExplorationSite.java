@@ -165,34 +165,40 @@ public final class AppendixExplorationSite extends AHtmlTable
 
             stringBuilder.append(table.appendTag());
 
+            if (explorationSite.getLayersWithOutcrop("BANKETT").size() > 0) {
+                AppendixSiteBANKETT tableBANKETT = new AppendixSiteBANKETT();
+                tableBANKETT.constructTable(explorationSite);
+                stringBuilder.append(tableBANKETT.getTable());
+            }
+
             if (explorationSite.getLayersWithOutcrop("FUGE").size() > 0) {
-                AppendixSiteFUGE erk_FUGE_Tabelle = new AppendixSiteFUGE();
-                erk_FUGE_Tabelle.constructTable(explorationSite);
-                stringBuilder.append(erk_FUGE_Tabelle.getTable());
+                AppendixSiteFUGE tableFuge = new AppendixSiteFUGE();
+                tableFuge.constructTable(explorationSite);
+                stringBuilder.append(tableFuge.getTable());
             }
 
             if (explorationSite.getLayersWithOutcrop("OH").size() > 0) {
-                AppendixSiteOH erk_OH_Tabelle = new AppendixSiteOH();
-                erk_OH_Tabelle.constructTable(explorationSite);
-                stringBuilder.append(erk_OH_Tabelle.getTable());
+                AppendixSiteOH tableOH = new AppendixSiteOH();
+                tableOH.constructTable(explorationSite);
+                stringBuilder.append(tableOH.getTable());
             }
 
             if (explorationSite.getLayersWithOutcrop("GOB").size() > 0) {
-                AppendixSiteGOB erk_OB_Tabelle = new AppendixSiteGOB();
-                erk_OB_Tabelle.constructTable(explorationSite);
-                stringBuilder.append(erk_OB_Tabelle.getTable());
+                AppendixSiteGOB tableGOB = new AppendixSiteGOB();
+                tableGOB.constructTable(explorationSite);
+                stringBuilder.append(tableGOB.getTable());
             }
 
             if (explorationSite.getLayersWithOutcrop("TOB").size() > 0) {
-                AppendixSiteTOB erk_TOB_Tabelle = new AppendixSiteTOB();
-                erk_TOB_Tabelle.constructTable(explorationSite);
-                stringBuilder.append(erk_TOB_Tabelle.getTable());
+                AppendixSiteTOB tableTOB = new AppendixSiteTOB();
+                tableTOB.constructTable(explorationSite);
+                stringBuilder.append(tableTOB.getTable());
             }
 
             if (explorationSite.getLayersWithOutcrop("UG").size() > 0) {
-                AppendixSiteUG erk_UG_Tabelle = new AppendixSiteUG();
-                erk_UG_Tabelle.constructTable(explorationSite);
-                stringBuilder.append(erk_UG_Tabelle.getTable());
+                AppendixSiteUG tableUG = new AppendixSiteUG();
+                tableUG.constructTable(explorationSite);
+                stringBuilder.append(tableUG.getTable());
             }
 
             HtmlCell footer = new HtmlCell.Builder()

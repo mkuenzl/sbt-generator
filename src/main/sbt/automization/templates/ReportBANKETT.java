@@ -8,24 +8,24 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class ReportOH extends AReportTable
+public class ReportBANKETT extends AReportTable
 {
-	private static ReportOH instance;
+	private static ReportBANKETT instance;
 
-	private ReportOH()
+	private ReportBANKETT()
 	{
-		layerKind = "OH";
+		layerKind = "BANKETT";
 	}
 
-	public static ReportOH getInstance()
+	public static ReportBANKETT getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (ReportOH.class)
+			synchronized (ReportBANKETT.class)
 			{
 				if (instance == null)
 				{
-					instance = new ReportOH();
+					instance = new ReportBANKETT();
 				}
 			}
 		}
@@ -45,6 +45,7 @@ public final class ReportOH extends AReportTable
 
 		for (List<ExplorationSite> portion : divideExplorationSites(sites))
 		{
+			//Sort Data nach OH
 			HtmlTable tableBericht = new HtmlTable.Builder()
 					.appendAttribute("class", "MsoNormalTable")
 					.appendAttribute("border", "1")
@@ -123,7 +124,7 @@ public final class ReportOH extends AReportTable
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht-OH";
+		return "Bericht-BANKETT";
 	}
 
 	@Override

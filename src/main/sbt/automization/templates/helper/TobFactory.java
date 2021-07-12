@@ -16,7 +16,7 @@ public class TobFactory
 	private static final String headerCellClass = "NormalHeader";
 	private static final String normalCellClass = "NormalBold";
 	
-	public static String createIDRow(List<ExplorationSite> erkundungsstellen)
+	public static String createIDRow(List<ExplorationSite> explorationSites)
 	{
 		//Erkundungsstellen ID
 		HtmlRow row = new HtmlRow.Builder()
@@ -30,7 +30,7 @@ public class TobFactory
 				.build();
 
 		for (ExplorationSite explorationSite :
-				erkundungsstellen)
+				explorationSites)
 		{
 			HtmlCell htmlCell_ERK_ID = new HtmlCell.Builder()
 					.appendAttribute("class", "NormalBold")
@@ -44,7 +44,7 @@ public class TobFactory
 		return row.appendTag();
 	}
 
-	public static String createAufschlussRow(List<ExplorationSite> erkundungsstellen)
+	public static String createAufschlussRow(List<ExplorationSite> explorationSites)
 	{
 		//Erkundungsstellen Aufschlussart
 		HtmlRow row = new HtmlRow.Builder()
@@ -58,7 +58,7 @@ public class TobFactory
 				.build();
 
 		for (ExplorationSite explorationSite :
-				erkundungsstellen)
+				explorationSites)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -72,7 +72,7 @@ public class TobFactory
 		return row.appendTag();
 	}
 
-	public static String createMaterialRow(List<ExplorationSite> erkundungsstellen)
+	public static String createMaterialRow(List<ExplorationSite> explorationSites)
 	{
 		//Zonen Material 1 - Anzahl Schichten
 		HtmlRow row = new HtmlRow.Builder()
@@ -85,7 +85,7 @@ public class TobFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : erkundungsstellen)
+		for (ExplorationSite explorationSite : explorationSites)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -649,7 +649,11 @@ public class TobFactory
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "NormalHeader")
 						.appendAttribute("colspan", String.valueOf(1 + erkundungsstellen.size()))
-						.appendContent("Für die angegebenen Tiefen (T[]) gilt die Einheit cm.")
+						.appendContent("Anmerkungen:")
+						.appendContent(TextFormatUtil.printLineBreak())
+						.appendContent("Für die angegebenen Tiefen (T[]) gilt die Einheit cm. ")
+						.appendContent("Gem. a. G. = Gemisch aus Gesteinskörnungen, NS = Naturstein, LS = Lavaschlacke, HO = Hochofenschlacke,")
+						.appendContent("RC = Rezyklierte Gesteinskörnung, BK = Brechkorn, RK = Rundkorn, sg = stetig gestuft, ug = unstetig gestuft")
 						.build()
 						.appendTag())
 				.build();

@@ -1,6 +1,9 @@
 package sbt.automization.templates.helper;
 
-public abstract class AReportFactory
+/**
+ * Factory Class not in use TODO
+ */
+public abstract class AReportRowFactory
 {
     private static final String aufschluss = "";
     private static final String headerCellClass = "NormalHeader";
