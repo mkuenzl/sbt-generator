@@ -161,13 +161,15 @@
                 border:solid windowtext .5pt;
                 background:#F3F3F3;
                 padding:2.4pt 1.4pt 2.4pt 1.4pt;
-			}
+                word-break:break-all;
+            }
 			td.NormalHeader.Center
             {
                 border:solid windowtext .5pt;
                 background:#F3F3F3;
                 text-align:center;
                 padding:2.4pt 1.4pt 2.4pt 1.4pt;
+                word-break:break-all;
             }
 			td.ChemieWhite
             {

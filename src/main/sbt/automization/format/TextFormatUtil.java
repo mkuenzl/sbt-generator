@@ -1,6 +1,7 @@
 package sbt.automization.format;
 
 import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.InformationTag;
 import sbt.automization.data.Layer;
 import sbt.automization.util.html.HtmlText;
 
@@ -637,6 +638,11 @@ public final class TextFormatUtil
 		}
 
 		return stringBuilder.toString();
+	}
+
+	public static String printLayerInformationWithDepth(final ExplorationSite explorationSite, final String outcrop, final InformationTag tag)
+	{
+		return printLayerInformationWithDepth(explorationSite, outcrop, tag.getIdentifier());
 	}
 
 	public static String printChemistryMarkup(final String classification)

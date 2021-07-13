@@ -11,10 +11,12 @@ import java.util.List;
 public final class ReportUG extends AReportTable
 {
 	private static ReportUG instance;
+	private final UgFactory factory;
 
 	private ReportUG()
 	{
 		layerKind = "UG";
+		factory = new UgFactory();
 	}
 
 	public static ReportUG getInstance()
@@ -54,14 +56,14 @@ public final class ReportUG extends AReportTable
 					.appendAttribute("cellpadding", "0")
 					.build();
 
-			reportTable.appendContent(UgFactory.createIDRow(portion));
-			reportTable.appendContent(UgFactory.createAufschlussRow(portion));
-			reportTable.appendContent(UgFactory.createDickeRow(portion));
-			reportTable.appendContent(UgFactory.createGesamtDickeRow(portion));
-			reportTable.appendContent(UgFactory.createZielTiefeRow(portion));
+			reportTable.appendContent(factory.createIDRow(portion));
+			reportTable.appendContent(factory.createAufschlussRow(portion));
+			reportTable.appendContent(factory.createSizeRow(portion));
+			reportTable.appendContent(factory.createTotalSizeRow(portion));
+			reportTable.appendContent(factory.createTargetDepthRow(portion));
 			reportTable.appendContent(buildTechnicalFeatures(portion));
 			reportTable.appendContent(buildEnvironmentTechnicalFeatures(portion));
-			reportTable.appendContent(UgFactory.createLegendRow(sites));
+			reportTable.appendContent(factory.createLegendRow(portion));
 
 			strb.append(reportTable.appendTag());
 			strb.append("<br>");
@@ -100,17 +102,17 @@ public final class ReportUG extends AReportTable
 				.build();
 
 		techBuilder.append(rowTECHMERKMALE.appendTag())
-				.append(UgFactory.createDIN18196Row(sites))
-				.append(UgFactory.createDIN18300Row(sites))
-				.append(UgFactory.createDIN19682Row(sites))
-				.append(UgFactory.createDIN18300_09Row(sites))
-				.append(UgFactory.createZTVRow(sites))
-				.append(UgFactory.createWasserGehaltRow(sites))
-				.append(UgFactory.createFeuchteZustandRow(sites))
-				.append(UgFactory.createKonsistenzRow(sites))
-				.append(UgFactory.createVerdichtungsfaehigkeitRow(sites))
-				.append(UgFactory.createTragPlanumRow(sites))
-				.append(UgFactory.createTragSohleRow(sites));
+				.append(factory.createDIN18196Row(sites))
+				.append(factory.createDIN18300Row(sites))
+				.append(factory.createDIN19682Row(sites))
+				.append(factory.createDIN18300_09Row(sites))
+				.append(factory.createZTVRow(sites))
+				.append(factory.createWasserGehaltRow(sites))
+				.append(factory.createFeuchteZustandRow(sites))
+				.append(factory.createKonsistenzRow(sites))
+				.append(factory.createVerdichtungsfaehigkeitRow(sites))
+				.append(factory.createTragPlanumRow(sites))
+				.append(factory.createTragSohleRow(sites));
 
 		return techBuilder.toString();
 	}
@@ -132,16 +134,16 @@ public final class ReportUG extends AReportTable
 				.build();
 
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())
-				.append(UgFactory.createChemieIDRow(sites))
-				.append(UgFactory.createChemieMufvRow(sites))
-				.append(UgFactory.createChemieLagaBoRow(sites))
-				.append(UgFactory.createChemieLagaRcRow(sites))
-				.append(UgFactory.createChemieLagaRcOrientierungRow(sites))
-				.append(UgFactory.createChemieTlGesteinRow(sites))
-				.append(UgFactory.createChemieRekuRow(sites))
-				.append(UgFactory.createChemieDepvRow(sites))
-				.append(UgFactory.createChemieEntscheidungshilfeRow(sites))
-				.append(UgFactory.createChemieAbfallSchluesselRow(sites));
+				.append(factory.createChemieIDRow(sites))
+				.append(factory.createChemieMufvRow(sites))
+				.append(factory.createChemieLagaBoRow(sites))
+				.append(factory.createChemieLagaRcRow(sites))
+				.append(factory.createChemieLagaRcOrientierungRow(sites))
+				.append(factory.createChemieTlGesteinRow(sites))
+				.append(factory.createREKUROW(sites))
+				.append(factory.createChemieDepvRow(sites))
+				.append(factory.createChemieEntscheidungshilfeRow(sites))
+				.append(factory.createAVVRow(sites));
 
 		return umweltTechBuilder.toString();
 	}

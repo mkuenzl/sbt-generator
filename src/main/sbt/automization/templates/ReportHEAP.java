@@ -11,9 +11,11 @@ import java.util.List;
 public final class ReportHEAP extends AReportTable
 {
 	private static ReportHEAP instance;
+	private final HeapFactory factory;
 
 	private ReportHEAP() {
 		layerKind = "HAUFWERK";
+		factory = new HeapFactory();
 	}
 
 	public static ReportHEAP getInstance()
@@ -55,9 +57,9 @@ public final class ReportHEAP extends AReportTable
 				.build();
 
 		techBuilder.append(rowTECHMERKMALE.appendTag())
-				.append(HeapFactory.createMaterialRow(explorationSites))
-				.append(HeapFactory.createDIN18300Row(explorationSites))
-				.append(HeapFactory.createDIN18196Row(explorationSites));
+				.append(factory.createMaterialRow(explorationSites))
+				.append(factory.createDIN18300Row(explorationSites))
+				.append(factory.createDIN18196Row(explorationSites));
 
 		return techBuilder.toString();
 	}
@@ -79,16 +81,16 @@ public final class ReportHEAP extends AReportTable
 				.build();
 
 		environmentTechBuilder.append(rowEnvironmentFeatures.appendTag())
-				.append(HeapFactory.createChemieIDRow(explorationSites))
-				.append(HeapFactory.createChemieMufvRow(explorationSites))
-				.append(HeapFactory.createChemieLagaBoRow(explorationSites))
-				.append(HeapFactory.createChemieLagaRcRow(explorationSites))
-				.append(HeapFactory.createChemieLagaRcOrientierungRow(explorationSites))
-				.append(HeapFactory.createChemieTlGesteinRow(explorationSites))
-				.append(HeapFactory.createREKUROW(explorationSites))
-				.append(HeapFactory.createChemieDepvRow(explorationSites))
-				.append(HeapFactory.createAVVRow(explorationSites))
-				.append(HeapFactory.createChemieEntscheidungshilfeRow(explorationSites));
+				.append(factory.createChemieIDRow(explorationSites))
+				.append(factory.createChemieMufvRow(explorationSites))
+				.append(factory.createChemieLagaBoRow(explorationSites))
+				.append(factory.createChemieLagaRcRow(explorationSites))
+				.append(factory.createChemieLagaRcOrientierungRow(explorationSites))
+				.append(factory.createChemieTlGesteinRow(explorationSites))
+				.append(factory.createREKUROW(explorationSites))
+				.append(factory.createChemieDepvRow(explorationSites))
+				.append(factory.createAVVRow(explorationSites))
+				.append(factory.createChemieEntscheidungshilfeRow(explorationSites));
 
 		return environmentTechBuilder.toString();
 	}
@@ -103,13 +105,13 @@ public final class ReportHEAP extends AReportTable
 			//Sort Data nach BETON
 			HtmlTable reportTable = constructAndGetTableObject();
 
-			reportTable.appendContent(HeapFactory.createIDRow(portion));
-			reportTable.appendContent(HeapFactory.createOutcropRow(portion));
+			reportTable.appendContent(factory.createIDRow(portion));
+			reportTable.appendContent(factory.createOutcropRow(portion));
 
 			reportTable.appendContent(buildTechnicalFeatures(portion));
 			reportTable.appendContent(buildEnvironmentTechnicalFeatures(portion));
 
-			reportTable.appendContent(HeapFactory.createLegendeRow(portion));
+			reportTable.appendContent(factory.createLegendRow(portion));
 
 			strb.append(reportTable.appendTag());
 			strb.append("<br>");

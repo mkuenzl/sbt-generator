@@ -38,13 +38,13 @@ public class TextFormatSoilGroupTest
     @Test
     public void invalidBodengruppeTest(){
         String schichtBodenGruppe = TextFormatUtil.formatSoilGroup("x");
-        Assert.assertTrue(schichtBodenGruppe.equals("Invalid Bodengruppe x"));
+        Assert.assertTrue(schichtBodenGruppe.equals("x"));
     }
 
     @Test
     public void invalidBodengruppeAuffuelungTest(){
         String schichtBodenGruppe = TextFormatUtil.formatSoilGroup("[x]");
-        Assert.assertTrue(schichtBodenGruppe.equals("Invalid Bodengruppe [x]"));
+        Assert.assertTrue(schichtBodenGruppe.equals(" [x]"));
     }
 
     @Test

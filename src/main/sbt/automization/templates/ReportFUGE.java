@@ -11,9 +11,12 @@ import java.util.List;
 public final class ReportFUGE extends AReportTable
 {
 	private static ReportFUGE instance;
+	private final FugeFactory factory;
 
-	private ReportFUGE() {
+	private ReportFUGE()
+	{
 		layerKind = "FUGE";
+		factory = new FugeFactory();
 	}
 
 	public static ReportFUGE getInstance()
@@ -32,12 +35,6 @@ public final class ReportFUGE extends AReportTable
 	}
 
 	@Override
-	String constructAndGetTableHeader()
-	{
-		return null;
-	}
-
-	@Override
 	public void constructTable(List<ExplorationSite> sites)
 	{
 		StringBuilder strb = new StringBuilder();
@@ -53,11 +50,10 @@ public final class ReportFUGE extends AReportTable
 					.appendAttribute("cellpadding", "0")
 					.build();
 
-			reportTable.appendContent(FugeFactory.createIDRow(portion));
-			reportTable.appendContent(FugeFactory.createAufschlussRow(portion));
+			reportTable.appendContent(factory.createIDRow(portion));
+			reportTable.appendContent(factory.createAufschlussRow(portion));
 
 			reportTable.appendContent(buildEnvironmentTechnicalFeatures(portion));
-			//reportTable.appendContent(FugeFactory.createLegendeRow(portion));
 
 			strb.append(reportTable.appendTag());
 			strb.append("<br>");
@@ -101,9 +97,9 @@ public final class ReportFUGE extends AReportTable
 				.build();
 
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())
-				.append(FugeFactory.createChemieIDRow(explorationSites))
-				.append(FugeFactory.createChemieMufvRow(explorationSites))
-				.append(FugeFactory.createAVVRow(explorationSites));
+				.append(factory.createChemieIDRow(explorationSites))
+				.append(factory.createChemieMufvRow(explorationSites))
+				.append(factory.createAVVRow(explorationSites));
 
 		return umweltTechBuilder.toString();
 	}
@@ -120,6 +116,12 @@ public final class ReportFUGE extends AReportTable
 				.appendAttribute("cellpadding", "0")
 				.appendContent(constructAndGetTableHeader())
 				.build();
+	}
+
+	@Override
+	String constructAndGetTableHeader()
+	{
+		return null;
 	}
 
 }

@@ -1,7 +1,7 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.templates.helper.OhFactory;
+import sbt.automization.templates.helper.BankettFactory;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
@@ -11,10 +11,13 @@ import java.util.List;
 public class ReportBANKETT extends AReportTable
 {
 	private static ReportBANKETT instance;
+	private final BankettFactory factory;
 
 	private ReportBANKETT()
 	{
 		layerKind = "BANKETT";
+		factory = new BankettFactory();
+
 	}
 
 	public static ReportBANKETT getInstance()
@@ -33,12 +36,6 @@ public class ReportBANKETT extends AReportTable
 	}
 
 	@Override
-	String constructAndGetTableHeader()
-	{
-		return null;
-	}
-
-	@Override
 	public void constructTable(List<ExplorationSite> sites)
 	{
 		StringBuilder strb = new StringBuilder();
@@ -54,8 +51,8 @@ public class ReportBANKETT extends AReportTable
 					.appendAttribute("cellpadding", "0")
 					.build();
 
-			tableBericht.appendContent(OhFactory.createIDRow(portion));
-			tableBericht.appendContent(OhFactory.createAufschlussRow(portion));
+			tableBericht.appendContent(factory.createIDRow(portion));
+			tableBericht.appendContent(factory.createAufschlussRow(portion));
 			tableBericht.appendContent(buildTechnicalFeatures(portion));
 			tableBericht.appendContent(buildEnvironmentTechnicalFeatures(portion));
 
@@ -82,9 +79,9 @@ public class ReportBANKETT extends AReportTable
 				.build();
 
 		techBuilder.append(rowTECHMERKMALE.appendTag())
-				.append(OhFactory.createDIN18196Row(explorationSites))
-				.append(OhFactory.createDIN18915Row(explorationSites))
-				.append(OhFactory.createDIN18320Row(explorationSites));
+				.append(factory.createDIN18196Row(explorationSites))
+				.append(factory.createDIN18915Row(explorationSites))
+				.append(factory.createDIN18320Row(explorationSites));
 
 		return techBuilder.toString();
 	}
@@ -106,25 +103,13 @@ public class ReportBANKETT extends AReportTable
 				.build();
 
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())
-				.append(OhFactory.createChemieIDRow(explorationSites))
-				.append(OhFactory.createChemieLagaBoRow(explorationSites))
-				.append(OhFactory.createChemieDepvRow(explorationSites))
-				.append(OhFactory.createChemieEntscheidungshilfeRow(explorationSites))
-				.append(OhFactory.createChemieAbfallSchluesselRow(explorationSites));
+				.append(factory.createChemieIDRow(explorationSites))
+				.append(factory.createChemieLagaBoRow(explorationSites))
+				.append(factory.createChemieDepvRow(explorationSites))
+				.append(factory.createChemieEntscheidungshilfeRow(explorationSites))
+				.append(factory.createAVVRow(explorationSites));
 
 		return umweltTechBuilder.toString();
-	}
-
-	@Override
-	public void constructTable(ExplorationSite site)
-	{
-
-	}
-
-	@Override
-	public String getExportFileName()
-	{
-		return "Bericht-BANKETT";
 	}
 
 	@Override
@@ -139,5 +124,23 @@ public class ReportBANKETT extends AReportTable
 				.appendAttribute("cellpadding", "0")
 				.appendContent(constructAndGetTableHeader())
 				.build();
+	}
+
+	@Override
+	String constructAndGetTableHeader()
+	{
+		return null;
+	}
+
+	@Override
+	public void constructTable(ExplorationSite site)
+	{
+
+	}
+
+	@Override
+	public String getExportFileName()
+	{
+		return "Bericht-BANKETT";
 	}
 }

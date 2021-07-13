@@ -1,7 +1,7 @@
 package sbt.automization.templates.helper;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.Layer;
+import sbt.automization.data.InformationTag;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
@@ -9,458 +9,95 @@ import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
 
-public class TmhbFactory
+public final class TmhbFactory extends AReportRowFactory
 {
-
-    private static final String aufschluss = "TMHB";
-    private static final String headerCellClass = "NormalHeader";
-    private static final String normalCellClass = "NormalBold";
-
-    public static String createIDRow(List<ExplorationSite> erkundungsstellen)
-    {
-        //Erkundungsstellen ID
-        HtmlRow row = new HtmlRow.Builder()
-                .appendAttribute("class", "Normal")
-                .appendContent(new HtmlCell.Builder()
-                        .appendAttribute("class", headerCellClass)
-                        .appendAttribute("width", "110")
-                        .appendContent("Erkundungsstelle")
-                        .build()
-                        .appendTag())
-                .build();
-
-        for (ExplorationSite explorationSite :
-                erkundungsstellen)
-        {
-            HtmlCell htmlCell_ERK_ID = new HtmlCell.Builder()
-                    .appendAttribute("class", "NormalBold")
-                    .appendAttribute("width", "60")
-                    .appendContent(explorationSite.getInformation("ERK_ID"))
-                    .build();
-
-            row.appendContent(htmlCell_ERK_ID.appendTag());
-        }
-
-        return row.appendTag();
-    }
-
-    public static String createAufschlussRow(List<ExplorationSite> erkundungsstellen)
-    {
-        //Erkundungsstellen Aufschlussart
-        HtmlRow row = new HtmlRow.Builder()
-                .appendAttribute("class", "Normal")
-                .appendContent(new HtmlCell.Builder()
-                        .appendAttribute("class", headerCellClass)
-                        .appendAttribute("width", "100")
-                        .appendContent("Aufschlussart")
-                        .build()
-                        .appendTag())
-                .build();
-
-        for (ExplorationSite explorationSite :
-                erkundungsstellen)
-        {
-            HtmlCell cell = new HtmlCell.Builder()
-                    .appendAttribute("class", normalCellClass)
-                    .appendAttribute("width", "50")
-                    .appendContent(explorationSite.getInformation("ERK_AUFSCHLUSS_TOB"))
-                    .build();
-
-            row.appendContent(cell.appendTag());
-        }
-
-        return row.appendTag();
-    }
-
-    public static String createGesamtDickeRow(List<ExplorationSite> erkundungsstellen)
-    {
-        //Gesamtdicke Oberbau
-        HtmlRow row = new HtmlRow.Builder()
-                .appendAttribute("class", "Normal")
-                .appendContent(new HtmlCell.Builder()
-                        .appendAttribute("class", headerCellClass)
-                        .appendAttribute("width", "100")
-                        .appendContent("Gesamtdicke Oberbau,")
-                        .appendContent(new HtmlText.Builder()
-                                .appendAttribute("class", "Normal6")
-                                .appendContent("cm")
-                                .build()
-                                .appendTag())
-                        .build()
-                        .appendTag())
-                .build();
-
-        for (ExplorationSite explorationSite : erkundungsstellen)
-        {
-            Double gob_dicke = explorationSite.getOutcropThickness("GOB");
-            Double tmhb_dicke = explorationSite.getOutcropThickness(aufschluss);
-
-            String doubleValue = String.valueOf(Math.round(gob_dicke + tmhb_dicke));
-            String gesamtDicke = doubleValue.replace(".",",");
-
-            HtmlCell cell = new HtmlCell.Builder()
-                    .appendAttribute("class", normalCellClass)
-                    .appendAttribute("width", "60")
-                    .appendContent(gesamtDicke)
-                    .build();
-
-            row.appendContent(cell.appendTag());
-        }
-
-        return row.appendTag();
-
-    }
-
-    public static String createDruckfestigkeitRow(List<ExplorationSite> erkundungsstellen)
-    {
-        //Druckfestigkeit
-        HtmlRow row = new HtmlRow.Builder()
-                .appendAttribute("class", "Normal")
-                .appendContent(new HtmlCell.Builder()
-                        .appendAttribute("class", headerCellClass)
-                        .appendAttribute("width", "100")
-                        .appendContent("Druckfestigkeit,")
-                        .appendContent(new HtmlText.Builder()
-                                .appendAttribute("class", "Normal6")
-                                .appendContent("N/mm²")
-                                .build()
-                                .appendTag())
-                        .build()
-                        .appendTag())
-                .build();
-
-        for (ExplorationSite explorationSite : erkundungsstellen)
-        {
-            HtmlCell cell = new HtmlCell.Builder()
-                    .appendAttribute("class", normalCellClass)
-                    .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "SCHICHT_DRUCKFESTIGKEIT"))
-                    .build();
-
-            row.appendContent(cell.appendTag());
-        }
-        return row.appendTag();
-
-    }
-
-    public static String createDickeRow(List<ExplorationSite> erkundungsstellen)
-    {
-        //Gesamtdicke Oberbau
-        HtmlRow row = new HtmlRow.Builder()
-                .appendAttribute("class", "Normal")
-                .appendContent(new HtmlCell.Builder()
-                        .appendAttribute("class", headerCellClass)
-                        .appendAttribute("width", "100")
-                        .appendContent("Dicke,")
-                        .appendContent(new HtmlText.Builder()
-                                .appendAttribute("class", "Normal6")
-                                .appendContent("cm")
-                                .build()
-                                .appendTag())
-                        .build()
-                        .appendTag())
-                .build();
-
-        for (ExplorationSite explorationSite : erkundungsstellen)
-        {
-            String tob_dicke = TextFormatUtil.formatSiteOutcropThickness(explorationSite, aufschluss);
-
-            HtmlCell cell = new HtmlCell.Builder()
-                    .appendAttribute("class", normalCellClass)
-                    .appendAttribute("width", "60")
-                    .appendContent(tob_dicke)
-                    .build();
-
-            row.appendContent(cell.appendTag());
-        }
-
-        return row.appendTag();
-
-    }
-
-    public static String createBelastungklasseRow(List<ExplorationSite> erkundungsstellen)
-    {
-        //Belastungklasse
-        HtmlRow row = new HtmlRow.Builder()
-                .appendAttribute("class", "Normal")
-                .appendContent(new HtmlCell.Builder()
-                        .appendAttribute("class", headerCellClass)
-                        .appendAttribute("width", "100")
-                        .appendContent("Belastungklasse,")
-                        .appendContent(new HtmlText.Builder()
-                                .appendAttribute("class", "Normal6")
-                                .appendContent("RStO<sup>[21]</sup>")
-                                .build()
-                                .appendTag())
-                        .build()
-                        .appendTag())
-                .build();
-
-        for (ExplorationSite explorationSite : erkundungsstellen)
-        {
-            HtmlCell cell = new HtmlCell.Builder()
-                    .appendAttribute("class", normalCellClass)
-                    .appendAttribute("width", "60")
-                    .appendContent(explorationSite.getInformation("ERK_BELASTUNGSKLASSE"))
-                    .build();
-
-            row.appendContent(cell.appendTag());
-        }
-        return row.appendTag();
-
-    }
-
-    public static String createChemieIDRow(List<ExplorationSite> erkundungsstellen)
-    {
-        HtmlRow rowCHEMIE_ID = new HtmlRow.Builder()
-                .appendAttribute("class", "Normal")
-                .appendContent(new HtmlCell.Builder()
-                        .appendAttribute("class", headerCellClass)
-                        .appendAttribute("width", "100")
-                        .appendContent("Laborprobe")
-                        .build()
-                        .appendTag())
-                .build();
-
-        for (ExplorationSite explorationSite : erkundungsstellen)
-        {
-            List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
-
-            HtmlCell htmlCell_CHEMIE_ID = new HtmlCell.Builder()
-                    .appendAttribute("class", normalCellClass)
-                    .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "CHEMIE_ID"))
-                    .build();
-
-            rowCHEMIE_ID.appendContent(htmlCell_CHEMIE_ID.appendTag());
-        }
-
-        return rowCHEMIE_ID.appendTag();
-
-    }
-
-    public static String createChemieMufvRow(List<ExplorationSite> erkundungsstellen)
-    {
-        HtmlRow rowCHEMIE_MUFV = new HtmlRow.Builder()
-                .appendAttribute("class", "Normal")
-                .appendContent(new HtmlCell.Builder()
-                        .appendAttribute("class", headerCellClass)
-                        .appendAttribute("width", "100")
-                        .appendContent("Abgrenzung")
-                        .appendContent(new HtmlText.Builder()
-                                .appendAttribute("class", "Normal")
-                                .appendContent("Gefährlichkeit,")
-                                .build()
-                                .appendTag())
-                        .appendContent(new HtmlText.Builder()
-                                .appendAttribute("class", "Normal6")
-                                .appendContent("Schreiben des MUFV<sup>[46]</sup>")
-                                .build()
-                                .appendTag())
-                        .build()
-                        .appendTag())
-                .build();
-
-        for (ExplorationSite explorationSite : erkundungsstellen)
-        {
-            List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
-
-            HtmlCell htmlCell_CHEMIE_MUFV = new HtmlCell.Builder()
-                    .appendAttribute("class", normalCellClass)
-                    .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "CHEMIE_MUFV"))
-                    .build();
-
-            rowCHEMIE_MUFV.appendContent(htmlCell_CHEMIE_MUFV.appendTag());
-        }
-
-        return rowCHEMIE_MUFV.appendTag();
-    }
-
-    public static String createChemieLagaRcRow(List<ExplorationSite> erkundungsstellen)
-    {
-        HtmlRow rowCHEMIE_LAGA_RC = new HtmlRow.Builder()
-                .appendAttribute("class", "Normal")
-                .appendContent(new HtmlCell.Builder()
-                        .appendAttribute("class", headerCellClass)
-                        .appendAttribute("width", "100")
-                        .appendContent("Zuordnung,")
-                        .appendContent(new HtmlText.Builder()
-                                .appendAttribute("class", "Normal6")
-                                .appendContent("LAGA Bauschutt<sup>[16]</sup>")
-                                .build()
-                                .appendTag())
-                        .build()
-                        .appendTag())
-                .build();
-
-        for (ExplorationSite explorationSite : erkundungsstellen)
-        {
-            List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
-
-            HtmlCell htmlCell_CHEMIE_LAGA_RC = new HtmlCell.Builder()
-                    .appendAttribute("class", normalCellClass)
-                    .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "CHEMIE_LAGA_RC"))
-                    .build();
-
-            rowCHEMIE_LAGA_RC.appendContent(htmlCell_CHEMIE_LAGA_RC.appendTag());
-        }
-
-        return rowCHEMIE_LAGA_RC.appendTag();
-    }
-
-    public static String createChemieLagaRcOrientierungRow(List<ExplorationSite> erkundungsstellen)
-    {
-        HtmlRow rowCHEMIE_LAGA_RC_ORIENTIERUNG = new HtmlRow.Builder()
-                .appendAttribute("class", "Normal")
-                .appendContent(new HtmlCell.Builder()
-                        .appendAttribute("class", headerCellClass)
-                        .appendAttribute("width", "100")
-                        .appendContent("Orientierungswert,")
-                        .appendContent(new HtmlText.Builder()
-                                .appendAttribute("class", "Normal6")
-                                .appendContent("LAGA Bauschutt<sup>[16]</sup>")
-                                .build()
-                                .appendTag())
-                        .build()
-                        .appendTag())
-                .build();
-
-        for (ExplorationSite explorationSite : erkundungsstellen)
-        {
-            List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
-
-            HtmlCell htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG = new HtmlCell.Builder()
-                    .appendAttribute("class", normalCellClass)
-                    .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "CHEMIE_LAGARC_ORIENTIERUNGSWERT"))
-                    .build();
-
-            rowCHEMIE_LAGA_RC_ORIENTIERUNG.appendContent(htmlCell_CHEMIE_LAGA_RC_ORIENTIERUNG.appendTag());
-        }
-
-        return rowCHEMIE_LAGA_RC_ORIENTIERUNG.appendTag();
-
-    }
-
-    public static String createChemieTlGesteinRow(List<ExplorationSite> erkundungsstellen)
-    {
-        HtmlRow rowCHEMIE_TL_GESTEIN = new HtmlRow.Builder()
-                .appendAttribute("class", "Normal")
-                .appendContent(new HtmlCell.Builder()
-                        .appendAttribute("class", headerCellClass)
-                        .appendAttribute("width", "100")
-                        .appendContent("Verwertungsklasse,")
-                        .appendContent(new HtmlText.Builder()
-                                .appendAttribute("class", "Normal6")
-                                .appendContent("TL Gestein<sup>[15]</sup>")
-                                .build()
-                                .appendTag())
-                        .build()
-                        .appendTag())
-                .build();
-
-        for (ExplorationSite explorationSite : erkundungsstellen)
-        {
-            List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
-
-            HtmlCell htmlCell_CHEMIE_TL_GESTEIN = new HtmlCell.Builder()
-                    .appendAttribute("class", normalCellClass)
-                    .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "CHEMIE_TLGESTEIN"))
-                    .build();
-
-
-            rowCHEMIE_TL_GESTEIN.appendContent(htmlCell_CHEMIE_TL_GESTEIN.appendTag());
-        }
-
-        return rowCHEMIE_TL_GESTEIN.appendTag();
-    }
-
-    public static String createChemieDepvRow(List<ExplorationSite> erkundungsstellen)
-    {
-        HtmlRow rowCHEMIE_DEPV = new HtmlRow.Builder()
-                .appendAttribute("class", "Normal")
-                .appendContent(new HtmlCell.Builder()
-                        .appendAttribute("class", headerCellClass)
-                        .appendAttribute("width", "100")
-                        .appendContent("Deponieklasse,")
-                        .appendContent(new HtmlText.Builder()
-                                .appendAttribute("class", "Normal6")
-                                .appendContent("DepV<sup>[7]</sup>")
-                                .build()
-                                .appendTag())
-                        .build()
-                        .appendTag())
-                .build();
-
-        for (ExplorationSite explorationSite : erkundungsstellen)
-        {
-            List<Layer> layerAufschlusses = explorationSite.getLayersWithOutcrop(aufschluss);
-
-            HtmlCell htmlCell_CHEMIE_DEPV = new HtmlCell.Builder()
-                    .appendAttribute("class", normalCellClass)
-                    .appendAttribute("width", "60")
-                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "CHEMIE_DEPV"))
-                    .build();
-
-
-            rowCHEMIE_DEPV.appendContent(htmlCell_CHEMIE_DEPV.appendTag());
-        }
-
-        return rowCHEMIE_DEPV.appendTag();
-    }
-
-    public static String createAVVRow(List<ExplorationSite> erkundungsstellen)
-    {
-        //AVV
-        HtmlRow rowERK_AVV_PECH = new HtmlRow.Builder()
-                .appendAttribute("class", "Normal")
-                .appendContent(new HtmlCell.Builder()
-                        .appendAttribute("class", headerCellClass)
-                        .appendAttribute("width", "100")
-                        .appendContent("Abfallschlüssel,")
-                        .appendContent(new HtmlText.Builder()
-                                .appendAttribute("class", "Normal6")
-                                .appendContent("AVV<sup>[6]</sup>")
-                                .build()
-                                .appendTag())
-                        .build()
-                        .appendTag())
-                .build();
-
-        for (ExplorationSite explorationSite :
-                erkundungsstellen)
-        {
-            //TODO AVV
-            HtmlCell htmlCell_AVV = new HtmlCell.Builder()
-                    .appendAttribute("class", normalCellClass)
-                    .appendAttribute("width", "50")
-                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, aufschluss, "CHEMIE_ABFALLSCHLUESSEL"))
-                    .build();
-
-            rowERK_AVV_PECH.appendContent(htmlCell_AVV.appendTag());
-        }
-
-        return rowERK_AVV_PECH.appendTag();
-    }
-
-    public static String createLegendeRow(List<ExplorationSite> erkundungsstellen)
-    {
-        //Umwelttechnische Merkmale Trennzeile
-        HtmlRow rowLegende = new HtmlRow.Builder()
-                .appendAttribute("class", "Normal")
-                .appendContent(new HtmlCell.Builder()
-                        .appendAttribute("class", "NormalHeader")
-                        .appendAttribute("colspan", String.valueOf(1 + erkundungsstellen.size()))
-                        .appendContent("Anmerkungen:")
-                        .appendContent(TextFormatUtil.printLineBreak())
-                        .appendContent("Für die angegebenen Tiefen (T[]) gilt die Einheit cm.")
-                        .build()
-                        .appendTag())
-                .build();
-
-        return rowLegende.appendTag();
-    }
+	public TmhbFactory() {super("TMHB");}
+
+	@Override
+	public String createLegendRow(List<ExplorationSite> explorationSites)
+	{
+		int size = Integer.valueOf(headerCellWidth) + explorationSites.size()* Integer.valueOf(normalCellWidth);
+
+		//Umwelttechnische Merkmale Trennzeile
+		HtmlRow rowLegende = new HtmlRow.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent(new HtmlCell.Builder()
+						.appendAttribute("class", "NormalHeader")
+						.appendAttribute("colspan", String.valueOf(1 + explorationSites.size()))
+						.appendAttribute("width", String.valueOf(size))
+						.appendContent("Anmerkungen:")
+						.appendContent(TextFormatUtil.printLineBreak())
+						.appendContent("Für die angegebenen Tiefen (T[]) gilt die Einheit cm.")
+						.build()
+						.appendTag())
+				.build();
+
+		return rowLegende.appendTag();
+	}
+
+	public String createAufschlussRow(List<ExplorationSite> explorationSites)
+	{
+		HtmlRow row = new HtmlRow.Builder()
+				.appendAttribute("class", rowClass)
+				.appendContent(new HtmlCell.Builder()
+						.appendAttribute("class", headerCellClass)
+						.appendAttribute("width", headerCellWidth)
+						.appendContent("Aufschlussart")
+						.build()
+						.appendTag())
+				.build();
+
+		for (ExplorationSite explorationSite :
+				explorationSites)
+		{
+			HtmlCell cell = new HtmlCell.Builder()
+					.appendAttribute("class", normalCellClass)
+					.appendAttribute("width", normalCellWidth)
+					.appendContent(explorationSite.getInformation(InformationTag.SITE_OUTCROP_TOB))
+					.build();
+
+			row.appendContent(cell.appendTag());
+		}
+
+		return row.appendTag();
+	}
+
+	public String createTotalSizeRow(List<ExplorationSite> explorationSites)
+	{
+		//Gesamtdicke Oberbau
+		HtmlRow row = new HtmlRow.Builder()
+				.appendAttribute("class", rowClass)
+				.appendContent(new HtmlCell.Builder()
+						.appendAttribute("class", headerCellClass)
+						.appendAttribute("width", headerCellWidth)
+						.appendContent("Gesamtdicke Oberbau,")
+						.appendContent(new HtmlText.Builder()
+								.appendAttribute("class", unitCellClass)
+								.appendContent("cm")
+								.build()
+								.appendTag())
+						.build()
+						.appendTag())
+				.build();
+
+		for (ExplorationSite explorationSite : explorationSites)
+		{
+			Double gobSize = explorationSite.getOutcropThickness("GOB");
+			Double tobSize = explorationSite.getOutcropThickness(outcrop);
+
+			String doubleValue = String.valueOf(Math.round(gobSize + tobSize));
+			String totalSize = doubleValue.replace(".", ",");
+
+			HtmlCell cell = new HtmlCell.Builder()
+					.appendAttribute("class", normalCellClass)
+					.appendAttribute("width", normalCellWidth)
+					.appendContent(totalSize)
+					.build();
+
+			row.appendContent(cell.appendTag());
+		}
+
+		return row.appendTag();
+
+	}
 }

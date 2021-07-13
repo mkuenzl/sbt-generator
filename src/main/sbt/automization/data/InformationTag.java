@@ -315,7 +315,7 @@ public enum InformationTag
 				@Override
 				public String getIdentifier()
 				{
-					return "CHEMIE_ABFALLSCHLÜSSEL";
+					return "CHEMIE_ABFALLSCHLUESSEL";
 				}
 			},
 	CHEMISTRY_REKU

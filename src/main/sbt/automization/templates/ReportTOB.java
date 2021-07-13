@@ -11,10 +11,12 @@ import java.util.List;
 public final class ReportTOB extends AReportTable
 {
 	private static ReportTOB instance;
+	private final TobFactory factory;
 
 	private ReportTOB()
 	{
 		layerKind = "TOB";
+		factory = new TobFactory();
 	}
 
 	public static ReportTOB getInstance()
@@ -54,13 +56,13 @@ public final class ReportTOB extends AReportTable
 					.appendAttribute("cellpadding", "0")
 					.build();
 
-			reportTable.appendContent(TobFactory.createIDRow(portion));
-			reportTable.appendContent(TobFactory.createAufschlussRow(portion));
+			reportTable.appendContent(factory.createIDRow(portion));
+			reportTable.appendContent(factory.createOutcropRow(portion));
 
 			reportTable.appendContent(buildTechnicalFeatures(portion));
 			reportTable.appendContent(buildEnvironmentTechnicalFeatures(portion));
 
-			reportTable.appendContent(TobFactory.createLegendeRow(portion));
+			reportTable.appendContent(factory.createLegendRow(portion));
 
 			strb.append(reportTable.appendTag());
 			strb.append("<br>");
@@ -98,14 +100,14 @@ public final class ReportTOB extends AReportTable
 				.build();
 
 		techBuilder.append(rowTECHMERKMALE.appendTag())
-				.append(TobFactory.createEvDynRow(explorationSites))
-				.append(TobFactory.createEvDyn85Row(explorationSites))
-				.append(TobFactory.createEv2Row(explorationSites))
-				.append(TobFactory.createEvMinimumBorderRow(explorationSites))
-				.append(TobFactory.createMaterialRow(explorationSites))
-				.append(TobFactory.createDickeRow(explorationSites))
-				.append(TobFactory.createKGVRow(explorationSites))
-				.append(TobFactory.createGesamtDickeRow(explorationSites));
+				.append(factory.createEvDynRow(explorationSites))
+				.append(factory.createEvDyn85Row(explorationSites))
+				.append(factory.createEv2Row(explorationSites))
+				.append(factory.createEvMinimumBorderRow(explorationSites))
+				.append(factory.createMaterialRow(explorationSites))
+				.append(factory.createSizeRow(explorationSites))
+				.append(factory.createKGVRow(explorationSites))
+				.append(factory.createTotalSizeRow(explorationSites));
 
 		return techBuilder.toString();
 	}
@@ -127,16 +129,15 @@ public final class ReportTOB extends AReportTable
 				.build();
 
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())
-				.append(TobFactory.createChemieIDRow(explorationSites))
-				.append(TobFactory.createChemieMufvRow(explorationSites))
-				.append(TobFactory.createChemieLagaBoRow(explorationSites))
-				.append(TobFactory.createChemieLagaRcRow(explorationSites))
-				.append(TobFactory.createChemieLagaRcOrientierungRow(explorationSites))
-				.append(TobFactory.createChemieTlGesteinRow(explorationSites))
-				.append(TobFactory.createChemieDepvRow(explorationSites))
-				.append(TobFactory.createChemieEntscheidungshilfeRow(explorationSites))
-				.append(TobFactory.createChemieAbfallSchluesselRow(explorationSites));
-
+				.append(factory.createChemieIDRow(explorationSites))
+				.append(factory.createChemieMufvRow(explorationSites))
+				.append(factory.createChemieLagaBoRow(explorationSites))
+				.append(factory.createChemieLagaRcRow(explorationSites))
+				.append(factory.createChemieLagaRcOrientierungRow(explorationSites))
+				.append(factory.createChemieTlGesteinRow(explorationSites))
+				.append(factory.createChemieDepvRow(explorationSites))
+				.append(factory.createChemieEntscheidungshilfeRow(explorationSites))
+				.append(factory.createAVVRow(explorationSites));
 
 		return umweltTechBuilder.toString();
 	}

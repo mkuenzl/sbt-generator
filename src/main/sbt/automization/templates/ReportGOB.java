@@ -11,10 +11,12 @@ import java.util.List;
 public final class ReportGOB extends AReportTable
 {
 	private static ReportGOB instance;
+	private final ObFactory factory;
 
 	private ReportGOB()
 	{
 		layerKind = "GOB";
+		factory = new ObFactory();
 	}
 
 	public static ReportGOB getInstance()
@@ -55,15 +57,17 @@ public final class ReportGOB extends AReportTable
 					.build();
 
 
-			reportTable.appendContent(ObFactory.createIDRow(portion));
-			reportTable.appendContent(ObFactory.createAufschlussRow(portion));
+			reportTable.appendContent(factory.createIDRow(portion));
+
+			reportTable.appendContent(factory.createAufschlussRow(portion));
 
 			reportTable.appendContent(buildTechnicalFeatures(portion));
 			reportTable.appendContent(buildEnvironmentTechnicalFeatures(portion));
 
 			//TODO pech, no pech, pech by depth
-			reportTable.appendContent(ObFactory.createPechQuerschnittRows(portion, false));
-			reportTable.appendContent(ObFactory.createPechQuerschnittRows(portion, true));
+			reportTable.appendContent(factory.createPechQuerschnittRows(portion, false));
+			reportTable.appendContent(factory.createPechQuerschnittRows(portion, true));
+
 
 			strb.append(reportTable.appendTag());
 			strb.append("<br>");
@@ -87,10 +91,10 @@ public final class ReportGOB extends AReportTable
 				.build();
 
 		techBuilder.append(rowTECHMERKMALE.appendTag())
-				.append(ObFactory.createDickeOberbauRow(explorationSites))
-				.append(ObFactory.createBelastungsklasseRow(explorationSites))
-				.append(ObFactory.createRukRow(explorationSites))
-				.append(ObFactory.createRukEinzelWertRow(explorationSites));
+				.append(factory.createSizeOBRow(explorationSites))
+				.append(factory.createBelastungklasseRow(explorationSites))
+				.append(factory.createRukRow(explorationSites))
+				.append(factory.createRukEinzelWertRow(explorationSites));
 
 		return techBuilder.toString();
 	}
@@ -112,9 +116,9 @@ public final class ReportGOB extends AReportTable
 				.build();
 
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())
-				.append(ObFactory.createPechQualitativRow(explorationSites))
-				.append(ObFactory.createPechHalbQuantitativRow(explorationSites))
-				.append(ObFactory.createPechQuantitativRow(explorationSites));
+				.append(factory.createPechQualitativRow(explorationSites))
+				.append(factory.createPechHalbQuantitativRow(explorationSites))
+				.append(factory.createPechQuantitativRow(explorationSites));
 
 		return umweltTechBuilder.toString();
 	}
@@ -136,6 +140,7 @@ public final class ReportGOB extends AReportTable
 	{
 		return new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
+				.appendAttribute("width", "605")
 				.appendAttribute("border", "1")
 				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
 				.appendAttribute("cellspacing", "0")

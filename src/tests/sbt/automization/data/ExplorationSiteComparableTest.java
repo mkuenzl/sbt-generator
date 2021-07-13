@@ -19,72 +19,71 @@ public class ExplorationSiteComparableTest
 	ExplorationSite explorationSite2;
 	ExplorationSite explorationSite3;
 
-
 	@Before
 	public void createExplorationSites()
 	{
-		Map<String, String> erk1Daten = new HashMap<>(){{
+		Map<String, String> site1 = new HashMap<>(){{
 			put("ERK_ID", "FB1");
 			put("ERK_NUMMER", "1");
 		}};
 
-		explorationSiteFB1 = new ExplorationSite(erk1Daten);
+		explorationSiteFB1 = new ExplorationSite(site1);
 
-		Map<String, String> erk2Daten = new HashMap<>(){{
+		Map<String, String> site2 = new HashMap<>(){{
 			put("ERK_ID", "FB2");
 			put("ERK_NUMMER", "2");
 		}};
 
-		explorationSiteFB2 = new ExplorationSite(erk2Daten);
+		explorationSiteFB2 = new ExplorationSite(site2);
 
-		Map<String, String> erk3Daten = new HashMap<>(){{
+		Map<String, String> site3 = new HashMap<>(){{
 			put("ERK_ID", "FB3");
 			put("ERK_NUMMER", "3");
 		}};
 
-		explorationSiteFB3 = new ExplorationSite(erk3Daten);
+		explorationSiteFB3 = new ExplorationSite(site3);
 
-		Map<String, String> erk4Daten = new HashMap<>(){{
+		Map<String, String> site4 = new HashMap<>(){{
 			put("ERK_ID", "FB4");
 			put("ERK_NUMMER", "4");
 		}};
 
-		explorationSiteFB4 = new ExplorationSite(erk4Daten);
+		explorationSiteFB4 = new ExplorationSite(site4);
 
-		Map<String, String> erk17Daten = new HashMap<>(){{
+		Map<String, String> site17 = new HashMap<>(){{
 			put("ERK_ID", "FB17");
 			put("ERK_NUMMER", "17");
 		}};
 
-		explorationSiteFB17 = new ExplorationSite(erk17Daten);
+		explorationSiteFB17 = new ExplorationSite(site17);
 
-		Map<String, String> erk22Daten = new HashMap<>(){{
+		Map<String, String> site22 = new HashMap<>(){{
 			put("ERK_ID", "FB22");
 			put("ERK_NUMMER", "22");
 		}};
 
-		explorationSiteFB22 = new ExplorationSite(erk22Daten);
+		explorationSiteFB22 = new ExplorationSite(site22);
 
-		Map<String, String> erk05Data = new HashMap<>(){{
+		Map<String, String> site5 = new HashMap<>(){{
 			put("ERK_ID", "5");
 			put("ERK_NUMMER", "5");
 		}};
 
-		explorationSite1 = new ExplorationSite(erk05Data);
+		explorationSite1 = new ExplorationSite(site5);
 
-		Map<String, String> erk06Data = new HashMap<>(){{
+		Map<String, String> site6 = new HashMap<>(){{
 			put("ERK_ID", "6");
 			put("ERK_NUMMER", "6");
 		}};
 
-		explorationSite2 = new ExplorationSite(erk06Data);
+		explorationSite2 = new ExplorationSite(site6);
 
-		Map<String, String> erk07Data = new HashMap<>(){{
+		Map<String, String> site7 = new HashMap<>(){{
 			put("ERK_ID", "7");
 			put("ERK_NUMMER", "7");
 		}};
 
-		explorationSite3 = new ExplorationSite(erk07Data);
+		explorationSite3 = new ExplorationSite(site7);
 
 
 	}
@@ -92,51 +91,51 @@ public class ExplorationSiteComparableTest
 	@Test
 	public void sortWithText()
 	{
-		List<ExplorationSite> erkundungsstellen = new ArrayList<>();
+		List<ExplorationSite> explorationSites = new ArrayList<>();
 
-		erkundungsstellen.add(explorationSiteFB1);
-		erkundungsstellen.add(explorationSiteFB2);
-		erkundungsstellen.add(explorationSiteFB17);
-		erkundungsstellen.add(explorationSiteFB22);
-		erkundungsstellen.add(explorationSiteFB3);
-		erkundungsstellen.add(explorationSiteFB4);
+		explorationSites.add(explorationSiteFB1);
+		explorationSites.add(explorationSiteFB2);
+		explorationSites.add(explorationSiteFB17);
+		explorationSites.add(explorationSiteFB22);
+		explorationSites.add(explorationSiteFB3);
+		explorationSites.add(explorationSiteFB4);
 
 
-		List<ExplorationSite> erkundungsstellenCompareTo = new ArrayList<>();
+		List<ExplorationSite> explorationSitesToCompare = new ArrayList<>();
 
-		erkundungsstellenCompareTo.add(explorationSiteFB1);
-		erkundungsstellenCompareTo.add(explorationSiteFB2);
-		erkundungsstellenCompareTo.add(explorationSiteFB3);
-		erkundungsstellenCompareTo.add(explorationSiteFB4);
-		erkundungsstellenCompareTo.add(explorationSiteFB17);
-		erkundungsstellenCompareTo.add(explorationSiteFB22);
+		explorationSitesToCompare.add(explorationSiteFB1);
+		explorationSitesToCompare.add(explorationSiteFB2);
+		explorationSitesToCompare.add(explorationSiteFB3);
+		explorationSitesToCompare.add(explorationSiteFB4);
+		explorationSitesToCompare.add(explorationSiteFB17);
+		explorationSitesToCompare.add(explorationSiteFB22);
 
-		Collections.sort(erkundungsstellen);
+		Collections.sort(explorationSites);
 
-		Assert.assertEquals(erkundungsstellenCompareTo, erkundungsstellen);
+		Assert.assertEquals(explorationSitesToCompare, explorationSites);
 	}
 
 	@Deprecated
 	@Test
 	public void sortWithOutText()
 	{
-		List<ExplorationSite> erkundungsstellen = new ArrayList<>();
+		List<ExplorationSite> explorationSites = new ArrayList<>();
 
-		erkundungsstellen.add(explorationSite3);
-		erkundungsstellen.add(explorationSite2);
-		erkundungsstellen.add(explorationSite1);
-
-
-
-		List<ExplorationSite> erkundungsstellenCompareTo = new ArrayList<>();
-
-		erkundungsstellenCompareTo.add(explorationSite1);
-		erkundungsstellenCompareTo.add(explorationSite2);
-		erkundungsstellenCompareTo.add(explorationSite3);
+		explorationSites.add(explorationSite3);
+		explorationSites.add(explorationSite2);
+		explorationSites.add(explorationSite1);
 
 
-		Collections.sort(erkundungsstellen);
 
-		Assert.assertEquals(erkundungsstellenCompareTo, erkundungsstellen);
+		List<ExplorationSite> explorationSitesToCompare = new ArrayList<>();
+
+		explorationSitesToCompare.add(explorationSite1);
+		explorationSitesToCompare.add(explorationSite2);
+		explorationSitesToCompare.add(explorationSite3);
+
+
+		Collections.sort(explorationSites);
+
+		Assert.assertEquals(explorationSitesToCompare, explorationSites);
 	}
 }

@@ -12,10 +12,12 @@ public final class ReportCONCRETE extends AReportTable
 {
 
 	private static ReportCONCRETE instance;
+	private final ConcreteFactory factory;
 
 	private ReportCONCRETE()
 	{
 		layerKind = "BETON";
+		factory = new ConcreteFactory();
 	}
 
 	public static ReportCONCRETE getInstance()
@@ -55,13 +57,13 @@ public final class ReportCONCRETE extends AReportTable
 					.appendAttribute("cellpadding", "0")
 					.build();
 
-			reportTable.appendContent(ConcreteFactory.createIDRow(portion));
-			reportTable.appendContent(ConcreteFactory.createAufschlussRow(portion));
+			reportTable.appendContent(factory.createIDRow(portion));
+			reportTable.appendContent(factory.createAufschlussRow(portion));
 
 			reportTable.appendContent(buildTechnicalFeatures(portion));
 			reportTable.appendContent(buildEnvironmentTechnicalFeatures(portion));
 
-			reportTable.appendContent(ConcreteFactory.createLegendeRow(portion));
+			reportTable.appendContent(factory.createLegendRow(portion));
 
 			strb.append(reportTable.appendTag());
 			strb.append("<br>");
@@ -87,8 +89,8 @@ public final class ReportCONCRETE extends AReportTable
 				.build();
 
 		techBuilder.append(rowTECHMERKMALE.appendTag())
-				.append(ConcreteFactory.createDickenRow(explorationSites))
-				.append(ConcreteFactory.createDruckfestigkeitRow(explorationSites));
+				.append(factory.createMaterialRow(explorationSites))
+				.append(factory.createDruckfestigkeitRow(explorationSites));
 
 		return techBuilder.toString();
 	}
@@ -110,13 +112,13 @@ public final class ReportCONCRETE extends AReportTable
 				.build();
 
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())
-				.append(ConcreteFactory.createChemieIDRow(explorationSites))
-				.append(ConcreteFactory.createChemieMufvRow(explorationSites))
-				.append(ConcreteFactory.createChemieLagaRcRow(explorationSites))
-				.append(ConcreteFactory.createChemieLagaRcOrientierungRow(explorationSites))
-				.append(ConcreteFactory.createChemieTlGesteinRow(explorationSites))
-				.append(ConcreteFactory.createChemieDepvRow(explorationSites))
-				.append(ConcreteFactory.createAVVRow(explorationSites));
+				.append(factory.createChemieIDRow(explorationSites))
+				.append(factory.createChemieMufvRow(explorationSites))
+				.append(factory.createChemieLagaRcRow(explorationSites))
+				.append(factory.createChemieLagaRcOrientierungRow(explorationSites))
+				.append(factory.createChemieTlGesteinRow(explorationSites))
+				.append(factory.createChemieDepvRow(explorationSites))
+				.append(factory.createAVVRow(explorationSites));
 
 		return umweltTechBuilder.toString();
 	}

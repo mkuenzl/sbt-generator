@@ -11,10 +11,12 @@ import java.util.List;
 public final class ReportOH extends AReportTable
 {
 	private static ReportOH instance;
+	private final OhFactory factory;
 
 	private ReportOH()
 	{
 		layerKind = "OH";
+		factory = new OhFactory();
 	}
 
 	public static ReportOH getInstance()
@@ -53,8 +55,8 @@ public final class ReportOH extends AReportTable
 					.appendAttribute("cellpadding", "0")
 					.build();
 
-			tableBericht.appendContent(OhFactory.createIDRow(portion));
-			tableBericht.appendContent(OhFactory.createAufschlussRow(portion));
+			tableBericht.appendContent(factory.createIDRow(portion));
+			tableBericht.appendContent(factory.createAufschlussRow(portion));
 			tableBericht.appendContent(buildTechnicalFeatures(portion));
 			tableBericht.appendContent(buildEnvironmentTechnicalFeatures(portion));
 
@@ -81,9 +83,9 @@ public final class ReportOH extends AReportTable
 				.build();
 
 		techBuilder.append(rowTECHMERKMALE.appendTag())
-				.append(OhFactory.createDIN18196Row(explorationSites))
-				.append(OhFactory.createDIN18915Row(explorationSites))
-				.append(OhFactory.createDIN18320Row(explorationSites));
+				.append(factory.createDIN18196Row(explorationSites))
+				.append(factory.createDIN18915Row(explorationSites))
+				.append(factory.createDIN18320Row(explorationSites));
 
 		return techBuilder.toString();
 	}
@@ -105,11 +107,11 @@ public final class ReportOH extends AReportTable
 				.build();
 
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())
-				.append(OhFactory.createChemieIDRow(explorationSites))
-				.append(OhFactory.createChemieLagaBoRow(explorationSites))
-				.append(OhFactory.createChemieDepvRow(explorationSites))
-				.append(OhFactory.createChemieEntscheidungshilfeRow(explorationSites))
-				.append(OhFactory.createChemieAbfallSchluesselRow(explorationSites));
+				.append(factory.createChemieIDRow(explorationSites))
+				.append(factory.createChemieLagaBoRow(explorationSites))
+				.append(factory.createChemieDepvRow(explorationSites))
+				.append(factory.createChemieEntscheidungshilfeRow(explorationSites))
+				.append(factory.createAVVRow(explorationSites));
 
 		return umweltTechBuilder.toString();
 	}

@@ -11,10 +11,12 @@ import java.util.List;
 public final class ReportTMHB extends AReportTable
 {
 	private static ReportTMHB instance;
+	private final TmhbFactory factory;
 
 	private ReportTMHB()
 	{
 		layerKind = "TMHB";
+		factory = new TmhbFactory();
 	}
 
 	public static ReportTMHB getInstance()
@@ -54,15 +56,15 @@ public final class ReportTMHB extends AReportTable
 					.appendAttribute("cellpadding", "0")
 					.build();
 
-			reportTable.appendContent(TmhbFactory.createIDRow(portion));
-			reportTable.appendContent(TmhbFactory.createAufschlussRow(portion));
-			reportTable.appendContent(TmhbFactory.createGesamtDickeRow(portion));
-			reportTable.appendContent(TmhbFactory.createBelastungklasseRow(portion));
+			reportTable.appendContent(factory.createIDRow(portion));
+			reportTable.appendContent(factory.createAufschlussRow(portion));
+			reportTable.appendContent(factory.createTotalSizeRow(portion));
+			reportTable.appendContent(factory.createBelastungklasseRow(portion));
 
 			reportTable.appendContent(buildTechnicalFeatures(portion));
 			reportTable.appendContent(buildEnvironmentTechnicalFeatures(portion));
 
-			reportTable.appendContent(TmhbFactory.createLegendeRow(portion));
+			reportTable.appendContent(factory.createLegendRow(portion));
 
 			strb.append(reportTable.appendTag());
 			strb.append("<br>");
@@ -88,8 +90,8 @@ public final class ReportTMHB extends AReportTable
 				.build();
 
 		techBuilder.append(rowTECHMERKMALE.appendTag())
-				.append(TmhbFactory.createDickeRow(explorationSites))
-				.append(TmhbFactory.createDruckfestigkeitRow(explorationSites));
+				.append(factory.createSizeRow(explorationSites))
+				.append(factory.createDruckfestigkeitRow(explorationSites));
 
 		return techBuilder.toString();
 	}
@@ -111,13 +113,13 @@ public final class ReportTMHB extends AReportTable
 				.build();
 
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())
-				.append(TmhbFactory.createChemieIDRow(explorationSites))
-				.append(TmhbFactory.createChemieMufvRow(explorationSites))
-				.append(TmhbFactory.createChemieLagaRcRow(explorationSites))
-				.append(TmhbFactory.createChemieLagaRcOrientierungRow(explorationSites))
-				.append(TmhbFactory.createChemieTlGesteinRow(explorationSites))
-				.append(TmhbFactory.createChemieDepvRow(explorationSites))
-				.append(TmhbFactory.createAVVRow(explorationSites));
+				.append(factory.createChemieIDRow(explorationSites))
+				.append(factory.createChemieMufvRow(explorationSites))
+				.append(factory.createChemieLagaRcRow(explorationSites))
+				.append(factory.createChemieLagaRcOrientierungRow(explorationSites))
+				.append(factory.createChemieTlGesteinRow(explorationSites))
+				.append(factory.createChemieDepvRow(explorationSites))
+				.append(factory.createAVVRow(explorationSites));
 
 		return umweltTechBuilder.toString();
 	}
