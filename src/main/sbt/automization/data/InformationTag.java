@@ -6,14 +6,14 @@ package sbt.automization.data;
  */
 public enum InformationTag
 {
-	SITE_FOOTNOTES
+	/*SITE_FOOTNOTES
 			{
 				@Override
 				public String getIdentifier()
 				{
 					return "ERK_FUSSNOTEN";
 				}
-			},
+			},*/
 	SITE_HEAP_SAMPLE_AMOUNT
 			{
 				@Override
@@ -155,7 +155,7 @@ public enum InformationTag
 				@Override
 				public String getIdentifier()
 				{
-					return "ERK_QUANTITATIV";
+					return "ERK_PECH_QUANTITATIV";
 				}
 			},
 	SITE_PITCH_HALF_QUANTITATIVE
@@ -552,6 +552,7 @@ public enum InformationTag
 			},
 	LAYER_PITCH
 			{   //TAR
+
 				@Override
 				public String getIdentifier()
 				{

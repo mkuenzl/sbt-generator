@@ -2,7 +2,6 @@ package sbt.automization.templates.helper;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.InformationTag;
-import sbt.automization.data.Layer;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
@@ -11,7 +10,7 @@ import sbt.automization.util.html.HtmlText;
 import java.util.List;
 
 
-public class ConcreteFactory extends AReportRowFactory
+public final class ConcreteFactory extends ARowFactory
 {
     public ConcreteFactory()
     {

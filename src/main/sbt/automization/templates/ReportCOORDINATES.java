@@ -9,7 +9,7 @@ import sbt.automization.util.html.HtmlTableHeader;
 import java.util.Arrays;
 import java.util.List;
 
-public class ReportCOORDINATES extends AHtmlTable
+public final class ReportCOORDINATES extends AHtmlTable
 {
 	private static ReportCOORDINATES instance;
 

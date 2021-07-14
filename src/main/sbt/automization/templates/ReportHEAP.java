@@ -85,12 +85,12 @@ public final class ReportHEAP extends AReportTable
 				.append(factory.createChemieMufvRow(explorationSites))
 				.append(factory.createChemieLagaBoRow(explorationSites))
 				.append(factory.createChemieLagaRcRow(explorationSites))
-				.append(factory.createChemieLagaRcOrientierungRow(explorationSites))
-				.append(factory.createChemieTlGesteinRow(explorationSites))
+				.append(factory.createChemieLagaRcOrientationRow(explorationSites))
+				.append(factory.createChemieTlRockRow(explorationSites))
 				.append(factory.createREKUROW(explorationSites))
 				.append(factory.createChemieDepvRow(explorationSites))
 				.append(factory.createAVVRow(explorationSites))
-				.append(factory.createChemieEntscheidungshilfeRow(explorationSites));
+				.append(factory.createChemieDecisionSupportRow(explorationSites));
 
 		return environmentTechBuilder.toString();
 	}

@@ -1,6 +1,7 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.InformationTag;
 import sbt.automization.data.Layer;
 import sbt.automization.format.HtmlCellFormatUtil;
 import sbt.automization.format.TextFormatUtil;
@@ -23,7 +24,7 @@ final class AppendixSiteGOB extends AHtmlTable
     @Override
     public void constructTable(final ExplorationSite site)
     {
-        outcrop = site.getInformation("ERK_AUFSCHLUSS_OB");
+        outcrop = site.getInformation(InformationTag.SITE_OUTCROP_OB);
 
         HtmlTable tableErkOb = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")

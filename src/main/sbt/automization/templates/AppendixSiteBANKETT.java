@@ -1,6 +1,7 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.InformationTag;
 import sbt.automization.data.Layer;
 import sbt.automization.format.HtmlCellFormatUtil;
 import sbt.automization.format.TextFormatUtil;
@@ -38,42 +39,42 @@ public class AppendixSiteBANKETT extends AHtmlTable
 
 		for (Layer layer : site.getLayers())
 		{
-			if ("BANKETT".equals(layer.getInformation("SCHICHT_AUFSCHLUSS")))
+			if ("BANKETT".equals(layer.getInformation(InformationTag.LAYER_OUTCROP)))
 			{
 				//Art der Schicht
 				HtmlCell cell1 = new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(TextFormatUtil.formatSoilGroup(layer.getInformation("SCHICHT_ART")))
+						.appendContent(TextFormatUtil.formatSoilGroup(layer.getInformation(InformationTag.LAYER_TYPE)))
 						.build();
 
 				//Dicke
 				HtmlCell cell2 = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layer.getInformation("SCHICHT_DICKE"))
+						.appendContent(layer.getInformation(InformationTag.LAYER_THICKNESS))
 						.build();
 
 				//Tiefe
 				HtmlCell cell3 = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layer.getInformation("SCHICHT_TIEFE_ENDE"))
+						.appendContent(layer.getInformation(InformationTag.LAYER_DEPTH_END))
 						.build();
 
 				//MUFV
-				String chemie_mufv = layer.getInformation("CHEMIE_MUFV");
+				String chemie_mufv = layer.getInformation(InformationTag.CHEMISTRY_MUFV);
 				HtmlCell cell4 = HtmlCellFormatUtil.formatChemistry(chemie_mufv);
 
 				//LAGA BO
-				String chemie_laga_bo = layer.getInformation("CHEMIE_LAGA_BO");
+				String chemie_laga_bo = layer.getInformation(InformationTag.CHEMISTRY_LAGA_BO);
 				HtmlCell cell5 = HtmlCellFormatUtil.formatChemistry(chemie_laga_bo);
 
 				//Notiz
-				String chemie_laga_rc = layer.getInformation("CHEMIE_LAGA_RC");
+				String chemie_laga_rc = layer.getInformation(InformationTag.CHEMISTRY_LAGA_RC);
 				HtmlCell cell6 = HtmlCellFormatUtil.formatChemistry(chemie_laga_rc);
 
 				//Wassergehalt
 				HtmlCell cell7 = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layer.getInformation("SCHICHT_WASSERGEHALT"))
+						.appendContent(layer.getInformation(InformationTag.LAYER_WATER_CONTENT))
 						.build();
 
 				//WasserProctor

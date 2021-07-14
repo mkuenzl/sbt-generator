@@ -1,6 +1,7 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.InformationTag;
 import sbt.automization.data.Layer;
 import sbt.automization.format.NameFormatUtil;
 import sbt.automization.format.TextFormatUtil;
@@ -70,12 +71,12 @@ public final class AppendixPN extends AHtmlTable
 
 				HtmlCell layerSampleType = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalCentered")
-						.appendContent(TextFormatUtil.formatSampleType(layer.getInformation("SCHICHT_BEHAELTNIS")))
+						.appendContent(TextFormatUtil.formatSampleType(layer.getInformation(InformationTag.LAYER_CONTAINER)))
 						.build();
 
 				HtmlCell layerContainer = new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(layer.getInformation("SCHICHT_BEHAELTNIS"))
+						.appendContent(layer.getInformation(InformationTag.LAYER_CONTAINER))
 						.build();
 
 				HtmlCell heapVolume = new HtmlCell.Builder()
@@ -86,38 +87,39 @@ public final class AppendixPN extends AHtmlTable
 				HtmlCell layerWasteType = new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
 						.appendAttribute("width", "110")
-						.appendContent(NameFormatUtil.formatLayerKind(layer.getInformation("SCHICHT_ABFALLART")))
+						.appendContent(NameFormatUtil.formatLayerKind(layer.getInformation(InformationTag.LAYER_WASTE_TYPE)))
 						.build();
 
 				HtmlCell layerGrainSize = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalCentered")
 						.appendAttribute("width", "50")
-						.appendContent(layer.getInformation("SCHICHT_KOERNUNG"))
+						.appendContent(layer.getInformation(InformationTag.LAYER_GRANULATION))
 						.build();
 
 				HtmlCell layerAttributes = new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(layer.getInformation("SCHICHT_FARBE"))
+						.appendContent(layer.getInformation(InformationTag.LAYER_COLOR))
 						.appendContent(TextFormatUtil.printLineBreak())
-						.appendContent(layer.getInformation("SCHICHT_GERUCH"))
+						.appendContent(layer.getInformation(InformationTag.LAYER_SMELL))
 						.appendContent(TextFormatUtil.printLineBreak())
-						.appendContent(layer.getInformation("SCHICHT_BODENART"))
+						.appendContent(layer.getInformation(InformationTag.LAYER_SOIL_TYPE))
 						.build();
 
 				HtmlCell explorationSiteIdentifier = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalCentered")
 						.appendAttribute("width", "30")
-						.appendContent(explorationSite.getInformation("ERK_ID"))
+						.appendContent(explorationSite.getInformation(InformationTag.SITE_ID))
 						.build();
 
 				HtmlCell layerDepth = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalCentered")
-						.appendContent(TextFormatUtil.formatDepth(layer.getInformation("SCHICHT_TIEFE_START"), layer.getInformation("SCHICHT_TIEFE_ENDE")))
+						.appendContent(TextFormatUtil.formatDepth(layer.getInformation(InformationTag.LAYER_DEPTH_START),
+								layer.getInformation(InformationTag.LAYER_DEPTH_END)))
 						.build();
 
 				HtmlCell explorationSiteTopEdge = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalCentered")
-						.appendContent(explorationSite.getInformation("ERK_OBERKANTE"))
+						.appendContent(explorationSite.getInformation(InformationTag.SITE_TOP_EDGE))
 						.build();
 
 				HtmlRow row = new HtmlRow.Builder()
@@ -177,13 +179,14 @@ public final class AppendixPN extends AHtmlTable
 		{
 			for (int i = 0 ; i < layerList.size() ; i++)
 			{
-				if ("GOB".equals(layerList.get(i).getInformation("SCHICHT_AUFSCHLUSS")))
+				if ("GOB".equals(layerList.get(i).getInformation(InformationTag.LAYER_OUTCROP)))
 				{
 					if (layerList.size() <= i + 1) break;
-					if (layerList.get(i).getInformation("SCHICHT_ABFALLART").equals(layerList.get(i + 1).getInformation("SCHICHT_ABFALLART")))
+					if (layerList.get(i).getInformation(InformationTag.LAYER_WASTE_TYPE).equals(layerList.get(i + 1).getInformation(InformationTag.LAYER_WASTE_TYPE)))
 					{
-						layerList.get(i + 1).addInformation("SCHICHT_TIEFE_START", layerList.get(i).getInformation("SCHICHT_TIEFE_START"));
-						layerList.get(i + 1).addInformation("SCHICHT_KOERNUNG", "");
+						layerList.get(i + 1).addInformation(InformationTag.LAYER_DEPTH_START.getIdentifier(),
+								layerList.get(i).getInformation(InformationTag.LAYER_DEPTH_START));
+						layerList.get(i + 1).addInformation(InformationTag.LAYER_GRANULATION.getIdentifier(), "");
 						layerList.remove(layerList.get(i));
 						i--;
 					}

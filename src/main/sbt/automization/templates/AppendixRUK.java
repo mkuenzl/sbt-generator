@@ -1,6 +1,7 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.InformationTag;
 import sbt.automization.data.Layer;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
@@ -80,7 +81,7 @@ public final class AppendixRUK extends AHtmlTable
                     HtmlCell cellErkIdentifier = new HtmlCell.Builder()
                             .appendAttribute("class", "Normal")
                             .appendAttribute("align", "center")
-                            .appendContent(explorationSite.getInformation("ERK_ID"))
+                            .appendContent(explorationSite.getInformation(InformationTag.SITE_ID))
                             .build();
 
                     HtmlCell cellRukVersuchNr = new HtmlCell.Builder()
@@ -92,14 +93,14 @@ public final class AppendixRUK extends AHtmlTable
 
                     HtmlCell cellRukProbenArt = new HtmlCell.Builder()
                             .appendAttribute("class", "Normal")
-                            .appendContent(layer.getInformation("SCHICHT_RUK_PROBE"))
+                            .appendContent(layer.getInformation(InformationTag.LAYER_RUK_SAMPLE))
                             .build();
 
                     HtmlCell cellSchichtArtAndKoernung = new HtmlCell.Builder()
                             .appendAttribute("class", "Normal")
                             .appendAttribute("width", "170")
-                            .appendContent(TextFormatUtil.formatKindAndGranulation(layer.getInformation("SCHICHT_ART"),
-                                    layer.getInformation("SCHICHT_KOERNUNG")))
+                            .appendContent(TextFormatUtil.formatKindAndGranulation(layer.getInformation(InformationTag.LAYER_TYPE),
+                                    layer.getInformation(InformationTag.LAYER_GRANULATION)))
                             .build();
 
 
@@ -107,7 +108,7 @@ public final class AppendixRUK extends AHtmlTable
                             .appendAttribute("class", "Normal")
                             .appendAttribute("width", "35")
                             .appendAttribute("align", "center")
-                            .appendContent(layer.getInformation("SCHICHT_TIEFE_START"))
+                            .appendContent(layer.getInformation(InformationTag.LAYER_DEPTH_START))
                             .build();
 
                     HtmlCell cellSchichtTiefeConcatination = new HtmlCell.Builder()
@@ -121,13 +122,13 @@ public final class AppendixRUK extends AHtmlTable
                             .appendAttribute("class", "Normal")
                             .appendAttribute("width", "35")
                             .appendAttribute("align", "center")
-                            .appendContent(layer.getInformation("SCHICHT_TIEFE_ENDE"))
+                            .appendContent(layer.getInformation(InformationTag.LAYER_DEPTH_END))
                             .build();
 
                     HtmlCell cellSchichtRuk = new HtmlCell.Builder()
                             .appendAttribute("class", "Normal")
                             .appendAttribute("align", "center")
-                            .appendContent(layer.getInformation("SCHICHT_RUK"))
+                            .appendContent(layer.getInformation(InformationTag.LAYER_RUK))
                             .build();
 
                     HtmlRow htmlRow = new HtmlRow.Builder()

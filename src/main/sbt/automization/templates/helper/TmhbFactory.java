@@ -9,7 +9,7 @@ import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
 
-public final class TmhbFactory extends AReportRowFactory
+public final class TmhbFactory extends ARowFactory
 {
 	public TmhbFactory() {super("TMHB");}
 

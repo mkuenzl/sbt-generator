@@ -59,7 +59,7 @@ public final class ReportTMHB extends AReportTable
 			reportTable.appendContent(factory.createIDRow(portion));
 			reportTable.appendContent(factory.createAufschlussRow(portion));
 			reportTable.appendContent(factory.createTotalSizeRow(portion));
-			reportTable.appendContent(factory.createBelastungklasseRow(portion));
+			reportTable.appendContent(factory.createLoadClassRow(portion));
 
 			reportTable.appendContent(buildTechnicalFeatures(portion));
 			reportTable.appendContent(buildEnvironmentTechnicalFeatures(portion));
@@ -91,7 +91,7 @@ public final class ReportTMHB extends AReportTable
 
 		techBuilder.append(rowTECHMERKMALE.appendTag())
 				.append(factory.createSizeRow(explorationSites))
-				.append(factory.createDruckfestigkeitRow(explorationSites));
+				.append(factory.createCompressiveStrengthRow(explorationSites));
 
 		return techBuilder.toString();
 	}
@@ -116,8 +116,8 @@ public final class ReportTMHB extends AReportTable
 				.append(factory.createChemieIDRow(explorationSites))
 				.append(factory.createChemieMufvRow(explorationSites))
 				.append(factory.createChemieLagaRcRow(explorationSites))
-				.append(factory.createChemieLagaRcOrientierungRow(explorationSites))
-				.append(factory.createChemieTlGesteinRow(explorationSites))
+				.append(factory.createChemieLagaRcOrientationRow(explorationSites))
+				.append(factory.createChemieTlRockRow(explorationSites))
 				.append(factory.createChemieDepvRow(explorationSites))
 				.append(factory.createAVVRow(explorationSites));
 

@@ -25,7 +25,7 @@ public final class TextFormatUtil
 	 */
 	public static String formatLoadClass(final ExplorationSite explorationSite)
 	{
-		String loadClass = explorationSite.getInformation("ERK_BELASTUNGSKLASSE");
+		String loadClass = explorationSite.getInformation(InformationTag.SITE_LOAD_CLASS);
 		String content;
 
 		if ("keine".equals(loadClass) || "-".equals(loadClass))
@@ -116,7 +116,7 @@ public final class TextFormatUtil
 		List<Layer> layersInOutcrop = explorationSite.getLayersWithOutcrop(outcrop);
 		for (Layer layer : layersInOutcrop)
 		{
-			heightValue = heightValue + Double.parseDouble(layer.getInformation("SCHICHT_DICKE").replace(",", "."));
+			heightValue = heightValue + Double.parseDouble(layer.getInformation(InformationTag.LAYER_THICKNESS).replace(",", "."));
 		}
 		String height = String.valueOf(heightValue);
 		return height.replace(".", ",");
@@ -139,185 +139,6 @@ public final class TextFormatUtil
 			sampleType = "MP";
 		}
 		return sampleType;
-	}
-
-	/**
-	 * Method formats all footnotes related to an exploration site in the provided order.
-	 *
-	 * @param explorationSite an ExplorationSite object
-	 * @return a String of html code representing a list of footnotes
-	 */
-	public static String formatSiteFootnotes(final ExplorationSite explorationSite)
-	{
-		int footnoteCounter = 1;
-		StringBuilder stringBuilder = new StringBuilder();
-
-		stringBuilder.append(new HtmlText.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent("Angaben:")
-				.appendContent(printLineBreak())
-				.appendContent("KGV = Korngrößenverteilung, WG = Wassergehalt, LP = Plattendruckversuch, wPr = optimaler Wassergehalt")
-				.appendContent(printLineBreak())
-				.appendContent("Gem. a. G. = Gemisch aus Gesteinskörnungen, NS = Naturstein, LS = Lavaschlacke, HO = Hochofenschlacke")
-				.appendContent(printLineBreak())
-				.appendContent("RC = Rezyklierte Gesteinskörnung, BK = Brechkorn, RK = Rundkorn, sg = stetig gestuft, ug = unstetig gestuft")
-				.appendContent(printLineBreak())
-				.appendContent(TextFormatUtil.printLineEmpty())
-				.build()
-				.appendTag());
-
-		stringBuilder.append(new HtmlText.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(String.valueOf(footnoteCounter++))
-				.appendContent(".) ")
-				.appendContent("Messeinheit: Garmin eTrex 10, herstellerseitig angegebene Lagegenauigkeit ~ 3 m")
-				.build()
-				.appendTag());
-
-		if ("#".equals(explorationSite.getInformation("ERK_LEITFADEN_AUSBAUASPHALT")))
-		{
-			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
-					.appendContent(String.valueOf(footnoteCounter++))
-					.appendContent(".) ")
-					.appendContent("Bewertung unter Berücksichtigung der Angaben im Leitfaden Ausbauasphalt")
-					.build()
-					.appendTag());
-		}
-
-		if ("#".equals(explorationSite.getInformation("ERK_TEILWEISE_VERFESTIGT")))
-		{
-			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
-					.appendContent(String.valueOf(footnoteCounter++))
-					.appendContent(".) ")
-					.appendContent("teilweise verfestigt")
-					.build()
-					.appendTag());
-		}
-
-		if ("#".equals(explorationSite.getInformation("ERK_UEBERSCHREITUNG_ORIENT")))
-		{
-			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
-					.appendContent(String.valueOf(footnoteCounter++))
-					.appendContent(".) ")
-					.appendContent("Aufgrund der Überschreitung eines Orientierungswertes ist eine Aufbereitung (z. B. als RC-Gemisch) ggf. nicht möglich.")
-					.build()
-					.appendTag())
-					.append(new HtmlText.Builder()
-							.appendAttribute("class", "Normal")
-							.appendContent("Absprache mit Behörde empfohlen")
-							.build()
-							.appendTag());
-
-		}
-
-		if ("#".equals(explorationSite.getInformation("ERK_RAMMHINDERNIS")))
-		{
-			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
-					.appendContent(String.valueOf(footnoteCounter++))
-					.appendContent(".) ")
-					.appendContent("Rammhindernis; keine tiefere Entnahme möglich")
-					.build()
-					.appendTag());
-		}
-
-		if ("#".equals(explorationSite.getInformation("ERK_KABELTRASSE")))
-		{
-			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
-					.appendContent(String.valueOf(footnoteCounter++))
-					.appendContent(".) ")
-					.appendContent("Kabeltrasse; keine tiefere Entnahme möglich")
-					.build()
-					.appendTag());
-		}
-
-		if ("#".equals(explorationSite.getInformation("ERK_FREMDBESTANDTEILE")))
-		{
-			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
-					.appendContent(String.valueOf(footnoteCounter++))
-					.appendContent(".) ")
-					.appendContent("mit mineralischen Fremdbestandteilen < 10 V.-%")
-					.build()
-					.appendTag());
-		}
-
-		if ("#".equals(explorationSite.getInformation("ERK_GUENSTIGE_EINSTUFUNG")))
-		{
-			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
-					.appendContent(String.valueOf(footnoteCounter++))
-					.appendContent(".) ")
-					.appendContent("Ggf. günstigere Einstufung nach Rücksprache mit der Behörde möglich")
-					.build()
-					.appendTag());
-		}
-
-		if ("#".equals(explorationSite.getInformation("ERK_VERNACHLAESSIGUNG_LEITFAEHIGKEIT")))
-		{
-			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
-					.appendContent(String.valueOf(footnoteCounter++))
-					.appendContent(".) ")
-					.appendContent("Einstufung unter Vernachlässigung des Parameters elektrische Leitfähigkeit")
-					.build()
-					.appendTag());
-		}
-
-		String erk_variable_footnote1 = explorationSite.getInformation("ERK_VARIABLE_FOOTNOTE1");
-		if (erk_variable_footnote1 != null && ! erk_variable_footnote1.equals("#") && ! erk_variable_footnote1.equals("-"))
-		{
-			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
-					.appendContent(String.valueOf(footnoteCounter++))
-					.appendContent(".) ")
-					.appendContent(erk_variable_footnote1)
-					.build()
-					.appendTag());
-		}
-
-		String erk_variable_footnote2 = explorationSite.getInformation("ERK_VARIABLE_FOOTNOTE2");
-		if (erk_variable_footnote2 != null && ! erk_variable_footnote2.equals("#") && ! erk_variable_footnote2.equals("-"))
-		{
-			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
-					.appendContent(String.valueOf(footnoteCounter++))
-					.appendContent(".) ")
-					.appendContent(erk_variable_footnote2)
-					.build()
-					.appendTag());
-		}
-
-		String erk_variable_footnote3 = explorationSite.getInformation("ERK_VARIABLE_FOOTNOTE3");
-		if (erk_variable_footnote3 != null && ! erk_variable_footnote3.equals("#") && ! erk_variable_footnote3.equals("-"))
-		{
-			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
-					.appendContent(String.valueOf(footnoteCounter++))
-					.appendContent(".) ")
-					.appendContent(erk_variable_footnote3)
-					.build()
-					.appendTag());
-		}
-
-
-		if (! "-".equals(explorationSite.getInformation("ERK_LP")))
-		{
-			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
-					.appendContent(String.valueOf(footnoteCounter))
-					.appendContent(".) ")
-					.appendContent("Prüfergebnisse unter Berücksichtigung einer ca. 15 % Reduzierung aufgrund der Einspannung durch den ")
-					.appendContent(printLineBreak())
-					.appendContent("gebundenen Oberbau")
-					.build()
-					.appendTag());
-		}
-		return stringBuilder.toString();
 	}
 
 	/**
@@ -497,11 +318,11 @@ public final class TextFormatUtil
 		{
 			Layer layer = outcropLayers.get(i);
 
-			formattedLayerMaterial.append(formatLayerAttributes(layer.getInformation("SCHICHT_ART"),
-					layer.getInformation("SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT"),
-					layer.getInformation("SCHICHT_KOERNUNG")));
+			formattedLayerMaterial.append(formatLayerAttributes(layer.getInformation(InformationTag.LAYER_TYPE),
+					layer.getInformation(InformationTag.LAYER_ROUNDING_GRADATION),
+					layer.getInformation(InformationTag.LAYER_GRANULATION)));
 
-			formattedLayerMaterial.append(formatDepthSpecified(layer.getInformation("SCHICHT_TIEFE_START"), layer.getInformation("SCHICHT_TIEFE_ENDE")));
+			formattedLayerMaterial.append(formatDepthSpecified(layer.getInformation(InformationTag.LAYER_DEPTH_START), layer.getInformation(InformationTag.LAYER_DEPTH_END)));
 
 			if (i + 1 < size)
 			{
@@ -632,8 +453,8 @@ public final class TextFormatUtil
 
 			stringBuilder.append(formattedTag);
 			stringBuilder.append(printLineEmpty());
-			stringBuilder.append(formatDepthSpecified(layer.getInformation("SCHICHT_TIEFE_START"),
-					layer.getInformation("SCHICHT_TIEFE_ENDE")));
+			stringBuilder.append(formatDepthSpecified(layer.getInformation(InformationTag.LAYER_DEPTH_START),
+					layer.getInformation(InformationTag.LAYER_DEPTH_END)));
 
 		}
 
@@ -765,7 +586,7 @@ public final class TextFormatUtil
 
 	public static String formatLayerProctor(final Layer layer)
 	{
-		String feuchtigkeit = layer.getInformation("SCHICHT_FEUCHTIGKEIT");
+		String feuchtigkeit = layer.getInformation(InformationTag.LAYER_MOISTURE);
 		if ("-".equals(feuchtigkeit))
 		{
 			return "-";
@@ -783,7 +604,7 @@ public final class TextFormatUtil
 
 		for (Layer layer : layersWithOutcrop)
 		{
-			String rukValue = layer.getInformation("SCHICHT_RUK");
+			String rukValue = layer.getInformation(InformationTag.LAYER_RUK);
 
 			if (! "-".equals(rukValue) && ! "".equals(rukValue))
 			{
@@ -794,7 +615,7 @@ public final class TextFormatUtil
 
 				HtmlText layerKind = new HtmlText.Builder()
 						.appendAttribute("class", "Normal6")
-						.appendContent(layer.getInformation("SCHICHT_ART"))
+						.appendContent(layer.getInformation(InformationTag.LAYER_TYPE))
 						.build();
 
 				HtmlText rukText = new HtmlText.Builder()

@@ -110,7 +110,7 @@ public final class ReportOH extends AReportTable
 				.append(factory.createChemieIDRow(explorationSites))
 				.append(factory.createChemieLagaBoRow(explorationSites))
 				.append(factory.createChemieDepvRow(explorationSites))
-				.append(factory.createChemieEntscheidungshilfeRow(explorationSites))
+				.append(factory.createChemieDecisionSupportRow(explorationSites))
 				.append(factory.createAVVRow(explorationSites));
 
 		return umweltTechBuilder.toString();

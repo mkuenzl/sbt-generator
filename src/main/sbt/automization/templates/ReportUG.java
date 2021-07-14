@@ -107,12 +107,12 @@ public final class ReportUG extends AReportTable
 				.append(factory.createDIN19682Row(sites))
 				.append(factory.createDIN18300_09Row(sites))
 				.append(factory.createZTVRow(sites))
-				.append(factory.createWasserGehaltRow(sites))
-				.append(factory.createFeuchteZustandRow(sites))
-				.append(factory.createKonsistenzRow(sites))
-				.append(factory.createVerdichtungsfaehigkeitRow(sites))
-				.append(factory.createTragPlanumRow(sites))
-				.append(factory.createTragSohleRow(sites));
+				.append(factory.createWaterContentRow(sites))
+				.append(factory.createMoistureRow(sites))
+				.append(factory.createConsistencyRow(sites))
+				.append(factory.createCompressibilityRow(sites))
+				.append(factory.createWearPlanumRow(sites))
+				.append(factory.createWearSoleRow(sites));
 
 		return techBuilder.toString();
 	}
@@ -138,11 +138,11 @@ public final class ReportUG extends AReportTable
 				.append(factory.createChemieMufvRow(sites))
 				.append(factory.createChemieLagaBoRow(sites))
 				.append(factory.createChemieLagaRcRow(sites))
-				.append(factory.createChemieLagaRcOrientierungRow(sites))
-				.append(factory.createChemieTlGesteinRow(sites))
+				.append(factory.createChemieLagaRcOrientationRow(sites))
+				.append(factory.createChemieTlRockRow(sites))
 				.append(factory.createREKUROW(sites))
 				.append(factory.createChemieDepvRow(sites))
-				.append(factory.createChemieEntscheidungshilfeRow(sites))
+				.append(factory.createChemieDecisionSupportRow(sites))
 				.append(factory.createAVVRow(sites));
 
 		return umweltTechBuilder.toString();

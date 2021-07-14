@@ -8,7 +8,7 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public class ReportBANKETT extends AReportTable
+public final class ReportBANKETT extends AReportTable
 {
 	private static ReportBANKETT instance;
 	private final BankettFactory factory;
@@ -106,7 +106,7 @@ public class ReportBANKETT extends AReportTable
 				.append(factory.createChemieIDRow(explorationSites))
 				.append(factory.createChemieLagaBoRow(explorationSites))
 				.append(factory.createChemieDepvRow(explorationSites))
-				.append(factory.createChemieEntscheidungshilfeRow(explorationSites))
+				.append(factory.createChemieDecisionSupportRow(explorationSites))
 				.append(factory.createAVVRow(explorationSites));
 
 		return umweltTechBuilder.toString();

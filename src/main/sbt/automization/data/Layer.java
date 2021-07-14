@@ -47,8 +47,8 @@ public final class Layer implements Comparable<Layer>, Cloneable, Serializable
 	@Override
 	public int compareTo(final Layer layer)
 	{
-		int s1 = Integer.parseInt(this.getInformation("SCHICHT_NR"));
-		int s2 = Integer.parseInt(layer.getInformation("SCHICHT_NR"));
+		int s1 = Integer.parseInt(this.getInformation(InformationTag.LAYER_NUMBER));
+		int s2 = Integer.parseInt(layer.getInformation(InformationTag.LAYER_NUMBER));
 		return s1 - s2;
 	}
 

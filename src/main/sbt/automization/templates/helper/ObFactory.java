@@ -11,7 +11,7 @@ import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
 
-public class ObFactory extends AReportRowFactory
+public final class ObFactory extends ARowFactory
 {
 	public ObFactory()
 	{

@@ -2,7 +2,6 @@ package sbt.automization.templates.helper;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.InformationTag;
-import sbt.automization.data.Layer;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.Util;
 import sbt.automization.util.html.HtmlCell;
@@ -12,9 +11,9 @@ import sbt.automization.util.html.HtmlText;
 import java.util.List;
 
 /**
- * Factory Class not in use TODO
+ * Factory Class TODO
  */
-public abstract class AReportRowFactory
+public abstract class ARowFactory
 {
 	protected static final String rowClass = "Normal";
 	protected static final String headerCellClass = "NormalHeader";
@@ -24,7 +23,7 @@ public abstract class AReportRowFactory
 	protected static final String headerCellWidth = "110";
 	protected String outcrop;
 
-	public AReportRowFactory(String outcrop)
+	public ARowFactory(String outcrop)
 	{
 		this.outcrop = outcrop;
 	}
@@ -91,7 +90,7 @@ public abstract class AReportRowFactory
 
 	}
 
-	public String createBelastungklasseRow(List<ExplorationSite> explorationSites)
+	public String createLoadClassRow(List<ExplorationSite> explorationSites)
 	{
 		//Belastungklasse
 		HtmlRow row = new HtmlRow.Builder()
@@ -267,7 +266,7 @@ public abstract class AReportRowFactory
 		return row.appendTag();
 	}
 
-	public String createDruckfestigkeitRow(List<ExplorationSite> explorationSites)
+	public String createCompressiveStrengthRow(List<ExplorationSite> explorationSites)
 	{
 		//Druckfestigkeit
 		HtmlRow row = new HtmlRow.Builder()
@@ -299,7 +298,7 @@ public abstract class AReportRowFactory
 
 	}
 
-	public String createKGVRow(List<ExplorationSite> explorationSites)
+	public String createGrainSizeDistributionRow(List<ExplorationSite> explorationSites)
 	{
 		//Korngroeßenverteilungen
 		HtmlRow row = new HtmlRow.Builder()
@@ -331,7 +330,7 @@ public abstract class AReportRowFactory
 
 	}
 
-	public String createWasserGehaltRow(List<ExplorationSite> explorationSites)
+	public String createWaterContentRow(List<ExplorationSite> explorationSites)
 	{
 		//WASSERGEHALT
 		HtmlRow row = new HtmlRow.Builder()
@@ -363,7 +362,7 @@ public abstract class AReportRowFactory
 		return row.appendTag();
 	}
 
-	public String createFeuchteZustandRow(List<ExplorationSite> explorationSites)
+	public String createMoistureRow(List<ExplorationSite> explorationSites)
 	{
 		//FEUCHTEZUSTAND
 		HtmlRow row = new HtmlRow.Builder()
@@ -390,7 +389,7 @@ public abstract class AReportRowFactory
 		return row.appendTag();
 	}
 
-	public String createKonsistenzRow(List<ExplorationSite> explorationSites)
+	public String createConsistencyRow(List<ExplorationSite> explorationSites)
 	{
 		//KONSISTENZ
 		HtmlRow row = new HtmlRow.Builder()
@@ -417,7 +416,7 @@ public abstract class AReportRowFactory
 		return row.appendTag();
 	}
 
-	public String createProctordichteRow(List<ExplorationSite> explorationSites)
+	public String createWaterProctorRow(List<ExplorationSite> explorationSites)
 	{
 		//PROCTORDICHTE
 		HtmlRow row = new HtmlRow.Builder()
@@ -449,7 +448,7 @@ public abstract class AReportRowFactory
 		return row.appendTag();
 	}
 
-	public String createProtorDifferenzRow(List<ExplorationSite> explorationSites)
+	public String createProtorDifferenceRow(List<ExplorationSite> explorationSites)
 	{
 		//DIFFERENCE
 		HtmlRow row = new HtmlRow.Builder()
@@ -481,7 +480,7 @@ public abstract class AReportRowFactory
 		return row.appendTag();
 	}
 
-	public String createVerdichtungsfaehigkeitRow(List<ExplorationSite> explorationSites)
+	public String createCompressibilityRow(List<ExplorationSite> explorationSites)
 	{
 		//VERDICHTUNGSFÄHIGKEIT
 		HtmlRow row = new HtmlRow.Builder()
@@ -508,7 +507,7 @@ public abstract class AReportRowFactory
 		return row.appendTag();
 	}
 
-	public String createTragPlanumRow(List<ExplorationSite> explorationSites)
+	public String createWearPlanumRow(List<ExplorationSite> explorationSites)
 	{
 		//TRAGFAEHIGKEIT_PLANUM
 		HtmlRow row = new HtmlRow.Builder()
@@ -547,7 +546,7 @@ public abstract class AReportRowFactory
 		return row.appendTag();
 	}
 
-	public String createTragSohleRow(List<ExplorationSite> explorationSites)
+	public String createWearSoleRow(List<ExplorationSite> explorationSites)
 	{
 		//TRAGFAEHIGKEIT_GRABENSOHLE
 		HtmlRow row = new HtmlRow.Builder()
@@ -746,7 +745,7 @@ public abstract class AReportRowFactory
 		return row.appendTag();
 	}
 
-	public String createChemieLagaRcOrientierungRow(List<ExplorationSite> explorationSites)
+	public String createChemieLagaRcOrientationRow(List<ExplorationSite> explorationSites)
 	{
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -778,7 +777,7 @@ public abstract class AReportRowFactory
 
 	}
 
-	public String createChemieTlGesteinRow(List<ExplorationSite> explorationSites)
+	public String createChemieTlRockRow(List<ExplorationSite> explorationSites)
 	{
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -840,7 +839,7 @@ public abstract class AReportRowFactory
 		return row.appendTag();
 	}
 
-	public String createChemieEntscheidungshilfeRow(List<ExplorationSite> explorationSites)
+	public String createChemieDecisionSupportRow(List<ExplorationSite> explorationSites)
 	{
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)

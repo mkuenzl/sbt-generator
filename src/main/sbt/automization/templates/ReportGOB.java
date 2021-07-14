@@ -92,7 +92,7 @@ public final class ReportGOB extends AReportTable
 
 		techBuilder.append(rowTECHMERKMALE.appendTag())
 				.append(factory.createSizeOBRow(explorationSites))
-				.append(factory.createBelastungklasseRow(explorationSites))
+				.append(factory.createLoadClassRow(explorationSites))
 				.append(factory.createRukRow(explorationSites))
 				.append(factory.createRukEinzelWertRow(explorationSites));
 

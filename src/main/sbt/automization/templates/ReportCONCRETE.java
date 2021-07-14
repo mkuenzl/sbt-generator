@@ -90,7 +90,7 @@ public final class ReportCONCRETE extends AReportTable
 
 		techBuilder.append(rowTECHMERKMALE.appendTag())
 				.append(factory.createMaterialRow(explorationSites))
-				.append(factory.createDruckfestigkeitRow(explorationSites));
+				.append(factory.createCompressiveStrengthRow(explorationSites));
 
 		return techBuilder.toString();
 	}
@@ -115,8 +115,8 @@ public final class ReportCONCRETE extends AReportTable
 				.append(factory.createChemieIDRow(explorationSites))
 				.append(factory.createChemieMufvRow(explorationSites))
 				.append(factory.createChemieLagaRcRow(explorationSites))
-				.append(factory.createChemieLagaRcOrientierungRow(explorationSites))
-				.append(factory.createChemieTlGesteinRow(explorationSites))
+				.append(factory.createChemieLagaRcOrientationRow(explorationSites))
+				.append(factory.createChemieTlRockRow(explorationSites))
 				.append(factory.createChemieDepvRow(explorationSites))
 				.append(factory.createAVVRow(explorationSites));
 

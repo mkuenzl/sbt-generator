@@ -7,7 +7,7 @@ import sbt.automization.util.html.HtmlRow;
 
 import java.util.List;
 
-public class BankettFactory extends AReportRowFactory
+public final class BankettFactory extends ARowFactory
 {
 	public BankettFactory()
 	{

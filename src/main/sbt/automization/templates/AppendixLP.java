@@ -2,6 +2,7 @@ package sbt.automization.templates;
 
 
 import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.InformationTag;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.*;
 
@@ -58,59 +59,59 @@ public final class AppendixLP extends AHtmlTable
                 HtmlCell cellERKID = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("align", "center")
-                        .appendContent(explorationSite.getInformation("ERK_ID"))
+                        .appendContent(explorationSite.getInformation(InformationTag.SITE_ID))
                         .build();
 
                 HtmlCell cellERKORT = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent(explorationSite.getInformation("ERK_ORT"))
+                        .appendContent(explorationSite.getInformation(InformationTag.SITE_LOCATION))
                         .build();
 
                 HtmlCell cellERKLP1 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("align", "center")
                         .appendAttribute("width", "40")
-                        .appendContent(explorationSite.getInformation("ERK_LP1"))
+                        .appendContent(explorationSite.getInformation(InformationTag.SITE_LP_SAMPLE_1))
                         .build();
 
                 HtmlCell cellERKLP2 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("align", "center")
                         .appendAttribute("width", "40")
-                        .appendContent(explorationSite.getInformation("ERK_LP2"))
+                        .appendContent(explorationSite.getInformation(InformationTag.SITE_LP_SAMPLE_2))
                         .build();
 
                 HtmlCell cellERKLP3 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("align", "center")
                         .appendAttribute("width", "40")
-                        .appendContent(explorationSite.getInformation("ERK_LP3"))
+                        .appendContent(explorationSite.getInformation(InformationTag.SITE_LP_SAMPLE_3))
                         .build();
 
                 HtmlCell cellERKLPMEAN = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("align", "center")
                         .appendAttribute("width", "40")
-                        .appendContent(explorationSite.getInformation("ERK_LP_MEAN"))
+                        .appendContent(explorationSite.getInformation(InformationTag.SITE_LP_MEAN))
                         .build();
 
                 HtmlCell cellERKLPEV = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("align", "center")
-                        .appendContent(explorationSite.getInformation("ERK_LP_EV"))
+                        .appendContent(explorationSite.getInformation(InformationTag.SITE_LP_EV))
                         .build();
 
                 HtmlCell cellERKLPEV15 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("align", "center")
-                        .appendContent(explorationSite.getInformation("ERK_LP_EV15"))
+                        .appendContent(explorationSite.getInformation(InformationTag.SITE_LP_EV85))
                         .build();
 
                 HtmlCell cellERKLPEV2 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
                         .appendAttribute("align", "center")
-                        .appendContent(TextFormatUtil.formatLP(explorationSite.getInformation("ERK_LP_EV2"),
-                                explorationSite.getInformation("ERK_LP_EV15")))
+                        .appendContent(TextFormatUtil.formatLP(explorationSite.getInformation(InformationTag.SITE_LP_EV2),
+                                explorationSite.getInformation(InformationTag.SITE_LP_EV85)))
                         .build();
 
                 HtmlRow htmlRow = new HtmlRow.Builder()
@@ -141,7 +142,8 @@ public final class AppendixLP extends AHtmlTable
                 .appendAttribute("width", "55")
                 .appendAttribute("rowspan", "3")        //Zelle geht über 3 Reihen
                 .appendContent("Versuch")
-                .appendContent(new HtmlText.Builder().appendAttribute("class", "Normal").appendContent("Nr.").build().appendTag())
+                .appendContent(TextFormatUtil.printLineBreak())
+                .appendContent("Nr.")
                 .build();
 
         HtmlTableHeader cell2 = new HtmlTableHeader.Builder()
@@ -177,7 +179,8 @@ public final class AppendixLP extends AHtmlTable
                 .appendAttribute("width", "45")
                 .appendAttribute("rowspan", "2")
                 .appendContent("E<sub>Vdyn</sub>")
-                .appendContent(new HtmlText.Builder().appendAttribute("class", "Normal").appendContent("<sub>(-15%)</sub>").build().appendTag())
+                .appendContent(TextFormatUtil.printLineBreak())
+                .appendContent("<sub>(-15%)</sub>")
                 .build();
 
         HtmlTableHeader cell7 = new HtmlTableHeader.Builder()

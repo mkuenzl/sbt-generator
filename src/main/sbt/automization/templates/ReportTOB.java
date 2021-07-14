@@ -106,7 +106,7 @@ public final class ReportTOB extends AReportTable
 				.append(factory.createEvMinimumBorderRow(explorationSites))
 				.append(factory.createMaterialRow(explorationSites))
 				.append(factory.createSizeRow(explorationSites))
-				.append(factory.createKGVRow(explorationSites))
+				.append(factory.createGrainSizeDistributionRow(explorationSites))
 				.append(factory.createTotalSizeRow(explorationSites));
 
 		return techBuilder.toString();
@@ -133,10 +133,10 @@ public final class ReportTOB extends AReportTable
 				.append(factory.createChemieMufvRow(explorationSites))
 				.append(factory.createChemieLagaBoRow(explorationSites))
 				.append(factory.createChemieLagaRcRow(explorationSites))
-				.append(factory.createChemieLagaRcOrientierungRow(explorationSites))
-				.append(factory.createChemieTlGesteinRow(explorationSites))
+				.append(factory.createChemieLagaRcOrientationRow(explorationSites))
+				.append(factory.createChemieTlRockRow(explorationSites))
 				.append(factory.createChemieDepvRow(explorationSites))
-				.append(factory.createChemieEntscheidungshilfeRow(explorationSites))
+				.append(factory.createChemieDecisionSupportRow(explorationSites))
 				.append(factory.createAVVRow(explorationSites));
 
 		return umweltTechBuilder.toString();

@@ -9,7 +9,6 @@ import java.util.Map;
  */
 abstract class AHtml implements IHtmlCode
 {
-
     String content = "";
     Map<String, String> attributes = new HashMap<>();
 

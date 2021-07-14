@@ -46,7 +46,7 @@ public final class CsvParser
 			CSVParser csvParser = CSVFormat.EXCEL.withDelimiter(';').withFirstRecordAsHeader().withIgnoreEmptyLines(true).parse(inputStreamReader);
 
 			List<String> providedCsv = csvParser.getHeaderNames();
-			if (! compare(providedCsv))
+			if (! compareHeader(providedCsv))
 			{
 				ErrorPopup.showErrorMessage("Es wurde eine veraltete Version des Excel Templates verwendet.");
 			}
@@ -67,6 +67,29 @@ public final class CsvParser
 	}
 
 	/**
+	 * Method for testing purposes
+	 * @param csv a file of a csv
+	 * @return a list of headers as Strings
+	 */
+	public List<String> parseHeader(File csv){
+		List<String> headers = null;
+
+		try (FileInputStream fileInputStream = new FileInputStream(csv);
+		     BOMInputStream bomInputStream = new BOMInputStream(fileInputStream);
+		     InputStreamReader inputStreamReader = new InputStreamReader(bomInputStream, StandardCharsets.UTF_8))
+		{
+			CSVParser csvParser = CSVFormat.EXCEL.withDelimiter(';').withFirstRecordAsHeader().withIgnoreEmptyLines(true).parse(inputStreamReader);
+
+			headers = csvParser.getHeaderNames();
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+
+		return headers;
+	}
+
+	/**
 	 * This function compares a list of necessary csv headers with the input csv headers, if the input contains all of
 	 * them it returns true, else false.
 	 * This function has to be up to date with the excel template! TODO
@@ -74,7 +97,7 @@ public final class CsvParser
 	 * @param input a List of Strings containing the headers of a csv file
 	 * @return boolean true if input contains all, false if not.
 	 */
-	public static boolean compare(List<String> input)
+	public static boolean compareHeader(List<String> input)
 	{
 		String headers = "ERK_ID;ERK_NUMMER;ERK_DATUM;ERK_PRUEFER;ERK_BEREICH;ERK_ANSPRECHPARTNER;ERK_KOORDINATEN;" +
 				"ERK_ORT;ERK_AUFSCHLUSS_OB;ERK_AUFSCHLUSS_TOB;ERK_AUFSCHLUSS_UG_OH_BA;ERK_OBERKANTE;ERK_BELASTUNGSKLASSE;" +

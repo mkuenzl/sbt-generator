@@ -44,10 +44,10 @@ public final class ExplorationSite implements Comparable<ExplorationSite>, Seria
 	@Override
 	public int compareTo(final ExplorationSite explorationSite)
 	{
-		String thisOrder = this.getInformation("ERK_NUMMER");
-		String otherOrder = explorationSite.getInformation("ERK_NUMMER");
+		String thisOrder = this.getInformation(InformationTag.SITE_NUMBER);
+		String otherOrder = explorationSite.getInformation(InformationTag.SITE_NUMBER);
 
-		if (thisOrder == null || otherOrder == null)
+		if (thisOrder == null || otherOrder == null || "-".equals(thisOrder) || "-".equals(otherOrder))
 		{
 			//something went wrong order will not change
 			return 0;
@@ -99,7 +99,7 @@ public final class ExplorationSite implements Comparable<ExplorationSite>, Seria
 
 		for (Layer layer : layerList)
 		{
-			String layerThickness = layer.getInformation("SCHICHT_DICKE").replace(",", ".");
+			String layerThickness = layer.getInformation(InformationTag.LAYER_THICKNESS).replace(",", ".");
 			thickness += Double.parseDouble(layerThickness);
 		}
 
@@ -117,7 +117,7 @@ public final class ExplorationSite implements Comparable<ExplorationSite>, Seria
 
 		for (Layer layer : getLayersWithOutcrop(outcrop))
 		{
-			String layerThickness = layer.getInformation("SCHICHT_DICKE").replace(",", ".");
+			String layerThickness = layer.getInformation(InformationTag.LAYER_THICKNESS).replace(",", ".");
 			thickness += Double.parseDouble(layerThickness);
 		}
 
@@ -135,7 +135,7 @@ public final class ExplorationSite implements Comparable<ExplorationSite>, Seria
 		List<Layer> layers = new ArrayList<>();
 		for (Layer layer : layerList)
 		{
-			if (outcrop.equals(layer.getInformation("SCHICHT_AUFSCHLUSS")))
+			if (outcrop.equals(layer.getInformation(InformationTag.LAYER_OUTCROP)))
 			{
 				layers.add(layer);
 			}
