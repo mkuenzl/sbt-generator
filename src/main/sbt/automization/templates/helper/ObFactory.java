@@ -357,12 +357,12 @@ public final class ObFactory extends ARowFactory
 
 					String layerPitch = layer.getInformation(InformationTag.LAYER_PITCH);
 
-					if (pitch && "ja".equals(layerPitch))
+					if (pitch && "JA".equalsIgnoreCase(layerPitch))
 					{
 						//Zähle Dicke der pechhaltigen Schichten
 						d += Double.parseDouble(layerSize);
 					}
-					if (! pitch && "nein".equals(layerPitch))
+					if (! pitch && "NEIN".equalsIgnoreCase(layerPitch))
 					{
 						//Zähle Dicke der pechfreien Schichten
 						d += Double.parseDouble(layerSize);

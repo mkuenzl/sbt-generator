@@ -59,6 +59,9 @@ public class TemplateBuildingTest
 		explorationSites.add(Util.readSerializedExplorationSite(path + "ExplorationSite_7"));
 		explorationSites.add(Util.readSerializedExplorationSite(path + "ExplorationSite_8"));
 		explorationSites.add(Util.readSerializedExplorationSite(path + "ExplorationSite_9"));
+		explorationSites.add(Util.readSerializedExplorationSite(path + "ExplorationSite_10"));
+		explorationSites.add(Util.readSerializedExplorationSite(path + "ExplorationSite_11"));
+
 	}
 
 	@Test
@@ -191,6 +194,15 @@ public class TemplateBuildingTest
 	public void createReportCoordinateTemplate() throws IOException
 	{
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ReportCOORDINATES.getInstance());
+		htmlTemplateExportStrategy.export(explorationSites);
+
+		openExportFile(htmlTemplateExportStrategy.getPath());
+	}
+
+	@Test
+	public void createReportBankettTemplate() throws IOException
+	{
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ReportBANKETT.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
 		openExportFile(htmlTemplateExportStrategy.getPath());

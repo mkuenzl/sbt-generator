@@ -19,7 +19,7 @@ public class TableToolVisualInterface extends JFrame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setIconImage(img.getImage());
 		this.setLayout(null);
-		this.setSize(600, 530);
+		this.setSize(600, 550);
 		this.setResizable(false);
 		constructPanel();
 		//this.setJMenuBar(menuBar);
@@ -59,7 +59,7 @@ public class TableToolVisualInterface extends JFrame
 	{
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBounds(0, 0, 600, 530);
+		panel.setBounds(0, 0, 600, 550);
 		panel.setBackground(Color.gray);
 
 		// BUTTONS.
@@ -183,6 +183,12 @@ public class TableToolVisualInterface extends JFrame
 		checkBoxReportCoordinates.addItemListener(new CheckBoxItemListener());
 		checkBoxReportCoordinates.setEnabled(true);
 		panel.add(checkBoxReportCoordinates);
+
+		JCheckBox checkBoxReportBankett = new CustomCheckBox("BERICHT_BANKETT", false);
+		checkBoxReportBankett.setBounds(310, 480, 265, 20);
+		checkBoxReportBankett.addItemListener(new CheckBoxItemListener());
+		checkBoxReportBankett.setEnabled(true);
+		panel.add(checkBoxReportBankett);
 
 		// BUTTONS.
 		JButton executeButton = new CustomButton("Erstelle Tabellen");

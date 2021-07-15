@@ -77,6 +77,9 @@ public class StrategyStorage
             case "BERICHT_KOORDINATEN":
                 strategyList.add(ReportCOORDINATES.getInstance());
                 break;
+            case "BERICHT_BANKETT":
+                strategyList.add(ReportBANKETT.getInstance());
+                break;
         }
     }
 
@@ -125,6 +128,9 @@ public class StrategyStorage
                 break;
             case "BERICHT_KOORDINATEN":
                 strategyList.remove(ReportCOORDINATES.getInstance());
+                break;
+            case "BERICHT_BANKETT":
+                strategyList.remove(ReportBANKETT.getInstance());
                 break;
         }
     }
