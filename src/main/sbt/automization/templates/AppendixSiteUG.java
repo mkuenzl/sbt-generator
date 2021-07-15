@@ -1,6 +1,7 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.InformationTag;
 import sbt.automization.data.Layer;
 import sbt.automization.format.HtmlCellFormatUtil;
 import sbt.automization.format.TextFormatUtil;
@@ -24,7 +25,7 @@ final class AppendixSiteUG extends AHtmlTable
     @Override
     public void constructTable(final ExplorationSite site)
     {
-        outcrop = site.getInformation("ERK_AUFSCHLUSS_UG_OH_BA");
+        outcrop = site.getInformation(InformationTag.SITE_OUTCROP_UG_OH_BA);
 
         HtmlTable table = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
@@ -38,42 +39,42 @@ final class AppendixSiteUG extends AHtmlTable
 
         for (Layer layer : site.getLayers())
         {
-            if ("UG".equals(layer.getInformation("SCHICHT_AUFSCHLUSS")))
+            if ("UG".equals(layer.getInformation(InformationTag.LAYER_OUTCROP)))
             {
                 //Art der Schicht
                 HtmlCell cell1 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent(TextFormatUtil.formatSoilGroup(layer.getInformation("SCHICHT_ART")))
+                        .appendContent(TextFormatUtil.formatSoilGroup(layer.getInformation(InformationTag.LAYER_TYPE)))
                         .build();
 
                 //Dicke
                 HtmlCell cell2 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(layer.getInformation("SCHICHT_DICKE"))
+                        .appendContent(layer.getInformation(InformationTag.LAYER_THICKNESS))
                         .build();
 
                 //Tiefe
                 HtmlCell cell3 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(layer.getInformation("SCHICHT_TIEFE_ENDE"))
+                        .appendContent(layer.getInformation(InformationTag.LAYER_DEPTH_END))
                         .build();
 
                 //MUFV
-                String chemie_mufv = layer.getInformation("CHEMIE_MUFV");
+                String chemie_mufv = layer.getInformation(InformationTag.CHEMISTRY_MUFV);
                 HtmlCell cell4 = HtmlCellFormatUtil.formatChemistry(chemie_mufv);
 
                 //LAGA BO
-                String chemie_laga_bo = layer.getInformation("CHEMIE_LAGA_BO");
+                String chemie_laga_bo = layer.getInformation(InformationTag.CHEMISTRY_LAGA_BO);
                 HtmlCell cell5 = HtmlCellFormatUtil.formatChemistry(chemie_laga_bo);
 
                 //Notiz
-                String chemie_laga_rc = layer.getInformation("CHEMIE_LAGA_RC");
+                String chemie_laga_rc = layer.getInformation(InformationTag.CHEMISTRY_LAGA_RC);
                 HtmlCell cell6 = HtmlCellFormatUtil.formatChemistry(chemie_laga_rc);
 
                 //Wassergehalt
                 HtmlCell cell7 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(layer.getInformation("SCHICHT_WASSERGEHALT"))
+                        .appendContent(layer.getInformation(InformationTag.LAYER_WATER_CONTENT))
                         .build();
 
                 //WasserProctor
@@ -153,7 +154,7 @@ final class AppendixSiteUG extends AHtmlTable
                 .appendAttribute("width", "60")
                 .appendAttribute("rowspan", "2")
                 .appendContent("MUFV")
-                .appendContent("<div>[46]</div>")
+                .appendContent("<div>[18]</div>")
                 .build();
 
         HtmlTableHeader cell25 = new HtmlTableHeader.Builder()
@@ -161,7 +162,7 @@ final class AppendixSiteUG extends AHtmlTable
                 .appendAttribute("width", "60")
                 .appendAttribute("rowspan", "2")
                 .appendContent("LAGA BO")
-                .appendContent("<div>[2]</div>")
+                .appendContent("<div>[11]</div>")
                 .build();
 
         HtmlTableHeader cell26 = new HtmlTableHeader.Builder()
@@ -169,14 +170,14 @@ final class AppendixSiteUG extends AHtmlTable
                 .appendAttribute("width", "60")
                 .appendAttribute("rowspan", "2")
                 .appendContent("LAGA RC")
-                .appendContent("<div>[16]</div>")
+                .appendContent("<div>[28]</div>")
                 .build();
 
         HtmlTableHeader cell27 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendContent("WG")
-                .appendContent("<div>[28]</div>")
+                .appendContent("<div>[19]</div>")
                 .build();
 
         HtmlTableHeader cell28 = new HtmlTableHeader.Builder()
@@ -189,16 +190,11 @@ final class AppendixSiteUG extends AHtmlTable
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendContent("Proctor")
-                .appendContent("<div>[29]</div>")
+                .appendContent("<div>[20]</div>")
                 .build();
 
 
         //Third Row
-//        HtmlTableHeader cell31 = new HtmlTableHeader.Builder()
-//                .appendAttribute("class", "NormalTableHeader")
-//                .appendAttribute("align", "left")
-//                .appendContent("-")
-//                .build();
 
         HtmlTableHeader cell32 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeaderUnits")
@@ -209,11 +205,6 @@ final class AppendixSiteUG extends AHtmlTable
                 .appendAttribute("class", "NormalTableHeaderUnits")
                 .appendContent("cm")
                 .build();
-
-//        HtmlTableHeader cell34 = new HtmlTableHeader.Builder()
-//                .appendAttribute("class", "NormalTableHeader")
-//                .appendContent("-")
-//                .build();
 
         HtmlTableHeader cell35 = new HtmlTableHeader.Builder()
                 .appendAttribute("class", "NormalTableHeaderUnits")
@@ -229,11 +220,6 @@ final class AppendixSiteUG extends AHtmlTable
                 .appendAttribute("class", "NormalTableHeaderUnits")
                 .appendContent("Mg/m³")
                 .build();
-
-//        HtmlTableHeader cell38 = new HtmlTableHeader.Builder()
-//                .appendAttribute("class", "NormalTableHeader")
-//                .appendContent("-")
-//                .build();
 
         HtmlRow row1 = new HtmlRow.Builder()
                 .appendAttribute("class", "NormalHeader")

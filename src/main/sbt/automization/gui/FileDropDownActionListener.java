@@ -26,11 +26,11 @@ public class FileDropDownActionListener implements ActionListener
 
 			if ("".equals(item)) return;
 
-			String itemPath = "/".concat(item);
+			//String itemPath = "/report-templates/".concat(item);
 
 			try
 			{
-				Util.exportFile(itemPath);
+				Util.exportFile("/report-templates/", item);
 			} catch (IOException ioException)
 			{
 				ioException.printStackTrace();

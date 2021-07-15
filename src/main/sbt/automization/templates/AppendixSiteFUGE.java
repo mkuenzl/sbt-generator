@@ -132,6 +132,7 @@ final class AppendixSiteFUGE extends AHtmlTable
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
 				.appendContent("Dicke")
+				.appendContent("<div>[7]</div>")
 				.build();
 
 		HtmlTableHeader cell23 = new HtmlTableHeader.Builder()
@@ -145,7 +146,7 @@ final class AppendixSiteFUGE extends AHtmlTable
 				.appendAttribute("width", "60")
 				.appendAttribute("rowspan", "2")
 				.appendContent("MUFV")
-				.appendContent("<div>[46]</div>")
+				.appendContent("<div>[18]</div>")
 				.build();
 
 		HtmlTableHeader cell25 = new HtmlTableHeader.Builder()

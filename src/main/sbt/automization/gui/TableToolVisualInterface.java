@@ -87,8 +87,10 @@ public class TableToolVisualInterface extends JFrame
 		String[] pattern = {
 				"Lade Dokument ...",
 				"Chemie_Vorlage.xlsx",
-				"Regelwerk_Klein.docx",
-				"Regelwerk_Groß.docx"
+				"Bericht-Erkundung-Straße.docx",
+				"Bericht-Straßenbau-Vorerkundung.docx",
+				"Bericht-Straßenbau-Vorerkundung-(A3).docx",
+				"Regelwerk-Straßenbau.docx"
 		};
 
 		JComboBox fileDropDown = new FileDropDownMenu(pattern);

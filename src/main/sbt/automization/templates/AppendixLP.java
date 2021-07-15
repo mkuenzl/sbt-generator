@@ -188,7 +188,7 @@ public final class AppendixLP extends AHtmlTable
                 .appendAttribute("width", "45")
                 .appendAttribute("rowspan", "2")
                 .appendContent("E<sub>V2</sub>")
-                .appendContent("<div>[42]</div>")
+                .appendContent("<div>[41]</div>")
                 .build();
 
         //First Header Row

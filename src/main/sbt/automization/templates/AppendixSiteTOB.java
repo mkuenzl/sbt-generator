@@ -1,6 +1,7 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.InformationTag;
 import sbt.automization.data.Layer;
 import sbt.automization.format.HtmlCellFormatUtil;
 import sbt.automization.format.TextFormatUtil;
@@ -21,7 +22,7 @@ final class AppendixSiteTOB extends AHtmlTable
 	@Override
 	public void constructTable(final ExplorationSite site)
 	{
-		outcrop = site.getInformation("ERK_AUFSCHLUSS_TOB");
+		outcrop = site.getInformation(InformationTag.SITE_OUTCROP_TOB);
 
 		HtmlTable table = new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
@@ -33,19 +34,20 @@ final class AppendixSiteTOB extends AHtmlTable
 				.appendContent(constructAndGetTableHeader())
 				.build();
 
+		boolean lpPrinted = false;
 
 		for (Layer layer : site.getLayers())
 		{
-			if ("TOB".equals(layer.getInformation("SCHICHT_AUFSCHLUSS").toUpperCase()))
+			if ("TOB".equals(layer.getInformation(InformationTag.LAYER_OUTCROP).toUpperCase()))
 			{
 				//Art der Schicht
 				HtmlCell cell1 = new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(layer.getInformation("SCHICHT_ART"))
+						.appendContent(layer.getInformation(InformationTag.LAYER_TYPE))
 						.appendContent(new HtmlText.Builder().appendAttribute("class", "Normal")
-								.appendContent(layer.getInformation("SCHICHT_KOERNUNG"))
+								.appendContent(layer.getInformation(InformationTag.LAYER_GRANULATION))
 								.appendContent(" ")
-								.appendContent(layer.getInformation("SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT"))
+								.appendContent(layer.getInformation(InformationTag.LAYER_ROUNDING_GRADATION))
 								.build()
 								.appendTag())
 						.build();
@@ -53,35 +55,35 @@ final class AppendixSiteTOB extends AHtmlTable
 				//Dicke
 				HtmlCell cell2 = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layer.getInformation("SCHICHT_DICKE"))
+						.appendContent(layer.getInformation(InformationTag.LAYER_THICKNESS))
 						.build();
 
 				//Tiefe
 				HtmlCell cell3 = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layer.getInformation("SCHICHT_TIEFE_ENDE"))
+						.appendContent(layer.getInformation(InformationTag.LAYER_DEPTH_END))
 						.build();
 
 				//MUFV
-				String chemie_mufv = layer.getInformation("CHEMIE_MUFV");
+				String chemie_mufv = layer.getInformation(InformationTag.CHEMISTRY_MUFV);
 				HtmlCell cell4 = HtmlCellFormatUtil.formatChemistry(chemie_mufv);
 
 				//LAGA_BO
-				String chemie_laga_bo = layer.getInformation("CHEMIE_LAGA_BO");
+				String chemie_laga_bo = layer.getInformation(InformationTag.CHEMISTRY_LAGA_BO);
 				HtmlCell cell5 = HtmlCellFormatUtil.formatChemistry(chemie_laga_bo);
 
 				//LAGA_RC
-				String chemie_laga_rc = layer.getInformation("CHEMIE_LAGA_RC");
+				String chemie_laga_rc = layer.getInformation(InformationTag.CHEMISTRY_LAGA_RC);
 				HtmlCell cell6 = HtmlCellFormatUtil.formatChemistry(chemie_laga_rc);
 
 				//TL_GESTEIN
-				String chemie_tlgestein = layer.getInformation("CHEMIE_TLGESTEIN");
+				String chemie_tlgestein = layer.getInformation(InformationTag.CHEMISTRY_TL_ROCK_STRATUM);
 				HtmlCell cell7 = HtmlCellFormatUtil.formatChemistry(chemie_tlgestein);
 
 				//LP_DYN
-				String erk_lp_ev2 = site.getInformation("ERK_LP_EV2");
+				String erk_lp_ev2 = site.getInformation(InformationTag.SITE_LP_EV2);
 				HtmlCell cellLP_DYN;
-				if (erk_lp_ev2.equals("-"))
+				if (erk_lp_ev2.equals("-") || lpPrinted)
 				{
 					cellLP_DYN = new HtmlCell.Builder()
 							.appendAttribute("class", "NormalErkundungsstelle")
@@ -93,14 +95,16 @@ final class AppendixSiteTOB extends AHtmlTable
 							.appendAttribute("class", "NormalErkundungsstelle")
 							.appendContent(erk_lp_ev2)
 							.appendContent(TextFormatUtil.printLineBreak())
-							.appendContent(site.getInformation("ERK_LP_EV15"))
+							.appendContent(site.getInformation(InformationTag.SITE_LP_EV85))
 							.build();
+
+					lpPrinted = true;
 				}
 
 
 				HtmlCell cell9 = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layer.getInformation("SCHICHT_KORNGROESSENVERTEILUNG"))
+						.appendContent(layer.getInformation(InformationTag.LAYER_GRAIN_SIZE_DISTRIBUTION))
 						.build();
 
 
@@ -158,7 +162,7 @@ final class AppendixSiteTOB extends AHtmlTable
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
 				.appendContent("Dicke")
-				.appendContent("<div>[23]</div>")
+				.appendContent("<div>[7]</div>")
 				.build();
 
 		HtmlTableHeader cell23 = new HtmlTableHeader.Builder()
@@ -172,7 +176,7 @@ final class AppendixSiteTOB extends AHtmlTable
 				.appendAttribute("width", "60")
 				.appendAttribute("rowspan", "2")
 				.appendContent("MUFV")
-				.appendContent("<div>[46]</div>")
+				.appendContent("<div>[18]</div>")
 				.build();
 
 		HtmlTableHeader lagaBoHeader = new HtmlTableHeader.Builder()
@@ -180,7 +184,7 @@ final class AppendixSiteTOB extends AHtmlTable
 				.appendAttribute("width", "60")
 				.appendAttribute("rowspan", "2")
 				.appendContent("LAGA BO")
-				.appendContent("<div>[2]</div>")
+				.appendContent("<div>[11]</div>")
 				.build();
 
 		HtmlTableHeader cell26 = new HtmlTableHeader.Builder()
@@ -188,7 +192,7 @@ final class AppendixSiteTOB extends AHtmlTable
 				.appendAttribute("width", "60")
 				.appendAttribute("rowspan", "2")
 				.appendContent("LAGA RC")
-				.appendContent("<div>[16]</div>")
+				.appendContent("<div>[28]</div>")
 				.build();
 
 		HtmlTableHeader cell27 = new HtmlTableHeader.Builder()
@@ -196,7 +200,7 @@ final class AppendixSiteTOB extends AHtmlTable
 				.appendAttribute("width", "60")
 				.appendAttribute("rowspan", "2")
 				.appendContent("TL Ge.")
-				.appendContent("<div>[15]</div>")
+				.appendContent("<div>[27]</div>")
 				.build();
 
 		HtmlTableHeader cell28 = new HtmlTableHeader.Builder()
@@ -207,7 +211,7 @@ final class AppendixSiteTOB extends AHtmlTable
 				.appendContent("E<sub>Vdyn</sub>")
 				.appendContent(TextFormatUtil.printLineBreak())
 				.appendContent("<sub>(-15%)</sub>")
-				.appendContent("<div>[42]</div>")
+				.appendContent("<div>[41]</div>")
 				.build();
 
 
@@ -215,7 +219,7 @@ final class AppendixSiteTOB extends AHtmlTable
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
 				.appendContent("KGV")
-				.appendContent("<div>[14]</div>")
+				.appendContent("<div>[25]</div>")
 				.build();
 
 		HtmlTableHeader cell32 = new HtmlTableHeader.Builder()

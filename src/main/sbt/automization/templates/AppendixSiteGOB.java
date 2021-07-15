@@ -38,54 +38,54 @@ final class AppendixSiteGOB extends AHtmlTable
 
         for (Layer layer : site.getLayers())
         {
-            String schicht_aufschluss = layer.getInformation("SCHICHT_AUFSCHLUSS");
+            String schicht_aufschluss = layer.getInformation(InformationTag.LAYER_OUTCROP);
             if ("GOB".equals(schicht_aufschluss) || "TMHB".equals(schicht_aufschluss) || "BETON".equals(schicht_aufschluss) ||"BESCHICHTUNG".equals(schicht_aufschluss) ||"ABDICHTUNG".equals(schicht_aufschluss))
             {
                 HtmlCell cellSchichtArt = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent(TextFormatUtil.formatKindAndGranulation(layer.getInformation("SCHICHT_ART"),
-                                layer.getInformation("SCHICHT_KOERNUNG")))
+                        .appendContent(TextFormatUtil.formatKindAndGranulation(layer.getInformation(InformationTag.LAYER_TYPE),
+                                layer.getInformation(InformationTag.LAYER_GRANULATION)))
                         .build();
 
                 //Dicke
                 HtmlCell cellDicke = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(layer.getInformation("SCHICHT_DICKE"))
+                        .appendContent(layer.getInformation(InformationTag.LAYER_THICKNESS))
                         .build();
 
                 //Tiefe
                 HtmlCell cellTiefe = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(layer.getInformation("SCHICHT_TIEFE_ENDE"))
+                        .appendContent(layer.getInformation(InformationTag.LAYER_DEPTH_END))
                         .build();
 
 
                 //MUFV
-                String chemie_mufv = layer.getInformation("CHEMIE_MUFV");
+                String chemie_mufv = layer.getInformation(InformationTag.CHEMISTRY_MUFV);
                 HtmlCell cellMUFV = HtmlCellFormatUtil.formatChemistry(chemie_mufv);
 
                 //Pech
-                String schicht_pech = layer.getInformation("SCHICHT_PECH");
+                String schicht_pech = layer.getInformation(InformationTag.LAYER_PITCH);
                 HtmlCell cellPech = HtmlCellFormatUtil.formatPitch(schicht_pech);
 
                 //LAGA RC
-                String chemie_laga_rc = layer.getInformation("CHEMIE_LAGA_RC");
+                String chemie_laga_rc = layer.getInformation(InformationTag.CHEMISTRY_LAGA_RC);
                 HtmlCell cellLAGARC = HtmlCellFormatUtil.formatChemistry(chemie_laga_rc);
 
                 //TL GESTEIN
-                String chemie_tlgestein = layer.getInformation("CHEMIE_TLGESTEIN");
+                String chemie_tlgestein = layer.getInformation(InformationTag.CHEMISTRY_TL_ROCK_STRATUM);
                 HtmlCell cellTLGESTEIN = HtmlCellFormatUtil.formatChemistry(chemie_tlgestein);
 
                 //PAK
                 HtmlCell cellPAK = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(layer.getInformation("SCHICHT_PAK"))
+                        .appendContent(layer.getInformation(InformationTag.LAYER_PAK))
                         .build();
 
                 //RuK
                 HtmlCell cellRUK = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(layer.getInformation("SCHICHT_RUK"))
+                        .appendContent(layer.getInformation(InformationTag.LAYER_RUK))
                         .build();
 
                 HtmlRow layerRow = new HtmlRow.Builder()
@@ -108,6 +108,7 @@ final class AppendixSiteGOB extends AHtmlTable
         //Belastungklasse empty call
         HtmlCell cellEmpty1 = new HtmlCell.Builder()
                 .appendAttribute("class", "NormalErkundungsstelle")
+                //.appendAttribute("bgcolor", "grey")
                 .appendAttribute("colspan", "5")        //Zelle geht über 5 Spalten
                 .appendContent("")
                 .build();
@@ -123,7 +124,7 @@ final class AppendixSiteGOB extends AHtmlTable
         HtmlCell cellBelastungklasseTafel = new HtmlCell.Builder()
                 .appendAttribute("class", "NormalErkundungsstelle")
                 .appendAttribute("colspan", "2")
-                .appendContent("RStO<sup>[21]</sup>")
+                .appendContent("RStO<sup>[5]</sup>")
                 .appendContent(TextFormatUtil.printLineBreak())
                 .appendContent(site.getInformation("ERK_BELASTUNGSKLASSE_TAFEL"))
                 .build();
@@ -172,7 +173,7 @@ final class AppendixSiteGOB extends AHtmlTable
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendContent("Dicke")
-                .appendContent("<div>[23]</div>")
+                .appendContent("<div>[7]</div>")
                 .build();
 
         HtmlTableHeader cellTiefe = new HtmlTableHeader.Builder()
@@ -186,7 +187,7 @@ final class AppendixSiteGOB extends AHtmlTable
                 .appendAttribute("width", "60")
                 .appendAttribute("rowspan", "2")
                 .appendContent("MUFV")
-                .appendContent("<div>[46]</div>")
+                .appendContent("<div>[18]</div>")
                 .build();
 
         HtmlTableHeader cellPech = new HtmlTableHeader.Builder()
@@ -194,7 +195,7 @@ final class AppendixSiteGOB extends AHtmlTable
                 .appendAttribute("width", "60")
                 .appendAttribute("rowspan", "2")
                 .appendContent("PECH")
-                .appendContent("<div>[26]</div>")
+                .appendContent("<div>[10]</div>")
                 .build();
 
         HtmlTableHeader cellLAGARC = new HtmlTableHeader.Builder()
@@ -202,7 +203,7 @@ final class AppendixSiteGOB extends AHtmlTable
                 .appendAttribute("width", "60")
                 .appendAttribute("rowspan", "2")
                 .appendContent("LAGA RC")
-                .appendContent("<div>[16]</div>")
+                .appendContent("<div>[28]</div>")
                 .build();
 
         HtmlTableHeader cellTLGe = new HtmlTableHeader.Builder()
@@ -210,7 +211,7 @@ final class AppendixSiteGOB extends AHtmlTable
                 .appendAttribute("width", "60")
                 .appendAttribute("rowspan", "2")
                 .appendContent("TL Ge.")
-                .appendContent("<div>[15]</div>")
+                .appendContent("<div>[27]</div>")
                 .build();
 
         HtmlTableHeader cellPAK = new HtmlTableHeader.Builder()
@@ -223,7 +224,7 @@ final class AppendixSiteGOB extends AHtmlTable
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "60")
                 .appendContent("RuK")
-                .appendContent("<div>[34]</div>")
+                .appendContent("<div>[31]</div>")
                 .build();
 
         //Third Row

@@ -154,7 +154,7 @@ public class AppendixSiteBANKETT extends AHtmlTable
 				.appendAttribute("width", "60")
 				.appendAttribute("rowspan", "2")
 				.appendContent("MUFV")
-				.appendContent("<div>[46]</div>")
+				.appendContent("<div>[18]</div>")
 				.build();
 
 		HtmlTableHeader cell25 = new HtmlTableHeader.Builder()
@@ -162,7 +162,7 @@ public class AppendixSiteBANKETT extends AHtmlTable
 				.appendAttribute("width", "60")
 				.appendAttribute("rowspan", "2")
 				.appendContent("LAGA BO")
-				.appendContent("<div>[2]</div>")
+				.appendContent("<div>[11]</div>")
 				.build();
 
 		HtmlTableHeader cell26 = new HtmlTableHeader.Builder()
@@ -170,14 +170,14 @@ public class AppendixSiteBANKETT extends AHtmlTable
 				.appendAttribute("width", "60")
 				.appendAttribute("rowspan", "2")
 				.appendContent("LAGA RC")
-				.appendContent("<div>[16]</div>")
+				.appendContent("<div>[28]</div>")
 				.build();
 
 		HtmlTableHeader cell27 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
 				.appendContent("WG")
-				.appendContent("<div>[28]</div>")
+				.appendContent("<div>[19]</div>")
 				.build();
 
 		HtmlTableHeader cell28 = new HtmlTableHeader.Builder()
@@ -190,7 +190,7 @@ public class AppendixSiteBANKETT extends AHtmlTable
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
 				.appendContent("Proctor")
-				.appendContent("<div>[29]</div>")
+				.appendContent("<div>[20]</div>")
 				.build();
 
 		// Third row

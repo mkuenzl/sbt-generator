@@ -196,7 +196,7 @@ public final class AppendixRUK extends AHtmlTable
                 .appendAttribute("class", "NormalTableHeader")
                 .appendAttribute("width", "95")
                 .appendContent("Erw. RuK")
-                .appendContent("<div>[34]</div>")
+                .appendContent("<div>[31]</div>")
                 .build();
 
         HtmlTableHeader cellTiefeCm = new HtmlTableHeader.Builder()

@@ -64,7 +64,36 @@ public final class Util
 	 * @param fileName specifies which file should be exported
 	 * @throws IOException if anything happens while reading oder writing the file
 	 */
-	public static void exportFile(String fileName) throws IOException
+	public static void exportFile(final String pathTo, final String fileName) throws IOException
+	{
+		String pathname = System.getProperty("user.dir").concat(File.separator).concat(fileName);
+
+		if (new File(pathname).exists()) return;
+
+		URL inputUrl = Util.class.getResource(pathTo + fileName);
+
+		File destinationFile = new File(pathname);
+
+		if (! destinationFile.exists() && ! destinationFile.isDirectory())
+		{
+			Path path = Paths.get(destinationFile.getPath()).getParent();
+			if (! Files.exists(path))
+			{
+				Files.createDirectories(path);
+			}
+			if (inputUrl != null && destinationFile != null)
+			{
+				FileUtils.copyURLToFile(inputUrl, destinationFile);
+			}
+		}
+	}
+
+	/**
+	 * Method used to export files from with the program resource folder
+	 * @param fileName specifies which file should be exported
+	 * @throws IOException if anything happens while reading oder writing the file
+	 */
+	public static void exportFile(final String fileName) throws IOException
 	{
 		String pathname = System.getProperty("user.dir").concat(File.separator).concat(fileName);
 
