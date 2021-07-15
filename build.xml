@@ -69,7 +69,7 @@
         <delete dir="${out.dir}"/>
     </target>
 
-    <target name="compile" depends="clean">
+    <target name="compile" depends="clean, retrieve-ivy">
         <mkdir dir="${class.main.dir}"/>
         <javac srcdir="${main.dir}"
                destdir="${class.main.dir}"
