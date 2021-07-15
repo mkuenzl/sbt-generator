@@ -1,4 +1,4 @@
-<project name="sbt-generator" default="exe" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="sbt-generator" default="jar" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
 
     <!-- set global properties for this build -->
     <property name="src.dir" value="src"/>
@@ -27,10 +27,6 @@
     <taskdef name="launch4j"
             classname="net.sf.launch4j.ant.Launch4jTask"
             classpath="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar" />
-
-<!--    <taskdef name="jsign" classname="net.jsign.JsignTask" classpath="C:\Users\Kuenzl\Desktop\jsign-3.1.jar"/>-->
-
-
 
     <!-- ivy targets for this build -->
     <target name="installed-ivy">
@@ -108,16 +104,5 @@
         <mkdir dir="${exe.dir}"/>
         <launch4j configFile="resources/sbt-table-config.xml" />
     </target>
-
-<!--    <target name="sign" depends="exe">-->
-<!--    <jsign file="${exe.dir}/sbt-table-generator.exe"-->
-<!--           name="SBT table-generator"-->
-<!--           url="http://www.example.com"-->
-<!--           keystore="keystore.jks"-->
-<!--           alias="test"-->
-<!--           storepass="password"-->
-<!--           tsaurl="http://timestamp.comodoca.com/authenticode"/>-->
-<!--    </target>-->
-    <!-- TODO -->
 
 </project>
