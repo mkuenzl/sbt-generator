@@ -111,7 +111,7 @@
     </target>
 
     <target name="junit" depends="compile-tests">
-        <junit printsummary="yes" haltonfailure="no">
+        <junit printsummary="yes" haltonfailure="yes">
             <classpath>
                 <path refid="test.class.path"/>
                 <pathelement path="${java.class.path}"/>
