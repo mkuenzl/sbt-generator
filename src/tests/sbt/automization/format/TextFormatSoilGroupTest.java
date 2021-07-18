@@ -14,7 +14,7 @@ public class TextFormatSoilGroupTest
     @Test
     public void bodengruppeAuffuellungWithClipTest(){
         String schichtBodenGruppe = TextFormatUtil.formatSoilGroup("[OH]");
-        Assert.assertTrue(schichtBodenGruppe.equals("[OH]"));
+        Assert.assertTrue(schichtBodenGruppe.equals("Oberboden [OH]"));
     }
 
     @Test
