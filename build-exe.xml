@@ -1,42 +1,26 @@
-<project name="sbt-generator-exe" default="exe" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="sbt-generator-exe" default="exe" basedir=".">
 
     <!-- set global properties for this build -->
     <property name="src.dir" value="src"/>
-    <property name="main.dir" value="${src.dir}/main/"/>
-    <property name="build.dir" value="build"/>
-    <property name="resource.dir" value="resources"/>
-    <property name="jar.dir" value="${build.dir}/jar"/>
-    <property name="exe.dir" value="${build.dir}/exe"/>
-    <property name="class.dir" value="${build.dir}/classes"/>
-    <property name="class.main.dir" value="${class.dir}/main"/>
     <property name="lib.dir" value="lib"/>
     <property name="out.dir" value="out"/>
-    <property name="dist.dir" value="${build.dir}/dist"/>
-    <property name="launch4j.dir" location="${user.home}/launch4j/" />
+    <property name="build.dir" value="build"/>
+    <property name="main.dir" value="${src.dir}/main/"/>
+    <property name="jar.dir" value="${build.dir}/jar"/>
+    <property name="exe.dir" value="${build.dir}/exe"/>
 
-    <!-- set ivy properties for this build -->
-    <property name="ivy.install.version" value="2.5.0"/>
-    <property name="ivy.home" value="${user.home}/.ant"/>
-    <property name="ivy.jar.dir" value="${ivy.home}/lib"/>
-    <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar"/>
-    <property name="ivy.uri" value="https://repo1.maven.org/maven2/org/apache/ivy/ivy"/>
+    <property name="main.resources" value="resources"/>
+
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="main.classes" value="${classes.dir}/main"/>
 
     <!-- -->
     <property name="project" value="sbt-table-generator"/>
+    <property name="launch4j.dir" location="${user.home}/launch4j/" />
 
     <taskdef name="launch4j"
              classname="net.sf.launch4j.ant.Launch4jTask"
              classpath="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar" />
-
-    <!-- set lib/dist Paths -->
-    <path id="libraries">
-        <fileset dir="${lib.dir}">
-            <include name="**/*.jar"/>
-            <exclude name="**/*sources.jar"/>
-            <exclude name="**/*javadoc.jar"/>
-        </fileset>
-    </path>
-    <!-- -->
 
     <target name="clean">
         <delete dir="${build.dir}"/>
@@ -44,27 +28,29 @@
         <delete dir="${out.dir}"/>
     </target>
 
-    <target name="compile" depends="clean">
-        <mkdir dir="${class.main.dir}"/>
+    <target name="compile-main" depends="clean">
+        <mkdir dir="${main.classes}"/>
         <javac srcdir="${main.dir}"
-               destdir="${class.main.dir}"
+               destdir="${main.classes}"
                release="11"
                includeantruntime="false">
             <classpath>
-                <path refid="libraries"/>
+                <pathelement path="${lib.dir}/commons-cli-1.4.jar"/>
+                <pathelement path="${lib.dir}/commons-io-2.6.jar"/>
+                <pathelement path="${lib.dir}/commons-csv-1.8.jar"/>
             </classpath>
         </javac>
     </target>
 
-    <target name="jar" depends="compile">
+    <target name="jar" depends="compile-main">
         <mkdir dir="${jar.dir}"/>
-        <jar destfile="${jar.dir}/sbt-table-generator.jar" basedir="${class.main.dir}">
+        <jar destfile="${jar.dir}/sbt-table-generator.jar" basedir="${main.classes}">
             <zipgroupfileset dir="${lib.dir}">
                 <include name="commons-cli-1.4.jar"/>
                 <include name="commons-io-2.6.jar"/>
                 <include name="commons-csv-1.8.jar"/>
             </zipgroupfileset>
-            <fileset dir="${resource.dir}"/>
+            <fileset dir="${main.resources}"/>
             <manifest>
                 <attribute name="Main-Class" value="sbt.Main"/>
             </manifest>
@@ -73,7 +59,7 @@
 
     <target name="exe" depends="jar">
         <mkdir dir="${exe.dir}"/>
-        <launch4j configFile="resources/sbt-table-config.xml" />
+        <launch4j configFile="${main.resources}/sbt-table-config.xml" />
     </target>
 
 </project>

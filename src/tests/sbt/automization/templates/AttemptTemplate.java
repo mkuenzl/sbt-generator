@@ -1,29 +1,28 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class TestTemplate extends AHtmlTable
+public final class AttemptTemplate extends AHtmlTable
 {
 
-	private static TestTemplate instance;
+	private static AttemptTemplate instance;
 
-	private TestTemplate() {}
+	private AttemptTemplate() {}
 
-	public static TestTemplate getInstance()
+	public static AttemptTemplate getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (TestTemplate.class)
+			synchronized (AttemptTemplate.class)
 			{
 				if (instance == null)
 				{
-					instance = new TestTemplate();
+					instance = new AttemptTemplate();
 				}
 			}
 		}

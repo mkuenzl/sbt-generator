@@ -148,7 +148,7 @@ public class TemplateBuildingTest
 	@Test
 	public void createExampleTemplate() throws IOException
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(TestTemplate.getInstance());
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(AttemptTemplate.getInstance());
 		htmlTemplateExportStrategy.export(explorationSites);
 
 		openExportFile(htmlTemplateExportStrategy.getPath());

@@ -2,17 +2,20 @@
 
     <!-- set global properties for this build -->
     <property name="src.dir" value="src"/>
-    <property name="main.dir" value="${src.dir}/main/"/>
-    <property name="build.dir" value="build"/>
-    <property name="resource.dir" value="resources"/>
-    <property name="jar.dir" value="${build.dir}/jar"/>
-    <property name="exe.dir" value="${build.dir}/exe"/>
-    <property name="class.dir" value="${build.dir}/classes"/>
-    <property name="class.main.dir" value="${class.dir}/main"/>
     <property name="lib.dir" value="lib"/>
     <property name="out.dir" value="out"/>
-    <property name="dist.dir" value="${build.dir}/dist"/>
-    <property name="launch4j.dir" location="${user.home}/launch4j/" />
+    <property name="build.dir" value="build"/>
+    <property name="main.dir" value="${src.dir}/main/"/>
+    <property name="test.dir" value="${src.dir}/tests/"/>
+    <property name="jar.dir" value="${build.dir}/jar"/>
+    <property name="exe.dir" value="${build.dir}/exe"/>
+
+    <property name="main.resources" value="resources"/>
+    <property name="test.resources" value="tests-resources"/>
+
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="main.classes" value="${classes.dir}/main"/>
+    <property name="test.classes" value="${classes.dir}/test"/>
 
     <!-- set ivy properties for this build -->
     <property name="ivy.install.version" value="2.5.0"/>
@@ -53,13 +56,27 @@
     </target>
     <!-- -->
 
-    <!-- set lib/dist Paths -->
-    <path id="libraries">
+    <!-- set paths -->
+    <path id="libraries.path">
         <fileset dir="${lib.dir}">
-            <include name="**/*.jar"/>
-            <exclude name="**/*sources.jar"/>
-            <exclude name="**/*javadoc.jar"/>
+            <include name="commons-cli-1.4.jar"/>
+            <include name="commons-io-2.6.jar"/>
+            <include name="commons-csv-1.8.jar"/>
         </fileset>
+    </path>
+
+    <path id="main.class.path">
+        <pathelement location="${main.classes}"/>
+        <pathelement location="${main.resources}"/>
+        <path refid="libraries.path"/>
+    </path>
+
+    <path id="test.class.path">
+        <path refid="main.class.path"/>
+        <pathelement location="${test.classes}"/>
+        <pathelement location="${test.resources}"/>
+        <pathelement location="${lib.dir}/junit-4.13.2.jar"/>
+        <pathelement location="${lib.dir}/hamcrest-core-1.3.jar"/>
     </path>
     <!-- -->
 
@@ -69,27 +86,57 @@
         <delete dir="${out.dir}"/>
     </target>
 
-    <target name="compile" depends="clean, retrieve-ivy">
-        <mkdir dir="${class.main.dir}"/>
+    <target name="compile-main" depends="clean, retrieve-ivy">
+        <mkdir dir="${main.classes}"/>
         <javac srcdir="${main.dir}"
-               destdir="${class.main.dir}"
+               destdir="${main.classes}"
                 release="11"
                includeantruntime="false">
             <classpath>
-                <path refid="libraries"/>
+                <path refid="main.class.path"/>
             </classpath>
         </javac>
     </target>
 
-    <target name="jar" depends="compile">
+    <target name="compile-tests" depends="compile-main">
+        <mkdir dir="${test.classes}"/>
+        <javac srcdir="${test.dir}"
+               destdir="${test.classes}"
+               release="11"
+               includeantruntime="false">
+            <classpath>
+                <path refid="test.class.path"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="junit" depends="compile-tests">
+        <junit printsummary="yes" haltonfailure="no">
+            <classpath>
+                <path refid="test.class.path"/>
+                <pathelement path="${java.class.path}"/>
+            </classpath>
+
+            <formatter type="plain"/>
+
+            <batchtest fork="yes">
+                <fileset dir="${test.dir}">
+                    <include name="**/*Test*.java"/>
+                    <exclude name="**/AllTests.java"/>
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+    <target name="jar" depends="compile-main">
         <mkdir dir="${jar.dir}"/>
-        <jar destfile="${jar.dir}/sbt-table-generator.jar" basedir="${class.main.dir}">
+        <jar destfile="${jar.dir}/sbt-table-generator.jar" basedir="${main.classes}">
             <zipgroupfileset dir="${lib.dir}">
                 <include name="commons-cli-1.4.jar"/>
                 <include name="commons-io-2.6.jar"/>
                 <include name="commons-csv-1.8.jar"/>
             </zipgroupfileset>
-            <fileset dir="${resource.dir}"/>
+            <fileset dir="${main.resources}"/>
             <manifest>
                 <attribute name="Main-Class" value="sbt.Main"/>
             </manifest>

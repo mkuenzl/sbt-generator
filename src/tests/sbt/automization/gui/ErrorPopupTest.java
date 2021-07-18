@@ -1,21 +1,16 @@
 package sbt.automization.gui;
 
+import org.junit.Assert;
 import org.junit.Test;
 import sbt.automization.templates.AppendixPN;
 
 public class ErrorPopupTest
 {
 	@Test
-	public void showDialogTest()
-	{
-		String message = "Error Message String";
-		ErrorPopup.showErrorMessage(message);
-	}
-
-	@Test
 	public void showStrategyErrorTest()
 	{
-		String message = "Error Message String: ";
-		ErrorPopup.showErrorMessage(message + AppendixPN.getInstance().getClass().getSimpleName());
+		String strategyName = AppendixPN.getInstance().getClass().getSimpleName();
+
+		Assert.assertEquals("AppendixPN", strategyName);
 	}
 }
