@@ -633,4 +633,6 @@ public enum InformationTag
 			};
 
 	public abstract String getIdentifier();
+
+	//public abstract String getType();
 }

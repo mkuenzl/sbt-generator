@@ -138,14 +138,27 @@ public final class Util
 	 * @param key String that represents a key to get information from the layers
 	 * @return true, if there is a non empty value, false, if all values are empty
 	 */
-	public static boolean thereExistsAnExplorationSiteLayerWithData(List<ExplorationSite> explorationSites, String outcrop, InformationTag key)
+	public static boolean thereExistsAnExplorationSiteWithData(List<ExplorationSite> explorationSites, String outcrop, InformationTag key)
 	{
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			List<Layer> layersWithOutcrop = explorationSite.getLayersWithOutcrop(outcrop);
-			for (Layer layer : layersWithOutcrop)
-			{
-				if (!"-".equals(layer.getInformation(key))) return true;
+			if (key.name().contains("SITE"))
+			{ //TODO make InformationTags implement Type
+				if (!"-".equals(explorationSite.getInformation(key))) return true;
+			} else {
+				List<Layer> layers;
+
+				if (!"".equals(outcrop))
+				{
+					layers = explorationSite.getLayersWithOutcrop(outcrop);
+				} else {
+					layers = explorationSite.getLayers();
+				}
+
+				for (Layer layer : layers)
+				{
+					if (!"-".equals(layer.getInformation(key))) return true;
+				}
 			}
 		}
 		return false;
