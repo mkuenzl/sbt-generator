@@ -24,11 +24,9 @@ public abstract class AReportTable extends AHtmlTable
 	 */
 	public Collection<List<ExplorationSite>> divideExplorationSites(List<ExplorationSite> sites)
 	{
-		List<ExplorationSite> templateExplorationSites = sites.stream()
-				.filter(e -> e.getLayersWithOutcrop(layerKind).size() > 0)
-				.collect(Collectors.toList());
+		List<ExplorationSite> explorationSitesWhichIncludeOutcrop = Util.getExplorationSitesWhichIncludeOutcrop(sites, layerKind);
 
-		Collection<List<ExplorationSite>> dividedExplorationSites = Util.separateBasedOnSize(templateExplorationSites, 17);
+		Collection<List<ExplorationSite>> dividedExplorationSites = Util.separateBasedOnSize(explorationSitesWhichIncludeOutcrop, 17);
 
 		return dividedExplorationSites;
 	}

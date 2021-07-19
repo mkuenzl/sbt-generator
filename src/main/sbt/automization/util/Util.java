@@ -2,6 +2,7 @@ package sbt.automization.util;
 
 import org.apache.commons.io.FileUtils;
 import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.InformationTag;
 import sbt.automization.data.Layer;
 
 import java.io.*;
@@ -131,27 +132,13 @@ public final class Util
 	}
 
 	/**
-	 * Used to detect if there are exploration sites where the key value is not empty
-	 * @param explorationSites list of exploration sites
-	 * @param key String that represents a key to get information from the exploration site
-	 * @return true, if there is a non empty value, false, if all values are empty
-	 */
-	public static boolean thereExistsAnExplorationSiteWithData(List<ExplorationSite> explorationSites, String key)
-	{
-		for (ExplorationSite explorationSite : explorationSites)
-		{
-			if (!"-".equals(explorationSite.getInformation(key))) return true;
-		}
-		return false;
-	}
-	/**
-	 * Used to detect if there are layers inside of exploration sites where the key value is not empty
+	 * Used to detect if there is layers inside of exploration sites where the key value is not empty
 	 * @param explorationSites list of exploration sites
 	 * @param outcrop specifies which layers should be looked at
 	 * @param key String that represents a key to get information from the layers
 	 * @return true, if there is a non empty value, false, if all values are empty
 	 */
-	public static boolean thereExistsAnExplorationSiteLayerWithData(List<ExplorationSite> explorationSites, String outcrop, String key)
+	public static boolean thereExistsAnExplorationSiteLayerWithData(List<ExplorationSite> explorationSites, String outcrop, InformationTag key)
 	{
 		for (ExplorationSite explorationSite : explorationSites)
 		{
@@ -162,5 +149,20 @@ public final class Util
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Method used to retrieve all ExplorationSites which contain at least one layer from a specified outcrop.
+	 * @param sites a List of ExplorationSite
+	 * @param outcrop a String
+	 * @return a List of ExplorationSite
+	 */
+	public static List<ExplorationSite> getExplorationSitesWhichIncludeOutcrop(List<ExplorationSite> sites, String outcrop)
+	{
+		List<ExplorationSite> explorationSitesWithOutcrop = sites.stream()
+				.filter(e -> e.getLayersWithOutcrop(outcrop).size() > 0)
+				.collect(Collectors.toList());
+
+		return explorationSitesWithOutcrop;
 	}
 }

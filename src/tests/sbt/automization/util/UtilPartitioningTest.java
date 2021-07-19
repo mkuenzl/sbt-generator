@@ -13,14 +13,8 @@ import java.util.List;
 /**
  * TODO remove getTestErkundungsstelle1() implement use of serialization
  */
-public class UtilTest
+public class UtilPartitioningTest
 {
-	@Test
-	public void exportCSVTemplate() throws IOException
-	{
-		Util.exportFile("/sbt-excel-template.xlsx");
-	}
-
 	@Test
 	public void partitioningTest()
 	{

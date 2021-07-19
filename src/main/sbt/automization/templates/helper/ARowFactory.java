@@ -234,8 +234,8 @@ public abstract class ARowFactory
 
 	public String createEvMinimumBorderRow(List<ExplorationSite> explorationSites)
 	{
-		if (! Util.thereExistsAnExplorationSiteWithData(explorationSites, InformationTag.SITE_LP_EV2_EXPECTED.getIdentifier()))
-			return "";
+		//if (! Util.thereExistsAnExplorationSiteWithData(explorationSites, InformationTag.SITE_LP_EV2_EXPECTED.getIdentifier()))
+		//	return "";
 
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
