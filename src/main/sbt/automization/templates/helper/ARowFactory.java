@@ -92,6 +92,10 @@ public abstract class ARowFactory
 
 	public String createLoadClassRow(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.SITE_LOAD_CLASS;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "", tag)) return "";
+
 		//Belastungklasse
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -113,7 +117,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(InformationTag.SITE_LOAD_CLASS))
+					.appendContent(explorationSite.getInformation(tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -130,7 +134,10 @@ public abstract class ARowFactory
 
 	public String createEvDynRow(List<ExplorationSite> explorationSites)
 	{
-		//if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "ERK_LP_EV")) return "";
+		InformationTag tag = InformationTag.SITE_LP_EV;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "", tag)) return "";
+
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
 				.appendContent(new HtmlCell.Builder()
@@ -154,7 +161,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(InformationTag.SITE_LP_EV))
+					.appendContent(explorationSite.getInformation(tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -164,7 +171,9 @@ public abstract class ARowFactory
 
 	public String createEvDyn85Row(List<ExplorationSite> explorationSites)
 	{
-		//if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "ERK_LP_EV15")) return "";
+		InformationTag tag = InformationTag.SITE_LP_EV85;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "", tag)) return "";
 
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -189,7 +198,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(InformationTag.SITE_LP_EV85))
+					.appendContent(explorationSite.getInformation(tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -199,7 +208,9 @@ public abstract class ARowFactory
 
 	public String createEv2Row(List<ExplorationSite> explorationSites)
 	{
-		//if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "ERK_LP_EV2")) return "";
+		InformationTag tag = InformationTag.SITE_LP_EV2;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "", tag)) return "";
 
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -223,7 +234,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.formatLP(explorationSite.getInformation(InformationTag.SITE_LP_EV2),
+					.appendContent(TextFormatUtil.formatLP(explorationSite.getInformation(tag),
 							explorationSite.getInformation(InformationTag.SITE_LP_EV85)))
 					.build();
 
@@ -234,8 +245,9 @@ public abstract class ARowFactory
 
 	public String createEvMinimumBorderRow(List<ExplorationSite> explorationSites)
 	{
-		//if (! Util.thereExistsAnExplorationSiteWithData(explorationSites, InformationTag.SITE_LP_EV2_EXPECTED.getIdentifier()))
-		//	return "";
+		InformationTag tag = InformationTag.SITE_LP_EV2_EXPECTED;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "", tag)) return "";
 
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -258,7 +270,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(InformationTag.SITE_LP_EV2_EXPECTED))
+					.appendContent(explorationSite.getInformation(tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -268,6 +280,10 @@ public abstract class ARowFactory
 
 	public String createCompressiveStrengthRow(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.LAYER_COMPRESSIVE_STRENGTH;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		//Druckfestigkeit
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -289,7 +305,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.LAYER_COMPRESSIVE_STRENGTH))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -300,6 +316,10 @@ public abstract class ARowFactory
 
 	public String createGrainSizeDistributionRow(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.LAYER_GRAIN_SIZE_DISTRIBUTION;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		//Korngroeßenverteilungen
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -321,7 +341,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.LAYER_GRAIN_SIZE_DISTRIBUTION))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -332,6 +352,10 @@ public abstract class ARowFactory
 
 	public String createWaterContentRow(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.LAYER_WATER_CONTENT;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		//WASSERGEHALT
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -353,7 +377,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.LAYER_WATER_CONTENT))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -364,6 +388,10 @@ public abstract class ARowFactory
 
 	public String createMoistureRow(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.LAYER_MOISTURE;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		//FEUCHTEZUSTAND
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -380,7 +408,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.LAYER_MOISTURE))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -391,6 +419,10 @@ public abstract class ARowFactory
 
 	public String createConsistencyRow(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.LAYER_CONSISTENCY;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		//KONSISTENZ
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -407,7 +439,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.LAYER_CONSISTENCY))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -418,6 +450,10 @@ public abstract class ARowFactory
 
 	public String createWaterProctorRow(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.LAYER_WATER_PROCTOR;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		//PROCTORDICHTE
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -439,7 +475,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.LAYER_WATER_PROCTOR))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -448,8 +484,13 @@ public abstract class ARowFactory
 		return row.appendTag();
 	}
 
+	@Deprecated
 	public String createProctorDifferenceRow(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.LAYER_COLOR;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "", tag)) return "";
+
 		//DIFFERENCE
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -482,6 +523,10 @@ public abstract class ARowFactory
 
 	public String createCompressibilityRow(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.LAYER_COMPRESSIBILITY;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		//VERDICHTUNGSFÄHIGKEIT
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -498,7 +543,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.LAYER_COMPRESSIBILITY))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -509,6 +554,10 @@ public abstract class ARowFactory
 
 	public String createWearPlanumRow(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.SITE_WEAR_PLANUM;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "", tag)) return "";
+
 		//TRAGFAEHIGKEIT_PLANUM
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -537,7 +586,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(InformationTag.SITE_WEAR_PLANUM))
+					.appendContent(explorationSite.getInformation(tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -548,6 +597,10 @@ public abstract class ARowFactory
 
 	public String createWearSoleRow(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.SITE_WEAR_TRENCH_BOTTOM;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "", tag)) return "";
+
 		//TRAGFAEHIGKEIT_GRABENSOHLE
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -571,7 +624,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(InformationTag.SITE_WEAR_TRENCH_BOTTOM))
+					.appendContent(explorationSite.getInformation(tag))
 					.appendContent(TextFormatUtil.printLineEmpty())
 					.appendContent(new HtmlText.Builder().appendAttribute("class", unitCellClass)
 							.appendContent("[T:")
@@ -587,6 +640,10 @@ public abstract class ARowFactory
 
 	public String createZTVRow(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.LAYER_FROST_SENSITIVITY_CLASS;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		//ZTV-E
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -610,7 +667,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.LAYER_FROST_SENSITIVITY_CLASS))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -625,6 +682,10 @@ public abstract class ARowFactory
 
 	public String createChemieIDRow(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.CHEMISTRY_ID;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
 				.appendContent(new HtmlCell.Builder()
@@ -640,7 +701,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.CHEMISTRY_ID))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -652,6 +713,10 @@ public abstract class ARowFactory
 
 	public String createChemieMufvRow(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.CHEMISTRY_MUFV;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
 				.appendContent(new HtmlCell.Builder()
@@ -674,7 +739,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.CHEMISTRY_MUFV))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -685,6 +750,10 @@ public abstract class ARowFactory
 
 	public String createChemieLagaBoRow(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.CHEMISTRY_LAGA_BO;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
 				.appendContent(new HtmlCell.Builder()
@@ -705,7 +774,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.CHEMISTRY_LAGA_BO))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -716,6 +785,10 @@ public abstract class ARowFactory
 
 	public String createChemieLagaRcRow(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.CHEMISTRY_LAGA_RC;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
 				.appendContent(new HtmlCell.Builder()
@@ -736,7 +809,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.CHEMISTRY_LAGA_RC))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -747,6 +820,10 @@ public abstract class ARowFactory
 
 	public String createChemieLagaRcOrientationRow(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.CHEMISTRY_LAGA_RC_ORIENTATION;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
 				.appendContent(new HtmlCell.Builder()
@@ -767,18 +844,21 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.CHEMISTRY_LAGA_RC_ORIENTATION))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
 		}
 
 		return row.appendTag();
-
 	}
 
 	public String createChemieTlRockRow(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.CHEMISTRY_TL_ROCK_STRATUM;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
 				.appendContent(new HtmlCell.Builder()
@@ -799,7 +879,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.CHEMISTRY_TL_ROCK_STRATUM))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -810,6 +890,10 @@ public abstract class ARowFactory
 
 	public String createChemieDepvRow(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.CHEMISTRY_DEPV;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
 				.appendContent(new HtmlCell.Builder()
@@ -830,7 +914,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.CHEMISTRY_DEPV))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -841,6 +925,10 @@ public abstract class ARowFactory
 
 	public String createChemieDecisionSupportRow(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.CHEMISTRY_DECISION_SUPPORT;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
 				.appendContent(new HtmlCell.Builder()
@@ -861,7 +949,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.CHEMISTRY_DECISION_SUPPORT))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -872,6 +960,10 @@ public abstract class ARowFactory
 
 	public String createAVVRow(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.CHEMISTRY_WASTE_KEY;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
 				.appendContent(new HtmlCell.Builder()
@@ -892,7 +984,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.CHEMISTRY_WASTE_KEY))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -903,6 +995,10 @@ public abstract class ARowFactory
 
 	public String createREKUROW(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.CHEMISTRY_REKU;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
 				.appendContent(new HtmlCell.Builder()
@@ -924,7 +1020,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.CHEMISTRY_REKU))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -939,6 +1035,10 @@ public abstract class ARowFactory
 
 	public String createDIN18196Row(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.LAYER_TYPE;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		//DIN18196
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -960,7 +1060,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.LAYER_TYPE))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -970,6 +1070,10 @@ public abstract class ARowFactory
 
 	public String createDIN18915Row(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.LAYER_SOIL_CLASS;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		//DIN18915
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -991,7 +1095,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.LAYER_SOIL_CLASS))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -1001,6 +1105,10 @@ public abstract class ARowFactory
 
 	public String createDIN18300Row(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.LAYER_SOIL_CLASS;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		//DIN18300
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -1022,7 +1130,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.LAYER_SOIL_CLASS))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -1033,6 +1141,10 @@ public abstract class ARowFactory
 
 	public String createDIN18320Row(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.LAYER_HOMOGENEOUS_RANGE;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		//DIN18320:2019-09
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -1054,7 +1166,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.LAYER_HOMOGENEOUS_RANGE))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -1064,6 +1176,10 @@ public abstract class ARowFactory
 
 	public String createDIN19682Row(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.LAYER_SOIL_TYPE;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		//DIN19682
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -1087,7 +1203,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.LAYER_SOIL_TYPE))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -1098,6 +1214,10 @@ public abstract class ARowFactory
 
 	public String createDIN18300_09Row(List<ExplorationSite> explorationSites)
 	{
+		InformationTag tag = InformationTag.LAYER_HOMOGENEOUS_RANGE;
+
+		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
+
 		//DIN18300:2019-09
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -1119,7 +1239,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.LAYER_HOMOGENEOUS_RANGE))
+					.appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
