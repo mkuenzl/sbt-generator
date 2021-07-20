@@ -1,22 +1,23 @@
 package sbt.automization.data;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 /**
  * Class which contains all information about a layer.
  */
-public final class Layer implements Comparable<Layer>, Cloneable, Serializable
+public final class LayerSample implements ISample, Comparable<LayerSample>, Cloneable, Serializable
 {
-	private Map<String, String> informationMap;
+	private Map<String, String> informationMap = new HashMap<>();
 
 	/**
 	 * Constructs a new Layer based on a map.
 	 *
 	 * @param informationMap a map parsed from an excel template
 	 */
-	public Layer(Map<String, String> informationMap)
+	public LayerSample(Map<String, String> informationMap)
 	{
 		this.informationMap = informationMap;
 	}
@@ -24,7 +25,7 @@ public final class Layer implements Comparable<Layer>, Cloneable, Serializable
 	/**
 	 * Constructor
 	 */
-	public Layer()
+	public LayerSample()
 	{ }
 
 	/**
@@ -41,14 +42,14 @@ public final class Layer implements Comparable<Layer>, Cloneable, Serializable
 	/**
 	 * Compare this layer to another layer based on their SCHICHT_NR. Necessary for sorting layers in an exploration site.
 	 *
-	 * @param layer a layer to compare
+	 * @param layerSample a layer to compare
 	 * @return Positive - layers are in wrong order. Negative - layers are in correct order
 	 */
 	@Override
-	public int compareTo(final Layer layer)
+	public int compareTo(final LayerSample layerSample)
 	{
 		int s1 = Integer.parseInt(this.getInformation(InformationTag.LAYER_NUMBER));
-		int s2 = Integer.parseInt(layer.getInformation(InformationTag.LAYER_NUMBER));
+		int s2 = Integer.parseInt(layerSample.getInformation(InformationTag.LAYER_NUMBER));
 		return s1 - s2;
 	}
 
@@ -95,7 +96,7 @@ public final class Layer implements Comparable<Layer>, Cloneable, Serializable
 	@Override
 	public Object clone() throws CloneNotSupportedException
 	{
-		Layer cloned = (Layer) super.clone();
+		LayerSample cloned = (LayerSample) super.clone();
 		return cloned;
 	}
 
@@ -115,7 +116,7 @@ public final class Layer implements Comparable<Layer>, Cloneable, Serializable
 			return false;
 		}
 
-		final Layer other = (Layer) obj;
+		final LayerSample other = (LayerSample) obj;
 		if (! Objects.equals(this.informationMap, other.informationMap)) {
 			return false;
 		}

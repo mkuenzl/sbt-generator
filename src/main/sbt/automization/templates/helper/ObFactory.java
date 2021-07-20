@@ -2,7 +2,7 @@ package sbt.automization.templates.helper;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.InformationTag;
-import sbt.automization.data.Layer;
+import sbt.automization.data.LayerSample;
 import sbt.automization.format.HtmlCellFormatUtil;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
@@ -338,9 +338,9 @@ public final class ObFactory extends ARowFactory
 		{
 			boolean empty = true;
 
-			List<Layer> layers = explorationSite.getLayersWithOutcrop(outcrop);
+			List<LayerSample> layerSamples = explorationSite.getLayersWithOutcrop(outcrop);
 
-			if (layers != null)
+			if (layerSamples != null)
 			{
 				double d = 0;
 
@@ -349,13 +349,13 @@ public final class ObFactory extends ARowFactory
 				//Dicke anpassen
 				//Wenn eine Erkundungsstelle nicht keine pitch freien / haltigen Schichten hat, dann "-"
 
-				for (Layer layer : layers)
+				for (LayerSample layerSample : layerSamples)
 				{
 					//TODO CHANGE TO TRUE & FALSE PECH
-					String layerSize = layer.getInformation(InformationTag.LAYER_THICKNESS);
+					String layerSize = layerSample.getInformation(InformationTag.LAYER_THICKNESS);
 					layerSize = layerSize.replace(",", ".");
 
-					String layerPitch = layer.getInformation(InformationTag.LAYER_PITCH);
+					String layerPitch = layerSample.getInformation(InformationTag.LAYER_PITCH);
 
 					if (pitch && "JA".equalsIgnoreCase(layerPitch))
 					{

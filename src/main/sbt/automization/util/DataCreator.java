@@ -1,7 +1,7 @@
 package sbt.automization.util;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.Layer;
+import sbt.automization.data.LayerSample;
 
 import java.util.*;
 
@@ -35,8 +35,8 @@ public final class DataCreator
 				createdIds.add(String.valueOf(explorationSiteId));
 				ExplorationSite explorationSite = new ExplorationSite(explorationSiteInformation);
 
-				Layer layer = createLayer(explorationSiteInformation);
-				explorationSite.addLayer(layer);
+				LayerSample layerSample = createLayer(explorationSiteInformation);
+				explorationSite.addLayer(layerSample);
 				explorationSites.add(explorationSite);
 			} else
 			{
@@ -44,8 +44,8 @@ public final class DataCreator
 				{
 					if (explorationSite.getInformation("ERK_ID").equals(explorationSiteId))
 					{
-						Layer layer = createLayer(explorationSiteInformation);
-						explorationSite.addLayer(layer);
+						LayerSample layerSample = createLayer(explorationSiteInformation);
+						explorationSite.addLayer(layerSample);
 					}
 				}
 			}
@@ -71,7 +71,7 @@ public final class DataCreator
 	 * @param layerInformationMap a map of Strings containing information about layers.
 	 * @return a new layer object based on the layer information of the map.
 	 */
-	public static Layer createLayer(Map<String, String> layerInformationMap)
+	public static LayerSample createLayer(Map<String, String> layerInformationMap)
 	{
 		//EntrySets
 		Map<String, String> tmpMap = new HashMap<>();
@@ -83,7 +83,7 @@ public final class DataCreator
 				tmpMap.put(key, layerInformationMap.get(key));
 			}
 		}
-		return new Layer(tmpMap);
+		return new LayerSample(tmpMap);
 	}
 
 	@Deprecated

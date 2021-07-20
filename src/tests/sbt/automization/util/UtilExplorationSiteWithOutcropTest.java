@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.InformationTag;
-import sbt.automization.data.Layer;
+import sbt.automization.data.LayerSample;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -34,13 +34,13 @@ public class UtilExplorationSiteWithOutcropTest
     public void explorationSiteWithoutOutcrop()
     {
         ExplorationSite explorationSite = new ExplorationSite();
-        explorationSite.addLayer(new Layer(new HashMap<>(){{
+        explorationSite.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "GOB");
         }}));
-        explorationSite.addLayer(new Layer(new HashMap<>(){{
+        explorationSite.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "TOB");
         }}));
-        explorationSite.addLayer(new Layer(new HashMap<>(){{
+        explorationSite.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "FUGE");
         }}));
 
@@ -52,13 +52,13 @@ public class UtilExplorationSiteWithOutcropTest
     @Test
     public void explorationSiteWithOutcrop(){
         ExplorationSite explorationSite = new ExplorationSite();
-        explorationSite.addLayer(new Layer(new HashMap<>(){{
+        explorationSite.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "GOB");
         }}));
-        explorationSite.addLayer(new Layer(new HashMap<>(){{
+        explorationSite.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "TOB");
         }}));
-        explorationSite.addLayer(new Layer(new HashMap<>(){{
+        explorationSite.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "FUGE");
         }}));
 
@@ -70,13 +70,13 @@ public class UtilExplorationSiteWithOutcropTest
     @Test
     public void explorationSiteWithRandomString(){
         ExplorationSite explorationSite = new ExplorationSite();
-        explorationSite.addLayer(new Layer(new HashMap<>(){{
+        explorationSite.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "GOB");
         }}));
-        explorationSite.addLayer(new Layer(new HashMap<>(){{
+        explorationSite.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "TOB");
         }}));
-        explorationSite.addLayer(new Layer(new HashMap<>(){{
+        explorationSite.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "FUGE");
         }}));
 
@@ -88,37 +88,37 @@ public class UtilExplorationSiteWithOutcropTest
     @Test
     public void multipleExplorationSitesWithoutOutcropTestOne(){
         ExplorationSite explorationSiteOne = new ExplorationSite();
-        explorationSiteOne.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteOne.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "GOB");
         }}));
-        explorationSiteOne.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteOne.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "FUGE");
         }}));
 
         ExplorationSite explorationSiteTwo = new ExplorationSite();
-        explorationSiteTwo.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteTwo.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "GOB");
         }}));
-        explorationSiteTwo.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteTwo.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "TOB");
         }}));
-        explorationSiteTwo.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteTwo.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "FUGE");
         }}));
 
         ExplorationSite explorationSiteThree = new ExplorationSite();
-        explorationSiteThree.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteThree.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "GOB");
         }}));
-        explorationSiteThree.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteThree.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "TOB");
         }}));
-        explorationSiteThree.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteThree.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "FUGE");
         }}));
 
         ExplorationSite explorationSiteFour = new ExplorationSite();
-        explorationSiteFour.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteFour.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "FUGE");
         }}));
 
@@ -131,37 +131,37 @@ public class UtilExplorationSiteWithOutcropTest
     @Test
     public void multipleExplorationSitesWithoutOutcropTestTwo(){
         ExplorationSite explorationSiteOne = new ExplorationSite();
-        explorationSiteOne.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteOne.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "GOB");
         }}));
-        explorationSiteOne.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteOne.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "FUGE");
         }}));
 
         ExplorationSite explorationSiteTwo = new ExplorationSite();
-        explorationSiteTwo.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteTwo.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "GOB");
         }}));
-        explorationSiteTwo.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteTwo.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "TOB");
         }}));
-        explorationSiteTwo.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteTwo.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "FUGE");
         }}));
 
         ExplorationSite explorationSiteThree = new ExplorationSite();
-        explorationSiteThree.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteThree.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "GOB");
         }}));
-        explorationSiteThree.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteThree.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "TOB");
         }}));
-        explorationSiteThree.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteThree.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "FUGE");
         }}));
 
         ExplorationSite explorationSiteFour = new ExplorationSite();
-        explorationSiteFour.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteFour.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "FUGE");
         }}));
 
@@ -174,37 +174,37 @@ public class UtilExplorationSiteWithOutcropTest
     @Test
     public void multipleExplorationSitesWithoutOutcropTestThree(){
         ExplorationSite explorationSiteOne = new ExplorationSite();
-        explorationSiteOne.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteOne.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "GOB");
         }}));
-        explorationSiteOne.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteOne.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "FUGE");
         }}));
 
         ExplorationSite explorationSiteTwo = new ExplorationSite();
-        explorationSiteTwo.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteTwo.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "GOB");
         }}));
-        explorationSiteTwo.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteTwo.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "TOB");
         }}));
-        explorationSiteTwo.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteTwo.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "FUGE");
         }}));
 
         ExplorationSite explorationSiteThree = new ExplorationSite();
-        explorationSiteThree.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteThree.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "GOB");
         }}));
-        explorationSiteThree.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteThree.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "TOB");
         }}));
-        explorationSiteThree.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteThree.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "FUGE");
         }}));
 
         ExplorationSite explorationSiteFour = new ExplorationSite();
-        explorationSiteFour.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteFour.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "FUGE");
         }}));
 
@@ -217,37 +217,37 @@ public class UtilExplorationSiteWithOutcropTest
     @Test
     public void multipleExplorationSitesWithOutcrop(){
         ExplorationSite explorationSiteOne = new ExplorationSite();
-        explorationSiteOne.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteOne.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "GOB");
         }}));
-        explorationSiteOne.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteOne.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "FUGE");
         }}));
 
         ExplorationSite explorationSiteTwo = new ExplorationSite();
-        explorationSiteTwo.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteTwo.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "GOB");
         }}));
-        explorationSiteTwo.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteTwo.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "TOB");
         }}));
-        explorationSiteTwo.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteTwo.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "FUGE");
         }}));
 
         ExplorationSite explorationSiteThree = new ExplorationSite();
-        explorationSiteThree.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteThree.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "GOB");
         }}));
-        explorationSiteThree.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteThree.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "TOB");
         }}));
-        explorationSiteThree.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteThree.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "FUGE");
         }}));
 
         ExplorationSite explorationSiteFour = new ExplorationSite();
-        explorationSiteFour.addLayer(new Layer(new HashMap<>(){{
+        explorationSiteFour.addLayer(new LayerSample(new HashMap<>(){{
             put(InformationTag.LAYER_OUTCROP.getIdentifier(), "FUGE");
         }}));
 

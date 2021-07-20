@@ -1,7 +1,7 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.Layer;
+import sbt.automization.data.LayerSample;
 import sbt.automization.format.NameFormatUtil;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
@@ -46,11 +46,11 @@ public final class AppendixPNHEAP extends AHtmlTable
 
 		for (ExplorationSite explorationSite : sites)
 		{
-			List<Layer> layerList = explorationSite.getLayers();
+			List<LayerSample> layerSampleList = explorationSite.getLayers();
 
-			for (Layer layer : layerList)
+			for (LayerSample layerSample : layerSampleList)
 			{
-				if ("HAUFWERK".equals(layer.getInformation("SCHICHT_AUFSCHLUSS")))
+				if ("HAUFWERK".equals(layerSample.getInformation("SCHICHT_AUFSCHLUSS")))
 				{
 					// Could be problematic
 					int volume = Integer.parseInt(explorationSite.getInformation("ERK_HAUFWERK_VOLUMEN"));
@@ -80,12 +80,12 @@ public final class AppendixPNHEAP extends AHtmlTable
 
 						HtmlCell layerSampleType = new HtmlCell.Builder()
 								.appendAttribute("class", "NormalCentered")
-								.appendContent(TextFormatUtil.formatSampleType(layer.getInformation("SCHICHT_BEHAELTNIS")))
+								.appendContent(TextFormatUtil.formatSampleType(layerSample.getInformation("SCHICHT_BEHAELTNIS")))
 								.build();
 
 						HtmlCell layerContainer = new HtmlCell.Builder()
 								.appendAttribute("class", "Normal")
-								.appendContent(layer.getInformation("SCHICHT_BEHAELTNIS"))
+								.appendContent(layerSample.getInformation("SCHICHT_BEHAELTNIS"))
 								.build();
 
 						HtmlCell heapVolume = new HtmlCell.Builder()
@@ -96,22 +96,22 @@ public final class AppendixPNHEAP extends AHtmlTable
 						HtmlCell layerWasteType = new HtmlCell.Builder()
 								.appendAttribute("class", "Normal")
 								.appendAttribute("width", "110")
-								.appendContent(NameFormatUtil.formatLayerKind(layer.getInformation("SCHICHT_ABFALLART")))
+								.appendContent(NameFormatUtil.formatLayerKind(layerSample.getInformation("SCHICHT_ABFALLART")))
 								.build();
 
 						HtmlCell layerGrainSize = new HtmlCell.Builder()
 								.appendAttribute("class", "NormalCentered")
 								.appendAttribute("width", "50")
-								.appendContent(layer.getInformation("SCHICHT_KOERNUNG"))
+								.appendContent(layerSample.getInformation("SCHICHT_KOERNUNG"))
 								.build();
 
 						HtmlCell layerAttributes = new HtmlCell.Builder()
 								.appendAttribute("class", "Normal")
-								.appendContent(layer.getInformation("SCHICHT_FARBE"))
+								.appendContent(layerSample.getInformation("SCHICHT_FARBE"))
 								.appendContent(TextFormatUtil.printLineBreak())
-								.appendContent(layer.getInformation("SCHICHT_GERUCH"))
+								.appendContent(layerSample.getInformation("SCHICHT_GERUCH"))
 								.appendContent(TextFormatUtil.printLineBreak())
-								.appendContent(layer.getInformation("SCHICHT_BODENART"))
+								.appendContent(layerSample.getInformation("SCHICHT_BODENART"))
 								.build();
 
 						HtmlCell explorationSiteIdentifier = new HtmlCell.Builder()
@@ -122,7 +122,7 @@ public final class AppendixPNHEAP extends AHtmlTable
 
 						HtmlCell layerDepth = new HtmlCell.Builder()
 								.appendAttribute("class", "NormalCentered")
-								.appendContent(TextFormatUtil.formatDepth(layer.getInformation("SCHICHT_TIEFE_START"), layer.getInformation("SCHICHT_TIEFE_ENDE")))
+								.appendContent(TextFormatUtil.formatDepth(layerSample.getInformation("SCHICHT_TIEFE_START"), layerSample.getInformation("SCHICHT_TIEFE_ENDE")))
 								.build();
 
 						HtmlCell explorationSiteTopEdge = new HtmlCell.Builder()

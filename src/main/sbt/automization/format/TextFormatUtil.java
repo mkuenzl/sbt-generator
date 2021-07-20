@@ -2,7 +2,7 @@ package sbt.automization.format;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.InformationTag;
-import sbt.automization.data.Layer;
+import sbt.automization.data.LayerSample;
 import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
@@ -113,10 +113,10 @@ public final class TextFormatUtil
 	public static String formatSiteOutcropThickness(final ExplorationSite explorationSite, String outcrop)
 	{
 		double heightValue = 0.0;
-		List<Layer> layersInOutcrop = explorationSite.getLayersWithOutcrop(outcrop);
-		for (Layer layer : layersInOutcrop)
+		List<LayerSample> layersInOutcrop = explorationSite.getLayersWithOutcrop(outcrop);
+		for (LayerSample layerSample : layersInOutcrop)
 		{
-			heightValue = heightValue + Double.parseDouble(layer.getInformation(InformationTag.LAYER_THICKNESS).replace(",", "."));
+			heightValue = heightValue + Double.parseDouble(layerSample.getInformation(InformationTag.LAYER_THICKNESS).replace(",", "."));
 		}
 		String height = String.valueOf(heightValue);
 		return height.replace(".", ",");
@@ -311,18 +311,18 @@ public final class TextFormatUtil
 	{
 		StringBuilder formattedLayerMaterial = new StringBuilder();
 
-		List<Layer> outcropLayers = explorationSite.getLayersWithOutcrop(outcrop);
-		int size = outcropLayers.size();
+		List<LayerSample> outcropLayerSamples = explorationSite.getLayersWithOutcrop(outcrop);
+		int size = outcropLayerSamples.size();
 
 		for (int i = 0 ; i < size ; i++)
 		{
-			Layer layer = outcropLayers.get(i);
+			LayerSample layerSample = outcropLayerSamples.get(i);
 
-			formattedLayerMaterial.append(formatLayerAttributes(layer.getInformation(InformationTag.LAYER_TYPE),
-					layer.getInformation(InformationTag.LAYER_ROUNDING_GRADATION),
-					layer.getInformation(InformationTag.LAYER_GRANULATION)));
+			formattedLayerMaterial.append(formatLayerAttributes(layerSample.getInformation(InformationTag.LAYER_TYPE),
+					layerSample.getInformation(InformationTag.LAYER_ROUNDING_GRADATION),
+					layerSample.getInformation(InformationTag.LAYER_GRANULATION)));
 
-			formattedLayerMaterial.append(formatDepthSpecified(layer.getInformation(InformationTag.LAYER_DEPTH_START), layer.getInformation(InformationTag.LAYER_DEPTH_END)));
+			formattedLayerMaterial.append(formatDepthSpecified(layerSample.getInformation(InformationTag.LAYER_DEPTH_START), layerSample.getInformation(InformationTag.LAYER_DEPTH_END)));
 
 			if (i + 1 < size)
 			{
@@ -417,32 +417,32 @@ public final class TextFormatUtil
 	 */
 	public static String printLayerInformationWithDepth(final ExplorationSite explorationSite, final String outcrop, final String tag)
 	{
-		List<Layer> layers = LayerFormatUtil.combineLayers(explorationSite, outcrop, tag);
+		List<LayerSample> layerSamples = LayerFormatUtil.combineLayers(explorationSite, outcrop, tag);
 
 		StringBuilder stringBuilder = new StringBuilder();
 
-		int number = layers.size();
+		int number = layerSamples.size();
 
 		for (int i = 0 ; i < number ; i++)
 		{
-			Layer layer = layers.get(i);
+			LayerSample layerSample = layerSamples.get(i);
 
 			String formattedTag;
 
 			if (tag.contains("CHEMIE"))
 			{
-				formattedTag = printChemistryMarkup(layer.getInformation(tag));
+				formattedTag = printChemistryMarkup(layerSample.getInformation(tag));
 			} else if (tag.contains("FEUCHTIGKEIT"))
 			{
 				formattedTag = new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(TextFormatUtil.formatLayerProctor(layer))
+						.appendContent(TextFormatUtil.formatLayerProctor(layerSample))
 						.build().appendTag();
 			} else
 			{
 				formattedTag = new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(layer.getInformation(tag))
+						.appendContent(layerSample.getInformation(tag))
 						.build().appendTag();
 			}
 
@@ -453,8 +453,8 @@ public final class TextFormatUtil
 
 			stringBuilder.append(formattedTag);
 			stringBuilder.append(printLineEmpty());
-			stringBuilder.append(formatDepthSpecified(layer.getInformation(InformationTag.LAYER_DEPTH_START),
-					layer.getInformation(InformationTag.LAYER_DEPTH_END)));
+			stringBuilder.append(formatDepthSpecified(layerSample.getInformation(InformationTag.LAYER_DEPTH_START),
+					layerSample.getInformation(InformationTag.LAYER_DEPTH_END)));
 
 		}
 
@@ -584,9 +584,9 @@ public final class TextFormatUtil
 		return stringBuilder.toString();
 	}
 
-	public static String formatLayerProctor(final Layer layer)
+	public static String formatLayerProctor(final LayerSample layerSample)
 	{
-		String feuchtigkeit = layer.getInformation(InformationTag.LAYER_MOISTURE);
+		String feuchtigkeit = layerSample.getInformation(InformationTag.LAYER_MOISTURE);
 		if ("-".equals(feuchtigkeit))
 		{
 			return "-";
@@ -598,13 +598,13 @@ public final class TextFormatUtil
 
 	public static String printRukLayers(final ExplorationSite explorationSite, final String outcrop)
 	{
-		List<Layer> layersWithOutcrop = explorationSite.getLayersWithOutcrop(outcrop);
+		List<LayerSample> layersWithOutcrop = explorationSite.getLayersWithOutcrop(outcrop);
 
 		StringBuilder stringBuilder = new StringBuilder();
 
-		for (Layer layer : layersWithOutcrop)
+		for (LayerSample layerSample : layersWithOutcrop)
 		{
-			String rukValue = layer.getInformation(InformationTag.LAYER_RUK);
+			String rukValue = layerSample.getInformation(InformationTag.LAYER_RUK);
 
 			if (! "-".equals(rukValue) && ! "".equals(rukValue))
 			{
@@ -615,7 +615,7 @@ public final class TextFormatUtil
 
 				HtmlText layerKind = new HtmlText.Builder()
 						.appendAttribute("class", "Normal6")
-						.appendContent(layer.getInformation(InformationTag.LAYER_TYPE))
+						.appendContent(layerSample.getInformation(InformationTag.LAYER_TYPE))
 						.build();
 
 				HtmlText rukText = new HtmlText.Builder()

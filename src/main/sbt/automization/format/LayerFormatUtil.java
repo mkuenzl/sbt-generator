@@ -2,7 +2,7 @@ package sbt.automization.format;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.InformationTag;
-import sbt.automization.data.Layer;
+import sbt.automization.data.LayerSample;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,9 +23,9 @@ public final class LayerFormatUtil
 	 * @param tag a String specifying an information tag
 	 * @return an updated list of layers with all possible layers combined
 	 */
-	public static List<Layer> combineLayers(final ExplorationSite explorationSite, final String outcrop, final String tag)
+	public static List<LayerSample> combineLayers(final ExplorationSite explorationSite, final String outcrop, final String tag)
 	{
-		List<Layer> layersWithOutcrop = explorationSite.getLayersWithOutcrop(outcrop);
+		List<LayerSample> layersWithOutcrop = explorationSite.getLayersWithOutcrop(outcrop);
 
 		return combineLayers(layersWithOutcrop, tag);
 	}
@@ -33,28 +33,28 @@ public final class LayerFormatUtil
 	/**
 	 * Method used to combine consecutive identical layers in a list.
 	 *
-	 * @param layers a List of Layers
+	 * @param layerSamples a List of Layers
 	 * @param tag a String representing the information to compare
 	 * @return an updated list of layers with all possible layers combined
 	 */
-	public static List<Layer> combineLayers(final List<Layer> layers, final String tag)
+	public static List<LayerSample> combineLayers(final List<LayerSample> layerSamples, final String tag)
 	{
-		List<Layer> updatedLayers = new ArrayList<>();
+		List<LayerSample> updatedLayerSamples = new ArrayList<>();
 
-		for (int i = 0 ; i < layers.size() ; i++)
+		for (int i = 0; i < layerSamples.size() ; i++)
 		{
-			Layer layer = layers.get(i);
-			Layer finalLayer = layer;
+			LayerSample layerSample = layerSamples.get(i);
+			LayerSample finalLayerSample = layerSample;
 
 			int next = i + 1;
-			while (next < layers.size())
+			while (next < layerSamples.size())
 			{ // Checks how many consecutive layers have the same value as tag
-				Layer nextLayer = layers.get(next);
-				Layer combinedLayer = combineLayers(layer, nextLayer, tag);
+				LayerSample nextLayerSample = layerSamples.get(next);
+				LayerSample combinedLayerSample = combineLayers(layerSample, nextLayerSample, tag);
 
-				if (combinedLayer != null)
+				if (combinedLayerSample != null)
 				{
-					finalLayer = combinedLayer;
+					finalLayerSample = combinedLayerSample;
 				} else
 				{
 					break;
@@ -64,39 +64,39 @@ public final class LayerFormatUtil
 				next++;
 			}
 
-			updatedLayers.add(finalLayer);
+			updatedLayerSamples.add(finalLayerSample);
 		}
-		return updatedLayers;
+		return updatedLayerSamples;
 	}
 
 	/**
 	 * Method used for combination of the layers based on a specified tag.
 	 *
-	 * @param firstLayer  a Layer Object
-	 * @param secondLayer a Layer Object
+	 * @param firstLayerSample  a Layer Object
+	 * @param secondLayerSample a Layer Object
 	 * @param tag         a String representing a column of the excel template
 	 * @return a Layer Object with the tag, the depth start from the first layer and end from the second layer.
 	 */
-	public static Layer combineLayers(final Layer firstLayer, final Layer secondLayer, final String tag)
+	public static LayerSample combineLayers(final LayerSample firstLayerSample, final LayerSample secondLayerSample, final String tag)
 	{
-		if (firstLayer == null) return secondLayer;
-		if (secondLayer == null) return firstLayer;
+		if (firstLayerSample == null) return secondLayerSample;
+		if (secondLayerSample == null) return firstLayerSample;
 		if (tag == null) return null;
 
-		if (!firstLayer.getInformation(tag).equals(secondLayer.getInformation(tag)))
+		if (!firstLayerSample.getInformation(tag).equals(secondLayerSample.getInformation(tag)))
 			return null;
 		else
 		{
-			Layer layer = new Layer(new HashMap<>()
+			LayerSample layerSample = new LayerSample(new HashMap<>()
 			{{
-				put(tag, firstLayer.getInformation(tag));
+				put(tag, firstLayerSample.getInformation(tag));
 				put(InformationTag.LAYER_DEPTH_START.getIdentifier(),
-						firstLayer.getInformation(InformationTag.LAYER_DEPTH_START));
+						firstLayerSample.getInformation(InformationTag.LAYER_DEPTH_START));
 				put(InformationTag.LAYER_DEPTH_END.getIdentifier(),
-						secondLayer.getInformation(InformationTag.LAYER_DEPTH_END));
+						secondLayerSample.getInformation(InformationTag.LAYER_DEPTH_END));
 			}});
 
-			return layer;
+			return layerSample;
 		}
 	}
 }

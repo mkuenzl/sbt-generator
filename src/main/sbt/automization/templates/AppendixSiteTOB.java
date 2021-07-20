@@ -2,7 +2,7 @@ package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.InformationTag;
-import sbt.automization.data.Layer;
+import sbt.automization.data.LayerSample;
 import sbt.automization.format.HtmlCellFormatUtil;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.*;
@@ -36,18 +36,18 @@ final class AppendixSiteTOB extends AHtmlTable
 
 		boolean lpPrinted = false;
 
-		for (Layer layer : site.getLayers())
+		for (LayerSample layerSample : site.getLayers())
 		{
-			if ("TOB".equals(layer.getInformation(InformationTag.LAYER_OUTCROP).toUpperCase()))
+			if ("TOB".equals(layerSample.getInformation(InformationTag.LAYER_OUTCROP).toUpperCase()))
 			{
 				//Art der Schicht
 				HtmlCell cell1 = new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(layer.getInformation(InformationTag.LAYER_TYPE))
+						.appendContent(layerSample.getInformation(InformationTag.LAYER_TYPE))
 						.appendContent(new HtmlText.Builder().appendAttribute("class", "Normal")
-								.appendContent(layer.getInformation(InformationTag.LAYER_GRANULATION))
+								.appendContent(layerSample.getInformation(InformationTag.LAYER_GRANULATION))
 								.appendContent(" ")
-								.appendContent(layer.getInformation(InformationTag.LAYER_ROUNDING_GRADATION))
+								.appendContent(layerSample.getInformation(InformationTag.LAYER_ROUNDING_GRADATION))
 								.build()
 								.appendTag())
 						.build();
@@ -55,29 +55,29 @@ final class AppendixSiteTOB extends AHtmlTable
 				//Dicke
 				HtmlCell cell2 = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layer.getInformation(InformationTag.LAYER_THICKNESS))
+						.appendContent(layerSample.getInformation(InformationTag.LAYER_THICKNESS))
 						.build();
 
 				//Tiefe
 				HtmlCell cell3 = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layer.getInformation(InformationTag.LAYER_DEPTH_END))
+						.appendContent(layerSample.getInformation(InformationTag.LAYER_DEPTH_END))
 						.build();
 
 				//MUFV
-				String chemie_mufv = layer.getInformation(InformationTag.CHEMISTRY_MUFV);
+				String chemie_mufv = layerSample.getInformation(InformationTag.CHEMISTRY_MUFV);
 				HtmlCell cell4 = HtmlCellFormatUtil.formatChemistry(chemie_mufv);
 
 				//LAGA_BO
-				String chemie_laga_bo = layer.getInformation(InformationTag.CHEMISTRY_LAGA_BO);
+				String chemie_laga_bo = layerSample.getInformation(InformationTag.CHEMISTRY_LAGA_BO);
 				HtmlCell cell5 = HtmlCellFormatUtil.formatChemistry(chemie_laga_bo);
 
 				//LAGA_RC
-				String chemie_laga_rc = layer.getInformation(InformationTag.CHEMISTRY_LAGA_RC);
+				String chemie_laga_rc = layerSample.getInformation(InformationTag.CHEMISTRY_LAGA_RC);
 				HtmlCell cell6 = HtmlCellFormatUtil.formatChemistry(chemie_laga_rc);
 
 				//TL_GESTEIN
-				String chemie_tlgestein = layer.getInformation(InformationTag.CHEMISTRY_TL_ROCK_STRATUM);
+				String chemie_tlgestein = layerSample.getInformation(InformationTag.CHEMISTRY_TL_ROCK_STRATUM);
 				HtmlCell cell7 = HtmlCellFormatUtil.formatChemistry(chemie_tlgestein);
 
 				//LP_DYN
@@ -104,7 +104,7 @@ final class AppendixSiteTOB extends AHtmlTable
 
 				HtmlCell cell9 = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layer.getInformation(InformationTag.LAYER_GRAIN_SIZE_DISTRIBUTION))
+						.appendContent(layerSample.getInformation(InformationTag.LAYER_GRAIN_SIZE_DISTRIBUTION))
 						.build();
 
 

@@ -9,7 +9,7 @@ import java.util.*;
  */
 public final class ExplorationSite implements Comparable<ExplorationSite>, Serializable
 {
-	private final List<Layer> layerList = new ArrayList<>();
+	private final List<LayerSample> layerSampleList = new ArrayList<>();
 	private Map<String, String> informationMap;
 
 	/**
@@ -97,9 +97,9 @@ public final class ExplorationSite implements Comparable<ExplorationSite>, Seria
 	{
 		double thickness = 0;
 
-		for (Layer layer : layerList)
+		for (LayerSample layerSample : layerSampleList)
 		{
-			String layerThickness = layer.getInformation(InformationTag.LAYER_THICKNESS).replace(",", ".");
+			String layerThickness = layerSample.getInformation(InformationTag.LAYER_THICKNESS).replace(",", ".");
 			thickness += Double.parseDouble(layerThickness);
 		}
 
@@ -115,9 +115,9 @@ public final class ExplorationSite implements Comparable<ExplorationSite>, Seria
 	{
 		double thickness = 0;
 
-		for (Layer layer : getLayersWithOutcrop(outcrop))
+		for (LayerSample layerSample : getLayersWithOutcrop(outcrop))
 		{
-			String layerThickness = layer.getInformation(InformationTag.LAYER_THICKNESS).replace(",", ".");
+			String layerThickness = layerSample.getInformation(InformationTag.LAYER_THICKNESS).replace(",", ".");
 			thickness += Double.parseDouble(layerThickness);
 		}
 
@@ -130,17 +130,17 @@ public final class ExplorationSite implements Comparable<ExplorationSite>, Seria
 	 * @param outcrop expects a valid outcrop identifier
 	 * @return a list of layers associated with the specified outcrop
 	 */
-	public List<Layer> getLayersWithOutcrop(final String outcrop)
+	public List<LayerSample> getLayersWithOutcrop(final String outcrop)
 	{
-		List<Layer> layers = new ArrayList<>();
-		for (Layer layer : layerList)
+		List<LayerSample> layerSamples = new ArrayList<>();
+		for (LayerSample layerSample : layerSampleList)
 		{
-			if (outcrop.equals(layer.getInformation(InformationTag.LAYER_OUTCROP)))
+			if (outcrop.equals(layerSample.getInformation(InformationTag.LAYER_OUTCROP)))
 			{
-				layers.add(layer);
+				layerSamples.add(layerSample);
 			}
 		}
-		return layers;
+		return layerSamples;
 	}
 
 	/**
@@ -148,17 +148,17 @@ public final class ExplorationSite implements Comparable<ExplorationSite>, Seria
 	 */
 	public void sortLayers()
 	{
-		Collections.sort(layerList);
+		Collections.sort(layerSampleList);
 	}
 
-	public void addLayer(Layer layer)
+	public void addLayer(LayerSample layerSample)
 	{
-		layerList.add(layer);
+		layerSampleList.add(layerSample);
 	}
 
-	public List<Layer> getLayers()
+	public List<LayerSample> getLayers()
 	{
-		return layerList;
+		return layerSampleList;
 	}
 
 	public Map<String, String> getInformationMap()

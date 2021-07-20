@@ -2,7 +2,7 @@ package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.InformationTag;
-import sbt.automization.data.Layer;
+import sbt.automization.data.LayerSample;
 import sbt.automization.format.NameFormatUtil;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.DataCreator;
@@ -47,9 +47,9 @@ public final class AppendixPN extends AHtmlTable
 
 		for (ExplorationSite explorationSite : sites)
 		{
-			List<Layer> layerList = formatLayerList(explorationSite.getLayers());
+			List<LayerSample> layerSampleList = formatLayerList(explorationSite.getLayers());
 
-			for (Layer layer : layerList)
+			for (LayerSample layerSample : layerSampleList)
 			{
 
 				if (rowCounter >= 20)
@@ -71,12 +71,12 @@ public final class AppendixPN extends AHtmlTable
 
 				HtmlCell layerSampleType = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalCentered")
-						.appendContent(TextFormatUtil.formatSampleType(layer.getInformation(InformationTag.LAYER_CONTAINER)))
+						.appendContent(TextFormatUtil.formatSampleType(layerSample.getInformation(InformationTag.LAYER_CONTAINER)))
 						.build();
 
 				HtmlCell layerContainer = new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(layer.getInformation(InformationTag.LAYER_CONTAINER))
+						.appendContent(layerSample.getInformation(InformationTag.LAYER_CONTAINER))
 						.build();
 
 				HtmlCell heapVolume = new HtmlCell.Builder()
@@ -87,22 +87,22 @@ public final class AppendixPN extends AHtmlTable
 				HtmlCell layerWasteType = new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
 						.appendAttribute("width", "110")
-						.appendContent(NameFormatUtil.formatLayerKind(layer.getInformation(InformationTag.LAYER_WASTE_TYPE)))
+						.appendContent(NameFormatUtil.formatLayerKind(layerSample.getInformation(InformationTag.LAYER_WASTE_TYPE)))
 						.build();
 
 				HtmlCell layerGrainSize = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalCentered")
 						.appendAttribute("width", "50")
-						.appendContent(layer.getInformation(InformationTag.LAYER_GRANULATION))
+						.appendContent(layerSample.getInformation(InformationTag.LAYER_GRANULATION))
 						.build();
 
 				HtmlCell layerAttributes = new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(layer.getInformation(InformationTag.LAYER_COLOR))
+						.appendContent(layerSample.getInformation(InformationTag.LAYER_COLOR))
 						.appendContent(TextFormatUtil.printLineBreak())
-						.appendContent(layer.getInformation(InformationTag.LAYER_SMELL))
+						.appendContent(layerSample.getInformation(InformationTag.LAYER_SMELL))
 						.appendContent(TextFormatUtil.printLineBreak())
-						.appendContent(layer.getInformation(InformationTag.LAYER_SOIL_TYPE))
+						.appendContent(layerSample.getInformation(InformationTag.LAYER_SOIL_TYPE))
 						.build();
 
 				HtmlCell explorationSiteIdentifier = new HtmlCell.Builder()
@@ -113,8 +113,8 @@ public final class AppendixPN extends AHtmlTable
 
 				HtmlCell layerDepth = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalCentered")
-						.appendContent(TextFormatUtil.formatDepth(layer.getInformation(InformationTag.LAYER_DEPTH_START),
-								layer.getInformation(InformationTag.LAYER_DEPTH_END)))
+						.appendContent(TextFormatUtil.formatDepth(layerSample.getInformation(InformationTag.LAYER_DEPTH_START),
+								layerSample.getInformation(InformationTag.LAYER_DEPTH_END)))
 						.build();
 
 				HtmlCell explorationSiteTopEdge = new HtmlCell.Builder()
@@ -162,38 +162,38 @@ public final class AppendixPN extends AHtmlTable
 	/**
 	 * This method creates a new list of layer objects for the pn appendix. Because some layers are combined in the output table.
 	 *
-	 * @param layers expects a not empty list of layer objects
+	 * @param layerSamples expects a not empty list of layer objects
 	 * @return a smaller formatted list of layers
 	 */
-	public List<Layer> formatLayerList(List<Layer> layers)
+	public List<LayerSample> formatLayerList(List<LayerSample> layerSamples)
 	{
-		List<Layer> layerList = new ArrayList<>();
-		for (Layer layer : layers)
+		List<LayerSample> layerSampleList = new ArrayList<>();
+		for (LayerSample layerSample : layerSamples)
 		{
-			layerList.add(DataCreator.createLayer(layer.getInformationMap()));
+			layerSampleList.add(DataCreator.createLayer(layerSample.getInformationMap()));
 		}
 
-		int size = layerList.size();
+		int size = layerSampleList.size();
 
 		if (size > 2)
 		{
-			for (int i = 0 ; i < layerList.size() ; i++)
+			for (int i = 0; i < layerSampleList.size() ; i++)
 			{
-				if ("GOB".equals(layerList.get(i).getInformation(InformationTag.LAYER_OUTCROP)))
+				if ("GOB".equals(layerSampleList.get(i).getInformation(InformationTag.LAYER_OUTCROP)))
 				{
-					if (layerList.size() <= i + 1) break;
-					if (layerList.get(i).getInformation(InformationTag.LAYER_WASTE_TYPE).equals(layerList.get(i + 1).getInformation(InformationTag.LAYER_WASTE_TYPE)))
+					if (layerSampleList.size() <= i + 1) break;
+					if (layerSampleList.get(i).getInformation(InformationTag.LAYER_WASTE_TYPE).equals(layerSampleList.get(i + 1).getInformation(InformationTag.LAYER_WASTE_TYPE)))
 					{
-						layerList.get(i + 1).addInformation(InformationTag.LAYER_DEPTH_START.getIdentifier(),
-								layerList.get(i).getInformation(InformationTag.LAYER_DEPTH_START));
-						layerList.get(i + 1).addInformation(InformationTag.LAYER_GRANULATION.getIdentifier(), "");
-						layerList.remove(layerList.get(i));
+						layerSampleList.get(i + 1).addInformation(InformationTag.LAYER_DEPTH_START.getIdentifier(),
+								layerSampleList.get(i).getInformation(InformationTag.LAYER_DEPTH_START));
+						layerSampleList.get(i + 1).addInformation(InformationTag.LAYER_GRANULATION.getIdentifier(), "");
+						layerSampleList.remove(layerSampleList.get(i));
 						i--;
 					}
 				}
 			}
 		}
-		return layerList;
+		return layerSampleList;
 	}
 
 	@Override

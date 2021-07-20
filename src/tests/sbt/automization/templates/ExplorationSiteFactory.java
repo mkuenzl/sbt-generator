@@ -1,7 +1,7 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.Layer;
+import sbt.automization.data.LayerSample;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -54,38 +54,38 @@ public class ExplorationSiteFactory
 	ExplorationSite explorationSite5 = new ExplorationSite();
 
 
-	Layer layer1_GOB;
-	Layer layer2_GOB;
-	Layer layer3_GOB;
-	Layer layer4_GOB;
-	Layer layer5_1_TOB;
-	Layer layer5_2_TOB;
+	LayerSample layerSample1_GOB;
+	LayerSample layerSample2_GOB;
+	LayerSample layerSample3_GOB;
+	LayerSample layerSample4_GOB;
+	LayerSample layerSample5_1_TOB;
+	LayerSample layerSample5_2_TOB;
 
-	Layer layer6_1_TOB;
-	Layer layer6_2_TOB;
+	LayerSample layerSample6_1_TOB;
+	LayerSample layerSample6_2_TOB;
 
-	Layer layer7_1_TOB;
-	Layer layer7_2_TOB;
+	LayerSample layerSample7_1_TOB;
+	LayerSample layerSample7_2_TOB;
 
-	Layer layer8_UG;
-	Layer layer8_1_UG;
-	Layer layer8_2_UG;
-	Layer layer9_UG;
-	Layer layer10_UG;
+	LayerSample layerSample8_UG;
+	LayerSample layerSample8_1_UG;
+	LayerSample layerSample8_2_UG;
+	LayerSample layerSample9_UG;
+	LayerSample layerSample10_UG;
 
 
 	public ExplorationSite getTestErkundungsstelle1()
 	{
 		explorationSite1.setInformationMap(buildErkDaten());
 		buildSchichtDaten();
-		explorationSite1.addLayer(layer1_GOB);
-		explorationSite1.addLayer(layer2_GOB);
-		explorationSite1.addLayer(layer3_GOB);
-		explorationSite1.addLayer(layer4_GOB);
-		explorationSite1.addLayer(layer5_1_TOB);
-		explorationSite1.addLayer(layer6_1_TOB);
-		explorationSite1.addLayer(layer7_1_TOB);
-		explorationSite1.addLayer(layer8_UG);
+		explorationSite1.addLayer(layerSample1_GOB);
+		explorationSite1.addLayer(layerSample2_GOB);
+		explorationSite1.addLayer(layerSample3_GOB);
+		explorationSite1.addLayer(layerSample4_GOB);
+		explorationSite1.addLayer(layerSample5_1_TOB);
+		explorationSite1.addLayer(layerSample6_1_TOB);
+		explorationSite1.addLayer(layerSample7_1_TOB);
+		explorationSite1.addLayer(layerSample8_UG);
 
 		return explorationSite1;
 	}
@@ -94,10 +94,10 @@ public class ExplorationSiteFactory
 	{
 		explorationSite2.setInformationMap(buildErkDaten());
 		buildSchichtDaten();
-		explorationSite2.addLayer(layer1_GOB);
-		explorationSite2.addLayer(layer2_GOB);
-		explorationSite2.addLayer(layer3_GOB);
-		explorationSite2.addLayer(layer4_GOB);
+		explorationSite2.addLayer(layerSample1_GOB);
+		explorationSite2.addLayer(layerSample2_GOB);
+		explorationSite2.addLayer(layerSample3_GOB);
+		explorationSite2.addLayer(layerSample4_GOB);
 
 		return explorationSite2;
 	}
@@ -107,12 +107,12 @@ public class ExplorationSiteFactory
 	{
 		explorationSite3.setInformationMap(buildErkDaten());
 		buildSchichtDaten();
-		explorationSite3.addLayer(layer1_GOB);
-		explorationSite3.addLayer(layer2_GOB);
-		explorationSite3.addLayer(layer3_GOB);
-		explorationSite3.addLayer(layer4_GOB);
-		explorationSite3.addLayer(layer5_1_TOB);
-		explorationSite3.addLayer(layer6_2_TOB);
+		explorationSite3.addLayer(layerSample1_GOB);
+		explorationSite3.addLayer(layerSample2_GOB);
+		explorationSite3.addLayer(layerSample3_GOB);
+		explorationSite3.addLayer(layerSample4_GOB);
+		explorationSite3.addLayer(layerSample5_1_TOB);
+		explorationSite3.addLayer(layerSample6_2_TOB);
 
 		return explorationSite3;
 	}
@@ -121,12 +121,12 @@ public class ExplorationSiteFactory
 	{
 		explorationSite4.setInformationMap(buildErkDaten());
 		buildSchichtDaten();
-		explorationSite4.addLayer(layer1_GOB);
-		explorationSite4.addLayer(layer2_GOB);
-		explorationSite4.addLayer(layer3_GOB);
-		explorationSite4.addLayer(layer4_GOB);
-		explorationSite4.addLayer(layer5_2_TOB);
-		explorationSite3.addLayer(layer6_2_TOB);
+		explorationSite4.addLayer(layerSample1_GOB);
+		explorationSite4.addLayer(layerSample2_GOB);
+		explorationSite4.addLayer(layerSample3_GOB);
+		explorationSite4.addLayer(layerSample4_GOB);
+		explorationSite4.addLayer(layerSample5_2_TOB);
+		explorationSite3.addLayer(layerSample6_2_TOB);
 
 
 		return explorationSite4;
@@ -136,12 +136,12 @@ public class ExplorationSiteFactory
 	{
 		explorationSite5.setInformationMap(buildErkDaten());
 		buildSchichtDaten();
-		explorationSite5.addLayer(layer1_GOB);
-		explorationSite5.addLayer(layer2_GOB);
-		explorationSite5.addLayer(layer3_GOB);
-		explorationSite5.addLayer(layer4_GOB);
-		explorationSite5.addLayer(layer5_2_TOB);
-		explorationSite5.addLayer(layer7_2_TOB);
+		explorationSite5.addLayer(layerSample1_GOB);
+		explorationSite5.addLayer(layerSample2_GOB);
+		explorationSite5.addLayer(layerSample3_GOB);
+		explorationSite5.addLayer(layerSample4_GOB);
+		explorationSite5.addLayer(layerSample5_2_TOB);
+		explorationSite5.addLayer(layerSample7_2_TOB);
 
 
 		return explorationSite5;
@@ -208,7 +208,7 @@ public class ExplorationSiteFactory
 		schicht1Daten.put("CHEMIE_PCB", "");
 		schicht1Daten.put("CHEMIE_BTEX", "");
 
-		layer1_GOB = new Layer(schicht1Daten);
+		layerSample1_GOB = new LayerSample(schicht1Daten);
 
 		Map<String, String> schicht2Daten = new HashMap<>();
 
@@ -247,7 +247,7 @@ public class ExplorationSiteFactory
 		schicht2Daten.put("CHEMIE_PCB", "");
 		schicht2Daten.put("CHEMIE_BTEX", "");
 
-		layer2_GOB = new Layer(schicht2Daten);
+		layerSample2_GOB = new LayerSample(schicht2Daten);
 
 		Map<String, String> schicht3Daten = new HashMap<>();
 
@@ -286,7 +286,7 @@ public class ExplorationSiteFactory
 		schicht3Daten.put("CHEMIE_PCB", "");
 		schicht3Daten.put("CHEMIE_BTEX", "");
 
-		layer3_GOB = new Layer(schicht3Daten);
+		layerSample3_GOB = new LayerSample(schicht3Daten);
 
 		Map<String, String> schicht4Daten = new HashMap<>();
 
@@ -325,7 +325,7 @@ public class ExplorationSiteFactory
 		schicht4Daten.put("CHEMIE_PCB", "");
 		schicht4Daten.put("CHEMIE_BTEX", "");
 
-		layer4_GOB = new Layer(schicht4Daten);
+		layerSample4_GOB = new LayerSample(schicht4Daten);
 
 		Map<String, String> schicht5Daten = new HashMap<>();
 
@@ -364,7 +364,7 @@ public class ExplorationSiteFactory
 		schicht5Daten.put("CHEMIE_PCB", "");
 		schicht5Daten.put("CHEMIE_BTEX", "");
 
-		layer5_1_TOB = new Layer(schicht5Daten);
+		layerSample5_1_TOB = new LayerSample(schicht5Daten);
 
 		Map<String, String> schicht5_2_Daten = new HashMap<>();
 
@@ -403,7 +403,7 @@ public class ExplorationSiteFactory
 		schicht5_2_Daten.put("CHEMIE_PCB", "");
 		schicht5_2_Daten.put("CHEMIE_BTEX", "");
 
-		layer5_2_TOB = new Layer(schicht5_2_Daten);
+		layerSample5_2_TOB = new LayerSample(schicht5_2_Daten);
 
 		Map<String, String> schicht6Daten = new HashMap<>();
 
@@ -442,7 +442,7 @@ public class ExplorationSiteFactory
 		schicht6Daten.put("CHEMIE_PCB", "");
 		schicht6Daten.put("CHEMIE_BTEX", "");
 
-		layer6_1_TOB = new Layer(schicht6Daten);
+		layerSample6_1_TOB = new LayerSample(schicht6Daten);
 
 		Map<String, String> schicht7Daten = new HashMap<>();
 
@@ -481,7 +481,7 @@ public class ExplorationSiteFactory
 		schicht7Daten.put("CHEMIE_PCB", "");
 		schicht7Daten.put("CHEMIE_BTEX", "");
 
-		layer7_1_TOB = new Layer(schicht7Daten);
+		layerSample7_1_TOB = new LayerSample(schicht7Daten);
 
 		Map<String, String> schicht8Daten = new HashMap<>();
 
@@ -520,7 +520,7 @@ public class ExplorationSiteFactory
 		schicht8Daten.put("CHEMIE_PCB", "");
 		schicht8Daten.put("CHEMIE_BTEX", "");
 
-		layer8_UG = new Layer(schicht8Daten);
+		layerSample8_UG = new LayerSample(schicht8Daten);
 
 		Map<String, String> schicht8_1_Daten = new HashMap<>();
 
@@ -559,7 +559,7 @@ public class ExplorationSiteFactory
 		schicht8_1_Daten.put("CHEMIE_PCB", "");
 		schicht8_1_Daten.put("CHEMIE_BTEX", "");
 
-		layer8_1_UG = new Layer(schicht8_1_Daten);
+		layerSample8_1_UG = new LayerSample(schicht8_1_Daten);
 
 		Map<String, String> schicht8_2_Daten = new HashMap<>();
 
@@ -598,7 +598,7 @@ public class ExplorationSiteFactory
 		schicht8_2_Daten.put("CHEMIE_PCB", "");
 		schicht8_2_Daten.put("CHEMIE_BTEX", "");
 
-		layer8_2_UG = new Layer(schicht8_2_Daten);
+		layerSample8_2_UG = new LayerSample(schicht8_2_Daten);
 
 		Map<String, String> schicht9Daten = new HashMap<>();
 
@@ -637,7 +637,7 @@ public class ExplorationSiteFactory
 		schicht9Daten.put("CHEMIE_PCB", "");
 		schicht9Daten.put("CHEMIE_BTEX", "");
 
-		layer9_UG = new Layer(schicht9Daten);
+		layerSample9_UG = new LayerSample(schicht9Daten);
 
 		Map<String, String> schicht10Daten = new HashMap<>();
 
@@ -676,6 +676,6 @@ public class ExplorationSiteFactory
 		schicht10Daten.put("CHEMIE_PCB", "");
 		schicht10Daten.put("CHEMIE_BTEX", "");
 
-		layer10_UG = new Layer(schicht10Daten);
+		layerSample10_UG = new LayerSample(schicht10Daten);
 	}
 }

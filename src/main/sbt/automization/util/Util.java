@@ -3,7 +3,7 @@ package sbt.automization.util;
 import org.apache.commons.io.FileUtils;
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.InformationTag;
-import sbt.automization.data.Layer;
+import sbt.automization.data.LayerSample;
 
 import java.io.*;
 import java.net.URL;
@@ -146,18 +146,18 @@ public final class Util
 			{ //TODO make InformationTags implement Type
 				if (!"-".equals(explorationSite.getInformation(key))) return true;
 			} else {
-				List<Layer> layers;
+				List<LayerSample> layerSamples;
 
 				if (!"".equals(outcrop))
 				{
-					layers = explorationSite.getLayersWithOutcrop(outcrop);
+					layerSamples = explorationSite.getLayersWithOutcrop(outcrop);
 				} else {
-					layers = explorationSite.getLayers();
+					layerSamples = explorationSite.getLayers();
 				}
 
-				for (Layer layer : layers)
+				for (LayerSample layerSample : layerSamples)
 				{
-					if (!"-".equals(layer.getInformation(key))) return true;
+					if (!"-".equals(layerSample.getInformation(key))) return true;
 				}
 			}
 		}
