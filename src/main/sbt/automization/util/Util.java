@@ -180,6 +180,12 @@ public final class Util
 		return explorationSitesWithOutcrop;
 	}
 
+	/**
+	 * Method calculates the optimal size of each sample and adds the rest to the last sample.
+	 * @param volume a Double of the Heap volume
+	 * @param count an Int of the amount of required samples
+	 * @return an Array of sample volumes
+	 */
 	public static int[] calculateHeapSampleSizes(double volume, int count)
 	{
 		double x = volume / count;
