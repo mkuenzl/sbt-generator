@@ -2,6 +2,7 @@ package sbt.automization.util;
 
 import org.apache.commons.io.FileUtils;
 import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.ISample;
 import sbt.automization.data.InformationTag;
 import sbt.automization.data.LayerSample;
 
@@ -177,5 +178,27 @@ public final class Util
 				.collect(Collectors.toList());
 
 		return explorationSitesWithOutcrop;
+	}
+
+	public static int[] calculateHeapSampleSizes(double volume, int count)
+	{
+		double x = volume / count;
+
+		double modulo = x % 10;
+
+		x -= modulo;
+
+		double sumOfModulo = modulo * count;
+
+		int[] sampleSizes = new int[count];
+
+		for (int i = 0; i < count - 1; i++)
+		{
+			sampleSizes[i] = (int) x;
+		}
+
+		sampleSizes[count-1] = (int) (x + sumOfModulo);
+
+		return sampleSizes;
 	}
 }
