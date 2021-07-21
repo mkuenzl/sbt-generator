@@ -2,7 +2,6 @@ package sbt.automization.util;
 
 import org.apache.commons.io.FileUtils;
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.ISample;
 import sbt.automization.data.InformationTag;
 import sbt.automization.data.LayerSample;
 
@@ -21,17 +20,18 @@ import java.util.stream.Collectors;
  */
 public final class Util
 {
-	private Util(){}
+	private Util() {}
 
 	/**
 	 * Method is used for creating and saving test exploration site objects
+	 *
 	 * @param explorationSite the object to serialize
-	 * @param fileName the name of the created file
+	 * @param fileName        the name of the created file
 	 */
 	public static void serializeExplorationSiteToFile(ExplorationSite explorationSite, String fileName)
 	{
-		try (FileOutputStream fileOutputStream = new FileOutputStream(fileName);
-			 ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);)
+		try (FileOutputStream fileOutputStream = new FileOutputStream(fileName) ;
+		     ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream) ;)
 		{
 			outputStream.writeObject(explorationSite);
 		} catch (IOException e)
@@ -42,6 +42,7 @@ public final class Util
 
 	/**
 	 * Method is used for reading test exploration site objects
+	 *
 	 * @param filePath the location of the serialized object file
 	 * @return a ExplorationSite object
 	 */
@@ -49,8 +50,8 @@ public final class Util
 	{
 		ExplorationSite explorationSite = null;
 
-		try (FileInputStream fileInputStream = new FileInputStream(filePath);
-			 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);)
+		try (FileInputStream fileInputStream = new FileInputStream(filePath) ;
+		     ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream) ;)
 		{
 			explorationSite = (ExplorationSite) objectInputStream.readObject();
 		} catch (IOException | ClassNotFoundException e)
@@ -63,6 +64,7 @@ public final class Util
 
 	/**
 	 * Method used to export files from with the program resource folder
+	 *
 	 * @param fileName specifies which file should be exported
 	 * @throws IOException if anything happens while reading oder writing the file
 	 */
@@ -92,6 +94,7 @@ public final class Util
 
 	/**
 	 * Method used to export files from with the program resource folder
+	 *
 	 * @param fileName specifies which file should be exported
 	 * @throws IOException if anything happens while reading oder writing the file
 	 */
@@ -121,22 +124,24 @@ public final class Util
 
 	/**
 	 * Method can be used to separate lists into Collections of lists
+	 *
 	 * @param inputList a list
-	 * @param size the maximal size per list
-	 * @param <T> the object which is put into a list
+	 * @param size      the maximal size per list
+	 * @param <T>       the object which is put into a list
 	 * @return a collection of lists with maximal sizes
 	 */
-	public static <T>Collection<List<T>> separateBasedOnSize(List<T> inputList, int size)
+	public static <T> Collection<List<T>> separateBasedOnSize(List<T> inputList, int size)
 	{
 		final AtomicInteger counter = new AtomicInteger(0);
-		return inputList.stream().collect(Collectors.groupingBy(l -> counter.getAndIncrement()/size)).values();
+		return inputList.stream().collect(Collectors.groupingBy(l -> counter.getAndIncrement() / size)).values();
 	}
 
 	/**
 	 * Used to detect if there is layers inside of exploration sites where the key value is not empty
+	 *
 	 * @param explorationSites list of exploration sites
-	 * @param outcrop specifies which layers should be looked at
-	 * @param key String that represents a key to get information from the layers
+	 * @param outcrop          specifies which layers should be looked at
+	 * @param key              String that represents a key to get information from the layers
 	 * @return true, if there is a non empty value, false, if all values are empty
 	 */
 	public static boolean thereExistsAnExplorationSiteWithData(List<ExplorationSite> explorationSites, String outcrop, InformationTag key)
@@ -145,20 +150,22 @@ public final class Util
 		{
 			if (key.name().contains("SITE"))
 			{ //TODO make InformationTags implement Type
-				if (!"-".equals(explorationSite.getInformation(key))) return true;
-			} else {
+				if (! "-".equals(explorationSite.getInformation(key))) return true;
+			} else
+			{
 				List<LayerSample> layerSamples;
 
-				if (!"".equals(outcrop))
+				if (! "".equals(outcrop))
 				{
 					layerSamples = explorationSite.getLayersWithOutcrop(outcrop);
-				} else {
+				} else
+				{
 					layerSamples = explorationSite.getLayers();
 				}
 
 				for (LayerSample layerSample : layerSamples)
 				{
-					if (!"-".equals(layerSample.getInformation(key))) return true;
+					if (! "-".equals(layerSample.getInformation(key))) return true;
 				}
 			}
 		}
@@ -167,7 +174,8 @@ public final class Util
 
 	/**
 	 * Method used to retrieve all ExplorationSites which contain at least one layer from a specified outcrop.
-	 * @param sites a List of ExplorationSite
+	 *
+	 * @param sites   a List of ExplorationSite
 	 * @param outcrop a String
 	 * @return a List of ExplorationSite
 	 */
@@ -182,15 +190,18 @@ public final class Util
 
 	/**
 	 * Method calculates the optimal size of each sample and adds the rest to the last sample.
+	 *
 	 * @param volume a Double of the Heap volume
-	 * @param count an Int of the amount of required samples
+	 * @param count  an Int of the amount of required samples
 	 * @return an Array of sample volumes
 	 */
 	public static int[] calculateHeapSampleSizes(double volume, int count)
 	{
+		if (count <= 0 || volume <= 0) return null;
+
 		double x = volume / count;
 
-		double modulo = x % 10;
+		double modulo = x % 5;
 
 		x -= modulo;
 
@@ -198,12 +209,12 @@ public final class Util
 
 		int[] sampleSizes = new int[count];
 
-		for (int i = 0; i < count - 1; i++)
+		for (int i = 0 ; i < count - 1 ; i++)
 		{
 			sampleSizes[i] = (int) x;
 		}
 
-		sampleSizes[count-1] = (int) (x + sumOfModulo);
+		sampleSizes[count - 1] = (int) (x + Math.round(sumOfModulo));
 
 		return sampleSizes;
 	}
