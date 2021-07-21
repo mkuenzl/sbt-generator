@@ -26,6 +26,16 @@ public class UtilHeapSampleSizeTest
 	}
 
 	@Test
+	public void calculateSamplesFifthTest()
+	{
+		int[] heapSampleSizes = Util.calculateHeapSampleSizes(740.0, 9);
+
+		int[] compareToSizes = {80, 80, 80, 80, 80, 80, 80, 80, 100};
+
+		Assert.assertArrayEquals(compareToSizes, heapSampleSizes);
+	}
+
+	@Test
 	public void calculateSamplesThirdTest()
 	{
 		int[] heapSampleSizes = Util.calculateHeapSampleSizes(30.0, 2);
