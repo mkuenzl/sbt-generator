@@ -2,6 +2,8 @@ package sbt.automization.format;
 
 import sbt.automization.util.html.HtmlCell;
 
+import java.util.Locale;
+
 /**
  * Class that creates formatted html cell objects.
  */
@@ -19,13 +21,13 @@ public final class HtmlCellFormatUtil
 	{
 		HtmlCell htmlCell = new HtmlCell();
 
-		switch (information)
+		switch (information.toUpperCase(Locale.ROOT))
 		{
-			case "nein":
+			case "NEIN":
 				htmlCell.appendAttribute("class", "ChemieWhite");
 				htmlCell.appendContent("FREI");
 				break;
-			case "ja":
+			case "JA":
 				htmlCell.appendAttribute("class", "ChemieBlack");
 				htmlCell.appendContent("PECH");
 				break;
