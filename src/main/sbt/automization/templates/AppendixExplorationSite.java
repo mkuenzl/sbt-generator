@@ -1,7 +1,7 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.InformationTag;
+import sbt.automization.data.ReferenceKey;
 import sbt.automization.format.FootnoteFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
@@ -46,7 +46,7 @@ public final class AppendixExplorationSite extends AHtmlTable
 			HtmlCell cellERKORT = new HtmlCell.Builder()
 					.appendAttribute("class", "Normal")
 					.appendAttribute("colspan", "3")
-					.appendContent(explorationSite.getInformation(InformationTag.SITE_LOCATION))
+					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_LOCATION))
 					.build();
 
 			HtmlRow firstErkRow = new HtmlRow.Builder()
@@ -64,7 +64,7 @@ public final class AppendixExplorationSite extends AHtmlTable
 			HtmlCell cellERKID = new HtmlCell.Builder()
 					.appendAttribute("width", "150")
 					.appendAttribute("class", "Normal")
-					.appendContent(explorationSite.getInformation(InformationTag.SITE_ID))
+					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_ID))
 					.build();
 
 			HtmlCell cellTextERKDATUM = new HtmlCell.Builder()
@@ -76,7 +76,7 @@ public final class AppendixExplorationSite extends AHtmlTable
 			HtmlCell cellERKDATUM = new HtmlCell.Builder()
 					.appendAttribute("width", "150")
 					.appendAttribute("class", "Normal")
-					.appendContent(explorationSite.getInformation(InformationTag.SITE_DATE))
+					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_DATE))
 					.build();
 
 			HtmlRow secondErkRow = new HtmlRow.Builder()
@@ -95,7 +95,7 @@ public final class AppendixExplorationSite extends AHtmlTable
 
 			HtmlCell cellERK_KOORDINATEN = new HtmlCell.Builder()
 					.appendAttribute("class", "Normal")
-					.appendContent(explorationSite.getInformation(InformationTag.SITE_COORDINATES))
+					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_COORDINATES))
 					.build();
 
 
@@ -106,7 +106,7 @@ public final class AppendixExplorationSite extends AHtmlTable
 
 			HtmlCell cellERK_PRUEFER = new HtmlCell.Builder()
 					.appendAttribute("class", "Normal")
-					.appendContent(explorationSite.getInformation(InformationTag.SITE_INSPECTOR))
+					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_INSPECTOR))
 					.build();
 
 			HtmlRow thirdErkRow = new HtmlRow.Builder()
@@ -124,7 +124,7 @@ public final class AppendixExplorationSite extends AHtmlTable
 
 			HtmlCell cellERK_BEREICH = new HtmlCell.Builder()
 					.appendAttribute("class", "Normal")
-					.appendContent(explorationSite.getInformation(InformationTag.SITE_REGION))
+					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_REGION))
 					.build();
 
 
@@ -135,7 +135,7 @@ public final class AppendixExplorationSite extends AHtmlTable
 
 			HtmlCell cellERK_ANSPRECHPARNTER = new HtmlCell.Builder()
 					.appendAttribute("class", "Normal")
-					.appendContent(explorationSite.getInformation(InformationTag.SITE_CONTACT_PERSON))
+					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_CONTACT_PERSON))
 					.build();
 
 			HtmlRow fourthErkRow = new HtmlRow.Builder()

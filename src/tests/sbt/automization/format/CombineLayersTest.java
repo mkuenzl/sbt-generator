@@ -2,7 +2,7 @@ package sbt.automization.format;
 
 import org.junit.Assert;
 import org.junit.Test;
-import sbt.automization.data.InformationTag;
+import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.LayerSample;
 
 import java.util.ArrayList;
@@ -18,22 +18,22 @@ public class CombineLayersTest
 
 		LayerSample layerSampleOne = new LayerSample(new HashMap<>(){{
 			put(tag, "xy");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "5");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "15");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "5");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "15");
 		}});
 
 		LayerSample layerSampleTwo = new LayerSample(new HashMap<>(){{
 			put(tag, "xy");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "25");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "35");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "25");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "35");
 		}});
 
 		LayerSample combinedLayerSample = LayerFormatUtil.combineLayers(layerSampleOne, layerSampleTwo, tag);
 
 		LayerSample compareToLayerSample = new LayerSample(new HashMap<>(){{
 			put(tag, "xy");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "5");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "35");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "5");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "35");
 		}});
 
 		Assert.assertEquals(combinedLayerSample, compareToLayerSample);
@@ -46,22 +46,22 @@ public class CombineLayersTest
 
 		LayerSample layerSampleOne = new LayerSample(new HashMap<>(){{
 			put(tag, "C1");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "5");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "15");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "5");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "15");
 		}});
 
 		LayerSample layerSampleTwo = new LayerSample(new HashMap<>(){{
 			put(tag, "C1");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "25");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "35");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "25");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "35");
 		}});
 
 		LayerSample combinedLayerSample = LayerFormatUtil.combineLayers(layerSampleOne, layerSampleTwo, tag);
 
 		LayerSample compareToLayerSample = new LayerSample(new HashMap<>(){{
 			put(tag, "C1");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "5");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "35");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "5");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "35");
 		}});
 
 		Assert.assertEquals(combinedLayerSample, compareToLayerSample);
@@ -74,14 +74,14 @@ public class CombineLayersTest
 
 		LayerSample layerSampleOne = new LayerSample(new HashMap<>(){{
 			put(tag, "xyz");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "5");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "15");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "5");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "15");
 		}});
 
 		LayerSample layerSampleTwo = new LayerSample(new HashMap<>(){{
 			put(tag, "abc");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "25");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "35");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "25");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "35");
 		}});
 
 		LayerSample combinedLayerSample = LayerFormatUtil.combineLayers(layerSampleOne, layerSampleTwo, tag);
@@ -96,8 +96,8 @@ public class CombineLayersTest
 
 		LayerSample layerSampleOne = new LayerSample(new HashMap<>(){{
 			put(tag, "xyz");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "5");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "15");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "5");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "15");
 		}});
 
 		LayerSample combinedLayerSample = LayerFormatUtil.combineLayers(layerSampleOne, null, tag);
@@ -112,8 +112,8 @@ public class CombineLayersTest
 
 		LayerSample layerSampleTwo = new LayerSample(new HashMap<>(){{
 			put(tag, "abc");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "25");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "35");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "25");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "35");
 		}});
 
 		LayerSample combinedLayerSample = LayerFormatUtil.combineLayers(null, layerSampleTwo, tag);
@@ -128,14 +128,14 @@ public class CombineLayersTest
 
 		LayerSample layerSampleOne = new LayerSample(new HashMap<>(){{
 			put(tag, "xy");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "5");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "15");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "5");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "15");
 		}});
 
 		LayerSample layerSampleTwo = new LayerSample(new HashMap<>(){{
 			put(tag, "xy");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "25");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "35");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "25");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "35");
 		}});
 
 		LayerSample combinedLayerSample = LayerFormatUtil.combineLayers(layerSampleOne, layerSampleTwo, null);
@@ -164,8 +164,8 @@ public class CombineLayersTest
 
 		LayerSample layerSampleOne = new LayerSample(new HashMap<>(){{
 			put(tag, "xy");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "5");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "15");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "5");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "15");
 		}});
 
 		List<LayerSample> layerSamples = new ArrayList<>()
@@ -177,8 +177,8 @@ public class CombineLayersTest
 		{{
 			add(new LayerSample(new HashMap<>(){{
 				put(tag, "xy");
-				put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "5");
-				put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "15");
+				put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "5");
+				put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "15");
 			}}));
 		}};
 
@@ -194,38 +194,38 @@ public class CombineLayersTest
 
 		LayerSample layerSampleOne = new LayerSample(new HashMap<>(){{
 			put(tag, "xy");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "5");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "15");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "5");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "15");
 		}});
 
 		LayerSample layerSampleTwo = new LayerSample(new HashMap<>(){{
 			put(tag, "xy");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "25");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "35");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "25");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "35");
 		}});
 
 		LayerSample layerSampleThree = new LayerSample(new HashMap<>(){{
 			put(tag, "xy");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "35");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "45");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "35");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "45");
 		}});
 
 		LayerSample layerSampleFour = new LayerSample(new HashMap<>(){{
 			put(tag, "xy");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "45");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "50");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "45");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "50");
 		}});
 
 		LayerSample layerSampleFive = new LayerSample(new HashMap<>(){{
 			put(tag, "xy");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "50");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "65");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "50");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "65");
 		}});
 
 		LayerSample layerSampleSix = new LayerSample(new HashMap<>(){{
 			put(tag, "xy");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "65");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "100");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "65");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "100");
 		}});
 
 		List<LayerSample> layerSamples = new ArrayList<>()
@@ -242,8 +242,8 @@ public class CombineLayersTest
 		{{
 			add(new LayerSample(new HashMap<>(){{
 				put(tag, "xy");
-				put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "5");
-				put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "100");
+				put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "5");
+				put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "100");
 			}}));
 		}};
 
@@ -259,38 +259,38 @@ public class CombineLayersTest
 
 		LayerSample layerSampleOne = new LayerSample(new HashMap<>(){{
 			put(tag, "xy");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "5");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "15");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "5");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "15");
 		}});
 
 		LayerSample layerSampleTwo = new LayerSample(new HashMap<>(){{
 			put(tag, "xy");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "25");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "35");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "25");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "35");
 		}});
 
 		LayerSample layerSampleThree = new LayerSample(new HashMap<>(){{
 			put(tag, "xz");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "35");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "45");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "35");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "45");
 		}});
 
 		LayerSample layerSampleFour = new LayerSample(new HashMap<>(){{
 			put(tag, "xy");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "45");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "50");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "45");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "50");
 		}});
 
 		LayerSample layerSampleFive = new LayerSample(new HashMap<>(){{
 			put(tag, "xy");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "50");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "65");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "50");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "65");
 		}});
 
 		LayerSample layerSampleSix = new LayerSample(new HashMap<>(){{
 			put(tag, "xz");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "65");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "100");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "65");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "100");
 		}});
 
 		List<LayerSample> layerSamples = new ArrayList<>()
@@ -307,23 +307,23 @@ public class CombineLayersTest
 		{{
 			add(new LayerSample(new HashMap<>(){{
 				put(tag, "xy");
-				put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "5");
-				put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "35");
+				put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "5");
+				put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "35");
 			}}));
 			add(new LayerSample(new HashMap<>(){{
 				put(tag, "xz");
-				put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "35");
-				put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "45");
+				put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "35");
+				put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "45");
 			}}));
 			add(new LayerSample(new HashMap<>(){{
 				put(tag, "xy");
-				put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "45");
-				put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "65");
+				put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "45");
+				put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "65");
 			}}));
 			add(new LayerSample(new HashMap<>(){{
 				put(tag, "xz");
-				put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "65");
-				put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "100");
+				put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "65");
+				put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "100");
 			}}));
 		}};
 
@@ -339,38 +339,38 @@ public class CombineLayersTest
 
 		LayerSample layerSampleOne = new LayerSample(new HashMap<>(){{
 			put(tag, "xy");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "5");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "15");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "5");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "15");
 		}});
 
 		LayerSample layerSampleTwo = new LayerSample(new HashMap<>(){{
 			put(tag, "abc");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "25");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "35");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "25");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "35");
 		}});
 
 		LayerSample layerSampleThree = new LayerSample(new HashMap<>(){{
 			put(tag, "xz");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "35");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "45");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "35");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "45");
 		}});
 
 		LayerSample layerSampleFour = new LayerSample(new HashMap<>(){{
 			put(tag, "xf");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "45");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "50");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "45");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "50");
 		}});
 
 		LayerSample layerSampleFive = new LayerSample(new HashMap<>(){{
 			put(tag, "xl");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "50");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "65");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "50");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "65");
 		}});
 
 		LayerSample layerSampleSix = new LayerSample(new HashMap<>(){{
 			put(tag, "xxl");
-			put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "65");
-			put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "100");
+			put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "65");
+			put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "100");
 		}});
 
 		List<LayerSample> layerSamples = new ArrayList<>()
@@ -387,33 +387,33 @@ public class CombineLayersTest
 		{{
 			add(new LayerSample(new HashMap<>(){{
 				put(tag, "xy");
-				put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "5");
-				put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "15");
+				put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "5");
+				put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "15");
 			}}));
 			add(new LayerSample(new HashMap<>(){{
 				put(tag, "abc");
-				put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "25");
-				put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "35");
+				put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "25");
+				put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "35");
 			}}));
 			add(new LayerSample(new HashMap<>(){{
 				put(tag, "xz");
-				put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "35");
-				put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "45");
+				put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "35");
+				put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "45");
 			}}));
 			add(new LayerSample(new HashMap<>(){{
 				put(tag, "xf");
-				put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "45");
-				put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "50");
+				put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "45");
+				put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "50");
 			}}));
 			add(new LayerSample(new HashMap<>(){{
 				put(tag, "xl");
-				put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "50");
-				put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "65");
+				put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "50");
+				put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "65");
 			}}));
 			add(new LayerSample(new HashMap<>(){{
 				put(tag, "xxl");
-				put(InformationTag.LAYER_DEPTH_START.getIdentifier(), "65");
-				put(InformationTag.LAYER_DEPTH_END.getIdentifier(), "100");
+				put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(), "65");
+				put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(), "100");
 			}}));
 		}};
 

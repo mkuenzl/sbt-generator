@@ -1,7 +1,7 @@
 package sbt.automization.templates.helper;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.InformationTag;
+import sbt.automization.data.ReferenceKey;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 
@@ -30,7 +30,7 @@ public final class HeapFactory extends ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(InformationTag.SITE_OUTCROP_UG_OH_BA))
+					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_OUTCROP_UG_OH_BA))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -57,7 +57,7 @@ public final class HeapFactory extends ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(InformationTag.SITE_HEAP_MATERIAL))
+					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_HEAP_MATERIAL))
 					.build();
 
 			row.appendContent(cell.appendTag());

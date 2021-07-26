@@ -1,16 +1,38 @@
-package sbt.automization.util;
+package sbt.automization.data.refactoring;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.LayerSample;
 
 import java.util.*;
 
-/**
- * Class to create data objects from parsed csv information
- */
-public final class DataCreator
+public final class DataTableFactory
 {
-	private DataCreator(){}
+	private DataTableFactory() {}
+
+	public static Project getProject()
+	{
+		return null;
+	}
+
+	public static List<Examination> getProbeList()
+	{
+		return null;
+	}
+
+	public static Examination getProbe()
+	{
+		return null;
+	}
+
+	public static Probe getSample()
+	{
+		return null;
+	}
+
+	public static Parameter getParameter()
+	{
+		return null;
+	}
 
 	/**
 	 * Will create different exploration sites based on their ID values. Each map should contain an ERK_ID key. Maps
@@ -93,6 +115,5 @@ public final class DataCreator
 
 		return explorationSite;
 	}
-
 
 }

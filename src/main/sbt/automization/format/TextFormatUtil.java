@@ -1,7 +1,7 @@
 package sbt.automization.format;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.InformationTag;
+import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.LayerSample;
 import sbt.automization.util.html.HtmlText;
 
@@ -25,7 +25,7 @@ public final class TextFormatUtil
 	 */
 	public static String formatLoadClass(final ExplorationSite explorationSite)
 	{
-		String loadClass = explorationSite.getInformation(InformationTag.SITE_LOAD_CLASS);
+		String loadClass = explorationSite.getInformation(ReferenceKey.SITE_LOAD_CLASS);
 		String content;
 
 		if ("keine".equals(loadClass) || "-".equals(loadClass))
@@ -116,7 +116,7 @@ public final class TextFormatUtil
 		List<LayerSample> layersInOutcrop = explorationSite.getLayersWithOutcrop(outcrop);
 		for (LayerSample layerSample : layersInOutcrop)
 		{
-			heightValue = heightValue + Double.parseDouble(layerSample.getInformation(InformationTag.LAYER_THICKNESS).replace(",", "."));
+			heightValue = heightValue + Double.parseDouble(layerSample.getInformation(ReferenceKey.LAYER_THICKNESS).replace(",", "."));
 		}
 		String height = String.valueOf(heightValue);
 		return height.replace(".", ",");
@@ -318,11 +318,11 @@ public final class TextFormatUtil
 		{
 			LayerSample layerSample = outcropLayerSamples.get(i);
 
-			formattedLayerMaterial.append(formatLayerAttributes(layerSample.getInformation(InformationTag.LAYER_TYPE),
-					layerSample.getInformation(InformationTag.LAYER_ROUNDING_GRADATION),
-					layerSample.getInformation(InformationTag.LAYER_GRANULATION)));
+			formattedLayerMaterial.append(formatLayerAttributes(layerSample.getInformation(ReferenceKey.LAYER_TYPE),
+					layerSample.getInformation(ReferenceKey.LAYER_ROUNDING_GRADATION),
+					layerSample.getInformation(ReferenceKey.LAYER_GRANULATION)));
 
-			formattedLayerMaterial.append(formatDepthSpecified(layerSample.getInformation(InformationTag.LAYER_DEPTH_START), layerSample.getInformation(InformationTag.LAYER_DEPTH_END)));
+			formattedLayerMaterial.append(formatDepthSpecified(layerSample.getInformation(ReferenceKey.LAYER_DEPTH_START), layerSample.getInformation(ReferenceKey.LAYER_DEPTH_END)));
 
 			if (i + 1 < size)
 			{
@@ -453,15 +453,15 @@ public final class TextFormatUtil
 
 			stringBuilder.append(formattedTag);
 			stringBuilder.append(printLineEmpty());
-			stringBuilder.append(formatDepthSpecified(layerSample.getInformation(InformationTag.LAYER_DEPTH_START),
-					layerSample.getInformation(InformationTag.LAYER_DEPTH_END)));
+			stringBuilder.append(formatDepthSpecified(layerSample.getInformation(ReferenceKey.LAYER_DEPTH_START),
+					layerSample.getInformation(ReferenceKey.LAYER_DEPTH_END)));
 
 		}
 
 		return stringBuilder.toString();
 	}
 
-	public static String printLayerInformationWithDepth(final ExplorationSite explorationSite, final String outcrop, final InformationTag tag)
+	public static String printLayerInformationWithDepth(final ExplorationSite explorationSite, final String outcrop, final ReferenceKey tag)
 	{
 		return printLayerInformationWithDepth(explorationSite, outcrop, tag.getIdentifier());
 	}
@@ -586,7 +586,7 @@ public final class TextFormatUtil
 
 	public static String formatLayerProctor(final LayerSample layerSample)
 	{
-		String feuchtigkeit = layerSample.getInformation(InformationTag.LAYER_MOISTURE);
+		String feuchtigkeit = layerSample.getInformation(ReferenceKey.LAYER_MOISTURE);
 		if ("-".equals(feuchtigkeit))
 		{
 			return "-";
@@ -604,7 +604,7 @@ public final class TextFormatUtil
 
 		for (LayerSample layerSample : layersWithOutcrop)
 		{
-			String rukValue = layerSample.getInformation(InformationTag.LAYER_RUK);
+			String rukValue = layerSample.getInformation(ReferenceKey.LAYER_RUK);
 
 			if (! "-".equals(rukValue) && ! "".equals(rukValue))
 			{
@@ -615,7 +615,7 @@ public final class TextFormatUtil
 
 				HtmlText layerKind = new HtmlText.Builder()
 						.appendAttribute("class", "Normal6")
-						.appendContent(layerSample.getInformation(InformationTag.LAYER_TYPE))
+						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_TYPE))
 						.build();
 
 				HtmlText rukText = new HtmlText.Builder()

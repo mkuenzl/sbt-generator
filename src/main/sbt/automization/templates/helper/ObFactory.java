@@ -1,7 +1,7 @@
 package sbt.automization.templates.helper;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.InformationTag;
+import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.LayerSample;
 import sbt.automization.format.HtmlCellFormatUtil;
 import sbt.automization.format.TextFormatUtil;
@@ -45,7 +45,7 @@ public final class ObFactory extends ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(InformationTag.SITE_OUTCROP_OB))
+					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_OUTCROP_OB))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -178,7 +178,7 @@ public final class ObFactory extends ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(InformationTag.SITE_PITCH_QUALITATIVE))
+					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_PITCH_QUALITATIVE))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -207,7 +207,7 @@ public final class ObFactory extends ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(InformationTag.SITE_PITCH_HALF_QUANTITATIVE))
+					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_PITCH_HALF_QUANTITATIVE))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -236,7 +236,7 @@ public final class ObFactory extends ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(InformationTag.SITE_PITCH_QUANTITATIVE))
+					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_PITCH_QUANTITATIVE))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -352,10 +352,10 @@ public final class ObFactory extends ARowFactory
 				for (LayerSample layerSample : layerSamples)
 				{
 					//TODO CHANGE TO TRUE & FALSE PECH
-					String layerSize = layerSample.getInformation(InformationTag.LAYER_THICKNESS);
+					String layerSize = layerSample.getInformation(ReferenceKey.LAYER_THICKNESS);
 					layerSize = layerSize.replace(",", ".");
 
-					String layerPitch = layerSample.getInformation(InformationTag.LAYER_PITCH);
+					String layerPitch = layerSample.getInformation(ReferenceKey.LAYER_PITCH);
 
 					if (pitch && "JA".equalsIgnoreCase(layerPitch))
 					{

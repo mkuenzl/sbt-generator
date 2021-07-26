@@ -3,7 +3,7 @@ package sbt.automization.util;
 import org.junit.Assert;
 import org.junit.Test;
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.InformationTag;
+import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.LayerSample;
 
 import java.util.Arrays;
@@ -15,7 +15,7 @@ public class UtilEmptyLineTest
     @Test
     public void explorationSiteNoEmptyValueTest()
     {
-        String identifier = InformationTag.SITE_ID.getIdentifier();
+        String identifier = ReferenceKey.SITE_ID.getIdentifier();
 
         ExplorationSite explorationSiteOne = new ExplorationSite(new HashMap<>(){{
             put(identifier, "FB1");
@@ -29,7 +29,7 @@ public class UtilEmptyLineTest
 
         List<ExplorationSite> explorationSites = Arrays.asList(explorationSiteOne, explorationSiteTwo, explorationSiteThree);
 
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", InformationTag.SITE_ID);
+        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", ReferenceKey.SITE_ID);
 
         Assert.assertTrue(exists);
     }
@@ -37,7 +37,7 @@ public class UtilEmptyLineTest
     @Test
     public void explorationSiteSomeEmptyValuesTest()
     {
-        String identifier = InformationTag.SITE_ID.getIdentifier();
+        String identifier = ReferenceKey.SITE_ID.getIdentifier();
 
         ExplorationSite explorationSiteOne = new ExplorationSite(new HashMap<>(){{
             put(identifier, "FB1");
@@ -49,7 +49,7 @@ public class UtilEmptyLineTest
 
         List<ExplorationSite> explorationSites = Arrays.asList(explorationSiteOne, explorationSiteTwo, explorationSiteThree);
 
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", InformationTag.SITE_ID);
+        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", ReferenceKey.SITE_ID);
 
         Assert.assertTrue(exists);
     }
@@ -57,7 +57,7 @@ public class UtilEmptyLineTest
     @Test
     public void explorationSiteAllEmptyValuesTest()
     {
-        String identifier = InformationTag.SITE_ID.getIdentifier();
+        String identifier = ReferenceKey.SITE_ID.getIdentifier();
 
         ExplorationSite explorationSiteOne = new ExplorationSite(new HashMap<>(){{
         }});
@@ -68,7 +68,7 @@ public class UtilEmptyLineTest
 
         List<ExplorationSite> explorationSites = Arrays.asList(explorationSiteOne, explorationSiteTwo, explorationSiteThree);
 
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", InformationTag.SITE_ID);
+        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", ReferenceKey.SITE_ID);
 
         Assert.assertFalse(exists);
     }
@@ -78,7 +78,7 @@ public class UtilEmptyLineTest
     {
         List<ExplorationSite> explorationSites = Arrays.asList();
 
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", InformationTag.SITE_ID);
+        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", ReferenceKey.SITE_ID);
 
         Assert.assertFalse(exists);
     }
@@ -86,7 +86,7 @@ public class UtilEmptyLineTest
     @Test
     public void layerNoEmptyValueTest()
     {
-        String identifier = InformationTag.LAYER_RUK.getIdentifier();
+        String identifier = ReferenceKey.LAYER_RUK.getIdentifier();
 
         LayerSample emptyLayerSample = new LayerSample(new HashMap<>(){{
             put(identifier, "");
@@ -111,7 +111,7 @@ public class UtilEmptyLineTest
 
         List<ExplorationSite> explorationSites = Arrays.asList(explorationSiteOne, explorationSiteTwo, explorationSiteThree);
 
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", InformationTag.LAYER_RUK);
+        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", ReferenceKey.LAYER_RUK);
 
         Assert.assertTrue(exists);
     }
@@ -119,7 +119,7 @@ public class UtilEmptyLineTest
     @Test
     public void layerSomeEmptyValuesTest()
     {
-        String identifier = InformationTag.LAYER_RUK.getIdentifier();
+        String identifier = ReferenceKey.LAYER_RUK.getIdentifier();
 
         LayerSample emptyLayerSample = new LayerSample(new HashMap<>(){{
             put(identifier, "");
@@ -144,7 +144,7 @@ public class UtilEmptyLineTest
 
         List<ExplorationSite> explorationSites = Arrays.asList(explorationSiteOne, explorationSiteTwo, explorationSiteThree);
 
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", InformationTag.LAYER_RUK);
+        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", ReferenceKey.LAYER_RUK);
 
         Assert.assertTrue(exists);
     }
@@ -152,7 +152,7 @@ public class UtilEmptyLineTest
     @Test
     public void layerAllEmptyValuesTest()
     {
-        String identifier = InformationTag.LAYER_RUK.getIdentifier();
+        String identifier = ReferenceKey.LAYER_RUK.getIdentifier();
 
         LayerSample emptyLayerSample = new LayerSample(new HashMap<>(){{
             put(identifier, "");
@@ -177,7 +177,7 @@ public class UtilEmptyLineTest
 
         List<ExplorationSite> explorationSites = Arrays.asList(explorationSiteOne, explorationSiteTwo, explorationSiteThree);
 
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", InformationTag.LAYER_RUK);
+        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", ReferenceKey.LAYER_RUK);
 
         Assert.assertFalse(exists);
     }
@@ -185,7 +185,7 @@ public class UtilEmptyLineTest
     @Test
     public void layerAnEmptyListProvidedTest()
     {
-        String identifier = InformationTag.LAYER_RUK.getIdentifier();
+        String identifier = ReferenceKey.LAYER_RUK.getIdentifier();
 
         LayerSample emptyLayerSample = new LayerSample(new HashMap<>(){{
             put(identifier, "");
@@ -205,7 +205,7 @@ public class UtilEmptyLineTest
 
         List<ExplorationSite> explorationSites = Arrays.asList(explorationSiteOne, explorationSiteTwo, explorationSiteThree);
 
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", InformationTag.LAYER_RUK);
+        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", ReferenceKey.LAYER_RUK);
 
         Assert.assertFalse(exists);
     }
@@ -213,8 +213,8 @@ public class UtilEmptyLineTest
     @Test
     public void layerFromOutcropNoEmptyValueTest()
     {
-        String valueIdentifier = InformationTag.LAYER_RUK.getIdentifier();
-        String outcropIdentifier = InformationTag.LAYER_OUTCROP.getIdentifier();
+        String valueIdentifier = ReferenceKey.LAYER_RUK.getIdentifier();
+        String outcropIdentifier = ReferenceKey.LAYER_OUTCROP.getIdentifier();
         String outcropValue = "GOB";
 
         LayerSample outcropEmptyLayerSample = new LayerSample(new HashMap<>(){{
@@ -250,7 +250,7 @@ public class UtilEmptyLineTest
 
         List<ExplorationSite> explorationSites = Arrays.asList(explorationSiteOne, explorationSiteTwo, explorationSiteThree);
 
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, outcropValue, InformationTag.LAYER_RUK);
+        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, outcropValue, ReferenceKey.LAYER_RUK);
 
         Assert.assertTrue(exists);
     }
@@ -258,8 +258,8 @@ public class UtilEmptyLineTest
     @Test
     public void layerFromOutcropSomeEmptyValuesTest()
     {
-        String valueIdentifier = InformationTag.LAYER_RUK.getIdentifier();
-        String outcropIdentifier = InformationTag.LAYER_OUTCROP.getIdentifier();
+        String valueIdentifier = ReferenceKey.LAYER_RUK.getIdentifier();
+        String outcropIdentifier = ReferenceKey.LAYER_OUTCROP.getIdentifier();
         String outcropValue = "GOB";
 
         LayerSample outcropEmptyLayerSample = new LayerSample(new HashMap<>(){{
@@ -295,7 +295,7 @@ public class UtilEmptyLineTest
 
         List<ExplorationSite> explorationSites = Arrays.asList(explorationSiteOne, explorationSiteTwo, explorationSiteThree);
 
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, outcropValue, InformationTag.LAYER_RUK);
+        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, outcropValue, ReferenceKey.LAYER_RUK);
 
         Assert.assertTrue(exists);
     }
@@ -303,8 +303,8 @@ public class UtilEmptyLineTest
     @Test
     public void layerFromOutcropAllEmptyValuesTest()
     {
-        String valueIdentifier = InformationTag.LAYER_RUK.getIdentifier();
-        String outcropIdentifier = InformationTag.LAYER_OUTCROP.getIdentifier();
+        String valueIdentifier = ReferenceKey.LAYER_RUK.getIdentifier();
+        String outcropIdentifier = ReferenceKey.LAYER_OUTCROP.getIdentifier();
         String outcropValue = "GOB";
 
         LayerSample outcropEmptyLayerSample = new LayerSample(new HashMap<>(){{
@@ -340,7 +340,7 @@ public class UtilEmptyLineTest
 
         List<ExplorationSite> explorationSites = Arrays.asList(explorationSiteOne, explorationSiteTwo, explorationSiteThree);
 
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, outcropValue, InformationTag.LAYER_RUK);
+        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, outcropValue, ReferenceKey.LAYER_RUK);
 
         Assert.assertFalse(exists);
     }
@@ -348,8 +348,8 @@ public class UtilEmptyLineTest
     @Test
     public void layerFromOutcropAnEmptyListProvidedTest()
     {
-        String valueIdentifier = InformationTag.LAYER_RUK.getIdentifier();
-        String outcropIdentifier = InformationTag.LAYER_OUTCROP.getIdentifier();
+        String valueIdentifier = ReferenceKey.LAYER_RUK.getIdentifier();
+        String outcropIdentifier = ReferenceKey.LAYER_OUTCROP.getIdentifier();
         String outcropValue = "GOB";
 
         LayerSample outcropEmptyLayerSample = new LayerSample(new HashMap<>(){{
@@ -378,7 +378,7 @@ public class UtilEmptyLineTest
 
         List<ExplorationSite> explorationSites = Arrays.asList(explorationSiteOne, explorationSiteTwo, explorationSiteThree);
 
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, outcropValue, InformationTag.LAYER_RUK);
+        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, outcropValue, ReferenceKey.LAYER_RUK);
 
         Assert.assertFalse(exists);
     }

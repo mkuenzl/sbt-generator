@@ -74,7 +74,7 @@ public class HeapSample implements ISample, Comparable<LayerSample>, Cloneable, 
     }
 
     @Override
-    public String getInformation(InformationTag tag) {
+    public String getInformation(ReferenceKey tag) {
         return null;
     }
 

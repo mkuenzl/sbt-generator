@@ -4,16 +4,8 @@ package sbt.automization.data;
  * Enum for all information receivable from the excel template.
  * TODO
  */
-public enum InformationTag
+public enum ReferenceKey
 {
-	/*SITE_FOOTNOTES
-			{
-				@Override
-				public String getIdentifier()
-				{
-					return "ERK_FUSSNOTEN";
-				}
-			},*/
 	SITE_HEAP_SAMPLE_AMOUNT
 			{
 				@Override

@@ -1,7 +1,7 @@
 package sbt.automization.templates.helper;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.InformationTag;
+import sbt.automization.data.ReferenceKey;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
@@ -36,7 +36,7 @@ public final class ConcreteFactory extends ARowFactory
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", normalCellWidth)
-                    .appendContent(explorationSite.getInformation(InformationTag.SITE_OUTCROP_OB))
+                    .appendContent(explorationSite.getInformation(ReferenceKey.SITE_OUTCROP_OB))
                     .build();
 
             row.appendContent(cell.appendTag());
@@ -68,7 +68,7 @@ public final class ConcreteFactory extends ARowFactory
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", normalCellWidth)
-                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, InformationTag.LAYER_TYPE))
+                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(explorationSite, outcrop, ReferenceKey.LAYER_TYPE))
                     .build();
 
             row.appendContent(cell.appendTag());

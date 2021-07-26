@@ -2,7 +2,7 @@ package sbt.automization.util;
 
 import org.apache.commons.io.FileUtils;
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.InformationTag;
+import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.LayerSample;
 
 import java.io.*;
@@ -144,7 +144,7 @@ public final class Util
 	 * @param key              String that represents a key to get information from the layers
 	 * @return true, if there is a non empty value, false, if all values are empty
 	 */
-	public static boolean thereExistsAnExplorationSiteWithData(List<ExplorationSite> explorationSites, String outcrop, InformationTag key)
+	public static boolean thereExistsAnExplorationSiteWithData(List<ExplorationSite> explorationSites, String outcrop, ReferenceKey key)
 	{
 		for (ExplorationSite explorationSite : explorationSites)
 		{

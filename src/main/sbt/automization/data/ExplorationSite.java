@@ -44,8 +44,8 @@ public final class ExplorationSite implements Comparable<ExplorationSite>, Seria
 	@Override
 	public int compareTo(final ExplorationSite explorationSite)
 	{
-		String thisOrder = this.getInformation(InformationTag.SITE_NUMBER);
-		String otherOrder = explorationSite.getInformation(InformationTag.SITE_NUMBER);
+		String thisOrder = this.getInformation(ReferenceKey.SITE_NUMBER);
+		String otherOrder = explorationSite.getInformation(ReferenceKey.SITE_NUMBER);
 
 		if (thisOrder == null || otherOrder == null || "-".equals(thisOrder) || "-".equals(otherOrder))
 		{
@@ -67,7 +67,7 @@ public final class ExplorationSite implements Comparable<ExplorationSite>, Seria
 	 * @param tag an Enum which contains EX_SITE. Represents a column in the excel template.
 	 * @return the value based on provided tag
 	 */
-	public String getInformation(InformationTag tag)
+	public String getInformation(ReferenceKey tag)
 	{
 		return getInformation(tag.getIdentifier());
 	}
@@ -99,7 +99,7 @@ public final class ExplorationSite implements Comparable<ExplorationSite>, Seria
 
 		for (LayerSample layerSample : layerSampleList)
 		{
-			String layerThickness = layerSample.getInformation(InformationTag.LAYER_THICKNESS).replace(",", ".");
+			String layerThickness = layerSample.getInformation(ReferenceKey.LAYER_THICKNESS).replace(",", ".");
 			thickness += Double.parseDouble(layerThickness);
 		}
 
@@ -117,7 +117,7 @@ public final class ExplorationSite implements Comparable<ExplorationSite>, Seria
 
 		for (LayerSample layerSample : getLayersWithOutcrop(outcrop))
 		{
-			String layerThickness = layerSample.getInformation(InformationTag.LAYER_THICKNESS).replace(",", ".");
+			String layerThickness = layerSample.getInformation(ReferenceKey.LAYER_THICKNESS).replace(",", ".");
 			thickness += Double.parseDouble(layerThickness);
 		}
 
@@ -135,7 +135,7 @@ public final class ExplorationSite implements Comparable<ExplorationSite>, Seria
 		List<LayerSample> layerSamples = new ArrayList<>();
 		for (LayerSample layerSample : layerSampleList)
 		{
-			if (outcrop.equals(layerSample.getInformation(InformationTag.LAYER_OUTCROP)))
+			if (outcrop.equals(layerSample.getInformation(ReferenceKey.LAYER_OUTCROP)))
 			{
 				layerSamples.add(layerSample);
 			}

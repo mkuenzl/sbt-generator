@@ -1,7 +1,7 @@
 package sbt.automization.templates.helper;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.InformationTag;
+import sbt.automization.data.ReferenceKey;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.Util;
 import sbt.automization.util.html.HtmlCell;
@@ -47,7 +47,7 @@ public abstract class ARowFactory
 			HtmlCell htmlCell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(InformationTag.SITE_ID))
+					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_ID))
 					.build();
 
 			row.appendContent(htmlCell.appendTag());
@@ -92,7 +92,7 @@ public abstract class ARowFactory
 
 	public String createLoadClassRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.SITE_LOAD_CLASS;
+		ReferenceKey tag = ReferenceKey.SITE_LOAD_CLASS;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "", tag)) return "";
 
@@ -134,7 +134,7 @@ public abstract class ARowFactory
 
 	public String createEvDynRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.SITE_LP_EV;
+		ReferenceKey tag = ReferenceKey.SITE_LP_EV;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "", tag)) return "";
 
@@ -171,7 +171,7 @@ public abstract class ARowFactory
 
 	public String createEvDyn85Row(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.SITE_LP_EV85;
+		ReferenceKey tag = ReferenceKey.SITE_LP_EV85;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "", tag)) return "";
 
@@ -208,7 +208,7 @@ public abstract class ARowFactory
 
 	public String createEv2Row(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.SITE_LP_EV2;
+		ReferenceKey tag = ReferenceKey.SITE_LP_EV2;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "", tag)) return "";
 
@@ -235,7 +235,7 @@ public abstract class ARowFactory
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
 					.appendContent(TextFormatUtil.formatLP(explorationSite.getInformation(tag),
-							explorationSite.getInformation(InformationTag.SITE_LP_EV85)))
+							explorationSite.getInformation(ReferenceKey.SITE_LP_EV85)))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -245,7 +245,7 @@ public abstract class ARowFactory
 
 	public String createEvMinimumBorderRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.SITE_LP_EV2_EXPECTED;
+		ReferenceKey tag = ReferenceKey.SITE_LP_EV2_EXPECTED;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "", tag)) return "";
 
@@ -280,7 +280,7 @@ public abstract class ARowFactory
 
 	public String createCompressiveStrengthRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.LAYER_COMPRESSIVE_STRENGTH;
+		ReferenceKey tag = ReferenceKey.LAYER_COMPRESSIVE_STRENGTH;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -316,7 +316,7 @@ public abstract class ARowFactory
 
 	public String createGrainSizeDistributionRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.LAYER_GRAIN_SIZE_DISTRIBUTION;
+		ReferenceKey tag = ReferenceKey.LAYER_GRAIN_SIZE_DISTRIBUTION;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -352,7 +352,7 @@ public abstract class ARowFactory
 
 	public String createWaterContentRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.LAYER_WATER_CONTENT;
+		ReferenceKey tag = ReferenceKey.LAYER_WATER_CONTENT;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -388,7 +388,7 @@ public abstract class ARowFactory
 
 	public String createMoistureRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.LAYER_MOISTURE;
+		ReferenceKey tag = ReferenceKey.LAYER_MOISTURE;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -419,7 +419,7 @@ public abstract class ARowFactory
 
 	public String createConsistencyRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.LAYER_CONSISTENCY;
+		ReferenceKey tag = ReferenceKey.LAYER_CONSISTENCY;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -450,7 +450,7 @@ public abstract class ARowFactory
 
 	public String createWaterProctorRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.LAYER_WATER_PROCTOR;
+		ReferenceKey tag = ReferenceKey.LAYER_WATER_PROCTOR;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -487,7 +487,7 @@ public abstract class ARowFactory
 	@Deprecated
 	public String createProctorDifferenceRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.LAYER_COLOR;
+		ReferenceKey tag = ReferenceKey.LAYER_COLOR;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "", tag)) return "";
 
@@ -523,7 +523,7 @@ public abstract class ARowFactory
 
 	public String createCompressibilityRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.LAYER_COMPRESSIBILITY;
+		ReferenceKey tag = ReferenceKey.LAYER_COMPRESSIBILITY;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -554,7 +554,7 @@ public abstract class ARowFactory
 
 	public String createWearPlanumRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.SITE_WEAR_PLANUM;
+		ReferenceKey tag = ReferenceKey.SITE_WEAR_PLANUM;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "", tag)) return "";
 
@@ -597,7 +597,7 @@ public abstract class ARowFactory
 
 	public String createWearSoleRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.SITE_WEAR_TRENCH_BOTTOM;
+		ReferenceKey tag = ReferenceKey.SITE_WEAR_TRENCH_BOTTOM;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, "", tag)) return "";
 
@@ -628,7 +628,7 @@ public abstract class ARowFactory
 					.appendContent(TextFormatUtil.printLineEmpty())
 					.appendContent(new HtmlText.Builder().appendAttribute("class", unitCellClass)
 							.appendContent("[T:")
-							.appendContent(explorationSite.getInformation(InformationTag.SITE_SOLE_DEPTH))
+							.appendContent(explorationSite.getInformation(ReferenceKey.SITE_SOLE_DEPTH))
 							.appendContent("]").build().appendTag())
 					.build();
 
@@ -640,7 +640,7 @@ public abstract class ARowFactory
 
 	public String createZTVRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.LAYER_FROST_SENSITIVITY_CLASS;
+		ReferenceKey tag = ReferenceKey.LAYER_FROST_SENSITIVITY_CLASS;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -682,7 +682,7 @@ public abstract class ARowFactory
 
 	public String createChemieIDRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.CHEMISTRY_ID;
+		ReferenceKey tag = ReferenceKey.CHEMISTRY_ID;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -713,7 +713,7 @@ public abstract class ARowFactory
 
 	public String createChemieMufvRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.CHEMISTRY_MUFV;
+		ReferenceKey tag = ReferenceKey.CHEMISTRY_MUFV;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -750,7 +750,7 @@ public abstract class ARowFactory
 
 	public String createChemieLagaBoRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.CHEMISTRY_LAGA_BO;
+		ReferenceKey tag = ReferenceKey.CHEMISTRY_LAGA_BO;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -785,7 +785,7 @@ public abstract class ARowFactory
 
 	public String createChemieLagaRcRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.CHEMISTRY_LAGA_RC;
+		ReferenceKey tag = ReferenceKey.CHEMISTRY_LAGA_RC;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -820,7 +820,7 @@ public abstract class ARowFactory
 
 	public String createChemieLagaRcOrientationRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.CHEMISTRY_LAGA_RC_ORIENTATION;
+		ReferenceKey tag = ReferenceKey.CHEMISTRY_LAGA_RC_ORIENTATION;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -855,7 +855,7 @@ public abstract class ARowFactory
 
 	public String createChemieTlRockRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.CHEMISTRY_TL_ROCK_STRATUM;
+		ReferenceKey tag = ReferenceKey.CHEMISTRY_TL_ROCK_STRATUM;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -890,7 +890,7 @@ public abstract class ARowFactory
 
 	public String createChemieDepvRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.CHEMISTRY_DEPV;
+		ReferenceKey tag = ReferenceKey.CHEMISTRY_DEPV;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -925,7 +925,7 @@ public abstract class ARowFactory
 
 	public String createChemieDecisionSupportRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.CHEMISTRY_DECISION_SUPPORT;
+		ReferenceKey tag = ReferenceKey.CHEMISTRY_DECISION_SUPPORT;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -960,7 +960,7 @@ public abstract class ARowFactory
 
 	public String createAVVRow(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.CHEMISTRY_WASTE_KEY;
+		ReferenceKey tag = ReferenceKey.CHEMISTRY_WASTE_KEY;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -995,7 +995,7 @@ public abstract class ARowFactory
 
 	public String createREKUROW(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.CHEMISTRY_REKU;
+		ReferenceKey tag = ReferenceKey.CHEMISTRY_REKU;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -1035,7 +1035,7 @@ public abstract class ARowFactory
 
 	public String createDIN18196Row(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.LAYER_TYPE;
+		ReferenceKey tag = ReferenceKey.LAYER_TYPE;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -1070,7 +1070,7 @@ public abstract class ARowFactory
 
 	public String createDIN18915Row(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.LAYER_SOIL_CLASS;
+		ReferenceKey tag = ReferenceKey.LAYER_SOIL_CLASS;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -1105,7 +1105,7 @@ public abstract class ARowFactory
 
 	public String createDIN18300Row(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.LAYER_SOIL_CLASS;
+		ReferenceKey tag = ReferenceKey.LAYER_SOIL_CLASS;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -1141,7 +1141,7 @@ public abstract class ARowFactory
 
 	public String createDIN18320Row(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.LAYER_HOMOGENEOUS_RANGE;
+		ReferenceKey tag = ReferenceKey.LAYER_HOMOGENEOUS_RANGE;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -1176,7 +1176,7 @@ public abstract class ARowFactory
 
 	public String createDIN19682Row(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.LAYER_SOIL_TYPE;
+		ReferenceKey tag = ReferenceKey.LAYER_SOIL_TYPE;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 
@@ -1214,7 +1214,7 @@ public abstract class ARowFactory
 
 	public String createDIN18300_09Row(List<ExplorationSite> explorationSites)
 	{
-		InformationTag tag = InformationTag.LAYER_HOMOGENEOUS_RANGE;
+		ReferenceKey tag = ReferenceKey.LAYER_HOMOGENEOUS_RANGE;
 
 		if (!Util.thereExistsAnExplorationSiteWithData(explorationSites, outcrop, tag)) return "";
 

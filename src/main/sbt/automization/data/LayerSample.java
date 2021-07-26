@@ -48,8 +48,8 @@ public final class LayerSample implements ISample, Comparable<LayerSample>, Clon
 	@Override
 	public int compareTo(final LayerSample layerSample)
 	{
-		int s1 = Integer.parseInt(this.getInformation(InformationTag.LAYER_NUMBER));
-		int s2 = Integer.parseInt(layerSample.getInformation(InformationTag.LAYER_NUMBER));
+		int s1 = Integer.parseInt(this.getInformation(ReferenceKey.LAYER_NUMBER));
+		int s2 = Integer.parseInt(layerSample.getInformation(ReferenceKey.LAYER_NUMBER));
 		return s1 - s2;
 	}
 
@@ -59,7 +59,7 @@ public final class LayerSample implements ISample, Comparable<LayerSample>, Clon
 	 * @param tag an Enum which contains LAYER or CHEMISTRY. Represents a column in the excel template.
 	 * @return the value based on provided tag
 	 */
-	public String getInformation(InformationTag tag)
+	public String getInformation(ReferenceKey tag)
 	{
 		return getInformation(tag.getIdentifier());
 	}

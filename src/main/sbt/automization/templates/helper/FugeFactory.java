@@ -1,7 +1,7 @@
 package sbt.automization.templates.helper;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.InformationTag;
+import sbt.automization.data.ReferenceKey;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 
@@ -41,7 +41,7 @@ public final class FugeFactory extends ARowFactory
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", normalCellClass)
-                    .appendContent(explorationSite.getInformation(InformationTag.SITE_OUTCROP_OB))
+                    .appendContent(explorationSite.getInformation(ReferenceKey.SITE_OUTCROP_OB))
                     .build();
 
             row.appendContent(cell.appendTag());

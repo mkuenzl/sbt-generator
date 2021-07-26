@@ -1,7 +1,7 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.InformationTag;
+import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.LayerSample;
 import sbt.automization.format.HtmlCellFormatUtil;
 import sbt.automization.format.TextFormatUtil;
@@ -22,7 +22,7 @@ final class AppendixSiteTOB extends AHtmlTable
 	@Override
 	public void constructTable(final ExplorationSite site)
 	{
-		outcrop = site.getInformation(InformationTag.SITE_OUTCROP_TOB);
+		outcrop = site.getInformation(ReferenceKey.SITE_OUTCROP_TOB);
 
 		HtmlTable table = new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
@@ -38,16 +38,16 @@ final class AppendixSiteTOB extends AHtmlTable
 
 		for (LayerSample layerSample : site.getLayers())
 		{
-			if ("TOB".equals(layerSample.getInformation(InformationTag.LAYER_OUTCROP).toUpperCase()))
+			if ("TOB".equals(layerSample.getInformation(ReferenceKey.LAYER_OUTCROP).toUpperCase()))
 			{
 				//Art der Schicht
 				HtmlCell cell1 = new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(layerSample.getInformation(InformationTag.LAYER_TYPE))
+						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_TYPE))
 						.appendContent(new HtmlText.Builder().appendAttribute("class", "Normal")
-								.appendContent(layerSample.getInformation(InformationTag.LAYER_GRANULATION))
+								.appendContent(layerSample.getInformation(ReferenceKey.LAYER_GRANULATION))
 								.appendContent(" ")
-								.appendContent(layerSample.getInformation(InformationTag.LAYER_ROUNDING_GRADATION))
+								.appendContent(layerSample.getInformation(ReferenceKey.LAYER_ROUNDING_GRADATION))
 								.build()
 								.appendTag())
 						.build();
@@ -55,33 +55,33 @@ final class AppendixSiteTOB extends AHtmlTable
 				//Dicke
 				HtmlCell cell2 = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layerSample.getInformation(InformationTag.LAYER_THICKNESS))
+						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_THICKNESS))
 						.build();
 
 				//Tiefe
 				HtmlCell cell3 = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layerSample.getInformation(InformationTag.LAYER_DEPTH_END))
+						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_DEPTH_END))
 						.build();
 
 				//MUFV
-				String chemie_mufv = layerSample.getInformation(InformationTag.CHEMISTRY_MUFV);
+				String chemie_mufv = layerSample.getInformation(ReferenceKey.CHEMISTRY_MUFV);
 				HtmlCell cell4 = HtmlCellFormatUtil.formatChemistry(chemie_mufv);
 
 				//LAGA_BO
-				String chemie_laga_bo = layerSample.getInformation(InformationTag.CHEMISTRY_LAGA_BO);
+				String chemie_laga_bo = layerSample.getInformation(ReferenceKey.CHEMISTRY_LAGA_BO);
 				HtmlCell cell5 = HtmlCellFormatUtil.formatChemistry(chemie_laga_bo);
 
 				//LAGA_RC
-				String chemie_laga_rc = layerSample.getInformation(InformationTag.CHEMISTRY_LAGA_RC);
+				String chemie_laga_rc = layerSample.getInformation(ReferenceKey.CHEMISTRY_LAGA_RC);
 				HtmlCell cell6 = HtmlCellFormatUtil.formatChemistry(chemie_laga_rc);
 
 				//TL_GESTEIN
-				String chemie_tlgestein = layerSample.getInformation(InformationTag.CHEMISTRY_TL_ROCK_STRATUM);
+				String chemie_tlgestein = layerSample.getInformation(ReferenceKey.CHEMISTRY_TL_ROCK_STRATUM);
 				HtmlCell cell7 = HtmlCellFormatUtil.formatChemistry(chemie_tlgestein);
 
 				//LP_DYN
-				String erk_lp_ev2 = site.getInformation(InformationTag.SITE_LP_EV2);
+				String erk_lp_ev2 = site.getInformation(ReferenceKey.SITE_LP_EV2);
 				HtmlCell cellLP_DYN;
 				if (erk_lp_ev2.equals("-") || lpPrinted)
 				{
@@ -95,7 +95,7 @@ final class AppendixSiteTOB extends AHtmlTable
 							.appendAttribute("class", "NormalErkundungsstelle")
 							.appendContent(erk_lp_ev2)
 							.appendContent(TextFormatUtil.printLineBreak())
-							.appendContent(site.getInformation(InformationTag.SITE_LP_EV85))
+							.appendContent(site.getInformation(ReferenceKey.SITE_LP_EV85))
 							.build();
 
 					lpPrinted = true;
@@ -104,7 +104,7 @@ final class AppendixSiteTOB extends AHtmlTable
 
 				HtmlCell cell9 = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layerSample.getInformation(InformationTag.LAYER_GRAIN_SIZE_DISTRIBUTION))
+						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_GRAIN_SIZE_DISTRIBUTION))
 						.build();
 
 

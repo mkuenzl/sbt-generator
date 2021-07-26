@@ -1,7 +1,7 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.InformationTag;
+import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.LayerSample;
 import sbt.automization.format.HtmlCellFormatUtil;
 import sbt.automization.util.html.HtmlCell;
@@ -24,7 +24,7 @@ final class AppendixSiteFUGE extends AHtmlTable
 	@Override
 	public void constructTable(final ExplorationSite site)
 	{
-		outcrop = site.getInformation(InformationTag.SITE_OUTCROP_UG_OH_BA);
+		outcrop = site.getInformation(ReferenceKey.SITE_OUTCROP_UG_OH_BA);
 
 		HtmlTable table = new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
@@ -38,28 +38,28 @@ final class AppendixSiteFUGE extends AHtmlTable
 
 		for (LayerSample layerSample : site.getLayers())
 		{
-			if ("FUGE".equals(layerSample.getInformation(InformationTag.LAYER_OUTCROP)))
+			if ("FUGE".equals(layerSample.getInformation(ReferenceKey.LAYER_OUTCROP)))
 			{
 				//Art der Schicht
 				HtmlCell schichtArt = new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(layerSample.getInformation(InformationTag.LAYER_TYPE))
+						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_TYPE))
 						.build();
 
 				//Dicke
 				HtmlCell schichtDicke = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layerSample.getInformation(InformationTag.LAYER_THICKNESS))
+						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_THICKNESS))
 						.build();
 
 				//Tiefe
 				HtmlCell schichtTiefe = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layerSample.getInformation(InformationTag.LAYER_DEPTH_END))
+						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_DEPTH_END))
 						.build();
 
 				//MUFV
-				String chemie_mufv = layerSample.getInformation(InformationTag.CHEMISTRY_MUFV);
+				String chemie_mufv = layerSample.getInformation(ReferenceKey.CHEMISTRY_MUFV);
 				HtmlCell schichtMufv = HtmlCellFormatUtil.formatChemistry(chemie_mufv);
 
 				//empty
@@ -72,11 +72,11 @@ final class AppendixSiteFUGE extends AHtmlTable
 				//PAK
 				HtmlCell schichtPak = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layerSample.getInformation(InformationTag.LAYER_PAK))
+						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_PAK))
 						.build();
 
 				//Asbest
-				String chemie_asbest = layerSample.getInformation(InformationTag.CHEMISTRY_ASBESTOS);
+				String chemie_asbest = layerSample.getInformation(ReferenceKey.CHEMISTRY_ASBESTOS);
 				HtmlCell schichtAsbest = HtmlCellFormatUtil.formatChemistry(chemie_asbest);
 
 

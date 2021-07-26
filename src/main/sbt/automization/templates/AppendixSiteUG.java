@@ -1,7 +1,7 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.InformationTag;
+import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.LayerSample;
 import sbt.automization.format.HtmlCellFormatUtil;
 import sbt.automization.format.TextFormatUtil;
@@ -25,7 +25,7 @@ final class AppendixSiteUG extends AHtmlTable
     @Override
     public void constructTable(final ExplorationSite site)
     {
-        outcrop = site.getInformation(InformationTag.SITE_OUTCROP_UG_OH_BA);
+        outcrop = site.getInformation(ReferenceKey.SITE_OUTCROP_UG_OH_BA);
 
         HtmlTable table = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
@@ -39,42 +39,42 @@ final class AppendixSiteUG extends AHtmlTable
 
         for (LayerSample layerSample : site.getLayers())
         {
-            if ("UG".equals(layerSample.getInformation(InformationTag.LAYER_OUTCROP)))
+            if ("UG".equals(layerSample.getInformation(ReferenceKey.LAYER_OUTCROP)))
             {
                 //Art der Schicht
                 HtmlCell cell1 = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent(TextFormatUtil.formatSoilGroup(layerSample.getInformation(InformationTag.LAYER_TYPE)))
+                        .appendContent(TextFormatUtil.formatSoilGroup(layerSample.getInformation(ReferenceKey.LAYER_TYPE)))
                         .build();
 
                 //Dicke
                 HtmlCell cell2 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(layerSample.getInformation(InformationTag.LAYER_THICKNESS))
+                        .appendContent(layerSample.getInformation(ReferenceKey.LAYER_THICKNESS))
                         .build();
 
                 //Tiefe
                 HtmlCell cell3 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(layerSample.getInformation(InformationTag.LAYER_DEPTH_END))
+                        .appendContent(layerSample.getInformation(ReferenceKey.LAYER_DEPTH_END))
                         .build();
 
                 //MUFV
-                String chemie_mufv = layerSample.getInformation(InformationTag.CHEMISTRY_MUFV);
+                String chemie_mufv = layerSample.getInformation(ReferenceKey.CHEMISTRY_MUFV);
                 HtmlCell cell4 = HtmlCellFormatUtil.formatChemistry(chemie_mufv);
 
                 //LAGA BO
-                String chemie_laga_bo = layerSample.getInformation(InformationTag.CHEMISTRY_LAGA_BO);
+                String chemie_laga_bo = layerSample.getInformation(ReferenceKey.CHEMISTRY_LAGA_BO);
                 HtmlCell cell5 = HtmlCellFormatUtil.formatChemistry(chemie_laga_bo);
 
                 //Notiz
-                String chemie_laga_rc = layerSample.getInformation(InformationTag.CHEMISTRY_LAGA_RC);
+                String chemie_laga_rc = layerSample.getInformation(ReferenceKey.CHEMISTRY_LAGA_RC);
                 HtmlCell cell6 = HtmlCellFormatUtil.formatChemistry(chemie_laga_rc);
 
                 //Wassergehalt
                 HtmlCell cell7 = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(layerSample.getInformation(InformationTag.LAYER_WATER_CONTENT))
+                        .appendContent(layerSample.getInformation(ReferenceKey.LAYER_WATER_CONTENT))
                         .build();
 
                 //WasserProctor

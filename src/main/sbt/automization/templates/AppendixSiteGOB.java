@@ -1,7 +1,7 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.InformationTag;
+import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.LayerSample;
 import sbt.automization.format.HtmlCellFormatUtil;
 import sbt.automization.format.TextFormatUtil;
@@ -24,7 +24,7 @@ final class AppendixSiteGOB extends AHtmlTable
     @Override
     public void constructTable(final ExplorationSite site)
     {
-        outcrop = site.getInformation(InformationTag.SITE_OUTCROP_OB);
+        outcrop = site.getInformation(ReferenceKey.SITE_OUTCROP_OB);
 
         HtmlTable tableErkOb = new HtmlTable.Builder()
                 .appendAttribute("class", "MsoNormalTable")
@@ -38,54 +38,54 @@ final class AppendixSiteGOB extends AHtmlTable
 
         for (LayerSample layerSample : site.getLayers())
         {
-            String schicht_aufschluss = layerSample.getInformation(InformationTag.LAYER_OUTCROP);
+            String schicht_aufschluss = layerSample.getInformation(ReferenceKey.LAYER_OUTCROP);
             if ("GOB".equals(schicht_aufschluss) || "TMHB".equals(schicht_aufschluss) || "BETON".equals(schicht_aufschluss) ||"BESCHICHTUNG".equals(schicht_aufschluss) ||"ABDICHTUNG".equals(schicht_aufschluss))
             {
                 HtmlCell cellSchichtArt = new HtmlCell.Builder()
                         .appendAttribute("class", "Normal")
-                        .appendContent(TextFormatUtil.formatKindAndGranulation(layerSample.getInformation(InformationTag.LAYER_TYPE),
-                                layerSample.getInformation(InformationTag.LAYER_GRANULATION)))
+                        .appendContent(TextFormatUtil.formatKindAndGranulation(layerSample.getInformation(ReferenceKey.LAYER_TYPE),
+                                layerSample.getInformation(ReferenceKey.LAYER_GRANULATION)))
                         .build();
 
                 //Dicke
                 HtmlCell cellDicke = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(layerSample.getInformation(InformationTag.LAYER_THICKNESS))
+                        .appendContent(layerSample.getInformation(ReferenceKey.LAYER_THICKNESS))
                         .build();
 
                 //Tiefe
                 HtmlCell cellTiefe = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(layerSample.getInformation(InformationTag.LAYER_DEPTH_END))
+                        .appendContent(layerSample.getInformation(ReferenceKey.LAYER_DEPTH_END))
                         .build();
 
 
                 //MUFV
-                String chemie_mufv = layerSample.getInformation(InformationTag.CHEMISTRY_MUFV);
+                String chemie_mufv = layerSample.getInformation(ReferenceKey.CHEMISTRY_MUFV);
                 HtmlCell cellMUFV = HtmlCellFormatUtil.formatChemistry(chemie_mufv);
 
                 //Pech
-                String schicht_pech = layerSample.getInformation(InformationTag.LAYER_PITCH);
+                String schicht_pech = layerSample.getInformation(ReferenceKey.LAYER_PITCH);
                 HtmlCell cellPech = HtmlCellFormatUtil.formatPitch(schicht_pech);
 
                 //LAGA RC
-                String chemie_laga_rc = layerSample.getInformation(InformationTag.CHEMISTRY_LAGA_RC);
+                String chemie_laga_rc = layerSample.getInformation(ReferenceKey.CHEMISTRY_LAGA_RC);
                 HtmlCell cellLAGARC = HtmlCellFormatUtil.formatChemistry(chemie_laga_rc);
 
                 //TL GESTEIN
-                String chemie_tlgestein = layerSample.getInformation(InformationTag.CHEMISTRY_TL_ROCK_STRATUM);
+                String chemie_tlgestein = layerSample.getInformation(ReferenceKey.CHEMISTRY_TL_ROCK_STRATUM);
                 HtmlCell cellTLGESTEIN = HtmlCellFormatUtil.formatChemistry(chemie_tlgestein);
 
                 //PAK
                 HtmlCell cellPAK = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(layerSample.getInformation(InformationTag.LAYER_PAK))
+                        .appendContent(layerSample.getInformation(ReferenceKey.LAYER_PAK))
                         .build();
 
                 //RuK
                 HtmlCell cellRUK = new HtmlCell.Builder()
                         .appendAttribute("class", "NormalErkundungsstelle")
-                        .appendContent(layerSample.getInformation(InformationTag.LAYER_RUK))
+                        .appendContent(layerSample.getInformation(ReferenceKey.LAYER_RUK))
                         .build();
 
                 HtmlRow layerRow = new HtmlRow.Builder()

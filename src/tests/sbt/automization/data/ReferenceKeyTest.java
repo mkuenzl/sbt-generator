@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class InformationTagTest
+public class ReferenceKeyTest
 {
 	private List<String> headers = new ArrayList<>();
 
@@ -34,10 +34,10 @@ public class InformationTagTest
 
 		List<String> missingTags = new ArrayList<>();
 
-		for (InformationTag informationTag : InformationTag.values())
+		for (ReferenceKey referenceKey : ReferenceKey.values())
 		{
-			boolean contains = headers.contains(informationTag.getIdentifier());
-			if (!contains) missingTags.add(informationTag.name());
+			boolean contains = headers.contains(referenceKey.getIdentifier());
+			if (!contains) missingTags.add(referenceKey.name());
 		}
 
 		Assert.assertEquals(missingTags.toString(), 0, missingTags.size());
@@ -51,8 +51,8 @@ public class InformationTagTest
 
 		List<String> missingHeaders = new ArrayList<>();
 
-		List<String> informationTags = Arrays.stream(InformationTag.values())
-				.map(InformationTag::getIdentifier)
+		List<String> informationTags = Arrays.stream(ReferenceKey.values())
+				.map(ReferenceKey::getIdentifier)
 				.collect(Collectors.toList());
 
 		for (String header : headers)

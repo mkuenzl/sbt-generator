@@ -1,7 +1,7 @@
 package sbt.automization.templates.helper;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.InformationTag;
+import sbt.automization.data.ReferenceKey;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
@@ -73,7 +73,7 @@ public final class UgFactory extends ARowFactory
 
 		for (ExplorationSite explorationSite : explorationSites)
 		{
-			String targetDepth = explorationSite.getInformation(InformationTag.SITE_TARGET_DEPTH);
+			String targetDepth = explorationSite.getInformation(ReferenceKey.SITE_TARGET_DEPTH);
 			HtmlCell cell;
 
 			if("-".equals(targetDepth)){
@@ -135,7 +135,7 @@ public final class UgFactory extends ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(InformationTag.SITE_OUTCROP_UG_OH_BA))
+					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_OUTCROP_UG_OH_BA))
 					.build();
 
 			row.appendContent(cell.appendTag());

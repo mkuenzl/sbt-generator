@@ -1,7 +1,7 @@
 package sbt.automization.format;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.InformationTag;
+import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.LayerSample;
 
 import java.util.ArrayList;
@@ -90,10 +90,10 @@ public final class LayerFormatUtil
 			LayerSample layerSample = new LayerSample(new HashMap<>()
 			{{
 				put(tag, firstLayerSample.getInformation(tag));
-				put(InformationTag.LAYER_DEPTH_START.getIdentifier(),
-						firstLayerSample.getInformation(InformationTag.LAYER_DEPTH_START));
-				put(InformationTag.LAYER_DEPTH_END.getIdentifier(),
-						secondLayerSample.getInformation(InformationTag.LAYER_DEPTH_END));
+				put(ReferenceKey.LAYER_DEPTH_START.getIdentifier(),
+						firstLayerSample.getInformation(ReferenceKey.LAYER_DEPTH_START));
+				put(ReferenceKey.LAYER_DEPTH_END.getIdentifier(),
+						secondLayerSample.getInformation(ReferenceKey.LAYER_DEPTH_END));
 			}});
 
 			return layerSample;
