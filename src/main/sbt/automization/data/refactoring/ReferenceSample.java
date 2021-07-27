@@ -156,6 +156,7 @@ public enum ReferenceSample implements Reference
 			},
 	PITCH
 			{   //TAR
+
 				@Override
 				public String getKey()
 				{
@@ -233,5 +234,5 @@ public enum ReferenceSample implements Reference
 				{
 					return "SCHICHT_TIEFE_ENDE";
 				}
-			};
+			}
 }

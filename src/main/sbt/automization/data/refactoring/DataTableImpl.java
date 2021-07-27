@@ -1,7 +1,5 @@
 package sbt.automization.data.refactoring;
 
-import sbt.automization.data.ReferenceKey;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,8 +10,7 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 	protected Map<String, String> informationMap;
 
 	/**
-	 * Constructs a new ExplorationSite based on a map. From this map each key containing ERK_ is accepted as information
-	 * about this exploration site.
+	 * Constructs a new DataTable based on a map.
 	 *
 	 * @param informationMap a map parsed from an excel template
 	 */
@@ -150,7 +147,6 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 		return true;
 	}
 
-
 	/**
 	 * Method used for testing purposes in reality every layer should be unique.
 	 *
@@ -171,12 +167,8 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 		}
 
 		final DataTable otherTable = (DataTable) obj;
-		if (! Objects.equals(this.getTable(), otherTable.getTable()))
-		{
-			return false;
-		}
 
-		return true;
+		return Objects.equals(this.getTable(), otherTable.getTable());
 	}
 
 	/**

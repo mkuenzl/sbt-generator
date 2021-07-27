@@ -1,119 +1,101 @@
 package sbt.automization.data.refactoring;
 
-import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.LayerSample;
-
 import java.util.*;
 
 public final class DataTableFactory
 {
 	private DataTableFactory() {}
 
-	public static Project getProject()
+	public static Collection<DataTable> createListOfProbes(List<Map<String, String>> parsedCSVRowList)
 	{
-		return null;
-	}
+		// PROBE.
+		Collection<DataTable> probes = new ArrayList<>();
 
-	public static List<Examination> getProbeList()
-	{
-		return null;
-	}
-
-	public static Examination getProbe()
-	{
-		return null;
-	}
-
-	public static Probe getSample()
-	{
-		return null;
-	}
-
-	public static Parameter getParameter()
-	{
-		return null;
-	}
-
-	/**
-	 * Will create different exploration sites based on their ID values. Each map should contain an ERK_ID key. Maps
-	 * with the same ID key are fused together into ExplorationSite objects.
-	 *
-	 * @param parsedExplorationSiteInformation expects a list of maps which contain data of exploration sites and layers
-	 *                                         based on the parsed excel (database) template
-	 * @return a list of exploration sites based on the provided information.
-	 */
-	public static List<ExplorationSite> createExplorationSites(List<Map<String, String>> parsedExplorationSiteInformation)
-	{
-		List<ExplorationSite> explorationSites = new ArrayList<>();
-
-		Set<String> createdIds = new HashSet<>();
-
-		for (Map<String, String> explorationSiteInformation : parsedExplorationSiteInformation)
+		for (Map<String, String> csvMap : parsedCSVRowList)
 		{
-			String explorationSiteId = String.valueOf(explorationSiteInformation.get("ERK_ID"));
+			DataTable probe = createProbeFrom(csvMap);
+			probes.add(probe);
+		}
 
-			if (! createdIds.contains(explorationSiteId))
-			{
-				createdIds.add(String.valueOf(explorationSiteId));
-				ExplorationSite explorationSite = new ExplorationSite(explorationSiteInformation);
+		return probes;
+	}
 
-				LayerSample layerSample = createLayer(explorationSiteInformation);
-				explorationSite.addLayer(layerSample);
-				explorationSites.add(explorationSite);
-			} else
+	public static DataTable createProbeFrom(Map<String, String> csvMap)
+	{
+		// PROBE.
+		Map<String, String> informationMap = parseMapBasedOnIdentifier(csvMap, "PROBE.");
+
+		Probe probe = new Probe(informationMap);
+
+		return probe;
+	}
+
+	public static Map<String, String> parseMapBasedOnIdentifier(Map<String, String> source, String identifier)
+	{
+		Map<String, String> identifierMap = new HashMap<>();
+
+		for (String key : source.keySet())
+		{
+			if (key.contains(identifier))
 			{
-				for (ExplorationSite explorationSite : explorationSites)
-				{
-					if (explorationSite.getInformation("ERK_ID").equals(explorationSiteId))
-					{
-						LayerSample layerSample = createLayer(explorationSiteInformation);
-						explorationSite.addLayer(layerSample);
-					}
-				}
+				identifierMap.put(key, source.get(key));
 			}
 		}
-
-		// sorts layers per exploration site based on their layer number
-		for (ExplorationSite explorationSite : explorationSites)
-		{
-			explorationSite.sortLayers();
-		}
-
-		// sorts exploration sites based on their number
-		Collections.sort(explorationSites);
-
-		return explorationSites;
+		return identifierMap;
 	}
 
-	/**
-	 * Expects a map which contains data about layers and chemistry and is provided by the function createExplorationSites.
-	 * Uses the information of the keys SCHICHT_ ... and CHEMIE_ ...
-	 * to construct a new layer object.
-	 *
-	 * @param layerInformationMap a map of Strings containing information about layers.
-	 * @return a new layer object based on the layer information of the map.
-	 */
-	public static LayerSample createLayer(Map<String, String> layerInformationMap)
+	public static List<DataTable> createListOfSamplesFrom(List<Map<String, String>> parsedCSVRowList)
 	{
-		//EntrySets
-		Map<String, String> tmpMap = new HashMap<>();
+		// SAMPLE. with same PROBE.ID
 
-		for (String key : layerInformationMap.keySet())
-		{
-			if (key.contains("SCHICHT_") || key.contains("CHEMIE_"))
-			{
-				tmpMap.put(key, layerInformationMap.get(key));
-			}
-		}
-		return new LayerSample(tmpMap);
+		return null;
 	}
 
-	@Deprecated
-	private static ExplorationSite createExplorationSite(Map<String, String> dataRow)
+	public static DataTable createSampleFrom(Map<String, String> csvMap)
 	{
-		ExplorationSite explorationSite = new ExplorationSite();
+		// SAMPLE.
+		Map<String, String> informationMap = parseMapBasedOnIdentifier(csvMap, "SAMPLE.");
 
-		return explorationSite;
+		Sample sample = new Sample(informationMap);
+
+		return sample;
+	}
+
+	public static List<DataTable> createListOfParameterFrom(List<Map<String, String>> parsedCSVRowList)
+	{
+		// PARAMETER.RUK. / PARAMETER.LP. / PARAMETER.CHEMISTRY.
+
+		return null;
+	}
+
+	public static DataTable createLpParameterFrom(Map<String, String> csvMap)
+	{
+		// PARAMETER.LP.
+		Map<String, String> informationMap = parseMapBasedOnIdentifier(csvMap, "PARAMETER.LP.");
+
+		Parameter parameter = new Parameter(informationMap);
+
+		return parameter;
+	}
+
+	public static DataTable createChemistryParameterFrom(Map<String, String> csvMap)
+	{
+		// PARAMETER.CHEMISTRY.
+		Map<String, String> informationMap = parseMapBasedOnIdentifier(csvMap, "PARAMETER.CHEMISTRY.");
+
+		Parameter parameter = new Parameter(informationMap);
+
+		return parameter;
+	}
+
+	public static DataTable createRuKParameterFrom(Map<String, String> csvMap)
+	{
+		// PARAMETER.RUK.
+		Map<String, String> informationMap = parseMapBasedOnIdentifier(csvMap, "PARAMETER.RUK.");
+
+		Parameter parameter = new Parameter(informationMap);
+
+		return parameter;
 	}
 
 }

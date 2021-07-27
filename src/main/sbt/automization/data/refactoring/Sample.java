@@ -4,16 +4,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
-public final class Examination extends DataTableImpl
+public final class Sample extends DataTableImpl
 {
-	private final Collection<Probe> probes = new ArrayList<>();
 	private final Collection<Parameter> parameter = new ArrayList<>();
 
-	public Examination(Map<String, String> informationMap) {
+	public Sample(Map<String, String> informationMap)
+	{
 		super(informationMap);
 	}
 
-	public Examination() {
+	public Sample()
+	{
 		super();
 	}
 

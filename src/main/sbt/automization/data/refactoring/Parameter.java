@@ -4,11 +4,13 @@ import java.util.Map;
 
 public final class Parameter extends DataTableImpl
 {
-	public Parameter(Map<String, String> informationMap) {
+	public Parameter(Map<String, String> informationMap)
+	{
 		super(informationMap);
 	}
 
-	public Parameter() {
+	public Parameter()
+	{
 		super();
 	}
 

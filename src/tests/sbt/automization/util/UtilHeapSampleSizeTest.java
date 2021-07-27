@@ -3,7 +3,7 @@ package sbt.automization.util;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class UtilHeapProbeSizeTest
+public class UtilHeapSampleSizeTest
 {
 	@Test
 	public void calculateSamplesFirstTest()

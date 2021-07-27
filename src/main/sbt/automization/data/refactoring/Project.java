@@ -2,7 +2,6 @@ package sbt.automization.data.refactoring;
 
 import sbt.automization.export.ATemplateExport;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -16,16 +15,34 @@ public final class Project
 	public final String exportPath;
 	private final Collection<DataTable> tables;
 
+
+	public Project(List<Map<String, String>> parsedCsv, String exportPath)
+	{
+		this.tables = DataTableFactory.createListOfProbes(parsedCsv);
+		this.exportPath = exportPath;
+	}
+
 	/**
 	 * Constructor of the TableInformation class. Uses the parsed excel data to create all available ExplorationSites.
-	 *  @param parsedInformation represents the parsed excel template information
-	 * @param exportPath        an export path to the location of the excel template
+	 *
+	 * @param probes     represents the parsed excel template information
+	 * @param exportPath an export path to the location of the excel template
 	 */
-	public Project(List<Map<String, String>> parsedInformation, String exportPath)
+	public Project(Collection<DataTable> probes, String exportPath)
 	{
-		//probes = DataTableFactory.createExplorationSites(parsedSiteInformation);
-		this.tables = new ArrayList<>();
+		this.tables = probes;
 		this.exportPath = exportPath;
+	}
+
+	/**
+	 * Constructor of the TableInformation class. Uses the parsed excel data to create all available ExplorationSites.
+	 *
+	 * @param probes represents the parsed excel template information
+	 */
+	public Project(Collection<DataTable> probes)
+	{
+		this.tables = probes;
+		this.exportPath = "";
 	}
 
 	/**
@@ -34,7 +51,8 @@ public final class Project
 	 *
 	 * @param template expects a template export strategy
 	 */
-	public void export(ATemplateExport template) throws Exception {
+	public void export(ATemplateExport template) throws Exception
+	{
 		//template.export(this);
 	}
 
