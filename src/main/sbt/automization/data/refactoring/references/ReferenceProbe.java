@@ -1,29 +1,69 @@
-package sbt.automization.data.refactoring;
+package sbt.automization.data.refactoring.references;
 
 public enum ReferenceProbe implements Reference
 {
-	HEAP_SAMPLE_AMOUNT
+	EXTRACTION
 			{
 				@Override
 				public String getKey()
 				{
-					return "ERK_HAUFWERK_PROBEN_ANZAHL";
+					return addProbeTag("ENTNAHME");
 				}
 			},
-	HEAP_VOLUME
+	ROOM
 			{
 				@Override
 				public String getKey()
 				{
-					return "ERK_HAUFWERK_VOLUMEN";
+					return addProbeTag("RAUM");
 				}
 			},
-	HEAP_MATERIAL
+	FLOOR
 			{
 				@Override
 				public String getKey()
 				{
-					return "ERK_HAUFWERK_MATERIAL";
+					return addProbeTag("ETAGE");
+				}
+			},
+	BUILDING
+			{
+				@Override
+				public String getKey()
+				{
+					return addProbeTag("GEBAEUDE");
+				}
+			},
+	CHARACTER
+			{
+				@Override
+				public String getKey()
+				{
+					return addProbeTag("PROBENCHARAKTER");
+				}
+			},
+	PROBE_NUMBER
+			{
+				@Override
+				public String getKey()
+				{
+					return addProbeTag("PROBENNUMMER");
+				}
+			},
+	SMELL
+			{
+				@Override
+				public String getKey()
+				{
+					return addProbeTag("GERUCH");
+				}
+			},
+	COMPONENT
+			{
+				@Override
+				public String getKey()
+				{
+					return addProbeTag("BAUTEIL");
 				}
 			},
 	TARGET_DEPTH
@@ -31,79 +71,7 @@ public enum ReferenceProbe implements Reference
 				@Override
 				public String getKey()
 				{
-					return "ERK_ZIELTIEFE";
-				}
-			},
-	LP_EV2_EXPECTED
-			{
-				@Override
-				public String getKey()
-				{
-					return "ERK_LP_EV2_SOLL";
-				}
-			},
-	LP_EV2
-			{
-				@Override
-				public String getKey()
-				{
-					return "ERK_LP_EV2";
-				}
-			},
-	LP_EV85
-			{
-				@Override
-				public String getKey()
-				{
-					return "ERK_LP_EV15";
-				}
-			},
-	LP_EV
-			{
-				@Override
-				public String getKey()
-				{
-					return "ERK_LP_EV";
-				}
-			},
-	LP_MEAN
-			{
-				@Override
-				public String getKey()
-				{
-					return "ERK_LP_MEAN";
-				}
-			},
-	LP_SAMPLE_3
-			{
-				@Override
-				public String getKey()
-				{
-					return "ERK_LP3";
-				}
-			},
-	LP_SAMPLE_2
-			{
-				@Override
-				public String getKey()
-				{
-					return "ERK_LP2";
-				}
-			},
-	LP_SAMPLE_1
-			{
-				@Override
-				public String getKey()
-				{
-					return "ERK_LP1";
-				}
-			},
-	LP_ID
-			{
-				@Override
-				public String getKey()
-				{
-					return "ERK_LP";
+					return addProbeTag("ZIELTIEFE");
 				}
 			},
 	COMPOSITE_UNDERLAY
@@ -111,7 +79,7 @@ public enum ReferenceProbe implements Reference
 				@Override
 				public String getKey()
 				{
-					return "ERK_VERBUND_UNTERLAGE";
+					return addProbeTag("VERBUND_UNTERLAGE");
 				}
 			},
 	SOLE_DEPTH
@@ -119,7 +87,7 @@ public enum ReferenceProbe implements Reference
 				@Override
 				public String getKey()
 				{
-					return "ERK_SOHLE_TIEFE";
+					return addProbeTag("SOHLE_TIEFE");
 				}
 			},
 	WEAR_TRENCH_BOTTOM
@@ -127,7 +95,7 @@ public enum ReferenceProbe implements Reference
 				@Override
 				public String getKey()
 				{
-					return "ERK_TRAG_GRABENSOHLE";
+					return addProbeTag("TRAG_GRABENSOHLE");
 				}
 			},
 	WEAR_PLANUM
@@ -135,7 +103,7 @@ public enum ReferenceProbe implements Reference
 				@Override
 				public String getKey()
 				{
-					return "ERK_TRAG_PLANUM";
+					return addProbeTag("TRAG_PLANUM");
 				}
 			},
 	PITCH_QUANTITATIVE
@@ -143,7 +111,7 @@ public enum ReferenceProbe implements Reference
 				@Override
 				public String getKey()
 				{
-					return "ERK_PECH_QUANTITATIV";
+					return addProbeTag("PECH_QUANTITATIV");
 				}
 			},
 	PITCH_HALF_QUANTITATIVE
@@ -151,7 +119,7 @@ public enum ReferenceProbe implements Reference
 				@Override
 				public String getKey()
 				{
-					return "ERK_PECH_HALBQUANTITATIV";
+					return addProbeTag("PECH_HALBQUANTITATIV");
 				}
 			},
 	PITCH_QUALITATIVE
@@ -159,7 +127,7 @@ public enum ReferenceProbe implements Reference
 				@Override
 				public String getKey()
 				{
-					return "ERK_PECH_QUALITATIV";
+					return addProbeTag("PECH_QUALITATIV");
 				}
 			},
 	LOAD_CLASS_BOARD
@@ -167,7 +135,7 @@ public enum ReferenceProbe implements Reference
 				@Override
 				public String getKey()
 				{
-					return "ERK_BELASTUNGSKLASSE_TAFEL";
+					return addProbeTag("BELASTUNGSKLASSE_TAFEL");
 				}
 			},
 	LOAD_CLASS
@@ -175,7 +143,7 @@ public enum ReferenceProbe implements Reference
 				@Override
 				public String getKey()
 				{
-					return "ERK_BELASTUNGSKLASSE";
+					return addProbeTag("BELASTUNGSKLASSE");
 				}
 			},
 	TOP_EDGE
@@ -183,7 +151,7 @@ public enum ReferenceProbe implements Reference
 				@Override
 				public String getKey()
 				{
-					return "ERK_OBERKANTE";
+					return addProbeTag("OBERKANTE");
 				}
 			},
 	OUTCROP_UG_OH_BA
@@ -191,7 +159,7 @@ public enum ReferenceProbe implements Reference
 				@Override
 				public String getKey()
 				{
-					return "ERK_AUFSCHLUSS_UG_OH_BA";
+					return addProbeTag("AUFSCHLUSS_UG_OH_BA");
 				}
 			},
 	OUTCROP_TOB
@@ -199,7 +167,7 @@ public enum ReferenceProbe implements Reference
 				@Override
 				public String getKey()
 				{
-					return "ERK_AUFSCHLUSS_TOB";
+					return addProbeTag("AUFSCHLUSS_TOB");
 				}
 			},
 	OUTCROP_OB
@@ -207,7 +175,7 @@ public enum ReferenceProbe implements Reference
 				@Override
 				public String getKey()
 				{
-					return "ERK_AUFSCHLUSS_OB";
+					return addProbeTag("AUFSCHLUSS_OB");
 				}
 			},
 	LOCATION
@@ -215,7 +183,7 @@ public enum ReferenceProbe implements Reference
 				@Override
 				public String getKey()
 				{
-					return "ERK_ORT";
+					return addProbeTag("ORT");
 				}
 			},
 	COORDINATES
@@ -223,7 +191,7 @@ public enum ReferenceProbe implements Reference
 				@Override
 				public String getKey()
 				{
-					return "ERK_KOORDINATEN";
+					return addProbeTag("KOORDINATEN");
 				}
 			},
 	CONTACT_PERSON
@@ -231,7 +199,7 @@ public enum ReferenceProbe implements Reference
 				@Override
 				public String getKey()
 				{
-					return "ERK_ANSPRECHPARTNER";
+					return addProbeTag("ANSPRECHPARTNER");
 				}
 			},
 	REGION
@@ -239,7 +207,7 @@ public enum ReferenceProbe implements Reference
 				@Override
 				public String getKey()
 				{
-					return "ERK_BEREICH";
+					return addProbeTag("BEREICH");
 				}
 			},
 	INSPECTOR
@@ -247,7 +215,7 @@ public enum ReferenceProbe implements Reference
 				@Override
 				public String getKey()
 				{
-					return "ERK_PRUEFER";
+					return addProbeTag("PRUEFER");
 				}
 			},
 	DATE
@@ -255,7 +223,7 @@ public enum ReferenceProbe implements Reference
 				@Override
 				public String getKey()
 				{
-					return "ERK_DATUM";
+					return addProbeTag("DATUM");
 				}
 			},
 	NUMBER
@@ -263,7 +231,7 @@ public enum ReferenceProbe implements Reference
 				@Override
 				public String getKey()
 				{
-					return "ERK_NUMMER";
+					return addProbeTag("NUMMER");
 				}
 			},
 	ID
@@ -271,7 +239,20 @@ public enum ReferenceProbe implements Reference
 				@Override
 				public String getKey()
 				{
-					return "ERK_ID";
+					return addProbeTag("ID");
 				}
 			}
+	,
+	LP_ID
+			{
+				@Override
+				public String getKey()
+				{
+					return addProbeTag("LP.ID");
+				}
+			};
+
+	private static String addProbeTag(String parameter){
+		return "PROBE." + parameter;
+	}
 }
