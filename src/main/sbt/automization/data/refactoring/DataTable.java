@@ -1,6 +1,6 @@
 package sbt.automization.data.refactoring;
 
-import sbt.automization.data.ReferenceKey;
+import sbt.automization.data.refactoring.references.Reference;
 
 import java.util.Map;
 
@@ -33,4 +33,10 @@ public interface DataTable
 	boolean containsReference(Reference key);
 
 	boolean containsReference(String key);
+
+	boolean contains(String value);
+
+	boolean isEmpty();
+
+	boolean isRelatedBy(Reference source, DataTable target);
 }

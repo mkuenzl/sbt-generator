@@ -1,5 +1,7 @@
 package sbt.automization.data.refactoring;
 
+import sbt.automization.data.refactoring.references.Reference;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -182,5 +184,22 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 	{
 		DataTable cloned = (DataTable) super.clone();
 		return cloned;
+	}
+
+	public boolean isEmpty()
+	{
+		return informationMap.isEmpty();
+	}
+
+	public boolean isRelatedBy(Reference source, DataTable target)
+	{
+		String sourceValue = get(source);
+
+		return target.contains(sourceValue);
+	}
+
+	public boolean contains(String value)
+	{
+		return informationMap.containsValue(value);
 	}
 }

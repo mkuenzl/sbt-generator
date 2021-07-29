@@ -1,12 +1,12 @@
 package sbt.automization.data.refactoring;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 public final class Sample extends DataTableImpl
 {
-	private final Collection<Parameter> parameter = new ArrayList<>();
+	private final List<Parameter> parameters = new ArrayList<>();
 
 	public Sample(Map<String, String> informationMap)
 	{
@@ -16,6 +16,21 @@ public final class Sample extends DataTableImpl
 	public Sample()
 	{
 		super();
+	}
+
+	public List<Parameter> getParameters()
+	{
+		return parameters;
+	}
+
+	public void addParameter(Parameter parameter)
+	{
+		this.parameters.add(parameter);
+	}
+
+	public void addListOfParameter(List<Parameter> parameter)
+	{
+		this.parameters.addAll(parameter);
 	}
 
 	@Override

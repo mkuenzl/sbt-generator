@@ -18,7 +18,7 @@ public final class Project
 
 	public Project(List<Map<String, String>> parsedCsv, String exportPath)
 	{
-		this.tables = DataTableFactory.createListOfProbes(parsedCsv);
+		this.tables = DataTableFactory.getProbes(parsedCsv);
 		this.exportPath = exportPath;
 	}
 
