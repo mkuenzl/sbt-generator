@@ -204,7 +204,7 @@ public final class AppendixExplorationSite extends AHtmlTable
 			}
 
 			HtmlCell footer = new HtmlCell.Builder()
-					.appendAttribute("class", "NormalHeader")
+					.appendAttribute("class", "NormalHeaderSmallFont")
 					.appendAttribute("colspan", "3")
 					.appendContent(FootnoteFormatUtil.formatSiteFootnotes(explorationSite))
 					.build();

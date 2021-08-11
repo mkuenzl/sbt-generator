@@ -11,16 +11,13 @@ public final class FootnoteFormatUtil
 	public static String formatInformationFootnote()
 	{
 		return new HtmlText.Builder()
-				.appendAttribute("class", "Normal")
+				.appendAttribute("class", "Normal6")
 				.appendContent("Angaben:")
 				.appendContent(TextFormatUtil.printLineBreak())
-				.appendContent("KGV = Korngrößenverteilung, WG = Wassergehalt, LP = Plattendruckversuch, wPr = optimaler Wassergehalt")
+				.appendContent("KGV = Korngrößenverteilung, WG = Wassergehalt, LP = Plattendruckversuch, wPr = optimaler Wassergehalt, Gem. a. G. = Gemisch aus Gesteinskörnungen, NS = ")
 				.appendContent(TextFormatUtil.printLineBreak())
-				.appendContent("Gem. a. G. = Gemisch aus Gesteinskörnungen, NS = Naturstein, LS = Lavaschlacke, HO = Hochofenschlacke")
-				.appendContent(TextFormatUtil.printLineBreak())
-				.appendContent("RC = Rezyklierte Gesteinskörnung, BK = Brechkorn, RK = Rundkorn, sg = stetig gestuft, ug = unstetig gestuft")
-				.appendContent(TextFormatUtil.printLineBreak())
-				.appendContent(TextFormatUtil.printLineEmpty())
+				.appendContent("Naturstein, LS = Lavaschlacke, HO = Hochofenschlacke, RC = Rezyklierte Gesteinskörnung, BK = Brechkorn, RK = Rundkorn, sg = stetig gestuft, ug = unstetig gestuft")
+				.appendContent(TextFormatUtil.printLineEmptyThin())
 				.build()
 				.appendTag();
 	}
@@ -39,7 +36,7 @@ public final class FootnoteFormatUtil
 		stringBuilder.append(formatInformationFootnote());
 
 		stringBuilder.append(new HtmlText.Builder()
-				.appendAttribute("class", "Normal")
+				.appendAttribute("class", "Normal6")
 				.appendContent(String.valueOf(footnoteCounter++))
 				.appendContent(".) ")
 				.appendContent("Messeinheit: Garmin eTrex 10, herstellerseitig angegebene Lagegenauigkeit ~ 3 m")
@@ -49,7 +46,7 @@ public final class FootnoteFormatUtil
 		if ("#".equals(explorationSite.getInformation("ERK_LEITFADEN_AUSBAUASPHALT")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
+					.appendAttribute("class", "Normal6")
 					.appendContent(String.valueOf(footnoteCounter++))
 					.appendContent(".) ")
 					.appendContent("Bewertung unter Berücksichtigung der Angaben im Leitfaden Ausbauasphalt")
@@ -60,7 +57,7 @@ public final class FootnoteFormatUtil
 		if ("#".equals(explorationSite.getInformation("ERK_TEILWEISE_VERFESTIGT")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
+					.appendAttribute("class", "Normal6")
 					.appendContent(String.valueOf(footnoteCounter++))
 					.appendContent(".) ")
 					.appendContent("teilweise verfestigt")
@@ -71,7 +68,7 @@ public final class FootnoteFormatUtil
 		if ("#".equals(explorationSite.getInformation("ERK_UEBERSCHREITUNG_ORIENT")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
+					.appendAttribute("class", "Normal6")
 					.appendContent(String.valueOf(footnoteCounter++))
 					.appendContent(".) ")
 					.appendContent("Aufgrund der Überschreitung eines Orientierungswertes ist eine Aufbereitung (z. B. als RC-Gemisch) ggf. nicht möglich.")
@@ -84,7 +81,7 @@ public final class FootnoteFormatUtil
 		if ("#".equals(explorationSite.getInformation("ERK_RAMMHINDERNIS")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
+					.appendAttribute("class", "Normal6")
 					.appendContent(String.valueOf(footnoteCounter++))
 					.appendContent(".) ")
 					.appendContent("Rammhindernis; keine tiefere Entnahme möglich")
@@ -95,7 +92,7 @@ public final class FootnoteFormatUtil
 		if ("#".equals(explorationSite.getInformation("ERK_KABELTRASSE")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
+					.appendAttribute("class", "Normal6")
 					.appendContent(String.valueOf(footnoteCounter++))
 					.appendContent(".) ")
 					.appendContent("Kabeltrasse; keine tiefere Entnahme möglich")
@@ -106,7 +103,7 @@ public final class FootnoteFormatUtil
 		if ("#".equals(explorationSite.getInformation("ERK_FREMDBESTANDTEILE")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
+					.appendAttribute("class", "Normal6")
 					.appendContent(String.valueOf(footnoteCounter++))
 					.appendContent(".) ")
 					.appendContent("mit mineralischen Fremdbestandteilen < 10 V.-%")
@@ -117,7 +114,7 @@ public final class FootnoteFormatUtil
 		if ("#".equals(explorationSite.getInformation("ERK_GUENSTIGE_EINSTUFUNG")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
+					.appendAttribute("class", "Normal6")
 					.appendContent(String.valueOf(footnoteCounter++))
 					.appendContent(".) ")
 					.appendContent("Ggf. günstigere Einstufung nach Rücksprache mit der Behörde möglich")
@@ -128,7 +125,7 @@ public final class FootnoteFormatUtil
 		if ("#".equals(explorationSite.getInformation("ERK_VERNACHLAESSIGUNG_LEITFAEHIGKEIT")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
+					.appendAttribute("class", "Normal6")
 					.appendContent(String.valueOf(footnoteCounter++))
 					.appendContent(".) ")
 					.appendContent("Einstufung unter Vernachlässigung des Parameters elektrische Leitfähigkeit")
@@ -140,7 +137,7 @@ public final class FootnoteFormatUtil
 		if (erk_variable_footnote1 != null && ! erk_variable_footnote1.equals("#") && ! erk_variable_footnote1.equals("-"))
 		{
 			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
+					.appendAttribute("class", "Normal6")
 					.appendContent(String.valueOf(footnoteCounter++))
 					.appendContent(".) ")
 					.appendContent(erk_variable_footnote1)
@@ -152,7 +149,7 @@ public final class FootnoteFormatUtil
 		if (erk_variable_footnote2 != null && ! erk_variable_footnote2.equals("#") && ! erk_variable_footnote2.equals("-"))
 		{
 			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
+					.appendAttribute("class", "Normal6")
 					.appendContent(String.valueOf(footnoteCounter++))
 					.appendContent(".) ")
 					.appendContent(erk_variable_footnote2)
@@ -164,7 +161,7 @@ public final class FootnoteFormatUtil
 		if (erk_variable_footnote3 != null && ! erk_variable_footnote3.equals("#") && ! erk_variable_footnote3.equals("-"))
 		{
 			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
+					.appendAttribute("class", "Normal6")
 					.appendContent(String.valueOf(footnoteCounter++))
 					.appendContent(".) ")
 					.appendContent(erk_variable_footnote3)
@@ -176,7 +173,7 @@ public final class FootnoteFormatUtil
 		if (! "-".equals(explorationSite.getInformation("ERK_LP")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
+					.appendAttribute("class", "Normal6")
 					.appendContent(String.valueOf(footnoteCounter))
 					.appendContent(".) ")
 					.appendContent("Prüfergebnisse unter Berücksichtigung einer ca. 15 % Reduzierung aufgrund der Einspannung durch den ")

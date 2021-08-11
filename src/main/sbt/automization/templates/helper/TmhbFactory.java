@@ -20,14 +20,14 @@ public final class TmhbFactory extends ARowFactory
 
 		//Umwelttechnische Merkmale Trennzeile
 		HtmlRow rowLegende = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
+				.appendAttribute("class", rowClass)
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "NormalHeader")
+						.appendAttribute("class", legendCellClass)
 						.appendAttribute("colspan", String.valueOf(1 + explorationSites.size()))
 						.appendAttribute("width", String.valueOf(size))
 						.appendContent("Anmerkungen:")
 						.appendContent(TextFormatUtil.printLineBreak())
-						.appendContent("Für die angegebenen Tiefen (T[]) gilt die Einheit cm.")
+						.appendContent("Für die angegebenen Tiefen [] gilt die Einheit cm.")
 						.build()
 						.appendTag())
 				.build();

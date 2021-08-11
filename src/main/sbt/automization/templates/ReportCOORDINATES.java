@@ -45,6 +45,7 @@ public final class ReportCOORDINATES extends AHtmlTable
 		HtmlTableHeader erkId = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "75")
+				.appendAttribute("align", "left")
 				.appendAttribute("rowspan", "2")
 				.appendContent("Erk. St.")
 				.build();
@@ -54,13 +55,13 @@ public final class ReportCOORDINATES extends AHtmlTable
 				.appendAttribute("width", "530")
 				.appendAttribute("align", "left")
 				.appendAttribute("rowspan", "1")
-				.appendAttribute("colspan", "4")
+				.appendAttribute("colspan", "3")
 				.appendContent("UTM")
 				.build();
 
 		HtmlTableHeader zone = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "75")
+				.appendAttribute("width", "176")
 				.appendAttribute("align", "left")
 				.appendAttribute("rowspan", "1")
 				.appendContent("Zone")
@@ -68,7 +69,7 @@ public final class ReportCOORDINATES extends AHtmlTable
 
 		HtmlTableHeader eastValue = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "75")
+				.appendAttribute("width", "176")
 				.appendAttribute("align", "left")
 				.appendAttribute("rowspan", "1")
 				.appendContent("Ostwert")
@@ -76,31 +77,23 @@ public final class ReportCOORDINATES extends AHtmlTable
 
 		HtmlTableHeader northValue = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "75")
+				.appendAttribute("width", "176")
 				.appendAttribute("align", "left")
 				.appendAttribute("rowspan", "1")
 				.appendContent("Nordwert")
 				.build();
 
-		HtmlTableHeader emptyCell = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "305")
-				.appendAttribute("rowspan", "1")
-				.appendContent("")
-				.build();
-
 		HtmlRow firstHeaderRow = new HtmlRow.Builder()
-				.appendAttribute("class", "NormalHeader")
+				.appendAttribute("class", "NormalThinHeader")
 				.appendContent(erkId.appendTag())
 				.appendContent(utm.appendTag())
 				.build();
 
 		HtmlRow secondHeaderRow = new HtmlRow.Builder()
-				.appendAttribute("class", "NormalHeader")
+				.appendAttribute("class", "NormalThinHeader")
 				.appendContent(zone.appendTag())
 				.appendContent(eastValue.appendTag())
 				.appendContent(northValue.appendTag())
-				.appendContent(emptyCell.appendTag())
 				.build();
 
 		StringBuilder strb = new StringBuilder();
@@ -119,7 +112,6 @@ public final class ReportCOORDINATES extends AHtmlTable
 			HtmlCell erkId = new HtmlCell.Builder()
 					.appendAttribute("class", "Normal")
 					.appendAttribute("width", "75")
-					.appendAttribute("align", "center")
 					.appendAttribute("rowspan", "2")
 					.appendContent(site.getInformation("ERK_ID"))
 					.build();
@@ -128,7 +120,7 @@ public final class ReportCOORDINATES extends AHtmlTable
 					.appendAttribute("class", "Normal")
 					.appendAttribute("width", "530")
 					.appendAttribute("rowspan", "1")
-					.appendAttribute("colspan", "4")
+					.appendAttribute("colspan", "3")
 					.appendContent(site.getInformation("ERK_ORT"))
 					.build();
 
@@ -136,30 +128,23 @@ public final class ReportCOORDINATES extends AHtmlTable
 
 			HtmlCell zone = new HtmlCell.Builder()
 					.appendAttribute("class", "Normal")
-					.appendAttribute("width", "75")
+					.appendAttribute("width", "176")
 					.appendAttribute("rowspan", "1")
 					.appendContent(coordinateSplit.get(0))
 					.build();
 
 			HtmlCell eastValue = new HtmlCell.Builder()
 					.appendAttribute("class", "Normal")
-					.appendAttribute("width", "75")
+					.appendAttribute("width", "176")
 					.appendAttribute("rowspan", "1")
 					.appendContent(coordinateSplit.get(1))
 					.build();
 
 			HtmlCell northValue = new HtmlCell.Builder()
 					.appendAttribute("class", "Normal")
-					.appendAttribute("width", "75")
+					.appendAttribute("width", "176")
 					.appendAttribute("rowspan", "1")
 					.appendContent(coordinateSplit.get(2))
-					.build();
-
-			HtmlCell emptyCell = new HtmlCell.Builder()
-					.appendAttribute("class", "Normal")
-					.appendAttribute("width", "305")
-					.appendAttribute("rowspan", "1")
-					.appendContent("")
 					.build();
 
 			HtmlRow firstDataRow = new HtmlRow.Builder()
@@ -173,7 +158,6 @@ public final class ReportCOORDINATES extends AHtmlTable
 					.appendContent(zone.appendTag())
 					.appendContent(eastValue.appendTag())
 					.appendContent(northValue.appendTag())
-					.appendContent(emptyCell.appendTag())
 					.build();
 
 			strb.append(firstDataRow.appendTag())

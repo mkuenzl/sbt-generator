@@ -45,6 +45,18 @@
                 font-size:6.0pt;
                 font-family:"Arial",sans-serif;
             }
+            p.Normal5, li.Normal25, div.Normal5
+            {
+                margin:0cm;
+                font-size:5.0pt;
+                font-family:"Arial",sans-serif;
+            }
+            p.Normal2, li.Normal2, div.Normal2
+            {
+                margin:0cm;
+                font-size:2.0pt;
+                font-family:"Arial",sans-serif;
+            }
 			span.Normal
 			{
                 font-size:8.0pt;
@@ -76,11 +88,17 @@
 			tr.Normal
 			{
                 page-break-inside:avoid;
-                height:1cm;
+                height:0.8cm;
 			}
 			tr.NormalInner
             {
                 page-break-inside:avoid;
+            }
+            tr.NormalThinHeader
+            {
+                page-break-inside:avoid;
+                background:grey;
+                height:0.5cm;
             }
 			tr.NormalHeader
 			{
@@ -97,7 +115,7 @@
 			tr.NormalThin
 			{
                 page-break-inside:avoid;
-                height:0.7cm;
+                height:0.5cm;
 			}
 			td.Normal
 			{
@@ -159,6 +177,14 @@
 			td.NormalHeader
 			{
                 border:solid windowtext .5pt;
+                background:#F3F3F3;
+                padding:2.4pt 1.4pt 2.4pt 1.4pt;
+                word-break:break-all;
+            }
+            td.NormalHeaderSmallFont
+            {
+                border:solid windowtext .5pt;
+                font-size:6.0pt;
                 background:#F3F3F3;
                 padding:2.4pt 1.4pt 2.4pt 1.4pt;
                 word-break:break-all;

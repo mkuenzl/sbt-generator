@@ -157,6 +157,21 @@ public final class TextFormatUtil
 	}
 
 	/**
+	 * Method to provide a line without content.
+	 *
+	 * @return a html paragraph without content
+	 */
+	public static String printLineEmptyThin()
+	{
+		HtmlText emptyRow = new HtmlText.Builder()
+				.appendAttribute("class", "Normal2")
+				.appendContent("&nbsp;")
+				.build();
+
+		return emptyRow.appendTag();
+	}
+
+	/**
 	 * Method to format a range between two depths as html text.
 	 *
 	 * @param startDepth a String representing the start depth
@@ -356,7 +371,7 @@ public final class TextFormatUtil
 				.build();
 
 		stringBuilder.append(NameFormatUtil.formatLayerKind(kind));
-		stringBuilder.append(printLineEmpty());
+		stringBuilder.append(printLineEmptyThin());
 		stringBuilder.append(attributes.appendTag());
 
 		return stringBuilder.toString();
@@ -368,7 +383,7 @@ public final class TextFormatUtil
 		String depth = "[T: " + startDepth + " - " + endDepth + "]";
 
 		HtmlText formattedDepth = new HtmlText.Builder()
-				.appendAttribute("class", "Normal6")
+				.appendAttribute("class", "Normal5")
 				.appendContent(depth)
 				.build();
 
@@ -385,12 +400,12 @@ public final class TextFormatUtil
 		StringBuilder stringBuilder = new StringBuilder();
 
 		HtmlText textDivider = new HtmlText.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent("_________")
+				.appendAttribute("class", "Normal2")
+				.appendContent("_____________________________________")
 				.build();
 
 		stringBuilder.append(textDivider.appendTag())
-				.append(printLineEmpty());
+				.append(printLineEmptyThin());
 
 		return stringBuilder.toString();
 	}
@@ -452,7 +467,7 @@ public final class TextFormatUtil
 			}
 
 			stringBuilder.append(formattedTag);
-			stringBuilder.append(printLineEmpty());
+			stringBuilder.append(printLineEmptyThin());
 			stringBuilder.append(formatDepthSpecified(layerSample.getInformation(InformationTag.LAYER_DEPTH_START),
 					layerSample.getInformation(InformationTag.LAYER_DEPTH_END)));
 
