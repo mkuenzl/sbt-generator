@@ -4,6 +4,7 @@ import org.apache.commons.io.FileUtils;
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.LayerSample;
+import sbt.automization.data.refactoring.DataTable;
 
 import java.io.*;
 import java.net.URL;
@@ -25,15 +26,15 @@ public final class Util
 	/**
 	 * Method is used for creating and saving test exploration site objects
 	 *
-	 * @param explorationSite the object to serialize
+	 * @param dataTable the object to serialize
 	 * @param fileName        the name of the created file
 	 */
-	public static void serializeExplorationSiteToFile(ExplorationSite explorationSite, String fileName)
+	public static void serializeDatatableToFile(DataTable dataTable, String fileName)
 	{
 		try (FileOutputStream fileOutputStream = new FileOutputStream(fileName) ;
 		     ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream) ;)
 		{
-			outputStream.writeObject(explorationSite);
+			outputStream.writeObject(dataTable);
 		} catch (IOException e)
 		{
 			e.printStackTrace();
@@ -46,20 +47,20 @@ public final class Util
 	 * @param filePath the location of the serialized object file
 	 * @return a ExplorationSite object
 	 */
-	public static ExplorationSite readSerializedExplorationSite(String filePath)
+	public static DataTable readSerializedDatatable(String filePath)
 	{
-		ExplorationSite explorationSite = null;
+		DataTable table = null;
 
 		try (FileInputStream fileInputStream = new FileInputStream(filePath) ;
 		     ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream) ;)
 		{
-			explorationSite = (ExplorationSite) objectInputStream.readObject();
+			table = (DataTable) objectInputStream.readObject();
 		} catch (IOException | ClassNotFoundException e)
 		{
 			e.printStackTrace();
 		}
 
-		return explorationSite;
+		return table;
 	}
 
 	/**

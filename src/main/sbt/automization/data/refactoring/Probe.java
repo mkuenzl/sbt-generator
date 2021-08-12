@@ -1,5 +1,7 @@
 package sbt.automization.data.refactoring;
 
+import sbt.automization.data.refactoring.references.Reference;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -88,5 +90,16 @@ public final class Probe extends DataTableImpl
 	public List<Parameter> getParameter()
 	{
 		return parameter;
+	}
+
+	public Parameter getParameterBy(Reference reference)
+	{
+		for (Parameter par : parameter)
+		{
+			String value = this.get(reference);
+			if (par.contains(value)) return par;
+		}
+
+		return null;
 	}
 }

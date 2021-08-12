@@ -1,7 +1,8 @@
 package sbt.automization.export;
 
-import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.TableInformation;
+import sbt.automization.data.refactoring.DataTable;
+import sbt.automization.data.refactoring.Examination;
+import sbt.automization.data.refactoring.Probe;
 import sbt.automization.templates.IHtmlTable;
 
 import java.io.*;
@@ -13,31 +14,23 @@ import java.util.List;
  */
 public abstract class ATemplateExport
 {
-	/**
-	 * Template to be exported
-	 */
-	IHtmlTable tableStrategy;
+	IHtmlTable tableExportStrategy;
 
-	ATemplateExport(final IHtmlTable tableStrategy)
+	ATemplateExport(final IHtmlTable tableExportStrategy)
 	{
-		this.tableStrategy = tableStrategy;
+		this.tableExportStrategy = tableExportStrategy;
 	}
 
 	public ATemplateExport() {
 
 	}
 
-	public void export(TableInformation tableInformation) throws Exception {
-		export(getPath(), format(tableInformation));
+	public void export(Examination examination) throws Exception {
+		export(getPath(), format(examination));
 	}
 
-	abstract String format(TableInformation tableInformation);
+	abstract String format(Examination examination);
 
-	/**
-	 * Create an output stream to write the provided content into a new file.
-	 * @param path used as location and name of the file to write
-	 * @param content used as String
-	 */
 	private void export(String path, String content) throws Exception {
 		try (FileOutputStream fileOutputStream = new FileOutputStream(path);
 			 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8);
@@ -51,25 +44,17 @@ public abstract class ATemplateExport
 		}
 	}
 
-	/**
-	 * Export variant used for testing template generation
-	 * @param explorationSites a list of exploration sites
-	 */
-	public void export(List<ExplorationSite> explorationSites)
+	public void export(List<DataTable> tables)
 	{
 		try {
-			export(getPath(), format(explorationSites));
+			export(getPath(), format(tables));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	abstract String format(List<ExplorationSite> explorationSites);
+	abstract String format(List<DataTable> tables);
 
-	/**
-	 * Export variant used for testing template generation
-	 * @param htmlCode a html code fragment
-	 */
 	public void exportAsShowcase(String htmlCode)
 	{
 		try {

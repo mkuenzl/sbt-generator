@@ -1,12 +1,21 @@
 package sbt.automization.format;
 
 import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.refactoring.DataTable;
+import sbt.automization.data.refactoring.references.Reference;
+import sbt.automization.data.refactoring.references.ReferenceProbe;
 import sbt.automization.util.html.HtmlText;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
+//TODO implement footnotes in excel and references
 public final class FootnoteFormatUtil
 {
-	private FootnoteFormatUtil(){}
+	private static int counter = 1;
 
+	private FootnoteFormatUtil(){}
 
 	public static String formatInformationFootnote()
 	{
@@ -186,5 +195,81 @@ public final class FootnoteFormatUtil
 					.appendTag());
 		}
 		return stringBuilder.toString();
+	}
+
+	private List<ReferenceProbe> getFootnoteReferences()
+	{
+		List<ReferenceProbe> references = new ArrayList<>(){{
+			add(ReferenceProbe.LP_ID);
+			//TODO
+		}};
+
+		return references;
+	}
+
+	private boolean checkExistenceOfFootnote(DataTable table, Reference reference)
+	{
+		String footnote = table.get(reference);
+		return (footnote != null && ! footnote.equals("#") && ! footnote.equals("-") && ! footnote.equals(""));
+	}
+
+	public String printFootnotes(DataTable table)
+	{
+		StringBuilder stringBuilder = new StringBuilder();
+
+		stringBuilder.append(formatInformationFootnote())
+				.append(printFootnoteWithText(counter, "Messeinheit: Garmin eTrex 10, herstellerseitig angegebene Lagegenauigkeit ~ 3 m"));
+
+		for (ReferenceProbe footnoteReference : getFootnoteReferences())
+		{
+			if (checkExistenceOfFootnote(table, footnoteReference))
+			{
+				stringBuilder.append(printFootnoteForReference(table, footnoteReference));
+			}
+		}
+		return stringBuilder.toString();
+	}
+
+	private String printFootnoteForReference(DataTable table, ReferenceProbe footnoteReference)
+	{
+		switch (footnoteReference)
+		{
+			case LP_ID:
+				return printFootnoteWithText(counter, new String[]{
+						"Prüfergebnisse unter Berücksichtigung einer ca. 15 % Reduzierung aufgrund der Einspannung durch den ",
+						TextFormatUtil.printLineBreak(),
+						"gebundenen Oberbau"});
+			default:
+				throw new IllegalStateException("Unexpected value: " + footnoteReference);
+		}
+	}
+
+	private HtmlText createFootnote(int id)
+	{
+		return new HtmlText.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent(String.valueOf(id++))
+				.appendContent(".) ")
+				.build();
+	}
+
+	private String printFootnoteWithText(int id, String line)
+	{
+		HtmlText footnote = createFootnote(id);
+		footnote.appendContent(line);
+
+		return footnote.appendTag();
+	}
+
+	private String printFootnoteWithText(int id, String[] lines)
+	{
+		HtmlText footnote = createFootnote(id);
+
+		for (String line : lines)
+		{
+			footnote.appendContent(line);
+		}
+
+		return footnote.appendTag();
 	}
 }

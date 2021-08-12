@@ -1,6 +1,9 @@
 package sbt.automization.templates;
 
+import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.util.html.HtmlTable;
+
+import java.util.List;
 
 /**
  * Abstract class for all html tables
@@ -47,5 +50,11 @@ public abstract class AHtmlTable implements IHtmlTable
 				.build();
 
 		return table;
+	}
+
+	@Override
+	public void constructTemplate(List<DataTable> tables)
+	{
+
 	}
 }

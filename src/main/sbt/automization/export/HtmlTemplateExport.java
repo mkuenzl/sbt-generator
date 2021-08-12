@@ -1,7 +1,8 @@
 package sbt.automization.export;
 
-import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.TableInformation;
+import sbt.automization.data.refactoring.DataTable;
+import sbt.automization.data.refactoring.Examination;
 import sbt.automization.templates.IHtmlTable;
 import sbt.automization.util.html.Html;
 import sbt.automization.util.html.HtmlBody;
@@ -36,9 +37,9 @@ public final class HtmlTemplateExport extends ATemplateExport
 	}
 
 	@Override
-	String format(final TableInformation tableInformation)
+	String format(final Examination examination)
 	{
-		return format(tableInformation.getExplorationSites());
+		return format(examination);
 	}
 
 	/**
@@ -58,15 +59,15 @@ public final class HtmlTemplateExport extends ATemplateExport
 	 *      </body>
 	 * </html>
 	 *
-	 * @param explorationSites expects a list of explorations sites
+	 * @param tables expects a list of explorations sites
 	 * @return a HTML file containing the strategy table
 	 */
 	@Override
-	String format(List<ExplorationSite> explorationSites)
+	String format(List<DataTable> tables)
 	{
-		tableStrategy.constructTable(explorationSites);
+		tableExportStrategy.constructTemplate(tables);
 
-		return format(tableStrategy.getTable());
+		return format(tableExportStrategy.getTable());
 	}
 
 	@Override
@@ -93,18 +94,13 @@ public final class HtmlTemplateExport extends ATemplateExport
 		return template.appendTag();
 	}
 
-	/**
-	 * Method creates a path based on the location of the csv and the table strategy file name
-	 *
-	 * @return a path to the current directory
-	 */
 	@Override
 	public String getPath()
 	{
-		if (TableInformation.exportPath == null)
-			return System.getProperty("user.dir").concat(File.separator).concat(tableStrategy.getExportFileName()).concat(".html");
+		if (Examination.exportPath == null)
+			return System.getProperty("user.dir").concat(File.separator).concat(tableExportStrategy.getExportFileName()).concat(".html");
 
-		return TableInformation.exportPath.concat(File.separator).concat(tableStrategy.getExportFileName()).concat(".html");
+		return Examination.exportPath.concat(File.separator).concat(tableExportStrategy.getExportFileName()).concat(".html");
 	}
 
 	/**

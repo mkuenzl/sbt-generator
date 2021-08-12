@@ -33,7 +33,7 @@ public final class TableInformation
 	 * @param template expects a template export strategy
 	 */
 	public void export(ATemplateExport template) throws Exception {
-		template.export(this);
+		//template.export(this);
 	}
 
 	/**

@@ -1,6 +1,7 @@
 package sbt.automization.gui;
 
 import sbt.automization.data.TableInformation;
+import sbt.automization.data.refactoring.Examination;
 import sbt.automization.export.HtmlTemplateExport;
 import sbt.automization.templates.IHtmlTable;
 import sbt.automization.util.CsvParser;
@@ -23,11 +24,11 @@ public class ExecuteButtonActionListener implements ActionListener
 		{
 
 			List<Map<String, String>> parsedSiteInformation = csvParser.parse();
-			TableInformation tableInformation = new TableInformation(parsedSiteInformation, csv.getParent());
+			Examination examination = new Examination(parsedSiteInformation, csv.getParent());
 			for (IHtmlTable strategy : StrategyStorage.getInstance().getStrategies())
 			{
 				try{
-					tableInformation.export(new HtmlTemplateExport(strategy));
+					examination.export(new HtmlTemplateExport(strategy));
 				} catch (Exception exception)
 				{
 					ErrorPopup.showErrorMessage("Es gab einen Fehler bei der Erstellung der " + strategy.getExportFileName() + "\n"
