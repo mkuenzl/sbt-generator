@@ -71,7 +71,7 @@ public final class CsvParser
 	 * @param csv a file of a csv
 	 * @return a list of headers as Strings
 	 */
-	public List<String> parseHeader(File csv){
+	public static List<String> parseHeader(File csv){
 		List<String> headers = null;
 
 		try (FileInputStream fileInputStream = new FileInputStream(csv);

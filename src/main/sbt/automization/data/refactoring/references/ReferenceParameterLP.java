@@ -63,7 +63,7 @@ public enum ReferenceParameterLP implements Reference
 				@Override
 				public String getKey()
 				{
-					return addLPTag("EV_85");
+					return addLPTag("EV85");
 				}
 			},
 	EV2
