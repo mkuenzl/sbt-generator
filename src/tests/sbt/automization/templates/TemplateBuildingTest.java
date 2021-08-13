@@ -53,12 +53,12 @@ public class TemplateBuildingTest
 		dataTables.add(Util.readSerializedDatatable(path + "Probe_0"));
 		dataTables.add(Util.readSerializedDatatable(path + "Probe_1"));
 		dataTables.add(Util.readSerializedDatatable(path + "Probe_2"));
-//		dataTables.add(Util.readSerializedDatatable(path + "Probe_3"));
-//		dataTables.add(Util.readSerializedDatatable(path + "Probe_4"));
-//		dataTables.add(Util.readSerializedDatatable(path + "Probe_5"));
-//		dataTables.add(Util.readSerializedDatatable(path + "Probe_6"));
-//		dataTables.add(Util.readSerializedDatatable(path + "Probe_7"));
-//		dataTables.add(Util.readSerializedDatatable(path + "Probe_8"));
+		dataTables.add(Util.readSerializedDatatable(path + "Probe_3"));
+		dataTables.add(Util.readSerializedDatatable(path + "Probe_4"));
+		dataTables.add(Util.readSerializedDatatable(path + "Probe_5"));
+		dataTables.add(Util.readSerializedDatatable(path + "Probe_6"));
+		dataTables.add(Util.readSerializedDatatable(path + "Probe_7"));
+		dataTables.add(Util.readSerializedDatatable(path + "Probe_8"));
 //		dataTables.add(Util.readSerializedDatatable(path + "Probe_9"));
 //		dataTables.add(Util.readSerializedDatatable(path + "Probe_10"));
 //		dataTables.add(Util.readSerializedDatatable(path + "Probe_11"));
