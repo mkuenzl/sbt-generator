@@ -1,13 +1,15 @@
-package sbt.automization.templates;
+package sbt.automization.templates.appendix;
 
 import sbt.automization.data.ExplorationSite;
+import sbt.automization.templates.appendix.AppendixTemplate;
+import sbt.automization.templates.report.ReportTemplate;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class AttemptTemplate extends AHtmlTable
+public final class AttemptTemplate extends AppendixTemplate
 {
 
 	private static AttemptTemplate instance;

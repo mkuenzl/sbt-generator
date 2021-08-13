@@ -1,6 +1,7 @@
-package sbt.automization.templates;
+package sbt.automization.templates.appendix;
 
 import sbt.automization.data.refactoring.DataTable;
+import sbt.automization.templates.HtmlTableTemplate;
 import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
@@ -8,9 +9,9 @@ import java.util.List;
 /**
  * Abstract class for all html tables
  */
-public abstract class AHtmlTable implements IHtmlTable
+public abstract class AppendixTemplate implements HtmlTableTemplate
 {
-	static final String HTML_BASIC_TABLE_STYLE = new StringBuilder()
+	public static final String HTML_BASIC_TABLE_STYLE = new StringBuilder()
 			.append("'")
 			.append("border-collapse:collapse")
 			.append(";")

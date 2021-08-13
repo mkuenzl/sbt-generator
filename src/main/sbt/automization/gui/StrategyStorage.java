@@ -1,6 +1,8 @@
 package sbt.automization.gui;
 
 import sbt.automization.templates.*;
+import sbt.automization.templates.appendix.*;
+import sbt.automization.templates.report.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +11,7 @@ public class StrategyStorage
 {
     private static StrategyStorage instance;
 
-    private final List<IHtmlTable> strategyList;
+    private final List<HtmlTableTemplate> strategyList;
 
     private StrategyStorage()
     {
@@ -135,7 +137,7 @@ public class StrategyStorage
         }
     }
 
-    public List<IHtmlTable> getStrategies()
+    public List<HtmlTableTemplate> getStrategies()
     {
         return strategyList;
     }

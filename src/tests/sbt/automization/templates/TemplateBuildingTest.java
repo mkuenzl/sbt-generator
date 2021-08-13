@@ -4,11 +4,12 @@ package sbt.automization.templates;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import sbt.automization.data.TableInformation;
-import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.refactoring.Examination;
 import sbt.automization.export.HtmlTemplateExport;
+import sbt.automization.templates.appendix.AppendixLP;
+import sbt.automization.templates.appendix.AppendixPN;
+import sbt.automization.templates.appendix.AppendixRUK;
 import sbt.automization.util.CsvParser;
 import sbt.automization.util.Util;
 
@@ -92,14 +93,14 @@ public class TemplateBuildingTest
 		openExportFile(htmlTemplateExportStrategy.getPath());
 	}
 
-//	@Test
-//	public void createPnTemplate() throws IOException
-//	{
-//		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(AppendixPN.getInstance());
-//		htmlTemplateExportStrategy.export(explorationSites);
-//
-//		openExportFile(htmlTemplateExportStrategy.getPath());
-//	}
+	@Test
+	public void createPnTemplate() throws IOException
+	{
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(AppendixPN.getInstance());
+		htmlTemplateExportStrategy.export(dataTables);
+
+		openExportFile(htmlTemplateExportStrategy.getPath());
+	}
 //
 //	@Test
 //	public void createPnHeapTemplate() throws IOException

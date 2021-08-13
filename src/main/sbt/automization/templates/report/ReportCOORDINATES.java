@@ -1,6 +1,7 @@
-package sbt.automization.templates;
+package sbt.automization.templates.report;
 
 import sbt.automization.data.ExplorationSite;
+import sbt.automization.templates.appendix.AppendixTemplate;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
@@ -9,7 +10,7 @@ import sbt.automization.util.html.HtmlTableHeader;
 import java.util.Arrays;
 import java.util.List;
 
-public final class ReportCOORDINATES extends AHtmlTable
+public final class ReportCOORDINATES extends ReportTemplate
 {
 	private static ReportCOORDINATES instance;
 
@@ -40,7 +41,7 @@ public final class ReportCOORDINATES extends AHtmlTable
 	}
 
 	@Override
-	String constructAndGetTableHeader()
+	public String constructAndGetTableHeader()
 	{
 		HtmlTableHeader erkId = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
@@ -108,6 +109,18 @@ public final class ReportCOORDINATES extends AHtmlTable
 				.append(secondHeaderRow.appendTag());
 
 		return strb.toString();
+	}
+
+	@Override
+	String buildTechnicalFeatures(List<ExplorationSite> explorationSites)
+	{
+		return null;
+	}
+
+	@Override
+	String buildEnvironmentTechnicalFeatures(List<ExplorationSite> explorationSites)
+	{
+		return null;
 	}
 
 	String addDataToTable(List<ExplorationSite> sites)

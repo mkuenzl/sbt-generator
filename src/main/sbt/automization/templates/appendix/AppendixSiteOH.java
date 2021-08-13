@@ -1,4 +1,4 @@
-package sbt.automization.templates;
+package sbt.automization.templates.appendix;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.ReferenceKey;
@@ -12,7 +12,7 @@ import sbt.automization.util.html.HtmlTableHeader;
 
 import java.util.List;
 
-final class AppendixSiteOH extends AHtmlTable
+final class AppendixSiteOH extends AppendixTemplate
 {
     private String outcrop = "";
 

@@ -1,10 +1,9 @@
-package sbt.automization.templates;
+package sbt.automization.templates.appendix;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.LayerSample;
 import sbt.automization.format.HtmlCellFormatUtil;
-import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
@@ -12,7 +11,7 @@ import sbt.automization.util.html.HtmlTableHeader;
 
 import java.util.List;
 
-public class AppendixSiteBANKETT extends AHtmlTable
+final class AppendixSiteFUGE extends AppendixTemplate
 {
 	private String outcrop = "";
 
@@ -25,7 +24,7 @@ public class AppendixSiteBANKETT extends AHtmlTable
 	@Override
 	public void constructTable(final ExplorationSite site)
 	{
-		outcrop = site.getInformation("ERK_AUFSCHLUSS_UG_OH_BA");
+		outcrop = site.getInformation(ReferenceKey.SITE_OUTCROP_UG_OH_BA);
 
 		HtmlTable table = new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
@@ -39,67 +38,59 @@ public class AppendixSiteBANKETT extends AHtmlTable
 
 		for (LayerSample layerSample : site.getLayers())
 		{
-			if ("BANKETT".equals(layerSample.getInformation(ReferenceKey.LAYER_OUTCROP)))
+			if ("FUGE".equals(layerSample.getInformation(ReferenceKey.LAYER_OUTCROP)))
 			{
 				//Art der Schicht
-				HtmlCell cell1 = new HtmlCell.Builder()
+				HtmlCell schichtArt = new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(TextFormatUtil.formatSoilGroup(layerSample.getInformation(ReferenceKey.LAYER_TYPE)))
+						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_TYPE))
 						.build();
 
 				//Dicke
-				HtmlCell cell2 = new HtmlCell.Builder()
+				HtmlCell schichtDicke = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
 						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_THICKNESS))
 						.build();
 
 				//Tiefe
-				HtmlCell cell3 = new HtmlCell.Builder()
+				HtmlCell schichtTiefe = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
 						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_DEPTH_END))
 						.build();
 
 				//MUFV
 				String chemie_mufv = layerSample.getInformation(ReferenceKey.CHEMISTRY_MUFV);
-				HtmlCell cell4 = HtmlCellFormatUtil.formatChemistry(chemie_mufv);
+				HtmlCell schichtMufv = HtmlCellFormatUtil.formatChemistry(chemie_mufv);
 
-				//LAGA BO
-				String chemie_laga_bo = layerSample.getInformation(ReferenceKey.CHEMISTRY_LAGA_BO);
-				HtmlCell cell5 = HtmlCellFormatUtil.formatChemistry(chemie_laga_bo);
-
-				//Notiz
-				String chemie_laga_rc = layerSample.getInformation(ReferenceKey.CHEMISTRY_LAGA_RC);
-				HtmlCell cell6 = HtmlCellFormatUtil.formatChemistry(chemie_laga_rc);
-
-				//Wassergehalt
+				//empty
 				HtmlCell cell7 = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_WATER_CONTENT))
+						.appendAttribute("colspan", "3")        //Zelle geht über 3 Reihen
+						.appendContent("")
 						.build();
 
-				//WasserProctor
-				HtmlCell cell8 = new HtmlCell.Builder()
+				//PAK
+				HtmlCell schichtPak = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(TextFormatUtil.formatLayerProctor(layerSample))
+						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_PAK))
 						.build();
 
-				//Proctor
-				HtmlCell cell9 = new HtmlCell.Builder()
-						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent("-")
-						.build();
+				//Asbest
+				String chemie_asbest = layerSample.getInformation(ReferenceKey.CHEMISTRY_ASBESTOS);
+				HtmlCell schichtAsbest = HtmlCellFormatUtil.formatChemistry(chemie_asbest);
+
+
+
 
 				HtmlRow row = new HtmlRow.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(cell1.appendTag())
-						.appendContent(cell2.appendTag())
-						.appendContent(cell3.appendTag())
-						.appendContent(cell4.appendTag())
-						.appendContent(cell5.appendTag())
-						.appendContent(cell6.appendTag())
+						.appendContent(schichtArt.appendTag())
+						.appendContent(schichtDicke.appendTag())
+						.appendContent(schichtTiefe.appendTag())
+						.appendContent(schichtMufv.appendTag())
 						.appendContent(cell7.appendTag())
-						.appendContent(cell8.appendTag())
-						.appendContent(cell9.appendTag())
+						.appendContent(schichtPak.appendTag())
+						.appendContent(schichtAsbest.appendTag())
 						.build();
 
 				table.appendContent(row.appendTag());
@@ -117,7 +108,7 @@ public class AppendixSiteBANKETT extends AHtmlTable
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "125")
 				.appendAttribute("align", "left")
-				.appendContent("Bankett")
+				.appendContent("Fuge")
 				.build();
 
 		HtmlTableHeader cell12 = new HtmlTableHeader.Builder()
@@ -134,13 +125,14 @@ public class AppendixSiteBANKETT extends AHtmlTable
 				.appendAttribute("align", "left")
 				.appendAttribute("width", "125")
 				.appendAttribute("rowspan", "2")
-				.appendContent("Bodengruppe")
+				.appendContent("Art der Schicht")
 				.build();
 
 		HtmlTableHeader cell22 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
 				.appendContent("Dicke")
+				.appendContent("<div>[7]</div>")
 				.build();
 
 		HtmlTableHeader cell23 = new HtmlTableHeader.Builder()
@@ -160,40 +152,24 @@ public class AppendixSiteBANKETT extends AHtmlTable
 		HtmlTableHeader cell25 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
+				.appendAttribute("colspan", "3")
 				.appendAttribute("rowspan", "2")
-				.appendContent("LAGA BO")
-				.appendContent("<div>[11]</div>")
+				.appendContent("")
 				.build();
 
 		HtmlTableHeader cell26 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
-				.appendAttribute("rowspan", "2")
-				.appendContent("LAGA RC")
-				.appendContent("<div>[28]</div>")
+				.appendContent("PAK")
 				.build();
 
 		HtmlTableHeader cell27 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
-				.appendContent("WG")
-				.appendContent("<div>[19]</div>")
+				.appendAttribute("rowspan", "2")
+				.appendContent("Asbest")
 				.build();
 
-		HtmlTableHeader cell28 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "60")
-				.appendContent("W<sub>Pr</sub>")
-				.build();
-
-		HtmlTableHeader cell29 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "60")
-				.appendContent("Proctor")
-				.appendContent("<div>[20]</div>")
-				.build();
-
-		// Third row
 		HtmlTableHeader cell32 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeaderUnits")
 				.appendContent("cm")
@@ -206,26 +182,16 @@ public class AppendixSiteBANKETT extends AHtmlTable
 
 		HtmlTableHeader cell35 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeaderUnits")
-				.appendContent("M.-%")
+				.appendContent("mg/kg")
 				.build();
 
-		HtmlTableHeader cell36 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeaderUnits")
-				.appendContent("M.-%")
-				.build();
-
-		HtmlTableHeader cell37 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeaderUnits")
-				.appendContent("Mg/m³")
-				.build();
-
-		HtmlRow firstHeaderRow = new HtmlRow.Builder()
+		HtmlRow row1 = new HtmlRow.Builder()
 				.appendAttribute("class", "NormalHeader")
 				.appendContent(cell11.appendTag())
 				.appendContent(cell12.appendTag())
 				.build();
 
-		HtmlRow secondHeaderRow = new HtmlRow.Builder()
+		HtmlRow row2 = new HtmlRow.Builder()
 				.appendAttribute("class", "NormalHeader")
 				.appendContent(cell21.appendTag())
 				.appendContent(cell22.appendTag())
@@ -234,23 +200,19 @@ public class AppendixSiteBANKETT extends AHtmlTable
 				.appendContent(cell25.appendTag())
 				.appendContent(cell26.appendTag())
 				.appendContent(cell27.appendTag())
-				.appendContent(cell28.appendTag())
-				.appendContent(cell29.appendTag())
 				.build();
 
-		HtmlRow thirdHeaderRow = new HtmlRow.Builder()
+		HtmlRow row3 = new HtmlRow.Builder()
 				.appendAttribute("class", "NormalHeaderUnits")
 				.appendContent(cell32.appendTag())
 				.appendContent(cell33.appendTag())
 				.appendContent(cell35.appendTag())
-				.appendContent(cell36.appendTag())
-				.appendContent(cell37.appendTag())
 				.build();
 
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(firstHeaderRow.appendTag())
-				.append(secondHeaderRow.appendTag())
-				.append(thirdHeaderRow.appendTag());
+		stringBuilder.append(row1.appendTag())
+				.append(row2.appendTag())
+				.append(row3.appendTag());
 
 		return stringBuilder.toString();
 	}

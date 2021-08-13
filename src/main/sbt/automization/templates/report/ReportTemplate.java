@@ -1,19 +1,54 @@
-package sbt.automization.templates;
+package sbt.automization.templates.report;
 
 import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.refactoring.DataTable;
+import sbt.automization.templates.HtmlTableTemplate;
 import sbt.automization.util.Util;
 import sbt.automization.util.html.HtmlTable;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Abstract class for all report tables inherits from AHtmlTable
  */
-public abstract class AReportTable extends AHtmlTable
+public abstract class ReportTemplate implements HtmlTableTemplate
 {
 	String layerKind;
+
+	public static final String HTML_BASIC_TABLE_STYLE = new StringBuilder()
+			.append("'")
+			.append("border-collapse:collapse")
+			.append(";")
+			.append("mso-table-layout-alt:fixed")
+			.append(";")
+			.append("border:none")
+			.append(";")
+			.append("mso-border-alt:solid windowtext .5pt")
+			.append(";")
+			.append("mso-padding-alt:0cm 5.4pt 0cm 5.4pt")
+			.append("'")
+			.toString();
+
+	private String table;
+
+	public String getTable()
+	{
+		return table;
+	}
+
+	public void setTable(final String table)
+	{
+		this.table = table;
+	}
+
+	public abstract String constructAndGetTableHeader();
+
+	@Override
+	public void constructTemplate(List<DataTable> tables)
+	{
+
+	}
 
 	/**
 	 * Method used to retrieve all exploration sites containing an outcrop and dividing them into
@@ -35,7 +70,6 @@ public abstract class AReportTable extends AHtmlTable
 
 	abstract String buildEnvironmentTechnicalFeatures(List<ExplorationSite> explorationSites);
 
-	@Override
 	HtmlTable constructAndGetTableObject()
 	{
 		HtmlTable table = new HtmlTable.Builder()

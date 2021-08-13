@@ -1,17 +1,15 @@
-package sbt.automization.templates;
+package sbt.automization.templates.appendix;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.LayerSample;
 import sbt.automization.format.HtmlCellFormatUtil;
-import sbt.automization.util.html.HtmlCell;
-import sbt.automization.util.html.HtmlRow;
-import sbt.automization.util.html.HtmlTable;
-import sbt.automization.util.html.HtmlTableHeader;
+import sbt.automization.format.TextFormatUtil;
+import sbt.automization.util.html.*;
 
 import java.util.List;
 
-final class AppendixSiteFUGE extends AHtmlTable
+final class AppendixSiteTOB extends AppendixTemplate
 {
 	private String outcrop = "";
 
@@ -24,7 +22,7 @@ final class AppendixSiteFUGE extends AHtmlTable
 	@Override
 	public void constructTable(final ExplorationSite site)
 	{
-		outcrop = site.getInformation(ReferenceKey.SITE_OUTCROP_UG_OH_BA);
+		outcrop = site.getInformation(ReferenceKey.SITE_OUTCROP_TOB);
 
 		HtmlTable table = new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
@@ -36,67 +34,96 @@ final class AppendixSiteFUGE extends AHtmlTable
 				.appendContent(constructAndGetTableHeader())
 				.build();
 
+		boolean lpPrinted = false;
+
 		for (LayerSample layerSample : site.getLayers())
 		{
-			if ("FUGE".equals(layerSample.getInformation(ReferenceKey.LAYER_OUTCROP)))
+			if ("TOB".equals(layerSample.getInformation(ReferenceKey.LAYER_OUTCROP).toUpperCase()))
 			{
 				//Art der Schicht
-				HtmlCell schichtArt = new HtmlCell.Builder()
+				HtmlCell cell1 = new HtmlCell.Builder()
 						.appendAttribute("class", "Normal")
 						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_TYPE))
+						.appendContent(new HtmlText.Builder().appendAttribute("class", "Normal")
+								.appendContent(layerSample.getInformation(ReferenceKey.LAYER_GRANULATION))
+								.appendContent(" ")
+								.appendContent(layerSample.getInformation(ReferenceKey.LAYER_ROUNDING_GRADATION))
+								.build()
+								.appendTag())
 						.build();
 
 				//Dicke
-				HtmlCell schichtDicke = new HtmlCell.Builder()
+				HtmlCell cell2 = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
 						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_THICKNESS))
 						.build();
 
 				//Tiefe
-				HtmlCell schichtTiefe = new HtmlCell.Builder()
+				HtmlCell cell3 = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
 						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_DEPTH_END))
 						.build();
 
 				//MUFV
 				String chemie_mufv = layerSample.getInformation(ReferenceKey.CHEMISTRY_MUFV);
-				HtmlCell schichtMufv = HtmlCellFormatUtil.formatChemistry(chemie_mufv);
+				HtmlCell cell4 = HtmlCellFormatUtil.formatChemistry(chemie_mufv);
 
-				//empty
-				HtmlCell cell7 = new HtmlCell.Builder()
+				//LAGA_BO
+				String chemie_laga_bo = layerSample.getInformation(ReferenceKey.CHEMISTRY_LAGA_BO);
+				HtmlCell cell5 = HtmlCellFormatUtil.formatChemistry(chemie_laga_bo);
+
+				//LAGA_RC
+				String chemie_laga_rc = layerSample.getInformation(ReferenceKey.CHEMISTRY_LAGA_RC);
+				HtmlCell cell6 = HtmlCellFormatUtil.formatChemistry(chemie_laga_rc);
+
+				//TL_GESTEIN
+				String chemie_tlgestein = layerSample.getInformation(ReferenceKey.CHEMISTRY_TL_ROCK_STRATUM);
+				HtmlCell cell7 = HtmlCellFormatUtil.formatChemistry(chemie_tlgestein);
+
+				//LP_DYN
+				String erk_lp_ev2 = site.getInformation(ReferenceKey.SITE_LP_EV2);
+				HtmlCell cellLP_DYN;
+				if (erk_lp_ev2.equals("-") || lpPrinted)
+				{
+					cellLP_DYN = new HtmlCell.Builder()
+							.appendAttribute("class", "NormalErkundungsstelle")
+							.appendContent("-")
+							.build();
+				} else
+				{
+					cellLP_DYN = new HtmlCell.Builder()
+							.appendAttribute("class", "NormalErkundungsstelle")
+							.appendContent(erk_lp_ev2)
+							.appendContent(TextFormatUtil.printLineBreak())
+							.appendContent(site.getInformation(ReferenceKey.SITE_LP_EV85))
+							.build();
+
+					lpPrinted = true;
+				}
+
+
+				HtmlCell cell9 = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendAttribute("colspan", "3")        //Zelle geht über 3 Reihen
-						.appendContent("")
+						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_GRAIN_SIZE_DISTRIBUTION))
 						.build();
-
-				//PAK
-				HtmlCell schichtPak = new HtmlCell.Builder()
-						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_PAK))
-						.build();
-
-				//Asbest
-				String chemie_asbest = layerSample.getInformation(ReferenceKey.CHEMISTRY_ASBESTOS);
-				HtmlCell schichtAsbest = HtmlCellFormatUtil.formatChemistry(chemie_asbest);
-
-
 
 
 				HtmlRow row = new HtmlRow.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(schichtArt.appendTag())
-						.appendContent(schichtDicke.appendTag())
-						.appendContent(schichtTiefe.appendTag())
-						.appendContent(schichtMufv.appendTag())
+						.appendContent(cell1.appendTag())
+						.appendContent(cell2.appendTag())
+						.appendContent(cell3.appendTag())
+						.appendContent(cell4.appendTag())
+						.appendContent(cell5.appendTag())
+						.appendContent(cell6.appendTag())
 						.appendContent(cell7.appendTag())
-						.appendContent(schichtPak.appendTag())
-						.appendContent(schichtAsbest.appendTag())
+						.appendContent(cellLP_DYN.appendTag())
+						.appendContent(cell9.appendTag())
 						.build();
 
 				table.appendContent(row.appendTag());
 			}
 		}
-
 		setTable(table.appendTag());
 	}
 
@@ -108,13 +135,16 @@ final class AppendixSiteFUGE extends AHtmlTable
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "125")
 				.appendAttribute("align", "left")
-				.appendContent("Fuge")
+				.appendContent("Tragschicht ohne")
+				.appendContent(TextFormatUtil.printLineBreak())
+				.appendContent("Bindemittel")
 				.build();
+
 
 		HtmlTableHeader cell12 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("align", "left")
 				.appendAttribute("colspan", "8")        //Zelle geht über 3 Reihen
+				.appendAttribute("align", "left")
 				.appendContent("Aufschlussverfahren:".concat(" ").concat(outcrop))
 				.build();
 
@@ -122,8 +152,8 @@ final class AppendixSiteFUGE extends AHtmlTable
 		//Second Row
 		HtmlTableHeader cell21 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("align", "left")
 				.appendAttribute("width", "125")
+				.appendAttribute("align", "left")
 				.appendAttribute("rowspan", "2")
 				.appendContent("Art der Schicht")
 				.build();
@@ -149,40 +179,71 @@ final class AppendixSiteFUGE extends AHtmlTable
 				.appendContent("<div>[18]</div>")
 				.build();
 
-		HtmlTableHeader cell25 = new HtmlTableHeader.Builder()
+		HtmlTableHeader lagaBoHeader = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
-				.appendAttribute("colspan", "3")
 				.appendAttribute("rowspan", "2")
-				.appendContent("")
+				.appendContent("LAGA BO")
+				.appendContent("<div>[11]</div>")
 				.build();
 
 		HtmlTableHeader cell26 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
-				.appendContent("PAK")
+				.appendAttribute("rowspan", "2")
+				.appendContent("LAGA RC")
+				.appendContent("<div>[28]</div>")
 				.build();
 
 		HtmlTableHeader cell27 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
 				.appendAttribute("rowspan", "2")
-				.appendContent("Asbest")
+				.appendContent("TL Ge.")
+				.appendContent("<div>[27]</div>")
+				.build();
+
+		HtmlTableHeader cell28 = new HtmlTableHeader.Builder()
+				.appendAttribute("class", "NormalTableHeader")
+				.appendAttribute("width", "60")
+				.appendContent("E<sub>V2</sub>")
+				.appendContent(TextFormatUtil.printLineBreak())
+				.appendContent("E<sub>Vdyn</sub>")
+				.appendContent(TextFormatUtil.printLineBreak())
+				.appendContent("<sub>(-15%)</sub>")
+				.appendContent("<div>[41]</div>")
+				.build();
+
+
+		HtmlTableHeader cell29 = new HtmlTableHeader.Builder()
+				.appendAttribute("class", "NormalTableHeader")
+				.appendAttribute("width", "60")
+				.appendContent("KGV")
+				.appendContent("<div>[25]</div>")
 				.build();
 
 		HtmlTableHeader cell32 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeaderUnits")
+				.appendAttribute("width", "60")
 				.appendContent("cm")
 				.build();
 
 		HtmlTableHeader cell33 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeaderUnits")
+				.appendAttribute("width", "60")
 				.appendContent("cm")
 				.build();
 
-		HtmlTableHeader cell35 = new HtmlTableHeader.Builder()
+		HtmlTableHeader cell37 = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeaderUnits")
-				.appendContent("mg/kg")
+				.appendAttribute("width", "60")
+				.appendContent("MN/m²")
+				.build();
+
+		HtmlTableHeader cell38 = new HtmlTableHeader.Builder()
+				.appendAttribute("class", "NormalTableHeaderUnits")
+				.appendAttribute("width", "60")
+				.appendContent("M.-%")
 				.build();
 
 		HtmlRow row1 = new HtmlRow.Builder()
@@ -197,16 +258,19 @@ final class AppendixSiteFUGE extends AHtmlTable
 				.appendContent(cell22.appendTag())
 				.appendContent(cell23.appendTag())
 				.appendContent(cell24.appendTag())
-				.appendContent(cell25.appendTag())
+				.appendContent(lagaBoHeader.appendTag())
 				.appendContent(cell26.appendTag())
 				.appendContent(cell27.appendTag())
+				.appendContent(cell28.appendTag())
+				.appendContent(cell29.appendTag())
 				.build();
 
 		HtmlRow row3 = new HtmlRow.Builder()
 				.appendAttribute("class", "NormalHeaderUnits")
 				.appendContent(cell32.appendTag())
 				.appendContent(cell33.appendTag())
-				.appendContent(cell35.appendTag())
+				.appendContent(cell37.appendTag())
+				.appendContent(cell38.appendTag())
 				.build();
 
 		StringBuilder stringBuilder = new StringBuilder();

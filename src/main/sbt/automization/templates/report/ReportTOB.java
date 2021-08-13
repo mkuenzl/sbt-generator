@@ -1,37 +1,44 @@
-package sbt.automization.templates;
+package sbt.automization.templates.report;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.templates.helper.FugeFactory;
+import sbt.automization.templates.appendix.AppendixTemplate;
+import sbt.automization.templates.helper.TobFactory;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class ReportFUGE extends AReportTable
+public final class ReportTOB extends ReportTemplate
 {
-	private static ReportFUGE instance;
-	private final FugeFactory factory;
+	private static ReportTOB instance;
+	private final TobFactory factory;
 
-	private ReportFUGE()
+	private ReportTOB()
 	{
-		layerKind = "FUGE";
-		factory = new FugeFactory();
+		layerKind = "TOB";
+		factory = new TobFactory();
 	}
 
-	public static ReportFUGE getInstance()
+	public static ReportTOB getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (ReportFUGE.class)
+			synchronized (ReportTOB.class)
 			{
 				if (instance == null)
 				{
-					instance = new ReportFUGE();
+					instance = new ReportTOB();
 				}
 			}
 		}
 		return instance;
+	}
+
+	@Override
+	public String constructAndGetTableHeader()
+	{
+		return null;
 	}
 
 	@Override
@@ -45,15 +52,18 @@ public final class ReportFUGE extends AReportTable
 			HtmlTable reportTable = new HtmlTable.Builder()
 					.appendAttribute("class", "MsoNormalTable")
 					.appendAttribute("border", "1")
-					.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+					.appendAttribute("style", AppendixTemplate.HTML_BASIC_TABLE_STYLE)
 					.appendAttribute("cellspacing", "0")
 					.appendAttribute("cellpadding", "0")
 					.build();
 
 			reportTable.appendContent(factory.createIDRow(portion));
-			reportTable.appendContent(factory.createAufschlussRow(portion));
+			reportTable.appendContent(factory.createOutcropRow(portion));
 
+			reportTable.appendContent(buildTechnicalFeatures(portion));
 			reportTable.appendContent(buildEnvironmentTechnicalFeatures(portion));
+
+			reportTable.appendContent(factory.createLegendRow(portion));
 
 			strb.append(reportTable.appendTag());
 			strb.append("<br>");
@@ -71,13 +81,36 @@ public final class ReportFUGE extends AReportTable
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht-FUGE";
+		return "Bericht-TOB";
 	}
 
 	@Override
 	String buildTechnicalFeatures(List<ExplorationSite> explorationSites)
 	{
-		return null;
+		StringBuilder techBuilder = new StringBuilder();
+
+		//Technische Merkmale Trennzeile
+		HtmlRow rowTECHMERKMALE = new HtmlRow.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent(new HtmlCell.Builder()
+						.appendAttribute("class", "NormalHeader")
+						.appendAttribute("colspan", String.valueOf(1 + explorationSites.size()))
+						.appendContent("Technische Merkmale")
+						.build()
+						.appendTag())
+				.build();
+
+		techBuilder.append(rowTECHMERKMALE.appendTag())
+				.append(factory.createEvDynRow(explorationSites))
+				.append(factory.createEvDyn85Row(explorationSites))
+				.append(factory.createEv2Row(explorationSites))
+				.append(factory.createEvMinimumBorderRow(explorationSites))
+				.append(factory.createMaterialRow(explorationSites))
+				.append(factory.createSizeRow(explorationSites))
+				.append(factory.createGrainSizeDistributionRow(explorationSites))
+				.append(factory.createTotalSizeRow(explorationSites));
+
+		return techBuilder.toString();
 	}
 
 	@Override
@@ -99,6 +132,12 @@ public final class ReportFUGE extends AReportTable
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())
 				.append(factory.createChemieIDRow(explorationSites))
 				.append(factory.createChemieMufvRow(explorationSites))
+				.append(factory.createChemieLagaBoRow(explorationSites))
+				.append(factory.createChemieLagaRcRow(explorationSites))
+				.append(factory.createChemieLagaRcOrientationRow(explorationSites))
+				.append(factory.createChemieTlRockRow(explorationSites))
+				.append(factory.createChemieDepvRow(explorationSites))
+				.append(factory.createChemieDecisionSupportRow(explorationSites))
 				.append(factory.createAVVRow(explorationSites));
 
 		return umweltTechBuilder.toString();
@@ -107,21 +146,16 @@ public final class ReportFUGE extends AReportTable
 	@Override
 	HtmlTable constructAndGetTableObject()
 	{
-		return new HtmlTable.Builder()
+		HtmlTable table = new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
 				.appendAttribute("width", "605")
 				.appendAttribute("border", "1")
-				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+				.appendAttribute("style", AppendixTemplate.HTML_BASIC_TABLE_STYLE)
 				.appendAttribute("cellspacing", "0")
 				.appendAttribute("cellpadding", "0")
 				.appendContent(constructAndGetTableHeader())
 				.build();
-	}
 
-	@Override
-	String constructAndGetTableHeader()
-	{
-		return null;
+		return table;
 	}
-
 }

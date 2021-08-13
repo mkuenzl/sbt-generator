@@ -1,4 +1,4 @@
-package sbt.automization.templates;
+package sbt.automization.templates.report;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.templates.helper.HeapFactory;
@@ -8,7 +8,7 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class ReportHEAP extends AReportTable
+public final class ReportHEAP extends ReportTemplate
 {
 	private static ReportHEAP instance;
 	private final HeapFactory factory;
@@ -35,7 +35,7 @@ public final class ReportHEAP extends AReportTable
 
 
 	@Override
-	String constructAndGetTableHeader()
+	public String constructAndGetTableHeader()
 	{
 		return null;
 	}

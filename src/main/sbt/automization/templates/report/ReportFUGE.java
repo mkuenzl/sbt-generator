@@ -1,43 +1,38 @@
-package sbt.automization.templates;
+package sbt.automization.templates.report;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.templates.helper.TmhbFactory;
+import sbt.automization.templates.appendix.AppendixTemplate;
+import sbt.automization.templates.helper.FugeFactory;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class ReportTMHB extends AReportTable
+public final class ReportFUGE extends ReportTemplate
 {
-	private static ReportTMHB instance;
-	private final TmhbFactory factory;
+	private static ReportFUGE instance;
+	private final FugeFactory factory;
 
-	private ReportTMHB()
+	private ReportFUGE()
 	{
-		layerKind = "TMHB";
-		factory = new TmhbFactory();
+		layerKind = "FUGE";
+		factory = new FugeFactory();
 	}
 
-	public static ReportTMHB getInstance()
+	public static ReportFUGE getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (ReportTMHB.class)
+			synchronized (ReportFUGE.class)
 			{
 				if (instance == null)
 				{
-					instance = new ReportTMHB();
+					instance = new ReportFUGE();
 				}
 			}
 		}
 		return instance;
-	}
-
-	@Override
-	String constructAndGetTableHeader()
-	{
-		return null;
 	}
 
 	@Override
@@ -51,49 +46,39 @@ public final class ReportTMHB extends AReportTable
 			HtmlTable reportTable = new HtmlTable.Builder()
 					.appendAttribute("class", "MsoNormalTable")
 					.appendAttribute("border", "1")
-					.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+					.appendAttribute("style", AppendixTemplate.HTML_BASIC_TABLE_STYLE)
 					.appendAttribute("cellspacing", "0")
 					.appendAttribute("cellpadding", "0")
 					.build();
 
 			reportTable.appendContent(factory.createIDRow(portion));
 			reportTable.appendContent(factory.createAufschlussRow(portion));
-			reportTable.appendContent(factory.createTotalSizeRow(portion));
-			reportTable.appendContent(factory.createLoadClassRow(portion));
 
-			reportTable.appendContent(buildTechnicalFeatures(portion));
 			reportTable.appendContent(buildEnvironmentTechnicalFeatures(portion));
-
-			reportTable.appendContent(factory.createLegendRow(portion));
 
 			strb.append(reportTable.appendTag());
 			strb.append("<br>");
 		}
-		setTable(strb.toString());
 
+		setTable(strb.toString());
+	}
+
+	@Override
+	public void constructTable(ExplorationSite site)
+	{
+
+	}
+
+	@Override
+	public String getExportFileName()
+	{
+		return "Bericht-FUGE";
 	}
 
 	@Override
 	String buildTechnicalFeatures(List<ExplorationSite> explorationSites)
 	{
-		StringBuilder techBuilder = new StringBuilder();
-
-		//Technische Merkmale Trennzeile
-		HtmlRow rowTECHMERKMALE = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "NormalHeader")
-						.appendAttribute("colspan", String.valueOf(1 + explorationSites.size()))
-						.appendContent("Technische Merkmale")
-						.build()
-						.appendTag())
-				.build();
-
-		techBuilder.append(rowTECHMERKMALE.appendTag())
-				.append(factory.createSizeRow(explorationSites))
-				.append(factory.createCompressiveStrengthRow(explorationSites));
-
-		return techBuilder.toString();
+		return null;
 	}
 
 	@Override
@@ -115,42 +100,29 @@ public final class ReportTMHB extends AReportTable
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())
 				.append(factory.createChemieIDRow(explorationSites))
 				.append(factory.createChemieMufvRow(explorationSites))
-				.append(factory.createChemieLagaRcRow(explorationSites))
-				.append(factory.createChemieLagaRcOrientationRow(explorationSites))
-				.append(factory.createChemieTlRockRow(explorationSites))
-				.append(factory.createChemieDepvRow(explorationSites))
 				.append(factory.createAVVRow(explorationSites));
 
 		return umweltTechBuilder.toString();
 	}
 
 	@Override
-	public void constructTable(ExplorationSite site)
-	{
-
-	}
-
-	@Override
-	public String getExportFileName()
-	{
-		return "Bericht-TMHB";
-	}
-
-	@Override
 	HtmlTable constructAndGetTableObject()
 	{
-		HtmlTable table = new HtmlTable.Builder()
+		return new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
 				.appendAttribute("width", "605")
 				.appendAttribute("border", "1")
-				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+				.appendAttribute("style", AppendixTemplate.HTML_BASIC_TABLE_STYLE)
 				.appendAttribute("cellspacing", "0")
 				.appendAttribute("cellpadding", "0")
 				.appendContent(constructAndGetTableHeader())
 				.build();
-
-		return table;
 	}
 
+	@Override
+	public String constructAndGetTableHeader()
+	{
+		return null;
+	}
 
 }

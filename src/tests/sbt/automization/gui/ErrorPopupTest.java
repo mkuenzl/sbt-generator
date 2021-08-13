@@ -2,7 +2,7 @@ package sbt.automization.gui;
 
 import org.junit.Assert;
 import org.junit.Test;
-import sbt.automization.templates.AppendixPN;
+import sbt.automization.templates.appendix.AppendixPN;
 
 public class ErrorPopupTest
 {

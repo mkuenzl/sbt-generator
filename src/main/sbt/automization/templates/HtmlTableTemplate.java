@@ -7,7 +7,7 @@ import sbt.automization.data.refactoring.Probe;
 
 import java.util.List;
 
-public interface IHtmlTable
+public interface HtmlTableTemplate
 {
     void constructTable(List<ExplorationSite> explorationSites);
 

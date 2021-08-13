@@ -1,4 +1,4 @@
-package sbt.automization.templates;
+package sbt.automization.templates.appendix;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.ReferenceKey;
@@ -9,7 +9,7 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class AppendixExplorationSite extends AHtmlTable
+public final class AppendixExplorationSite extends AppendixTemplate
 {
 	private static AppendixExplorationSite instance;
 

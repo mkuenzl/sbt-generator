@@ -1,4 +1,4 @@
-package sbt.automization.templates;
+package sbt.automization.templates.appendix;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.LayerSample;
@@ -11,7 +11,7 @@ import sbt.automization.util.html.HtmlTableHeader;
 
 import java.util.List;
 
-public final class AppendixPNHEAP extends AHtmlTable
+public final class AppendixPNHEAP extends AppendixTemplate
 {
 	private static AppendixPNHEAP instance;
 

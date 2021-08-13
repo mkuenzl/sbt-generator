@@ -2,8 +2,7 @@ package sbt.automization.export;
 
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.refactoring.Examination;
-import sbt.automization.data.refactoring.Probe;
-import sbt.automization.templates.IHtmlTable;
+import sbt.automization.templates.HtmlTableTemplate;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -14,9 +13,9 @@ import java.util.List;
  */
 public abstract class ATemplateExport
 {
-	IHtmlTable tableExportStrategy;
+	HtmlTableTemplate tableExportStrategy;
 
-	ATemplateExport(final IHtmlTable tableExportStrategy)
+	ATemplateExport(final HtmlTableTemplate tableExportStrategy)
 	{
 		this.tableExportStrategy = tableExportStrategy;
 	}

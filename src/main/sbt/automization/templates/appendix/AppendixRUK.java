@@ -1,4 +1,4 @@
-package sbt.automization.templates;
+package sbt.automization.templates.appendix;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.refactoring.DataTable;
@@ -13,7 +13,7 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class AppendixRUK extends AHtmlTable
+public final class AppendixRUK extends AppendixTemplate
 {
 	private static AppendixRUK instance;
 
@@ -93,6 +93,8 @@ public final class AppendixRUK extends AHtmlTable
 	public void constructTemplate(List<DataTable> tables)
 	{
 		HtmlTable table = constructAndGetTableObject();
+
+		//TODO ADD PAGE BREAK
 
 		for (DataTable dataTable : tables)
 		{

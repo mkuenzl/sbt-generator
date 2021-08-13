@@ -2,6 +2,11 @@ package sbt.automization.util;
 
 import org.apache.commons.cli.*;
 import sbt.automization.templates.*;
+import sbt.automization.templates.appendix.AppendixExplorationSite;
+import sbt.automization.templates.appendix.AppendixLP;
+import sbt.automization.templates.appendix.AppendixPN;
+import sbt.automization.templates.appendix.AppendixRUK;
+import sbt.automization.templates.report.ReportGOB;
 
 import java.io.File;
 
@@ -13,7 +18,7 @@ public class CLI
     private final String[] args;
     private final Options options;
     private final File file = new File(System.getProperty("user.dir").concat(File.separator).concat("datenbank.csv"));
-    private IHtmlTable strategy;
+    private HtmlTableTemplate strategy;
 
     public CLI(String[] args)
     {
@@ -80,7 +85,7 @@ public class CLI
         return file;
     }
 
-    public IHtmlTable getStrategy()
+    public HtmlTableTemplate getStrategy()
     {
         return strategy;
     }

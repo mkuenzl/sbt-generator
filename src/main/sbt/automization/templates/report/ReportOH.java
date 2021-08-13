@@ -1,38 +1,44 @@
-package sbt.automization.templates;
+package sbt.automization.templates.report;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.templates.helper.BankettFactory;
+import sbt.automization.templates.appendix.AppendixTemplate;
+import sbt.automization.templates.helper.OhFactory;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class ReportBANKETT extends AReportTable
+public final class ReportOH extends ReportTemplate
 {
-	private static ReportBANKETT instance;
-	private final BankettFactory factory;
+	private static ReportOH instance;
+	private final OhFactory factory;
 
-	private ReportBANKETT()
+	private ReportOH()
 	{
-		layerKind = "BANKETT";
-		factory = new BankettFactory();
-
+		layerKind = "OH";
+		factory = new OhFactory();
 	}
 
-	public static ReportBANKETT getInstance()
+	public static ReportOH getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (ReportBANKETT.class)
+			synchronized (ReportOH.class)
 			{
 				if (instance == null)
 				{
-					instance = new ReportBANKETT();
+					instance = new ReportOH();
 				}
 			}
 		}
 		return instance;
+	}
+
+	@Override
+	public String constructAndGetTableHeader()
+	{
+		return null;
 	}
 
 	@Override
@@ -42,11 +48,10 @@ public final class ReportBANKETT extends AReportTable
 
 		for (List<ExplorationSite> portion : divideExplorationSites(sites))
 		{
-			//Sort Data nach OH
 			HtmlTable tableBericht = new HtmlTable.Builder()
 					.appendAttribute("class", "MsoNormalTable")
 					.appendAttribute("border", "1")
-					.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+					.appendAttribute("style", AppendixTemplate.HTML_BASIC_TABLE_STYLE)
 					.appendAttribute("cellspacing", "0")
 					.appendAttribute("cellpadding", "0")
 					.build();
@@ -113,26 +118,6 @@ public final class ReportBANKETT extends AReportTable
 	}
 
 	@Override
-	HtmlTable constructAndGetTableObject()
-	{
-		return new HtmlTable.Builder()
-				.appendAttribute("class", "MsoNormalTable")
-				.appendAttribute("width", "605")
-				.appendAttribute("border", "1")
-				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
-				.appendAttribute("cellspacing", "0")
-				.appendAttribute("cellpadding", "0")
-				.appendContent(constructAndGetTableHeader())
-				.build();
-	}
-
-	@Override
-	String constructAndGetTableHeader()
-	{
-		return null;
-	}
-
-	@Override
 	public void constructTable(ExplorationSite site)
 	{
 
@@ -141,6 +126,20 @@ public final class ReportBANKETT extends AReportTable
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht-BANKETT";
+		return "Bericht-OH";
+	}
+
+	@Override
+	HtmlTable constructAndGetTableObject()
+	{
+		return new HtmlTable.Builder()
+				.appendAttribute("class", "MsoNormalTable")
+				.appendAttribute("width", "605")
+				.appendAttribute("border", "1")
+				.appendAttribute("style", AppendixTemplate.HTML_BASIC_TABLE_STYLE)
+				.appendAttribute("cellspacing", "0")
+				.appendAttribute("cellpadding", "0")
+				.appendContent(constructAndGetTableHeader())
+				.build();
 	}
 }
