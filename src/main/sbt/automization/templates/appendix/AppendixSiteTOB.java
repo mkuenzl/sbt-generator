@@ -124,7 +124,7 @@ final class AppendixSiteTOB extends AppendixTemplate
 				table.appendContent(row.appendTag());
 			}
 		}
-		setTable(table.appendTag());
+		addToTemplate(table.appendTag());
 	}
 
 	@Override

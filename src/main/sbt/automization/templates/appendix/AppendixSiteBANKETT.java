@@ -106,7 +106,7 @@ public class AppendixSiteBANKETT extends AppendixTemplate
 			}
 		}
 
-		setTable(table.appendTag());
+		addToTemplate(table.appendTag());
 	}
 
 	@Override

@@ -97,7 +97,7 @@ final class AppendixSiteFUGE extends AppendixTemplate
 			}
 		}
 
-		setTable(table.appendTag());
+		addToTemplate(table.appendTag());
 	}
 
 	@Override

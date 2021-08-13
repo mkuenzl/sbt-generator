@@ -15,7 +15,7 @@ public interface HtmlTableTemplate
 
     String getExportFileName();
 
-    String getTable();
+    String getTemplate();
 
     void constructTemplate(List<DataTable> tables);
 }

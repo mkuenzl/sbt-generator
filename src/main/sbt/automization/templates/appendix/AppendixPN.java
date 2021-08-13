@@ -1,8 +1,6 @@
 package sbt.automization.templates.appendix;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.LayerSample;
-import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.refactoring.DataTableFactory;
 import sbt.automization.data.refactoring.Probe;
@@ -11,9 +9,7 @@ import sbt.automization.data.refactoring.references.ReferenceProbe;
 import sbt.automization.data.refactoring.references.ReferenceSample;
 import sbt.automization.format.NameFormatUtil;
 import sbt.automization.format.TextFormatUtil;
-import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlFactory;
-import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
 
 import java.util.ArrayList;
@@ -23,15 +19,9 @@ public final class AppendixPN extends AppendixTemplate
 {
 	private static AppendixPN instance;
 
-	private int linesPerPage;
-	private int lines;
-	private StringBuilder template;
-	private HtmlTable table;
-
 	private AppendixPN()
 	{
-		linesPerPage = 0;
-		lines = 0;
+		super();
 	}
 
 	public static AppendixPN getInstance()
@@ -57,7 +47,6 @@ public final class AppendixPN extends AppendixTemplate
 	@Override
 	public void constructTable(final ExplorationSite site)
 	{
-
 	}
 
 	@Override
@@ -127,8 +116,6 @@ public final class AppendixPN extends AppendixTemplate
 	{
 		this.table = constructAndGetTableObject();
 
-		//add row counter
-
 		for (DataTable dataTable : tables)
 		{
 			if (dataTable instanceof Probe)
@@ -143,7 +130,7 @@ public final class AppendixPN extends AppendixTemplate
 
 					String row = HtmlFactory.createRow("Normal", new String[]{
 							HtmlFactory.createCell("Normal", "center",
-									new String[]{"P".concat(String.valueOf(++lines))}),
+									new String[]{"P".concat(String.valueOf(++ lines))}),
 							HtmlFactory.createCell("Normal", "center",
 									new String[]{TextFormatUtil.formatSampleType(sample.get(ReferenceSample.CONTAINER))}),
 							HtmlFactory.createCell("Normal", "left",
@@ -173,11 +160,12 @@ public final class AppendixPN extends AppendixTemplate
 				}
 			}
 		}
-		setTable(this.table.appendTag());
+		addToTemplate(this.table.appendTag());
 	}
 
 	/**
 	 * This method creates a new list of layer objects for the pn appendix. Because some layers are combined in the output table.
+	 * TODO TEST
 	 *
 	 * @param samples expects a not empty list of layer objects
 	 * @return a smaller formatted list of layers
@@ -213,20 +201,6 @@ public final class AppendixPN extends AppendixTemplate
 			}
 		}
 		return formattedSamples;
-	}
-
-	private void addAndResetTableOnPageBreak()
-	{
-		if (linesPerPage >= 20)
-		{
-			template.append(table.appendTag())
-					.append("<br>")
-					.append("<br>");
-
-			linesPerPage = 0;
-
-			table = constructAndGetTableObject();
-		}
 	}
 
 }

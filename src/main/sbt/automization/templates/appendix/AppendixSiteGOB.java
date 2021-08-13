@@ -138,7 +138,7 @@ final class AppendixSiteGOB extends AppendixTemplate
 
         tableErkOb.appendContent(rowBelastungklasse.appendTag());
 
-        setTable(tableErkOb.appendTag());
+        addToTemplate(tableErkOb.appendTag());
     }
 
     @Override

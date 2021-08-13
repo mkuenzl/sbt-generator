@@ -165,42 +165,42 @@ public final class AppendixExplorationSite extends AppendixTemplate
 			{
 				AppendixSiteBANKETT tableBANKETT = new AppendixSiteBANKETT();
 				tableBANKETT.constructTable(explorationSite);
-				stringBuilder.append(tableBANKETT.getTable());
+				stringBuilder.append(tableBANKETT.getTemplate());
 			}
 
 			if (explorationSite.getLayersWithOutcrop("FUGE").size() > 0)
 			{
 				AppendixSiteFUGE tableFuge = new AppendixSiteFUGE();
 				tableFuge.constructTable(explorationSite);
-				stringBuilder.append(tableFuge.getTable());
+				stringBuilder.append(tableFuge.getTemplate());
 			}
 
 			if (explorationSite.getLayersWithOutcrop("OH").size() > 0)
 			{
 				AppendixSiteOH tableOH = new AppendixSiteOH();
 				tableOH.constructTable(explorationSite);
-				stringBuilder.append(tableOH.getTable());
+				stringBuilder.append(tableOH.getTemplate());
 			}
 
 			if (explorationSite.getLayersWithOutcrop("GOB").size() > 0)
 			{
 				AppendixSiteGOB tableGOB = new AppendixSiteGOB();
 				tableGOB.constructTable(explorationSite);
-				stringBuilder.append(tableGOB.getTable());
+				stringBuilder.append(tableGOB.getTemplate());
 			}
 
 			if (explorationSite.getLayersWithOutcrop("TOB").size() > 0)
 			{
 				AppendixSiteTOB tableTOB = new AppendixSiteTOB();
 				tableTOB.constructTable(explorationSite);
-				stringBuilder.append(tableTOB.getTable());
+				stringBuilder.append(tableTOB.getTemplate());
 			}
 
 			if (explorationSite.getLayersWithOutcrop("UG").size() > 0)
 			{
 				AppendixSiteUG tableUG = new AppendixSiteUG();
 				tableUG.constructTable(explorationSite);
-				stringBuilder.append(tableUG.getTable());
+				stringBuilder.append(tableUG.getTemplate());
 			}
 
 			HtmlCell footer = new HtmlCell.Builder()
@@ -229,7 +229,7 @@ public final class AppendixExplorationSite extends AppendixTemplate
 					.append("<br></br>");
 		}
 
-		setTable(stringBuilder.toString());
+		addToTemplate(stringBuilder.toString());
 	}	@Override
 	String constructAndGetTableHeader()
 	{

@@ -25,16 +25,26 @@ public abstract class AppendixTemplate implements HtmlTableTemplate
 			.append("'")
 			.toString();
 
-	private String table;
+	protected int linesPerPage;
+	protected int lines;
+	protected final StringBuilder template;
+	protected HtmlTable table;
 
-	public String getTable()
+	public AppendixTemplate()
 	{
-		return table;
+		linesPerPage = 0;
+		lines = 0;
+		template = new StringBuilder();
 	}
 
-	public void setTable(final String table)
+	public String getTemplate()
 	{
-		this.table = table;
+		return template.toString();
+	}
+
+	public void addToTemplate(final String table)
+	{
+		this.template.append(table);
 	}
 
 	abstract String constructAndGetTableHeader();
@@ -57,5 +67,19 @@ public abstract class AppendixTemplate implements HtmlTableTemplate
 	public void constructTemplate(List<DataTable> tables)
 	{
 
+	}
+
+	protected void addAndResetTableOnPageBreak()
+	{
+		if (linesPerPage >= 20)
+		{
+			template.append(table.appendTag())
+					.append("<br>")
+					.append("<br>");
+
+			linesPerPage = 0;
+
+			table = constructAndGetTableObject();
+		}
 	}
 }

@@ -66,7 +66,7 @@ public final class HtmlTemplateExport extends ATemplateExport
 	{
 		tableExportStrategy.constructTemplate(tables);
 
-		return format(tableExportStrategy.getTable());
+		return format(tableExportStrategy.getTemplate());
 	}
 
 	@Override

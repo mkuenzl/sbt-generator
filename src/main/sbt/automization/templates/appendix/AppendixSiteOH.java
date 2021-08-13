@@ -106,7 +106,7 @@ final class AppendixSiteOH extends AppendixTemplate
             }
         }
 
-        setTable(table.appendTag());
+        addToTemplate(table.appendTag());
     }
 
     @Override

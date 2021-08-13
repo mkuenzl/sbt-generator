@@ -17,7 +17,9 @@ public final class AppendixRUK extends AppendixTemplate
 {
 	private static AppendixRUK instance;
 
-	private AppendixRUK() {}
+	private AppendixRUK() {
+		super();
+	}
 
 	public static AppendixRUK getInstance()
 	{
@@ -38,7 +40,7 @@ public final class AppendixRUK extends AppendixTemplate
 	public void constructTable(final List<ExplorationSite> sites)
 	{
 		HtmlTable table = constructAndGetTableObject();
-		setTable(table.appendTag());
+		addToTemplate(table.appendTag());
 	}
 
 	@Override
@@ -94,8 +96,6 @@ public final class AppendixRUK extends AppendixTemplate
 	{
 		HtmlTable table = constructAndGetTableObject();
 
-		//TODO ADD PAGE BREAK
-
 		for (DataTable dataTable : tables)
 		{
 			if (dataTable instanceof Probe)
@@ -108,6 +108,8 @@ public final class AppendixRUK extends AppendixTemplate
 
 					if (parameter != null)
 					{
+						addAndResetTableOnPageBreak();
+
 						String row = HtmlFactory.createRow("Normal", new String[]{
 								HtmlFactory.createCell("Normal", "center",
 										new String[]{probe.get(ReferenceProbe.ID)}),
@@ -133,7 +135,7 @@ public final class AppendixRUK extends AppendixTemplate
 				}
 			}
 		}
-		setTable(table.appendTag());
+		addToTemplate(table.appendTag());
 
 	}
 

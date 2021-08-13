@@ -32,7 +32,7 @@ public abstract class ReportTemplate implements HtmlTableTemplate
 
 	private String table;
 
-	public String getTable()
+	public String getTempWlate()
 	{
 		return table;
 	}

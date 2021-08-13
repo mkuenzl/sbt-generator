@@ -17,7 +17,9 @@ public final class AppendixLP extends AppendixTemplate
 {
 	private static AppendixLP instance;
 
-	private AppendixLP() {}
+	private AppendixLP() {
+		super();
+	}
 
 	public static AppendixLP getInstance()
 	{
@@ -39,7 +41,7 @@ public final class AppendixLP extends AppendixTemplate
 	{
 		HtmlTable table = constructAndGetTableObject();
 
-		setTable(table.appendTag());
+		addToTemplate(table.appendTag());
 	}
 
 	@Override
@@ -116,7 +118,7 @@ public final class AppendixLP extends AppendixTemplate
 	@Override
 	public void constructTemplate(List<DataTable> tables)
 	{
-		HtmlTable table = constructAndGetTableObject();
+		this.table = constructAndGetTableObject();
 
 		for (DataTable dataTable : tables)
 		{
@@ -154,11 +156,11 @@ public final class AppendixLP extends AppendixTemplate
 									new String[]{formattedEV2}),
 					});
 
-					table.appendContent(row);
+					this.table.appendContent(row);
 				}
 			}
 		}
-		setTable(table.appendTag());
+		addToTemplate(this.table.appendTag());
 	}
 
 	@Override

@@ -154,7 +154,7 @@ public final class AppendixPNHEAP extends AppendixTemplate
 
 		htmlStringBuilder.append(table.appendTag());
 
-		setTable(htmlStringBuilder.toString());
+		addToTemplate(htmlStringBuilder.toString());
 	}
 
 	@Override
