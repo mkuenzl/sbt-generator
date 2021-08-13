@@ -188,12 +188,18 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 
 	public boolean isEmpty()
 	{
-		return informationMap.isEmpty();
+		for (String value : informationMap.values())
+		{
+			if (!"".equals(value)) return false;
+		}
+		return true;
 	}
 
 	public boolean isRelatedBy(Reference source, DataTable target)
 	{
 		String sourceValue = get(source);
+
+		if ("".equals(sourceValue)) return false;
 
 		return target.contains(sourceValue);
 	}
