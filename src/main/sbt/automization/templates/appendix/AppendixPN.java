@@ -1,16 +1,20 @@
 package sbt.automization.templates.appendix;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.LayerSample;
+import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.refactoring.DataTableFactory;
 import sbt.automization.data.refactoring.Probe;
 import sbt.automization.data.refactoring.Sample;
+import sbt.automization.data.refactoring.references.ReferenceProbe;
 import sbt.automization.data.refactoring.references.ReferenceSample;
 import sbt.automization.format.NameFormatUtil;
 import sbt.automization.format.TextFormatUtil;
-import sbt.automization.util.html.*;
+import sbt.automization.util.html.HtmlCell;
+import sbt.automization.util.html.HtmlFactory;
+import sbt.automization.util.html.HtmlRow;
+import sbt.automization.util.html.HtmlTable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +23,16 @@ public final class AppendixPN extends AppendixTemplate
 {
 	private static AppendixPN instance;
 
-	private AppendixPN() {}
+	private int linesPerPage;
+	private int lines;
+	private StringBuilder template;
+	private HtmlTable table;
+
+	private AppendixPN()
+	{
+		linesPerPage = 0;
+		lines = 0;
+	}
 
 	public static AppendixPN getInstance()
 	{
@@ -39,139 +52,6 @@ public final class AppendixPN extends AppendixTemplate
 	@Override
 	public void constructTable(final List<ExplorationSite> sites)
 	{
-		int sampleIdCounter = 1;
-
-		HtmlTable table = constructAndGetTableObject();
-
-		int rowCounter = 0;
-		StringBuilder htmlStringBuilder = new StringBuilder();
-
-		for (ExplorationSite explorationSite : sites)
-		{
-			//List<LayerSample> layerSampleList = formatSamples(explorationSite.getLayers());
-
-			for (LayerSample layerSample : explorationSite.getLayers())
-			{
-
-				if (rowCounter >= 20)
-				{
-					htmlStringBuilder.append(table.appendTag())
-							.append("<br>")
-							.append("<br>");
-
-					table = constructAndGetTableObject();
-
-					rowCounter = 0;
-				}
-
-
-				HtmlCell sampleId = new HtmlCell.Builder()
-						.appendAttribute("class", "NormalCentered")
-						.appendContent("P".concat(String.valueOf(sampleIdCounter++)))
-						.build();
-
-				HtmlCell layerSampleType = new HtmlCell.Builder()
-						.appendAttribute("class", "NormalCentered")
-						.appendContent(TextFormatUtil.formatSampleType(layerSample.getInformation(ReferenceKey.LAYER_CONTAINER)))
-						.build();
-
-				HtmlCell layerContainer = new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_CONTAINER))
-						.build();
-
-				HtmlCell heapVolume = new HtmlCell.Builder()
-						.appendAttribute("class", "NormalCentered")
-						.appendContent("-")
-						.build();
-
-				HtmlCell layerWasteType = new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendAttribute("width", "110")
-						.appendContent(NameFormatUtil.formatLayerKind(layerSample.getInformation(ReferenceKey.LAYER_WASTE_TYPE)))
-						.build();
-
-				HtmlCell layerGrainSize = new HtmlCell.Builder()
-						.appendAttribute("class", "NormalCentered")
-						.appendAttribute("width", "50")
-						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_GRANULATION))
-						.build();
-
-				HtmlCell layerAttributes = new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_COLOR))
-						.appendContent(TextFormatUtil.printLineBreak())
-						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_SMELL))
-						.appendContent(TextFormatUtil.printLineBreak())
-						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_SOIL_TYPE))
-						.build();
-
-				HtmlCell explorationSiteIdentifier = new HtmlCell.Builder()
-						.appendAttribute("class", "NormalCentered")
-						.appendAttribute("width", "30")
-						.appendContent(explorationSite.getInformation(ReferenceKey.SITE_ID))
-						.build();
-
-				HtmlCell layerDepth = new HtmlCell.Builder()
-						.appendAttribute("class", "NormalCentered")
-						.appendContent(TextFormatUtil.formatDepth(layerSample.getInformation(ReferenceKey.LAYER_DEPTH_START),
-								layerSample.getInformation(ReferenceKey.LAYER_DEPTH_END)))
-						.build();
-
-				HtmlCell explorationSiteTopEdge = new HtmlCell.Builder()
-						.appendAttribute("class", "NormalCentered")
-						.appendContent(explorationSite.getInformation(ReferenceKey.SITE_TOP_EDGE))
-						.build();
-
-				HtmlRow row = new HtmlRow.Builder()
-						.appendAttribute("class", "Normal")
-						.appendContent(sampleId.appendTag())
-						.appendContent(layerSampleType.appendTag())
-						.appendContent(layerContainer.appendTag())
-						.appendContent(heapVolume.appendTag())
-						.appendContent(layerWasteType.appendTag())
-						.appendContent(layerGrainSize.appendTag())
-						.appendContent(layerAttributes.appendTag())
-						.appendContent(explorationSiteIdentifier.appendTag())
-						.appendContent(layerDepth.appendTag())
-						.appendContent(explorationSiteTopEdge.appendTag())
-						.build();
-
-				rowCounter++;
-
-				table.appendContent(row.appendTag());
-			}
-		}
-
-		htmlStringBuilder.append(table.appendTag());
-
-		setTable(htmlStringBuilder.toString());
-	}
-
-	@Override
-	public void constructTemplate(List<DataTable> tables)
-	{
-		HtmlTable table = constructAndGetTableObject();
-
-		//add row counter
-		//TODO ADD PAGE BREAK
-
-		for (DataTable dataTable : tables)
-		{
-			if (dataTable instanceof Probe)
-			{
-				Probe probe = (Probe) dataTable;
-
-				List<Sample> samples = formatSamples(probe.getSamples());
-
-				for (Sample sample : samples)
-				{
-
-				}
-			}
-		}
-
-		setTable(table.appendTag());
 	}
 
 	@Override
@@ -184,45 +64,6 @@ public final class AppendixPN extends AppendixTemplate
 	public String getExportFileName()
 	{
 		return "Anlage-PN";
-	}
-
-	/**
-	 * This method creates a new list of layer objects for the pn appendix. Because some layers are combined in the output table.
-	 *
-	 * @param samples expects a not empty list of layer objects
-	 * @return a smaller formatted list of layers
-	 */
-	public List<Sample> formatSamples(List<Sample> samples)
-	{
-		List<Sample> formattedSamples = new ArrayList<>();
-		for (Sample sample : samples)
-		{
-			formattedSamples.add(DataTableFactory.createSampleFrom(sample.getTable()));
-		}
-
-		int size = formattedSamples.size();
-
-		if (size > 2)
-		{
-			for (int i = 0; i < formattedSamples.size() ; i++)
-			{
-				Sample sample = formattedSamples.get(i);
-
-				if ("GOB".equals(sample.get(ReferenceSample.OUTCROP)))
-				{
-					if (formattedSamples.size() <= i + 1) break;
-					if (sample.get(ReferenceSample.WASTE_TYPE).equals(formattedSamples.get(i + 1).get(ReferenceSample.WASTE_TYPE)))
-					{
-						formattedSamples.get(i + 1).add(ReferenceSample.DEPTH_START.getKey(),
-								sample.get(ReferenceSample.DEPTH_START));
-						formattedSamples.get(i + 1).add(ReferenceSample.GRANULATION.getKey(), "");
-						formattedSamples.remove(sample);
-						i--;
-					}
-				}
-			}
-		}
-		return formattedSamples;
 	}
 
 	@Override
@@ -241,11 +82,11 @@ public final class AppendixPN extends AppendixTemplate
 						new String[]{"Abfallart"}),
 				HtmlFactory.createHeader("NormalTableHeader", 76, 2, 1,
 						new String[]{"Farbe", TextFormatUtil.printLineBreak(), "Geruch", TextFormatUtil.printLineBreak(), "Bodenart"}),
-				HtmlFactory.createHeader("NormalTableHeader", 30, 2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", 35, 2, 1,
 						new String[]{"Erk. St."}),
 				HtmlFactory.createHeader("NormalTableHeader", 70, 1, 1,
 						new String[]{"Tiefe"}),
-				HtmlFactory.createHeader("NormalTableHeader", 65, 2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", 60, 2, 1,
 						new String[]{"Notiz"})
 		});
 
@@ -279,6 +120,113 @@ public final class AppendixPN extends AppendixTemplate
 				.build();
 
 		return table;
+	}
+
+	@Override
+	public void constructTemplate(List<DataTable> tables)
+	{
+		this.table = constructAndGetTableObject();
+
+		//add row counter
+
+		for (DataTable dataTable : tables)
+		{
+			if (dataTable instanceof Probe)
+			{
+				Probe probe = (Probe) dataTable;
+
+				List<Sample> samples = formatSamples(probe.getSamples());
+
+				for (Sample sample : samples)
+				{
+					addAndResetTableOnPageBreak();
+
+					String row = HtmlFactory.createRow("Normal", new String[]{
+							HtmlFactory.createCell("Normal", "center",
+									new String[]{"P".concat(String.valueOf(++lines))}),
+							HtmlFactory.createCell("Normal", "center",
+									new String[]{TextFormatUtil.formatSampleType(sample.get(ReferenceSample.CONTAINER))}),
+							HtmlFactory.createCell("Normal", "left",
+									new String[]{sample.get(ReferenceSample.CONTAINER)}),
+							HtmlFactory.createCell("Normal", "center",
+									new String[]{"-"}),
+							HtmlFactory.createCell("Normal", 110, "left",
+									new String[]{NameFormatUtil.formatLayerKind(sample.get(ReferenceSample.WASTE_TYPE))}),
+							HtmlFactory.createCell("Normal", 50, "center",
+									new String[]{sample.get(ReferenceSample.GRANULATION)}),
+							HtmlFactory.createCell("Normal", "left",
+									new String[]{sample.get(ReferenceSample.COLOR), TextFormatUtil.printLineBreak(),
+											sample.get(ReferenceSample.SMELL), TextFormatUtil.printLineBreak(),
+											sample.get(ReferenceSample.SOIL_TYPE)}),
+							HtmlFactory.createCell("Normal", 35, "center",
+									new String[]{probe.get(ReferenceProbe.ID)}),
+							HtmlFactory.createCell("Normal", "center",
+									new String[]{TextFormatUtil.formatDepth(sample.get(ReferenceSample.DEPTH_START),
+											sample.get(ReferenceSample.DEPTH_END))}),
+							HtmlFactory.createCell("Normal", "center",
+									new String[]{probe.get(ReferenceProbe.TOP_EDGE)})
+					});
+
+					linesPerPage++;
+
+					this.table.appendContent(row);
+				}
+			}
+		}
+		setTable(this.table.appendTag());
+	}
+
+	/**
+	 * This method creates a new list of layer objects for the pn appendix. Because some layers are combined in the output table.
+	 *
+	 * @param samples expects a not empty list of layer objects
+	 * @return a smaller formatted list of layers
+	 */
+	public List<Sample> formatSamples(List<Sample> samples)
+	{
+		List<Sample> formattedSamples = new ArrayList<>();
+		for (Sample sample : samples)
+		{
+			formattedSamples.add(DataTableFactory.createSampleFrom(sample.getTable()));
+		}
+
+		int size = formattedSamples.size();
+
+		if (size > 2)
+		{
+			for (int i = 0 ; i < formattedSamples.size() ; i++)
+			{
+				Sample sample = formattedSamples.get(i);
+
+				if ("GOB".equals(sample.get(ReferenceSample.OUTCROP)))
+				{
+					if (formattedSamples.size() <= i + 1) break;
+					if (sample.get(ReferenceSample.WASTE_TYPE).equals(formattedSamples.get(i + 1).get(ReferenceSample.WASTE_TYPE)))
+					{
+						formattedSamples.get(i + 1).add(ReferenceSample.DEPTH_START.getKey(),
+								sample.get(ReferenceSample.DEPTH_START));
+						formattedSamples.get(i + 1).add(ReferenceSample.GRANULATION.getKey(), "");
+						formattedSamples.remove(sample);
+						i--;
+					}
+				}
+			}
+		}
+		return formattedSamples;
+	}
+
+	private void addAndResetTableOnPageBreak()
+	{
+		if (linesPerPage >= 20)
+		{
+			template.append(table.appendTag())
+					.append("<br>")
+					.append("<br>");
+
+			linesPerPage = 0;
+
+			table = constructAndGetTableObject();
+		}
 	}
 
 }
