@@ -1,266 +1,149 @@
 package sbt.automization.templates;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.ReferenceKey;
-import sbt.automization.data.LayerSample;
-import sbt.automization.format.TextFormatUtil;
-import sbt.automization.util.html.HtmlCell;
-import sbt.automization.util.html.HtmlRow;
+import sbt.automization.data.refactoring.DataTable;
+import sbt.automization.data.refactoring.Parameter;
+import sbt.automization.data.refactoring.Probe;
+import sbt.automization.data.refactoring.Sample;
+import sbt.automization.data.refactoring.references.ReferenceParameterRuK;
+import sbt.automization.data.refactoring.references.ReferenceProbe;
+import sbt.automization.data.refactoring.references.ReferenceSample;
+import sbt.automization.util.html.HtmlFactory;
 import sbt.automization.util.html.HtmlTable;
-import sbt.automization.util.html.HtmlTableHeader;
 
 import java.util.List;
 
 public final class AppendixRUK extends AHtmlTable
 {
-    private static AppendixRUK instance;
+	private static AppendixRUK instance;
 
-    private AppendixRUK() {}
+	private AppendixRUK() {}
 
-    public static AppendixRUK getInstance()
-    {
-        if (instance == null)
-        {
-            synchronized (AppendixRUK.class)
-            {
-                if (instance == null)
-                {
-                    instance = new AppendixRUK();
-                }
-            }
-        }
-        return instance;
-    }
+	public static AppendixRUK getInstance()
+	{
+		if (instance == null)
+		{
+			synchronized (AppendixRUK.class)
+			{
+				if (instance == null)
+				{
+					instance = new AppendixRUK();
+				}
+			}
+		}
+		return instance;
+	}
 
-    @Override
-    public void constructTable(final List<ExplorationSite> sites)
-    {
-        HtmlTable tableRuK = new HtmlTable.Builder()
-                .appendAttribute("class", "MsoNormalTable")
-                .appendAttribute("width", "605")
-                .appendAttribute("border", "1")
-                .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
-                .appendAttribute("cellspacing", "0")
-                .appendAttribute("cellpadding", "0")
-                .appendContent(constructAndGetTableHeader())
-                .build();
+	@Override
+	public void constructTable(final List<ExplorationSite> sites)
+	{
+		HtmlTable table = constructAndGetTableObject();
+		setTable(table.appendTag());
+	}
 
-        int rowCounter = 0;
-        StringBuilder stringBuilder = new StringBuilder();
+	@Override
+	String constructAndGetTableHeader()
+	{
+		String firstRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
+				HtmlFactory.createHeader("NormalTableHeader", 75, 2, 1,
+						new String[]{"Erk. St."}),
+				HtmlFactory.createHeader("NormalTableHeader", 75, 2, 1,
+						new String[]{"Versuch Nr."}),
+				HtmlFactory.createHeader("NormalTableHeader", 95, 2, 1,
+						new String[]{"Probenart"}),
+				HtmlFactory.createHeader("NormalTableHeader", 165, 2, 1,
+						new String[]{"Prüfschicht"}),
+				HtmlFactory.createHeader("NormalTableHeader", 100, 1, 3,
+						new String[]{"Prüftiefe"}),
+				HtmlFactory.createHeader("NormalTableHeader", 95, 1, 1,
+						new String[]{"Erw. RuK", "<div>[31]</div>"}),
+		});
 
-        for (ExplorationSite explorationSite : sites)
-        {
-            List<LayerSample> sList = explorationSite.getLayers();
+		String secondRow = HtmlFactory.createRow("NormalHeaderUnits", new String[]{
+				HtmlFactory.createHeader("NormalTableHeaderUnits", 100, 1, 3,
+						new String[]{"cm"}),
+				HtmlFactory.createHeader("NormalTableHeaderUnits", 95, 1, 1,
+						new String[]{"°C"}),
+		});
 
-            for (LayerSample layerSample : sList)
-            {
-                if (rowCounter >= 20)
-                {
-                    stringBuilder.append(tableRuK.appendTag())
-                            .append("<br>")
-                            .append("<br>");
+		StringBuilder stringBuilder = new StringBuilder()
+				.append(firstRow)
+				.append(secondRow);
 
-                    tableRuK = new HtmlTable.Builder()
-                            .appendAttribute("class", "MsoNormalTable")
-                            .appendAttribute("width", "605")
-                            .appendAttribute("border", "1")
-                            .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
-                            .appendAttribute("cellspacing", "0")
-                            .appendAttribute("cellpadding", "0")
-                            .appendContent(constructAndGetTableHeader())
-                            .build();
+		return stringBuilder.toString();
+	}
 
-                    rowCounter = 0;
-                }
+	@Override
+	HtmlTable constructAndGetTableObject()
+	{
+		HtmlTable table = new HtmlTable.Builder()
+				.appendAttribute("class", "MsoNormalTable")
+				.appendAttribute("width", "605")
+				.appendAttribute("border", "1")
+				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+				.appendAttribute("cellspacing", "0")
+				.appendAttribute("cellpadding", "0")
+				.appendContent(constructAndGetTableHeader())
+				.build();
 
-                String rukNumber = layerSample.getInformation("SCHICHT_RUK_NR");
+		return table;
+	}
 
-                if (! "-".equals(rukNumber))
-                {
+	@Override
+	public void constructTemplate(List<DataTable> tables)
+	{
+		HtmlTable table = constructAndGetTableObject();
 
-                    HtmlCell cellErkIdentifier = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendAttribute("align", "center")
-                            .appendContent(explorationSite.getInformation(ReferenceKey.SITE_ID))
-                            .build();
+		for (DataTable dataTable : tables)
+		{
+			if (dataTable instanceof Probe)
+			{
+				Probe probe = (Probe) dataTable;
 
-                    HtmlCell cellRukVersuchNr = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendAttribute("align", "center")
-                            .appendContent("A".concat(rukNumber))
-                            .build();
+				for (Sample sample : probe.getSamples())
+				{
+					Parameter parameter = sample.getParameterBy(ReferenceSample.RUK_ID);
 
+					if (parameter != null)
+					{
+						String row = HtmlFactory.createRow("Normal", new String[]{
+								HtmlFactory.createCell("Normal", "center",
+										new String[]{probe.get(ReferenceProbe.ID)}),
+								HtmlFactory.createCell("Normal", "center",
+										new String[]{parameter.get(ReferenceParameterRuK.ID)}),
+								HtmlFactory.createCell("Normal", "center",
+										new String[]{parameter.get(ReferenceParameterRuK.SAMPLE)}),
+								HtmlFactory.createCell("Normal", "left",
+										new String[]{sample.get(ReferenceSample.TYPE), " ",
+												sample.get(ReferenceSample.GRANULATION)}),
+								HtmlFactory.createCell("Normal", 35, "center",
+										new String[]{sample.get(ReferenceSample.DEPTH_START)}),
+								HtmlFactory.createCell("Normal", 30, "center",
+										new String[]{"-"}),
+								HtmlFactory.createCell("Normal", 35, "center",
+										new String[]{sample.get(ReferenceSample.DEPTH_END)}),
+								HtmlFactory.createCell("Normal", "center",
+										new String[]{parameter.get(ReferenceParameterRuK.VALUE)})
+						});
 
-                    HtmlCell cellRukProbenArt = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendContent(layerSample.getInformation(ReferenceKey.LAYER_RUK_SAMPLE))
-                            .build();
+						table.appendContent(row);
+					}
+				}
+			}
+		}
+		setTable(table.appendTag());
 
-                    HtmlCell cellSchichtArtAndKoernung = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendAttribute("width", "170")
-                            .appendContent(TextFormatUtil.formatKindAndGranulation(layerSample.getInformation(ReferenceKey.LAYER_TYPE),
-                                    layerSample.getInformation(ReferenceKey.LAYER_GRANULATION)))
-                            .build();
+	}
 
+	@Override
+	public void constructTable(final ExplorationSite site)
+	{
 
-                    HtmlCell cellSchichtTiefeStart = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendAttribute("width", "35")
-                            .appendAttribute("align", "center")
-                            .appendContent(layerSample.getInformation(ReferenceKey.LAYER_DEPTH_START))
-                            .build();
+	}
 
-                    HtmlCell cellSchichtTiefeConcatination = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendAttribute("width", "30")
-                            .appendAttribute("align", "center")
-                            .appendContent("-")
-                            .build();
-
-                    HtmlCell cellSchichtTiefeEnde = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendAttribute("width", "35")
-                            .appendAttribute("align", "center")
-                            .appendContent(layerSample.getInformation(ReferenceKey.LAYER_DEPTH_END))
-                            .build();
-
-                    HtmlCell cellSchichtRuk = new HtmlCell.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendAttribute("align", "center")
-                            .appendContent(layerSample.getInformation(ReferenceKey.LAYER_RUK))
-                            .build();
-
-                    HtmlRow htmlRow = new HtmlRow.Builder()
-                            .appendAttribute("class", "Normal")
-                            .appendContent(cellErkIdentifier.appendTag())
-                            .appendContent(cellRukVersuchNr.appendTag())
-                            .appendContent(cellRukProbenArt.appendTag())
-                            .appendContent(cellSchichtArtAndKoernung.appendTag())
-                            .appendContent(cellSchichtTiefeStart.appendTag())
-                            .appendContent(cellSchichtTiefeConcatination.appendTag())
-                            .appendContent(cellSchichtTiefeEnde.appendTag())
-                            .appendContent(cellSchichtRuk.appendTag())
-                            .build();
-
-                    tableRuK.appendContent(htmlRow.appendTag());
-
-                    rowCounter++;
-                }
-            }
-        }
-        stringBuilder.append(tableRuK.appendTag());
-
-        setTable(stringBuilder.toString());
-    }
-
-    @Override
-    String constructAndGetTableHeader()
-    {
-        HtmlTableHeader cellERK = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "75")
-                .appendAttribute("rowspan", "2")
-                .appendContent("Erk. St.")
-                .build();
-
-        HtmlTableHeader cellVersuchNr = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "75")
-                .appendAttribute("rowspan", "2")
-                .appendContent("Versuch Nr.")
-                .build();
-
-        HtmlTableHeader cellProbenArt = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "95")
-                .appendAttribute("rowspan", "2")
-                .appendContent("Probenart")
-                .build();
-
-        HtmlTableHeader cellPruefschicht = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "165")
-                .appendAttribute("rowspan", "2")
-                .appendContent("Prüfschicht")
-                .build();
-
-        HtmlTableHeader cellTiefe = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "100")
-                .appendAttribute("colspan", "3")
-                .appendContent("Prüftiefe")
-                .build();
-
-        HtmlTableHeader cellRuK = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeader")
-                .appendAttribute("width", "95")
-                .appendContent("Erw. RuK")
-                .appendContent("<div>[31]</div>")
-                .build();
-
-        HtmlTableHeader cellTiefeCm = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeaderUnits")
-                .appendAttribute("width", "100")
-                .appendAttribute("colspan", "3")
-                .appendContent("cm")
-                .build();
-
-        HtmlTableHeader cellRuKC = new HtmlTableHeader.Builder()
-                .appendAttribute("class", "NormalTableHeaderUnits")
-                .appendAttribute("width", "95")
-                .appendContent("°C")
-                .build();
-
-        //First Header Row
-        HtmlRow firstHeaderRow = new HtmlRow.Builder()
-                .appendAttribute("class", "NormalHeader")
-                .appendContent(cellERK.appendTag())
-                .appendContent(cellVersuchNr.appendTag())
-                .appendContent(cellProbenArt.appendTag())
-                .appendContent(cellPruefschicht.appendTag())
-                .appendContent(cellTiefe.appendTag())
-                .appendContent(cellRuK.appendTag())
-                .build();
-
-        HtmlRow secondHeaderRow = new HtmlRow.Builder()
-                .appendAttribute("class", "NormalHeaderUnits")
-                .appendContent(cellTiefeCm.appendTag())
-                .appendContent(cellRuKC.appendTag())
-                .build();
-
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(firstHeaderRow.appendTag())
-                .append(secondHeaderRow.appendTag());
-
-        return stringBuilder.toString();
-    }
-
-    @Override
-    public void constructTable(final ExplorationSite site)
-    {
-
-    }
-
-    @Override
-    HtmlTable constructAndGetTableObject()
-    {
-        HtmlTable table = new HtmlTable.Builder()
-                .appendAttribute("class", "MsoNormalTable")
-                .appendAttribute("width", "605")
-                .appendAttribute("border", "1")
-                .appendAttribute("style", HTML_BASIC_TABLE_STYLE)
-                .appendAttribute("cellspacing", "0")
-                .appendAttribute("cellpadding", "0")
-                .appendContent(constructAndGetTableHeader())
-                .build();
-
-        return table;
-    }
-
-    @Override
-    public String getExportFileName()
-    {
-        return "Anlage-RUK";
-    }
+	@Override
+	public String getExportFileName()
+	{
+		return "Anlage-RUK";
+	}
 }

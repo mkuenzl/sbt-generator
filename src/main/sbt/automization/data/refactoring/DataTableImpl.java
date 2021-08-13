@@ -206,6 +206,8 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 
 	public boolean contains(String value)
 	{
+		if ("".equals(value)) return false;
+
 		return informationMap.containsValue(value);
 	}
 }

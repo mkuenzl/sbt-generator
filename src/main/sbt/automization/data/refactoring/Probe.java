@@ -10,7 +10,7 @@ import java.util.Objects;
 public final class Probe extends DataTableImpl
 {
 	private final List<Sample> samples = new ArrayList<>();
-	private final List<Parameter> parameter = new ArrayList<>();
+	private final List<Parameter> parameters = new ArrayList<>();
 
 	public Probe(Map<String, String> informationMap)
 	{
@@ -40,12 +40,12 @@ public final class Probe extends DataTableImpl
 
 	public void addParameter(Parameter parameter)
 	{
-		this.parameter.add(parameter);
+		this.parameters.add(parameter);
 	}
 
 	public void addListOfParameter(List<Parameter> parameter)
 	{
-		this.parameter.addAll(parameter);
+		this.parameters.addAll(parameter);
 	}
 
 	@SuppressWarnings("RedundantIfStatement")
@@ -74,7 +74,7 @@ public final class Probe extends DataTableImpl
 			return false;
 		}
 
-		if (! Objects.equals(this.getParameter(), otherTable.getParameter()))
+		if (! Objects.equals(this.getParameters(), otherTable.getParameters()))
 		{
 			return false;
 		}
@@ -87,14 +87,14 @@ public final class Probe extends DataTableImpl
 		return samples;
 	}
 
-	public List<Parameter> getParameter()
+	public List<Parameter> getParameters()
 	{
-		return parameter;
+		return parameters;
 	}
 
 	public Parameter getParameterBy(Reference reference)
 	{
-		for (Parameter par : parameter)
+		for (Parameter par : parameters)
 		{
 			String value = this.get(reference);
 			if (par.contains(value)) return par;

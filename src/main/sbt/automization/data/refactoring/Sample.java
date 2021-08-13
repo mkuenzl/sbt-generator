@@ -1,5 +1,7 @@
 package sbt.automization.data.refactoring;
 
+import sbt.automization.data.refactoring.references.Reference;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -37,5 +39,16 @@ public final class Sample extends DataTableImpl
 	public int compareTo(DataTable o)
 	{
 		return 0;
+	}
+
+	public Parameter getParameterBy(Reference reference)
+	{
+		for (Parameter par : parameters)
+		{
+			String value = this.get(reference);
+			if (par.contains(value)) return par;
+		}
+
+		return null;
 	}
 }
