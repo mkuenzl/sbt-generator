@@ -1,11 +1,10 @@
 package sbt.automization.templates.report;
 
 import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.ReferenceKey;
+import sbt.automization.format.TextFormatUtil;
 import sbt.automization.templates.appendix.AppendixTemplate;
-import sbt.automization.util.html.HtmlCell;
-import sbt.automization.util.html.HtmlRow;
-import sbt.automization.util.html.HtmlTable;
-import sbt.automization.util.html.HtmlTableHeader;
+import sbt.automization.util.html.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -43,70 +42,27 @@ public final class ReportCOORDINATES extends ReportTemplate
 	@Override
 	public String constructAndGetTableHeader()
 	{
-		HtmlTableHeader erkId = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "75")
-				.appendAttribute("rowspan", "2")
-				.appendContent("Erk. St.")
-				.build();
+		String firstRow = HtmlFactory.createRow("NormalHeader", new String[]{
+				HtmlFactory.createHeader("NormalTableHeader", 75, 2, 1,
+						new String[]{"Erk. St."}),
+				HtmlFactory.createHeader("NormalTableHeader", 530, 1, 4,
+						new String[]{"UTM"})
+		});
 
-		HtmlTableHeader utm = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "530")
-				.appendAttribute("align", "left")
-				.appendAttribute("rowspan", "1")
-				.appendAttribute("colspan", "4")
-				.appendContent("UTM")
-				.build();
+		String secondRow = HtmlFactory.createRow("NormalHeader", new String[]{
+				HtmlFactory.createHeader("NormalTableHeader", 75, 1, 1,
+						new String[]{"Zone"}),
+				HtmlFactory.createHeader("NormalTableHeader", 75, 1, 1,
+						new String[]{"Ostwert"}),
+				HtmlFactory.createHeader("NormalTableHeader", 75, 1, 1,
+						new String[]{"Nordwert"}),
+				HtmlFactory.createHeader("NormalTableHeader", 305, 1, 1,
+						new String[]{""}),
+		});
 
-		HtmlTableHeader zone = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "75")
-				.appendAttribute("align", "left")
-				.appendAttribute("rowspan", "1")
-				.appendContent("Zone")
-				.build();
-
-		HtmlTableHeader eastValue = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "75")
-				.appendAttribute("align", "left")
-				.appendAttribute("rowspan", "1")
-				.appendContent("Ostwert")
-				.build();
-
-		HtmlTableHeader northValue = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "75")
-				.appendAttribute("align", "left")
-				.appendAttribute("rowspan", "1")
-				.appendContent("Nordwert")
-				.build();
-
-		HtmlTableHeader emptyCell = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "305")
-				.appendAttribute("rowspan", "1")
-				.appendContent("")
-				.build();
-
-		HtmlRow firstHeaderRow = new HtmlRow.Builder()
-				.appendAttribute("class", "NormalHeader")
-				.appendContent(erkId.appendTag())
-				.appendContent(utm.appendTag())
-				.build();
-
-		HtmlRow secondHeaderRow = new HtmlRow.Builder()
-				.appendAttribute("class", "NormalHeader")
-				.appendContent(zone.appendTag())
-				.appendContent(eastValue.appendTag())
-				.appendContent(northValue.appendTag())
-				.appendContent(emptyCell.appendTag())
-				.build();
-
-		StringBuilder strb = new StringBuilder();
-		strb.append(firstHeaderRow.appendTag())
-				.append(secondHeaderRow.appendTag());
+		StringBuilder strb = new StringBuilder()
+				.append(firstRow)
+				.append(secondRow);
 
 		return strb.toString();
 	}
@@ -145,7 +101,7 @@ public final class ReportCOORDINATES extends ReportTemplate
 					.appendContent(site.getInformation("ERK_ORT"))
 					.build();
 
-			List<String> coordinateSplit = splitCoordinate(site);
+			List<String> coordinateSplit = splitCoordinate(site.getInformation(ReferenceKey.SITE_COORDINATES));
 
 			HtmlCell zone = new HtmlCell.Builder()
 					.appendAttribute("class", "Normal")
@@ -208,11 +164,10 @@ public final class ReportCOORDINATES extends ReportTemplate
 		return "Bericht-KOORDINATEN";
 	}
 
-	private List<String> splitCoordinate(ExplorationSite site)
+	private List<String> splitCoordinate(String coordinates)
 	{
 		List<String> coordinateList;
 
-		String coordinates = site.getInformation("ERK_KOORDINATEN");
 		String[] split = coordinates.split("(\\s)+");
 
 		if (split.length == 3)

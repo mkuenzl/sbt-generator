@@ -63,12 +63,6 @@ public abstract class AppendixTemplate implements HtmlTableTemplate
 		return table;
 	}
 
-	@Override
-	public void constructTemplate(List<DataTable> tables)
-	{
-
-	}
-
 	protected void addAndResetTableOnPageBreak()
 	{
 		if (linesPerPage >= 20)
@@ -81,5 +75,11 @@ public abstract class AppendixTemplate implements HtmlTableTemplate
 
 			table = constructAndGetTableObject();
 		}
+	}
+
+	@Override
+	public void constructTemplate(DataTable dataTable)
+	{
+
 	}
 }

@@ -3,11 +3,16 @@ package sbt.automization.templates.appendix;
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.LayerSample;
+import sbt.automization.data.refactoring.DataTable;
+import sbt.automization.data.refactoring.Probe;
+import sbt.automization.data.refactoring.Sample;
+import sbt.automization.data.refactoring.references.ReferenceParameterChemistry;
+import sbt.automization.data.refactoring.references.ReferenceProbe;
+import sbt.automization.data.refactoring.references.ReferenceSample;
 import sbt.automization.format.HtmlCellFormatUtil;
-import sbt.automization.util.html.HtmlCell;
-import sbt.automization.util.html.HtmlRow;
-import sbt.automization.util.html.HtmlTable;
-import sbt.automization.util.html.HtmlTableHeader;
+import sbt.automization.format.TextFormatUtil;
+import sbt.automization.templates.Outcrop;
+import sbt.automization.util.html.*;
 
 import java.util.List;
 
@@ -21,198 +26,97 @@ final class AppendixSiteFUGE extends AppendixTemplate
 
 	}
 
-	@Override
-	public void constructTable(final ExplorationSite site)
+	private void setOutcrop(DataTable dataTable)
 	{
-		outcrop = site.getInformation(ReferenceKey.SITE_OUTCROP_UG_OH_BA);
+		outcrop = dataTable.get(ReferenceProbe.OUTCROP_UG_OH_BA);
+	}
 
-		HtmlTable table = new HtmlTable.Builder()
-				.appendAttribute("class", "MsoNormalTable")
-				.appendAttribute("width", "605")
-				.appendAttribute("border", "1")
-				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
-				.appendAttribute("cellspacing", "0")
-				.appendAttribute("cellpadding", "0")
-				.appendContent(constructAndGetTableHeader())
-				.build();
+	@Override
+	public void constructTemplate(DataTable dataTable)
+	{
+		setOutcrop(dataTable);
+		HtmlTable table = constructAndGetTableObject();
 
-		for (LayerSample layerSample : site.getLayers())
+		if (dataTable instanceof Probe)
 		{
-			if ("FUGE".equals(layerSample.getInformation(ReferenceKey.LAYER_OUTCROP)))
+			Probe probe = (Probe) dataTable;
+			List<Sample> samplesOfOutcrop = probe.getSamplesBy(ReferenceSample.OUTCROP, Outcrop.GAP.toString());
+
+			for (Sample sample : samplesOfOutcrop)
 			{
-				//Art der Schicht
-				HtmlCell schichtArt = new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_TYPE))
-						.build();
-
-				//Dicke
-				HtmlCell schichtDicke = new HtmlCell.Builder()
-						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_THICKNESS))
-						.build();
-
-				//Tiefe
-				HtmlCell schichtTiefe = new HtmlCell.Builder()
-						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_DEPTH_END))
-						.build();
-
-				//MUFV
-				String chemie_mufv = layerSample.getInformation(ReferenceKey.CHEMISTRY_MUFV);
-				HtmlCell schichtMufv = HtmlCellFormatUtil.formatChemistry(chemie_mufv);
-
-				//empty
-				HtmlCell cell7 = new HtmlCell.Builder()
-						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendAttribute("colspan", "3")        //Zelle geht über 3 Reihen
-						.appendContent("")
-						.build();
-
-				//PAK
-				HtmlCell schichtPak = new HtmlCell.Builder()
-						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_PAK))
-						.build();
-
-				//Asbest
-				String chemie_asbest = layerSample.getInformation(ReferenceKey.CHEMISTRY_ASBESTOS);
-				HtmlCell schichtAsbest = HtmlCellFormatUtil.formatChemistry(chemie_asbest);
-
-
-
-
-				HtmlRow row = new HtmlRow.Builder()
-						.appendAttribute("class", "Normal")
-						.appendContent(schichtArt.appendTag())
-						.appendContent(schichtDicke.appendTag())
-						.appendContent(schichtTiefe.appendTag())
-						.appendContent(schichtMufv.appendTag())
-						.appendContent(cell7.appendTag())
-						.appendContent(schichtPak.appendTag())
-						.appendContent(schichtAsbest.appendTag())
-						.build();
-
-				table.appendContent(row.appendTag());
+				String row = createRow(sample);
+				table.appendContent(row);
 			}
 		}
 
 		addToTemplate(table.appendTag());
 	}
 
+	private String createRow(Sample sample)
+	{
+		String row = HtmlFactory.createRow("Normal", new String[]{
+				HtmlFactory.createCell("Normal", 125, 1, 1, 1,
+						new String[]{sample.get(ReferenceSample.TYPE)}),
+				HtmlFactory.createCell("NormalCenter", 60, 1, 1, 1,
+						new String[]{sample.get(ReferenceSample.THICKNESS)}),
+				HtmlFactory.createCell("NormalCenter", 60, 1, 1, 1,
+						new String[]{sample.get(ReferenceSample.DEPTH_END)}),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(ReferenceSample.CHEMISTRY_ID, ReferenceParameterChemistry.MUFV)),
+				HtmlFactory.createCell("NormalCenter", 60, 1, 1, 3,
+						new String[]{""}),
+				HtmlFactory.createCell("NormalCenter", 60, 1, 1, 1,
+						new String[]{sample.get(ReferenceSample.PAK)}),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(ReferenceSample.CHEMISTRY_ID, ReferenceParameterChemistry.ASBESTOS)),
+		});
+
+		return row;
+	}
+
+	@Override
+	public void constructTable(final ExplorationSite site)
+	{
+	}
+
 	@Override
 	String constructAndGetTableHeader()
 	{
-		//First Row
-		HtmlTableHeader cell11 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "125")
-				.appendAttribute("align", "left")
-				.appendContent("Fuge")
-				.build();
+		String firstRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
+				HtmlFactory.createHeader("NormalTableHeader", 125, 1, 1, 1, "left",
+						new String[]{"FUGE"}),
+				HtmlFactory.createHeader("NormalTableHeader", 480, 1, 1, 8, "left",
+						new String[]{"Aufschlussverfahren:",outcrop}),
+		});
 
-		HtmlTableHeader cell12 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("align", "left")
-				.appendAttribute("colspan", "8")        //Zelle geht über 3 Reihen
-				.appendContent("Aufschlussverfahren:".concat(" ").concat(outcrop))
-				.build();
+		String secondRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
+				HtmlFactory.createHeader("NormalTableHeader", 125, 1, 2, 1, "left",
+						new String[]{"Art der Schicht"}),
+				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 1, 1,
+						new String[]{"Dicke", "<div>[7]</div>"}),
+				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 1, 1,
+						new String[]{"Tiefe"}),
+				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 2, 1,
+						new String[]{"MUFV", "<div>[18]</div>"}),
+				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 2, 3,
+						new String[]{""}),
+				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 1, 1,
+						new String[]{"PAK"}),
+				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 2, 1,
+						new String[]{"Asbest"})
+		});
 
+		String thirdRow = HtmlFactory.createRow("NormalHeaderUnits", new String[]{
+				HtmlFactory.createHeader("NormalTableHeaderUnits", 60, 1, 1,
+						new String[]{"cm"}),
+				HtmlFactory.createHeader("NormalTableHeaderUnits", 60, 1, 1,
+						new String[]{"cm"}),
+				HtmlFactory.createHeader("NormalTableHeaderUnits", 60, 1, 1,
+						new String[]{"mg/kg"})
+		});
 
-		//Second Row
-		HtmlTableHeader cell21 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("align", "left")
-				.appendAttribute("width", "125")
-				.appendAttribute("rowspan", "2")
-				.appendContent("Art der Schicht")
-				.build();
-
-		HtmlTableHeader cell22 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "60")
-				.appendContent("Dicke")
-				.appendContent("<div>[7]</div>")
-				.build();
-
-		HtmlTableHeader cell23 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "60")
-				.appendContent("Tiefe")
-				.build();
-
-		HtmlTableHeader cell24 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "60")
-				.appendAttribute("rowspan", "2")
-				.appendContent("MUFV")
-				.appendContent("<div>[18]</div>")
-				.build();
-
-		HtmlTableHeader cell25 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "60")
-				.appendAttribute("colspan", "3")
-				.appendAttribute("rowspan", "2")
-				.appendContent("")
-				.build();
-
-		HtmlTableHeader cell26 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "60")
-				.appendContent("PAK")
-				.build();
-
-		HtmlTableHeader cell27 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "60")
-				.appendAttribute("rowspan", "2")
-				.appendContent("Asbest")
-				.build();
-
-		HtmlTableHeader cell32 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeaderUnits")
-				.appendContent("cm")
-				.build();
-
-		HtmlTableHeader cell33 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeaderUnits")
-				.appendContent("cm")
-				.build();
-
-		HtmlTableHeader cell35 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeaderUnits")
-				.appendContent("mg/kg")
-				.build();
-
-		HtmlRow row1 = new HtmlRow.Builder()
-				.appendAttribute("class", "NormalHeader")
-				.appendContent(cell11.appendTag())
-				.appendContent(cell12.appendTag())
-				.build();
-
-		HtmlRow row2 = new HtmlRow.Builder()
-				.appendAttribute("class", "NormalHeader")
-				.appendContent(cell21.appendTag())
-				.appendContent(cell22.appendTag())
-				.appendContent(cell23.appendTag())
-				.appendContent(cell24.appendTag())
-				.appendContent(cell25.appendTag())
-				.appendContent(cell26.appendTag())
-				.appendContent(cell27.appendTag())
-				.build();
-
-		HtmlRow row3 = new HtmlRow.Builder()
-				.appendAttribute("class", "NormalHeaderUnits")
-				.appendContent(cell32.appendTag())
-				.appendContent(cell33.appendTag())
-				.appendContent(cell35.appendTag())
-				.build();
-
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(row1.appendTag())
-				.append(row2.appendTag())
-				.append(row3.appendTag());
+		StringBuilder stringBuilder = new StringBuilder()
+				.append(firstRow)
+				.append(secondRow)
+				.append(thirdRow);
 
 		return stringBuilder.toString();
 	}
@@ -237,5 +141,11 @@ final class AppendixSiteFUGE extends AppendixTemplate
 	public String getExportFileName()
 	{
 		return null;
+	}
+
+	@Override
+	public void constructTemplate(List<DataTable> dataTables)
+	{
+
 	}
 }

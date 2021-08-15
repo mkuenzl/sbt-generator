@@ -2,7 +2,11 @@ package sbt.automization.templates.appendix;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.ReferenceKey;
+import sbt.automization.data.refactoring.DataTable;
+import sbt.automization.data.refactoring.Probe;
+import sbt.automization.data.refactoring.references.ReferenceSample;
 import sbt.automization.format.FootnoteFormatUtil;
+import sbt.automization.templates.Outcrop;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
@@ -230,10 +234,6 @@ public final class AppendixExplorationSite extends AppendixTemplate
 		}
 
 		addToTemplate(stringBuilder.toString());
-	}	@Override
-	String constructAndGetTableHeader()
-	{
-		return null;
 	}
 
 	@Override
@@ -242,11 +242,106 @@ public final class AppendixExplorationSite extends AppendixTemplate
 
 	}
 
+	private String createFooter(DataTable dataTable)
+	{
+		HtmlCell cell = new HtmlCell.Builder()
+				.appendAttribute("class", "NormalHeader")
+				.appendAttribute("colspan", "3")
+				.appendContent(FootnoteFormatUtil.printFootnotes(dataTable))
+				.build();
+
+		HtmlRow row = new HtmlRow.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent(cell.appendTag())
+				.build();
+
+		HtmlTable table = new HtmlTable.Builder()
+				.appendAttribute("class", "MsoNormalTable")
+				.appendAttribute("width", "605")
+				.appendAttribute("border", "1")
+				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+				.appendAttribute("cellspacing", "0")
+				.appendAttribute("cellpadding", "0")
+				.appendContent(row.appendTag())
+				.build();
+
+		return table.appendTag();
+	}
+
 	@Override
 	public String getExportFileName()
 	{
 		return "Anlage-ERK";
 	}
+
+	@Override
+	public void constructTemplate(List<DataTable> dataTables)
+	{
+		for (DataTable dataTable : dataTables)
+		{
+			HtmlTable table = constructAndGetTableObject();
+			addToTemplate(table.appendTag());
+
+			Probe probe = (Probe) dataTable;
+
+			if (probe.hasSampleWith(ReferenceSample.OUTCROP, Outcrop.BANQUET.toString()))
+			{
+				AppendixSiteBANKETT banquet = new AppendixSiteBANKETT();
+				banquet.constructTemplate(probe);
+				addToTemplate(banquet.getTemplate());
+			}
+
+			if (probe.hasSampleWith(ReferenceSample.OUTCROP, Outcrop.GAP.toString()))
+			{
+				AppendixSiteFUGE gap = new AppendixSiteFUGE();
+				gap.constructTemplate(probe);
+				addToTemplate(gap.getTemplate());
+			}
+
+			if (probe.hasSampleWith(ReferenceSample.OUTCROP, Outcrop.OH.toString()))
+			{
+				AppendixSiteOH oh = new AppendixSiteOH();
+				oh.constructTemplate(probe);
+				addToTemplate(oh.getTemplate());
+			}
+
+			if (probe.hasSampleWith(ReferenceSample.OUTCROP, Outcrop.GOB.toString()) ||
+					probe.hasSampleWith(ReferenceSample.OUTCROP, Outcrop.CONCRETE.toString()) ||
+					probe.hasSampleWith(ReferenceSample.OUTCROP, Outcrop.TMHB.toString()) ||
+					probe.hasSampleWith(ReferenceSample.OUTCROP, Outcrop.SEAL.toString()) ||
+					probe.hasSampleWith(ReferenceSample.OUTCROP, Outcrop.COATING.toString()))
+			{
+				AppendixSiteGOB appendixSiteGOB = new AppendixSiteGOB();
+				appendixSiteGOB.constructTemplate(probe);
+				addToTemplate(appendixSiteGOB.getTemplate());
+			}
+
+			if (probe.hasSampleWith(ReferenceSample.OUTCROP, Outcrop.TOB.toString()))
+			{
+				AppendixSiteTOB tob = new AppendixSiteTOB();
+				tob.constructTemplate(probe);
+				addToTemplate(tob.getTemplate());
+			}
+
+			if (probe.hasSampleWith(ReferenceSample.OUTCROP, Outcrop.UG.toString()))
+			{
+				AppendixSiteUG ug = new AppendixSiteUG();
+				ug.constructTemplate(probe);
+				addToTemplate(ug.getTemplate());
+			}
+
+			String footer = createFooter(dataTable);
+			addToTemplate(footer);
+			addToTemplate("<br></br>");
+		}
+	}
+
+	@Override
+	String constructAndGetTableHeader()
+	{
+		return null;
+	}
+
 
 	@Override
 	HtmlTable constructAndGetTableObject()

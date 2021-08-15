@@ -20,12 +20,11 @@ public final class TextFormatUtil
 	 * Belastungsklasse
 	 * Bk1/Bk2/keine
 	 *
-	 * @param explorationSite expects a exploration site
+	 * @param loadClass as
 	 * @return formatted html code
 	 */
-	public static String formatLoadClass(final ExplorationSite explorationSite)
+	public static String formatLoadClass(final String loadClass)
 	{
-		String loadClass = explorationSite.getInformation(ReferenceKey.SITE_LOAD_CLASS);
 		String content;
 
 		if ("keine".equals(loadClass) || "-".equals(loadClass))
@@ -436,7 +435,7 @@ public final class TextFormatUtil
 			{
 				formattedTag = new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(TextFormatUtil.formatLayerProctor(layerSample))
+						.appendContent(TextFormatUtil.formatProctor(layerSample.getInformation(ReferenceKey.LAYER_WATER_PROCTOR)))
 						.build().appendTag();
 			} else
 			{
@@ -584,15 +583,14 @@ public final class TextFormatUtil
 		return stringBuilder.toString();
 	}
 
-	public static String formatLayerProctor(final LayerSample layerSample)
+	public static String formatProctor(final String moisture)
 	{
-		String feuchtigkeit = layerSample.getInformation(ReferenceKey.LAYER_MOISTURE);
-		if ("-".equals(feuchtigkeit))
+		if ("-".equals(moisture))
 		{
 			return "-";
 		} else
 		{
-			return feuchtigkeit.concat(" W<sub>Pr</sub>");
+			return moisture.concat(" W<sub>Pr</sub>");
 		}
 	}
 

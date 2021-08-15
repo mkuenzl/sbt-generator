@@ -197,7 +197,7 @@ public final class FootnoteFormatUtil
 		return stringBuilder.toString();
 	}
 
-	private List<ReferenceProbe> getFootnoteReferences()
+	private static List<ReferenceProbe> getFootnoteReferences()
 	{
 		List<ReferenceProbe> references = new ArrayList<>(){{
 			add(ReferenceProbe.LP_ID);
@@ -207,13 +207,13 @@ public final class FootnoteFormatUtil
 		return references;
 	}
 
-	private boolean checkExistenceOfFootnote(DataTable table, Reference reference)
+	private static boolean checkExistenceOfFootnote(DataTable table, Reference reference)
 	{
 		String footnote = table.get(reference);
 		return (footnote != null && ! footnote.equals("#") && ! footnote.equals("-") && ! footnote.equals(""));
 	}
 
-	public String printFootnotes(DataTable table)
+	public static String printFootnotes(DataTable table)
 	{
 		StringBuilder stringBuilder = new StringBuilder();
 
@@ -230,7 +230,7 @@ public final class FootnoteFormatUtil
 		return stringBuilder.toString();
 	}
 
-	private String printFootnoteForReference(DataTable table, ReferenceProbe footnoteReference)
+	private static String printFootnoteForReference(DataTable table, ReferenceProbe footnoteReference)
 	{
 		switch (footnoteReference)
 		{
@@ -244,7 +244,7 @@ public final class FootnoteFormatUtil
 		}
 	}
 
-	private HtmlText createFootnote(int id)
+	private static HtmlText createFootnote(int id)
 	{
 		return new HtmlText.Builder()
 				.appendAttribute("class", "Normal")
@@ -253,7 +253,7 @@ public final class FootnoteFormatUtil
 				.build();
 	}
 
-	private String printFootnoteWithText(int id, String line)
+	private static String printFootnoteWithText(int id, String line)
 	{
 		HtmlText footnote = createFootnote(id);
 		footnote.appendContent(line);
@@ -261,7 +261,7 @@ public final class FootnoteFormatUtil
 		return footnote.appendTag();
 	}
 
-	private String printFootnoteWithText(int id, String[] lines)
+	private static String printFootnoteWithText(int id, String[] lines)
 	{
 		HtmlText footnote = createFootnote(id);
 

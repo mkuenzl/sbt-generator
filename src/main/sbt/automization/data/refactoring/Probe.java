@@ -92,7 +92,7 @@ public final class Probe extends DataTableImpl
 		return parameters;
 	}
 
-	public Parameter getParameterBy(Reference reference)
+	public Parameter getParameterBy(final Reference reference)
 	{
 		for (Parameter par : parameters)
 		{
@@ -101,5 +101,65 @@ public final class Probe extends DataTableImpl
 		}
 
 		return null;
+	}
+
+	public String getParameterValueBy(Reference parameterID, Reference valueID)
+	{
+		for (Parameter par : parameters)
+		{
+			String value = this.get(parameterID);
+			if (par.contains(value))
+			{
+				return par.get(valueID);
+			}
+		}
+
+		return "";
+	}
+
+	public List<Sample> getSamplesBy(final Reference reference, final String value)
+	{
+		List<Sample> samplesWithValue = new ArrayList<>();
+
+		for (Sample sample : this.samples)
+		{
+			String valueToCompare = sample.get(reference);
+			if (value.equals(valueToCompare))
+			{
+				samplesWithValue.add(sample);
+			}
+		}
+		return samplesWithValue;
+	}
+
+	public List<Sample> getSamplesBy(final Reference reference, final String[] values)
+	{
+		List<Sample> samplesWithValue = new ArrayList<>();
+
+		for (Sample sample : this.samples)
+		{
+			String valueToCompare = sample.get(reference);
+			for (String value : values)
+			{
+				if (value.equals(valueToCompare))
+				{
+					samplesWithValue.add(sample);
+				}
+			}
+		}
+		return samplesWithValue;
+	}
+
+	public boolean hasSampleWith(final Reference reference, final String value)
+	{
+		for (Sample sample : this.samples)
+		{
+			String valueToCompare = sample.get(reference);
+			if (value.equals(valueToCompare))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 }

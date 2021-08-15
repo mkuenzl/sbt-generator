@@ -1,6 +1,7 @@
 package sbt.automization.templates.appendix;
 
 import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
@@ -90,5 +91,11 @@ public final class AttemptTemplate extends AppendixTemplate
 	public String getExportFileName()
 	{
 		return "example";
+	}
+
+	@Override
+	public void constructTemplate(List<DataTable> dataTables)
+	{
+
 	}
 }

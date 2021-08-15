@@ -7,6 +7,7 @@ import org.junit.Test;
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.refactoring.Examination;
 import sbt.automization.export.HtmlTemplateExport;
+import sbt.automization.templates.appendix.AppendixExplorationSite;
 import sbt.automization.templates.appendix.AppendixLP;
 import sbt.automization.templates.appendix.AppendixPN;
 import sbt.automization.templates.appendix.AppendixRUK;
@@ -66,14 +67,14 @@ public class TemplateBuildingTest
 
 	}
 
-//	@Test
-//	public void createErkTemplate() throws IOException
-//	{
-//		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(AppendixExplorationSite.getInstance());
-//		htmlTemplateExportStrategy.export(explorationSites);
-//
-//		openExportFile(htmlTemplateExportStrategy.getPath());
-//	}
+	@Test
+	public void createExplorationSiteTemplate() throws IOException
+	{
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(AppendixExplorationSite.getInstance());
+		htmlTemplateExportStrategy.export(dataTables);
+
+		openExportFile(htmlTemplateExportStrategy.getPath());
+	}
 
 	@Test
 	public void createRukTemplate() throws IOException

@@ -41,14 +41,28 @@ public final class Sample extends DataTableImpl
 		return 0;
 	}
 
-	public Parameter getParameterBy(Reference reference)
+	public Parameter getParameterBy(Reference referenceID)
 	{
 		for (Parameter par : parameters)
 		{
-			String value = this.get(reference);
+			String value = this.get(referenceID);
 			if (par.contains(value)) return par;
 		}
 
 		return null;
+	}
+
+	public String getParameterValueBy(Reference parameterID, Reference valueID)
+	{
+		for (Parameter par : parameters)
+		{
+			String value = this.get(parameterID);
+			if (par.contains(value))
+			{
+				return par.get(valueID);
+			}
+		}
+
+		return "";
 	}
 }

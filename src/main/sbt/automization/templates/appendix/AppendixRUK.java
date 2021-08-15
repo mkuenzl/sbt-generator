@@ -92,11 +92,11 @@ public final class AppendixRUK extends AppendixTemplate
 	}
 
 	@Override
-	public void constructTemplate(List<DataTable> tables)
+	public void constructTemplate(List<DataTable> dataTables)
 	{
 		HtmlTable table = constructAndGetTableObject();
 
-		for (DataTable dataTable : tables)
+		for (DataTable dataTable : dataTables)
 		{
 			if (dataTable instanceof Probe)
 			{

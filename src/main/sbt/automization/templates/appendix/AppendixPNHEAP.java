@@ -2,6 +2,7 @@ package sbt.automization.templates.appendix;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.LayerSample;
+import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.format.NameFormatUtil;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
@@ -276,5 +277,11 @@ public final class AppendixPNHEAP extends AppendixTemplate
 	public String getExportFileName()
 	{
 		return "Anlage-Haufwerk-PN";
+	}
+
+	@Override
+	public void constructTemplate(List<DataTable> dataTables)
+	{
+
 	}
 }

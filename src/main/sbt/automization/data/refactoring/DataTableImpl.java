@@ -210,4 +210,11 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 
 		return informationMap.containsValue(value);
 	}
+
+	public boolean containsValueFor(Reference reference)
+	{
+		String value = informationMap.get(reference.getKey());
+
+		return !"".equals(value);
+	}
 }

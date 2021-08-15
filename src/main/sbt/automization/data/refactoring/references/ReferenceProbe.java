@@ -170,7 +170,7 @@ public enum ReferenceProbe implements Reference
 					return addProbeTag("AUFSCHLUSS_TOB");
 				}
 			},
-	OUTCROP_OB
+	OUTCROP_GOB
 			{
 				@Override
 				public String getKey()

@@ -32,7 +32,7 @@ public abstract class ReportTemplate implements HtmlTableTemplate
 
 	private String table;
 
-	public String getTempWlate()
+	public String getTemplate()
 	{
 		return table;
 	}
@@ -45,7 +45,13 @@ public abstract class ReportTemplate implements HtmlTableTemplate
 	public abstract String constructAndGetTableHeader();
 
 	@Override
-	public void constructTemplate(List<DataTable> tables)
+	public void constructTemplate(List<DataTable> dataTables)
+	{
+
+	}
+
+	@Override
+	public void constructTemplate(DataTable dataTable)
 	{
 
 	}

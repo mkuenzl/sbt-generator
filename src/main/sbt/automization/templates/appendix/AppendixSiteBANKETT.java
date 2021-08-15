@@ -1,18 +1,19 @@
 package sbt.automization.templates.appendix;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.ReferenceKey;
-import sbt.automization.data.LayerSample;
-import sbt.automization.format.HtmlCellFormatUtil;
+import sbt.automization.data.refactoring.DataTable;
+import sbt.automization.data.refactoring.Probe;
+import sbt.automization.data.refactoring.Sample;
+import sbt.automization.data.refactoring.references.ReferenceParameterChemistry;
+import sbt.automization.data.refactoring.references.ReferenceProbe;
+import sbt.automization.data.refactoring.references.ReferenceSample;
 import sbt.automization.format.TextFormatUtil;
-import sbt.automization.util.html.HtmlCell;
-import sbt.automization.util.html.HtmlRow;
-import sbt.automization.util.html.HtmlTable;
-import sbt.automization.util.html.HtmlTableHeader;
+import sbt.automization.templates.Outcrop;
+import sbt.automization.util.html.*;
 
 import java.util.List;
 
-public class AppendixSiteBANKETT extends AppendixTemplate
+public final class AppendixSiteBANKETT extends AppendixTemplate
 {
 	private String outcrop = "";
 
@@ -22,235 +23,108 @@ public class AppendixSiteBANKETT extends AppendixTemplate
 
 	}
 
-	@Override
-	public void constructTable(final ExplorationSite site)
+	private void setOutcrop(DataTable dataTable)
 	{
-		outcrop = site.getInformation("ERK_AUFSCHLUSS_UG_OH_BA");
+		outcrop = dataTable.get(ReferenceProbe.OUTCROP_UG_OH_BA);
+	}
 
-		HtmlTable table = new HtmlTable.Builder()
-				.appendAttribute("class", "MsoNormalTable")
-				.appendAttribute("width", "605")
-				.appendAttribute("border", "1")
-				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
-				.appendAttribute("cellspacing", "0")
-				.appendAttribute("cellpadding", "0")
-				.appendContent(constructAndGetTableHeader())
-				.build();
+	@Override
+	public void constructTemplate(DataTable dataTable)
+	{
+		setOutcrop(dataTable);
+		HtmlTable table = constructAndGetTableObject();
 
-		for (LayerSample layerSample : site.getLayers())
+		if (dataTable instanceof Probe)
 		{
-			if ("BANKETT".equals(layerSample.getInformation(ReferenceKey.LAYER_OUTCROP)))
+			Probe probe = (Probe) dataTable;
+			List<Sample> samplesOfOutcrop = probe.getSamplesBy(ReferenceSample.OUTCROP, Outcrop.BANQUET.toString());
+
+			for (Sample sample : samplesOfOutcrop)
 			{
-				//Art der Schicht
-				HtmlCell cell1 = new HtmlCell.Builder()
-						.appendAttribute("class", "Normal")
-						.appendContent(TextFormatUtil.formatSoilGroup(layerSample.getInformation(ReferenceKey.LAYER_TYPE)))
-						.build();
-
-				//Dicke
-				HtmlCell cell2 = new HtmlCell.Builder()
-						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_THICKNESS))
-						.build();
-
-				//Tiefe
-				HtmlCell cell3 = new HtmlCell.Builder()
-						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_DEPTH_END))
-						.build();
-
-				//MUFV
-				String chemie_mufv = layerSample.getInformation(ReferenceKey.CHEMISTRY_MUFV);
-				HtmlCell cell4 = HtmlCellFormatUtil.formatChemistry(chemie_mufv);
-
-				//LAGA BO
-				String chemie_laga_bo = layerSample.getInformation(ReferenceKey.CHEMISTRY_LAGA_BO);
-				HtmlCell cell5 = HtmlCellFormatUtil.formatChemistry(chemie_laga_bo);
-
-				//Notiz
-				String chemie_laga_rc = layerSample.getInformation(ReferenceKey.CHEMISTRY_LAGA_RC);
-				HtmlCell cell6 = HtmlCellFormatUtil.formatChemistry(chemie_laga_rc);
-
-				//Wassergehalt
-				HtmlCell cell7 = new HtmlCell.Builder()
-						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_WATER_CONTENT))
-						.build();
-
-				//WasserProctor
-				HtmlCell cell8 = new HtmlCell.Builder()
-						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent(TextFormatUtil.formatLayerProctor(layerSample))
-						.build();
-
-				//Proctor
-				HtmlCell cell9 = new HtmlCell.Builder()
-						.appendAttribute("class", "NormalErkundungsstelle")
-						.appendContent("-")
-						.build();
-
-				HtmlRow row = new HtmlRow.Builder()
-						.appendAttribute("class", "Normal")
-						.appendContent(cell1.appendTag())
-						.appendContent(cell2.appendTag())
-						.appendContent(cell3.appendTag())
-						.appendContent(cell4.appendTag())
-						.appendContent(cell5.appendTag())
-						.appendContent(cell6.appendTag())
-						.appendContent(cell7.appendTag())
-						.appendContent(cell8.appendTag())
-						.appendContent(cell9.appendTag())
-						.build();
-
-				table.appendContent(row.appendTag());
+				String row = createRow(sample);
+				table.appendContent(row);
 			}
 		}
 
 		addToTemplate(table.appendTag());
 	}
 
+	private String createRow(Sample sample)
+	{
+		String row = HtmlFactory.createRow("Normal", new String[]{
+				HtmlFactory.createCell("Normal", 125, 1, 1, 1,
+						new String[]{TextFormatUtil.formatSoilGroup(sample.get(ReferenceSample.TYPE))}),
+				HtmlFactory.createCell("NormalCenter", 60, 1, 1, 1,
+						new String[]{sample.get(ReferenceSample.THICKNESS)}),
+				HtmlFactory.createCell("NormalCenter", 60, 1, 1, 1,
+						new String[]{sample.get(ReferenceSample.DEPTH_END)}),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(ReferenceSample.CHEMISTRY_ID, ReferenceParameterChemistry.MUFV)),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(ReferenceSample.CHEMISTRY_ID, ReferenceParameterChemistry.LAGA_BO)),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(ReferenceSample.CHEMISTRY_ID, ReferenceParameterChemistry.LAGA_RC)),
+				HtmlFactory.createCell("NormalCenter", 60, 1, 1, 1,
+						new String[]{sample.get(ReferenceSample.WATER_CONTENT)}),
+				HtmlFactory.createCell("NormalCenter", 60, 1, 1, 1,
+						new String[]{TextFormatUtil.formatProctor(sample.get(ReferenceSample.WATER_PROCTOR))}),
+				HtmlFactory.createCell("NormalCenter", 60, 1, 1, 1,
+						new String[]{"-"})
+		});
+
+		return row;
+	}
+
+	@Override
+	public void constructTable(final ExplorationSite site)
+	{
+	}
+
 	@Override
 	String constructAndGetTableHeader()
 	{
-		//First Row
-		HtmlTableHeader cell11 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "125")
-				.appendAttribute("align", "left")
-				.appendContent("Bankett")
-				.build();
+		String firstRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
+				HtmlFactory.createHeader("NormalTableHeader", 125, 1, 1, 1, "left",
+						new String[]{"Bankett"}),
+				HtmlFactory.createHeader("NormalTableHeader", 480, 1, 1, 8, "left",
+						new String[]{"Aufschlussverfahren:",outcrop}),
+		});
 
-		HtmlTableHeader cell12 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("align", "left")
-				.appendAttribute("colspan", "8")        //Zelle geht über 3 Reihen
-				.appendContent("Aufschlussverfahren:".concat(" ").concat(outcrop))
-				.build();
+		String secondRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
+				HtmlFactory.createHeader("NormalTableHeader", 125, 1, 2, 1, "left",
+						new String[]{"Bodengruppe"}),
+				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 1, 1,
+						new String[]{"Dicke"}),
+				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 1, 1,
+						new String[]{"Tiefe"}),
+				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 2, 1,
+						new String[]{"MUFV", "<div>[18]</div>"}),
+				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 2, 1,
+						new String[]{"LAGA BO", "<div>[11]</div>"}),
+				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 2, 1,
+						new String[]{"LAGA RC", "<div>[28]</div>"}),
+				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 1, 1,
+						new String[]{"WG", "<div>[19]</div>"}),
+				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 1, 1,
+						new String[]{"W<sub>Pr</sub>"}),
+				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 1, 1,
+						new String[]{"Proctor", "<div>[20]</div>"})
+		});
 
+		String thirdRow = HtmlFactory.createRow("NormalHeaderUnits", new String[]{
+				HtmlFactory.createHeader("NormalTableHeaderUnits", 60, 1, 1,
+						new String[]{"cm"}),
+				HtmlFactory.createHeader("NormalTableHeaderUnits", 60, 1, 1,
+						new String[]{"cm"}),
+				HtmlFactory.createHeader("NormalTableHeaderUnits", 60, 1, 1,
+						new String[]{"M.-%"}),
+				HtmlFactory.createHeader("NormalTableHeaderUnits", 60, 1, 1,
+						new String[]{"M.-%"}),
+				HtmlFactory.createHeader("NormalTableHeaderUnits", 60, 1, 1,
+						new String[]{"Mg/m³"})
+		});
 
-		//Second Row
-		HtmlTableHeader cell21 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("align", "left")
-				.appendAttribute("width", "125")
-				.appendAttribute("rowspan", "2")
-				.appendContent("Bodengruppe")
-				.build();
-
-		HtmlTableHeader cell22 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "60")
-				.appendContent("Dicke")
-				.build();
-
-		HtmlTableHeader cell23 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "60")
-				.appendContent("Tiefe")
-				.build();
-
-		HtmlTableHeader cell24 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "60")
-				.appendAttribute("rowspan", "2")
-				.appendContent("MUFV")
-				.appendContent("<div>[18]</div>")
-				.build();
-
-		HtmlTableHeader cell25 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "60")
-				.appendAttribute("rowspan", "2")
-				.appendContent("LAGA BO")
-				.appendContent("<div>[11]</div>")
-				.build();
-
-		HtmlTableHeader cell26 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "60")
-				.appendAttribute("rowspan", "2")
-				.appendContent("LAGA RC")
-				.appendContent("<div>[28]</div>")
-				.build();
-
-		HtmlTableHeader cell27 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "60")
-				.appendContent("WG")
-				.appendContent("<div>[19]</div>")
-				.build();
-
-		HtmlTableHeader cell28 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "60")
-				.appendContent("W<sub>Pr</sub>")
-				.build();
-
-		HtmlTableHeader cell29 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeader")
-				.appendAttribute("width", "60")
-				.appendContent("Proctor")
-				.appendContent("<div>[20]</div>")
-				.build();
-
-		// Third row
-		HtmlTableHeader cell32 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeaderUnits")
-				.appendContent("cm")
-				.build();
-
-		HtmlTableHeader cell33 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeaderUnits")
-				.appendContent("cm")
-				.build();
-
-		HtmlTableHeader cell35 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeaderUnits")
-				.appendContent("M.-%")
-				.build();
-
-		HtmlTableHeader cell36 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeaderUnits")
-				.appendContent("M.-%")
-				.build();
-
-		HtmlTableHeader cell37 = new HtmlTableHeader.Builder()
-				.appendAttribute("class", "NormalTableHeaderUnits")
-				.appendContent("Mg/m³")
-				.build();
-
-		HtmlRow firstHeaderRow = new HtmlRow.Builder()
-				.appendAttribute("class", "NormalHeader")
-				.appendContent(cell11.appendTag())
-				.appendContent(cell12.appendTag())
-				.build();
-
-		HtmlRow secondHeaderRow = new HtmlRow.Builder()
-				.appendAttribute("class", "NormalHeader")
-				.appendContent(cell21.appendTag())
-				.appendContent(cell22.appendTag())
-				.appendContent(cell23.appendTag())
-				.appendContent(cell24.appendTag())
-				.appendContent(cell25.appendTag())
-				.appendContent(cell26.appendTag())
-				.appendContent(cell27.appendTag())
-				.appendContent(cell28.appendTag())
-				.appendContent(cell29.appendTag())
-				.build();
-
-		HtmlRow thirdHeaderRow = new HtmlRow.Builder()
-				.appendAttribute("class", "NormalHeaderUnits")
-				.appendContent(cell32.appendTag())
-				.appendContent(cell33.appendTag())
-				.appendContent(cell35.appendTag())
-				.appendContent(cell36.appendTag())
-				.appendContent(cell37.appendTag())
-				.build();
-
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(firstHeaderRow.appendTag())
-				.append(secondHeaderRow.appendTag())
-				.append(thirdHeaderRow.appendTag());
+		StringBuilder stringBuilder = new StringBuilder()
+				.append(firstRow)
+				.append(secondRow)
+				.append(thirdRow);
 
 		return stringBuilder.toString();
 	}
@@ -275,5 +149,11 @@ public class AppendixSiteBANKETT extends AppendixTemplate
 	public String getExportFileName()
 	{
 		return null;
+	}
+
+	@Override
+	public void constructTemplate(List<DataTable> dataTables)
+	{
+
 	}
 }

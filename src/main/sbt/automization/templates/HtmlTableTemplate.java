@@ -17,5 +17,7 @@ public interface HtmlTableTemplate
 
     String getTemplate();
 
-    void constructTemplate(List<DataTable> tables);
+    void constructTemplate(List<DataTable> dataTables);
+
+    void constructTemplate(DataTable dataTable);
 }
