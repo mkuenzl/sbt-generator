@@ -1,6 +1,6 @@
 package sbt.automization.data.refactoring.references;
 
-public enum LP implements Reference
+public enum RefLP implements Reference
 {
 	ID
 			{

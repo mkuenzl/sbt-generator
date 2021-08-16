@@ -215,6 +215,8 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 	{
 		String value = informationMap.get(reference.getKey());
 
+		if (value == null) return false;
+
 		return !"".equals(value);
 	}
 }

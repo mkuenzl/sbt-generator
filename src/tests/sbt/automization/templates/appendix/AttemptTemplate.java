@@ -1,9 +1,6 @@
 package sbt.automization.templates.appendix;
 
-import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.util.html.HtmlCell;
-import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
@@ -31,6 +28,10 @@ public final class AttemptTemplate extends Appendix
 	}
 
 	@Override
+	public String getExportFileName()
+	{
+		return "example";
+	}	@Override
 	public HtmlTable constructAndGetTableObject()
 	{
 		HtmlTable table = new HtmlTable.Builder()
@@ -46,56 +47,23 @@ public final class AttemptTemplate extends Appendix
 		return table;
 	}
 
-
 	@Override
+	public void constructTemplate(List<sbt.automization.data.refactoring.DataTable> dataTables)
+	{
+
+	}	@Override
 	public String constructAndGetTableHeader()
 	{
 		return null;
 	}
 
-
 	@Override
-	public void constructTable(List<ExplorationSite> sites)
-	{
-		HtmlTable table = new HtmlTable.Builder()
-				.appendAttribute("class", "MsoNormalTable")
-				.appendAttribute("width", "605")
-				.appendAttribute("border", "1")
-				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
-				.appendAttribute("cellspacing", "0")
-				.appendAttribute("cellpadding", "0")
-				.build();
-
-		HtmlCell htmlCell = new HtmlCell.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent("TextFormatUtil.formatOutcropLayers(sites.get(0))")
-				.build();
-
-		HtmlRow htmlRow = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent(htmlCell.appendTag())
-				.build();
-
-		table.appendContent(htmlRow.appendTag());
-
-		addToTemplate(table.appendTag());
-	}
-
-	@Override
-	public void constructTable(ExplorationSite site)
+	public void constructTemplate(DataTable dataTable)
 	{
 
 	}
 
-	@Override
-	public String getExportFileName()
-	{
-		return "example";
-	}
 
-	@Override
-	public void constructTemplate(List<DataTable> dataTables)
-	{
 
-	}
+
 }

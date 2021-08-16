@@ -1,11 +1,11 @@
 package sbt.automization.templates.appendix;
 
 
-import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.refactoring.Parameter;
-import sbt.automization.data.refactoring.references.LP;
-import sbt.automization.data.refactoring.references.Probe;
+import sbt.automization.data.refactoring.Probe;
+import sbt.automization.data.refactoring.references.RefLP;
+import sbt.automization.data.refactoring.references.RefProbe;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlFactory;
 import sbt.automization.util.html.HtmlTable;
@@ -33,14 +33,6 @@ public final class LoadPlate extends Appendix
 			}
 		}
 		return instance;
-	}
-
-	@Override
-	public void constructTable(final List<ExplorationSite> explorationSites)
-	{
-		HtmlTable table = constructAndGetTableObject();
-
-		addToTemplate(table.appendTag());
 	}
 
 	@Override
@@ -121,37 +113,37 @@ public final class LoadPlate extends Appendix
 
 		for (DataTable dataTable : dataTables)
 		{
-			if (dataTable instanceof sbt.automization.data.refactoring.Probe)
+			if (dataTable instanceof Probe)
 			{
-				sbt.automization.data.refactoring.Probe probe = (sbt.automization.data.refactoring.Probe) dataTable;
+				Probe probe = (Probe) dataTable;
 
-				Parameter parameter = probe.getParameterBy(Probe.LP_ID);
+				Parameter parameter = probe.getParameterBy(RefProbe.LP_ID);
 
 				if (parameter != null)
 				{
-					String formattedEV2 = TextFormatUtil.formatLP(parameter.get(LP.EV2),
-							parameter.get(LP.EV85));
+					String formattedEV2 = TextFormatUtil.formatLP(parameter.get(RefLP.EV2),
+							parameter.get(RefLP.EV85));
 
 					String row = HtmlFactory.createRow("Normal", new String[]{
-							HtmlFactory.createCell("NormalCenter",
-									new String[]{dataTable.get(Probe.LP_ID)}),
-							HtmlFactory.createCell("NormalCenter",
-									new String[]{dataTable.get(Probe.ID)}),
-							HtmlFactory.createCell("Normal",
-									new String[]{dataTable.get(Probe.LOCATION)}),
-							HtmlFactory.createCell("NormalCenter",
-									new String[]{parameter.get(LP.VALUE_1)}),
-							HtmlFactory.createCell("NormalCenter",
-									new String[]{parameter.get(LP.VALUE_2)}),
-							HtmlFactory.createCell("NormalCenter",
-									new String[]{parameter.get(LP.VALUE_3)}),
-							HtmlFactory.createCell("NormalCenter",
-									new String[]{parameter.get(LP.MEAN)}),
-							HtmlFactory.createCell("NormalCenter",
-									new String[]{parameter.get(LP.EV)}),
-							HtmlFactory.createCell("NormalCenter",
-									new String[]{parameter.get(LP.EV85)}),
-							HtmlFactory.createCell("NormalCenter",
+							HtmlFactory.createCellAsString("NormalCenter",
+									new String[]{dataTable.get(RefProbe.LP_ID)}),
+							HtmlFactory.createCellAsString("NormalCenter",
+									new String[]{dataTable.get(RefProbe.ID)}),
+							HtmlFactory.createCellAsString("Normal",
+									new String[]{dataTable.get(RefProbe.LOCATION)}),
+							HtmlFactory.createCellAsString("NormalCenter",
+									new String[]{parameter.get(RefLP.VALUE_1)}),
+							HtmlFactory.createCellAsString("NormalCenter",
+									new String[]{parameter.get(RefLP.VALUE_2)}),
+							HtmlFactory.createCellAsString("NormalCenter",
+									new String[]{parameter.get(RefLP.VALUE_3)}),
+							HtmlFactory.createCellAsString("NormalCenter",
+									new String[]{parameter.get(RefLP.MEAN)}),
+							HtmlFactory.createCellAsString("NormalCenter",
+									new String[]{parameter.get(RefLP.EV)}),
+							HtmlFactory.createCellAsString("NormalCenter",
+									new String[]{parameter.get(RefLP.EV85)}),
+							HtmlFactory.createCellAsString("NormalCenter",
 									new String[]{formattedEV2}),
 					});
 
@@ -163,7 +155,7 @@ public final class LoadPlate extends Appendix
 	}
 
 	@Override
-	public void constructTable(final ExplorationSite site)
+	public void constructTemplate(DataTable dataTable)
 	{
 
 	}

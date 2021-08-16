@@ -1,10 +1,11 @@
 package sbt.automization.templates.appendix;
 
-import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.refactoring.DataTableFactory;
-import sbt.automization.data.refactoring.references.Probe;
-import sbt.automization.data.refactoring.references.Sample;
+import sbt.automization.data.refactoring.Probe;
+import sbt.automization.data.refactoring.Sample;
+import sbt.automization.data.refactoring.references.RefProbe;
+import sbt.automization.data.refactoring.references.RefSample;
 import sbt.automization.format.NameFormatUtil;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlFactory;
@@ -35,16 +36,6 @@ public final class SamplingProtocol extends Appendix
 			}
 		}
 		return instance;
-	}
-
-	@Override
-	public void constructTable(final List<ExplorationSite> sites)
-	{
-	}
-
-	@Override
-	public void constructTable(final ExplorationSite site)
-	{
 	}
 
 	@Override
@@ -116,40 +107,40 @@ public final class SamplingProtocol extends Appendix
 
 		for (DataTable dataTable : dataTables)
 		{
-			if (dataTable instanceof sbt.automization.data.refactoring.Probe)
+			if (dataTable instanceof Probe)
 			{
-				sbt.automization.data.refactoring.Probe probe = (sbt.automization.data.refactoring.Probe) dataTable;
+				Probe probe = (Probe) dataTable;
 
-				List<sbt.automization.data.refactoring.Sample> samples = formatSamples(probe.getSamples());
+				List<Sample> samples = formatSamples(probe.getSamples());
 
-				for (sbt.automization.data.refactoring.Sample sample : samples)
+				for (Sample sample : samples)
 				{
 					addAndResetTableOnPageBreak();
 
 					String row = HtmlFactory.createRow("Normal", new String[]{
-							HtmlFactory.createCell("NormalCenter",
+							HtmlFactory.createCellAsString("NormalCenter",
 									new String[]{"P".concat(String.valueOf(++ lines))}),
-							HtmlFactory.createCell("NormalCenter",
-									new String[]{TextFormatUtil.formatSampleType(sample.get(Sample.CONTAINER))}),
-							HtmlFactory.createCell("Normal",
-									new String[]{sample.get(Sample.CONTAINER)}),
-							HtmlFactory.createCell("NormalCenter",
+							HtmlFactory.createCellAsString("NormalCenter",
+									new String[]{TextFormatUtil.formatSampleType(sample.get(RefSample.CONTAINER))}),
+							HtmlFactory.createCellAsString("Normal",
+									new String[]{sample.get(RefSample.CONTAINER)}),
+							HtmlFactory.createCellAsString("NormalCenter",
 									new String[]{"-"}),
-							HtmlFactory.createCell("Normal", "width:110px",
-									new String[]{NameFormatUtil.formatLayerKind(sample.get(Sample.WASTE_TYPE))}),
-							HtmlFactory.createCell("NormalCenter", "width:50px",
-									new String[]{sample.get(Sample.GRANULATION)}),
-							HtmlFactory.createCell("Normal", "left",
-									new String[]{sample.get(Sample.COLOR), TextFormatUtil.printLineBreak(),
-											sample.get(Sample.SMELL), TextFormatUtil.printLineBreak(),
-											sample.get(Sample.SOIL_TYPE)}),
-							HtmlFactory.createCell("NormalCenter",
-									new String[]{probe.get(Probe.ID)}),
-							HtmlFactory.createCell("NormalCenter",
-									new String[]{TextFormatUtil.formatDepth(sample.get(Sample.DEPTH_START),
-											sample.get(Sample.DEPTH_END))}),
-							HtmlFactory.createCell("NormalCenter",
-									new String[]{probe.get(Probe.TOP_EDGE)})
+							HtmlFactory.createCellAsString("Normal", "width:110px",
+									new String[]{NameFormatUtil.formatLayerKind(sample.get(RefSample.WASTE_TYPE))}),
+							HtmlFactory.createCellAsString("NormalCenter", "width:50px",
+									new String[]{sample.get(RefSample.GRANULATION)}),
+							HtmlFactory.createCellAsString("Normal", "left",
+									new String[]{sample.get(RefSample.COLOR), TextFormatUtil.printLineBreak(),
+											sample.get(RefSample.SMELL), TextFormatUtil.printLineBreak(),
+											sample.get(RefSample.SOIL_TYPE)}),
+							HtmlFactory.createCellAsString("NormalCenter",
+									new String[]{probe.get(RefProbe.ID)}),
+							HtmlFactory.createCellAsString("NormalCenter",
+									new String[]{TextFormatUtil.formatDepth(sample.get(RefSample.DEPTH_START),
+											sample.get(RefSample.DEPTH_END))}),
+							HtmlFactory.createCellAsString("NormalCenter",
+									new String[]{probe.get(RefProbe.TOP_EDGE)})
 					});
 
 					linesPerPage++;
@@ -159,6 +150,12 @@ public final class SamplingProtocol extends Appendix
 			}
 		}
 		addToTemplate(this.table.appendTag());
+	}
+
+	@Override
+	public void constructTemplate(DataTable dataTable)
+	{
+
 	}
 
 	/**
@@ -184,14 +181,14 @@ public final class SamplingProtocol extends Appendix
 			{
 				sbt.automization.data.refactoring.Sample sample = formattedSamples.get(i);
 
-				if ("GOB".equals(sample.get(Sample.OUTCROP)))
+				if ("GOB".equals(sample.get(RefSample.OUTCROP)))
 				{
 					if (formattedSamples.size() <= i + 1) break;
-					if (sample.get(Sample.WASTE_TYPE).equals(formattedSamples.get(i + 1).get(Sample.WASTE_TYPE)))
+					if (sample.get(RefSample.WASTE_TYPE).equals(formattedSamples.get(i + 1).get(RefSample.WASTE_TYPE)))
 					{
-						formattedSamples.get(i + 1).add(Sample.DEPTH_START.getKey(),
-								sample.get(Sample.DEPTH_START));
-						formattedSamples.get(i + 1).add(Sample.GRANULATION.getKey(), "");
+						formattedSamples.get(i + 1).add(RefSample.DEPTH_START.getKey(),
+								sample.get(RefSample.DEPTH_START));
+						formattedSamples.get(i + 1).add(RefSample.GRANULATION.getKey(), "");
 						formattedSamples.remove(sample);
 						i--;
 					}

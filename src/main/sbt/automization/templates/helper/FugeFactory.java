@@ -1,7 +1,8 @@
 package sbt.automization.templates.helper;
 
-import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.ReferenceKey;
+import sbt.automization.data.refactoring.references.RefProbe;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 
@@ -15,14 +16,14 @@ public final class FugeFactory extends ARowFactory
     }
 
     @Override
-    public String createLegendRow(List<ExplorationSite> explorationSites)
+    public String createLegendRow(List<DataTable> dataTables)
     {
-        int size = Integer.valueOf(headerCellWidth) + explorationSites.size()* Integer.valueOf(normalCellWidth);
+        int size = Integer.valueOf(headerCellWidth) + dataTables.size()* Integer.valueOf(normalCellWidth);
 
         return null;
     }
 
-    public String createAufschlussRow(List<ExplorationSite> explorationSites)
+    public String createAufschlussRow(List<DataTable> dataTables)
     {
         //Erkundungsstellen Aufschlussart
         HtmlRow row = new HtmlRow.Builder()
@@ -35,13 +36,13 @@ public final class FugeFactory extends ARowFactory
                         .appendTag())
                 .build();
 
-        for (ExplorationSite explorationSite :
-                explorationSites)
+        for (DataTable dataTable :
+		        dataTables)
         {
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", normalCellClass)
-                    .appendContent(explorationSite.getInformation(ReferenceKey.SITE_OUTCROP_OB))
+                    .appendContent(dataTable.get(RefProbe.OUTCROP_GOB))
                     .build();
 
             row.appendContent(cell.appendTag());

@@ -4,8 +4,8 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import sbt.automization.data.refactoring.references.*;
-import sbt.automization.data.refactoring.references.Probe;
-import sbt.automization.data.refactoring.references.Sample;
+import sbt.automization.data.refactoring.references.RefProbe;
+import sbt.automization.data.refactoring.references.RefSample;
 import sbt.automization.util.CsvParser;
 
 import java.io.File;
@@ -31,8 +31,8 @@ public class ReferenceTest {
     {
         List<String> missingReferences = new ArrayList<>();
 
-        Sample[] samples = Sample.values();
-        for (Sample reference : samples) {
+        RefSample[] refSamples = RefSample.values();
+        for (RefSample reference : refSamples) {
             String key = reference.getKey();
             if (! header.contains(key))
             {
@@ -48,8 +48,8 @@ public class ReferenceTest {
     {
         List<String> missingReferences = new ArrayList<>();
 
-        Probe[] probes = Probe.values();
-        for (Probe reference : probes) {
+        RefProbe[] refProbes = RefProbe.values();
+        for (RefProbe reference : refProbes) {
             String key = reference.getKey();
             if (! header.contains(key))
             {
@@ -65,8 +65,8 @@ public class ReferenceTest {
     {
         List<String> missingReferences = new ArrayList<>();
 
-        Chemistry[] chemistry = Chemistry.values();
-        for (Chemistry reference : chemistry) {
+        RefChemistry[] refChemistry = RefChemistry.values();
+        for (RefChemistry reference : refChemistry) {
             String key = reference.getKey();
             if (! header.contains(key))
             {
@@ -82,8 +82,8 @@ public class ReferenceTest {
     {
         List<String> missingReferences = new ArrayList<>();
 
-        RuK[] ruK = RuK.values();
-        for (RuK reference : ruK) {
+        RefRuK[] refRuK = RefRuK.values();
+        for (RefRuK reference : refRuK) {
             String key = reference.getKey();
             if (! header.contains(key))
             {
@@ -99,8 +99,8 @@ public class ReferenceTest {
     {
         List<String> missingReferences = new ArrayList<>();
 
-        LP[] loadPlate = LP.values();
-        for (LP reference : loadPlate) {
+        RefLP[] loadPlate = RefLP.values();
+        for (RefLP reference : loadPlate) {
             String key = reference.getKey();
             if (! header.contains(key))
             {

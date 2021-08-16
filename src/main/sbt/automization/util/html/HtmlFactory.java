@@ -8,7 +8,7 @@ public class HtmlFactory
 {
 	private HtmlFactory(){}
 
-	public static String createCell(String classID, int width, int height, int rowspan, int colspan, String[] content)
+	public static String createCellAsString(String classID, int width, int height, int rowspan, int colspan, String[] content)
 	{
 		HtmlCell cell = new HtmlCell.Builder()
 				.appendAttribute("class", classID)
@@ -26,7 +26,7 @@ public class HtmlFactory
 		return cell.appendTag();
 	}
 
-	public static String createCell(String classID, int width, int rowspan, int colspan, String[] content)
+	public static String createCellAsString(String classID, int width, int rowspan, int colspan, String[] content)
 	{
 		HtmlCell cell = new HtmlCell.Builder()
 				.appendAttribute("class", classID)
@@ -43,7 +43,7 @@ public class HtmlFactory
 		return cell.appendTag();
 	}
 
-	public static String createCell(String classID, String[] content)
+	public static String createCellAsString(String classID, String[] content)
 	{
 		HtmlCell cell = new HtmlCell.Builder()
 				.appendAttribute("class", classID)
@@ -57,7 +57,7 @@ public class HtmlFactory
 		return cell.appendTag();
 	}
 
-	public static String createCell(String classID, int rowspan, int colspan, String[] content)
+	public static String createCellAsString(String classID, int rowspan, int colspan, String[] content)
 	{
 		HtmlCell cell = new HtmlCell.Builder()
 				.appendAttribute("class", classID)
@@ -73,7 +73,7 @@ public class HtmlFactory
 		return cell.appendTag();
 	}
 
-	public static String createCell(String classID, int width, String[] content)
+	public static String createCellAsString(String classID, int width, String[] content)
 	{
 		HtmlCell cell = new HtmlCell.Builder()
 				.appendAttribute("class", classID)
@@ -88,7 +88,7 @@ public class HtmlFactory
 		return cell.appendTag();
 	}
 
-	public static String createCell(String classID, int width, String align, String[] content)
+	public static String createCellAsString(String classID, int width, String align, String[] content)
 	{
 		HtmlCell cell = new HtmlCell.Builder()
 				.appendAttribute("class", classID)
@@ -104,7 +104,7 @@ public class HtmlFactory
 		return cell.appendTag();
 	}
 
-	public static String createCell(String classID, String style, String[] content)
+	public static String createCellAsString(String classID, String style, String[] content)
 	{
 		HtmlCell cell = new HtmlCell.Builder()
 				.appendAttribute("class", classID)
@@ -119,7 +119,22 @@ public class HtmlFactory
 		return cell.appendTag();
 	}
 
-	public static String createCell(String classID, String style, int rowspan, int colspan, String[] content)
+	public static HtmlCell createCell(String classID, String style, String[] content)
+	{
+		HtmlCell cell = new HtmlCell.Builder()
+				.appendAttribute("class", classID)
+				.appendAttribute("style", style)
+				.build();
+
+		for (String line : content)
+		{
+			cell.appendContent(line);
+		}
+
+		return cell;
+	}
+
+	public static String createCellAsString(String classID, String style, int rowspan, int colspan, String[] content)
 	{
 		HtmlCell cell = new HtmlCell.Builder()
 				.appendAttribute("class", classID)
@@ -322,6 +337,33 @@ public class HtmlFactory
 		}
 
 		return row.appendTag();
+	}
+
+	public static HtmlRow createRow(HtmlCell[] content)
+	{
+		HtmlRow row = new HtmlRow.Builder()
+				.build();
+
+		for (HtmlCell cell : content)
+		{
+			row.appendContent(cell.appendTag());
+		}
+
+		return row;
+	}
+
+	public static HtmlRow createRow(String classID, HtmlCell[] content)
+	{
+		HtmlRow row = new HtmlRow.Builder()
+				.appendAttribute("class", classID)
+				.build();
+
+		for (HtmlCell cell : content)
+		{
+			row.appendContent(cell.appendTag());
+		}
+
+		return row;
 	}
 
 

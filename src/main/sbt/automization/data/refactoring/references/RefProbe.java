@@ -1,6 +1,6 @@
 package sbt.automization.data.refactoring.references;
 
-public enum Probe implements Reference
+public enum RefProbe implements Reference
 {
 	EXTRACTION
 			{

@@ -1,6 +1,6 @@
 package sbt.automization.data.refactoring.references;
 
-public enum RuK implements Reference
+public enum RefRuK implements Reference
 {
 	ID
 			{

@@ -1,10 +1,11 @@
 package sbt.automization.templates.appendix.site;
 
-import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.refactoring.references.Chemistry;
-import sbt.automization.data.refactoring.references.Probe;
-import sbt.automization.data.refactoring.references.Sample;
+import sbt.automization.data.refactoring.Probe;
+import sbt.automization.data.refactoring.Sample;
+import sbt.automization.data.refactoring.references.RefChemistry;
+import sbt.automization.data.refactoring.references.RefProbe;
+import sbt.automization.data.refactoring.references.RefSample;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.templates.Outcrop;
 import sbt.automization.templates.appendix.Appendix;
@@ -18,40 +19,6 @@ public final class Topsoil extends Appendix
 	private String outcrop = "";
 
 	@Override
-	public void constructTable(final List<ExplorationSite> sites)
-	{
-
-	}	private void setOutcrop(DataTable dataTable)
-	{
-		outcrop = dataTable.get(Probe.OUTCROP_UG_OH_BA);
-	}
-
-	@Override
-	public void constructTable(final ExplorationSite site)
-	{
-
-	}	@Override
-	public void constructTemplate(DataTable dataTable)
-	{
-		setOutcrop(dataTable);
-		HtmlTable table = constructAndGetTableObject();
-
-		if (dataTable instanceof sbt.automization.data.refactoring.Probe)
-		{
-			sbt.automization.data.refactoring.Probe probe = (sbt.automization.data.refactoring.Probe) dataTable;
-			List<sbt.automization.data.refactoring.Sample> samplesOfOutcrop = probe.getSamplesBy(Sample.OUTCROP, Outcrop.OH.toString());
-
-			for (sbt.automization.data.refactoring.Sample sample : samplesOfOutcrop)
-			{
-				String row = createRow(sample);
-				table.appendContent(row);
-			}
-		}
-
-		addToTemplate(table.appendTag());
-	}
-
-	@Override
 	public String getExportFileName()
 	{
 		return null;
@@ -63,23 +30,49 @@ public final class Topsoil extends Appendix
 
 	}
 
-	private String createRow(sbt.automization.data.refactoring.Sample sample)
+	@Override
+	public void constructTemplate(DataTable dataTable)
+	{
+		setOutcrop(dataTable);
+		HtmlTable table = constructAndGetTableObject();
+
+		if (dataTable instanceof Probe)
+		{
+			Probe probe = (Probe) dataTable;
+			List<Sample> samplesOfOutcrop = probe.getSamplesBy(RefSample.OUTCROP, Outcrop.OH.toString());
+
+			for (Sample sample : samplesOfOutcrop)
+			{
+				String row = createRow(sample);
+				table.appendContent(row);
+			}
+		}
+
+		addToTemplate(table.appendTag());
+	}
+
+	private void setOutcrop(DataTable dataTable)
+	{
+		outcrop = dataTable.get(RefProbe.OUTCROP_UG_OH_BA);
+	}
+
+	private String createRow(Sample sample)
 	{
 		String row = HtmlFactory.createRow("Normal", new String[]{
-				HtmlFactory.createCell("Normal",
-						new String[]{TextFormatUtil.formatSoilGroup(sample.get(Sample.TYPE))}),
-				HtmlFactory.createCell("NormalCenter",
-						new String[]{sample.get(Sample.THICKNESS)}),
-				HtmlFactory.createCell("NormalCenter",
-						new String[]{sample.get(Sample.DEPTH_END)}),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(Sample.CHEMISTRY_ID, Chemistry.MUFV)),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(Sample.CHEMISTRY_ID, Chemistry.LAGA_BO)),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(Sample.CHEMISTRY_ID, Chemistry.LAGA_RC)),
-				HtmlFactory.createCell("NormalCenter",
-						new String[]{sample.get(Sample.WATER_CONTENT)}),
-				HtmlFactory.createCell("NormalCenter",
-						new String[]{sample.get(Sample.WATER_PROCTOR)}),
-				HtmlFactory.createCell("NormalCenter",
+				HtmlFactory.createCellAsString("Normal",
+						new String[]{TextFormatUtil.formatSoilGroup(sample.get(RefSample.TYPE))}),
+				HtmlFactory.createCellAsString("NormalCenter",
+						new String[]{sample.get(RefSample.THICKNESS)}),
+				HtmlFactory.createCellAsString("NormalCenter",
+						new String[]{sample.get(RefSample.DEPTH_END)}),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, RefChemistry.MUFV)),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, RefChemistry.LAGA_BO)),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, RefChemistry.LAGA_RC)),
+				HtmlFactory.createCellAsString("NormalCenter",
+						new String[]{sample.get(RefSample.WATER_CONTENT)}),
+				HtmlFactory.createCellAsString("NormalCenter",
+						new String[]{sample.get(RefSample.WATER_PROCTOR)}),
+				HtmlFactory.createCellAsString("NormalCenter",
 						new String[]{"-"})
 		});
 

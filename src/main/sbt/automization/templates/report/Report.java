@@ -1,6 +1,5 @@
 package sbt.automization.templates.report;
 
-import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.templates.HtmlTemplate;
 import sbt.automization.templates.Outcrop;
@@ -59,37 +58,25 @@ public abstract class Report implements HtmlTemplate
 		this.outcrop = outcrop;
 	}
 
-	@Override
-	public void constructTemplate(List<DataTable> dataTables)
-	{
-
-	}
-
-	@Override
-	public void constructTemplate(DataTable dataTable)
-	{
-
-	}
-
 	/**
 	 * Method used to retrieve all exploration sites containing an outcrop and dividing them into
 	 * A3 paper sized portions.
 	 *
-	 * @param sites a List of ExplorationSites
+	 * @param tables a List of ExplorationSites
 	 * @return a Collection of Lists
 	 */
-	public Collection<List<ExplorationSite>> divideExplorationSites(List<ExplorationSite> sites)
+	public Collection<List<DataTable>> divideExplorationSites(List<DataTable> tables)
 	{
-		List<ExplorationSite> explorationSitesWhichIncludeOutcrop = Util.getExplorationSitesWhichIncludeOutcrop(sites, outcrop.toString());
+		List<DataTable> probesWhichIncludeOutcrop = Util.getProbesWhichIncludeOutcrop(tables, outcrop.toString());
 
-		Collection<List<ExplorationSite>> dividedExplorationSites = Util.separateBasedOnSize(explorationSitesWhichIncludeOutcrop, 17);
+		Collection<List<DataTable>> dividedExplorationSites = Util.separateBasedOnSize(probesWhichIncludeOutcrop, 17);
 
 		return dividedExplorationSites;
 	}
 
-	abstract String buildTechnicalFeatures(List<ExplorationSite> explorationSites);
+	abstract String buildTechnicalFeatures(List<DataTable> dataTables);
 
-	abstract String buildEnvironmentTechnicalFeatures(List<ExplorationSite> explorationSites);
+	abstract String buildEnvironmentTechnicalFeatures(List<DataTable> dataTables);
 
 	public HtmlTable constructAndGetTableObject()
 	{

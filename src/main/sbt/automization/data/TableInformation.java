@@ -12,7 +12,7 @@ import java.util.Map;
 public final class TableInformation
 {
 	public static String exportPath;
-	private final List<ExplorationSite> explorationSites;
+	private final List<DataTableOld> dataTables;
 
 	/**
 	 * Constructor of the TableInformation class. Uses the parsed excel data to create all available ExplorationSites.
@@ -22,7 +22,7 @@ public final class TableInformation
 	 */
 	public TableInformation(List<Map<String, String>> parsedSiteInformation, String fileExportPath)
 	{
-		explorationSites = TableFactory.createExplorationSites(parsedSiteInformation);
+		dataTables = TableFactory.createExplorationSites(parsedSiteInformation);
 		exportPath = fileExportPath;
 	}
 
@@ -41,8 +41,8 @@ public final class TableInformation
 	 *
 	 * @return the list of parsed exploration sites
 	 */
-	public List<ExplorationSite> getExplorationSites()
+	public List<DataTableOld> getExplorationSites()
 	{
-		return explorationSites;
+		return dataTables;
 	}
 }

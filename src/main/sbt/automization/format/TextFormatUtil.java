@@ -1,8 +1,12 @@
 package sbt.automization.format;
 
-import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.LayerSample;
+import sbt.automization.data.refactoring.Probe;
+import sbt.automization.data.refactoring.Sample;
+import sbt.automization.data.refactoring.references.RefRuK;
+import sbt.automization.data.refactoring.references.RefSample;
 import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
@@ -105,20 +109,25 @@ public final class TextFormatUtil
 	 * TODO MOVE to ES
 	 * Method calculates the thickness of a specific outcrop from an exploration site.
 	 *
-	 * @param explorationSite an ExplorationSite object
-	 * @param outcrop         a String characterizing a specific outcrop like GOB / TOB ...
+	 * @param samples an ExplorationSite object
 	 * @return the thickness as String
 	 */
-	public static String formatSiteOutcropThickness(final ExplorationSite explorationSite, String outcrop)
+	public static String printThicknessOfSamples(List<Sample> samples)
+	{
+		Double thicknessOfSamples = measureThicknessOfSamples(samples);
+
+		String height = String.valueOf(thicknessOfSamples);
+		return height.replace(".", ",");
+	}
+
+	public static Double measureThicknessOfSamples(List<Sample> samples)
 	{
 		double heightValue = 0.0;
-		List<LayerSample> layersInOutcrop = explorationSite.getLayersWithOutcrop(outcrop);
-		for (LayerSample layerSample : layersInOutcrop)
+		for (DataTable table : samples)
 		{
-			heightValue = heightValue + Double.parseDouble(layerSample.getInformation(ReferenceKey.LAYER_THICKNESS).replace(",", "."));
+			heightValue = heightValue + Double.parseDouble(table.get(RefSample.THICKNESS).replace(",", "."));
 		}
-		String height = String.valueOf(heightValue);
-		return height.replace(".", ",");
+		return heightValue;
 	}
 
 	/**
@@ -303,25 +312,25 @@ public final class TextFormatUtil
 	/**
 	 * Method formats and strings together each layer from an exploration site that is related to an outcrop like "TOB".
 	 *
-	 * @param explorationSite an ExplorationSite
+	 * @param dataTable an ExplorationSite
 	 * @return a html code as String containing all layers from an outcrop
 	 */
-	public static String formatOutcropLayers(final ExplorationSite explorationSite, final String outcrop)
+	public static String formatOutcropLayers(final DataTable dataTable, final String outcrop)
 	{
 		StringBuilder formattedLayerMaterial = new StringBuilder();
 
-		List<LayerSample> outcropLayerSamples = explorationSite.getLayersWithOutcrop(outcrop);
+		List<Sample> outcropLayerSamples = ((Probe) dataTable).getSamplesBy(RefSample.OUTCROP, outcrop);
 		int size = outcropLayerSamples.size();
 
 		for (int i = 0 ; i < size ; i++)
 		{
-			LayerSample layerSample = outcropLayerSamples.get(i);
+			Sample sample = outcropLayerSamples.get(i);
 
-			formattedLayerMaterial.append(formatLayerAttributes(layerSample.getInformation(ReferenceKey.LAYER_TYPE),
-					layerSample.getInformation(ReferenceKey.LAYER_ROUNDING_GRADATION),
-					layerSample.getInformation(ReferenceKey.LAYER_GRANULATION)));
+			formattedLayerMaterial.append(formatLayerAttributes(sample.get(RefSample.TYPE),
+					sample.get(RefSample.ROUNDING_GRADATION),
+					sample.get(RefSample.GRANULATION)));
 
-			formattedLayerMaterial.append(formatDepthSpecified(layerSample.getInformation(ReferenceKey.LAYER_DEPTH_START), layerSample.getInformation(ReferenceKey.LAYER_DEPTH_END)));
+			formattedLayerMaterial.append(formatDepthSpecified(sample.get(RefSample.DEPTH_START), sample.get(RefSample.DEPTH_END)));
 
 			if (i + 1 < size)
 			{
@@ -409,39 +418,43 @@ public final class TextFormatUtil
 	/**
 	 * TODO chain layers together
 	 *
-	 * @param explorationSite
+	 * @param dataTable
 	 * @param outcrop
 	 * @param tag
 	 * @return
 	 */
-	public static String printLayerInformationWithDepth(final ExplorationSite explorationSite, final String outcrop, final String tag)
+	public static String printLayerInformationWithDepth(final DataTable dataTable, final String outcrop, final String tag)
 	{
-		List<LayerSample> layerSamples = LayerFormatUtil.combineLayers(explorationSite, outcrop, tag);
+		//TODO List<LayerSample> layerSamples = LayerFormatUtil.combineLayers(dataTable, outcrop, tag);
+
+		if (!(dataTable instanceof Probe)) return "";
+
+		List<Sample> samples = ((Probe) dataTable).getSamplesBy(RefSample.OUTCROP, outcrop);
 
 		StringBuilder stringBuilder = new StringBuilder();
 
-		int number = layerSamples.size();
+		int number = samples.size();
 
 		for (int i = 0 ; i < number ; i++)
 		{
-			LayerSample layerSample = layerSamples.get(i);
+			Sample sample = samples.get(i);
 
 			String formattedTag;
 
 			if (tag.contains("CHEMIE"))
 			{
-				formattedTag = printChemistryMarkup(layerSample.getInformation(tag));
+				formattedTag = printChemistryMarkup(sample.get(tag));
 			} else if (tag.contains("FEUCHTIGKEIT"))
 			{
 				formattedTag = new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(TextFormatUtil.formatProctor(layerSample.getInformation(ReferenceKey.LAYER_WATER_PROCTOR)))
+						.appendContent(TextFormatUtil.formatProctor(sample.get(RefSample.WATER_PROCTOR)))
 						.build().appendTag();
 			} else
 			{
 				formattedTag = new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(layerSample.getInformation(tag))
+						.appendContent(sample.get(tag))
 						.build().appendTag();
 			}
 
@@ -452,17 +465,17 @@ public final class TextFormatUtil
 
 			stringBuilder.append(formattedTag);
 			stringBuilder.append(printLineEmpty());
-			stringBuilder.append(formatDepthSpecified(layerSample.getInformation(ReferenceKey.LAYER_DEPTH_START),
-					layerSample.getInformation(ReferenceKey.LAYER_DEPTH_END)));
+			stringBuilder.append(formatDepthSpecified(sample.get(RefSample.DEPTH_START),
+					sample.get(RefSample.DEPTH_END)));
 
 		}
 
 		return stringBuilder.toString();
 	}
 
-	public static String printLayerInformationWithDepth(final ExplorationSite explorationSite, final String outcrop, final ReferenceKey tag)
+	public static String printLayerInformationWithDepth(final DataTable dataTable, final String outcrop, final ReferenceKey tag)
 	{
-		return printLayerInformationWithDepth(explorationSite, outcrop, tag.getIdentifier());
+		return printLayerInformationWithDepth(dataTable, outcrop, tag.getIdentifier());
 	}
 
 	public static String printChemistryMarkup(final String classification)
@@ -594,15 +607,15 @@ public final class TextFormatUtil
 		}
 	}
 
-	public static String printRukLayers(final ExplorationSite explorationSite, final String outcrop)
+	public static String printRukLayers(final DataTable dataTable, final String outcrop)
 	{
-		List<LayerSample> layersWithOutcrop = explorationSite.getLayersWithOutcrop(outcrop);
+		List<Sample> samples = ((Probe) dataTable).getSamplesBy(RefSample.OUTCROP, outcrop);
 
 		StringBuilder stringBuilder = new StringBuilder();
 
-		for (LayerSample layerSample : layersWithOutcrop)
+		for (Sample sample : samples)
 		{
-			String rukValue = layerSample.getInformation(ReferenceKey.LAYER_RUK);
+			String rukValue = sample.getParameterValueBy(RefSample.RUK_ID, RefRuK.VALUE);
 
 			if (! "-".equals(rukValue) && ! "".equals(rukValue))
 			{
@@ -613,7 +626,7 @@ public final class TextFormatUtil
 
 				HtmlText layerKind = new HtmlText.Builder()
 						.appendAttribute("class", "Normal6")
-						.appendContent(layerSample.getInformation(ReferenceKey.LAYER_TYPE))
+						.appendContent(sample.get(RefSample.TYPE))
 						.build();
 
 				HtmlText rukText = new HtmlText.Builder()

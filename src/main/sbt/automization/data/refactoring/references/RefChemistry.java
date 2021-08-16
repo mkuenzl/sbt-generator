@@ -1,6 +1,6 @@
 package sbt.automization.data.refactoring.references;
 
-public enum Chemistry implements Reference
+public enum RefChemistry implements Reference
 {
 	WASTE_WOOD_ORDINANCE
 			{

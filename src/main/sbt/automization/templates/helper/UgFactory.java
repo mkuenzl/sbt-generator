@@ -1,7 +1,8 @@
 package sbt.automization.templates.helper;
 
-import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.ReferenceKey;
+import sbt.automization.data.refactoring.references.RefProbe;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
@@ -16,7 +17,7 @@ public final class UgFactory extends ARowFactory
 		super("UG");
 	}
 
-	public String createTotalSizeRow(List<ExplorationSite> explorationSites)
+	public String createTotalSizeRow(List<DataTable> dataTables)
 	{
 		//Erkundungsstellen Aufschlussart
 		HtmlRow row = new HtmlRow.Builder()
@@ -35,14 +36,14 @@ public final class UgFactory extends ARowFactory
 				.build();
 
 
-		for (ExplorationSite explorationSite :
-				explorationSites)
+		for (DataTable dataTable :
+				dataTables)
 		{
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(String.valueOf(explorationSite.getThickness()).replace(".", ","))
+					//.appendContent(String.valueOf(dataTable.getThickness()).replace(".", ","))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -51,7 +52,7 @@ public final class UgFactory extends ARowFactory
 		return row.appendTag();
 	}
 
-	public String createTargetDepthRow(List<ExplorationSite> explorationSites)
+	public String createTargetDepthRow(List<DataTable> dataTables)
 	{
 		//ZIELTIEFE
 		HtmlRow row = new HtmlRow.Builder()
@@ -71,9 +72,9 @@ public final class UgFactory extends ARowFactory
 
 		//Wenn GesamtDicke gleich Zieltiefe, dann grün ansonsten rot da Zieltiefe nicht erreicht wurde
 
-		for (ExplorationSite explorationSite : explorationSites)
+		for (DataTable dataTable : dataTables)
 		{
-			String targetDepth = explorationSite.getInformation(ReferenceKey.SITE_TARGET_DEPTH);
+			String targetDepth = dataTable.get(RefProbe.TARGET_DEPTH);
 			HtmlCell cell;
 
 			if("-".equals(targetDepth)){
@@ -88,7 +89,8 @@ public final class UgFactory extends ARowFactory
 				String backgroundColor;
 				String textColor;
 
-				if (depth <= explorationSite.getThickness()) {
+				double thickness = 0; //dataTable.getThickness() TODO
+				if (depth <= thickness) {
 					backgroundColor = "#00FF00";
 					textColor = "black";
 				} else {
@@ -116,7 +118,7 @@ public final class UgFactory extends ARowFactory
 		return row.appendTag();
 	}
 
-	public String createAufschlussRow(List<ExplorationSite> explorationSites)
+	public String createAufschlussRow(List<DataTable> dataTables)
 	{
 		//Erkundungsstellen Aufschlussart
 		HtmlRow row = new HtmlRow.Builder()
@@ -129,13 +131,13 @@ public final class UgFactory extends ARowFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite :
-				explorationSites)
+		for (DataTable dataTable :
+				dataTables)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_OUTCROP_UG_OH_BA))
+					.appendContent(dataTable.get(RefProbe.OUTCROP_UG_OH_BA))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -145,16 +147,16 @@ public final class UgFactory extends ARowFactory
 	}
 
 	@Override
-	public String createLegendRow(List<ExplorationSite> explorationSites)
+	public String createLegendRow(List<DataTable> dataTables)
 	{
-		int size = Integer.valueOf(headerCellWidth) + explorationSites.size()* Integer.valueOf(normalCellWidth);
+		int size = Integer.valueOf(headerCellWidth) + dataTables.size()* Integer.valueOf(normalCellWidth);
 
 		//Umwelttechnische Merkmale Trennzeile
 		HtmlRow rowLegende = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", headerCellClass)
-						.appendAttribute("colspan", String.valueOf(1 + explorationSites.size()))
+						.appendAttribute("colspan", String.valueOf(1 + dataTables.size()))
 						.appendAttribute("width", String.valueOf(size))
 						.appendContent("Anmerkungen:")
 						.appendContent(TextFormatUtil.printLineBreak())

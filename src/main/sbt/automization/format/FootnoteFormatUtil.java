@@ -1,9 +1,8 @@
 package sbt.automization.format;
 
-import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.refactoring.DataTable;
+import sbt.automization.data.DataTableOld;
+import sbt.automization.data.refactoring.references.RefProbe;
 import sbt.automization.data.refactoring.references.Reference;
-import sbt.automization.data.refactoring.references.Probe;
 import sbt.automization.util.html.HtmlText;
 
 import java.util.ArrayList;
@@ -36,10 +35,10 @@ public final class FootnoteFormatUtil
 	/**
 	 * Method formats all footnotes related to an exploration site in the provided order.
 	 *
-	 * @param explorationSite an ExplorationSite object
+	 * @param dataTable an ExplorationSite object
 	 * @return a String of html code representing a list of footnotes
 	 */
-	public static String formatSiteFootnotes(final ExplorationSite explorationSite)
+	public static String formatSiteFootnotes(final DataTableOld dataTable)
 	{
 		int footnoteCounter = 1;
 		StringBuilder stringBuilder = new StringBuilder();
@@ -54,7 +53,7 @@ public final class FootnoteFormatUtil
 				.build()
 				.appendTag());
 
-		if ("#".equals(explorationSite.getInformation("ERK_LEITFADEN_AUSBAUASPHALT")))
+		if ("#".equals(dataTable.getInformation("ERK_LEITFADEN_AUSBAUASPHALT")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
@@ -65,7 +64,7 @@ public final class FootnoteFormatUtil
 					.appendTag());
 		}
 
-		if ("#".equals(explorationSite.getInformation("ERK_TEILWEISE_VERFESTIGT")))
+		if ("#".equals(dataTable.getInformation("ERK_TEILWEISE_VERFESTIGT")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
@@ -76,7 +75,7 @@ public final class FootnoteFormatUtil
 					.appendTag());
 		}
 
-		if ("#".equals(explorationSite.getInformation("ERK_UEBERSCHREITUNG_ORIENT")))
+		if ("#".equals(dataTable.getInformation("ERK_UEBERSCHREITUNG_ORIENT")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
@@ -89,7 +88,7 @@ public final class FootnoteFormatUtil
 					.appendTag());
 		}
 
-		if ("#".equals(explorationSite.getInformation("ERK_RAMMHINDERNIS")))
+		if ("#".equals(dataTable.getInformation("ERK_RAMMHINDERNIS")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
@@ -100,7 +99,7 @@ public final class FootnoteFormatUtil
 					.appendTag());
 		}
 
-		if ("#".equals(explorationSite.getInformation("ERK_KABELTRASSE")))
+		if ("#".equals(dataTable.getInformation("ERK_KABELTRASSE")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
@@ -111,7 +110,7 @@ public final class FootnoteFormatUtil
 					.appendTag());
 		}
 
-		if ("#".equals(explorationSite.getInformation("ERK_FREMDBESTANDTEILE")))
+		if ("#".equals(dataTable.getInformation("ERK_FREMDBESTANDTEILE")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
@@ -122,7 +121,7 @@ public final class FootnoteFormatUtil
 					.appendTag());
 		}
 
-		if ("#".equals(explorationSite.getInformation("ERK_GUENSTIGE_EINSTUFUNG")))
+		if ("#".equals(dataTable.getInformation("ERK_GUENSTIGE_EINSTUFUNG")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
@@ -133,7 +132,7 @@ public final class FootnoteFormatUtil
 					.appendTag());
 		}
 
-		if ("#".equals(explorationSite.getInformation("ERK_VERNACHLAESSIGUNG_LEITFAEHIGKEIT")))
+		if ("#".equals(dataTable.getInformation("ERK_VERNACHLAESSIGUNG_LEITFAEHIGKEIT")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
@@ -144,7 +143,7 @@ public final class FootnoteFormatUtil
 					.appendTag());
 		}
 
-		String erk_variable_footnote1 = explorationSite.getInformation("ERK_VARIABLE_FOOTNOTE1");
+		String erk_variable_footnote1 = dataTable.getInformation("ERK_VARIABLE_FOOTNOTE1");
 		if (erk_variable_footnote1 != null && ! erk_variable_footnote1.equals("#") && ! erk_variable_footnote1.equals("-"))
 		{
 			stringBuilder.append(new HtmlText.Builder()
@@ -156,7 +155,7 @@ public final class FootnoteFormatUtil
 					.appendTag());
 		}
 
-		String erk_variable_footnote2 = explorationSite.getInformation("ERK_VARIABLE_FOOTNOTE2");
+		String erk_variable_footnote2 = dataTable.getInformation("ERK_VARIABLE_FOOTNOTE2");
 		if (erk_variable_footnote2 != null && ! erk_variable_footnote2.equals("#") && ! erk_variable_footnote2.equals("-"))
 		{
 			stringBuilder.append(new HtmlText.Builder()
@@ -168,7 +167,7 @@ public final class FootnoteFormatUtil
 					.appendTag());
 		}
 
-		String erk_variable_footnote3 = explorationSite.getInformation("ERK_VARIABLE_FOOTNOTE3");
+		String erk_variable_footnote3 = dataTable.getInformation("ERK_VARIABLE_FOOTNOTE3");
 		if (erk_variable_footnote3 != null && ! erk_variable_footnote3.equals("#") && ! erk_variable_footnote3.equals("-"))
 		{
 			stringBuilder.append(new HtmlText.Builder()
@@ -181,7 +180,7 @@ public final class FootnoteFormatUtil
 		}
 
 
-		if (! "-".equals(explorationSite.getInformation("ERK_LP")))
+		if (! "-".equals(dataTable.getInformation("ERK_LP")))
 		{
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
@@ -196,30 +195,30 @@ public final class FootnoteFormatUtil
 		return stringBuilder.toString();
 	}
 
-	private static List<Probe> getFootnoteReferences()
+	private static List<RefProbe> getFootnoteReferences()
 	{
-		List<Probe> references = new ArrayList<>(){{
-			add(Probe.LP_ID);
+		List<RefProbe> references = new ArrayList<>(){{
+			add(RefProbe.LP_ID);
 			//TODO
 		}};
 
 		return references;
 	}
 
-	private static boolean checkExistenceOfFootnote(DataTable table, Reference reference)
+	private static boolean checkExistenceOfFootnote(sbt.automization.data.refactoring.DataTable table, Reference reference)
 	{
 		String footnote = table.get(reference);
 		return (footnote != null && ! footnote.equals("#") && ! footnote.equals("-") && ! footnote.equals(""));
 	}
 
-	public static String printFootnotes(DataTable table)
+	public static String printFootnotes(sbt.automization.data.refactoring.DataTable table)
 	{
 		StringBuilder stringBuilder = new StringBuilder();
 
 		stringBuilder.append(formatInformationFootnote())
-				.append(printFootnoteWithText(counter, "Messeinheit: Garmin eTrex 10, herstellerseitig angegebene Lagegenauigkeit ~ 3 m"));
+				.append(printFootnoteWithText(counter++, "Messeinheit: Garmin eTrex 10, herstellerseitig angegebene Lagegenauigkeit ~ 3 m"));
 
-		for (Probe footnoteReference : getFootnoteReferences())
+		for (RefProbe footnoteReference : getFootnoteReferences())
 		{
 			if (checkExistenceOfFootnote(table, footnoteReference))
 			{
@@ -229,12 +228,12 @@ public final class FootnoteFormatUtil
 		return stringBuilder.toString();
 	}
 
-	private static String printFootnoteForReference(DataTable table, Probe footnoteReference)
+	private static String printFootnoteForReference(sbt.automization.data.refactoring.DataTable table, RefProbe footnoteReference)
 	{
 		switch (footnoteReference)
 		{
 			case LP_ID:
-				return printFootnoteWithText(counter, new String[]{
+				return printFootnoteWithText(counter++, new String[]{
 						"Prüfergebnisse unter Berücksichtigung einer ca. 15 % Reduzierung aufgrund der Einspannung durch den ",
 						TextFormatUtil.printLineBreak(),
 						"gebundenen Oberbau"});
@@ -247,7 +246,7 @@ public final class FootnoteFormatUtil
 	{
 		return new HtmlText.Builder()
 				.appendAttribute("class", "Normal")
-				.appendContent(String.valueOf(id++))
+				.appendContent(String.valueOf(id))
 				.appendContent(".) ")
 				.build();
 	}

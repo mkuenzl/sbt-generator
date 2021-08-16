@@ -1,7 +1,9 @@
 package sbt.automization.templates.helper;
 
-import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.ReferenceKey;
+import sbt.automization.data.refactoring.references.RefProbe;
+import sbt.automization.data.refactoring.references.RefSample;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 
@@ -11,7 +13,7 @@ public final class HeapFactory extends ARowFactory
 {
 	public HeapFactory(){super("HAUFWERK");}
 
-	public String createOutcropRow(List<ExplorationSite> explorationSites)
+	public String createOutcropRow(List<DataTable> dataTables)
 	{
 		//Erkundungsstellen Aufschlussart
 		HtmlRow row = new HtmlRow.Builder()
@@ -24,13 +26,13 @@ public final class HeapFactory extends ARowFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite :
-				explorationSites)
+		for (DataTable dataTable :
+				dataTables)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_OUTCROP_UG_OH_BA))
+					.appendContent(dataTable.get(RefProbe.OUTCROP_UG_OH_BA))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -39,7 +41,7 @@ public final class HeapFactory extends ARowFactory
 		return row.appendTag();
 	}
 
-	public String createMaterialRow(List<ExplorationSite> explorationSites)
+	public String createMaterialRow(List<DataTable> dataTables)
 	{
 		//Zonen Material 1 - Anzahl Schichten
 		HtmlRow row = new HtmlRow.Builder()
@@ -52,12 +54,12 @@ public final class HeapFactory extends ARowFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : explorationSites)
+		for (DataTable dataTable : dataTables)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_HEAP_MATERIAL))
+					.appendContent(dataTable.get(RefSample.TYPE))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -66,16 +68,16 @@ public final class HeapFactory extends ARowFactory
 	}
 
 	@Override
-	public String createLegendRow(List<ExplorationSite> explorationSites)
+	public String createLegendRow(List<DataTable> dataTables)
 	{
-		int size = Integer.valueOf(headerCellWidth) + explorationSites.size()* Integer.valueOf(normalCellWidth);
+		int size = Integer.valueOf(headerCellWidth) + dataTables.size()* Integer.valueOf(normalCellWidth);
 
 		//Umwelttechnische Merkmale Trennzeile
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", headerCellClass)
-						.appendAttribute("colspan", String.valueOf(1 + explorationSites.size()))
+						.appendAttribute("colspan", String.valueOf(1 + dataTables.size()))
 						.appendAttribute("width", String.valueOf(size))
 						.appendContent("Für die angegebenen Tiefen (T[]) gilt die Einheit cm.")
 						.build()

@@ -1,7 +1,7 @@
 package sbt.automization.data.refactoring;
 
-import sbt.automization.data.refactoring.references.Probe;
-import sbt.automization.data.refactoring.references.Sample;
+import sbt.automization.data.refactoring.references.RefProbe;
+import sbt.automization.data.refactoring.references.RefSample;
 
 import java.util.*;
 
@@ -71,10 +71,10 @@ public final class DataTableFactory
 
 			for (DataTable parameter : parameters)
 			{
-				if (table.isRelatedBy(Sample.CHEMISTRY_ID, parameter)) {
+				if (table.isRelatedBy(RefSample.CHEMISTRY_ID, parameter)) {
 					table.addParameter((Parameter) parameter);
 				}
-				if (table.isRelatedBy(Sample.RUK_ID, parameter)) {
+				if (table.isRelatedBy(RefSample.RUK_ID, parameter)) {
 					table.addParameter((Parameter) parameter);
 				}
 			}
@@ -89,7 +89,7 @@ public final class DataTableFactory
 
 			for (DataTable parameter : parameters)
 			{
-				if (table.isRelatedBy(Probe.LP_ID, parameter)) {
+				if (table.isRelatedBy(RefProbe.LP_ID, parameter)) {
 					table.addParameter((Parameter) parameter);
 				}
 			}
@@ -104,7 +104,7 @@ public final class DataTableFactory
 
 			for (DataTable sample : samples)
 			{
-				if (table.isRelatedBy(Probe.ID, sample)) {
+				if (table.isRelatedBy(RefProbe.ID, sample)) {
 					table.addSample((sbt.automization.data.refactoring.Sample) sample);
 				}
 			}

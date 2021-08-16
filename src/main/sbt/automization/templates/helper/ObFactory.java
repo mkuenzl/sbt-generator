@@ -1,8 +1,12 @@
 package sbt.automization.templates.helper;
 
-import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.LayerSample;
+import sbt.automization.data.refactoring.Probe;
+import sbt.automization.data.refactoring.Sample;
+import sbt.automization.data.refactoring.references.RefProbe;
+import sbt.automization.data.refactoring.references.RefSample;
 import sbt.automization.format.HtmlCellFormatUtil;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
@@ -19,14 +23,14 @@ public final class ObFactory extends ARowFactory
 	}
 
 	@Override
-	public String createLegendRow(List<ExplorationSite> explorationSites)
+	public String createLegendRow(List<DataTable> dataTables)
 	{
-		int size = Integer.valueOf(headerCellWidth) + explorationSites.size()* Integer.valueOf(normalCellWidth);
+		int size = Integer.valueOf(headerCellWidth) + dataTables.size()* Integer.valueOf(normalCellWidth);
 
 		return null;
 	}
 
-	public String createAufschlussRow(List<ExplorationSite> explorationSites)
+	public String createAufschlussRow(List<DataTable> dataTables)
 	{
 		//Erkundungsstellen Aufschlussart
 		HtmlRow row = new HtmlRow.Builder()
@@ -39,13 +43,13 @@ public final class ObFactory extends ARowFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite :
-				explorationSites)
+		for (DataTable dataTable :
+				dataTables)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_OUTCROP_OB))
+					.appendContent(dataTable.get(RefProbe.OUTCROP_GOB))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -54,7 +58,7 @@ public final class ObFactory extends ARowFactory
 		return row.appendTag();
 	}
 
-	public String createSizeOBRow(List<ExplorationSite> explorationSites)
+	public String createSizeOBRow(List<DataTable> dataTables)
 	{
 		//Gesamtdicke Oberbau
 		HtmlRow row = new HtmlRow.Builder()
@@ -74,13 +78,16 @@ public final class ObFactory extends ARowFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite :
-				explorationSites)
+		for (DataTable dataTable :
+				dataTables)
 		{
+			Probe probe = (Probe) dataTable;
+			List<Sample> samples = probe.getSamplesBy(RefSample.OUTCROP, outcrop);
+
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.formatSiteOutcropThickness(explorationSite, outcrop))
+					.appendContent(TextFormatUtil.printThicknessOfSamples(samples))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -89,7 +96,7 @@ public final class ObFactory extends ARowFactory
 		return row.appendTag();
 	}
 
-	public String createRukRow(List<ExplorationSite> explorationSites)
+	public String createRukRow(List<DataTable> dataTables)
 	{
 		//RUK
 		HtmlRow row = new HtmlRow.Builder()
@@ -109,13 +116,13 @@ public final class ObFactory extends ARowFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite :
-				explorationSites)
+		for (DataTable dataTable :
+				dataTables)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printRukLayers(explorationSite, outcrop))
+					.appendContent(TextFormatUtil.printRukLayers(dataTable, outcrop))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -124,7 +131,7 @@ public final class ObFactory extends ARowFactory
 		return row.appendTag();
 	}
 
-	public String createRukEinzelWertRow(List<ExplorationSite> explorationSites)
+	public String createRukEinzelWertRow(List<DataTable> dataTables)
 	{
 		//RUK EinzelWert
 		HtmlRow row = new HtmlRow.Builder()
@@ -142,8 +149,8 @@ public final class ObFactory extends ARowFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite :
-				explorationSites)
+		for (DataTable dataTable :
+				dataTables)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -157,7 +164,7 @@ public final class ObFactory extends ARowFactory
 		return row.appendTag();
 	}
 
-	public String createPechQualitativRow(List<ExplorationSite> explorationSites)
+	public String createPechQualitativRow(List<DataTable> dataTables)
 	{
 		//Pechnachweis qualitativ
 		HtmlRow row = new HtmlRow.Builder()
@@ -172,13 +179,13 @@ public final class ObFactory extends ARowFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite :
-				explorationSites)
+		for (DataTable dataTable :
+				dataTables)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_PITCH_QUALITATIVE))
+					.appendContent(dataTable.get(RefProbe.PITCH_QUALITATIVE))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -186,7 +193,7 @@ public final class ObFactory extends ARowFactory
 		return row.appendTag();
 	}
 
-	public String createPechHalbQuantitativRow(List<ExplorationSite> explorationSites)
+	public String createPechHalbQuantitativRow(List<DataTable> dataTables)
 	{
 		//Pechnachweis quantitativ
 		HtmlRow row = new HtmlRow.Builder()
@@ -201,13 +208,13 @@ public final class ObFactory extends ARowFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite :
-				explorationSites)
+		for (DataTable dataTable :
+				dataTables)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_PITCH_HALF_QUANTITATIVE))
+					.appendContent(dataTable.get(RefProbe.PITCH_HALF_QUANTITATIVE))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -215,7 +222,7 @@ public final class ObFactory extends ARowFactory
 		return row.appendTag();
 	}
 
-	public String createPechQuantitativRow(List<ExplorationSite> explorationSites)
+	public String createPechQuantitativRow(List<DataTable> dataTables)
 	{
 		//Pechnachweis quantitativ
 		HtmlRow row = new HtmlRow.Builder()
@@ -230,13 +237,13 @@ public final class ObFactory extends ARowFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite :
-				explorationSites)
+		for (DataTable dataTable :
+				dataTables)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_PITCH_QUANTITATIVE))
+					.appendContent(dataTable.get(RefProbe.PITCH_QUANTITATIVE))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -244,7 +251,7 @@ public final class ObFactory extends ARowFactory
 		return row.appendTag();
 	}
 
-	public String createPechQuerschnittRows(List<ExplorationSite> explorationSites, boolean pitch)
+	public String createPechQuerschnittRows(List<DataTable> dataTables, boolean pitch)
 	{
 		StringBuilder querschnittBuilder = new StringBuilder();
 
@@ -261,7 +268,7 @@ public final class ObFactory extends ARowFactory
 				.appendAttribute("class", rowClass)
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", headerCellClass)
-						.appendAttribute("colspan", String.valueOf(1 + explorationSites.size()))
+						.appendAttribute("colspan", String.valueOf(1 + dataTables.size()))
 						.appendContent(querschnitt)
 						.build()
 						.appendTag())
@@ -333,14 +340,15 @@ public final class ObFactory extends ARowFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite :
-				explorationSites)
+		for (DataTable dataTable :
+				dataTables)
 		{
 			boolean empty = true;
 
-			List<LayerSample> layerSamples = explorationSite.getLayersWithOutcrop(outcrop);
+			Probe probe = (Probe) dataTable;
+			List<Sample> samples = probe.getSamplesBy(RefSample.OUTCROP, outcrop);
 
-			if (layerSamples != null)
+			if (samples != null)
 			{
 				double d = 0;
 
@@ -349,13 +357,13 @@ public final class ObFactory extends ARowFactory
 				//Dicke anpassen
 				//Wenn eine Erkundungsstelle nicht keine pitch freien / haltigen Schichten hat, dann "-"
 
-				for (LayerSample layerSample : layerSamples)
+				for (Sample sample : samples)
 				{
 					//TODO CHANGE TO TRUE & FALSE PECH
-					String layerSize = layerSample.getInformation(ReferenceKey.LAYER_THICKNESS);
+					String layerSize = sample.get(RefSample.THICKNESS);
 					layerSize = layerSize.replace(",", ".");
 
-					String layerPitch = layerSample.getInformation(ReferenceKey.LAYER_PITCH);
+					String layerPitch = sample.get(RefSample.PITCH);
 
 					if (pitch && "JA".equalsIgnoreCase(layerPitch))
 					{

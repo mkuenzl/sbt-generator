@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DataTableFactoryParseMapTest
+public class DataTableOldFactoryParseMapTest
 {
 	@Test
 	public void parseMapWithIdentifierTest()

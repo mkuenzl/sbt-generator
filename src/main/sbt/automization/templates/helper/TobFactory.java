@@ -1,8 +1,13 @@
 package sbt.automization.templates.helper;
 
-import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.ReferenceKey;
+import sbt.automization.data.refactoring.Probe;
+import sbt.automization.data.refactoring.Sample;
+import sbt.automization.data.refactoring.references.RefProbe;
+import sbt.automization.data.refactoring.references.RefSample;
 import sbt.automization.format.TextFormatUtil;
+import sbt.automization.templates.Outcrop;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlText;
@@ -16,7 +21,7 @@ public final class TobFactory extends ARowFactory
 		super("TOB");
 	}
 
-	public String createOutcropRow(List<ExplorationSite> explorationSites)
+	public String createOutcropRow(List<DataTable> dataTables)
 	{
 		//Erkundungsstellen Aufschlussart
 		HtmlRow row = new HtmlRow.Builder()
@@ -29,13 +34,13 @@ public final class TobFactory extends ARowFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite :
-				explorationSites)
+		for (DataTable dataTable :
+				dataTables)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_OUTCROP_TOB))
+					.appendContent(dataTable.get(RefProbe.OUTCROP_TOB))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -44,7 +49,7 @@ public final class TobFactory extends ARowFactory
 		return row.appendTag();
 	}
 
-	public String createMaterialRow(List<ExplorationSite> explorationSites)
+	public String createMaterialRow(List<DataTable> dataTables)
 	{
 		//Zonen Material 1 - Anzahl Schichten
 		HtmlRow row = new HtmlRow.Builder()
@@ -57,12 +62,12 @@ public final class TobFactory extends ARowFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : explorationSites)
+		for (DataTable dataTable : dataTables)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.formatOutcropLayers(explorationSite, outcrop))
+					.appendContent(TextFormatUtil.formatOutcropLayers(dataTable, outcrop))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -70,7 +75,7 @@ public final class TobFactory extends ARowFactory
 		return row.appendTag();
 	}
 
-	public String createTotalSizeRow(List<ExplorationSite> explorationSites)
+	public String createTotalSizeRow(List<DataTable> dataTables)
 	{   //TODO ERROR Dicken werden falsch berechnet!
 		//Gesamtdicke Oberbau
 		HtmlRow row = new HtmlRow.Builder()
@@ -88,12 +93,22 @@ public final class TobFactory extends ARowFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : explorationSites)
+		for (DataTable dataTable : dataTables)
 		{
-			String gobSize = TextFormatUtil.formatSiteOutcropThickness(explorationSite, "GOB").replace(",",".");
-			String tobSize = TextFormatUtil.formatSiteOutcropThickness(explorationSite, outcrop).replace(",",".");
+			List<Sample> samplesByGoB = ((Probe) dataTable).getSamplesBy(RefSample.OUTCROP,
+					new String[]{Outcrop.GOB.toString(),
+							Outcrop.TMHB.toString(),
+							Outcrop.SEAL.toString(),
+							Outcrop.GAP.toString(),
+							Outcrop.COATING.toString(),
+							Outcrop.CONCRETE.toString()});
 
-			String doubleValue = String.valueOf(Math.round(Double.parseDouble(gobSize) + Double.parseDouble(tobSize)));
+			List<Sample> samplesByOutcrop = ((Probe) dataTable).getSamplesBy(RefSample.OUTCROP, outcrop);
+
+			Double gobSize = TextFormatUtil.measureThicknessOfSamples(samplesByGoB);
+			Double tobSize = TextFormatUtil.measureThicknessOfSamples(samplesByOutcrop);
+
+			String doubleValue = String.valueOf(Math.round(gobSize + tobSize));
 			String totalSize = doubleValue.replace(".",",");
 
 			HtmlCell cell = new HtmlCell.Builder()
@@ -109,16 +124,16 @@ public final class TobFactory extends ARowFactory
 
 	}
 	@Override
-	public String createLegendRow(List<ExplorationSite> explorationSites)
+	public String createLegendRow(List<DataTable> dataTables)
 	{
-		int size = Integer.valueOf(headerCellWidth) + explorationSites.size()* Integer.valueOf(normalCellWidth);
+		int size = Integer.valueOf(headerCellWidth) + dataTables.size()* Integer.valueOf(normalCellWidth);
 
 		//Umwelttechnische Merkmale Trennzeile
 		HtmlRow rowLegende = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "NormalHeader")
-						.appendAttribute("colspan", String.valueOf(1 + explorationSites.size()))
+						.appendAttribute("colspan", String.valueOf(1 + dataTables.size()))
 						.appendAttribute("width", String.valueOf(size))
 						.appendContent("Anmerkungen:")
 						.appendContent(TextFormatUtil.printLineBreak())

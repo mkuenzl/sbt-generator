@@ -1,7 +1,11 @@
 package sbt.automization.templates.helper;
 
-import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.ReferenceKey;
+import sbt.automization.data.refactoring.Probe;
+import sbt.automization.data.refactoring.Sample;
+import sbt.automization.data.refactoring.references.RefProbe;
+import sbt.automization.data.refactoring.references.RefSample;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
@@ -14,16 +18,16 @@ public final class TmhbFactory extends ARowFactory
 	public TmhbFactory() {super("TMHB");}
 
 	@Override
-	public String createLegendRow(List<ExplorationSite> explorationSites)
+	public String createLegendRow(List<DataTable> dataTables)
 	{
-		int size = Integer.valueOf(headerCellWidth) + explorationSites.size()* Integer.valueOf(normalCellWidth);
+		int size = Integer.valueOf(headerCellWidth) + dataTables.size()* Integer.valueOf(normalCellWidth);
 
 		//Umwelttechnische Merkmale Trennzeile
 		HtmlRow rowLegende = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", "NormalHeader")
-						.appendAttribute("colspan", String.valueOf(1 + explorationSites.size()))
+						.appendAttribute("colspan", String.valueOf(1 + dataTables.size()))
 						.appendAttribute("width", String.valueOf(size))
 						.appendContent("Anmerkungen:")
 						.appendContent(TextFormatUtil.printLineBreak())
@@ -35,7 +39,7 @@ public final class TmhbFactory extends ARowFactory
 		return rowLegende.appendTag();
 	}
 
-	public String createAufschlussRow(List<ExplorationSite> explorationSites)
+	public String createAufschlussRow(List<DataTable> dataTables)
 	{
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -47,13 +51,13 @@ public final class TmhbFactory extends ARowFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite :
-				explorationSites)
+		for (DataTable dataTable :
+				dataTables)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_OUTCROP_TOB))
+					.appendContent(dataTable.get(RefProbe.OUTCROP_TOB))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -62,7 +66,7 @@ public final class TmhbFactory extends ARowFactory
 		return row.appendTag();
 	}
 
-	public String createTotalSizeRow(List<ExplorationSite> explorationSites)
+	public String createTotalSizeRow(List<DataTable> dataTables)
 	{
 		//Gesamtdicke Oberbau
 		HtmlRow row = new HtmlRow.Builder()
@@ -80,10 +84,15 @@ public final class TmhbFactory extends ARowFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite : explorationSites)
+		for (DataTable dataTable : dataTables)
 		{
-			Double gobSize = explorationSite.getOutcropThickness("GOB");
-			Double tobSize = explorationSite.getOutcropThickness(outcrop);
+			Probe probe = (Probe) dataTable;
+
+			List<Sample> samplesByGob = probe.getSamplesBy(RefSample.OUTCROP, "GOB");
+			Double gobSize = TextFormatUtil.measureThicknessOfSamples(samplesByGob);
+
+			List<Sample> samplesByOutcrop = probe.getSamplesBy(RefSample.OUTCROP, outcrop);
+			Double tobSize = TextFormatUtil.measureThicknessOfSamples(samplesByOutcrop);
 
 			String doubleValue = String.valueOf(Math.round(gobSize + tobSize));
 			String totalSize = doubleValue.replace(".", ",");

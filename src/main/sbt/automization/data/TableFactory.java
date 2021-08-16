@@ -1,8 +1,5 @@
 package sbt.automization.data;
 
-import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.LayerSample;
-
 import java.util.*;
 
 /**
@@ -20,9 +17,9 @@ public final class TableFactory
 	 *                                         based on the parsed excel (database) template
 	 * @return a list of exploration sites based on the provided information.
 	 */
-	public static List<ExplorationSite> createExplorationSites(List<Map<String, String>> parsedExplorationSiteInformation)
+	public static List<DataTableOld> createExplorationSites(List<Map<String, String>> parsedExplorationSiteInformation)
 	{
-		List<ExplorationSite> explorationSites = new ArrayList<>();
+		List<DataTableOld> dataTables = new ArrayList<>();
 
 		Set<String> createdIds = new HashSet<>();
 
@@ -33,34 +30,34 @@ public final class TableFactory
 			if (! createdIds.contains(explorationSiteId))
 			{
 				createdIds.add(String.valueOf(explorationSiteId));
-				ExplorationSite explorationSite = new ExplorationSite(explorationSiteInformation);
+				DataTableOld dataTable = new DataTableOld(explorationSiteInformation);
 
 				LayerSample layerSample = createLayer(explorationSiteInformation);
-				explorationSite.addLayer(layerSample);
-				explorationSites.add(explorationSite);
+				dataTable.addLayer(layerSample);
+				dataTables.add(dataTable);
 			} else
 			{
-				for (ExplorationSite explorationSite : explorationSites)
+				for (DataTableOld dataTable : dataTables)
 				{
-					if (explorationSite.getInformation("ERK_ID").equals(explorationSiteId))
+					if (dataTable.getInformation("ERK_ID").equals(explorationSiteId))
 					{
 						LayerSample layerSample = createLayer(explorationSiteInformation);
-						explorationSite.addLayer(layerSample);
+						dataTable.addLayer(layerSample);
 					}
 				}
 			}
 		}
 
 		// sorts layers per exploration site based on their layer number
-		for (ExplorationSite explorationSite : explorationSites)
+		for (DataTableOld dataTable : dataTables)
 		{
-			explorationSite.sortLayers();
+			dataTable.sortLayers();
 		}
 
 		// sorts exploration sites based on their number
-		Collections.sort(explorationSites);
+		Collections.sort(dataTables);
 
-		return explorationSites;
+		return dataTables;
 	}
 
 	/**
@@ -87,11 +84,11 @@ public final class TableFactory
 	}
 
 	@Deprecated
-	private static ExplorationSite createExplorationSite(Map<String, String> dataRow)
+	private static DataTableOld createExplorationSite(Map<String, String> dataRow)
 	{
-		ExplorationSite explorationSite = new ExplorationSite();
+		DataTableOld dataTable = new DataTableOld();
 
-		return explorationSite;
+		return dataTable;
 	}
 
 

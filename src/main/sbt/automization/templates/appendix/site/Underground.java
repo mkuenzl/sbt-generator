@@ -1,10 +1,12 @@
 package sbt.automization.templates.appendix.site;
 
-import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.DataTableOld;
 import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.refactoring.references.Chemistry;
-import sbt.automization.data.refactoring.references.Probe;
-import sbt.automization.data.refactoring.references.Sample;
+import sbt.automization.data.refactoring.Probe;
+import sbt.automization.data.refactoring.Sample;
+import sbt.automization.data.refactoring.references.RefChemistry;
+import sbt.automization.data.refactoring.references.RefProbe;
+import sbt.automization.data.refactoring.references.RefSample;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.templates.Outcrop;
 import sbt.automization.templates.appendix.Appendix;
@@ -16,18 +18,6 @@ import java.util.List;
 public final class Underground extends Appendix
 {
 	private String outcrop = "";
-
-	@Override
-	public void constructTable(final List<ExplorationSite> sites)
-	{
-
-	}
-
-	@Override
-	public void constructTable(final ExplorationSite site)
-	{
-
-	}
 
 	@Override
 	public String getExportFileName()
@@ -109,7 +99,7 @@ public final class Underground extends Appendix
 
 	private void setOutcrop(DataTable dataTable)
 	{
-		outcrop = dataTable.get(Probe.OUTCROP_UG_OH_BA);
+		outcrop = dataTable.get(RefProbe.OUTCROP_UG_OH_BA);
 	}
 
 	@Override
@@ -118,12 +108,12 @@ public final class Underground extends Appendix
 		setOutcrop(dataTable);
 		HtmlTable table = constructAndGetTableObject();
 
-		if (dataTable instanceof sbt.automization.data.refactoring.Probe)
+		if (dataTable instanceof Probe)
 		{
-			sbt.automization.data.refactoring.Probe probe = (sbt.automization.data.refactoring.Probe) dataTable;
-			List<sbt.automization.data.refactoring.Sample> samplesOfOutcrop = probe.getSamplesBy(Sample.OUTCROP, Outcrop.UG.toString());
+			Probe probe = (Probe) dataTable;
+			List<Sample> samplesOfOutcrop = probe.getSamplesBy(RefSample.OUTCROP, Outcrop.UG.toString());
 
-			for (sbt.automization.data.refactoring.Sample sample : samplesOfOutcrop)
+			for (Sample sample : samplesOfOutcrop)
 			{
 				String row = createRow(sample);
 				table.appendContent(row);
@@ -133,23 +123,23 @@ public final class Underground extends Appendix
 		addToTemplate(table.appendTag());
 	}
 
-	private String createRow(sbt.automization.data.refactoring.Sample sample)
+	private String createRow(Sample sample)
 	{
 		String row = HtmlFactory.createRow("Normal", new String[]{
-				HtmlFactory.createCell("Normal",
-						new String[]{TextFormatUtil.formatSoilGroup(sample.get(Sample.TYPE))}),
-				HtmlFactory.createCell("NormalCenter",
-						new String[]{sample.get(Sample.THICKNESS)}),
-				HtmlFactory.createCell("NormalCenter",
-						new String[]{sample.get(Sample.DEPTH_END)}),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(Sample.CHEMISTRY_ID, Chemistry.MUFV)),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(Sample.CHEMISTRY_ID, Chemistry.LAGA_BO)),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(Sample.CHEMISTRY_ID, Chemistry.LAGA_RC)),
-				HtmlFactory.createCell("NormalCenter",
-						new String[]{sample.get(Sample.WATER_CONTENT)}),
-				HtmlFactory.createCell("NormalCenter",
-						new String[]{sample.get(Sample.WATER_PROCTOR)}),
-				HtmlFactory.createCell("NormalCenter",
+				HtmlFactory.createCellAsString("Normal",
+						new String[]{TextFormatUtil.formatSoilGroup(sample.get(RefSample.TYPE))}),
+				HtmlFactory.createCellAsString("NormalCenter",
+						new String[]{sample.get(RefSample.THICKNESS)}),
+				HtmlFactory.createCellAsString("NormalCenter",
+						new String[]{sample.get(RefSample.DEPTH_END)}),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, RefChemistry.MUFV)),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, RefChemistry.LAGA_BO)),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, RefChemistry.LAGA_RC)),
+				HtmlFactory.createCellAsString("NormalCenter",
+						new String[]{sample.get(RefSample.WATER_CONTENT)}),
+				HtmlFactory.createCellAsString("NormalCenter",
+						new String[]{sample.get(RefSample.WATER_PROCTOR)}),
+				HtmlFactory.createCellAsString("NormalCenter",
 						new String[]{"-"})
 		});
 

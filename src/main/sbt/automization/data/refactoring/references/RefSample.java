@@ -1,6 +1,6 @@
 package sbt.automization.data.refactoring.references;
 
-public enum Sample implements Reference
+public enum RefSample implements Reference
 {
 	WASTE_KEY_MIX
 			{

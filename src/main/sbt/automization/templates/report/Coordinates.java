@@ -1,8 +1,7 @@
 package sbt.automization.templates.report;
 
-import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.refactoring.references.Probe;
+import sbt.automization.data.refactoring.references.RefProbe;
 import sbt.automization.util.html.HtmlFactory;
 import sbt.automization.util.html.HtmlTable;
 
@@ -28,18 +27,6 @@ public final class Coordinates extends Report
 			}
 		}
 		return instance;
-	}
-
-	@Override
-	public void constructTable(List<ExplorationSite> sites)
-	{
-
-	}
-
-	@Override
-	public void constructTable(ExplorationSite site)
-	{
-
 	}
 
 	@Override
@@ -77,6 +64,18 @@ public final class Coordinates extends Report
 	}
 
 	@Override
+	String buildTechnicalFeatures(List<DataTable> dataTables)
+	{
+		return null;
+	}
+
+	@Override
+	String buildEnvironmentTechnicalFeatures(List<DataTable> dataTables)
+	{
+		return null;
+	}
+
+	@Override
 	public void constructTemplate(List<DataTable> dataTables)
 	{
 		HtmlTable table = constructAndGetTableObject();
@@ -96,22 +95,22 @@ public final class Coordinates extends Report
 		StringBuilder strb = new StringBuilder();
 
 		String firstRow = HtmlFactory.createRow("NormalThin", new String[]{
-				HtmlFactory.createCell("NormalCenter", 2, 1,
-						new String[]{dataTable.get(Probe.ID)}),
-				HtmlFactory.createCell("Normal", 1, 4,
-						new String[]{dataTable.get(Probe.LOCATION)})
+				HtmlFactory.createCellAsString("NormalCenter", 2, 1,
+						new String[]{dataTable.get(RefProbe.ID)}),
+				HtmlFactory.createCellAsString("Normal", 1, 4,
+						new String[]{dataTable.get(RefProbe.LOCATION)})
 		});
 
-		List<String> coordinateSplit = splitCoordinate(dataTable.get(Probe.COORDINATES));
+		List<String> coordinateSplit = splitCoordinate(dataTable.get(RefProbe.COORDINATES));
 
 		String secondRow = HtmlFactory.createRow("NormalThin", new String[]{
-				HtmlFactory.createCell("Normal",
+				HtmlFactory.createCellAsString("Normal",
 						new String[]{coordinateSplit.get(0)}),
-				HtmlFactory.createCell("Normal",
+				HtmlFactory.createCellAsString("Normal",
 						new String[]{coordinateSplit.get(1)}),
-				HtmlFactory.createCell("Normal",
+				HtmlFactory.createCellAsString("Normal",
 						new String[]{coordinateSplit.get(2)}),
-				HtmlFactory.createCell("Normal",
+				HtmlFactory.createCellAsString("Normal",
 						new String[]{""})
 		});
 
@@ -122,21 +121,9 @@ public final class Coordinates extends Report
 	}
 
 	@Override
-	public void constructTemplate(DataTable dataTable)
+	public void constructTemplate(sbt.automization.data.refactoring.DataTable dataTable)
 	{
 
-	}
-
-	@Override
-	String buildTechnicalFeatures(List<ExplorationSite> explorationSites)
-	{
-		return null;
-	}
-
-	@Override
-	String buildEnvironmentTechnicalFeatures(List<ExplorationSite> explorationSites)
-	{
-		return null;
 	}
 
 	private List<String> splitCoordinate(String coordinates)

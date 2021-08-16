@@ -1,16 +1,19 @@
 package sbt.automization.util;
 
 import org.apache.commons.io.FileUtils;
-import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.ReferenceKey;
-import sbt.automization.data.LayerSample;
 import sbt.automization.data.refactoring.DataTable;
+import sbt.automization.data.refactoring.Parameter;
+import sbt.automization.data.refactoring.Probe;
+import sbt.automization.data.refactoring.Sample;
+import sbt.automization.data.refactoring.references.RefSample;
+import sbt.automization.data.refactoring.references.Reference;
 
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -27,9 +30,9 @@ public final class Util
 	 * Method is used for creating and saving test exploration site objects
 	 *
 	 * @param dataTable the object to serialize
-	 * @param fileName        the name of the created file
+	 * @param fileName  the name of the created file
 	 */
-	public static void serializeDatatableToFile(DataTable dataTable, String fileName)
+	public static void serializeDatatableToFile(sbt.automization.data.refactoring.DataTable dataTable, String fileName)
 	{
 		try (FileOutputStream fileOutputStream = new FileOutputStream(fileName) ;
 		     ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream) ;)
@@ -47,14 +50,14 @@ public final class Util
 	 * @param filePath the location of the serialized object file
 	 * @return a ExplorationSite object
 	 */
-	public static DataTable readSerializedDatatable(String filePath)
+	public static sbt.automization.data.refactoring.DataTable readSerializedDatatable(String filePath)
 	{
-		DataTable table = null;
+		sbt.automization.data.refactoring.DataTable table = null;
 
 		try (FileInputStream fileInputStream = new FileInputStream(filePath) ;
 		     ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream) ;)
 		{
-			table = (DataTable) objectInputStream.readObject();
+			table = (sbt.automization.data.refactoring.DataTable) objectInputStream.readObject();
 		} catch (IOException | ClassNotFoundException e)
 		{
 			e.printStackTrace();
@@ -140,34 +143,62 @@ public final class Util
 	/**
 	 * Used to detect if there is layers inside of exploration sites where the key value is not empty
 	 *
-	 * @param explorationSites list of exploration sites
-	 * @param outcrop          specifies which layers should be looked at
-	 * @param key              String that represents a key to get information from the layers
+	 * @param dataTables list of exploration sites
+	 * @param outcrop    specifies which layers should be looked at
 	 * @return true, if there is a non empty value, false, if all values are empty
 	 */
-	public static boolean thereExistsAnExplorationSiteWithData(List<ExplorationSite> explorationSites, String outcrop, ReferenceKey key)
+	public static boolean thereExistsAnTableWithData(List<DataTable> dataTables, String outcrop, Reference reference)
 	{
-		for (ExplorationSite explorationSite : explorationSites)
+		for (DataTable dataTable : dataTables)
 		{
-			if (key.name().contains("SITE"))
-			{ //TODO make InformationTags implement Type
-				if (! "-".equals(explorationSite.getInformation(key))) return true;
+			if (dataTable.containsValueFor(reference)) return true;
+			if (thereExistsAnParameterWithData(dataTable, reference)) return true;
+			if (thereExistsAnSampleWithData(dataTable, outcrop, reference)) return true;
+		}
+		return false;
+	}
+
+	private static boolean thereExistsAnParameterWithData(DataTable dataTable, Reference reference)
+	{
+		List<Parameter> parameters = new ArrayList<>();
+
+		if (dataTable instanceof Probe)
+		{
+			List<Parameter> parameterList = ((Probe) dataTable).getParameters();
+			parameters.addAll(parameterList);
+		}
+		if (dataTable instanceof Sample)
+		{
+			List<Parameter> parameterList = ((Sample) dataTable).getParameters();
+			parameters.addAll(parameterList);
+		}
+
+		for (Parameter parameter : parameters)
+		{
+			if (parameter.containsValueFor(reference)) return true;
+		}
+
+		return false;
+	}
+
+	public static boolean thereExistsAnSampleWithData(DataTable dataTable, String outcrop, Reference reference)
+	{
+		List<Sample> samples;
+
+		if (dataTable instanceof Probe)
+		{
+			if (! "".equals(outcrop))
+			{
+				samples = ((Probe) dataTable).getSamplesBy(RefSample.OUTCROP, outcrop);
 			} else
 			{
-				List<LayerSample> layerSamples;
+				samples = ((Probe) dataTable).getSamples();
+			}
 
-				if (! "".equals(outcrop))
-				{
-					layerSamples = explorationSite.getLayersWithOutcrop(outcrop);
-				} else
-				{
-					layerSamples = explorationSite.getLayers();
-				}
-
-				for (LayerSample layerSample : layerSamples)
-				{
-					if (! "-".equals(layerSample.getInformation(key))) return true;
-				}
+			for (Sample sample : samples)
+			{
+				if (sample.containsValueFor(reference)) return true;
+				if (thereExistsAnParameterWithData(sample, reference)) return true;
 			}
 		}
 		return false;
@@ -176,17 +207,18 @@ public final class Util
 	/**
 	 * Method used to retrieve all ExplorationSites which contain at least one layer from a specified outcrop.
 	 *
-	 * @param sites   a List of ExplorationSite
+	 * @param tables   a List of ExplorationSite
 	 * @param outcrop a String
 	 * @return a List of ExplorationSite
 	 */
-	public static List<ExplorationSite> getExplorationSitesWhichIncludeOutcrop(List<ExplorationSite> sites, String outcrop)
+	public static List<DataTable> getProbesWhichIncludeOutcrop(List<DataTable> tables, String outcrop)
 	{
-		List<ExplorationSite> explorationSitesWithOutcrop = sites.stream()
-				.filter(e -> e.getLayersWithOutcrop(outcrop).size() > 0)
+		List<DataTable> probesWithOutcrop = tables.stream()
+				.filter(table -> table instanceof Probe)
+				.filter(table -> ((Probe) table).hasSampleWith(RefSample.OUTCROP, outcrop))
 				.collect(Collectors.toList());
 
-		return explorationSitesWithOutcrop;
+		return probesWithOutcrop;
 	}
 
 	/**

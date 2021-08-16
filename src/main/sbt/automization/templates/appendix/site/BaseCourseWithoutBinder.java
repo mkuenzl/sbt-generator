@@ -1,11 +1,12 @@
 package sbt.automization.templates.appendix.site;
 
-import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.refactoring.references.Chemistry;
-import sbt.automization.data.refactoring.references.LP;
-import sbt.automization.data.refactoring.references.Probe;
-import sbt.automization.data.refactoring.references.Sample;
+import sbt.automization.data.refactoring.Probe;
+import sbt.automization.data.refactoring.Sample;
+import sbt.automization.data.refactoring.references.RefChemistry;
+import sbt.automization.data.refactoring.references.RefLP;
+import sbt.automization.data.refactoring.references.RefProbe;
+import sbt.automization.data.refactoring.references.RefSample;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.templates.Outcrop;
 import sbt.automization.templates.appendix.Appendix;
@@ -21,22 +22,69 @@ public final class BaseCourseWithoutBinder extends Appendix
 	private boolean alreadyPrintedLP = false;
 
 	@Override
-	public void constructTable(final List<ExplorationSite> sites)
-	{
-
-	}
-
-	@Override
-	public void constructTable(final ExplorationSite site)
-	{
-
-	}
-
-	@Override
 	public String getExportFileName()
 	{
 		return null;
-	}	@Override
+	}
+
+	@Override
+	public void constructTemplate(List<DataTable> dataTables)
+	{
+
+	}
+
+	@Override
+	public void constructTemplate(DataTable dataTable)
+	{
+		setOutcrop(dataTable);
+		HtmlTable table = constructAndGetTableObject();
+
+		if (dataTable instanceof Probe)
+		{
+			this.probe = (Probe) dataTable;
+			List<Sample> samplesOfOutcrop = probe.getSamplesBy(RefSample.OUTCROP, Outcrop.TOB.toString());
+
+			for (Sample sample : samplesOfOutcrop)
+			{
+				String row = createRow(sample);
+				table.appendContent(row);
+			}
+		}
+
+		addToTemplate(table.appendTag());
+	}
+
+	private void setOutcrop(DataTable dataTable)
+	{
+		outcrop = dataTable.get(RefProbe.OUTCROP_TOB);
+	}
+
+	private String createRow(Sample sample)
+	{
+		String row = HtmlFactory.createRow("Normal", new String[]{
+				HtmlFactory.createCellAsString("Normal",
+						new String[]{sample.get(RefSample.TYPE),
+								TextFormatUtil.printLineBreak(),
+								sample.get(RefSample.GRANULATION),
+								sample.get(RefSample.ROUNDING_GRADATION)}),
+				HtmlFactory.createCellAsString("NormalCenter",
+						new String[]{sample.get(RefSample.THICKNESS)}),
+				HtmlFactory.createCellAsString("NormalCenter",
+						new String[]{sample.get(RefSample.DEPTH_END)}),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, RefChemistry.MUFV)),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, RefChemistry.LAGA_BO)),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, RefChemistry.LAGA_RC)),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, RefChemistry.TL_ROCK_STRATUM)),
+				HtmlFactory.createCellAsString("NormalCenter",
+						new String[]{printEV()}),
+				HtmlFactory.createCellAsString("NormalCenter",
+						new String[]{sample.get(RefSample.GRAIN_SIZE_DISTRIBUTION)})
+		});
+
+		return row;
+	}
+
+	@Override
 	public String constructAndGetTableHeader()
 	{
 		String firstRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
@@ -93,15 +141,6 @@ public final class BaseCourseWithoutBinder extends Appendix
 	}
 
 	@Override
-	public void constructTemplate(List<DataTable> dataTables)
-	{
-
-	}	private void setOutcrop(DataTable dataTable)
-	{
-		outcrop = dataTable.get(Probe.OUTCROP_TOB);
-	}
-
-	@Override
 	public HtmlTable constructAndGetTableObject()
 	{
 		HtmlTable table = new HtmlTable.Builder()
@@ -117,63 +156,17 @@ public final class BaseCourseWithoutBinder extends Appendix
 		return table;
 	}
 
-	@Override
-	public void constructTemplate(DataTable dataTable)
-	{
-		setOutcrop(dataTable);
-		HtmlTable table = constructAndGetTableObject();
-
-		if (dataTable instanceof sbt.automization.data.refactoring.Probe)
-		{
-			this.probe = (sbt.automization.data.refactoring.Probe) dataTable;
-			List<sbt.automization.data.refactoring.Sample> samplesOfOutcrop = probe.getSamplesBy(Sample.OUTCROP, Outcrop.TOB.toString());
-
-			for (sbt.automization.data.refactoring.Sample sample : samplesOfOutcrop)
-			{
-				String row = createRow(sample);
-				table.appendContent(row);
-			}
-		}
-
-		addToTemplate(table.appendTag());
-	}
-
 	private String printEV()
 	{
-		if (probe.containsValueFor(Probe.LP_ID) && ! alreadyPrintedLP)
+		if (probe.containsValueFor(RefProbe.LP_ID) && ! alreadyPrintedLP)
 		{
-			String formattedEV = probe.getParameterValueBy(Probe.LP_ID, LP.EV2)
+			String formattedEV = probe.getParameterValueBy(RefProbe.LP_ID, RefLP.EV2)
 					.concat(TextFormatUtil.printLineBreak())
-					.concat(probe.getParameterValueBy(Probe.LP_ID, LP.EV85));
+					.concat(probe.getParameterValueBy(RefProbe.LP_ID, RefLP.EV85));
 			alreadyPrintedLP = true;
 
 			return formattedEV;
 		}
 		return "-";
-	}
-
-	private String createRow(sbt.automization.data.refactoring.Sample sample)
-	{
-		String row = HtmlFactory.createRow("Normal", new String[]{
-				HtmlFactory.createCell("Normal",
-						new String[]{sample.get(Sample.TYPE),
-								TextFormatUtil.printLineBreak(),
-								sample.get(Sample.GRANULATION),
-								sample.get(Sample.ROUNDING_GRADATION)}),
-				HtmlFactory.createCell("NormalCenter",
-						new String[]{sample.get(Sample.THICKNESS)}),
-				HtmlFactory.createCell("NormalCenter",
-						new String[]{sample.get(Sample.DEPTH_END)}),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(Sample.CHEMISTRY_ID, Chemistry.MUFV)),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(Sample.CHEMISTRY_ID, Chemistry.LAGA_BO)),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(Sample.CHEMISTRY_ID, Chemistry.LAGA_RC)),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(Sample.CHEMISTRY_ID, Chemistry.TL_ROCK_STRATUM)),
-				HtmlFactory.createCell("NormalCenter",
-						new String[]{printEV()}),
-				HtmlFactory.createCell("NormalCenter",
-						new String[]{sample.get(Sample.GRAIN_SIZE_DISTRIBUTION)})
-		});
-
-		return row;
 	}
 }

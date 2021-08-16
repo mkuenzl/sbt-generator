@@ -1,7 +1,8 @@
 package sbt.automization.templates.helper;
 
-import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.ReferenceKey;
+import sbt.automization.data.refactoring.DataTable;
+import sbt.automization.data.refactoring.references.RefProbe;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 
@@ -15,14 +16,14 @@ public final class BankettFactory extends ARowFactory
 	}
 
 	@Override
-	public String createLegendRow(List<ExplorationSite> explorationSites)
+	public String createLegendRow(List<DataTable> dataTables)
 	{
-		int size = Integer.valueOf(headerCellWidth) + explorationSites.size()* Integer.valueOf(normalCellWidth);
+		int size = Integer.valueOf(headerCellWidth) + dataTables.size()* Integer.valueOf(normalCellWidth);
 
 		return null;
 	}
 
-	public String createAufschlussRow(List<ExplorationSite> explorationSites)
+	public String createAufschlussRow(List<DataTable> dataTables)
 	{
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
@@ -34,13 +35,13 @@ public final class BankettFactory extends ARowFactory
 						.appendTag())
 				.build();
 
-		for (ExplorationSite explorationSite :
-				explorationSites)
+		for (DataTable dataTable :
+				dataTables)
 		{
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(ReferenceKey.SITE_OUTCROP_UG_OH_BA))
+					.appendContent(dataTable.get(RefProbe.OUTCROP_UG_OH_BA))
 					.build();
 
 			row.appendContent(cell.appendTag());

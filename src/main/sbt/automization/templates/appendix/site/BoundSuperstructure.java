@@ -1,11 +1,12 @@
 package sbt.automization.templates.appendix.site;
 
-import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.refactoring.references.Chemistry;
-import sbt.automization.data.refactoring.references.RuK;
-import sbt.automization.data.refactoring.references.Probe;
-import sbt.automization.data.refactoring.references.Sample;
+import sbt.automization.data.refactoring.Probe;
+import sbt.automization.data.refactoring.Sample;
+import sbt.automization.data.refactoring.references.RefChemistry;
+import sbt.automization.data.refactoring.references.RefProbe;
+import sbt.automization.data.refactoring.references.RefRuK;
+import sbt.automization.data.refactoring.references.RefSample;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.templates.Outcrop;
 import sbt.automization.templates.appendix.Appendix;
@@ -20,32 +21,27 @@ public final class BoundSuperstructure extends Appendix
 	private sbt.automization.data.refactoring.Probe probe;
 
 	@Override
-	public void constructTable(final List<ExplorationSite> sites)
-	{
-	}
-
-	@Override
-	public void constructTable(final ExplorationSite site)
-	{
-	}	private void setOutcrop(DataTable dataTable)
-	{
-		outcrop = dataTable.get(Probe.OUTCROP_GOB);
-	}
-
-	@Override
 	public String getExportFileName()
 	{
 		return null;
-	}	@Override
+	}
+
+	@Override
+	public void constructTemplate(List<DataTable> dataTables)
+	{
+
+	}
+
+	@Override
 	public void constructTemplate(DataTable dataTable)
 	{
 		setOutcrop(dataTable);
 		HtmlTable table = constructAndGetTableObject();
 
-		if (dataTable instanceof sbt.automization.data.refactoring.Probe)
+		if (dataTable instanceof Probe)
 		{
-			this.probe = (sbt.automization.data.refactoring.Probe) dataTable;
-			List<sbt.automization.data.refactoring.Sample> samplesOfOutcrop = probe.getSamplesBy(Sample.OUTCROP,
+			this.probe = (Probe) dataTable;
+			List<Sample> samplesOfOutcrop = probe.getSamplesBy(RefSample.OUTCROP,
 					new String[]{Outcrop.GOB.toString(),
 							Outcrop.TMHB.toString(),
 							Outcrop.CONCRETE.toString(),
@@ -53,7 +49,7 @@ public final class BoundSuperstructure extends Appendix
 							Outcrop.COATING.toString()
 					});
 
-			for (sbt.automization.data.refactoring.Sample sample : samplesOfOutcrop)
+			for (Sample sample : samplesOfOutcrop)
 			{
 				String row = createRow(sample);
 				table.appendContent(row);
@@ -66,28 +62,29 @@ public final class BoundSuperstructure extends Appendix
 		addToTemplate(table.appendTag());
 	}
 
-	@Override
-	public void constructTemplate(List<DataTable> dataTables)
+	private void setOutcrop(DataTable dataTable)
 	{
+		outcrop = dataTable.get(RefProbe.OUTCROP_GOB);
+	}
 
-	}	private String createRow(sbt.automization.data.refactoring.Sample sample)
+	private String createRow(Sample sample)
 	{
 		String row = HtmlFactory.createRow("Normal", new String[]{
-				HtmlFactory.createCell("Normal",
-						new String[]{TextFormatUtil.formatKindAndGranulation(sample.get(Sample.TYPE),
-								sample.get(Sample.GRANULATION))}),
-				HtmlFactory.createCell("NormalCenter",
-						new String[]{sample.get(Sample.THICKNESS)}),
-				HtmlFactory.createCell("NormalCenter",
-						new String[]{sample.get(Sample.DEPTH_END)}),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(Sample.CHEMISTRY_ID, Chemistry.MUFV)),
-				HtmlFactory.createPitchCell(sample.get(Sample.PITCH)),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(Sample.CHEMISTRY_ID, Chemistry.LAGA_RC)),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(Sample.CHEMISTRY_ID, Chemistry.TL_ROCK_STRATUM)),
-				HtmlFactory.createCell("NormalCenter",
-						new String[]{sample.get(Sample.PAK)}),
-				HtmlFactory.createCell("NormalCenter",
-						new String[]{sample.getParameterValueBy(Sample.RUK_ID, RuK.VALUE)})
+				HtmlFactory.createCellAsString("Normal",
+						new String[]{TextFormatUtil.formatKindAndGranulation(sample.get(RefSample.TYPE),
+								sample.get(RefSample.GRANULATION))}),
+				HtmlFactory.createCellAsString("NormalCenter",
+						new String[]{sample.get(RefSample.THICKNESS)}),
+				HtmlFactory.createCellAsString("NormalCenter",
+						new String[]{sample.get(RefSample.DEPTH_END)}),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, RefChemistry.MUFV)),
+				HtmlFactory.createPitchCell(sample.get(RefSample.PITCH)),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, RefChemistry.LAGA_RC)),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, RefChemistry.TL_ROCK_STRATUM)),
+				HtmlFactory.createCellAsString("NormalCenter",
+						new String[]{sample.get(RefSample.PAK)}),
+				HtmlFactory.createCellAsString("NormalCenter",
+						new String[]{sample.getParameterValueBy(RefSample.RUK_ID, RefRuK.VALUE)})
 		});
 
 		return row;
@@ -96,19 +93,18 @@ public final class BoundSuperstructure extends Appendix
 	private String createLoadClassRow()
 	{
 		String row = HtmlFactory.createRow("Normal", new String[]{
-				HtmlFactory.createCell("NormalCenter", 1, 5,
+				HtmlFactory.createCellAsString("NormalCenter", 1, 5,
 						new String[]{""}),
-				HtmlFactory.createCell("NormalCenter", 1, 2,
-						new String[]{TextFormatUtil.formatLoadClass(probe.get(Probe.LOAD_CLASS))}),
-				HtmlFactory.createCell("NormalCenter", 1, 2,
+				HtmlFactory.createCellAsString("NormalCenter", 1, 2,
+						new String[]{TextFormatUtil.formatLoadClass(probe.get(RefProbe.LOAD_CLASS))}),
+				HtmlFactory.createCellAsString("NormalCenter", 1, 2,
 						new String[]{"RStO<sup>[5]</sup>",
 								TextFormatUtil.printLineBreak(),
-								probe.get(Probe.LOAD_CLASS_BOARD)})
+								probe.get(RefProbe.LOAD_CLASS_BOARD)})
 		});
 
 		return row;
 	}
-
 
 
 	@Override

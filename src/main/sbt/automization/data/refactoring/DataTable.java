@@ -39,4 +39,6 @@ public interface DataTable
 	boolean isEmpty();
 
 	boolean isRelatedBy(Reference source, DataTable target);
+
+	boolean containsValueFor(Reference reference);
 }

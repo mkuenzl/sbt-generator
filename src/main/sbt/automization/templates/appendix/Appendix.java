@@ -1,6 +1,5 @@
 package sbt.automization.templates.appendix;
 
-import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.templates.HtmlTemplate;
 import sbt.automization.util.html.HtmlTable;
 
@@ -73,11 +72,5 @@ public abstract class Appendix implements HtmlTemplate
 
 			table = constructAndGetTableObject();
 		}
-	}
-
-	@Override
-	public void constructTemplate(DataTable dataTable)
-	{
-
 	}
 }

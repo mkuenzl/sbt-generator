@@ -1,6 +1,6 @@
 package sbt.automization.format;
 
-import sbt.automization.data.ExplorationSite;
+import sbt.automization.data.DataTableOld;
 import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.LayerSample;
 
@@ -18,14 +18,14 @@ public final class LayerFormatUtil
 	/**
 	 * Method used to combine layers of an outcrop from an exploration site based on a specific tag
 	 *
-	 * @param explorationSite a ExplorationSite Object
+	 * @param dataTable a ExplorationSite Object
 	 * @param outcrop a String defining an outcrop
 	 * @param tag a String specifying an information tag
 	 * @return an updated list of layers with all possible layers combined
 	 */
-	public static List<LayerSample> combineLayers(final ExplorationSite explorationSite, final String outcrop, final String tag)
+	public static List<LayerSample> combineLayers(final DataTableOld dataTable, final String outcrop, final String tag)
 	{
-		List<LayerSample> layersWithOutcrop = explorationSite.getLayersWithOutcrop(outcrop);
+		List<LayerSample> layersWithOutcrop = dataTable.getLayersWithOutcrop(outcrop);
 
 		return combineLayers(layersWithOutcrop, tag);
 	}

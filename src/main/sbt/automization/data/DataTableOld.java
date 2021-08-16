@@ -7,7 +7,7 @@ import java.util.*;
 /**
  * Class which contains all information about an exploration site.
  */
-public final class ExplorationSite implements Comparable<ExplorationSite>, Serializable
+public final class DataTableOld implements Comparable<DataTableOld>, Serializable
 {
 	private final List<LayerSample> layerSampleList = new ArrayList<>();
 	private Map<String, String> informationMap;
@@ -18,7 +18,7 @@ public final class ExplorationSite implements Comparable<ExplorationSite>, Seria
 	 *
 	 * @param explorationSiteInformation a map parsed from an excel template
 	 */
-	public ExplorationSite(Map<String, String> explorationSiteInformation)
+	public DataTableOld(Map<String, String> explorationSiteInformation)
 	{
 
 		this.informationMap = new HashMap<>();
@@ -32,20 +32,20 @@ public final class ExplorationSite implements Comparable<ExplorationSite>, Seria
 	/**
 	 * Constructor
 	 */
-	public ExplorationSite()
+	public DataTableOld()
 	{ }
 
 	/**
 	 * Is used to prepare the order of exploration sites shown in templates
 	 *
-	 * @param explorationSite expects a explorationSite with a data map, containing a valid ERK_NUMMER
+	 * @param dataTable expects a explorationSite with a data map, containing a valid ERK_NUMMER
 	 * @return a compare to key for Collections.sort
 	 */
 	@Override
-	public int compareTo(final ExplorationSite explorationSite)
+	public int compareTo(final DataTableOld dataTable)
 	{
 		String thisOrder = this.getInformation(ReferenceKey.SITE_NUMBER);
-		String otherOrder = explorationSite.getInformation(ReferenceKey.SITE_NUMBER);
+		String otherOrder = dataTable.getInformation(ReferenceKey.SITE_NUMBER);
 
 		if (thisOrder == null || otherOrder == null || "-".equals(thisOrder) || "-".equals(otherOrder))
 		{
@@ -166,7 +166,7 @@ public final class ExplorationSite implements Comparable<ExplorationSite>, Seria
 		return informationMap;
 	}
 
-	public ExplorationSite setInformationMap(Map<String, String> informationMap)
+	public DataTableOld setInformationMap(Map<String, String> informationMap)
 	{
 		this.informationMap = informationMap;
 		return this;
