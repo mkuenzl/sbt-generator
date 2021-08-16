@@ -1,15 +1,13 @@
 package sbt.automization.templates.appendix;
 
 import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.templates.HtmlTableTemplate;
+import sbt.automization.templates.HtmlTemplate;
 import sbt.automization.util.html.HtmlTable;
-
-import java.util.List;
 
 /**
  * Abstract class for all html tables
  */
-public abstract class AppendixTemplate implements HtmlTableTemplate
+public abstract class Appendix implements HtmlTemplate
 {
 	public static final String HTML_BASIC_TABLE_STYLE = new StringBuilder()
 			.append("'")
@@ -30,7 +28,7 @@ public abstract class AppendixTemplate implements HtmlTableTemplate
 	protected final StringBuilder template;
 	protected HtmlTable table;
 
-	public AppendixTemplate()
+	public Appendix()
 	{
 		linesPerPage = 0;
 		lines = 0;
@@ -47,9 +45,9 @@ public abstract class AppendixTemplate implements HtmlTableTemplate
 		this.template.append(table);
 	}
 
-	abstract String constructAndGetTableHeader();
+	protected abstract String constructAndGetTableHeader();
 
-	HtmlTable constructAndGetTableObject()
+	public HtmlTable constructAndGetTableObject()
 	{
 		HtmlTable table = new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")

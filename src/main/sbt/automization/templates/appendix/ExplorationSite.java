@@ -1,13 +1,11 @@
 package sbt.automization.templates.appendix;
 
-import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.refactoring.Probe;
-import sbt.automization.data.refactoring.references.ReferenceProbe;
-import sbt.automization.data.refactoring.references.ReferenceSample;
+import sbt.automization.data.refactoring.references.Probe;
+import sbt.automization.data.refactoring.references.Sample;
 import sbt.automization.format.FootnoteFormatUtil;
 import sbt.automization.templates.Outcrop;
+import sbt.automization.templates.appendix.site.*;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlFactory;
 import sbt.automization.util.html.HtmlRow;
@@ -15,21 +13,21 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class AppendixExplorationSite extends AppendixTemplate
+public final class ExplorationSite extends Appendix
 {
-	private static AppendixExplorationSite instance;
+	private static ExplorationSite instance;
 
-	private AppendixExplorationSite() {}
+	private ExplorationSite() {}
 
-	public static AppendixExplorationSite getInstance()
+	public static ExplorationSite getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (AppendixExplorationSite.class)
+			synchronized (ExplorationSite.class)
 			{
 				if (instance == null)
 				{
-					instance = new AppendixExplorationSite();
+					instance = new ExplorationSite();
 				}
 			}
 		}
@@ -37,50 +35,50 @@ public final class AppendixExplorationSite extends AppendixTemplate
 	}
 
 	@Override
-	public void constructTable(final List<ExplorationSite> sites)
+	public void constructTable(final List<sbt.automization.data.ExplorationSite> sites)
 	{
 	}
 
-	private String createHeadOfTable(Probe probe)
+	private String createHeadOfTable(sbt.automization.data.refactoring.Probe probe)
 	{
 		String firstRow = HtmlFactory.createRow("Normal", new String[]{
 				HtmlFactory.createCell("NormalHeader", "width:100px",
 						new String[]{"Erkund.-Stelle"}),
 				HtmlFactory.createCell("Normal",1, 3,
-						new String[]{probe.get(ReferenceProbe.LOCATION)}),
+						new String[]{probe.get(Probe.LOCATION)}),
 		});
 
 		String secondRow = HtmlFactory.createRow("Normal", new String[]{
 				HtmlFactory.createCell("NormalHeader",
 						new String[]{"Bezeichnung"}),
 				HtmlFactory.createCell("Normal", "width:200px",
-						new String[]{probe.get(ReferenceProbe.ID)}),
+						new String[]{probe.get(Probe.ID)}),
 				HtmlFactory.createCell("NormalHeader", "width:100px",
 						new String[]{"Datum"}),
 				HtmlFactory.createCell("Normal", "width:200px",
-						new String[]{probe.get(ReferenceProbe.DATE)}),
+						new String[]{probe.get(Probe.DATE)}),
 		});
 
 		String thirdRow = HtmlFactory.createRow("Normal", new String[]{
 				HtmlFactory.createCell("NormalHeader", "width:100px",
 						new String[]{"Koordinaten<sup>1)</sup>"}),
 				HtmlFactory.createCell("Normal", "width:200px",
-						new String[]{probe.get(ReferenceProbe.COORDINATES)}),
+						new String[]{probe.get(Probe.COORDINATES)}),
 				HtmlFactory.createCell("NormalHeader", "width:100px",
 						new String[]{"Probenehmer"}),
 				HtmlFactory.createCell("Normal", "width:200px",
-						new String[]{probe.get(ReferenceProbe.INSPECTOR)}),
+						new String[]{probe.get(Probe.INSPECTOR)}),
 		});
 
 		String fourthRow = HtmlFactory.createRow("Normal", new String[]{
 				HtmlFactory.createCell("NormalHeader", "width:100px",
 						new String[]{"Bereich"}),
 				HtmlFactory.createCell("Normal", "width:200px",
-						new String[]{probe.get(ReferenceProbe.REGION)}),
+						new String[]{probe.get(Probe.REGION)}),
 				HtmlFactory.createCell("NormalHeader", "width:100px",
 						new String[]{"Ansprechpartner"}),
 				HtmlFactory.createCell("Normal", "width:200px",
-						new String[]{probe.get(ReferenceProbe.CONTACT_PERSON)}),
+						new String[]{probe.get(Probe.CONTACT_PERSON)}),
 		});
 
 		return new StringBuilder()
@@ -92,7 +90,7 @@ public final class AppendixExplorationSite extends AppendixTemplate
 	}
 
 	@Override
-	public void constructTable(final ExplorationSite site)
+	public void constructTable(final sbt.automization.data.ExplorationSite site)
 	{
 
 	}
@@ -108,7 +106,7 @@ public final class AppendixExplorationSite extends AppendixTemplate
 	{
 		for (DataTable dataTable : dataTables)
 		{
-			Probe probe = (Probe) dataTable;
+			sbt.automization.data.refactoring.Probe probe = (sbt.automization.data.refactoring.Probe) dataTable;
 
 			HtmlTable table = constructAndGetTableObject();
 			String headOfTable = createHeadOfTable(probe);
@@ -123,7 +121,7 @@ public final class AppendixExplorationSite extends AppendixTemplate
 		}
 	}
 
-	private void createTemplatesForSamples(Probe probe)
+	private void createTemplatesForSamples(sbt.automization.data.refactoring.Probe probe)
 	{
 		createBanquetTemplate(probe);
 		createGAPTemplate(probe);
@@ -159,13 +157,13 @@ public final class AppendixExplorationSite extends AppendixTemplate
 	}
 
 	@Override
-	String constructAndGetTableHeader()
+	protected String constructAndGetTableHeader()
 	{
 		return "";
 	}
 
 	@Override
-	HtmlTable constructAndGetTableObject()
+	public HtmlTable constructAndGetTableObject()
 	{
 		return new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
@@ -178,65 +176,65 @@ public final class AppendixExplorationSite extends AppendixTemplate
 				.build();
 	}
 
-	private void createBanquetTemplate(Probe probe)
+	private void createBanquetTemplate(sbt.automization.data.refactoring.Probe probe)
 	{
-		if (probe.hasSampleWith(ReferenceSample.OUTCROP, Outcrop.BANQUET.toString()))
+		if (probe.hasSampleWith(Sample.OUTCROP, Outcrop.BANQUET.toString()))
 		{
-			AppendixSiteBANKETT banquet = new AppendixSiteBANKETT();
+			Banquet banquet = new Banquet();
 			banquet.constructTemplate(probe);
 			addToTemplate(banquet.getTemplate());
 		}
 	}
 
-	private void createGAPTemplate(Probe probe)
+	private void createGAPTemplate(sbt.automization.data.refactoring.Probe probe)
 	{
-		if (probe.hasSampleWith(ReferenceSample.OUTCROP, Outcrop.GAP.toString()))
+		if (probe.hasSampleWith(Sample.OUTCROP, Outcrop.GAP.toString()))
 		{
-			AppendixSiteFUGE table = new AppendixSiteFUGE();
+			Gap table = new Gap();
 			table.constructTemplate(probe);
 			addToTemplate(table.getTemplate());
 		}
 	}
 
-	private void createOHTemplate(Probe probe)
+	private void createOHTemplate(sbt.automization.data.refactoring.Probe probe)
 	{
-		if (probe.hasSampleWith(ReferenceSample.OUTCROP, Outcrop.OH.toString()))
+		if (probe.hasSampleWith(Sample.OUTCROP, Outcrop.OH.toString()))
 		{
-			AppendixSiteOH table = new AppendixSiteOH();
+			Topsoil table = new Topsoil();
 			table.constructTemplate(probe);
 			addToTemplate(table.getTemplate());
 		}
 	}
 
-	private void createOBTemplate(Probe probe)
+	private void createOBTemplate(sbt.automization.data.refactoring.Probe probe)
 	{
-		if (probe.hasSampleWith(ReferenceSample.OUTCROP, Outcrop.GOB.toString()) ||
-				probe.hasSampleWith(ReferenceSample.OUTCROP, Outcrop.CONCRETE.toString()) ||
-				probe.hasSampleWith(ReferenceSample.OUTCROP, Outcrop.TMHB.toString()) ||
-				probe.hasSampleWith(ReferenceSample.OUTCROP, Outcrop.SEAL.toString()) ||
-				probe.hasSampleWith(ReferenceSample.OUTCROP, Outcrop.COATING.toString()))
+		if (probe.hasSampleWith(Sample.OUTCROP, Outcrop.GOB.toString()) ||
+				probe.hasSampleWith(Sample.OUTCROP, Outcrop.CONCRETE.toString()) ||
+				probe.hasSampleWith(Sample.OUTCROP, Outcrop.TMHB.toString()) ||
+				probe.hasSampleWith(Sample.OUTCROP, Outcrop.SEAL.toString()) ||
+				probe.hasSampleWith(Sample.OUTCROP, Outcrop.COATING.toString()))
 		{
-			AppendixSiteGOB table = new AppendixSiteGOB();
+			BoundSuperstructure table = new BoundSuperstructure();
 			table.constructTemplate(probe);
 			addToTemplate(table.getTemplate());
 		}
 	}
 
-	private void createTOBTemplate(Probe probe)
+	private void createTOBTemplate(sbt.automization.data.refactoring.Probe probe)
 	{
-		if (probe.hasSampleWith(ReferenceSample.OUTCROP, Outcrop.TOB.toString()))
+		if (probe.hasSampleWith(Sample.OUTCROP, Outcrop.TOB.toString()))
 		{
-			AppendixSiteTOB table = new AppendixSiteTOB();
+			BaseCourseWithoutBinder table = new BaseCourseWithoutBinder();
 			table.constructTemplate(probe);
 			addToTemplate(table.getTemplate());
 		}
 	}
 
-	private void createUGTemplate(Probe probe)
+	private void createUGTemplate(sbt.automization.data.refactoring.Probe probe)
 	{
-		if (probe.hasSampleWith(ReferenceSample.OUTCROP, Outcrop.UG.toString()))
+		if (probe.hasSampleWith(Sample.OUTCROP, Outcrop.UG.toString()))
 		{
-			AppendixSiteUG table = new AppendixSiteUG();
+			Underground table = new Underground();
 			table.constructTemplate(probe);
 			addToTemplate(table.getTemplate());
 		}

@@ -1,6 +1,7 @@
 package sbt.automization.templates.report;
 
 import sbt.automization.data.ExplorationSite;
+import sbt.automization.templates.Outcrop;
 import sbt.automization.templates.helper.HeapFactory;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
@@ -8,25 +9,25 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class ReportHEAP extends ReportTemplate
+public final class Heap extends Report
 {
-	private static ReportHEAP instance;
+	private static Heap instance;
 	private final HeapFactory factory;
 
-	private ReportHEAP() {
-		layerKind = "HAUFWERK";
+	private Heap() {
+		setOutcrop(Outcrop.HEAP);
 		factory = new HeapFactory();
 	}
 
-	public static ReportHEAP getInstance()
+	public static Heap getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (ReportHEAP.class)
+			synchronized (Heap.class)
 			{
 				if (instance == null)
 				{
-					instance = new ReportHEAP();
+					instance = new Heap();
 				}
 			}
 		}
@@ -117,7 +118,7 @@ public final class ReportHEAP extends ReportTemplate
 			strb.append("<br>");
 		}
 
-		setTable(strb.toString());
+		addToTemplate(strb.toString());
 	}
 
 	@Override

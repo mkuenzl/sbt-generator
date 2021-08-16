@@ -3,11 +3,10 @@ package sbt.automization.format;
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.refactoring.references.Reference;
-import sbt.automization.data.refactoring.references.ReferenceProbe;
+import sbt.automization.data.refactoring.references.Probe;
 import sbt.automization.util.html.HtmlText;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 //TODO implement footnotes in excel and references
@@ -197,10 +196,10 @@ public final class FootnoteFormatUtil
 		return stringBuilder.toString();
 	}
 
-	private static List<ReferenceProbe> getFootnoteReferences()
+	private static List<Probe> getFootnoteReferences()
 	{
-		List<ReferenceProbe> references = new ArrayList<>(){{
-			add(ReferenceProbe.LP_ID);
+		List<Probe> references = new ArrayList<>(){{
+			add(Probe.LP_ID);
 			//TODO
 		}};
 
@@ -220,7 +219,7 @@ public final class FootnoteFormatUtil
 		stringBuilder.append(formatInformationFootnote())
 				.append(printFootnoteWithText(counter, "Messeinheit: Garmin eTrex 10, herstellerseitig angegebene Lagegenauigkeit ~ 3 m"));
 
-		for (ReferenceProbe footnoteReference : getFootnoteReferences())
+		for (Probe footnoteReference : getFootnoteReferences())
 		{
 			if (checkExistenceOfFootnote(table, footnoteReference))
 			{
@@ -230,7 +229,7 @@ public final class FootnoteFormatUtil
 		return stringBuilder.toString();
 	}
 
-	private static String printFootnoteForReference(DataTable table, ReferenceProbe footnoteReference)
+	private static String printFootnoteForReference(DataTable table, Probe footnoteReference)
 	{
 		switch (footnoteReference)
 		{

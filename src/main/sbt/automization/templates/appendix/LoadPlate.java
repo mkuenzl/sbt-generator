@@ -4,32 +4,31 @@ package sbt.automization.templates.appendix;
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.refactoring.Parameter;
-import sbt.automization.data.refactoring.Probe;
-import sbt.automization.data.refactoring.references.ReferenceParameterLP;
-import sbt.automization.data.refactoring.references.ReferenceProbe;
+import sbt.automization.data.refactoring.references.LP;
+import sbt.automization.data.refactoring.references.Probe;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlFactory;
 import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class AppendixLP extends AppendixTemplate
+public final class LoadPlate extends Appendix
 {
-	private static AppendixLP instance;
+	private static LoadPlate instance;
 
-	private AppendixLP() {
+	private LoadPlate() {
 		super();
 	}
 
-	public static AppendixLP getInstance()
+	public static LoadPlate getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (AppendixLP.class)
+			synchronized (LoadPlate.class)
 			{
 				if (instance == null)
 				{
-					instance = new AppendixLP();
+					instance = new LoadPlate();
 				}
 			}
 		}
@@ -45,7 +44,7 @@ public final class AppendixLP extends AppendixTemplate
 	}
 
 	@Override
-	String constructAndGetTableHeader()
+	protected String constructAndGetTableHeader()
 	{
 		String firstRow = HtmlFactory.createRow(2, new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "width:55px", 3, 1,
@@ -102,7 +101,7 @@ public final class AppendixLP extends AppendixTemplate
 	}
 
 	@Override
-	HtmlTable constructAndGetTableObject()
+	public HtmlTable constructAndGetTableObject()
 	{
 		return new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
@@ -122,36 +121,36 @@ public final class AppendixLP extends AppendixTemplate
 
 		for (DataTable dataTable : dataTables)
 		{
-			if (dataTable instanceof Probe)
+			if (dataTable instanceof sbt.automization.data.refactoring.Probe)
 			{
-				Probe probe = (Probe) dataTable;
+				sbt.automization.data.refactoring.Probe probe = (sbt.automization.data.refactoring.Probe) dataTable;
 
-				Parameter parameter = probe.getParameterBy(ReferenceProbe.LP_ID);
+				Parameter parameter = probe.getParameterBy(Probe.LP_ID);
 
 				if (parameter != null)
 				{
-					String formattedEV2 = TextFormatUtil.formatLP(parameter.get(ReferenceParameterLP.EV2),
-							parameter.get(ReferenceParameterLP.EV85));
+					String formattedEV2 = TextFormatUtil.formatLP(parameter.get(LP.EV2),
+							parameter.get(LP.EV85));
 
 					String row = HtmlFactory.createRow("Normal", new String[]{
 							HtmlFactory.createCell("NormalCenter",
-									new String[]{dataTable.get(ReferenceProbe.LP_ID)}),
+									new String[]{dataTable.get(Probe.LP_ID)}),
 							HtmlFactory.createCell("NormalCenter",
-									new String[]{dataTable.get(ReferenceProbe.ID)}),
+									new String[]{dataTable.get(Probe.ID)}),
 							HtmlFactory.createCell("Normal",
-									new String[]{dataTable.get(ReferenceProbe.LOCATION)}),
+									new String[]{dataTable.get(Probe.LOCATION)}),
 							HtmlFactory.createCell("NormalCenter",
-									new String[]{parameter.get(ReferenceParameterLP.VALUE_1)}),
+									new String[]{parameter.get(LP.VALUE_1)}),
 							HtmlFactory.createCell("NormalCenter",
-									new String[]{parameter.get(ReferenceParameterLP.VALUE_2)}),
+									new String[]{parameter.get(LP.VALUE_2)}),
 							HtmlFactory.createCell("NormalCenter",
-									new String[]{parameter.get(ReferenceParameterLP.VALUE_3)}),
+									new String[]{parameter.get(LP.VALUE_3)}),
 							HtmlFactory.createCell("NormalCenter",
-									new String[]{parameter.get(ReferenceParameterLP.MEAN)}),
+									new String[]{parameter.get(LP.MEAN)}),
 							HtmlFactory.createCell("NormalCenter",
-									new String[]{parameter.get(ReferenceParameterLP.EV)}),
+									new String[]{parameter.get(LP.EV)}),
 							HtmlFactory.createCell("NormalCenter",
-									new String[]{parameter.get(ReferenceParameterLP.EV85)}),
+									new String[]{parameter.get(LP.EV85)}),
 							HtmlFactory.createCell("NormalCenter",
 									new String[]{formattedEV2}),
 					});

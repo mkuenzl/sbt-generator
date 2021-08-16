@@ -1,7 +1,8 @@
 package sbt.automization.templates.report;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.templates.appendix.AppendixTemplate;
+import sbt.automization.templates.Outcrop;
+import sbt.automization.templates.appendix.Appendix;
 import sbt.automization.templates.helper.TmhbFactory;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
@@ -9,26 +10,26 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class ReportTMHB extends ReportTemplate
+public final class BaseCourseWithHydraulicBinder extends Report
 {
-	private static ReportTMHB instance;
+	private static BaseCourseWithHydraulicBinder instance;
 	private final TmhbFactory factory;
 
-	private ReportTMHB()
+	private BaseCourseWithHydraulicBinder()
 	{
-		layerKind = "TMHB";
+		setOutcrop(Outcrop.TMHB);
 		factory = new TmhbFactory();
 	}
 
-	public static ReportTMHB getInstance()
+	public static BaseCourseWithHydraulicBinder getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (ReportTMHB.class)
+			synchronized (BaseCourseWithHydraulicBinder.class)
 			{
 				if (instance == null)
 				{
-					instance = new ReportTMHB();
+					instance = new BaseCourseWithHydraulicBinder();
 				}
 			}
 		}
@@ -52,7 +53,7 @@ public final class ReportTMHB extends ReportTemplate
 			HtmlTable reportTable = new HtmlTable.Builder()
 					.appendAttribute("class", "MsoNormalTable")
 					.appendAttribute("border", "1")
-					.appendAttribute("style", AppendixTemplate.HTML_BASIC_TABLE_STYLE)
+					.appendAttribute("style", Appendix.HTML_BASIC_TABLE_STYLE)
 					.appendAttribute("cellspacing", "0")
 					.appendAttribute("cellpadding", "0")
 					.build();
@@ -70,7 +71,7 @@ public final class ReportTMHB extends ReportTemplate
 			strb.append(reportTable.appendTag());
 			strb.append("<br>");
 		}
-		setTable(strb.toString());
+		addToTemplate(strb.toString());
 
 	}
 
@@ -138,13 +139,13 @@ public final class ReportTMHB extends ReportTemplate
 	}
 
 	@Override
-	HtmlTable constructAndGetTableObject()
+	public HtmlTable constructAndGetTableObject()
 	{
 		HtmlTable table = new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
 				.appendAttribute("width", "605")
 				.appendAttribute("border", "1")
-				.appendAttribute("style", AppendixTemplate.HTML_BASIC_TABLE_STYLE)
+				.appendAttribute("style", Appendix.HTML_BASIC_TABLE_STYLE)
 				.appendAttribute("cellspacing", "0")
 				.appendAttribute("cellpadding", "0")
 				.appendContent(constructAndGetTableHeader())

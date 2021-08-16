@@ -11,7 +11,7 @@ public class StrategyStorage
 {
     private static StrategyStorage instance;
 
-    private final List<HtmlTableTemplate> strategyList;
+    private final List<HtmlTemplate> strategyList;
 
     private StrategyStorage()
     {
@@ -38,49 +38,49 @@ public class StrategyStorage
         switch (strategyName)
         {
             case "ANLAGE_PN":
-                strategyList.add(AppendixPN.getInstance());
+                strategyList.add(SamplingProtocol.getInstance());
                 break;
             case "ANLAGE_RUK":
-                strategyList.add(AppendixRUK.getInstance());
+                strategyList.add(RingAndBall.getInstance());
                 break;
             case "ANLAGE_ERK":
-                strategyList.add(AppendixExplorationSite.getInstance());
+                strategyList.add(ExplorationSite.getInstance());
                 break;
             case "ANLAGE_LP":
-                strategyList.add(AppendixLP.getInstance());
+                strategyList.add(LoadPlate.getInstance());
                 break;
             case "ANLAGE_PN_HEAP":
-                strategyList.add(AppendixPNHEAP.getInstance());
+                strategyList.add(SamplingProtocolHeap.getInstance());
                 break;
             case "BERICHT_GOB":
-                strategyList.add(ReportGOB.getInstance());
+                strategyList.add(BoundSuperstructure.getInstance());
                 break;
             case "BERICHT_TOB":
-                strategyList.add(ReportTOB.getInstance());
+                strategyList.add(BaseCourseWithoutBinder.getInstance());
                 break;
             case "BERICHT_UG":
-                strategyList.add(ReportUG.getInstance());
+                strategyList.add(Underground.getInstance());
                 break;
             case "BERICHT_OH":
-                strategyList.add(ReportOH.getInstance());
+                strategyList.add(Topsoil.getInstance());
                 break;
             case "BERICHT_TMHB":
-                strategyList.add(ReportTMHB.getInstance());
+                strategyList.add(BaseCourseWithHydraulicBinder.getInstance());
                 break;
             case "BERICHT_BETON":
-                strategyList.add(ReportCONCRETE.getInstance());
+                strategyList.add(Concrete.getInstance());
                 break;
             case "BERICHT_FUGE":
-                strategyList.add(ReportFUGE.getInstance());
+                strategyList.add(Gap.getInstance());
                 break;
             case "BERICHT_HAUFWERK":
-                strategyList.add(ReportHEAP.getInstance());
+                strategyList.add(Heap.getInstance());
                 break;
             case "BERICHT_KOORDINATEN":
-                strategyList.add(ReportCOORDINATES.getInstance());
+                strategyList.add(Coordinates.getInstance());
                 break;
             case "BERICHT_BANKETT":
-                strategyList.add(ReportBANKETT.getInstance());
+                strategyList.add(Banquet.getInstance());
                 break;
         }
     }
@@ -90,54 +90,54 @@ public class StrategyStorage
         switch (strategyName)
         {
             case "ANLAGE_PN":
-                strategyList.remove(AppendixPN.getInstance());
+                strategyList.remove(SamplingProtocol.getInstance());
                 break;
             case "ANLAGE_RUK":
-                strategyList.remove(AppendixRUK.getInstance());
+                strategyList.remove(RingAndBall.getInstance());
                 break;
             case "ANLAGE_ERK":
-                strategyList.remove(AppendixExplorationSite.getInstance());
+                strategyList.remove(ExplorationSite.getInstance());
                 break;
             case "ANLAGE_LP":
-                strategyList.remove(AppendixLP.getInstance());
+                strategyList.remove(LoadPlate.getInstance());
                 break;
             case "ANLAGE_PN_HEAP":
-                strategyList.remove(AppendixPNHEAP.getInstance());
+                strategyList.remove(SamplingProtocolHeap.getInstance());
                 break;
             case "BERICHT_GOB":
-                strategyList.remove(ReportGOB.getInstance());
+                strategyList.remove(BoundSuperstructure.getInstance());
                 break;
             case "BERICHT_TOB":
-                strategyList.remove(ReportTOB.getInstance());
+                strategyList.remove(BaseCourseWithoutBinder.getInstance());
                 break;
             case "BERICHT_UG":
-                strategyList.remove(ReportUG.getInstance());
+                strategyList.remove(Underground.getInstance());
                 break;
             case "BERICHT_OH":
-                strategyList.remove(ReportOH.getInstance());
+                strategyList.remove(Topsoil.getInstance());
                 break;
             case "BERICHT_TMHB":
-                strategyList.remove(ReportTMHB.getInstance());
+                strategyList.remove(BaseCourseWithHydraulicBinder.getInstance());
                 break;
             case "BERICHT_BETON":
-                strategyList.remove(ReportCONCRETE.getInstance());
+                strategyList.remove(Concrete.getInstance());
                 break;
             case "BERICHT_FUGE":
-                strategyList.remove(ReportFUGE.getInstance());
+                strategyList.remove(Gap.getInstance());
                 break;
             case "BERICHT_HAUFWERK":
-                strategyList.remove(ReportHEAP.getInstance());
+                strategyList.remove(Heap.getInstance());
                 break;
             case "BERICHT_KOORDINATEN":
-                strategyList.remove(ReportCOORDINATES.getInstance());
+                strategyList.remove(Coordinates.getInstance());
                 break;
             case "BERICHT_BANKETT":
-                strategyList.remove(ReportBANKETT.getInstance());
+                strategyList.remove(Banquet.getInstance());
                 break;
         }
     }
 
-    public List<HtmlTableTemplate> getStrategies()
+    public List<HtmlTemplate> getStrategies()
     {
         return strategyList;
     }

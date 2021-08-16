@@ -2,7 +2,8 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.templates.HtmlTableTemplate;
+import sbt.automization.templates.HtmlTemplate;
+import sbt.automization.templates.Outcrop;
 import sbt.automization.util.Util;
 import sbt.automization.util.html.HtmlTable;
 
@@ -12,9 +13,9 @@ import java.util.List;
 /**
  * Abstract class for all report tables inherits from AHtmlTable
  */
-public abstract class ReportTemplate implements HtmlTableTemplate
+public abstract class Report implements HtmlTemplate
 {
-	String layerKind;
+	private Outcrop outcrop;
 
 	public static final String HTML_BASIC_TABLE_STYLE = new StringBuilder()
 			.append("'")
@@ -30,19 +31,33 @@ public abstract class ReportTemplate implements HtmlTableTemplate
 			.append("'")
 			.toString();
 
-	private String table;
+	protected int linesPerPage;
+	protected int lines;
+	protected final StringBuilder template;
+	protected HtmlTable table;
+
+	public Report()
+	{
+		linesPerPage = 0;
+		lines = 0;
+		template = new StringBuilder();
+	}
 
 	public String getTemplate()
 	{
-		return table;
+		return template.toString();
 	}
 
-	public void setTable(final String table)
+	public void addToTemplate(final String table)
 	{
-		this.table = table;
+		this.template.append(table);
 	}
 
 	public abstract String constructAndGetTableHeader();
+
+	protected void setOutcrop(Outcrop outcrop){
+		this.outcrop = outcrop;
+	}
 
 	@Override
 	public void constructTemplate(List<DataTable> dataTables)
@@ -65,7 +80,7 @@ public abstract class ReportTemplate implements HtmlTableTemplate
 	 */
 	public Collection<List<ExplorationSite>> divideExplorationSites(List<ExplorationSite> sites)
 	{
-		List<ExplorationSite> explorationSitesWhichIncludeOutcrop = Util.getExplorationSitesWhichIncludeOutcrop(sites, layerKind);
+		List<ExplorationSite> explorationSitesWhichIncludeOutcrop = Util.getExplorationSitesWhichIncludeOutcrop(sites, outcrop.toString());
 
 		Collection<List<ExplorationSite>> dividedExplorationSites = Util.separateBasedOnSize(explorationSitesWhichIncludeOutcrop, 17);
 
@@ -76,7 +91,7 @@ public abstract class ReportTemplate implements HtmlTableTemplate
 
 	abstract String buildEnvironmentTechnicalFeatures(List<ExplorationSite> explorationSites);
 
-	HtmlTable constructAndGetTableObject()
+	public HtmlTable constructAndGetTableObject()
 	{
 		HtmlTable table = new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")

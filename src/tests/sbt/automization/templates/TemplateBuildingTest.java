@@ -1,16 +1,16 @@
 package sbt.automization.templates;
 
-
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.refactoring.Examination;
 import sbt.automization.export.HtmlTemplateExport;
-import sbt.automization.templates.appendix.AppendixExplorationSite;
-import sbt.automization.templates.appendix.AppendixLP;
-import sbt.automization.templates.appendix.AppendixPN;
-import sbt.automization.templates.appendix.AppendixRUK;
+import sbt.automization.templates.appendix.ExplorationSite;
+import sbt.automization.templates.appendix.LoadPlate;
+import sbt.automization.templates.appendix.SamplingProtocol;
+import sbt.automization.templates.appendix.RingAndBall;
+import sbt.automization.templates.report.Coordinates;
 import sbt.automization.util.CsvParser;
 import sbt.automization.util.Util;
 
@@ -70,7 +70,7 @@ public class TemplateBuildingTest
 	@Test
 	public void createExplorationSiteTemplate() throws IOException
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(AppendixExplorationSite.getInstance());
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ExplorationSite.getInstance());
 		htmlTemplateExportStrategy.export(dataTables);
 
 		openExportFile(htmlTemplateExportStrategy.getPath());
@@ -79,7 +79,7 @@ public class TemplateBuildingTest
 	@Test
 	public void createRukTemplate() throws IOException
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(AppendixRUK.getInstance());
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(RingAndBall.getInstance());
 		htmlTemplateExportStrategy.export(dataTables);
 
 		openExportFile(htmlTemplateExportStrategy.getPath());
@@ -88,7 +88,7 @@ public class TemplateBuildingTest
 	@Test
 	public void createLpTemplate() throws IOException
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(AppendixLP.getInstance());
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(LoadPlate.getInstance());
 		htmlTemplateExportStrategy.export(dataTables);
 
 		openExportFile(htmlTemplateExportStrategy.getPath());
@@ -97,7 +97,7 @@ public class TemplateBuildingTest
 	@Test
 	public void createPnTemplate() throws IOException
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(AppendixPN.getInstance());
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(SamplingProtocol.getInstance());
 		htmlTemplateExportStrategy.export(dataTables);
 
 		openExportFile(htmlTemplateExportStrategy.getPath());
@@ -193,14 +193,14 @@ public class TemplateBuildingTest
 //		openExportFile(htmlTemplateExportStrategy.getPath());
 //	}
 //
-//	@Test
-//	public void createReportCoordinateTemplate() throws IOException
-//	{
-//		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ReportCOORDINATES.getInstance());
-//		htmlTemplateExportStrategy.export(explorationSites);
-//
-//		openExportFile(htmlTemplateExportStrategy.getPath());
-//	}
+	@Test
+	public void createReportCoordinateTemplate() throws IOException
+	{
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Coordinates.getInstance());
+		htmlTemplateExportStrategy.export(dataTables);
+
+		openExportFile(htmlTemplateExportStrategy.getPath());
+	}
 //
 //	@Test
 //	public void createReportBankettTemplate() throws IOException

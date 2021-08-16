@@ -1,26 +1,23 @@
-package sbt.automization.templates.appendix;
+package sbt.automization.templates.appendix.site;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.ReferenceKey;
-import sbt.automization.data.LayerSample;
 import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.refactoring.Probe;
-import sbt.automization.data.refactoring.Sample;
-import sbt.automization.data.refactoring.references.ReferenceParameterChemistry;
-import sbt.automization.data.refactoring.references.ReferenceParameterLP;
-import sbt.automization.data.refactoring.references.ReferenceProbe;
-import sbt.automization.data.refactoring.references.ReferenceSample;
-import sbt.automization.format.HtmlCellFormatUtil;
+import sbt.automization.data.refactoring.references.Chemistry;
+import sbt.automization.data.refactoring.references.LP;
+import sbt.automization.data.refactoring.references.Probe;
+import sbt.automization.data.refactoring.references.Sample;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.templates.Outcrop;
-import sbt.automization.util.html.*;
+import sbt.automization.templates.appendix.Appendix;
+import sbt.automization.util.html.HtmlFactory;
+import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-final class AppendixSiteTOB extends AppendixTemplate
+public final class BaseCourseWithoutBinder extends Appendix
 {
 	private String outcrop = "";
-	private Probe probe;
+	private sbt.automization.data.refactoring.Probe probe;
 	private boolean alreadyPrintedLP = false;
 
 	@Override
@@ -36,13 +33,17 @@ final class AppendixSiteTOB extends AppendixTemplate
 	}
 
 	@Override
-	String constructAndGetTableHeader()
+	public String getExportFileName()
+	{
+		return null;
+	}	@Override
+	public String constructAndGetTableHeader()
 	{
 		String firstRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "width:125px;text-align:left",
 						new String[]{"Tragschicht ohne", TextFormatUtil.printLineBreak(), "Bindemittel"}),
 				HtmlFactory.createHeader("NormalTableHeader", "text-align:left", 1, 8,
-						new String[]{"Aufschlussverfahren:",outcrop}),
+						new String[]{"Aufschlussverfahren:", outcrop}),
 		});
 
 		String secondRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
@@ -52,13 +53,13 @@ final class AppendixSiteTOB extends AppendixTemplate
 						new String[]{"Dicke", "<div>[7]</div>"}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
 						new String[]{"Tiefe"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:60px",   2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:60px", 2, 1,
 						new String[]{"MUFV", "<div>[18]</div>"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:60px",   2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:60px", 2, 1,
 						new String[]{"LAGA BO", "<div>[11]</div>"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:60px",  2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:60px", 2, 1,
 						new String[]{"LAGA RC", "<div>[28]</div>"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:60px",   2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:60px", 2, 1,
 						new String[]{"TL Ge.", "<div>[27]</div>"}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
 						new String[]{"E<sub>V2</sub>",
@@ -91,13 +92,17 @@ final class AppendixSiteTOB extends AppendixTemplate
 		return stringBuilder.toString();
 	}
 
-	private void setOutcrop(DataTable dataTable)
+	@Override
+	public void constructTemplate(List<DataTable> dataTables)
 	{
-		outcrop = dataTable.get(ReferenceProbe.OUTCROP_TOB);
+
+	}	private void setOutcrop(DataTable dataTable)
+	{
+		outcrop = dataTable.get(Probe.OUTCROP_TOB);
 	}
 
 	@Override
-	HtmlTable constructAndGetTableObject()
+	public HtmlTable constructAndGetTableObject()
 	{
 		HtmlTable table = new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
@@ -113,29 +118,17 @@ final class AppendixSiteTOB extends AppendixTemplate
 	}
 
 	@Override
-	public String getExportFileName()
-	{
-		return null;
-	}
-
-	@Override
-	public void constructTemplate(List<DataTable> dataTables)
-	{
-
-	}
-
-	@Override
 	public void constructTemplate(DataTable dataTable)
 	{
 		setOutcrop(dataTable);
 		HtmlTable table = constructAndGetTableObject();
 
-		if (dataTable instanceof Probe)
+		if (dataTable instanceof sbt.automization.data.refactoring.Probe)
 		{
-			this.probe = (Probe) dataTable;
-			List<Sample> samplesOfOutcrop = probe.getSamplesBy(ReferenceSample.OUTCROP, Outcrop.TOB.toString());
+			this.probe = (sbt.automization.data.refactoring.Probe) dataTable;
+			List<sbt.automization.data.refactoring.Sample> samplesOfOutcrop = probe.getSamplesBy(Sample.OUTCROP, Outcrop.TOB.toString());
 
-			for (Sample sample : samplesOfOutcrop)
+			for (sbt.automization.data.refactoring.Sample sample : samplesOfOutcrop)
 			{
 				String row = createRow(sample);
 				table.appendContent(row);
@@ -147,11 +140,11 @@ final class AppendixSiteTOB extends AppendixTemplate
 
 	private String printEV()
 	{
-		if (probe.containsValueFor(ReferenceProbe.LP_ID) && !alreadyPrintedLP)
+		if (probe.containsValueFor(Probe.LP_ID) && ! alreadyPrintedLP)
 		{
-			String formattedEV = probe.getParameterValueBy(ReferenceProbe.LP_ID, ReferenceParameterLP.EV2)
-							.concat(TextFormatUtil.printLineBreak())
-									.concat(probe.getParameterValueBy(ReferenceProbe.LP_ID, ReferenceParameterLP.EV85));
+			String formattedEV = probe.getParameterValueBy(Probe.LP_ID, LP.EV2)
+					.concat(TextFormatUtil.printLineBreak())
+					.concat(probe.getParameterValueBy(Probe.LP_ID, LP.EV85));
 			alreadyPrintedLP = true;
 
 			return formattedEV;
@@ -159,26 +152,26 @@ final class AppendixSiteTOB extends AppendixTemplate
 		return "-";
 	}
 
-	private String createRow(Sample sample)
+	private String createRow(sbt.automization.data.refactoring.Sample sample)
 	{
 		String row = HtmlFactory.createRow("Normal", new String[]{
 				HtmlFactory.createCell("Normal",
-						new String[]{sample.get(ReferenceSample.TYPE),
+						new String[]{sample.get(Sample.TYPE),
 								TextFormatUtil.printLineBreak(),
-								sample.get(ReferenceSample.GRANULATION),
-								sample.get(ReferenceSample.ROUNDING_GRADATION)}),
+								sample.get(Sample.GRANULATION),
+								sample.get(Sample.ROUNDING_GRADATION)}),
 				HtmlFactory.createCell("NormalCenter",
-						new String[]{sample.get(ReferenceSample.THICKNESS)}),
+						new String[]{sample.get(Sample.THICKNESS)}),
 				HtmlFactory.createCell("NormalCenter",
-						new String[]{sample.get(ReferenceSample.DEPTH_END)}),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(ReferenceSample.CHEMISTRY_ID, ReferenceParameterChemistry.MUFV)),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(ReferenceSample.CHEMISTRY_ID, ReferenceParameterChemistry.LAGA_BO)),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(ReferenceSample.CHEMISTRY_ID, ReferenceParameterChemistry.LAGA_RC)),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(ReferenceSample.CHEMISTRY_ID, ReferenceParameterChemistry.TL_ROCK_STRATUM)),
+						new String[]{sample.get(Sample.DEPTH_END)}),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(Sample.CHEMISTRY_ID, Chemistry.MUFV)),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(Sample.CHEMISTRY_ID, Chemistry.LAGA_BO)),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(Sample.CHEMISTRY_ID, Chemistry.LAGA_RC)),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(Sample.CHEMISTRY_ID, Chemistry.TL_ROCK_STRATUM)),
 				HtmlFactory.createCell("NormalCenter",
 						new String[]{printEV()}),
 				HtmlFactory.createCell("NormalCenter",
-						new String[]{sample.get(ReferenceSample.GRAIN_SIZE_DISTRIBUTION)})
+						new String[]{sample.get(Sample.GRAIN_SIZE_DISTRIBUTION)})
 		});
 
 		return row;

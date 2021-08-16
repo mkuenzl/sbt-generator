@@ -2,11 +2,11 @@ package sbt.automization.util;
 
 import org.apache.commons.cli.*;
 import sbt.automization.templates.*;
-import sbt.automization.templates.appendix.AppendixExplorationSite;
-import sbt.automization.templates.appendix.AppendixLP;
-import sbt.automization.templates.appendix.AppendixPN;
-import sbt.automization.templates.appendix.AppendixRUK;
-import sbt.automization.templates.report.ReportGOB;
+import sbt.automization.templates.appendix.ExplorationSite;
+import sbt.automization.templates.appendix.LoadPlate;
+import sbt.automization.templates.appendix.SamplingProtocol;
+import sbt.automization.templates.appendix.RingAndBall;
+import sbt.automization.templates.report.BoundSuperstructure;
 
 import java.io.File;
 
@@ -18,7 +18,7 @@ public class CLI
     private final String[] args;
     private final Options options;
     private final File file = new File(System.getProperty("user.dir").concat(File.separator).concat("datenbank.csv"));
-    private HtmlTableTemplate strategy;
+    private HtmlTemplate strategy;
 
     public CLI(String[] args)
     {
@@ -54,19 +54,19 @@ public class CLI
                 switch (cmd.getOptionValue("t"))
                 {
                     case "LP_Template":
-                        this.strategy = AppendixLP.getInstance();
+                        this.strategy = LoadPlate.getInstance();
                         break;
                     case "PN_Template":
-                        this.strategy = AppendixPN.getInstance();
+                        this.strategy = SamplingProtocol.getInstance();
                         break;
                     case "RUK_Template":
-                        this.strategy = AppendixRUK.getInstance();
+                        this.strategy = RingAndBall.getInstance();
                         break;
                     case "ERK_Template":
-                        this.strategy = AppendixExplorationSite.getInstance();
+                        this.strategy = ExplorationSite.getInstance();
                         break;
                     case "Bericht_Template":
-                        this.strategy = ReportGOB.getInstance();
+                        this.strategy = BoundSuperstructure.getInstance();
                         break;
                     default:
                         System.err.println("Please provide a template.");
@@ -85,7 +85,7 @@ public class CLI
         return file;
     }
 
-    public HtmlTableTemplate getStrategy()
+    public HtmlTemplate getStrategy()
     {
         return strategy;
     }

@@ -1,7 +1,8 @@
 package sbt.automization.templates.report;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.templates.appendix.AppendixTemplate;
+import sbt.automization.templates.Outcrop;
+import sbt.automization.templates.appendix.Appendix;
 import sbt.automization.templates.helper.FugeFactory;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
@@ -9,26 +10,26 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class ReportFUGE extends ReportTemplate
+public final class Gap extends Report
 {
-	private static ReportFUGE instance;
+	private static Gap instance;
 	private final FugeFactory factory;
 
-	private ReportFUGE()
+	private Gap()
 	{
-		layerKind = "FUGE";
+		setOutcrop(Outcrop.GAP);
 		factory = new FugeFactory();
 	}
 
-	public static ReportFUGE getInstance()
+	public static Gap getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (ReportFUGE.class)
+			synchronized (Gap.class)
 			{
 				if (instance == null)
 				{
-					instance = new ReportFUGE();
+					instance = new Gap();
 				}
 			}
 		}
@@ -46,7 +47,7 @@ public final class ReportFUGE extends ReportTemplate
 			HtmlTable reportTable = new HtmlTable.Builder()
 					.appendAttribute("class", "MsoNormalTable")
 					.appendAttribute("border", "1")
-					.appendAttribute("style", AppendixTemplate.HTML_BASIC_TABLE_STYLE)
+					.appendAttribute("style", Appendix.HTML_BASIC_TABLE_STYLE)
 					.appendAttribute("cellspacing", "0")
 					.appendAttribute("cellpadding", "0")
 					.build();
@@ -60,7 +61,7 @@ public final class ReportFUGE extends ReportTemplate
 			strb.append("<br>");
 		}
 
-		setTable(strb.toString());
+		addToTemplate(strb.toString());
 	}
 
 	@Override
@@ -106,13 +107,13 @@ public final class ReportFUGE extends ReportTemplate
 	}
 
 	@Override
-	HtmlTable constructAndGetTableObject()
+	public HtmlTable constructAndGetTableObject()
 	{
 		return new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
 				.appendAttribute("width", "605")
 				.appendAttribute("border", "1")
-				.appendAttribute("style", AppendixTemplate.HTML_BASIC_TABLE_STYLE)
+				.appendAttribute("style", Appendix.HTML_BASIC_TABLE_STYLE)
 				.appendAttribute("cellspacing", "0")
 				.appendAttribute("cellpadding", "0")
 				.appendContent(constructAndGetTableHeader())

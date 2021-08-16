@@ -8,7 +8,7 @@ import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class AttemptTemplate extends AppendixTemplate
+public final class AttemptTemplate extends Appendix
 {
 
 	private static AttemptTemplate instance;
@@ -31,7 +31,7 @@ public final class AttemptTemplate extends AppendixTemplate
 	}
 
 	@Override
-	HtmlTable constructAndGetTableObject()
+	public HtmlTable constructAndGetTableObject()
 	{
 		HtmlTable table = new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
@@ -48,7 +48,7 @@ public final class AttemptTemplate extends AppendixTemplate
 
 
 	@Override
-	String constructAndGetTableHeader()
+	public String constructAndGetTableHeader()
 	{
 		return null;
 	}

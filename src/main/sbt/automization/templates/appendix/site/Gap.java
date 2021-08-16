@@ -1,19 +1,18 @@
-package sbt.automization.templates.appendix;
+package sbt.automization.templates.appendix.site;
 
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.refactoring.Probe;
-import sbt.automization.data.refactoring.Sample;
-import sbt.automization.data.refactoring.references.ReferenceParameterChemistry;
-import sbt.automization.data.refactoring.references.ReferenceProbe;
-import sbt.automization.data.refactoring.references.ReferenceSample;
+import sbt.automization.data.refactoring.references.Chemistry;
+import sbt.automization.data.refactoring.references.Probe;
+import sbt.automization.data.refactoring.references.Sample;
 import sbt.automization.templates.Outcrop;
+import sbt.automization.templates.appendix.Appendix;
 import sbt.automization.util.html.HtmlFactory;
 import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-final class AppendixSiteFUGE extends AppendixTemplate
+public final class Gap extends Appendix
 {
 	private String outcrop = "";
 
@@ -26,27 +25,35 @@ final class AppendixSiteFUGE extends AppendixTemplate
 	@Override
 	public void constructTable(final ExplorationSite site)
 	{
-	}	private void setOutcrop(DataTable dataTable)
-	{
-		outcrop = dataTable.get(ReferenceProbe.OUTCROP_UG_OH_BA);
 	}
 
 	@Override
 	public String getExportFileName()
 	{
 		return null;
-	}	@Override
+	}	private void setOutcrop(DataTable dataTable)
+	{
+		outcrop = dataTable.get(Probe.OUTCROP_UG_OH_BA);
+	}
+
+	@Override
+	public void constructTemplate(List<DataTable> dataTables)
+	{
+
+	}
+
+	@Override
 	public void constructTemplate(DataTable dataTable)
 	{
 		setOutcrop(dataTable);
 		HtmlTable table = constructAndGetTableObject();
 
-		if (dataTable instanceof Probe)
+		if (dataTable instanceof sbt.automization.data.refactoring.Probe)
 		{
-			Probe probe = (Probe) dataTable;
-			List<Sample> samplesOfOutcrop = probe.getSamplesBy(ReferenceSample.OUTCROP, Outcrop.GAP.toString());
+			sbt.automization.data.refactoring.Probe probe = (sbt.automization.data.refactoring.Probe) dataTable;
+			List<sbt.automization.data.refactoring.Sample> samplesOfOutcrop = probe.getSamplesBy(Sample.OUTCROP, Outcrop.GAP.toString());
 
-			for (Sample sample : samplesOfOutcrop)
+			for (sbt.automization.data.refactoring.Sample sample : samplesOfOutcrop)
 			{
 				String row = createRow(sample);
 				table.appendContent(row);
@@ -56,34 +63,31 @@ final class AppendixSiteFUGE extends AppendixTemplate
 		addToTemplate(table.appendTag());
 	}
 
-	@Override
-	public void constructTemplate(List<DataTable> dataTables)
-	{
 
-	}	private String createRow(Sample sample)
+
+	private String createRow(sbt.automization.data.refactoring.Sample sample)
 	{
 		String row = HtmlFactory.createRow("Normal", new String[]{
 				HtmlFactory.createCell("Normal",
-						new String[]{sample.get(ReferenceSample.TYPE)}),
+						new String[]{sample.get(Sample.TYPE)}),
 				HtmlFactory.createCell("NormalCenter",
-						new String[]{sample.get(ReferenceSample.THICKNESS)}),
+						new String[]{sample.get(Sample.THICKNESS)}),
 				HtmlFactory.createCell("NormalCenter",
-						new String[]{sample.get(ReferenceSample.DEPTH_END)}),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(ReferenceSample.CHEMISTRY_ID, ReferenceParameterChemistry.MUFV)),
+						new String[]{sample.get(Sample.DEPTH_END)}),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(Sample.CHEMISTRY_ID, Chemistry.MUFV)),
 				HtmlFactory.createCell("NormalCenter", 1, 3,
 						new String[]{""}),
 				HtmlFactory.createCell("NormalCenter",
-						new String[]{sample.get(ReferenceSample.PAK)}),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(ReferenceSample.CHEMISTRY_ID, ReferenceParameterChemistry.ASBESTOS)),
+						new String[]{sample.get(Sample.PAK)}),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(Sample.CHEMISTRY_ID, Chemistry.ASBESTOS)),
 		});
 
 		return row;
 	}
 
 
-
 	@Override
-	String constructAndGetTableHeader()
+	public String constructAndGetTableHeader()
 	{
 		String firstRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "width:125px;text-align:left",
@@ -127,7 +131,7 @@ final class AppendixSiteFUGE extends AppendixTemplate
 	}
 
 	@Override
-	HtmlTable constructAndGetTableObject()
+	public HtmlTable constructAndGetTableObject()
 	{
 		HtmlTable table = new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
@@ -141,8 +145,6 @@ final class AppendixSiteFUGE extends AppendixTemplate
 
 		return table;
 	}
-
-
 
 
 }

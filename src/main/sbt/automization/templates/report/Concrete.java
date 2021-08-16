@@ -1,34 +1,36 @@
 package sbt.automization.templates.report;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.templates.appendix.AppendixTemplate;
-import sbt.automization.templates.helper.TobFactory;
+import sbt.automization.templates.Outcrop;
+import sbt.automization.templates.appendix.Appendix;
+import sbt.automization.templates.helper.ConcreteFactory;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class ReportTOB extends ReportTemplate
+public final class Concrete extends Report
 {
-	private static ReportTOB instance;
-	private final TobFactory factory;
 
-	private ReportTOB()
+	private static Concrete instance;
+	private final ConcreteFactory factory;
+
+	private Concrete()
 	{
-		layerKind = "TOB";
-		factory = new TobFactory();
+		setOutcrop(Outcrop.CONCRETE);
+		factory = new ConcreteFactory();
 	}
 
-	public static ReportTOB getInstance()
+	public static Concrete getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (ReportTOB.class)
+			synchronized (Concrete.class)
 			{
 				if (instance == null)
 				{
-					instance = new ReportTOB();
+					instance = new Concrete();
 				}
 			}
 		}
@@ -48,17 +50,17 @@ public final class ReportTOB extends ReportTemplate
 
 		for (List<ExplorationSite> portion : divideExplorationSites(sites))
 		{
-			//Sort Data nach TOB
+			//Sort Data nach BETON
 			HtmlTable reportTable = new HtmlTable.Builder()
 					.appendAttribute("class", "MsoNormalTable")
 					.appendAttribute("border", "1")
-					.appendAttribute("style", AppendixTemplate.HTML_BASIC_TABLE_STYLE)
+					.appendAttribute("style", Appendix.HTML_BASIC_TABLE_STYLE)
 					.appendAttribute("cellspacing", "0")
 					.appendAttribute("cellpadding", "0")
 					.build();
 
 			reportTable.appendContent(factory.createIDRow(portion));
-			reportTable.appendContent(factory.createOutcropRow(portion));
+			reportTable.appendContent(factory.createAufschlussRow(portion));
 
 			reportTable.appendContent(buildTechnicalFeatures(portion));
 			reportTable.appendContent(buildEnvironmentTechnicalFeatures(portion));
@@ -69,19 +71,7 @@ public final class ReportTOB extends ReportTemplate
 			strb.append("<br>");
 		}
 
-		setTable(strb.toString());
-	}
-
-	@Override
-	public void constructTable(ExplorationSite site)
-	{
-
-	}
-
-	@Override
-	public String getExportFileName()
-	{
-		return "Bericht-TOB";
+		addToTemplate(strb.toString());
 	}
 
 	@Override
@@ -101,14 +91,8 @@ public final class ReportTOB extends ReportTemplate
 				.build();
 
 		techBuilder.append(rowTECHMERKMALE.appendTag())
-				.append(factory.createEvDynRow(explorationSites))
-				.append(factory.createEvDyn85Row(explorationSites))
-				.append(factory.createEv2Row(explorationSites))
-				.append(factory.createEvMinimumBorderRow(explorationSites))
 				.append(factory.createMaterialRow(explorationSites))
-				.append(factory.createSizeRow(explorationSites))
-				.append(factory.createGrainSizeDistributionRow(explorationSites))
-				.append(factory.createTotalSizeRow(explorationSites));
+				.append(factory.createCompressiveStrengthRow(explorationSites));
 
 		return techBuilder.toString();
 	}
@@ -132,30 +116,40 @@ public final class ReportTOB extends ReportTemplate
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())
 				.append(factory.createChemieIDRow(explorationSites))
 				.append(factory.createChemieMufvRow(explorationSites))
-				.append(factory.createChemieLagaBoRow(explorationSites))
 				.append(factory.createChemieLagaRcRow(explorationSites))
 				.append(factory.createChemieLagaRcOrientationRow(explorationSites))
 				.append(factory.createChemieTlRockRow(explorationSites))
 				.append(factory.createChemieDepvRow(explorationSites))
-				.append(factory.createChemieDecisionSupportRow(explorationSites))
 				.append(factory.createAVVRow(explorationSites));
 
 		return umweltTechBuilder.toString();
 	}
 
 	@Override
-	HtmlTable constructAndGetTableObject()
+	public void constructTable(ExplorationSite site)
+	{
+
+	}
+
+	@Override
+	public HtmlTable constructAndGetTableObject()
 	{
 		HtmlTable table = new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
 				.appendAttribute("width", "605")
 				.appendAttribute("border", "1")
-				.appendAttribute("style", AppendixTemplate.HTML_BASIC_TABLE_STYLE)
+				.appendAttribute("style", Appendix.HTML_BASIC_TABLE_STYLE)
 				.appendAttribute("cellspacing", "0")
 				.appendAttribute("cellpadding", "0")
 				.appendContent(constructAndGetTableHeader())
 				.build();
 
 		return table;
+	}
+
+	@Override
+	public String getExportFileName()
+	{
+		return "Bericht-BETON";
 	}
 }

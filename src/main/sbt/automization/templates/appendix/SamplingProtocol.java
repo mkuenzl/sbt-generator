@@ -3,10 +3,8 @@ package sbt.automization.templates.appendix;
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.refactoring.DataTableFactory;
-import sbt.automization.data.refactoring.Probe;
-import sbt.automization.data.refactoring.Sample;
-import sbt.automization.data.refactoring.references.ReferenceProbe;
-import sbt.automization.data.refactoring.references.ReferenceSample;
+import sbt.automization.data.refactoring.references.Probe;
+import sbt.automization.data.refactoring.references.Sample;
 import sbt.automization.format.NameFormatUtil;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlFactory;
@@ -15,24 +13,24 @@ import sbt.automization.util.html.HtmlTable;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class AppendixPN extends AppendixTemplate
+public final class SamplingProtocol extends Appendix
 {
-	private static AppendixPN instance;
+	private static SamplingProtocol instance;
 
-	private AppendixPN()
+	private SamplingProtocol()
 	{
 		super();
 	}
 
-	public static AppendixPN getInstance()
+	public static SamplingProtocol getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (AppendixPN.class)
+			synchronized (SamplingProtocol.class)
 			{
 				if (instance == null)
 				{
-					instance = new AppendixPN();
+					instance = new SamplingProtocol();
 				}
 			}
 		}
@@ -118,13 +116,13 @@ public final class AppendixPN extends AppendixTemplate
 
 		for (DataTable dataTable : dataTables)
 		{
-			if (dataTable instanceof Probe)
+			if (dataTable instanceof sbt.automization.data.refactoring.Probe)
 			{
-				Probe probe = (Probe) dataTable;
+				sbt.automization.data.refactoring.Probe probe = (sbt.automization.data.refactoring.Probe) dataTable;
 
-				List<Sample> samples = formatSamples(probe.getSamples());
+				List<sbt.automization.data.refactoring.Sample> samples = formatSamples(probe.getSamples());
 
-				for (Sample sample : samples)
+				for (sbt.automization.data.refactoring.Sample sample : samples)
 				{
 					addAndResetTableOnPageBreak();
 
@@ -132,26 +130,26 @@ public final class AppendixPN extends AppendixTemplate
 							HtmlFactory.createCell("NormalCenter",
 									new String[]{"P".concat(String.valueOf(++ lines))}),
 							HtmlFactory.createCell("NormalCenter",
-									new String[]{TextFormatUtil.formatSampleType(sample.get(ReferenceSample.CONTAINER))}),
+									new String[]{TextFormatUtil.formatSampleType(sample.get(Sample.CONTAINER))}),
 							HtmlFactory.createCell("Normal",
-									new String[]{sample.get(ReferenceSample.CONTAINER)}),
+									new String[]{sample.get(Sample.CONTAINER)}),
 							HtmlFactory.createCell("NormalCenter",
 									new String[]{"-"}),
 							HtmlFactory.createCell("Normal", "width:110px",
-									new String[]{NameFormatUtil.formatLayerKind(sample.get(ReferenceSample.WASTE_TYPE))}),
+									new String[]{NameFormatUtil.formatLayerKind(sample.get(Sample.WASTE_TYPE))}),
 							HtmlFactory.createCell("NormalCenter", "width:50px",
-									new String[]{sample.get(ReferenceSample.GRANULATION)}),
+									new String[]{sample.get(Sample.GRANULATION)}),
 							HtmlFactory.createCell("Normal", "left",
-									new String[]{sample.get(ReferenceSample.COLOR), TextFormatUtil.printLineBreak(),
-											sample.get(ReferenceSample.SMELL), TextFormatUtil.printLineBreak(),
-											sample.get(ReferenceSample.SOIL_TYPE)}),
+									new String[]{sample.get(Sample.COLOR), TextFormatUtil.printLineBreak(),
+											sample.get(Sample.SMELL), TextFormatUtil.printLineBreak(),
+											sample.get(Sample.SOIL_TYPE)}),
 							HtmlFactory.createCell("NormalCenter",
-									new String[]{probe.get(ReferenceProbe.ID)}),
+									new String[]{probe.get(Probe.ID)}),
 							HtmlFactory.createCell("NormalCenter",
-									new String[]{TextFormatUtil.formatDepth(sample.get(ReferenceSample.DEPTH_START),
-											sample.get(ReferenceSample.DEPTH_END))}),
+									new String[]{TextFormatUtil.formatDepth(sample.get(Sample.DEPTH_START),
+											sample.get(Sample.DEPTH_END))}),
 							HtmlFactory.createCell("NormalCenter",
-									new String[]{probe.get(ReferenceProbe.TOP_EDGE)})
+									new String[]{probe.get(Probe.TOP_EDGE)})
 					});
 
 					linesPerPage++;
@@ -170,10 +168,10 @@ public final class AppendixPN extends AppendixTemplate
 	 * @param samples expects a not empty list of layer objects
 	 * @return a smaller formatted list of layers
 	 */
-	public List<Sample> formatSamples(List<Sample> samples)
+	public List<sbt.automization.data.refactoring.Sample> formatSamples(List<sbt.automization.data.refactoring.Sample> samples)
 	{
-		List<Sample> formattedSamples = new ArrayList<>();
-		for (Sample sample : samples)
+		List<sbt.automization.data.refactoring.Sample> formattedSamples = new ArrayList<>();
+		for (sbt.automization.data.refactoring.Sample sample : samples)
 		{
 			formattedSamples.add(DataTableFactory.createSampleFrom(sample.getTable()));
 		}
@@ -184,16 +182,16 @@ public final class AppendixPN extends AppendixTemplate
 		{
 			for (int i = 0 ; i < formattedSamples.size() ; i++)
 			{
-				Sample sample = formattedSamples.get(i);
+				sbt.automization.data.refactoring.Sample sample = formattedSamples.get(i);
 
-				if ("GOB".equals(sample.get(ReferenceSample.OUTCROP)))
+				if ("GOB".equals(sample.get(Sample.OUTCROP)))
 				{
 					if (formattedSamples.size() <= i + 1) break;
-					if (sample.get(ReferenceSample.WASTE_TYPE).equals(formattedSamples.get(i + 1).get(ReferenceSample.WASTE_TYPE)))
+					if (sample.get(Sample.WASTE_TYPE).equals(formattedSamples.get(i + 1).get(Sample.WASTE_TYPE)))
 					{
-						formattedSamples.get(i + 1).add(ReferenceSample.DEPTH_START.getKey(),
-								sample.get(ReferenceSample.DEPTH_START));
-						formattedSamples.get(i + 1).add(ReferenceSample.GRANULATION.getKey(), "");
+						formattedSamples.get(i + 1).add(Sample.DEPTH_START.getKey(),
+								sample.get(Sample.DEPTH_START));
+						formattedSamples.get(i + 1).add(Sample.GRANULATION.getKey(), "");
 						formattedSamples.remove(sample);
 						i--;
 					}

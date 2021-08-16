@@ -2,14 +2,14 @@ package sbt.automization.gui;
 
 import org.junit.Assert;
 import org.junit.Test;
-import sbt.automization.templates.appendix.AppendixPN;
+import sbt.automization.templates.appendix.SamplingProtocol;
 
 public class ErrorPopupTest
 {
 	@Test
 	public void showStrategyErrorTest()
 	{
-		String strategyName = AppendixPN.getInstance().getClass().getSimpleName();
+		String strategyName = SamplingProtocol.getInstance().getClass().getSimpleName();
 
 		Assert.assertEquals("AppendixPN", strategyName);
 	}

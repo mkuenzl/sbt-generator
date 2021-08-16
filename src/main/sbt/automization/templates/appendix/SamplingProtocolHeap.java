@@ -12,21 +12,21 @@ import sbt.automization.util.html.HtmlTableHeader;
 
 import java.util.List;
 
-public final class AppendixPNHEAP extends AppendixTemplate
+public final class SamplingProtocolHeap extends Appendix
 {
-	private static AppendixPNHEAP instance;
+	private static SamplingProtocolHeap instance;
 
-	private AppendixPNHEAP() {}
+	private SamplingProtocolHeap() {}
 
-	public static AppendixPNHEAP getInstance()
+	public static SamplingProtocolHeap getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (AppendixPNHEAP.class)
+			synchronized (SamplingProtocolHeap.class)
 			{
 				if (instance == null)
 				{
-					instance = new AppendixPNHEAP();
+					instance = new SamplingProtocolHeap();
 				}
 			}
 		}
@@ -159,7 +159,7 @@ public final class AppendixPNHEAP extends AppendixTemplate
 	}
 
 	@Override
-	String constructAndGetTableHeader()
+	protected String constructAndGetTableHeader()
 	{
 		HtmlTableHeader headerCellSample = new HtmlTableHeader.Builder()
 				.appendAttribute("class", "NormalTableHeader")

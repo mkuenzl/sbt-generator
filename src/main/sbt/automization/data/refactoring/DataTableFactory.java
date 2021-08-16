@@ -1,7 +1,7 @@
 package sbt.automization.data.refactoring;
 
-import sbt.automization.data.refactoring.references.ReferenceProbe;
-import sbt.automization.data.refactoring.references.ReferenceSample;
+import sbt.automization.data.refactoring.references.Probe;
+import sbt.automization.data.refactoring.references.Sample;
 
 import java.util.*;
 
@@ -67,14 +67,14 @@ public final class DataTableFactory
 	{
 		for (DataTable sample : samples)
 		{
-			Sample table = (Sample) sample;
+			sbt.automization.data.refactoring.Sample table = (sbt.automization.data.refactoring.Sample) sample;
 
 			for (DataTable parameter : parameters)
 			{
-				if (table.isRelatedBy(ReferenceSample.CHEMISTRY_ID, parameter)) {
+				if (table.isRelatedBy(Sample.CHEMISTRY_ID, parameter)) {
 					table.addParameter((Parameter) parameter);
 				}
-				if (table.isRelatedBy(ReferenceSample.RUK_ID, parameter)) {
+				if (table.isRelatedBy(Sample.RUK_ID, parameter)) {
 					table.addParameter((Parameter) parameter);
 				}
 			}
@@ -85,11 +85,11 @@ public final class DataTableFactory
 	{
 		for (DataTable probe : probes)
 		{
-			Probe table = (Probe) probe;
+			sbt.automization.data.refactoring.Probe table = (sbt.automization.data.refactoring.Probe) probe;
 
 			for (DataTable parameter : parameters)
 			{
-				if (table.isRelatedBy(ReferenceProbe.LP_ID, parameter)) {
+				if (table.isRelatedBy(Probe.LP_ID, parameter)) {
 					table.addParameter((Parameter) parameter);
 				}
 			}
@@ -100,12 +100,12 @@ public final class DataTableFactory
 	{
 		for (DataTable probe : probes)
 		{
-			Probe table = (Probe) probe;
+			sbt.automization.data.refactoring.Probe table = (sbt.automization.data.refactoring.Probe) probe;
 
 			for (DataTable sample : samples)
 			{
-				if (table.isRelatedBy(ReferenceProbe.ID, sample)) {
-					table.addSample((Sample) sample);
+				if (table.isRelatedBy(Probe.ID, sample)) {
+					table.addSample((sbt.automization.data.refactoring.Sample) sample);
 				}
 			}
 		}
@@ -164,22 +164,22 @@ public final class DataTableFactory
 		return parameter;
 	}
 
-	public static Probe createProbeFrom(Map<String, String> csvRow)
+	public static sbt.automization.data.refactoring.Probe createProbeFrom(Map<String, String> csvRow)
 	{
 		// PROBE.
 		Map<String, String> informationMap = createMapBasedOnIdentifier(csvRow, "PROBE.");
 
-		Probe probe = new Probe(informationMap);
+		sbt.automization.data.refactoring.Probe probe = new sbt.automization.data.refactoring.Probe(informationMap);
 
 		return probe;
 	}
 
-	public static Sample createSampleFrom(Map<String, String> csvRow)
+	public static sbt.automization.data.refactoring.Sample createSampleFrom(Map<String, String> csvRow)
 	{
 		// SAMPLE.
 		Map<String, String> informationMap = createMapBasedOnIdentifier(csvRow, "SAMPLE.");
 
-		Sample sample = new Sample(informationMap);
+		sbt.automization.data.refactoring.Sample sample = new sbt.automization.data.refactoring.Sample(informationMap);
 
 		return sample;
 	}

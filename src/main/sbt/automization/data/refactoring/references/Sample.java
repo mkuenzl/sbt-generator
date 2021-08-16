@@ -1,6 +1,6 @@
 package sbt.automization.data.refactoring.references;
 
-public enum ReferenceSample implements Reference
+public enum Sample implements Reference
 {
 	WASTE_KEY_MIX
 			{
@@ -292,7 +292,8 @@ public enum ReferenceSample implements Reference
 				}
 			};
 
-	private static String addSampleTag(String parameter){
+	private static String addSampleTag(String parameter)
+	{
 		return "SAMPLE." + parameter;
 	}
 }

@@ -1,34 +1,35 @@
 package sbt.automization.templates.report;
 
 import sbt.automization.data.ExplorationSite;
-import sbt.automization.templates.appendix.AppendixTemplate;
-import sbt.automization.templates.helper.OhFactory;
+import sbt.automization.templates.Outcrop;
+import sbt.automization.templates.appendix.Appendix;
+import sbt.automization.templates.helper.ObFactory;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class ReportOH extends ReportTemplate
+public final class BoundSuperstructure extends Report
 {
-	private static ReportOH instance;
-	private final OhFactory factory;
+	private static BoundSuperstructure instance;
+	private final ObFactory factory;
 
-	private ReportOH()
+	private BoundSuperstructure()
 	{
-		layerKind = "OH";
-		factory = new OhFactory();
+		setOutcrop(Outcrop.GOB);
+		factory = new ObFactory();
 	}
 
-	public static ReportOH getInstance()
+	public static BoundSuperstructure getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (ReportOH.class)
+			synchronized (BoundSuperstructure.class)
 			{
 				if (instance == null)
 				{
-					instance = new ReportOH();
+					instance = new BoundSuperstructure();
 				}
 			}
 		}
@@ -42,29 +43,38 @@ public final class ReportOH extends ReportTemplate
 	}
 
 	@Override
-	public void constructTable(List<ExplorationSite> sites)
+	public void constructTable(final List<ExplorationSite> sites)
 	{
 		StringBuilder strb = new StringBuilder();
 
 		for (List<ExplorationSite> portion : divideExplorationSites(sites))
 		{
-			HtmlTable tableBericht = new HtmlTable.Builder()
+			//Sort Data nach GOB
+			HtmlTable reportTable = new HtmlTable.Builder()
 					.appendAttribute("class", "MsoNormalTable")
 					.appendAttribute("border", "1")
-					.appendAttribute("style", AppendixTemplate.HTML_BASIC_TABLE_STYLE)
+					.appendAttribute("style", Appendix.HTML_BASIC_TABLE_STYLE)
 					.appendAttribute("cellspacing", "0")
 					.appendAttribute("cellpadding", "0")
 					.build();
 
-			tableBericht.appendContent(factory.createIDRow(portion));
-			tableBericht.appendContent(factory.createAufschlussRow(portion));
-			tableBericht.appendContent(buildTechnicalFeatures(portion));
-			tableBericht.appendContent(buildEnvironmentTechnicalFeatures(portion));
 
-			strb.append(tableBericht.appendTag());
+			reportTable.appendContent(factory.createIDRow(portion));
+
+			reportTable.appendContent(factory.createAufschlussRow(portion));
+
+			reportTable.appendContent(buildTechnicalFeatures(portion));
+			reportTable.appendContent(buildEnvironmentTechnicalFeatures(portion));
+
+			//TODO pech, no pech, pech by depth
+			reportTable.appendContent(factory.createPechQuerschnittRows(portion, false));
+			reportTable.appendContent(factory.createPechQuerschnittRows(portion, true));
+
+
+			strb.append(reportTable.appendTag());
 			strb.append("<br>");
 		}
-		setTable(strb.toString());
+		addToTemplate(strb.toString());
 	}
 
 	@Override
@@ -72,7 +82,6 @@ public final class ReportOH extends ReportTemplate
 	{
 		StringBuilder techBuilder = new StringBuilder();
 
-		//Technische Merkmale Trennzeile
 		HtmlRow rowTECHMERKMALE = new HtmlRow.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(new HtmlCell.Builder()
@@ -84,9 +93,10 @@ public final class ReportOH extends ReportTemplate
 				.build();
 
 		techBuilder.append(rowTECHMERKMALE.appendTag())
-				.append(factory.createDIN18196Row(explorationSites))
-				.append(factory.createDIN18915Row(explorationSites))
-				.append(factory.createDIN18320Row(explorationSites));
+				.append(factory.createSizeOBRow(explorationSites))
+				.append(factory.createLoadClassRow(explorationSites))
+				.append(factory.createRukRow(explorationSites))
+				.append(factory.createRukEinzelWertRow(explorationSites));
 
 		return techBuilder.toString();
 	}
@@ -108,17 +118,15 @@ public final class ReportOH extends ReportTemplate
 				.build();
 
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())
-				.append(factory.createChemieIDRow(explorationSites))
-				.append(factory.createChemieLagaBoRow(explorationSites))
-				.append(factory.createChemieDepvRow(explorationSites))
-				.append(factory.createChemieDecisionSupportRow(explorationSites))
-				.append(factory.createAVVRow(explorationSites));
+				.append(factory.createPechQualitativRow(explorationSites))
+				.append(factory.createPechHalbQuantitativRow(explorationSites))
+				.append(factory.createPechQuantitativRow(explorationSites));
 
 		return umweltTechBuilder.toString();
 	}
 
 	@Override
-	public void constructTable(ExplorationSite site)
+	public void constructTable(final ExplorationSite site)
 	{
 
 	}
@@ -126,20 +134,20 @@ public final class ReportOH extends ReportTemplate
 	@Override
 	public String getExportFileName()
 	{
-		return "Bericht-OH";
+		return "Bericht-GOB";
 	}
 
 	@Override
-	HtmlTable constructAndGetTableObject()
+	public HtmlTable constructAndGetTableObject()
 	{
 		return new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
 				.appendAttribute("width", "605")
 				.appendAttribute("border", "1")
-				.appendAttribute("style", AppendixTemplate.HTML_BASIC_TABLE_STYLE)
+				.appendAttribute("style", Appendix.HTML_BASIC_TABLE_STYLE)
 				.appendAttribute("cellspacing", "0")
 				.appendAttribute("cellpadding", "0")
-				.appendContent(constructAndGetTableHeader())
 				.build();
 	}
+
 }

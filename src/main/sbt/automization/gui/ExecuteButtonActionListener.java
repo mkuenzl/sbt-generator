@@ -2,7 +2,7 @@ package sbt.automization.gui;
 
 import sbt.automization.data.refactoring.Examination;
 import sbt.automization.export.HtmlTemplateExport;
-import sbt.automization.templates.HtmlTableTemplate;
+import sbt.automization.templates.HtmlTemplate;
 import sbt.automization.util.CsvParser;
 
 import java.awt.event.ActionEvent;
@@ -24,7 +24,7 @@ public class ExecuteButtonActionListener implements ActionListener
 
 			List<Map<String, String>> parsedSiteInformation = csvParser.parse();
 			Examination examination = new Examination(parsedSiteInformation, csv.getParent());
-			for (HtmlTableTemplate strategy : StrategyStorage.getInstance().getStrategies())
+			for (HtmlTemplate strategy : StrategyStorage.getInstance().getStrategies())
 			{
 				try{
 					examination.export(new HtmlTemplateExport(strategy));

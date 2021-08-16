@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import sbt.automization.data.refactoring.references.*;
+import sbt.automization.data.refactoring.references.Probe;
+import sbt.automization.data.refactoring.references.Sample;
 import sbt.automization.util.CsvParser;
 
 import java.io.File;
@@ -29,8 +31,8 @@ public class ReferenceTest {
     {
         List<String> missingReferences = new ArrayList<>();
 
-        ReferenceSample[] referenceSamples = ReferenceSample.values();
-        for (ReferenceSample reference : referenceSamples) {
+        Sample[] samples = Sample.values();
+        for (Sample reference : samples) {
             String key = reference.getKey();
             if (! header.contains(key))
             {
@@ -46,8 +48,8 @@ public class ReferenceTest {
     {
         List<String> missingReferences = new ArrayList<>();
 
-        ReferenceProbe[] referenceProbes = ReferenceProbe.values();
-        for (ReferenceProbe reference : referenceProbes) {
+        Probe[] probes = Probe.values();
+        for (Probe reference : probes) {
             String key = reference.getKey();
             if (! header.contains(key))
             {
@@ -63,8 +65,8 @@ public class ReferenceTest {
     {
         List<String> missingReferences = new ArrayList<>();
 
-        ReferenceParameterChemistry[] referenceParameterChemistry = ReferenceParameterChemistry.values();
-        for (ReferenceParameterChemistry reference : referenceParameterChemistry) {
+        Chemistry[] chemistry = Chemistry.values();
+        for (Chemistry reference : chemistry) {
             String key = reference.getKey();
             if (! header.contains(key))
             {
@@ -80,8 +82,8 @@ public class ReferenceTest {
     {
         List<String> missingReferences = new ArrayList<>();
 
-        ReferenceParameterRuK[] referenceParameterRuK = ReferenceParameterRuK.values();
-        for (ReferenceParameterRuK reference : referenceParameterRuK) {
+        RuK[] ruK = RuK.values();
+        for (RuK reference : ruK) {
             String key = reference.getKey();
             if (! header.contains(key))
             {
@@ -97,8 +99,8 @@ public class ReferenceTest {
     {
         List<String> missingReferences = new ArrayList<>();
 
-        ReferenceParameterLP[] referenceParameterLP = ReferenceParameterLP.values();
-        for (ReferenceParameterLP reference : referenceParameterLP) {
+        LP[] loadPlate = LP.values();
+        for (LP reference : loadPlate) {
             String key = reference.getKey();
             if (! header.contains(key))
             {

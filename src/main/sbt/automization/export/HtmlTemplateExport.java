@@ -2,7 +2,7 @@ package sbt.automization.export;
 
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.refactoring.Examination;
-import sbt.automization.templates.HtmlTableTemplate;
+import sbt.automization.templates.HtmlTemplate;
 import sbt.automization.util.html.Html;
 import sbt.automization.util.html.HtmlBody;
 import sbt.automization.util.html.HtmlDiv;
@@ -25,7 +25,7 @@ public final class HtmlTemplateExport extends ATemplateExport
 	static final String HTML_ATTRIBUTE_XMLNSO = "\"urn:schemas-microsoft-com:office:office\"";
 	static final String HTML_ATTRIBUTE_XMLNS = "\"http://www.w3.org/TR/REC-html40\"";
 
-	public HtmlTemplateExport(final HtmlTableTemplate strategy)
+	public HtmlTemplateExport(final HtmlTemplate strategy)
 	{
 		super(strategy);
 	}

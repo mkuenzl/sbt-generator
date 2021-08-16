@@ -3,33 +3,31 @@ package sbt.automization.templates.appendix;
 import sbt.automization.data.ExplorationSite;
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.refactoring.Parameter;
-import sbt.automization.data.refactoring.Probe;
-import sbt.automization.data.refactoring.Sample;
-import sbt.automization.data.refactoring.references.ReferenceParameterRuK;
-import sbt.automization.data.refactoring.references.ReferenceProbe;
-import sbt.automization.data.refactoring.references.ReferenceSample;
+import sbt.automization.data.refactoring.references.Probe;
+import sbt.automization.data.refactoring.references.RuK;
+import sbt.automization.data.refactoring.references.Sample;
 import sbt.automization.util.html.HtmlFactory;
 import sbt.automization.util.html.HtmlTable;
 
 import java.util.List;
 
-public final class AppendixRUK extends AppendixTemplate
+public final class RingAndBall extends Appendix
 {
-	private static AppendixRUK instance;
+	private static RingAndBall instance;
 
-	private AppendixRUK() {
+	private RingAndBall() {
 		super();
 	}
 
-	public static AppendixRUK getInstance()
+	public static RingAndBall getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (AppendixRUK.class)
+			synchronized (RingAndBall.class)
 			{
 				if (instance == null)
 				{
-					instance = new AppendixRUK();
+					instance = new RingAndBall();
 				}
 			}
 		}
@@ -44,7 +42,7 @@ public final class AppendixRUK extends AppendixTemplate
 	}
 
 	@Override
-	String constructAndGetTableHeader()
+	protected String constructAndGetTableHeader()
 	{
 		String firstRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "width:75px", 2, 1,
@@ -76,7 +74,7 @@ public final class AppendixRUK extends AppendixTemplate
 	}
 
 	@Override
-	HtmlTable constructAndGetTableObject()
+	public HtmlTable constructAndGetTableObject()
 	{
 		HtmlTable table = new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
@@ -98,13 +96,13 @@ public final class AppendixRUK extends AppendixTemplate
 
 		for (DataTable dataTable : dataTables)
 		{
-			if (dataTable instanceof Probe)
+			if (dataTable instanceof sbt.automization.data.refactoring.Probe)
 			{
-				Probe probe = (Probe) dataTable;
+				sbt.automization.data.refactoring.Probe probe = (sbt.automization.data.refactoring.Probe) dataTable;
 
-				for (Sample sample : probe.getSamples())
+				for (sbt.automization.data.refactoring.Sample sample : probe.getSamples())
 				{
-					Parameter parameter = sample.getParameterBy(ReferenceSample.RUK_ID);
+					Parameter parameter = sample.getParameterBy(Sample.RUK_ID);
 
 					if (parameter != null)
 					{
@@ -112,22 +110,22 @@ public final class AppendixRUK extends AppendixTemplate
 
 						String row = HtmlFactory.createRow("Normal", new String[]{
 								HtmlFactory.createCell("NormalCenter",
-										new String[]{probe.get(ReferenceProbe.ID)}),
+										new String[]{probe.get(Probe.ID)}),
 								HtmlFactory.createCell("NormalCenter",
-										new String[]{parameter.get(ReferenceParameterRuK.ID)}),
+										new String[]{parameter.get(RuK.ID)}),
 								HtmlFactory.createCell("NormalCenter",
-										new String[]{parameter.get(ReferenceParameterRuK.SAMPLE)}),
+										new String[]{parameter.get(RuK.SAMPLE)}),
 								HtmlFactory.createCell("Normal",
-										new String[]{sample.get(ReferenceSample.TYPE), " ",
-												sample.get(ReferenceSample.GRANULATION)}),
+										new String[]{sample.get(Sample.TYPE), " ",
+												sample.get(Sample.GRANULATION)}),
 								HtmlFactory.createCell("NormalCenter",
-										new String[]{sample.get(ReferenceSample.DEPTH_START)}),
+										new String[]{sample.get(Sample.DEPTH_START)}),
 								HtmlFactory.createCell("NormalCenter",
 										new String[]{"-"}),
 								HtmlFactory.createCell("NormalCenter",
-										new String[]{sample.get(ReferenceSample.DEPTH_END)}),
+										new String[]{sample.get(Sample.DEPTH_END)}),
 								HtmlFactory.createCell("NormalCenter",
-										new String[]{parameter.get(ReferenceParameterRuK.VALUE)})
+										new String[]{parameter.get(RuK.VALUE)})
 						});
 
 						table.appendContent(row);
