@@ -39,28 +39,28 @@ final class AppendixSiteTOB extends AppendixTemplate
 	String constructAndGetTableHeader()
 	{
 		String firstRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
-				HtmlFactory.createHeader("NormalTableHeader", 125, 1, 1, 1, "left",
+				HtmlFactory.createHeader("NormalTableHeader", "width:125px;text-align:left",
 						new String[]{"Tragschicht ohne", TextFormatUtil.printLineBreak(), "Bindemittel"}),
-				HtmlFactory.createHeader("NormalTableHeader", 480, 1, 1, 8, "left",
+				HtmlFactory.createHeader("NormalTableHeader", "text-align:left", 1, 8,
 						new String[]{"Aufschlussverfahren:",outcrop}),
 		});
 
 		String secondRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
-				HtmlFactory.createHeader("NormalTableHeader", 125, 1, 2, 1, "left",
+				HtmlFactory.createHeader("NormalTableHeader", "text-align:left", 2, 1,
 						new String[]{"Art der Schicht"}),
-				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
 						new String[]{"Dicke", "<div>[7]</div>"}),
-				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
 						new String[]{"Tiefe"}),
-				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:60px",   2, 1,
 						new String[]{"MUFV", "<div>[18]</div>"}),
-				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:60px",   2, 1,
 						new String[]{"LAGA BO", "<div>[11]</div>"}),
-				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:60px",  2, 1,
 						new String[]{"LAGA RC", "<div>[28]</div>"}),
-				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:60px",   2, 1,
 						new String[]{"TL Ge.", "<div>[27]</div>"}),
-				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
 						new String[]{"E<sub>V2</sub>",
 								TextFormatUtil.printLineBreak(),
 								"E<sub>Vdyn</sub>",
@@ -68,18 +68,18 @@ final class AppendixSiteTOB extends AppendixTemplate
 								"<sub>(-15%)</sub>",
 								"<div>[41]</div>"
 						}),
-				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
 						new String[]{"KGV", "<div>[25]</div>"})
 		});
 
 		String thirdRow = HtmlFactory.createRow("NormalHeaderUnits", new String[]{
-				HtmlFactory.createHeader("NormalTableHeaderUnits", 60, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"cm"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits", 60, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"cm"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits", 60, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"MN/m²"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits", 60, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"M.-%"})
 		});
 
@@ -162,22 +162,22 @@ final class AppendixSiteTOB extends AppendixTemplate
 	private String createRow(Sample sample)
 	{
 		String row = HtmlFactory.createRow("Normal", new String[]{
-				HtmlFactory.createCell("Normal", 125, 1, 1, 1,
+				HtmlFactory.createCell("Normal",
 						new String[]{sample.get(ReferenceSample.TYPE),
 								TextFormatUtil.printLineBreak(),
 								sample.get(ReferenceSample.GRANULATION),
 								sample.get(ReferenceSample.ROUNDING_GRADATION)}),
-				HtmlFactory.createCell("NormalCenter", 60, 1, 1, 1,
+				HtmlFactory.createCell("NormalCenter",
 						new String[]{sample.get(ReferenceSample.THICKNESS)}),
-				HtmlFactory.createCell("NormalCenter", 60, 1, 1, 1,
+				HtmlFactory.createCell("NormalCenter",
 						new String[]{sample.get(ReferenceSample.DEPTH_END)}),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(ReferenceSample.CHEMISTRY_ID, ReferenceParameterChemistry.MUFV)),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(ReferenceSample.CHEMISTRY_ID, ReferenceParameterChemistry.LAGA_BO)),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(ReferenceSample.CHEMISTRY_ID, ReferenceParameterChemistry.LAGA_RC)),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(ReferenceSample.CHEMISTRY_ID, ReferenceParameterChemistry.TL_ROCK_STRATUM)),
-				HtmlFactory.createCell("NormalCenter", 60, 1, 1, 1,
+				HtmlFactory.createCell("NormalCenter",
 						new String[]{printEV()}),
-				HtmlFactory.createCell("NormalCenter", 60, 1, 1, 1,
+				HtmlFactory.createCell("NormalCenter",
 						new String[]{sample.get(ReferenceSample.GRAIN_SIZE_DISTRIBUTION)})
 		});
 

@@ -52,20 +52,20 @@ public final class AppendixSiteBANKETT extends AppendixTemplate
 	private String createRow(Sample sample)
 	{
 		String row = HtmlFactory.createRow("Normal", new String[]{
-				HtmlFactory.createCell("Normal", 125, 1, 1, 1,
+				HtmlFactory.createCell("Normal",
 						new String[]{TextFormatUtil.formatSoilGroup(sample.get(ReferenceSample.TYPE))}),
-				HtmlFactory.createCell("NormalCenter", 60, 1, 1, 1,
+				HtmlFactory.createCell("NormalCenter",
 						new String[]{sample.get(ReferenceSample.THICKNESS)}),
-				HtmlFactory.createCell("NormalCenter", 60, 1, 1, 1,
+				HtmlFactory.createCell("NormalCenter",
 						new String[]{sample.get(ReferenceSample.DEPTH_END)}),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(ReferenceSample.CHEMISTRY_ID, ReferenceParameterChemistry.MUFV)),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(ReferenceSample.CHEMISTRY_ID, ReferenceParameterChemistry.LAGA_BO)),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(ReferenceSample.CHEMISTRY_ID, ReferenceParameterChemistry.LAGA_RC)),
-				HtmlFactory.createCell("NormalCenter", 60, 1, 1, 1,
+				HtmlFactory.createCell("NormalCenter",
 						new String[]{sample.get(ReferenceSample.WATER_CONTENT)}),
-				HtmlFactory.createCell("NormalCenter", 60, 1, 1, 1,
+				HtmlFactory.createCell("NormalCenter",
 						new String[]{TextFormatUtil.formatProctor(sample.get(ReferenceSample.WATER_PROCTOR))}),
-				HtmlFactory.createCell("NormalCenter", 60, 1, 1, 1,
+				HtmlFactory.createCell("NormalCenter",
 						new String[]{"-"})
 		});
 
@@ -81,43 +81,43 @@ public final class AppendixSiteBANKETT extends AppendixTemplate
 	String constructAndGetTableHeader()
 	{
 		String firstRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
-				HtmlFactory.createHeader("NormalTableHeader", 125, 1, 1, 1, "left",
+				HtmlFactory.createHeader("NormalTableHeader", "width:125px;text-align:left",
 						new String[]{"Bankett"}),
-				HtmlFactory.createHeader("NormalTableHeader", 480, 1, 1, 8, "left",
+				HtmlFactory.createHeader("NormalTableHeader", "text-align:left", 1, 8,
 						new String[]{"Aufschlussverfahren:",outcrop}),
 		});
 
 		String secondRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
-				HtmlFactory.createHeader("NormalTableHeader", 125, 1, 2, 1, "left",
+				HtmlFactory.createHeader("NormalTableHeader", "text-align:left", 2, 1,
 						new String[]{"Bodengruppe"}),
-				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
 						new String[]{"Dicke"}),
-				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
 						new String[]{"Tiefe"}),
-				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:60px", 2, 1,
 						new String[]{"MUFV", "<div>[18]</div>"}),
-				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:60px",2, 1,
 						new String[]{"LAGA BO", "<div>[11]</div>"}),
-				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:60px",2, 1,
 						new String[]{"LAGA RC", "<div>[28]</div>"}),
-				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
 						new String[]{"WG", "<div>[19]</div>"}),
-				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
 						new String[]{"W<sub>Pr</sub>"}),
-				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
 						new String[]{"Proctor", "<div>[20]</div>"})
 		});
 
 		String thirdRow = HtmlFactory.createRow("NormalHeaderUnits", new String[]{
-				HtmlFactory.createHeader("NormalTableHeaderUnits", 60, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"cm"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits", 60, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"cm"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits", 60, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"M.-%"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits", 60, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"M.-%"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits", 60, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"Mg/m³"})
 		});
 

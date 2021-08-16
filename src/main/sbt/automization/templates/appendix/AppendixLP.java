@@ -48,47 +48,47 @@ public final class AppendixLP extends AppendixTemplate
 	String constructAndGetTableHeader()
 	{
 		String firstRow = HtmlFactory.createRow(2, new String[]{
-				HtmlFactory.createHeader("NormalTableHeader", 55, 3, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:55px", 3, 1,
 						new String[]{"Versuch", TextFormatUtil.printLineBreak(), "Nr."}),
-				HtmlFactory.createHeader("NormalTableHeader", 65, 3, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:65px", 3, 1,
 						new String[]{"Erk. St."}),
-				HtmlFactory.createHeader("NormalTableHeader", 185, 3, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:185px", 3, 1,
 						new String[]{"Lage der Messstelle"}),
-				HtmlFactory.createHeader("NormalTableHeader", 160, 1, 4,
+				HtmlFactory.createHeader("NormalTableHeader", "width:160px", 1, 4,
 						new String[]{"Setzung"}),
-				HtmlFactory.createHeader("NormalTableHeader", 45, 2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:45px", 2, 1,
 						new String[]{"E<sub>Vdyn</sub>"}),
-				HtmlFactory.createHeader("NormalTableHeader", 45, 2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:45px", 2, 1,
 						new String[]{"E<sub>Vdyn</sub>", TextFormatUtil.printLineBreak(), "<sub>(-15%)</sub>"}),
-				HtmlFactory.createHeader("NormalTableHeader", 45, 2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:45px", 2, 1,
 						new String[]{"E<sub>V2</sub>", "<div>[41]</div>"})
 		});
 
 		String secondRow = HtmlFactory.createRow(new String[]{
-				HtmlFactory.createHeader("NormalTableHeader", 40,
+				HtmlFactory.createHeader("NormalTableHeader", "width:40px",
 						new String[]{"S<sub>1</sub>"}),
-				HtmlFactory.createHeader("NormalTableHeader", 40,
+				HtmlFactory.createHeader("NormalTableHeader", "width:40px",
 						new String[]{"S<sub>2</sub>"}),
-				HtmlFactory.createHeader("NormalTableHeader", 40,
+				HtmlFactory.createHeader("NormalTableHeader", "width:40px",
 						new String[]{"S<sub>3</sub>"}),
-				HtmlFactory.createHeader("NormalTableHeader", 40,
+				HtmlFactory.createHeader("NormalTableHeader", "width:40px",
 						new String[]{"x̅"})
 		});
 
 		String thirdRow = HtmlFactory.createRow(new String[]{
-				HtmlFactory.createHeader("NormalTableHeaderUnits", 40,
+				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"mm"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits", 40,
+				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"mm"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits", 40,
+				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"mm"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits", 40,
+				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"mm"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits", 45,
+				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"MN/m²"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits", 45,
+				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"MN/m²"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits", 45,
+				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"MN/m²"})
 		});
 
@@ -134,25 +134,25 @@ public final class AppendixLP extends AppendixTemplate
 							parameter.get(ReferenceParameterLP.EV85));
 
 					String row = HtmlFactory.createRow("Normal", new String[]{
-							HtmlFactory.createCell("Normal", 55, "center",
+							HtmlFactory.createCell("NormalCenter",
 									new String[]{dataTable.get(ReferenceProbe.LP_ID)}),
-							HtmlFactory.createCell("Normal", 65, "center",
+							HtmlFactory.createCell("NormalCenter",
 									new String[]{dataTable.get(ReferenceProbe.ID)}),
-							HtmlFactory.createCell("Normal", 185, "left",
+							HtmlFactory.createCell("Normal",
 									new String[]{dataTable.get(ReferenceProbe.LOCATION)}),
-							HtmlFactory.createCell("Normal", 40, "center",
+							HtmlFactory.createCell("NormalCenter",
 									new String[]{parameter.get(ReferenceParameterLP.VALUE_1)}),
-							HtmlFactory.createCell("Normal", 40, "center",
+							HtmlFactory.createCell("NormalCenter",
 									new String[]{parameter.get(ReferenceParameterLP.VALUE_2)}),
-							HtmlFactory.createCell("Normal", 40, "center",
+							HtmlFactory.createCell("NormalCenter",
 									new String[]{parameter.get(ReferenceParameterLP.VALUE_3)}),
-							HtmlFactory.createCell("Normal", 40, "center",
+							HtmlFactory.createCell("NormalCenter",
 									new String[]{parameter.get(ReferenceParameterLP.MEAN)}),
-							HtmlFactory.createCell("Normal", 45, "center",
+							HtmlFactory.createCell("NormalCenter",
 									new String[]{parameter.get(ReferenceParameterLP.EV)}),
-							HtmlFactory.createCell("Normal", 45, "center",
+							HtmlFactory.createCell("NormalCenter",
 									new String[]{parameter.get(ReferenceParameterLP.EV85)}),
-							HtmlFactory.createCell("Normal", 45, "center",
+							HtmlFactory.createCell("NormalCenter",
 									new String[]{formattedEV2}),
 					});
 

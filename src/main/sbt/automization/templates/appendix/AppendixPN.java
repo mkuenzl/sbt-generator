@@ -59,32 +59,32 @@ public final class AppendixPN extends AppendixTemplate
 	public String constructAndGetTableHeader()
 	{
 		String firstRow = HtmlFactory.createRow("NormalHeader", new String[]{
-				HtmlFactory.createHeader("NormalTableHeader", 40, 2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:40px", 2, 1,
 						new String[]{"Probe", TextFormatUtil.printLineBreak(), "Nr."}),
-				HtmlFactory.createHeader("NormalTableHeader", 40, 2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:40px", 2, 1,
 						new String[]{"Art"}),
-				HtmlFactory.createHeader("NormalTableHeader", 105, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:105px",
 						new String[]{"Behältnis", TextFormatUtil.printLineBreak(), "Vol."}),
-				HtmlFactory.createHeader("NormalTableHeader", 60, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
 						new String[]{"Haufwerk", TextFormatUtil.printLineBreak(), "Vol."}),
-				HtmlFactory.createHeader("NormalTableHeader", 140, 2, 2,
+				HtmlFactory.createHeader("NormalTableHeader", "width:140px", 2, 2,
 						new String[]{"Abfallart"}),
-				HtmlFactory.createHeader("NormalTableHeader", 76, 2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:76px", 2, 1,
 						new String[]{"Farbe", TextFormatUtil.printLineBreak(), "Geruch", TextFormatUtil.printLineBreak(), "Bodenart"}),
-				HtmlFactory.createHeader("NormalTableHeader", 35, 2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:35px", 2, 1,
 						new String[]{"Erk. St."}),
-				HtmlFactory.createHeader("NormalTableHeader", 70, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:70px",
 						new String[]{"Tiefe"}),
-				HtmlFactory.createHeader("NormalTableHeader", 60, 2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:60px", 2, 1,
 						new String[]{"Notiz"})
 		});
 
 		String secondRow = HtmlFactory.createRow("NormalHeaderUnits", new String[]{
-				HtmlFactory.createHeader("NormalTableHeaderUnits", 105, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"l"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits", 60, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"l"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits", 70, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"cm"})
 		});
 
@@ -129,28 +129,28 @@ public final class AppendixPN extends AppendixTemplate
 					addAndResetTableOnPageBreak();
 
 					String row = HtmlFactory.createRow("Normal", new String[]{
-							HtmlFactory.createCell("Normal", "center",
+							HtmlFactory.createCell("NormalCenter",
 									new String[]{"P".concat(String.valueOf(++ lines))}),
-							HtmlFactory.createCell("Normal", "center",
+							HtmlFactory.createCell("NormalCenter",
 									new String[]{TextFormatUtil.formatSampleType(sample.get(ReferenceSample.CONTAINER))}),
-							HtmlFactory.createCell("Normal", "left",
+							HtmlFactory.createCell("Normal",
 									new String[]{sample.get(ReferenceSample.CONTAINER)}),
-							HtmlFactory.createCell("Normal", "center",
+							HtmlFactory.createCell("NormalCenter",
 									new String[]{"-"}),
-							HtmlFactory.createCell("Normal", 110, "left",
+							HtmlFactory.createCell("Normal", "width:110px",
 									new String[]{NameFormatUtil.formatLayerKind(sample.get(ReferenceSample.WASTE_TYPE))}),
-							HtmlFactory.createCell("Normal", 50, "center",
+							HtmlFactory.createCell("NormalCenter", "width:50px",
 									new String[]{sample.get(ReferenceSample.GRANULATION)}),
 							HtmlFactory.createCell("Normal", "left",
 									new String[]{sample.get(ReferenceSample.COLOR), TextFormatUtil.printLineBreak(),
 											sample.get(ReferenceSample.SMELL), TextFormatUtil.printLineBreak(),
 											sample.get(ReferenceSample.SOIL_TYPE)}),
-							HtmlFactory.createCell("Normal", 35, "center",
+							HtmlFactory.createCell("NormalCenter",
 									new String[]{probe.get(ReferenceProbe.ID)}),
-							HtmlFactory.createCell("Normal", "center",
+							HtmlFactory.createCell("NormalCenter",
 									new String[]{TextFormatUtil.formatDepth(sample.get(ReferenceSample.DEPTH_START),
 											sample.get(ReferenceSample.DEPTH_END))}),
-							HtmlFactory.createCell("Normal", "center",
+							HtmlFactory.createCell("NormalCenter",
 									new String[]{probe.get(ReferenceProbe.TOP_EDGE)})
 					});
 

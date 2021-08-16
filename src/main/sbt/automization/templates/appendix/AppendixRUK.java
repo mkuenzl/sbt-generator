@@ -47,24 +47,24 @@ public final class AppendixRUK extends AppendixTemplate
 	String constructAndGetTableHeader()
 	{
 		String firstRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
-				HtmlFactory.createHeader("NormalTableHeader", 75, 2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:75px", 2, 1,
 						new String[]{"Erk. St."}),
-				HtmlFactory.createHeader("NormalTableHeader", 75, 2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:75px", 2, 1,
 						new String[]{"Versuch Nr."}),
-				HtmlFactory.createHeader("NormalTableHeader", 95, 2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:95px", 2, 1,
 						new String[]{"Probenart"}),
-				HtmlFactory.createHeader("NormalTableHeader", 165, 2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:165px", 2, 1,
 						new String[]{"Prüfschicht"}),
-				HtmlFactory.createHeader("NormalTableHeader", 100, 1, 3,
+				HtmlFactory.createHeader("NormalTableHeader", "width:100px", 1, 3,
 						new String[]{"Prüftiefe"}),
-				HtmlFactory.createHeader("NormalTableHeader", 95, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:95px",
 						new String[]{"Erw. RuK", "<div>[31]</div>"}),
 		});
 
 		String secondRow = HtmlFactory.createRow("NormalHeaderUnits", new String[]{
-				HtmlFactory.createHeader("NormalTableHeaderUnits", 100, 1, 3,
+				HtmlFactory.createHeader("NormalTableHeaderUnits", 1, 3,
 						new String[]{"cm"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits", 95, 1, 1,
+				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"°C"}),
 		});
 
@@ -111,22 +111,22 @@ public final class AppendixRUK extends AppendixTemplate
 						addAndResetTableOnPageBreak();
 
 						String row = HtmlFactory.createRow("Normal", new String[]{
-								HtmlFactory.createCell("Normal", "center",
+								HtmlFactory.createCell("NormalCenter",
 										new String[]{probe.get(ReferenceProbe.ID)}),
-								HtmlFactory.createCell("Normal", "center",
+								HtmlFactory.createCell("NormalCenter",
 										new String[]{parameter.get(ReferenceParameterRuK.ID)}),
-								HtmlFactory.createCell("Normal", "center",
+								HtmlFactory.createCell("NormalCenter",
 										new String[]{parameter.get(ReferenceParameterRuK.SAMPLE)}),
-								HtmlFactory.createCell("Normal", "left",
+								HtmlFactory.createCell("Normal",
 										new String[]{sample.get(ReferenceSample.TYPE), " ",
 												sample.get(ReferenceSample.GRANULATION)}),
-								HtmlFactory.createCell("Normal", 35, "center",
+								HtmlFactory.createCell("NormalCenter",
 										new String[]{sample.get(ReferenceSample.DEPTH_START)}),
-								HtmlFactory.createCell("Normal", 30, "center",
+								HtmlFactory.createCell("NormalCenter",
 										new String[]{"-"}),
-								HtmlFactory.createCell("Normal", 35, "center",
+								HtmlFactory.createCell("NormalCenter",
 										new String[]{sample.get(ReferenceSample.DEPTH_END)}),
-								HtmlFactory.createCell("Normal", "center",
+								HtmlFactory.createCell("NormalCenter",
 										new String[]{parameter.get(ReferenceParameterRuK.VALUE)})
 						});
 
@@ -136,7 +136,6 @@ public final class AppendixRUK extends AppendixTemplate
 			}
 		}
 		addToTemplate(table.appendTag());
-
 	}
 
 	@Override
