@@ -2,6 +2,7 @@ package sbt.automization.data.refactoring;
 
 import sbt.automization.data.refactoring.references.Reference;
 
+import java.util.List;
 import java.util.Map;
 
 public interface DataTable
@@ -41,4 +42,14 @@ public interface DataTable
 	boolean isRelatedBy(Reference source, DataTable target);
 
 	boolean containsValueFor(Reference reference);
+
+	boolean hasSampleWith(final Reference reference, final String value);
+
+	List<Sample> getSamplesBy(final Reference reference, final String[] values);
+
+	List<Sample> getSamplesBy(final Reference reference, final String value);
+
+	String getParameterValueBy(Reference parameterID, Reference valueID);
+
+	Parameter getParameterBy(final Reference reference);
 }

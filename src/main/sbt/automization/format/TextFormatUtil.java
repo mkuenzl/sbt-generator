@@ -5,8 +5,10 @@ import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.LayerSample;
 import sbt.automization.data.refactoring.Probe;
 import sbt.automization.data.refactoring.Sample;
+import sbt.automization.data.refactoring.references.RefChemistry;
 import sbt.automization.data.refactoring.references.RefRuK;
 import sbt.automization.data.refactoring.references.RefSample;
+import sbt.automization.data.refactoring.references.Reference;
 import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
@@ -423,13 +425,11 @@ public final class TextFormatUtil
 	 * @param tag
 	 * @return
 	 */
-	public static String printLayerInformationWithDepth(final DataTable dataTable, final String outcrop, final String tag)
+	public static String printLayerInformationWithDepth(final DataTable dataTable, final String outcrop, final Reference tag)
 	{
 		//TODO List<LayerSample> layerSamples = LayerFormatUtil.combineLayers(dataTable, outcrop, tag);
 
-		if (!(dataTable instanceof Probe)) return "";
-
-		List<Sample> samples = ((Probe) dataTable).getSamplesBy(RefSample.OUTCROP, outcrop);
+		List<Sample> samples = dataTable.getSamplesBy(RefSample.OUTCROP, outcrop);
 
 		StringBuilder stringBuilder = new StringBuilder();
 
@@ -441,10 +441,18 @@ public final class TextFormatUtil
 
 			String formattedTag;
 
-			if (tag.contains("CHEMIE"))
+			if (tag instanceof RefChemistry)
 			{
-				formattedTag = printChemistryMarkup(sample.get(tag));
-			} else if (tag.contains("FEUCHTIGKEIT"))
+				formattedTag = printChemistryMarkup(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, tag));
+			} else
+			if (tag instanceof RefRuK)
+			{
+				formattedTag = new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent(sample.getParameterValueBy(RefSample.RUK_ID, tag))
+						.build().appendTag();
+			} else
+			if (tag == RefSample.MOISTURE)
 			{
 				formattedTag = new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
@@ -471,11 +479,6 @@ public final class TextFormatUtil
 		}
 
 		return stringBuilder.toString();
-	}
-
-	public static String printLayerInformationWithDepth(final DataTable dataTable, final String outcrop, final ReferenceKey tag)
-	{
-		return printLayerInformationWithDepth(dataTable, outcrop, tag.getIdentifier());
 	}
 
 	public static String printChemistryMarkup(final String classification)

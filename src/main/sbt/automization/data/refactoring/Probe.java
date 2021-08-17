@@ -92,6 +92,7 @@ public final class Probe extends DataTableImpl
 		return parameters;
 	}
 
+	@Override
 	public Parameter getParameterBy(final Reference reference)
 	{
 		for (Parameter par : parameters)
@@ -103,6 +104,7 @@ public final class Probe extends DataTableImpl
 		return null;
 	}
 
+	@Override
 	public String getParameterValueBy(Reference parameterID, Reference valueID)
 	{
 		for (Parameter par : parameters)
@@ -117,6 +119,7 @@ public final class Probe extends DataTableImpl
 		return "";
 	}
 
+	@Override
 	public List<Sample> getSamplesBy(final Reference reference, final String value)
 	{
 		List<Sample> samplesWithValue = new ArrayList<>();
@@ -132,6 +135,7 @@ public final class Probe extends DataTableImpl
 		return samplesWithValue;
 	}
 
+	@Override
 	public List<Sample> getSamplesBy(final Reference reference, final String[] values)
 	{
 		List<Sample> samplesWithValue = new ArrayList<>();
@@ -150,6 +154,7 @@ public final class Probe extends DataTableImpl
 		return samplesWithValue;
 	}
 
+	@Override
 	public boolean hasSampleWith(final Reference reference, final String value)
 	{
 		for (Sample sample : this.samples)

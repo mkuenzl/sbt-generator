@@ -1,7 +1,6 @@
 package sbt.automization.templates.helper;
 
 import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.refactoring.references.RefProbe;
 import sbt.automization.data.refactoring.references.RefSample;
 import sbt.automization.util.html.HtmlCell;
@@ -9,9 +8,9 @@ import sbt.automization.util.html.HtmlRow;
 
 import java.util.List;
 
-public final class HeapFactory extends ARowFactory
+public final class HeapProvider extends RowProvider
 {
-	public HeapFactory(){super("HAUFWERK");}
+	public HeapProvider(){super("HAUFWERK");}
 
 	public String createOutcropRow(List<DataTable> dataTables)
 	{

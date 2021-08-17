@@ -5,7 +5,7 @@ public enum Outcrop
 	GOB
 			{
 				@Override
-				String toString(String parameter)
+				public String toString()
 				{
 					return "GOB";
 				}
@@ -13,7 +13,7 @@ public enum Outcrop
 	TMHB
 			{
 				@Override
-				String toString(String parameter)
+				public String toString()
 				{
 					return "TMHB";
 				}
@@ -21,7 +21,7 @@ public enum Outcrop
 	CONCRETE
 			{
 				@Override
-				String toString(String parameter)
+				public String toString()
 				{
 					return "BETON";
 				}
@@ -29,7 +29,7 @@ public enum Outcrop
 	SEAL
 			{
 				@Override
-				String toString(String parameter)
+				public String toString()
 				{
 					return "ABDICHTUNG";
 				}
@@ -37,7 +37,7 @@ public enum Outcrop
 	COATING
 			{
 				@Override
-				String toString(String parameter)
+				public String toString()
 				{
 					return "BESCHICHTUNG";
 				}
@@ -45,7 +45,7 @@ public enum Outcrop
 	BANQUET
 			{
 				@Override
-				String toString(String parameter)
+				public String toString()
 				{
 					return "BANKETT";
 				}
@@ -53,7 +53,7 @@ public enum Outcrop
 	GAP
 			{
 				@Override
-				String toString(String parameter)
+				public String toString()
 				{
 					return "FUGE";
 				}
@@ -61,7 +61,7 @@ public enum Outcrop
 	TOB
 			{
 				@Override
-				String toString(String parameter)
+				public String toString()
 				{
 					return "TOB";
 				}
@@ -69,7 +69,7 @@ public enum Outcrop
 	UG
 			{
 				@Override
-				String toString(String parameter)
+				public String toString()
 				{
 					return "UG";
 				}
@@ -77,7 +77,7 @@ public enum Outcrop
 	HEAP
 			{
 				@Override
-				String toString(String parameter)
+				public String toString()
 				{
 					return "HAUFWERK";
 				}
@@ -85,12 +85,9 @@ public enum Outcrop
 	OH
 			{
 				@Override
-				String toString(String parameter)
+				public String toString()
 				{
 					return "OH";
 				}
 			};
-
-
-	abstract String toString(String parameter);
 }

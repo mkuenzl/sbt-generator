@@ -41,6 +41,7 @@ public final class Sample extends DataTableImpl
 		return 0;
 	}
 
+	@Override
 	public Parameter getParameterBy(Reference referenceID)
 	{
 		for (Parameter par : parameters)
@@ -52,6 +53,7 @@ public final class Sample extends DataTableImpl
 		return null;
 	}
 
+	@Override
 	public String getParameterValueBy(Reference parameterID, Reference valueID)
 	{
 		for (Parameter par : parameters)

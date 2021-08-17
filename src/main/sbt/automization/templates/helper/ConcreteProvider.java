@@ -3,6 +3,7 @@ package sbt.automization.templates.helper;
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.refactoring.references.RefProbe;
+import sbt.automization.data.refactoring.references.RefSample;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
@@ -11,14 +12,14 @@ import sbt.automization.util.html.HtmlText;
 import java.util.List;
 
 
-public final class ConcreteFactory extends ARowFactory
+public final class ConcreteProvider extends RowProvider
 {
-    public ConcreteFactory()
+    public ConcreteProvider()
     {
         super("BETON");
     }
 
-    public String createAufschlussRow(List<DataTable> dataTables)
+    public String createGroundExposureRow(List<DataTable> dataTables)
     {
         //Erkundungsstellen Aufschlussart
         HtmlRow row = new HtmlRow.Builder()
@@ -69,7 +70,7 @@ public final class ConcreteFactory extends ARowFactory
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", normalCellWidth)
-                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(dataTable, outcrop, ReferenceKey.LAYER_TYPE))
+                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(dataTable, outcrop, RefSample.TYPE))
                     .build();
 
             row.appendContent(cell.appendTag());

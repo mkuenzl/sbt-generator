@@ -1,7 +1,6 @@
 package sbt.automization.templates.helper;
 
 import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.refactoring.Probe;
 import sbt.automization.data.refactoring.Sample;
 import sbt.automization.data.refactoring.references.RefProbe;
@@ -13,9 +12,9 @@ import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
 
-public final class TmhbFactory extends ARowFactory
+public final class TmhbProvider extends RowProvider
 {
-	public TmhbFactory() {super("TMHB");}
+	public TmhbProvider() {super("TMHB");}
 
 	@Override
 	public String createLegendRow(List<DataTable> dataTables)
@@ -39,7 +38,7 @@ public final class TmhbFactory extends ARowFactory
 		return rowLegende.appendTag();
 	}
 
-	public String createAufschlussRow(List<DataTable> dataTables)
+	public String createGroundExposureRow(List<DataTable> dataTables)
 	{
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)

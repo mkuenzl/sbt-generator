@@ -1,7 +1,6 @@
 package sbt.automization.templates.helper;
 
 import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.refactoring.references.RefProbe;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.html.HtmlCell;
@@ -10,9 +9,9 @@ import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
 
-public final class UgFactory extends ARowFactory
+public final class UgProvider extends RowProvider
 {
-	public UgFactory()
+	public UgProvider()
 	{
 		super("UG");
 	}
@@ -77,7 +76,7 @@ public final class UgFactory extends ARowFactory
 			String targetDepth = dataTable.get(RefProbe.TARGET_DEPTH);
 			HtmlCell cell;
 
-			if("-".equals(targetDepth)){
+			if("".equals(targetDepth)){
 				cell = new HtmlCell.Builder()
 						.appendAttribute("class", normalCellClass)
 						.appendAttribute("width", normalCellWidth)
@@ -118,7 +117,7 @@ public final class UgFactory extends ARowFactory
 		return row.appendTag();
 	}
 
-	public String createAufschlussRow(List<DataTable> dataTables)
+	public String createGroundExposureRow(List<DataTable> dataTables)
 	{
 		//Erkundungsstellen Aufschlussart
 		HtmlRow row = new HtmlRow.Builder()

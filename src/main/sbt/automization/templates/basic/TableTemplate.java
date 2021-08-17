@@ -1,13 +1,9 @@
-package sbt.automization.templates.report;
+package sbt.automization.templates.basic;
 
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.templates.HtmlTemplate;
 import sbt.automization.templates.Outcrop;
-import sbt.automization.templates.styles.ReportStyle;
 import sbt.automization.util.Util;
-import sbt.automization.util.html.HtmlCell;
-import sbt.automization.util.html.HtmlFactory;
-import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlTable;
 
 import java.util.Collection;
@@ -16,7 +12,7 @@ import java.util.List;
 /**
  * Abstract class for all report tables inherits from AHtmlTable
  */
-public abstract class Report implements HtmlTemplate
+public abstract class TableTemplate implements HtmlTemplate
 {
 	private Outcrop outcrop;
 
@@ -39,7 +35,7 @@ public abstract class Report implements HtmlTemplate
 	protected final StringBuilder template;
 	protected HtmlTable table;
 
-	public Report()
+	public TableTemplate()
 	{
 		linesPerPage = 0;
 		lines = 0;
@@ -69,7 +65,7 @@ public abstract class Report implements HtmlTemplate
 	 * @param tables a List of ExplorationSites
 	 * @return a Collection of Lists
 	 */
-	public Collection<List<DataTable>> splitGroupOf(List<DataTable> tables)
+	public Collection<List<DataTable>> divideExplorationSites(List<DataTable> tables)
 	{
 		List<DataTable> probesWhichIncludeOutcrop = Util.getProbesWhichIncludeOutcrop(tables, outcrop.toString());
 
@@ -78,33 +74,9 @@ public abstract class Report implements HtmlTemplate
 		return dividedExplorationSites;
 	}
 
-	abstract void buildTechnicalFeatures(List<DataTable> dataTables);
+	abstract String buildTechnicalFeatures(List<DataTable> dataTables);
 
-	void constructAndGetTechnicalHeader(List<DataTable> dataTables)
-	{
-		int colspan = dataTables.size() + 1;
-
-		HtmlRow row = HtmlFactory.createRow(ReportStyle.ROW.getStyleClass(), new HtmlCell[]{
-				HtmlFactory.createCell(ReportStyle.HEADER.getStyleClass(), 1, colspan,
-						new String[]{"Technische Merkmale"})
-		});
-
-		table.appendContent(row.appendTag());
-	}
-
-	abstract void buildEnvironmentTechnicalFeatures(List<DataTable> dataTables);
-
-	void constructAndGetEnvironmentTechnicalHeader(List<DataTable> dataTables)
-	{
-		int colspan = dataTables.size() + 1;
-
-		HtmlRow row = HtmlFactory.createRow(ReportStyle.ROW.getStyleClass(), new HtmlCell[]{
-				HtmlFactory.createCell(ReportStyle.HEADER.getStyleClass(), 1, colspan,
-						new String[]{"Umwelttechnische Merkmale"})
-		});
-
-		table.appendContent(row.appendTag());
-	}
+	abstract String buildEnvironmentTechnicalFeatures(List<DataTable> dataTables);
 
 	public HtmlTable constructAndGetTableObject()
 	{

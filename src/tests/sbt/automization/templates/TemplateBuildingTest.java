@@ -6,11 +6,9 @@ import org.junit.Test;
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.refactoring.Examination;
 import sbt.automization.export.HtmlTemplateExport;
-import sbt.automization.templates.appendix.ExplorationSite;
-import sbt.automization.templates.appendix.LoadPlate;
-import sbt.automization.templates.appendix.SamplingProtocol;
-import sbt.automization.templates.appendix.RingAndBall;
-import sbt.automization.templates.report.Coordinates;
+import sbt.automization.templates.appendix.*;
+import sbt.automization.templates.basic.Coordinates;
+import sbt.automization.templates.report.*;
 import sbt.automization.util.CsvParser;
 import sbt.automization.util.Util;
 
@@ -102,97 +100,97 @@ public class TemplateBuildingTest
 
 		openExportFile(htmlTemplateExportStrategy.getPath());
 	}
-//
-//	@Test
-//	public void createPnHeapTemplate() throws IOException
-//	{
-//		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(AppendixPNHEAP.getInstance());
-//		htmlTemplateExportStrategy.export(explorationSites);
-//
-//		openExportFile(htmlTemplateExportStrategy.getPath());
-//	}
-//
-//	@Test
-//	public void createReportOBTemplate() throws IOException
-//	{
-//		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ReportGOB.getInstance());
-//		htmlTemplateExportStrategy.export(explorationSites);
-//
-//		openExportFile(htmlTemplateExportStrategy.getPath());
-//	}
-//
-//	@Test
-//	public void createReportTOBTemplate() throws IOException
-//	{
-//		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ReportTOB.getInstance());
-//		htmlTemplateExportStrategy.export(explorationSites);
-//
-//		openExportFile(htmlTemplateExportStrategy.getPath());
-//	}
-//
-//	@Test
-//	public void createReportUGTemplate() throws IOException
-//	{
-//		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ReportUG.getInstance());
-//		htmlTemplateExportStrategy.export(explorationSites);
-//
-//		openExportFile(htmlTemplateExportStrategy.getPath());
-//	}
-//
-//	@Test
-//	public void createReportOHTemplate() throws IOException
-//	{
-//		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ReportOH.getInstance());
-//		htmlTemplateExportStrategy.export(explorationSites);
-//
-//		openExportFile(htmlTemplateExportStrategy.getPath());
-//	}
-//
-//	@Test
-//	public void createExampleTemplate() throws IOException
-//	{
-//		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(AttemptTemplate.getInstance());
-//		htmlTemplateExportStrategy.export(explorationSites);
-//
-//		openExportFile(htmlTemplateExportStrategy.getPath());
-//	}
-//
-//	@Test
-//	public void createReportTMHBTemplate() throws IOException
-//	{
-//		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ReportTMHB.getInstance());
-//		htmlTemplateExportStrategy.export(explorationSites);
-//
-//		openExportFile(htmlTemplateExportStrategy.getPath());
-//	}
-//
-//	@Test
-//	public void createReportBETONTemplate() throws IOException
-//	{
-//		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ReportCONCRETE.getInstance());
-//		htmlTemplateExportStrategy.export(explorationSites);
-//
-//		openExportFile(htmlTemplateExportStrategy.getPath());
-//	}
-//
-//	@Test
-//	public void createReportFUGETemplate() throws IOException
-//	{
-//		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ReportFUGE.getInstance());
-//		htmlTemplateExportStrategy.export(explorationSites);
-//
-//		openExportFile(htmlTemplateExportStrategy.getPath());
-//	}
-//
-//	@Test
-//	public void createReportHeapTemplate() throws IOException
-//	{
-//		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ReportHEAP.getInstance());
-//		htmlTemplateExportStrategy.export(explorationSites);
-//
-//		openExportFile(htmlTemplateExportStrategy.getPath());
-//	}
-//
+
+	@Test
+	public void createPnHeapTemplate() throws IOException
+	{
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(SamplingProtocolHeap.getInstance());
+		htmlTemplateExportStrategy.export(dataTables);
+
+		openExportFile(htmlTemplateExportStrategy.getPath());
+	}
+
+	@Test
+	public void createReportOBTemplate() throws IOException
+	{
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(BoundSuperstructure.getInstance());
+		htmlTemplateExportStrategy.export(dataTables);
+
+		openExportFile(htmlTemplateExportStrategy.getPath());
+	}
+
+	@Test
+	public void createReportTOBTemplate() throws IOException
+	{
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(BaseCourseWithoutBinder.getInstance());
+		htmlTemplateExportStrategy.export(dataTables);
+
+		openExportFile(htmlTemplateExportStrategy.getPath());
+	}
+
+	@Test
+	public void createReportUGTemplate() throws IOException
+	{
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Underground.getInstance());
+		htmlTemplateExportStrategy.export(dataTables);
+
+		openExportFile(htmlTemplateExportStrategy.getPath());
+	}
+
+	@Test
+	public void createReportOHTemplate() throws IOException
+	{
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Topsoil.getInstance());
+		htmlTemplateExportStrategy.export(dataTables);
+
+		openExportFile(htmlTemplateExportStrategy.getPath());
+	}
+
+	@Test
+	public void createExampleTemplate() throws IOException
+	{
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(AttemptTemplate.getInstance());
+		htmlTemplateExportStrategy.export(dataTables);
+
+		openExportFile(htmlTemplateExportStrategy.getPath());
+	}
+
+	@Test
+	public void createReportTMHBTemplate() throws IOException
+	{
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(BaseCourseWithHydraulicBinder.getInstance());
+		htmlTemplateExportStrategy.export(dataTables);
+
+		openExportFile(htmlTemplateExportStrategy.getPath());
+	}
+
+	@Test
+	public void createReportBETONTemplate() throws IOException
+	{
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Concrete.getInstance());
+		htmlTemplateExportStrategy.export(dataTables);
+
+		openExportFile(htmlTemplateExportStrategy.getPath());
+	}
+
+	@Test
+	public void createReportFUGETemplate() throws IOException
+	{
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Gap.getInstance());
+		htmlTemplateExportStrategy.export(dataTables);
+
+		openExportFile(htmlTemplateExportStrategy.getPath());
+	}
+
+	@Test
+	public void createReportHeapTemplate() throws IOException
+	{
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Heap.getInstance());
+		htmlTemplateExportStrategy.export(dataTables);
+
+		openExportFile(htmlTemplateExportStrategy.getPath());
+	}
+
 	@Test
 	public void createReportCoordinateTemplate() throws IOException
 	{
@@ -201,13 +199,13 @@ public class TemplateBuildingTest
 
 		openExportFile(htmlTemplateExportStrategy.getPath());
 	}
-//
-//	@Test
-//	public void createReportBankettTemplate() throws IOException
-//	{
-//		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ReportBANKETT.getInstance());
-//		htmlTemplateExportStrategy.export(explorationSites);
-//
-//		openExportFile(htmlTemplateExportStrategy.getPath());
-//	}
+
+	@Test
+	public void createReportBankettTemplate() throws IOException
+	{
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Banquet.getInstance());
+		htmlTemplateExportStrategy.export(dataTables);
+
+		openExportFile(htmlTemplateExportStrategy.getPath());
+	}
 }

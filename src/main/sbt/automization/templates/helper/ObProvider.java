@@ -1,23 +1,22 @@
 package sbt.automization.templates.helper;
 
 import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.ReferenceKey;
-import sbt.automization.data.LayerSample;
 import sbt.automization.data.refactoring.Probe;
 import sbt.automization.data.refactoring.Sample;
 import sbt.automization.data.refactoring.references.RefProbe;
 import sbt.automization.data.refactoring.references.RefSample;
 import sbt.automization.format.HtmlCellFormatUtil;
 import sbt.automization.format.TextFormatUtil;
+import sbt.automization.templates.Outcrop;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
 
-public final class ObFactory extends ARowFactory
+public final class ObProvider extends RowProvider
 {
-	public ObFactory()
+	public ObProvider()
 	{
 		super("GOB");
 	}
@@ -28,34 +27,6 @@ public final class ObFactory extends ARowFactory
 		int size = Integer.valueOf(headerCellWidth) + dataTables.size()* Integer.valueOf(normalCellWidth);
 
 		return null;
-	}
-
-	public String createAufschlussRow(List<DataTable> dataTables)
-	{
-		//Erkundungsstellen Aufschlussart
-		HtmlRow row = new HtmlRow.Builder()
-				.appendAttribute("class", rowClass)
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", headerCellClass)
-						.appendAttribute("width", headerCellWidth)
-						.appendContent("Aufschlussart")
-						.build()
-						.appendTag())
-				.build();
-
-		for (DataTable dataTable :
-				dataTables)
-		{
-			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", normalCellClass)
-					.appendAttribute("width", normalCellWidth)
-					.appendContent(dataTable.get(RefProbe.OUTCROP_GOB))
-					.build();
-
-			row.appendContent(cell.appendTag());
-		}
-
-		return row.appendTag();
 	}
 
 	public String createSizeOBRow(List<DataTable> dataTables)
@@ -81,8 +52,11 @@ public final class ObFactory extends ARowFactory
 		for (DataTable dataTable :
 				dataTables)
 		{
-			Probe probe = (Probe) dataTable;
-			List<Sample> samples = probe.getSamplesBy(RefSample.OUTCROP, outcrop);
+			List<Sample> samples = dataTable.getSamplesBy(RefSample.OUTCROP, new String[]{outcrop,
+					Outcrop.CONCRETE.toString(),
+					Outcrop.COATING.toString(),
+					Outcrop.TMHB.toString(),
+					Outcrop.SEAL.toString()});
 
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
@@ -131,7 +105,7 @@ public final class ObFactory extends ARowFactory
 		return row.appendTag();
 	}
 
-	public String createRukEinzelWertRow(List<DataTable> dataTables)
+	public String createRukSingleValueRow(List<DataTable> dataTables)
 	{
 		//RUK EinzelWert
 		HtmlRow row = new HtmlRow.Builder()
@@ -172,7 +146,7 @@ public final class ObFactory extends ARowFactory
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", headerCellWidth)
-						.appendContent("Pechnachweiß")
+						.appendContent("Pechnachweis")
 						.appendContent(TextFormatUtil.printLineBreak())
 						.appendContent("qualitativ")
 						.build()
@@ -201,7 +175,7 @@ public final class ObFactory extends ARowFactory
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
-						.appendContent("Pechnachweiß")
+						.appendContent("Pechnachweis")
 						.appendContent(TextFormatUtil.printLineBreak())
 						.appendContent("halbquantitativ")
 						.build()
@@ -230,7 +204,7 @@ public final class ObFactory extends ARowFactory
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", headerCellWidth)
-						.appendContent("Pechnachweiß")
+						.appendContent("Pechnachweis")
 						.appendContent(TextFormatUtil.printLineBreak())
 						.appendContent("quantitativ")
 						.build()
@@ -345,8 +319,7 @@ public final class ObFactory extends ARowFactory
 		{
 			boolean empty = true;
 
-			Probe probe = (Probe) dataTable;
-			List<Sample> samples = probe.getSamplesBy(RefSample.OUTCROP, outcrop);
+			List<Sample> samples = dataTable.getSamplesBy(RefSample.OUTCROP, outcrop);
 
 			if (samples != null)
 			{

@@ -1,14 +1,15 @@
-package sbt.automization.templates.report;
+package sbt.automization.templates.basic;
 
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.refactoring.references.RefProbe;
+import sbt.automization.templates.report.Report;
 import sbt.automization.util.html.HtmlFactory;
 import sbt.automization.util.html.HtmlTable;
 
 import java.util.Arrays;
 import java.util.List;
 
-public final class Coordinates extends Report
+public final class Coordinates extends TableTemplate
 {
 	private static Coordinates instance;
 

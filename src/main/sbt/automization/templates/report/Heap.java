@@ -2,36 +2,50 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.templates.Outcrop;
-import sbt.automization.templates.helper.HeapFactory;
+import sbt.automization.templates.helper.HeapProvider;
 
+import java.util.Collection;
 import java.util.List;
 
 public final class Heap extends Report
 {
 	private static Heap instance;
-	private final HeapFactory factory;
+	private final HeapProvider provider;
 
 	private Heap() {
 		setOutcrop(Outcrop.HEAP);
-		factory = new HeapFactory();
+		provider = new HeapProvider();
 	}
 
 	@Override
 	public String constructAndGetTableHeader()
 	{
-		return null;
+		return "";
 	}
 
 	@Override
-	String buildTechnicalFeatures(List<DataTable> dataTables)
+	void buildTechnicalFeatures(List<DataTable> dataTables)
 	{
-		return null;
+		constructAndGetTechnicalHeader(dataTables);
+		table.appendContent(provider.createMaterialRow(dataTables));
+		table.appendContent(provider.createDIN18300Row(dataTables));
+		table.appendContent(provider.createDIN18196Row(dataTables));
 	}
 
 	@Override
-	String buildEnvironmentTechnicalFeatures(List<DataTable> dataTables)
+	void buildEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
-		return null;
+		constructAndGetEnvironmentTechnicalHeader(dataTables);
+		table.appendContent(provider.createChemieIDRow(dataTables));
+		table.appendContent(provider.createChemieMufvRow(dataTables));
+		table.appendContent(provider.createChemieLagaBoRow(dataTables));
+		table.appendContent(provider.createChemieLagaRcRow(dataTables));
+		table.appendContent(provider.createChemieLagaRcOrientationRow(dataTables));
+		table.appendContent(provider.createChemieTlRockRow(dataTables));
+		table.appendContent(provider.createREKUROW(dataTables));
+		table.appendContent(provider.createChemieDepvRow(dataTables));
+		table.appendContent(provider.createChemieAVVRow(dataTables));
+		table.appendContent(provider.createChemieDecisionSupportRow(dataTables));
 	}
 
 	public static Heap getInstance()
@@ -52,13 +66,30 @@ public final class Heap extends Report
 	@Override
 	public String getExportFileName()
 	{
-		return null;
+		return "HAUFWERK-Report";
 	}
 
 	@Override
 	public void constructTemplate(List<DataTable> dataTables)
 	{
+		Collection<List<DataTable>> tablesSplitIntoPortions = splitGroupOf(dataTables);
+		for (List<DataTable> portion : tablesSplitIntoPortions)
+		{
+			buildTable(portion);
+			addToTemplate(table.appendTag());
+			addToTemplate("<br>");
+		}
+	}
 
+	private void buildTable(List<DataTable> dataTables)
+	{
+		table = constructAndGetTableObject();
+
+		table.appendContent(provider.createIDRow(dataTables));
+		table.appendContent(provider.createOutcropRow(dataTables));
+		buildTechnicalFeatures(dataTables);
+		buildEnvironmentTechnicalFeatures(dataTables);
+		table.appendContent(provider.createLegendRow(dataTables));
 	}
 
 	@Override

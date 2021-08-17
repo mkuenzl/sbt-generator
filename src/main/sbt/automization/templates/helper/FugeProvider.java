@@ -1,18 +1,17 @@
 package sbt.automization.templates.helper;
 
 import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.refactoring.references.RefProbe;
 import sbt.automization.util.html.HtmlCell;
 import sbt.automization.util.html.HtmlRow;
 
 import java.util.List;
 
-public final class OhFactory extends ARowFactory
+public final class FugeProvider extends RowProvider
 {
-    public OhFactory()
+    public FugeProvider()
     {
-        super("OH");
+        super("FUGE");
     }
 
     @Override
@@ -23,8 +22,9 @@ public final class OhFactory extends ARowFactory
         return null;
     }
 
-    public String createAufschlussRow(List<DataTable> dataTables)
+    public String createGroundExposureRow(List<DataTable> dataTables)
     {
+        //Erkundungsstellen Aufschlussart
         HtmlRow row = new HtmlRow.Builder()
                 .appendAttribute("class", rowClass)
                 .appendContent(new HtmlCell.Builder()
@@ -40,8 +40,8 @@ public final class OhFactory extends ARowFactory
         {
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
-                    .appendAttribute("width", normalCellWidth)
-                    .appendContent(dataTable.get(RefProbe.OUTCROP_UG_OH_BA))
+                    .appendAttribute("width", normalCellClass)
+                    .appendContent(dataTable.get(RefProbe.OUTCROP_GOB))
                     .build();
 
             row.appendContent(cell.appendTag());

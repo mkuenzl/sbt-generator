@@ -134,6 +134,22 @@ public class HtmlFactory
 		return cell;
 	}
 
+	public static HtmlCell createCell(String classID, int rowspan, int colspan, String[] content)
+	{
+		HtmlCell cell = new HtmlCell.Builder()
+				.appendAttribute("class", classID)
+				.appendAttribute("rowspan", String.valueOf(rowspan))
+				.appendAttribute("colspan", String.valueOf(colspan))
+				.build();
+
+		for (String line : content)
+		{
+			cell.appendContent(line);
+		}
+
+		return cell;
+	}
+
 	public static String createCellAsString(String classID, String style, int rowspan, int colspan, String[] content)
 	{
 		HtmlCell cell = new HtmlCell.Builder()

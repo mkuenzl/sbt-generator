@@ -1,7 +1,6 @@
 package sbt.automization.templates.helper;
 
 import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.ReferenceKey;
 import sbt.automization.data.refactoring.Probe;
 import sbt.automization.data.refactoring.Sample;
 import sbt.automization.data.refactoring.references.RefProbe;
@@ -14,9 +13,9 @@ import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
 
-public final class TobFactory extends ARowFactory
+public final class TobProvider extends RowProvider
 {
-	public TobFactory()
+	public TobProvider()
 	{
 		super("TOB");
 	}

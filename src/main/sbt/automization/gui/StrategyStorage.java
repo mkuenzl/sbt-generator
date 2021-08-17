@@ -2,6 +2,7 @@ package sbt.automization.gui;
 
 import sbt.automization.templates.*;
 import sbt.automization.templates.appendix.*;
+import sbt.automization.templates.basic.Coordinates;
 import sbt.automization.templates.report.*;
 
 import java.util.ArrayList;

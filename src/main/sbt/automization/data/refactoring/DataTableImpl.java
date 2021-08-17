@@ -3,9 +3,7 @@ package sbt.automization.data.refactoring;
 import sbt.automization.data.refactoring.references.Reference;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public abstract class DataTableImpl implements DataTable, Comparable<DataTable>, Cloneable, Serializable
 {
@@ -218,5 +216,30 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 		if (value == null) return false;
 
 		return !"".equals(value);
+	}
+
+	public Parameter getParameterBy(final Reference reference)
+	{
+		return new Parameter();
+	}
+
+	public String getParameterValueBy(Reference parameterID, Reference valueID)
+	{
+		return "";
+	}
+
+	public List<Sample> getSamplesBy(final Reference reference, final String value)
+	{
+		return new ArrayList<>();
+	}
+
+	public List<Sample> getSamplesBy(final Reference reference, final String[] values)
+	{
+		return new ArrayList<>();
+	}
+
+	public boolean hasSampleWith(final Reference reference, final String value)
+	{
+		return false;
 	}
 }
