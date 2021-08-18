@@ -1,7 +1,7 @@
 package sbt.automization.export;
 
-import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.refactoring.Examination;
+import sbt.automization.data.DataTable;
+import sbt.automization.data.Examination;
 import sbt.automization.templates.HtmlTemplate;
 
 import java.io.*;
@@ -52,6 +52,15 @@ public abstract class ATemplateExport
 		}
 	}
 
+	public void export(String path, List<DataTable> tables)
+	{
+		try {
+			export(getPath(path), format(tables));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	abstract String format(List<DataTable> tables);
 
 	public void exportAsShowcase(String htmlCode)
@@ -71,5 +80,7 @@ public abstract class ATemplateExport
 
 	}
 
-	abstract String getPath();
+	public abstract String getPath();
+
+	public abstract String getPath(String path);
 }
