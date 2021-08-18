@@ -90,63 +90,6 @@ public class ExplorationSiteFactory
 		return dataTable1;
 	}
 
-	public DataTableOld getTestErkundungsstelle2()
-	{
-		dataTable2.setInformationMap(buildErkDaten());
-		buildSchichtDaten();
-		dataTable2.addLayer(layerSample1_GOB);
-		dataTable2.addLayer(layerSample2_GOB);
-		dataTable2.addLayer(layerSample3_GOB);
-		dataTable2.addLayer(layerSample4_GOB);
-
-		return dataTable2;
-	}
-
-
-	public DataTableOld getTestErkundungsstelle3()
-	{
-		dataTable3.setInformationMap(buildErkDaten());
-		buildSchichtDaten();
-		dataTable3.addLayer(layerSample1_GOB);
-		dataTable3.addLayer(layerSample2_GOB);
-		dataTable3.addLayer(layerSample3_GOB);
-		dataTable3.addLayer(layerSample4_GOB);
-		dataTable3.addLayer(layerSample5_1_TOB);
-		dataTable3.addLayer(layerSample6_2_TOB);
-
-		return dataTable3;
-	}
-
-	public DataTableOld getTestErkundungsstelle4()
-	{
-		dataTable4.setInformationMap(buildErkDaten());
-		buildSchichtDaten();
-		dataTable4.addLayer(layerSample1_GOB);
-		dataTable4.addLayer(layerSample2_GOB);
-		dataTable4.addLayer(layerSample3_GOB);
-		dataTable4.addLayer(layerSample4_GOB);
-		dataTable4.addLayer(layerSample5_2_TOB);
-		dataTable3.addLayer(layerSample6_2_TOB);
-
-
-		return dataTable4;
-	}
-
-	public DataTableOld getTestErkundungsstelle5()
-	{
-		dataTable5.setInformationMap(buildErkDaten());
-		buildSchichtDaten();
-		dataTable5.addLayer(layerSample1_GOB);
-		dataTable5.addLayer(layerSample2_GOB);
-		dataTable5.addLayer(layerSample3_GOB);
-		dataTable5.addLayer(layerSample4_GOB);
-		dataTable5.addLayer(layerSample5_2_TOB);
-		dataTable5.addLayer(layerSample7_2_TOB);
-
-
-		return dataTable5;
-	}
-
 	private Map<String, String> buildErkDaten()
 	{
 		Map<String, String> erkDaten = new HashMap<>();
@@ -677,5 +620,61 @@ public class ExplorationSiteFactory
 		schicht10Daten.put("CHEMIE_BTEX", "");
 
 		layerSample10_UG = new LayerSample(schicht10Daten);
+	}
+
+	public DataTableOld getTestErkundungsstelle2()
+	{
+		dataTable2.setInformationMap(buildErkDaten());
+		buildSchichtDaten();
+		dataTable2.addLayer(layerSample1_GOB);
+		dataTable2.addLayer(layerSample2_GOB);
+		dataTable2.addLayer(layerSample3_GOB);
+		dataTable2.addLayer(layerSample4_GOB);
+
+		return dataTable2;
+	}
+
+	public DataTableOld getTestErkundungsstelle3()
+	{
+		dataTable3.setInformationMap(buildErkDaten());
+		buildSchichtDaten();
+		dataTable3.addLayer(layerSample1_GOB);
+		dataTable3.addLayer(layerSample2_GOB);
+		dataTable3.addLayer(layerSample3_GOB);
+		dataTable3.addLayer(layerSample4_GOB);
+		dataTable3.addLayer(layerSample5_1_TOB);
+		dataTable3.addLayer(layerSample6_2_TOB);
+
+		return dataTable3;
+	}
+
+	public DataTableOld getTestErkundungsstelle4()
+	{
+		dataTable4.setInformationMap(buildErkDaten());
+		buildSchichtDaten();
+		dataTable4.addLayer(layerSample1_GOB);
+		dataTable4.addLayer(layerSample2_GOB);
+		dataTable4.addLayer(layerSample3_GOB);
+		dataTable4.addLayer(layerSample4_GOB);
+		dataTable4.addLayer(layerSample5_2_TOB);
+		dataTable3.addLayer(layerSample6_2_TOB);
+
+
+		return dataTable4;
+	}
+
+	public DataTableOld getTestErkundungsstelle5()
+	{
+		dataTable5.setInformationMap(buildErkDaten());
+		buildSchichtDaten();
+		dataTable5.addLayer(layerSample1_GOB);
+		dataTable5.addLayer(layerSample2_GOB);
+		dataTable5.addLayer(layerSample3_GOB);
+		dataTable5.addLayer(layerSample4_GOB);
+		dataTable5.addLayer(layerSample5_2_TOB);
+		dataTable5.addLayer(layerSample7_2_TOB);
+
+
+		return dataTable5;
 	}
 }

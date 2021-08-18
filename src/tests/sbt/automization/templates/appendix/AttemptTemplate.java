@@ -7,7 +7,6 @@ import java.util.List;
 
 public final class AttemptTemplate extends Appendix
 {
-
 	private static AttemptTemplate instance;
 
 	private AttemptTemplate() {}
@@ -31,6 +30,12 @@ public final class AttemptTemplate extends Appendix
 	public String getExportFileName()
 	{
 		return "example";
+	}
+
+	@Override
+	public void constructTemplate(List<sbt.automization.data.refactoring.DataTable> dataTables)
+	{
+
 	}	@Override
 	public HtmlTable constructAndGetTableObject()
 	{
@@ -48,19 +53,15 @@ public final class AttemptTemplate extends Appendix
 	}
 
 	@Override
-	public void constructTemplate(List<sbt.automization.data.refactoring.DataTable> dataTables)
-	{
-
-	}	@Override
-	public String constructAndGetTableHeader()
-	{
-		return null;
-	}
-
-	@Override
 	public void constructTemplate(DataTable dataTable)
 	{
 
+	}
+
+	@Override
+	public String constructAndGetTableHeader()
+	{
+		return null;
 	}
 
 

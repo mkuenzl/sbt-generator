@@ -22,12 +22,6 @@ public class TemplateBuildingTest
 {
 	List<DataTable> dataTables = new ArrayList<>();
 
-	public static void openExportFile(String path) throws IOException
-	{
-		File htmlFile = new File(path);
-		Desktop.getDesktop().browse(htmlFile.toURI());
-	}
-
 	@BeforeClass
 	public static void createDatatables() throws Exception
 	{
@@ -72,6 +66,12 @@ public class TemplateBuildingTest
 		htmlTemplateExportStrategy.export(dataTables);
 
 		openExportFile(htmlTemplateExportStrategy.getPath());
+	}
+
+	public static void openExportFile(String path) throws IOException
+	{
+		File htmlFile = new File(path);
+		Desktop.getDesktop().browse(htmlFile.toURI());
 	}
 
 	@Test

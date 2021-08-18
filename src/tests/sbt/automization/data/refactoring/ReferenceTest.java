@@ -21,7 +21,7 @@ public class ReferenceTest {
     {
         String path = System.getProperty("user.dir").concat(File.separator).concat("tests-resources").concat(File.separator);
                                                                                                                              
-        File csv = new File(path + "datenbank-template.csv");
+        File csv = new File(path + "datenbank-template-test.csv");
                                                                                                                              
         header = CsvParser.parseHeader(csv);
     }
