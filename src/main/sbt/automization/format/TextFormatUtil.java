@@ -1,9 +1,6 @@
 package sbt.automization.format;
 
 import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.ReferenceKey;
-import sbt.automization.data.LayerSample;
-import sbt.automization.data.refactoring.Probe;
 import sbt.automization.data.refactoring.Sample;
 import sbt.automization.data.refactoring.references.RefChemistry;
 import sbt.automization.data.refactoring.references.RefRuK;
@@ -149,21 +146,6 @@ public final class TextFormatUtil
 			sampleType = "MP";
 		}
 		return sampleType;
-	}
-
-	/**
-	 * Method to provide a line without content.
-	 *
-	 * @return a html paragraph without content
-	 */
-	public static String printLineEmpty()
-	{
-		HtmlText emptyRow = new HtmlText.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent("&nbsp;")
-				.build();
-
-		return emptyRow.appendTag();
 	}
 
 	/**
@@ -321,7 +303,7 @@ public final class TextFormatUtil
 	{
 		StringBuilder formattedLayerMaterial = new StringBuilder();
 
-		List<Sample> outcropLayerSamples = ((Probe) dataTable).getSamplesBy(RefSample.OUTCROP, outcrop);
+		List<Sample> outcropLayerSamples = dataTable.getSamplesBy(RefSample.OUTCROP, outcrop);
 		int size = outcropLayerSamples.size();
 
 		for (int i = 0 ; i < size ; i++)
@@ -372,7 +354,6 @@ public final class TextFormatUtil
 		return stringBuilder.toString();
 	}
 
-
 	public static String formatDepthSpecified(final String startDepth, final String endDepth)
 	{
 		String depth = "[T: " + startDepth + " - " + endDepth + "]";
@@ -405,6 +386,20 @@ public final class TextFormatUtil
 		return stringBuilder.toString();
 	}
 
+	/**
+	 * Method to provide a line without content.
+	 *
+	 * @return a html paragraph without content
+	 */
+	public static String printLineEmpty()
+	{
+		HtmlText emptyRow = new HtmlText.Builder()
+				.appendAttribute("class", "Normal")
+				.appendContent("&nbsp;")
+				.build();
+
+		return emptyRow.appendTag();
+	}
 
 	public static String formatKindAndGranulation(final String kind, String granulation)
 	{
@@ -427,9 +422,7 @@ public final class TextFormatUtil
 	 */
 	public static String printLayerInformationWithDepth(final DataTable dataTable, final String outcrop, final Reference tag)
 	{
-		//TODO List<LayerSample> layerSamples = LayerFormatUtil.combineLayers(dataTable, outcrop, tag);
-
-		List<Sample> samples = dataTable.getSamplesBy(RefSample.OUTCROP, outcrop);
+		List<Sample> samples = CombineSampleUtil.combineSamplesOfOutcrop(dataTable, outcrop, tag);
 
 		StringBuilder stringBuilder = new StringBuilder();
 
@@ -444,15 +437,13 @@ public final class TextFormatUtil
 			if (tag instanceof RefChemistry)
 			{
 				formattedTag = printChemistryMarkup(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, tag));
-			} else
-			if (tag instanceof RefRuK)
+			} else if (tag instanceof RefRuK)
 			{
 				formattedTag = new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
 						.appendContent(sample.getParameterValueBy(RefSample.RUK_ID, tag))
 						.build().appendTag();
-			} else
-			if (tag == RefSample.MOISTURE)
+			} else if (tag == RefSample.MOISTURE)
 			{
 				formattedTag = new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
@@ -553,12 +544,12 @@ public final class TextFormatUtil
 				break;
 			case "nicht gefährlich":
 				stringBuilder.append(new HtmlText.Builder()
-						.appendAttribute("class", "Normal")
-						.appendContent("<span style=\"background-color: white;font-weight: bold;\n" +
-								"  color: black\">")
-						.appendContent("nicht")
-						.appendContent("</span>")
-						.build().appendTag())
+								.appendAttribute("class", "Normal")
+								.appendContent("<span style=\"background-color: white;font-weight: bold;\n" +
+										"  color: black\">")
+								.appendContent("nicht")
+								.appendContent("</span>")
+								.build().appendTag())
 						.append(new HtmlText.Builder()
 								.appendAttribute("class", "Normal")
 								.appendContent("<span style=\"font-weight: bold\";>")
@@ -568,11 +559,11 @@ public final class TextFormatUtil
 				break;
 			case "nicht eingehalten":
 				stringBuilder.append(new HtmlText.Builder()
-						.appendAttribute("class", "Normal")
-						.appendContent("<span style=\"font-weight: bold\";>")
-						.appendContent("nicht")
-						.appendContent("</span>")
-						.build().appendTag())
+								.appendAttribute("class", "Normal")
+								.appendContent("<span style=\"font-weight: bold\";>")
+								.appendContent("nicht")
+								.appendContent("</span>")
+								.build().appendTag())
 						.append(new HtmlText.Builder()
 								.appendAttribute("class", "Normal")
 								.appendContent("<span style=\"font-weight: bold\";>")
@@ -612,7 +603,7 @@ public final class TextFormatUtil
 
 	public static String printRukLayers(final DataTable dataTable, final String outcrop)
 	{
-		List<Sample> samples = ((Probe) dataTable).getSamplesBy(RefSample.OUTCROP, outcrop);
+		List<Sample> samples = dataTable.getSamplesBy(RefSample.OUTCROP, outcrop);
 
 		StringBuilder stringBuilder = new StringBuilder();
 

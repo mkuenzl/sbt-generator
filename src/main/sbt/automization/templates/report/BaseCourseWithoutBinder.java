@@ -14,7 +14,7 @@ public final class BaseCourseWithoutBinder extends Report
 
 	private BaseCourseWithoutBinder()
 	{
-		setOutcrop(Outcrop.TOB);
+		super(Outcrop.TOB);
 		provider = new TobProvider();
 	}
 
@@ -34,41 +34,6 @@ public final class BaseCourseWithoutBinder extends Report
 	}
 
 	@Override
-	public String constructAndGetTableHeader()
-	{
-		return null;
-	}
-
-	@Override
-	void buildTechnicalFeatures(List<DataTable> dataTables)
-	{
-		constructAndGetTechnicalHeader(dataTables);
-		table.appendContent(provider.createEvDynRow(dataTables));
-		table.appendContent(provider.createEvDyn85Row(dataTables));
-		table.appendContent(provider.createEv2Row(dataTables));
-		table.appendContent(provider.createEvMinimumBorderRow(dataTables));
-		table.appendContent(provider.createMaterialRow(dataTables));
-		table.appendContent(provider.createSizeRow(dataTables));
-		table.appendContent(provider.createGrainSizeDistributionRow(dataTables));
-		table.appendContent(provider.createTotalSizeRow(dataTables));
-	}
-
-	@Override
-	void buildEnvironmentTechnicalFeatures(List<DataTable> dataTables)
-	{
-		constructAndGetEnvironmentTechnicalHeader(dataTables);
-		table.appendContent(provider.createChemieIDRow(dataTables));
-		table.appendContent(provider.createChemieMufvRow(dataTables));
-		table.appendContent(provider.createChemieLagaBoRow(dataTables));
-		table.appendContent(provider.createChemieLagaRcRow(dataTables));
-		table.appendContent(provider.createChemieLagaRcOrientationRow(dataTables));
-		table.appendContent(provider.createChemieTlRockRow(dataTables));
-		table.appendContent(provider.createChemieDepvRow(dataTables));
-		table.appendContent(provider.createChemieDecisionSupportRow(dataTables));
-		table.appendContent(provider.createChemieAVVRow(dataTables));
-	}
-
-	@Override
 	public String getExportFileName()
 	{
 		return "TOB-Report";
@@ -77,25 +42,58 @@ public final class BaseCourseWithoutBinder extends Report
 	@Override
 	public void constructTemplate(List<DataTable> dataTables)
 	{
-		Collection<List<DataTable>> tablesSplitIntoPortions = splitGroupOf(dataTables);
+		Collection<List<DataTable>> tablesSplitIntoPortions = splitIntoPortionPerPage(dataTables);
 		for (List<DataTable> portion : tablesSplitIntoPortions)
 		{
 			buildTable(portion);
 
-			addToTemplate(table.appendTag());
-			addToTemplate("<br>");
+			addTable();
+			addPageBreak();
 		}
 	}
 
 	private void buildTable(List<DataTable> dataTables)
 	{
-		table = constructAndGetTableObject();
+		createTable();
 
-		table.appendContent(provider.createIDRow(dataTables));
-		table.appendContent(provider.createOutcropRow(dataTables));
-		buildTechnicalFeatures(dataTables);
-		buildEnvironmentTechnicalFeatures(dataTables);
-		table.appendContent(provider.createLegendRow(dataTables));
+		addToTable(provider.createIDRow(dataTables));
+		addToTable(provider.createOutcropRow(dataTables));
+
+		constructTechnicalFeatures(dataTables);
+		constructEnvironmentTechnicalFeatures(dataTables);
+
+		addToTable(provider.createLegendRow(dataTables));
+	}
+
+	@Override
+	void constructTechnicalFeatures(List<DataTable> dataTables)
+	{
+		addTechnicalHeader(dataTables);
+
+		addToTable(provider.createEvDynRow(dataTables));
+		addToTable(provider.createEvDyn85Row(dataTables));
+		addToTable(provider.createEv2Row(dataTables));
+		addToTable(provider.createEvMinimumBorderRow(dataTables));
+		addToTable(provider.createMaterialRow(dataTables));
+		addToTable(provider.createSizeRow(dataTables));
+		addToTable(provider.createGrainSizeDistributionRow(dataTables));
+		addToTable(provider.createTotalSizeRow(dataTables));
+	}
+
+	@Override
+	void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
+	{
+		addEnvironmentTechnicalHeader(dataTables);
+
+		addToTable(provider.createChemieIDRow(dataTables));
+		addToTable(provider.createChemieMufvRow(dataTables));
+		addToTable(provider.createChemieLagaBoRow(dataTables));
+		addToTable(provider.createChemieLagaRcRow(dataTables));
+		addToTable(provider.createChemieLagaRcOrientationRow(dataTables));
+		addToTable(provider.createChemieTlRockRow(dataTables));
+		addToTable(provider.createChemieDepvRow(dataTables));
+		addToTable(provider.createChemieDecisionSupportRow(dataTables));
+		addToTable(provider.createChemieAVVRow(dataTables));
 	}
 
 	@Override

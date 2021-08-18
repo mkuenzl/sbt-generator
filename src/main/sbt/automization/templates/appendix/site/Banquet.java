@@ -1,6 +1,5 @@
 package sbt.automization.templates.appendix.site;
 
-import sbt.automization.data.DataTableOld;
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.refactoring.Probe;
 import sbt.automization.data.refactoring.Sample;

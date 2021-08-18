@@ -14,7 +14,7 @@ public final class Topsoil extends Report
 
 	private Topsoil()
 	{
-		setOutcrop(Outcrop.OH);
+		super(Outcrop.OH);
 		provider = new OhProvider();
 	}
 
@@ -34,32 +34,6 @@ public final class Topsoil extends Report
 	}
 
 	@Override
-	public String constructAndGetTableHeader()
-	{
-		return null;
-	}
-
-	@Override
-	void buildTechnicalFeatures(List<DataTable> dataTables)
-	{
-		constructAndGetTechnicalHeader(dataTables);
-		table.appendContent(provider.createDIN18196Row(dataTables));
-		table.appendContent(provider.createDIN18915Row(dataTables));
-		table.appendContent(provider.createDIN18320Row(dataTables));
-	}
-
-	@Override
-	void buildEnvironmentTechnicalFeatures(List<DataTable> dataTables)
-	{
-		constructAndGetEnvironmentTechnicalHeader(dataTables);
-		table.appendContent(provider.createChemieIDRow(dataTables));
-		table.appendContent(provider.createChemieLagaBoRow(dataTables));
-		table.appendContent(provider.createChemieDepvRow(dataTables));
-		table.appendContent(provider.createChemieDecisionSupportRow(dataTables));
-		table.appendContent(provider.createChemieAVVRow(dataTables));
-	}
-
-	@Override
 	public String getExportFileName()
 	{
 		return "OH-Report";
@@ -68,22 +42,46 @@ public final class Topsoil extends Report
 	@Override
 	public void constructTemplate(List<DataTable> dataTables)
 	{
-		Collection<List<DataTable>> tablesSplitIntoPortions = splitGroupOf(dataTables);
+		Collection<List<DataTable>> tablesSplitIntoPortions = splitIntoPortionPerPage(dataTables);
 		for (List<DataTable> portion : tablesSplitIntoPortions)
 		{
 			buildTable(portion);
-			addToTemplate(table.appendTag());
-			addToTemplate("<br>");
+			addTable();
+			addPageBreak();
 		}
 	}
 
 	private void buildTable(List<DataTable> dataTables)
 	{
-		table = constructAndGetTableObject();
-		table.appendContent(provider.createIDRow(dataTables));
-		table.appendContent(provider.createGroundExposureRow(dataTables));
-		buildTechnicalFeatures(dataTables);
-		buildEnvironmentTechnicalFeatures(dataTables);
+		createTable();
+
+		addToTable(provider.createIDRow(dataTables));
+		addToTable(provider.createGroundExposureRow(dataTables));
+
+		constructTechnicalFeatures(dataTables);
+		constructEnvironmentTechnicalFeatures(dataTables);
+	}
+
+	@Override
+	void constructTechnicalFeatures(List<DataTable> dataTables)
+	{
+		addTechnicalHeader(dataTables);
+
+		addToTable(provider.createDIN18196Row(dataTables));
+		addToTable(provider.createDIN18915Row(dataTables));
+		addToTable(provider.createDIN18320Row(dataTables));
+	}
+
+	@Override
+	void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
+	{
+		addEnvironmentTechnicalHeader(dataTables);
+
+		addToTable(provider.createChemieIDRow(dataTables));
+		addToTable(provider.createChemieLagaBoRow(dataTables));
+		addToTable(provider.createChemieDepvRow(dataTables));
+		addToTable(provider.createChemieDecisionSupportRow(dataTables));
+		addToTable(provider.createChemieAVVRow(dataTables));
 	}
 
 	@Override

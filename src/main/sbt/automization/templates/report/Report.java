@@ -18,32 +18,20 @@ import java.util.List;
  */
 public abstract class Report implements HtmlTemplate
 {
-	private Outcrop outcrop;
-
-	public static final String HTML_BASIC_TABLE_STYLE = new StringBuilder()
-			.append("'")
-			.append("border-collapse:collapse")
-			.append(";")
-			.append("mso-table-layout-alt:fixed")
-			.append(";")
-			.append("border:none")
-			.append(";")
-			.append("mso-border-alt:solid windowtext .5pt")
-			.append(";")
-			.append("mso-padding-alt:0cm 5.4pt 0cm 5.4pt")
-			.append("'")
-			.toString();
-
-	protected int linesPerPage;
-	protected int lines;
+	protected final Outcrop outcrop;
 	protected final StringBuilder template;
 	protected HtmlTable table;
 
 	public Report()
 	{
-		linesPerPage = 0;
-		lines = 0;
-		template = new StringBuilder();
+		this.template = new StringBuilder();
+		this.outcrop = null;
+	}
+
+	public Report(Outcrop outcrop)
+	{
+		this.template = new StringBuilder();
+		this.outcrop = outcrop;
 	}
 
 	public String getTemplate()
@@ -51,15 +39,15 @@ public abstract class Report implements HtmlTemplate
 		return template.toString();
 	}
 
-	public void addToTemplate(final String table)
+	void addPageBreak()
 	{
-		this.template.append(table);
+		this.template.append("<br>");
 	}
 
-	public abstract String constructAndGetTableHeader();
-
-	protected void setOutcrop(Outcrop outcrop){
-		this.outcrop = outcrop;
+	void addTable()
+	{
+		String tableString = table.appendTag();
+		this.template.append(tableString);
 	}
 
 	/**
@@ -69,18 +57,18 @@ public abstract class Report implements HtmlTemplate
 	 * @param tables a List of ExplorationSites
 	 * @return a Collection of Lists
 	 */
-	public Collection<List<DataTable>> splitGroupOf(List<DataTable> tables)
+	Collection<List<DataTable>> splitIntoPortionPerPage(List<DataTable> tables)
 	{
 		List<DataTable> probesWhichIncludeOutcrop = Util.getProbesWhichIncludeOutcrop(tables, outcrop.toString());
 
-		Collection<List<DataTable>> dividedExplorationSites = Util.separateBasedOnSize(probesWhichIncludeOutcrop, 17);
+		Collection<List<DataTable>> portions = Util.separateBasedOnSize(probesWhichIncludeOutcrop, 17);
 
-		return dividedExplorationSites;
+		return portions;
 	}
 
-	abstract void buildTechnicalFeatures(List<DataTable> dataTables);
+	abstract void constructTechnicalFeatures(List<DataTable> dataTables);
 
-	void constructAndGetTechnicalHeader(List<DataTable> dataTables)
+	void addTechnicalHeader(List<DataTable> dataTables)
 	{
 		int colspan = dataTables.size() + 1;
 
@@ -89,12 +77,12 @@ public abstract class Report implements HtmlTemplate
 						new String[]{"Technische Merkmale"})
 		});
 
-		table.appendContent(row.appendTag());
+		addToTable(row.appendTag());
 	}
 
-	abstract void buildEnvironmentTechnicalFeatures(List<DataTable> dataTables);
+	abstract void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables);
 
-	void constructAndGetEnvironmentTechnicalHeader(List<DataTable> dataTables)
+	void addEnvironmentTechnicalHeader(List<DataTable> dataTables)
 	{
 		int colspan = dataTables.size() + 1;
 
@@ -103,19 +91,22 @@ public abstract class Report implements HtmlTemplate
 						new String[]{"Umwelttechnische Merkmale"})
 		});
 
-		table.appendContent(row.appendTag());
+		addToTable(row.appendTag());
 	}
 
-	public HtmlTable constructAndGetTableObject()
+	void createTable()
 	{
-		HtmlTable table = new HtmlTable.Builder()
-				.appendAttribute("class", "MsoNormalTable")
+		this.table = new HtmlTable.Builder()
+				.appendAttribute("class", ReportStyle.TABLE.getStyleClass())
 				.appendAttribute("border", "1")
-				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+				.appendAttribute("style", ReportStyle.TABLE.getStyle())
 				.appendAttribute("cellspacing", "0")
 				.appendAttribute("cellpadding", "0")
 				.build();
+	}
 
-		return table;
+	void addToTable(String content)
+	{
+		table.appendContent(content);
 	}
 }

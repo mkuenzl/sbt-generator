@@ -2,9 +2,7 @@ package sbt.automization.templates.basic;
 
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.refactoring.references.RefProbe;
-import sbt.automization.templates.report.Report;
 import sbt.automization.util.html.HtmlFactory;
-import sbt.automization.util.html.HtmlTable;
 
 import java.util.Arrays;
 import java.util.List;
@@ -37,7 +35,21 @@ public final class Coordinates extends TableTemplate
 	}
 
 	@Override
-	public String constructAndGetTableHeader()
+	public void constructTemplate(List<DataTable> dataTables)
+	{
+		createTable();
+		addTableHeader();
+
+		for (DataTable dataTable : dataTables)
+		{
+			addRows(dataTable);
+		}
+
+		addTable();
+	}
+
+	@Override
+	void addTableHeader()
 	{
 		String firstRow = HtmlFactory.createRow("NormalHeader", new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "width:75px", 2, 1,
@@ -45,6 +57,8 @@ public final class Coordinates extends TableTemplate
 				HtmlFactory.createHeader("NormalTableHeader", 1, 4,
 						new String[]{"UTM"})
 		});
+
+		addToTable(firstRow);
 
 		String secondRow = HtmlFactory.createRow("NormalHeader", new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "width:75px",
@@ -57,50 +71,19 @@ public final class Coordinates extends TableTemplate
 						new String[]{""})
 		});
 
-		StringBuilder strb = new StringBuilder()
-				.append(firstRow)
-				.append(secondRow);
-
-		return strb.toString();
+		addToTable(secondRow);
 	}
 
-	@Override
-	String buildTechnicalFeatures(List<DataTable> dataTables)
+	private void addRows(DataTable dataTable)
 	{
-		return null;
-	}
-
-	@Override
-	String buildEnvironmentTechnicalFeatures(List<DataTable> dataTables)
-	{
-		return null;
-	}
-
-	@Override
-	public void constructTemplate(List<DataTable> dataTables)
-	{
-		HtmlTable table = constructAndGetTableObject();
-		table.appendContent(constructAndGetTableHeader());
-
-		for (DataTable dataTable : dataTables)
-		{
-			String rows = createRows(dataTable);
-			table.appendContent(rows);
-		}
-
-		addToTemplate(table.appendTag());
-	}
-
-	private String createRows(DataTable dataTable)
-	{
-		StringBuilder strb = new StringBuilder();
-
 		String firstRow = HtmlFactory.createRow("NormalThin", new String[]{
 				HtmlFactory.createCellAsString("NormalCenter", 2, 1,
 						new String[]{dataTable.get(RefProbe.ID)}),
 				HtmlFactory.createCellAsString("Normal", 1, 4,
 						new String[]{dataTable.get(RefProbe.LOCATION)})
 		});
+
+		addToTable(firstRow);
 
 		List<String> coordinateSplit = splitCoordinate(dataTable.get(RefProbe.COORDINATES));
 
@@ -115,16 +98,7 @@ public final class Coordinates extends TableTemplate
 						new String[]{""})
 		});
 
-		strb.append(firstRow)
-				.append(secondRow);
-
-		return strb.toString();
-	}
-
-	@Override
-	public void constructTemplate(sbt.automization.data.refactoring.DataTable dataTable)
-	{
-
+		addToTable(secondRow);
 	}
 
 	private List<String> splitCoordinate(String coordinates)
@@ -142,5 +116,11 @@ public final class Coordinates extends TableTemplate
 		}
 
 		return coordinateList;
+	}
+
+	@Override
+	public void constructTemplate(DataTable dataTable)
+	{
+
 	}
 }

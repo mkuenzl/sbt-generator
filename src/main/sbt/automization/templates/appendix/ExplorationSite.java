@@ -1,6 +1,7 @@
 package sbt.automization.templates.appendix;
 
 import sbt.automization.data.refactoring.DataTable;
+import sbt.automization.data.refactoring.Probe;
 import sbt.automization.data.refactoring.references.RefProbe;
 import sbt.automization.data.refactoring.references.RefSample;
 import sbt.automization.format.FootnoteFormatUtil;
@@ -34,12 +35,38 @@ public final class ExplorationSite extends Appendix
 		return instance;
 	}
 
-	private String createHeadOfTable(sbt.automization.data.refactoring.Probe probe)
+	@Override
+	public String getExportFileName()
+	{
+		return "ERK-Anlage";
+	}
+
+	@Override
+	public void constructTemplate(List<DataTable> dataTables)
+	{
+		for (DataTable dataTable : dataTables)
+		{
+			Probe probe = (Probe) dataTable;
+
+			HtmlTable table = constructAndGetTableObject();
+			String headOfTable = createHeadOfTable(probe);
+			table.appendContent(headOfTable);
+			addToTemplate(table.appendTag());
+
+			createTemplatesForSamples(probe);
+
+			String footer = createFooter(dataTable);
+			addToTemplate(footer);
+			addToTemplate("<br></br>");
+		}
+	}
+
+	private String createHeadOfTable(Probe probe)
 	{
 		String firstRow = HtmlFactory.createRow("Normal", new String[]{
 				HtmlFactory.createCellAsString("NormalHeader", "width:100px",
 						new String[]{"Erkund.-Stelle"}),
-				HtmlFactory.createCellAsString("Normal",1, 3,
+				HtmlFactory.createCellAsString("Normal", 1, 3,
 						new String[]{probe.get(RefProbe.LOCATION)}),
 		});
 
@@ -84,40 +111,7 @@ public final class ExplorationSite extends Appendix
 				.toString();
 	}
 
-	@Override
-	public String getExportFileName()
-	{
-		return "Anlage-ERK";
-	}
-
-
-	@Override
-	public void constructTemplate(DataTable dataTable)
-	{
-
-	}
-
-	@Override
-	public void constructTemplate(List<DataTable> dataTables)
-	{
-		for (DataTable dataTable : dataTables)
-		{
-			sbt.automization.data.refactoring.Probe probe = (sbt.automization.data.refactoring.Probe) dataTable;
-
-			HtmlTable table = constructAndGetTableObject();
-			String headOfTable = createHeadOfTable(probe);
-			table.appendContent(headOfTable);
-			addToTemplate(table.appendTag());
-
-			createTemplatesForSamples(probe);
-
-			String footer = createFooter(dataTable);
-			addToTemplate(footer);
-			addToTemplate("<br></br>");
-		}
-	}
-
-	private void createTemplatesForSamples(sbt.automization.data.refactoring.Probe probe)
+	private void createTemplatesForSamples(Probe probe)
 	{
 		createBanquetTemplate(probe);
 		createGAPTemplate(probe);
@@ -172,7 +166,7 @@ public final class ExplorationSite extends Appendix
 				.build();
 	}
 
-	private void createBanquetTemplate(sbt.automization.data.refactoring.Probe probe)
+	private void createBanquetTemplate(Probe probe)
 	{
 		if (probe.hasSampleWith(RefSample.OUTCROP, Outcrop.BANQUET.toString()))
 		{
@@ -182,7 +176,7 @@ public final class ExplorationSite extends Appendix
 		}
 	}
 
-	private void createGAPTemplate(sbt.automization.data.refactoring.Probe probe)
+	private void createGAPTemplate(Probe probe)
 	{
 		if (probe.hasSampleWith(RefSample.OUTCROP, Outcrop.GAP.toString()))
 		{
@@ -192,7 +186,7 @@ public final class ExplorationSite extends Appendix
 		}
 	}
 
-	private void createOHTemplate(sbt.automization.data.refactoring.Probe probe)
+	private void createOHTemplate(Probe probe)
 	{
 		if (probe.hasSampleWith(RefSample.OUTCROP, Outcrop.OH.toString()))
 		{
@@ -202,7 +196,7 @@ public final class ExplorationSite extends Appendix
 		}
 	}
 
-	private void createOBTemplate(sbt.automization.data.refactoring.Probe probe)
+	private void createOBTemplate(Probe probe)
 	{
 		if (probe.hasSampleWith(RefSample.OUTCROP, Outcrop.GOB.toString()) ||
 				probe.hasSampleWith(RefSample.OUTCROP, Outcrop.CONCRETE.toString()) ||
@@ -216,7 +210,7 @@ public final class ExplorationSite extends Appendix
 		}
 	}
 
-	private void createTOBTemplate(sbt.automization.data.refactoring.Probe probe)
+	private void createTOBTemplate(Probe probe)
 	{
 		if (probe.hasSampleWith(RefSample.OUTCROP, Outcrop.TOB.toString()))
 		{
@@ -226,7 +220,7 @@ public final class ExplorationSite extends Appendix
 		}
 	}
 
-	private void createUGTemplate(sbt.automization.data.refactoring.Probe probe)
+	private void createUGTemplate(Probe probe)
 	{
 		if (probe.hasSampleWith(RefSample.OUTCROP, Outcrop.UG.toString()))
 		{
@@ -234,6 +228,12 @@ public final class ExplorationSite extends Appendix
 			table.constructTemplate(probe);
 			addToTemplate(table.getTemplate());
 		}
+	}
+
+	@Override
+	public void constructTemplate(DataTable dataTable)
+	{
+
 	}
 
 

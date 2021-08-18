@@ -1,6 +1,5 @@
 package sbt.automization.templates.appendix.site;
 
-import sbt.automization.data.DataTableOld;
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.data.refactoring.Probe;
 import sbt.automization.data.refactoring.Sample;
@@ -22,9 +21,6 @@ public final class Gap extends Appendix
 	public String getExportFileName()
 	{
 		return null;
-	}	private void setOutcrop(DataTable dataTable)
-	{
-		outcrop = dataTable.get(RefProbe.OUTCROP_UG_OH_BA);
 	}
 
 	@Override
@@ -54,7 +50,10 @@ public final class Gap extends Appendix
 		addToTemplate(table.appendTag());
 	}
 
-
+	private void setOutcrop(DataTable dataTable)
+	{
+		outcrop = dataTable.get(RefProbe.OUTCROP_UG_OH_BA);
+	}
 
 	private String createRow(Sample sample)
 	{

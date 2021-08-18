@@ -14,7 +14,7 @@ public final class BoundSuperstructure extends Report
 
 	private BoundSuperstructure()
 	{
-		setOutcrop(Outcrop.GOB);
+		super(Outcrop.GOB);
 		provider = new ObProvider();
 	}
 
@@ -34,31 +34,6 @@ public final class BoundSuperstructure extends Report
 	}
 
 	@Override
-	public String constructAndGetTableHeader()
-	{
-		return null;
-	}
-
-	@Override
-	void buildTechnicalFeatures(List<DataTable> dataTables)
-	{
-		constructAndGetTechnicalHeader(dataTables);
-		table.appendContent(provider.createSizeOBRow(dataTables));
-		table.appendContent(provider.createLoadClassRow(dataTables));
-		table.appendContent(provider.createRukRow(dataTables));
-		table.appendContent(provider.createRukSingleValueRow(dataTables));
-	}
-
-	@Override
-	void buildEnvironmentTechnicalFeatures(List<DataTable> dataTables)
-	{
-		constructAndGetEnvironmentTechnicalHeader(dataTables);
-		table.appendContent(provider.createPechQualitativRow(dataTables));
-		table.appendContent(provider.createPechHalbQuantitativRow(dataTables));
-		table.appendContent(provider.createPechQuantitativRow(dataTables));
-	}
-
-	@Override
 	public String getExportFileName()
 	{
 		return "GOB-Report";
@@ -67,25 +42,49 @@ public final class BoundSuperstructure extends Report
 	@Override
 	public void constructTemplate(List<DataTable> dataTables)
 	{
-		Collection<List<DataTable>> tablesSplitIntoPortions = splitGroupOf(dataTables);
+		Collection<List<DataTable>> tablesSplitIntoPortions = splitIntoPortionPerPage(dataTables);
 		for (List<DataTable> portion : tablesSplitIntoPortions)
 		{
 			buildTable(portion);
 
-			addToTemplate(table.appendTag());
-			addToTemplate("<br>");
+			addTable();
+			addPageBreak();
 		}
 	}
 
 	private void buildTable(List<DataTable> dataTables)
 	{
-		table = constructAndGetTableObject();
-		table.appendContent(provider.createIDRow(dataTables));
-		table.appendContent(provider.createSuperstructureExposureRow(dataTables));
-		buildTechnicalFeatures(dataTables);
-		buildEnvironmentTechnicalFeatures(dataTables);
-		table.appendContent(provider.createPechQuerschnittRows(dataTables, false));
-		table.appendContent(provider.createPechQuerschnittRows(dataTables, true));
+		createTable();
+
+		addToTable(provider.createIDRow(dataTables));
+		addToTable(provider.createSuperstructureExposureRow(dataTables));
+
+		constructTechnicalFeatures(dataTables);
+		constructEnvironmentTechnicalFeatures(dataTables);
+
+		addToTable(provider.createPechQuerschnittRows(dataTables, false));
+		addToTable(provider.createPechQuerschnittRows(dataTables, true));
+	}
+
+	@Override
+	void constructTechnicalFeatures(List<DataTable> dataTables)
+	{
+		addTechnicalHeader(dataTables);
+
+		addToTable(provider.createSizeOBRow(dataTables));
+		addToTable(provider.createLoadClassRow(dataTables));
+		addToTable(provider.createRukRow(dataTables));
+		addToTable(provider.createRukSingleValueRow(dataTables));
+	}
+
+	@Override
+	void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
+	{
+		addEnvironmentTechnicalHeader(dataTables);
+
+		addToTable(provider.createPechQualitativRow(dataTables));
+		addToTable(provider.createPechHalbQuantitativRow(dataTables));
+		addToTable(provider.createPechQuantitativRow(dataTables));
 	}
 
 	@Override

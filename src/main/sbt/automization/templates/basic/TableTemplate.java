@@ -3,6 +3,7 @@ package sbt.automization.templates.basic;
 import sbt.automization.data.refactoring.DataTable;
 import sbt.automization.templates.HtmlTemplate;
 import sbt.automization.templates.Outcrop;
+import sbt.automization.templates.styles.BasicStyle;
 import sbt.automization.util.Util;
 import sbt.automization.util.html.HtmlTable;
 
@@ -14,22 +15,6 @@ import java.util.List;
  */
 public abstract class TableTemplate implements HtmlTemplate
 {
-	private Outcrop outcrop;
-
-	public static final String HTML_BASIC_TABLE_STYLE = new StringBuilder()
-			.append("'")
-			.append("border-collapse:collapse")
-			.append(";")
-			.append("mso-table-layout-alt:fixed")
-			.append(";")
-			.append("border:none")
-			.append(";")
-			.append("mso-border-alt:solid windowtext .5pt")
-			.append(";")
-			.append("mso-padding-alt:0cm 5.4pt 0cm 5.4pt")
-			.append("'")
-			.toString();
-
 	protected int linesPerPage;
 	protected int lines;
 	protected final StringBuilder template;
@@ -47,16 +32,18 @@ public abstract class TableTemplate implements HtmlTemplate
 		return template.toString();
 	}
 
-	public void addToTemplate(final String table)
+	abstract void addTableHeader();
+
+	void addPageBreak(){
+		this.template.append("<br>");
+	}
+
+	void addTable()
 	{
-		this.template.append(table);
+		String tableString = table.appendTag();
+		this.template.append(tableString);
 	}
 
-	public abstract String constructAndGetTableHeader();
-
-	protected void setOutcrop(Outcrop outcrop){
-		this.outcrop = outcrop;
-	}
 
 	/**
 	 * Method used to retrieve all exploration sites containing an outcrop and dividing them into
@@ -65,29 +52,27 @@ public abstract class TableTemplate implements HtmlTemplate
 	 * @param tables a List of ExplorationSites
 	 * @return a Collection of Lists
 	 */
-	public Collection<List<DataTable>> divideExplorationSites(List<DataTable> tables)
+	Collection<List<DataTable>> splitIntoPortionPerPage(List<DataTable> tables)
 	{
-		List<DataTable> probesWhichIncludeOutcrop = Util.getProbesWhichIncludeOutcrop(tables, outcrop.toString());
+		Collection<List<DataTable>> portions = Util.separateBasedOnSize(tables, 17);
 
-		Collection<List<DataTable>> dividedExplorationSites = Util.separateBasedOnSize(probesWhichIncludeOutcrop, 17);
-
-		return dividedExplorationSites;
+		return portions;
 	}
 
-	abstract String buildTechnicalFeatures(List<DataTable> dataTables);
-
-	abstract String buildEnvironmentTechnicalFeatures(List<DataTable> dataTables);
-
-	public HtmlTable constructAndGetTableObject()
+	void createTable()
 	{
-		HtmlTable table = new HtmlTable.Builder()
-				.appendAttribute("class", "MsoNormalTable")
+		this.table = new HtmlTable.Builder()
+				.appendAttribute("class", BasicStyle.TABLE.getStyleClass())
 				.appendAttribute("border", "1")
-				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+				.appendAttribute("style", BasicStyle.TABLE.getStyle())
 				.appendAttribute("cellspacing", "0")
 				.appendAttribute("cellpadding", "0")
 				.build();
-
-		return table;
 	}
+
+	void addToTable(String content)
+	{
+		table.appendContent(content);
+	}
+
 }
