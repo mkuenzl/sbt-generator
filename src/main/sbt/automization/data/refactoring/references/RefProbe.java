@@ -2,6 +2,86 @@ package sbt.automization.data.refactoring.references;
 
 public enum RefProbe implements Reference
 {
+	FOOTNOTE_1
+			{
+				@Override
+				public String getKey()
+				{
+					return addProbeTag("FOOTNOTE_1");
+				}
+			},
+	FOOTNOTE_2
+			{
+				@Override
+				public String getKey()
+				{
+					return addProbeTag("FOOTNOTE_2");
+				}
+			},
+	FOOTNOTE_3
+			{
+				@Override
+				public String getKey()
+				{
+					return addProbeTag("FOOTNOTE_3");
+				}
+			},
+	FOOTNOTE_4
+			{
+				@Override
+				public String getKey()
+				{
+					return addProbeTag("FOOTNOTE_4");
+				}
+			},
+	FOOTNOTE_5
+			{
+				@Override
+				public String getKey()
+				{
+					return addProbeTag("FOOTNOTE_5");
+				}
+			},
+	FOOTNOTE_6
+			{
+				@Override
+				public String getKey()
+				{
+					return addProbeTag("FOOTNOTE_6");
+				}
+			},
+	FOOTNOTE_7
+			{
+				@Override
+				public String getKey()
+				{
+					return addProbeTag("FOOTNOTE_7");
+				}
+			},
+	FOOTNOTE_8
+			{
+				@Override
+				public String getKey()
+				{
+					return addProbeTag("FOOTNOTE_8");
+				}
+			},
+	FOOTNOTE_9
+			{
+				@Override
+				public String getKey()
+				{
+					return addProbeTag("FOOTNOTE_9");
+				}
+			},
+	FOOTNOTE_10
+			{
+				@Override
+				public String getKey()
+				{
+					return addProbeTag("FOOTNOTE_10");
+				}
+			},
 	EXTRACTION
 			{
 				@Override
@@ -241,8 +321,7 @@ public enum RefProbe implements Reference
 				{
 					return addProbeTag("ID");
 				}
-			}
-	,
+			},
 	LP_ID
 			{
 				@Override
