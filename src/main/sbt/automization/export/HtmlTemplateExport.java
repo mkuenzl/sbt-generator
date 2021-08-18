@@ -1,11 +1,11 @@
 package sbt.automization.export;
 
-import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.refactoring.Examination;
+import sbt.automization.data.DataTable;
+import sbt.automization.data.Examination;
 import sbt.automization.templates.HtmlTemplate;
-import sbt.automization.util.html.Html;
-import sbt.automization.util.html.HtmlBody;
-import sbt.automization.util.html.HtmlDiv;
+import sbt.automization.html.Html;
+import sbt.automization.html.HtmlBody;
+import sbt.automization.html.HtmlDiv;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -100,6 +100,12 @@ public final class HtmlTemplateExport extends ATemplateExport
 			return System.getProperty("user.dir").concat(File.separator).concat(tableExportStrategy.getExportFileName()).concat(".html");
 
 		return Examination.exportPath.concat(File.separator).concat(tableExportStrategy.getExportFileName()).concat(".html");
+	}
+
+	@Override
+	public String getPath(String path)
+	{
+		return path.concat(tableExportStrategy.getExportFileName()).concat(".html");
 	}
 
 	/**

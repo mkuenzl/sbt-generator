@@ -11,6 +11,6 @@ public class ErrorPopupTest
 	{
 		String strategyName = SamplingProtocol.getInstance().getClass().getSimpleName();
 
-		Assert.assertEquals("AppendixPN", strategyName);
+		Assert.assertEquals("SamplingProtocol", strategyName);
 	}
 }

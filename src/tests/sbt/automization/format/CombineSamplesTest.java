@@ -2,9 +2,9 @@ package sbt.automization.format;
 
 import org.junit.Assert;
 import org.junit.Test;
-import sbt.automization.data.refactoring.Sample;
-import sbt.automization.data.refactoring.references.RefSample;
-import sbt.automization.data.refactoring.references.Reference;
+import sbt.automization.data.Sample;
+import sbt.automization.data.references.RefSample;
+import sbt.automization.data.references.Reference;
 
 import java.util.ArrayList;
 import java.util.HashMap;

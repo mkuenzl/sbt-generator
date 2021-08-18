@@ -2,10 +2,11 @@ package sbt.automization.util;
 
 import org.junit.Assert;
 import org.junit.Test;
-import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.refactoring.Probe;
-import sbt.automization.data.refactoring.Sample;
-import sbt.automization.data.refactoring.references.RefSample;
+import sbt.automization.data.DataTable;
+import sbt.automization.data.Outcrop;
+import sbt.automization.data.Probe;
+import sbt.automization.data.Sample;
+import sbt.automization.data.references.RefSample;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -16,7 +17,7 @@ public class UtilDataTableWithOutcropTest
 	@Test
 	public void emptyList()
 	{
-		List<DataTable> sitesWhichIncludeOutcrop = Util.getProbesWhichIncludeOutcrop(Arrays.asList(), "UG");
+		List<DataTable> sitesWhichIncludeOutcrop = DatatableFilter.getProbesWhichIncludeOutcrop(Arrays.asList(), Outcrop.UG);
 
 		Assert.assertEquals(0, sitesWhichIncludeOutcrop.size());
 	}
@@ -26,7 +27,7 @@ public class UtilDataTableWithOutcropTest
 	{
 		DataTable dataTable = new Probe();
 
-		List<DataTable> sitesWhichIncludeOutcrop = Util.getProbesWhichIncludeOutcrop(Arrays.asList(dataTable), "UG");
+		List<DataTable> sitesWhichIncludeOutcrop = DatatableFilter.getProbesWhichIncludeOutcrop(Arrays.asList(dataTable), Outcrop.UG);
 
 		Assert.assertEquals(0, sitesWhichIncludeOutcrop.size());
 	}
@@ -48,7 +49,7 @@ public class UtilDataTableWithOutcropTest
 			put(RefSample.OUTCROP.getKey(), "FUGE");
 		}}));
 
-		List<DataTable> sitesWhichIncludeOutcrop = Util.getProbesWhichIncludeOutcrop(Arrays.asList(dataTable), "UG");
+		List<DataTable> sitesWhichIncludeOutcrop = DatatableFilter.getProbesWhichIncludeOutcrop(Arrays.asList(dataTable), Outcrop.UG);
 
 		Assert.assertEquals(0, sitesWhichIncludeOutcrop.size());
 	}
@@ -70,31 +71,9 @@ public class UtilDataTableWithOutcropTest
 			put(RefSample.OUTCROP.getKey(), "FUGE");
 		}}));
 
-		List<DataTable> sitesWhichIncludeOutcrop = Util.getProbesWhichIncludeOutcrop(Arrays.asList(dataTable), "TOB");
+		List<DataTable> sitesWhichIncludeOutcrop = DatatableFilter.getProbesWhichIncludeOutcrop(Arrays.asList(dataTable), Outcrop.TOB);
 
 		Assert.assertEquals(1, sitesWhichIncludeOutcrop.size());
-	}
-
-	@Test
-	public void explorationSiteWithRandomString()
-	{
-		Probe dataTable = new Probe();
-		dataTable.addSample(new Sample(new HashMap<>()
-		{{
-			put(RefSample.OUTCROP.getKey(), "GOB");
-		}}));
-		dataTable.addSample(new Sample(new HashMap<>()
-		{{
-			put(RefSample.OUTCROP.getKey(), "TOB");
-		}}));
-		dataTable.addSample(new Sample(new HashMap<>()
-		{{
-			put(RefSample.OUTCROP.getKey(), "FUGE");
-		}}));
-
-		List<DataTable> sitesWhichIncludeOutcrop = Util.getProbesWhichIncludeOutcrop(Arrays.asList(dataTable), "DUBBABU");
-
-		Assert.assertEquals(0, sitesWhichIncludeOutcrop.size());
 	}
 
 	@Test
@@ -145,7 +124,7 @@ public class UtilDataTableWithOutcropTest
 		}}));
 
 		List<DataTable> sites = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree, dataTableFour);
-		List<DataTable> sitesWhichIncludeOutcrop = Util.getProbesWhichIncludeOutcrop(sites, "TOB");
+		List<DataTable> sitesWhichIncludeOutcrop = DatatableFilter.getProbesWhichIncludeOutcrop(sites, Outcrop.TOB);
 
 		Assert.assertEquals(2, sitesWhichIncludeOutcrop.size());
 	}
@@ -198,7 +177,7 @@ public class UtilDataTableWithOutcropTest
 		}}));
 
 		List<DataTable> sites = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree, dataTableFour);
-		List<DataTable> sitesWhichIncludeOutcrop = Util.getProbesWhichIncludeOutcrop(sites, "GOB");
+		List<DataTable> sitesWhichIncludeOutcrop = DatatableFilter.getProbesWhichIncludeOutcrop(sites, Outcrop.GOB);
 
 		Assert.assertEquals(3, sitesWhichIncludeOutcrop.size());
 	}
@@ -251,7 +230,7 @@ public class UtilDataTableWithOutcropTest
 		}}));
 
 		List<DataTable> sites = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree, dataTableFour);
-		List<DataTable> sitesWhichIncludeOutcrop = Util.getProbesWhichIncludeOutcrop(sites, "FUGE");
+		List<DataTable> sitesWhichIncludeOutcrop = DatatableFilter.getProbesWhichIncludeOutcrop(sites, Outcrop.GAP);
 
 		Assert.assertEquals(4, sitesWhichIncludeOutcrop.size());
 	}
@@ -304,7 +283,7 @@ public class UtilDataTableWithOutcropTest
 		}}));
 
 		List<DataTable> sites = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree, dataTableFour);
-		List<DataTable> sitesWhichIncludeOutcrop = Util.getProbesWhichIncludeOutcrop(sites, "UG");
+		List<DataTable> sitesWhichIncludeOutcrop = DatatableFilter.getProbesWhichIncludeOutcrop(sites, Outcrop.UG);
 
 		Assert.assertEquals(0, sitesWhichIncludeOutcrop.size());
 	}

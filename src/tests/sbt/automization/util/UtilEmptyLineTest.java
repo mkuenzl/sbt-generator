@@ -2,11 +2,11 @@ package sbt.automization.util;
 
 import org.junit.Assert;
 import org.junit.Test;
-import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.refactoring.Probe;
-import sbt.automization.data.refactoring.Sample;
-import sbt.automization.data.refactoring.references.RefProbe;
-import sbt.automization.data.refactoring.references.RefSample;
+import sbt.automization.data.DataTable;
+import sbt.automization.data.Probe;
+import sbt.automization.data.Sample;
+import sbt.automization.data.references.RefProbe;
+import sbt.automization.data.references.RefSample;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -34,7 +34,7 @@ public class UtilEmptyLineTest
 
 		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-		boolean exists = Util.thereExistsAnTableWithData(dataTables, "", RefProbe.ID);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", RefProbe.ID);
 
 		Assert.assertTrue(exists);
 	}
@@ -56,7 +56,7 @@ public class UtilEmptyLineTest
 
 		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-		boolean exists = Util.thereExistsAnTableWithData(dataTables, "", RefProbe.ID);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", RefProbe.ID);
 
 		Assert.assertTrue(exists);
 	}
@@ -72,7 +72,7 @@ public class UtilEmptyLineTest
 
 		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-		boolean exists = Util.thereExistsAnTableWithData(dataTables, "", RefProbe.ID);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", RefProbe.ID);
 
 		Assert.assertFalse(exists);
 	}
@@ -82,7 +82,7 @@ public class UtilEmptyLineTest
 	{
 		List<DataTable> dataTables = List.of();
 
-		boolean exists = Util.thereExistsAnTableWithData(dataTables, "", RefProbe.ID);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", RefProbe.ID);
 
 		Assert.assertFalse(exists);
 	}
@@ -117,7 +117,7 @@ public class UtilEmptyLineTest
 
 		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-		boolean exists = Util.thereExistsAnTableWithData(dataTables, "", RefSample.TYPE);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", RefSample.TYPE);
 
 		Assert.assertTrue(exists);
 	}
@@ -152,7 +152,7 @@ public class UtilEmptyLineTest
 
 		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-		boolean exists = Util.thereExistsAnTableWithData(dataTables, "", RefSample.TYPE);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", RefSample.TYPE);
 
 		Assert.assertTrue(exists);
 	}
@@ -187,7 +187,7 @@ public class UtilEmptyLineTest
 
 		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-		boolean exists = Util.thereExistsAnTableWithData(dataTables, "", RefSample.TYPE);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", RefSample.TYPE);
 
 		Assert.assertFalse(exists);
 	}
@@ -217,7 +217,7 @@ public class UtilEmptyLineTest
 
 		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-		boolean exists = Util.thereExistsAnTableWithData(dataTables, "", RefSample.TYPE);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", RefSample.TYPE);
 
 		Assert.assertFalse(exists);
 	}
@@ -266,7 +266,7 @@ public class UtilEmptyLineTest
 
 		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-		boolean exists = Util.thereExistsAnTableWithData(dataTables, outcropValue, RefSample.TYPE);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcropValue, RefSample.TYPE);
 
 		Assert.assertTrue(exists);
 	}
@@ -315,7 +315,7 @@ public class UtilEmptyLineTest
 
 		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-		boolean exists = Util.thereExistsAnTableWithData(dataTables, outcropValue, RefSample.TYPE);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcropValue, RefSample.TYPE);
 
 		Assert.assertTrue(exists);
 	}
@@ -364,7 +364,7 @@ public class UtilEmptyLineTest
 
 		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-		boolean exists = Util.thereExistsAnTableWithData(dataTables, outcropValue, RefSample.TYPE);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcropValue, RefSample.TYPE);
 
 		Assert.assertFalse(exists);
 	}
@@ -406,7 +406,7 @@ public class UtilEmptyLineTest
 
 		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-		boolean exists = Util.thereExistsAnTableWithData(dataTables, outcropValue, RefSample.TYPE);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcropValue, RefSample.TYPE);
 
 		Assert.assertFalse(exists);
 	}
