@@ -1,6 +1,6 @@
 package sbt.automization.gui;
 
-import sbt.automization.data.refactoring.Examination;
+import sbt.automization.data.Examination;
 import sbt.automization.export.HtmlTemplateExport;
 import sbt.automization.templates.HtmlTemplate;
 import sbt.automization.util.CsvParser;

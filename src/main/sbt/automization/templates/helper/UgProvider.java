@@ -1,11 +1,11 @@
 package sbt.automization.templates.helper;
 
-import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.refactoring.references.RefProbe;
+import sbt.automization.data.DataTable;
+import sbt.automization.data.references.RefProbe;
 import sbt.automization.format.TextFormatUtil;
-import sbt.automization.util.html.HtmlCell;
-import sbt.automization.util.html.HtmlRow;
-import sbt.automization.util.html.HtmlText;
+import sbt.automization.html.HtmlCell;
+import sbt.automization.html.HtmlRow;
+import sbt.automization.html.HtmlText;
 
 import java.util.List;
 

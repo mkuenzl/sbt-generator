@@ -8,7 +8,7 @@ import sbt.automization.templates.report.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StrategyStorage
+public final class StrategyStorage
 {
     private static StrategyStorage instance;
 

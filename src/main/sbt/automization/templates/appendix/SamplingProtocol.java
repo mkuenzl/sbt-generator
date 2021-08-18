@@ -1,15 +1,15 @@
 package sbt.automization.templates.appendix;
 
-import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.refactoring.DataTableFactory;
-import sbt.automization.data.refactoring.Probe;
-import sbt.automization.data.refactoring.Sample;
-import sbt.automization.data.refactoring.references.RefProbe;
-import sbt.automization.data.refactoring.references.RefSample;
+import sbt.automization.data.DataTable;
+import sbt.automization.data.DataTableFactory;
+import sbt.automization.data.Probe;
+import sbt.automization.data.Sample;
+import sbt.automization.data.references.RefProbe;
+import sbt.automization.data.references.RefSample;
 import sbt.automization.format.NameFormatUtil;
 import sbt.automization.format.TextFormatUtil;
-import sbt.automization.util.html.HtmlFactory;
-import sbt.automization.util.html.HtmlTable;
+import sbt.automization.html.HtmlFactory;
+import sbt.automization.html.HtmlTable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -165,10 +165,10 @@ public final class SamplingProtocol extends Appendix
 	 * @param samples expects a not empty list of layer objects
 	 * @return a smaller formatted list of layers
 	 */
-	public List<sbt.automization.data.refactoring.Sample> formatSamples(List<sbt.automization.data.refactoring.Sample> samples)
+	public List<Sample> formatSamples(List<Sample> samples)
 	{
-		List<sbt.automization.data.refactoring.Sample> formattedSamples = new ArrayList<>();
-		for (sbt.automization.data.refactoring.Sample sample : samples)
+		List<Sample> formattedSamples = new ArrayList<>();
+		for (Sample sample : samples)
 		{
 			formattedSamples.add(DataTableFactory.createSampleFrom(sample.getTable()));
 		}
@@ -179,7 +179,7 @@ public final class SamplingProtocol extends Appendix
 		{
 			for (int i = 0 ; i < formattedSamples.size() ; i++)
 			{
-				sbt.automization.data.refactoring.Sample sample = formattedSamples.get(i);
+				Sample sample = formattedSamples.get(i);
 
 				if ("GOB".equals(sample.get(RefSample.OUTCROP)))
 				{

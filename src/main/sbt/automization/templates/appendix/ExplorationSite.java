@@ -1,16 +1,16 @@
 package sbt.automization.templates.appendix;
 
-import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.refactoring.Probe;
-import sbt.automization.data.refactoring.references.RefProbe;
-import sbt.automization.data.refactoring.references.RefSample;
+import sbt.automization.data.DataTable;
+import sbt.automization.data.Probe;
+import sbt.automization.data.references.RefProbe;
+import sbt.automization.data.references.RefSample;
 import sbt.automization.format.FootnoteFormatUtil;
-import sbt.automization.templates.Outcrop;
+import sbt.automization.data.Outcrop;
 import sbt.automization.templates.appendix.site.*;
-import sbt.automization.util.html.HtmlCell;
-import sbt.automization.util.html.HtmlFactory;
-import sbt.automization.util.html.HtmlRow;
-import sbt.automization.util.html.HtmlTable;
+import sbt.automization.html.HtmlCell;
+import sbt.automization.html.HtmlFactory;
+import sbt.automization.html.HtmlRow;
+import sbt.automization.html.HtmlTable;
 
 import java.util.List;
 

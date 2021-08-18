@@ -29,53 +29,17 @@ public final class CsvParser
 	}
 
 	/**
-	 * Method uses the Apache CSV parser to read the csv and provide each line as record.
-	 * The excel export of .csv files in UTF-8 is always with BOM information (first bytes of each line)
-	 * therefore the BOMInputStream from Apache IO is used.
-	 * @return a list of maps, each map contains the information of one csv row
-	 * @throws Exception if anything happens while reading or exporting the csv
-	 */
-	public List<Map<String, String>> parse() throws Exception
-	{
-		List<Map<String, String>> csvData = new ArrayList<>();
-
-		try (FileInputStream fileInputStream = new FileInputStream(csv);
-			 BOMInputStream bomInputStream = new BOMInputStream(fileInputStream);
-			 InputStreamReader inputStreamReader = new InputStreamReader(bomInputStream, StandardCharsets.UTF_8))
-		{
-			CSVParser csvParser = CSVFormat.EXCEL.withDelimiter(';').withFirstRecordAsHeader().withIgnoreEmptyLines(true).parse(inputStreamReader);
-
-			List<String> providedCsv = csvParser.getHeaderNames();
-			if (! compareHeader(providedCsv))
-			{
-				ErrorPopup.showErrorMessage("Es wurde eine veraltete Version des Excel Templates verwendet.");
-			}
-
-			for (CSVRecord record : csvParser)
-			{	// each record represents a line from the csv
-				if (! "".equals(record.get(0)))
-				{ // prevent wrong excel formatting of .csv files to crash the program
-					Map<String, String> map = record.toMap();
-					csvData.add(map);
-				}
-			}
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		return csvData;
-	}
-
-	/**
 	 * Method for testing purposes
+	 *
 	 * @param csv a file of a csv
 	 * @return a list of headers as Strings
 	 */
-	public static List<String> parseHeader(File csv){
+	public static List<String> parseHeader(File csv)
+	{
 		List<String> headers = null;
 
-		try (FileInputStream fileInputStream = new FileInputStream(csv);
-		     BOMInputStream bomInputStream = new BOMInputStream(fileInputStream);
+		try (FileInputStream fileInputStream = new FileInputStream(csv) ;
+		     BOMInputStream bomInputStream = new BOMInputStream(fileInputStream) ;
 		     InputStreamReader inputStreamReader = new InputStreamReader(bomInputStream, StandardCharsets.UTF_8))
 		{
 			CSVParser csvParser = CSVFormat.EXCEL.withDelimiter(';').withFirstRecordAsHeader().withIgnoreEmptyLines(true).parse(inputStreamReader);
@@ -87,6 +51,48 @@ public final class CsvParser
 		}
 
 		return headers;
+	}
+
+	/**
+	 * Method uses the Apache CSV parser to read the csv and provide each line as record.
+	 * The excel export of .csv files in UTF-8 is always with BOM information (first bytes of each line)
+	 * therefore the BOMInputStream from Apache IO is used.
+	 *
+	 * @return a list of maps, each map contains the information of one csv row
+	 * @throws Exception if anything happens while reading or exporting the csv
+	 */
+	public List<Map<String, String>> parse() throws Exception
+	{
+		List<Map<String, String>> csvData = new ArrayList<>();
+
+		try (FileInputStream fileInputStream = new FileInputStream(csv) ;
+		     BOMInputStream bomInputStream = new BOMInputStream(fileInputStream) ;
+		     InputStreamReader inputStreamReader = new InputStreamReader(bomInputStream, StandardCharsets.UTF_8))
+		{
+			CSVParser csvParser = CSVFormat.EXCEL.withDelimiter(';')
+					.withFirstRecordAsHeader()
+					.withIgnoreEmptyLines(true)
+					.parse(inputStreamReader);
+
+			List<String> providedCsv = csvParser.getHeaderNames();
+			if (! compareHeader(providedCsv))
+			{
+				ErrorPopup.showErrorMessage("Es wird eine veraltete Version des Excel Templates verwendet.");
+			}
+
+			for (CSVRecord record : csvParser)
+			{    // each record represents a line from the csv
+				if (! "".equals(record.get(0)))
+				{ // prevent wrong excel formatting of .csv files to crash the program
+					Map<String, String> map = record.toMap();
+					csvData.add(map);
+				}
+			}
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		return csvData;
 	}
 
 	/**

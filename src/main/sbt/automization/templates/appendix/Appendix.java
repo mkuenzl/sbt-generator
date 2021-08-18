@@ -1,7 +1,7 @@
 package sbt.automization.templates.appendix;
 
 import sbt.automization.templates.HtmlTemplate;
-import sbt.automization.util.html.HtmlTable;
+import sbt.automization.html.HtmlTable;
 
 /**
  * Abstract class for all html tables

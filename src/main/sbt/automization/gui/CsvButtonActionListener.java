@@ -1,6 +1,6 @@
 package sbt.automization.gui;
 
-import sbt.automization.util.Util;
+import sbt.automization.util.FileExport;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +13,7 @@ public class CsvButtonActionListener implements ActionListener
 	{
 		try
 		{
-			Util.exportFile("/sbt-excel-template.xlsx");
+			FileExport.copyFileToUserDirectory("/sbt-excel-template.xlsx");
 		} catch (IOException ioException)
 		{
 			ioException.printStackTrace();

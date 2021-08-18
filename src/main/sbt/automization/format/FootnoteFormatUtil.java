@@ -1,9 +1,9 @@
 package sbt.automization.format;
 
-import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.refactoring.references.RefProbe;
-import sbt.automization.data.refactoring.references.Reference;
-import sbt.automization.util.html.HtmlText;
+import sbt.automization.data.DataTable;
+import sbt.automization.data.references.RefProbe;
+import sbt.automization.data.references.Reference;
+import sbt.automization.html.HtmlText;
 
 import java.util.ArrayList;
 import java.util.List;

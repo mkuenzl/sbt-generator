@@ -1,6 +1,6 @@
 package sbt.automization.format;
 
-import sbt.automization.util.html.HtmlText;
+import sbt.automization.html.HtmlText;
 
 /**
  * Class for formatting regular names

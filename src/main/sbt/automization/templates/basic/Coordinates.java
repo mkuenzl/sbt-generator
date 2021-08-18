@@ -1,8 +1,8 @@
 package sbt.automization.templates.basic;
 
-import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.refactoring.references.RefProbe;
-import sbt.automization.util.html.HtmlFactory;
+import sbt.automization.data.DataTable;
+import sbt.automization.data.references.RefProbe;
+import sbt.automization.html.HtmlFactory;
 
 import java.util.Arrays;
 import java.util.List;

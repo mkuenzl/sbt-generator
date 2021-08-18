@@ -1,14 +1,14 @@
 package sbt.automization.templates.appendix;
 
 
-import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.refactoring.Parameter;
-import sbt.automization.data.refactoring.Probe;
-import sbt.automization.data.refactoring.references.RefLP;
-import sbt.automization.data.refactoring.references.RefProbe;
+import sbt.automization.data.DataTable;
+import sbt.automization.data.Parameter;
+import sbt.automization.data.Probe;
+import sbt.automization.data.references.RefLP;
+import sbt.automization.data.references.RefProbe;
 import sbt.automization.format.TextFormatUtil;
-import sbt.automization.util.html.HtmlFactory;
-import sbt.automization.util.html.HtmlTable;
+import sbt.automization.html.HtmlFactory;
+import sbt.automization.html.HtmlTable;
 
 import java.util.List;
 

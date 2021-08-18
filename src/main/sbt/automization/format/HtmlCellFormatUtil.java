@@ -1,6 +1,6 @@
 package sbt.automization.format;
 
-import sbt.automization.util.html.HtmlCell;
+import sbt.automization.html.HtmlCell;
 
 import java.util.Locale;
 

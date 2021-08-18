@@ -1,7 +1,7 @@
 package sbt.automization.templates.appendix;
 
-import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.util.html.HtmlTable;
+import sbt.automization.data.DataTable;
+import sbt.automization.html.HtmlTable;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public final class AttemptTemplate extends Appendix
 	}
 
 	@Override
-	public void constructTemplate(List<sbt.automization.data.refactoring.DataTable> dataTables)
+	public void constructTemplate(List<DataTable> dataTables)
 	{
 
 	}	@Override

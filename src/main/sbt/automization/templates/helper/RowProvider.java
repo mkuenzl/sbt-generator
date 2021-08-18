@@ -1,14 +1,14 @@
 package sbt.automization.templates.helper;
 
-import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.refactoring.Sample;
-import sbt.automization.data.refactoring.references.*;
+import sbt.automization.data.DataTable;
+import sbt.automization.data.Sample;
+import sbt.automization.data.references.*;
 import sbt.automization.format.TextFormatUtil;
-import sbt.automization.util.Util;
-import sbt.automization.util.html.HtmlCell;
-import sbt.automization.util.html.HtmlFactory;
-import sbt.automization.util.html.HtmlRow;
-import sbt.automization.util.html.HtmlText;
+import sbt.automization.util.CheckDataAvailability;
+import sbt.automization.html.HtmlCell;
+import sbt.automization.html.HtmlFactory;
+import sbt.automization.html.HtmlRow;
+import sbt.automization.html.HtmlText;
 
 import java.util.List;
 
@@ -140,7 +140,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefProbe.LOAD_CLASS;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, "", tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", tag)) return "";
 
 		//Belastungklasse
 		String formattedUnitText = new HtmlText.Builder()
@@ -175,7 +175,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefLP.EV;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, "", tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", tag)) return "";
 
 		String formattedUnitText = new HtmlText.Builder()
 				.appendAttribute("class", unitCellClass)
@@ -205,7 +205,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefLP.EV85;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, "", tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", tag)) return "";
 
 		String formattedUnitText = new HtmlText.Builder()
 				.appendAttribute("class", unitCellClass)
@@ -235,7 +235,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefLP.EV2;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, "", tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", tag)) return "";
 
 		String formattedUnitText = new HtmlText.Builder()
 				.appendAttribute("class", unitCellClass)
@@ -266,7 +266,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefLP.EV2_TARGET;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, "", tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", tag)) return "";
 
 		String formattedUnitText = new HtmlText.Builder()
 				.appendAttribute("class", unitCellClass)
@@ -294,7 +294,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefSample.COMPRESSIVE_STRENGTH;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		String formattedUnitText = new HtmlText.Builder()
 				.appendAttribute("class", unitCellClass)
@@ -322,7 +322,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefSample.GRAIN_SIZE_DISTRIBUTION;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		String formattedUnitText = new HtmlText.Builder()
 				.appendAttribute("class", unitCellClass)
@@ -350,7 +350,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefSample.WATER_CONTENT;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		//WASSERGEHALT
 		String formattedUnitText = new HtmlText.Builder()
@@ -379,7 +379,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefSample.MOISTURE;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		HtmlRow row = HtmlFactory.createRow(rowClass, new HtmlCell[]{
 				HtmlFactory.createCell(headerCellClass, "width:" + headerCellWidth,
@@ -401,7 +401,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefSample.CONSISTENCY;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		HtmlRow row = HtmlFactory.createRow(rowClass, new HtmlCell[]{
 				HtmlFactory.createCell(headerCellClass, "width:" + headerCellWidth,
@@ -423,7 +423,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefSample.WATER_PROCTOR;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		//PROCTORDICHTE
 		String formattedUnitText = new HtmlText.Builder()
@@ -453,7 +453,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefSample.COLOR;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, "", tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", tag)) return "";
 
 		//DIFFERENCE
 		HtmlRow row = new HtmlRow.Builder()
@@ -489,7 +489,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefSample.COMPRESSIBILITY;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		HtmlRow row = HtmlFactory.createRow(rowClass, new HtmlCell[]{
 				HtmlFactory.createCell(headerCellClass, "width:" + headerCellWidth,
@@ -511,7 +511,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefProbe.WEAR_PLANUM;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		String formattedUnitText = new HtmlText.Builder()
 				.appendAttribute("class", unitCellClass)
@@ -544,7 +544,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefProbe.WEAR_TRENCH_BOTTOM;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		String formattedHeaderText = new HtmlText.Builder()
 				.appendAttribute("class", unitCellClass)
@@ -578,7 +578,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefSample.FROST_SENSITIVITY_CLASS;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		String formattedUnitText = new HtmlText.Builder()
 				.appendAttribute("class", unitCellClass)
@@ -611,7 +611,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefSample.CHEMISTRY_ID;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		//Erkundungsstellen ID
 		HtmlRow row = HtmlFactory.createRow(rowClass, new HtmlCell[]{
@@ -634,7 +634,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefChemistry.MUFV;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		String formattedUnitText = new HtmlText.Builder()
 				.appendAttribute("class", unitCellClass)
@@ -663,7 +663,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefChemistry.LAGA_BO;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		String formattedUnitText = new HtmlText.Builder()
 				.appendAttribute("class", unitCellClass)
@@ -692,7 +692,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefChemistry.LAGA_RC;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		String formattedUnitText = new HtmlText.Builder()
 				.appendAttribute("class", unitCellClass)
@@ -721,7 +721,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefChemistry.LAGA_RC_ORIENTATION;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		String formattedUnitText = new HtmlText.Builder()
 				.appendAttribute("class", unitCellClass)
@@ -750,7 +750,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefChemistry.TL_ROCK_STRATUM;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		String formattedUnitText = new HtmlText.Builder()
 				.appendAttribute("class", unitCellClass)
@@ -779,7 +779,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefChemistry.DEPV;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		String formattedUnitText = new HtmlText.Builder()
 				.appendAttribute("class", unitCellClass)
@@ -808,7 +808,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefChemistry.DECISION_SUPPORT;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		String formattedUnitText = new HtmlText.Builder()
 				.appendAttribute("class", unitCellClass)
@@ -837,7 +837,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefChemistry.WASTE_KEY;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		String formattedUnitText = new HtmlText.Builder()
 				.appendAttribute("class", unitCellClass)
@@ -866,7 +866,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefChemistry.REKU;
 
-		if (!Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		String formattedUnitText = new HtmlText.Builder()
 				.appendAttribute("class", unitCellClass)
@@ -898,7 +898,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefSample.TYPE;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		//DIN18196
 		String formattedUnitText = new HtmlText.Builder()
@@ -928,7 +928,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefSample.SOIL_CLASS;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		//DIN18320:2019-09
 		String formattedUnitText = new HtmlText.Builder()
@@ -959,7 +959,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefSample.SOIL_CLASS;
 
-		if (!Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		String formattedUnitText = new HtmlText.Builder()
 				.appendAttribute("class", unitCellClass)
@@ -988,7 +988,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefSample.HOMOGENEOUS_RANGE;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		//DIN18320:2019-09
 		String formattedUnitText = new HtmlText.Builder()
@@ -1019,7 +1019,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefSample.SOIL_TYPE;
 
-		if (!Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		String formattedUnitText = new HtmlText.Builder()
 				.appendAttribute("class", unitCellClass)
@@ -1048,7 +1048,7 @@ public abstract class RowProvider
 	{
 		Reference tag = RefSample.HOMOGENEOUS_RANGE;
 
-		if (! Util.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
 		String formattedUnitText = new HtmlText.Builder()
 				.appendAttribute("class", unitCellClass)

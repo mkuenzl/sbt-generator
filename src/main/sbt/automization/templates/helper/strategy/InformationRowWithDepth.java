@@ -1,13 +1,13 @@
 package sbt.automization.templates.helper.strategy;
 
-import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.refactoring.references.Reference;
+import sbt.automization.data.DataTable;
+import sbt.automization.data.references.Reference;
 import sbt.automization.format.TextFormatUtil;
-import sbt.automization.templates.Outcrop;
+import sbt.automization.data.Outcrop;
 import sbt.automization.templates.styles.ReportStyle;
-import sbt.automization.util.html.HtmlCell;
-import sbt.automization.util.html.HtmlFactory;
-import sbt.automization.util.html.HtmlRow;
+import sbt.automization.html.HtmlCell;
+import sbt.automization.html.HtmlFactory;
+import sbt.automization.html.HtmlRow;
 
 import java.util.List;
 

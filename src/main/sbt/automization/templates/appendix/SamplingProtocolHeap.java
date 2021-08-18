@@ -1,14 +1,9 @@
 package sbt.automization.templates.appendix;
 
-import sbt.automization.data.DataTableOld;
-import sbt.automization.data.LayerSample;
-import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.format.NameFormatUtil;
+import sbt.automization.data.DataTable;
 import sbt.automization.format.TextFormatUtil;
-import sbt.automization.util.html.HtmlCell;
-import sbt.automization.util.html.HtmlRow;
-import sbt.automization.util.html.HtmlTable;
-import sbt.automization.util.html.HtmlTableHeader;
+import sbt.automization.html.HtmlRow;
+import sbt.automization.html.HtmlTableHeader;
 
 import java.util.List;
 

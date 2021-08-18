@@ -1,7 +1,7 @@
 package sbt.automization.templates.report;
 
-import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.templates.Outcrop;
+import sbt.automization.data.DataTable;
+import sbt.automization.data.Outcrop;
 import sbt.automization.templates.helper.TobProvider;
 
 import java.util.Collection;

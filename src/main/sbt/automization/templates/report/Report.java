@@ -1,14 +1,15 @@
 package sbt.automization.templates.report;
 
-import sbt.automization.data.refactoring.DataTable;
+import sbt.automization.data.DataTable;
 import sbt.automization.templates.HtmlTemplate;
-import sbt.automization.templates.Outcrop;
+import sbt.automization.data.Outcrop;
 import sbt.automization.templates.styles.ReportStyle;
-import sbt.automization.util.Util;
-import sbt.automization.util.html.HtmlCell;
-import sbt.automization.util.html.HtmlFactory;
-import sbt.automization.util.html.HtmlRow;
-import sbt.automization.util.html.HtmlTable;
+import sbt.automization.util.DatatableFilter;
+import sbt.automization.util.Separator;
+import sbt.automization.html.HtmlCell;
+import sbt.automization.html.HtmlFactory;
+import sbt.automization.html.HtmlRow;
+import sbt.automization.html.HtmlTable;
 
 import java.util.Collection;
 import java.util.List;
@@ -59,9 +60,9 @@ public abstract class Report implements HtmlTemplate
 	 */
 	Collection<List<DataTable>> splitIntoPortionPerPage(List<DataTable> tables)
 	{
-		List<DataTable> probesWhichIncludeOutcrop = Util.getProbesWhichIncludeOutcrop(tables, outcrop.toString());
+		List<DataTable> probesWhichIncludeOutcrop = DatatableFilter.getProbesWhichIncludeOutcrop(tables, outcrop);
 
-		Collection<List<DataTable>> portions = Util.separateBasedOnSize(probesWhichIncludeOutcrop, 17);
+		Collection<List<DataTable>> portions = Separator.separateBasedOnSize(probesWhichIncludeOutcrop, 17);
 
 		return portions;
 	}

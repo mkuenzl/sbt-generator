@@ -1,24 +1,24 @@
 package sbt.automization.templates.appendix.site;
 
-import sbt.automization.data.refactoring.DataTable;
-import sbt.automization.data.refactoring.Probe;
-import sbt.automization.data.refactoring.Sample;
-import sbt.automization.data.refactoring.references.RefChemistry;
-import sbt.automization.data.refactoring.references.RefProbe;
-import sbt.automization.data.refactoring.references.RefRuK;
-import sbt.automization.data.refactoring.references.RefSample;
+import sbt.automization.data.DataTable;
+import sbt.automization.data.Probe;
+import sbt.automization.data.Sample;
+import sbt.automization.data.references.RefChemistry;
+import sbt.automization.data.references.RefProbe;
+import sbt.automization.data.references.RefRuK;
+import sbt.automization.data.references.RefSample;
 import sbt.automization.format.TextFormatUtil;
-import sbt.automization.templates.Outcrop;
+import sbt.automization.data.Outcrop;
 import sbt.automization.templates.appendix.Appendix;
-import sbt.automization.util.html.HtmlFactory;
-import sbt.automization.util.html.HtmlTable;
+import sbt.automization.html.HtmlFactory;
+import sbt.automization.html.HtmlTable;
 
 import java.util.List;
 
 public final class BoundSuperstructure extends Appendix
 {
 	private String outcrop = "";
-	private sbt.automization.data.refactoring.Probe probe;
+	private Probe probe;
 
 	@Override
 	public String getExportFileName()

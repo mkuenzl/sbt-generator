@@ -1,6 +1,6 @@
 package sbt.automization.templates.helper;
 
-import sbt.automization.data.refactoring.DataTable;
+import sbt.automization.data.DataTable;
 
 import java.util.List;
 

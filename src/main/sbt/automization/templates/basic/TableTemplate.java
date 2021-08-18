@@ -1,11 +1,10 @@
 package sbt.automization.templates.basic;
 
-import sbt.automization.data.refactoring.DataTable;
+import sbt.automization.data.DataTable;
 import sbt.automization.templates.HtmlTemplate;
-import sbt.automization.templates.Outcrop;
 import sbt.automization.templates.styles.BasicStyle;
-import sbt.automization.util.Util;
-import sbt.automization.util.html.HtmlTable;
+import sbt.automization.util.Separator;
+import sbt.automization.html.HtmlTable;
 
 import java.util.Collection;
 import java.util.List;
@@ -54,7 +53,7 @@ public abstract class TableTemplate implements HtmlTemplate
 	 */
 	Collection<List<DataTable>> splitIntoPortionPerPage(List<DataTable> tables)
 	{
-		Collection<List<DataTable>> portions = Util.separateBasedOnSize(tables, 17);
+		Collection<List<DataTable>> portions = Separator.separateBasedOnSize(tables, 17);
 
 		return portions;
 	}

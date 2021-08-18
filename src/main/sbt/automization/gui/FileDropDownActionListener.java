@@ -1,6 +1,6 @@
 package sbt.automization.gui;
 
-import sbt.automization.util.Util;
+import sbt.automization.util.FileExport;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -30,7 +30,7 @@ public class FileDropDownActionListener implements ActionListener
 
 			try
 			{
-				Util.exportFile("/report-templates/", item);
+				FileExport.copyFileTo(item, "/report-templates/");
 			} catch (IOException ioException)
 			{
 				ioException.printStackTrace();
