@@ -1,7 +1,10 @@
-package sbt.automization.gui;
+package sbt.automization.gui.listener;
 
 import sbt.automization.data.Examination;
 import sbt.automization.export.HtmlTemplateExport;
+import sbt.automization.gui.ErrorPopup;
+import sbt.automization.gui.StrategyStorage;
+import sbt.automization.gui.TableToolVisualInterface;
 import sbt.automization.templates.HtmlTemplate;
 import sbt.automization.util.CsvParser;
 

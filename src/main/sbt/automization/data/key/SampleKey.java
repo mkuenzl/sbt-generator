@@ -1,6 +1,6 @@
-package sbt.automization.data.references;
+package sbt.automization.data.key;
 
-public enum RefSample implements Reference
+public enum SampleKey implements Key
 {
 	WASTE_KEY_MIX
 			{

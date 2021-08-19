@@ -1,7 +1,7 @@
 package sbt.automization.templates.helper.strategy;
 
 import sbt.automization.data.DataTable;
-import sbt.automization.data.references.Reference;
+import sbt.automization.data.key.Key;
 import sbt.automization.data.Outcrop;
 import sbt.automization.templates.styles.ReportStyle;
 import sbt.automization.html.HtmlRow;
@@ -11,23 +11,23 @@ import java.util.List;
 
 public abstract class RowStrategy
 {
-	protected Reference reference;
+	protected Key key;
 	private final List<DataTable> dataTables;
 	private HtmlRow row;
 	protected Outcrop outcrop;
 
-	public RowStrategy(List<DataTable> dataTables, Outcrop outcrop, Reference reference)
+	public RowStrategy(List<DataTable> dataTables, Outcrop outcrop, Key key)
 	{
 		this.dataTables = dataTables;
 		this.outcrop = outcrop;
-		this.reference = reference;
+		this.key = key;
 	}
 
-	public RowStrategy(List<DataTable> dataTables, Reference reference)
+	public RowStrategy(List<DataTable> dataTables, Key key)
 	{
 		this.dataTables = dataTables;
 		this.outcrop = null;
-		this.reference = reference;
+		this.key = key;
 	}
 
 	abstract void initializeRow();

@@ -4,8 +4,8 @@ import sbt.automization.data.DataTable;
 import sbt.automization.data.DataTableFactory;
 import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
-import sbt.automization.data.references.RefProbe;
-import sbt.automization.data.references.RefSample;
+import sbt.automization.data.key.ProbeKey;
+import sbt.automization.data.key.SampleKey;
 import sbt.automization.format.NameFormatUtil;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.html.HtmlFactory;
@@ -121,26 +121,26 @@ public final class SamplingProtocol extends Appendix
 							HtmlFactory.createCellAsString("NormalCenter",
 									new String[]{"P".concat(String.valueOf(++ lines))}),
 							HtmlFactory.createCellAsString("NormalCenter",
-									new String[]{TextFormatUtil.formatSampleType(sample.get(RefSample.CONTAINER))}),
+									new String[]{TextFormatUtil.formatSampleType(sample.get(SampleKey.CONTAINER))}),
 							HtmlFactory.createCellAsString("Normal",
-									new String[]{sample.get(RefSample.CONTAINER)}),
+									new String[]{sample.get(SampleKey.CONTAINER)}),
 							HtmlFactory.createCellAsString("NormalCenter",
 									new String[]{"-"}),
 							HtmlFactory.createCellAsString("Normal", "width:110px",
-									new String[]{NameFormatUtil.formatLayerKind(sample.get(RefSample.WASTE_TYPE))}),
+									new String[]{NameFormatUtil.formatLayerKind(sample.get(SampleKey.WASTE_TYPE))}),
 							HtmlFactory.createCellAsString("NormalCenter", "width:50px",
-									new String[]{sample.get(RefSample.GRANULATION)}),
+									new String[]{sample.get(SampleKey.GRANULATION)}),
 							HtmlFactory.createCellAsString("Normal", "left",
-									new String[]{sample.get(RefSample.COLOR), TextFormatUtil.printLineBreak(),
-											sample.get(RefSample.SMELL), TextFormatUtil.printLineBreak(),
-											sample.get(RefSample.SOIL_TYPE)}),
+									new String[]{sample.get(SampleKey.COLOR), TextFormatUtil.printLineBreak(),
+											sample.get(SampleKey.SMELL), TextFormatUtil.printLineBreak(),
+											sample.get(SampleKey.SOIL_TYPE)}),
 							HtmlFactory.createCellAsString("NormalCenter",
-									new String[]{probe.get(RefProbe.ID)}),
+									new String[]{probe.get(ProbeKey.ID)}),
 							HtmlFactory.createCellAsString("NormalCenter",
-									new String[]{TextFormatUtil.formatDepth(sample.get(RefSample.DEPTH_START),
-											sample.get(RefSample.DEPTH_END))}),
+									new String[]{TextFormatUtil.formatDepth(sample.get(SampleKey.DEPTH_START),
+											sample.get(SampleKey.DEPTH_END))}),
 							HtmlFactory.createCellAsString("NormalCenter",
-									new String[]{probe.get(RefProbe.TOP_EDGE)})
+									new String[]{probe.get(ProbeKey.TOP_EDGE)})
 					});
 
 					linesPerPage++;
@@ -181,14 +181,14 @@ public final class SamplingProtocol extends Appendix
 			{
 				Sample sample = formattedSamples.get(i);
 
-				if ("GOB".equals(sample.get(RefSample.OUTCROP)))
+				if ("GOB".equals(sample.get(SampleKey.OUTCROP)))
 				{
 					if (formattedSamples.size() <= i + 1) break;
-					if (sample.get(RefSample.WASTE_TYPE).equals(formattedSamples.get(i + 1).get(RefSample.WASTE_TYPE)))
+					if (sample.get(SampleKey.WASTE_TYPE).equals(formattedSamples.get(i + 1).get(SampleKey.WASTE_TYPE)))
 					{
-						formattedSamples.get(i + 1).add(RefSample.DEPTH_START.getKey(),
-								sample.get(RefSample.DEPTH_START));
-						formattedSamples.get(i + 1).add(RefSample.GRANULATION.getKey(), "");
+						formattedSamples.get(i + 1).add(SampleKey.DEPTH_START.getKey(),
+								sample.get(SampleKey.DEPTH_START));
+						formattedSamples.get(i + 1).add(SampleKey.GRANULATION.getKey(), "");
 						formattedSamples.remove(sample);
 						i--;
 					}

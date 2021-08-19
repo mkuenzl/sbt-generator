@@ -1,6 +1,6 @@
-package sbt.automization.data.references;
+package sbt.automization.data.key;
 
-public enum RefChemistry implements Reference
+public enum ChemistryKey implements Key
 {
 	WASTE_WOOD_ORDINANCE
 			{

@@ -3,10 +3,10 @@ package sbt.automization.format;
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Parameter;
 import sbt.automization.data.Sample;
-import sbt.automization.data.references.RefChemistry;
-import sbt.automization.data.references.RefRuK;
-import sbt.automization.data.references.RefSample;
-import sbt.automization.data.references.Reference;
+import sbt.automization.data.key.ChemistryKey;
+import sbt.automization.data.key.RuKKey;
+import sbt.automization.data.key.SampleKey;
+import sbt.automization.data.key.Key;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,9 +27,9 @@ public final class CombineSampleUtil
 	 * @param tag a String specifying an information tag
 	 * @return an updated list of layers with all possible layers combined
 	 */
-	public static List<Sample> combineSamplesOfOutcrop(final DataTable dataTable, final String outcrop, final Reference tag)
+	public static List<Sample> combineSamplesOfOutcrop(final DataTable dataTable, final String outcrop, final Key tag)
 	{
-		List<Sample> datatablesWithOutcrop = dataTable.getSamplesBy(RefSample.OUTCROP, outcrop);
+		List<Sample> datatablesWithOutcrop = dataTable.getSamplesBy(SampleKey.OUTCROP, outcrop);
 
 		return combineSamples(datatablesWithOutcrop, tag);
 	}
@@ -41,7 +41,7 @@ public final class CombineSampleUtil
 	 * @param tag a String representing the information to compare
 	 * @return an updated list of layers with all possible layers combined
 	 */
-	public static List<Sample> combineSamples(final List<Sample> samples, final Reference tag)
+	public static List<Sample> combineSamples(final List<Sample> samples, final Key tag)
 	{
 		List<Sample> updatedSamples = new ArrayList<>();
 
@@ -81,13 +81,13 @@ public final class CombineSampleUtil
 	 * @param tag         a String representing a column of the excel template
 	 * @return a Layer Object with the tag, the depth start from the first layer and end from the second layer.
 	 */
-	public static Sample combineSamples(final Sample firstSample, final Sample secondSample, final Reference tag)
+	public static Sample combineSamples(final Sample firstSample, final Sample secondSample, final Key tag)
 	{
 		if (firstSample == null) return secondSample;
 		if (secondSample == null) return firstSample;
 		if (tag == null) return null;
 
-		if (tag instanceof RefSample)
+		if (tag instanceof SampleKey)
 		{
 			if (!firstSample.get(tag).equals(secondSample.get(tag)))
 				return null;
@@ -96,20 +96,20 @@ public final class CombineSampleUtil
 				Sample sample = new Sample(new HashMap<>()
 				{{
 					put(tag.getKey(), firstSample.get(tag));
-					put(RefSample.DEPTH_START.getKey(),
-							firstSample.get(RefSample.DEPTH_START));
-					put(RefSample.DEPTH_END.getKey(),
-							secondSample.get(RefSample.DEPTH_END));
+					put(SampleKey.DEPTH_START.getKey(),
+							firstSample.get(SampleKey.DEPTH_START));
+					put(SampleKey.DEPTH_END.getKey(),
+							secondSample.get(SampleKey.DEPTH_END));
 				}});
 
 				return sample;
 			}
 		}
 
-		if (tag instanceof RefChemistry)
+		if (tag instanceof ChemistryKey)
 		{
-			final String parameterValueOfFirstSample = firstSample.getParameterValueBy(RefSample.CHEMISTRY_ID, tag);
-			String parameterValueOfSecondSample = secondSample.getParameterValueBy(RefSample.CHEMISTRY_ID, tag);
+			final String parameterValueOfFirstSample = firstSample.getParameterValueBy(SampleKey.CHEMISTRY_ID, tag);
+			String parameterValueOfSecondSample = secondSample.getParameterValueBy(SampleKey.CHEMISTRY_ID, tag);
 
 			if (! parameterValueOfFirstSample.equals(parameterValueOfSecondSample))
 				return null;
@@ -118,14 +118,14 @@ public final class CombineSampleUtil
 				Parameter parameter = new Parameter(new HashMap<>()
 				{{
 					put(tag.getKey(), parameterValueOfFirstSample);
-					put(RefChemistry.ID.getKey(), firstSample.get(RefSample.CHEMISTRY_ID));
+					put(ChemistryKey.ID.getKey(), firstSample.get(SampleKey.CHEMISTRY_ID));
 				}});
 				Sample sample = new Sample(new HashMap<>()
 				{{
-					put(RefSample.DEPTH_START.getKey(),
-							firstSample.get(RefSample.DEPTH_START));
-					put(RefSample.DEPTH_END.getKey(),
-							secondSample.get(RefSample.DEPTH_END));
+					put(SampleKey.DEPTH_START.getKey(),
+							firstSample.get(SampleKey.DEPTH_START));
+					put(SampleKey.DEPTH_END.getKey(),
+							secondSample.get(SampleKey.DEPTH_END));
 				}});
 
 				sample.addParameter(parameter);
@@ -134,10 +134,10 @@ public final class CombineSampleUtil
 			}
 		}
 
-		if (tag instanceof RefRuK)
+		if (tag instanceof RuKKey)
 		{
-			final String parameterValueOfFirstSample = firstSample.getParameterValueBy(RefSample.RUK_ID, tag);
-			String parameterValueOfSecondSample = secondSample.getParameterValueBy(RefSample.RUK_ID, tag);
+			final String parameterValueOfFirstSample = firstSample.getParameterValueBy(SampleKey.RUK_ID, tag);
+			String parameterValueOfSecondSample = secondSample.getParameterValueBy(SampleKey.RUK_ID, tag);
 
 			if (! parameterValueOfFirstSample.equals(parameterValueOfSecondSample))
 				return null;
@@ -146,14 +146,14 @@ public final class CombineSampleUtil
 				Parameter parameter = new Parameter(new HashMap<>()
 				{{
 					put(tag.getKey(), parameterValueOfFirstSample);
-					put(RefRuK.ID.getKey(), firstSample.get(RefSample.RUK_ID));
+					put(RuKKey.ID.getKey(), firstSample.get(SampleKey.RUK_ID));
 				}});
 				Sample sample = new Sample(new HashMap<>()
 				{{
-					put(RefSample.DEPTH_START.getKey(),
-							firstSample.get(RefSample.DEPTH_START));
-					put(RefSample.DEPTH_END.getKey(),
-							secondSample.get(RefSample.DEPTH_END));
+					put(SampleKey.DEPTH_START.getKey(),
+							firstSample.get(SampleKey.DEPTH_START));
+					put(SampleKey.DEPTH_END.getKey(),
+							secondSample.get(SampleKey.DEPTH_END));
 				}});
 
 				sample.addParameter(parameter);

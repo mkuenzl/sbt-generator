@@ -1,7 +1,7 @@
 package sbt.automization.templates.helper;
 
 import sbt.automization.data.DataTable;
-import sbt.automization.data.references.RefProbe;
+import sbt.automization.data.key.ProbeKey;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlRow;
 
@@ -41,7 +41,7 @@ public final class FugeProvider extends RowProvider
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", normalCellClass)
-                    .appendContent(dataTable.get(RefProbe.OUTCROP_GOB))
+                    .appendContent(dataTable.get(ProbeKey.OUTCROP_GOB))
                     .build();
 
             row.appendContent(cell.appendTag());

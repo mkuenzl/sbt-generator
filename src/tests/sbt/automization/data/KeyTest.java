@@ -3,16 +3,16 @@ package sbt.automization.data;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import sbt.automization.data.references.RefProbe;
-import sbt.automization.data.references.RefSample;
-import sbt.automization.data.references.*;
+import sbt.automization.data.key.ProbeKey;
+import sbt.automization.data.key.SampleKey;
+import sbt.automization.data.key.*;
 import sbt.automization.util.CsvParser;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReferenceTest {
+public class KeyTest {
 
     static List<String> header = new ArrayList<>();
 
@@ -31,8 +31,8 @@ public class ReferenceTest {
     {
         List<String> missingReferences = new ArrayList<>();
 
-        RefSample[] refSamples = RefSample.values();
-        for (RefSample reference : refSamples) {
+        SampleKey[] sampleKeys = SampleKey.values();
+        for (SampleKey reference : sampleKeys) {
             String key = reference.getKey();
             if (! header.contains(key))
             {
@@ -48,8 +48,8 @@ public class ReferenceTest {
     {
         List<String> missingReferences = new ArrayList<>();
 
-        RefProbe[] refProbes = RefProbe.values();
-        for (RefProbe reference : refProbes) {
+        ProbeKey[] probeKeys = ProbeKey.values();
+        for (ProbeKey reference : probeKeys) {
             String key = reference.getKey();
             if (! header.contains(key))
             {
@@ -65,8 +65,8 @@ public class ReferenceTest {
     {
         List<String> missingReferences = new ArrayList<>();
 
-        RefChemistry[] refChemistry = RefChemistry.values();
-        for (RefChemistry reference : refChemistry) {
+        ChemistryKey[] chemistryKey = ChemistryKey.values();
+        for (ChemistryKey reference : chemistryKey) {
             String key = reference.getKey();
             if (! header.contains(key))
             {
@@ -82,8 +82,8 @@ public class ReferenceTest {
     {
         List<String> missingReferences = new ArrayList<>();
 
-        RefRuK[] refRuK = RefRuK.values();
-        for (RefRuK reference : refRuK) {
+        RuKKey[] ruKKey = RuKKey.values();
+        for (RuKKey reference : ruKKey) {
             String key = reference.getKey();
             if (! header.contains(key))
             {
@@ -99,8 +99,8 @@ public class ReferenceTest {
     {
         List<String> missingReferences = new ArrayList<>();
 
-        RefLP[] loadPlate = RefLP.values();
-        for (RefLP reference : loadPlate) {
+        LpKey[] loadPlate = LpKey.values();
+        for (LpKey reference : loadPlate) {
             String key = reference.getKey();
             if (! header.contains(key))
             {

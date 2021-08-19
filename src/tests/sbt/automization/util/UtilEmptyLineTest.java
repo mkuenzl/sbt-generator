@@ -5,8 +5,8 @@ import org.junit.Test;
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
-import sbt.automization.data.references.RefProbe;
-import sbt.automization.data.references.RefSample;
+import sbt.automization.data.key.ProbeKey;
+import sbt.automization.data.key.SampleKey;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -17,7 +17,7 @@ public class UtilEmptyLineTest
 	@Test
 	public void explorationSiteNoEmptyValueTest()
 	{
-		String identifier = RefProbe.ID.getKey();
+		String identifier = ProbeKey.ID.getKey();
 
 		DataTable dataTableOne = new Probe(new HashMap<>()
 		{{
@@ -34,7 +34,7 @@ public class UtilEmptyLineTest
 
 		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", RefProbe.ID);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", ProbeKey.ID);
 
 		Assert.assertTrue(exists);
 	}
@@ -42,7 +42,7 @@ public class UtilEmptyLineTest
 	@Test
 	public void explorationSiteSomeEmptyValuesTest()
 	{
-		String identifier = RefProbe.ID.getKey();
+		String identifier = ProbeKey.ID.getKey();
 
 		DataTable dataTableOne = new Probe(new HashMap<>()
 		{{
@@ -56,7 +56,7 @@ public class UtilEmptyLineTest
 
 		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", RefProbe.ID);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", ProbeKey.ID);
 
 		Assert.assertTrue(exists);
 	}
@@ -64,7 +64,7 @@ public class UtilEmptyLineTest
 	@Test
 	public void explorationSiteAllEmptyValuesTest()
 	{
-		String identifier = RefProbe.ID.getKey();
+		String identifier = ProbeKey.ID.getKey();
 
 		DataTable dataTableOne = new Probe(new HashMap<>() {});
 		DataTable dataTableTwo = new Probe(new HashMap<>() {});
@@ -72,7 +72,7 @@ public class UtilEmptyLineTest
 
 		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", RefProbe.ID);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", ProbeKey.ID);
 
 		Assert.assertFalse(exists);
 	}
@@ -82,7 +82,7 @@ public class UtilEmptyLineTest
 	{
 		List<DataTable> dataTables = List.of();
 
-		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", RefProbe.ID);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", ProbeKey.ID);
 
 		Assert.assertFalse(exists);
 	}
@@ -90,7 +90,7 @@ public class UtilEmptyLineTest
 	@Test
 	public void layerNoEmptyValueTest()
 	{
-		String identifier = RefSample.TYPE.getKey();
+		String identifier = SampleKey.TYPE.getKey();
 
 		Sample emptyLayerSample = new Sample(new HashMap<>()
 		{{
@@ -117,7 +117,7 @@ public class UtilEmptyLineTest
 
 		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", RefSample.TYPE);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", SampleKey.TYPE);
 
 		Assert.assertTrue(exists);
 	}
@@ -125,7 +125,7 @@ public class UtilEmptyLineTest
 	@Test
 	public void layerSomeEmptyValuesTest()
 	{
-		String identifier = RefSample.TYPE.getKey();
+		String identifier = SampleKey.TYPE.getKey();
 
 		Sample emptyLayerSample = new Sample(new HashMap<>()
 		{{
@@ -152,7 +152,7 @@ public class UtilEmptyLineTest
 
 		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", RefSample.TYPE);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", SampleKey.TYPE);
 
 		Assert.assertTrue(exists);
 	}
@@ -160,7 +160,7 @@ public class UtilEmptyLineTest
 	@Test
 	public void layerAllEmptyValuesTest()
 	{
-		String identifier = RefSample.TYPE.getKey();
+		String identifier = SampleKey.TYPE.getKey();
 
 		Sample emptyLayerSample = new Sample(new HashMap<>()
 		{{
@@ -187,7 +187,7 @@ public class UtilEmptyLineTest
 
 		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", RefSample.TYPE);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", SampleKey.TYPE);
 
 		Assert.assertFalse(exists);
 	}
@@ -195,7 +195,7 @@ public class UtilEmptyLineTest
 	@Test
 	public void layerAnEmptyListProvidedTest()
 	{
-		String identifier = RefSample.TYPE.getKey();
+		String identifier = SampleKey.TYPE.getKey();
 
 		Sample emptyLayerSample = new Sample(new HashMap<>()
 		{{
@@ -217,7 +217,7 @@ public class UtilEmptyLineTest
 
 		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", RefSample.TYPE);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", SampleKey.TYPE);
 
 		Assert.assertFalse(exists);
 	}
@@ -225,8 +225,8 @@ public class UtilEmptyLineTest
 	@Test
 	public void layerFromOutcropNoEmptyValueTest()
 	{
-		String valueIdentifier = RefSample.TYPE.getKey();
-		String outcropIdentifier = RefSample.OUTCROP.getKey();
+		String valueIdentifier = SampleKey.TYPE.getKey();
+		String outcropIdentifier = SampleKey.OUTCROP.getKey();
 		String outcropValue = "GOB";
 
 		Sample outcropEmptyLayerSample = new Sample(new HashMap<>()
@@ -266,7 +266,7 @@ public class UtilEmptyLineTest
 
 		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcropValue, RefSample.TYPE);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcropValue, SampleKey.TYPE);
 
 		Assert.assertTrue(exists);
 	}
@@ -274,8 +274,8 @@ public class UtilEmptyLineTest
 	@Test
 	public void layerFromOutcropSomeEmptyValuesTest()
 	{
-		String valueIdentifier = RefSample.TYPE.getKey();
-		String outcropIdentifier = RefSample.OUTCROP.getKey();
+		String valueIdentifier = SampleKey.TYPE.getKey();
+		String outcropIdentifier = SampleKey.OUTCROP.getKey();
 		String outcropValue = "GOB";
 
 		Sample outcropEmptyLayerSample = new Sample(new HashMap<>()
@@ -315,7 +315,7 @@ public class UtilEmptyLineTest
 
 		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcropValue, RefSample.TYPE);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcropValue, SampleKey.TYPE);
 
 		Assert.assertTrue(exists);
 	}
@@ -323,8 +323,8 @@ public class UtilEmptyLineTest
 	@Test
 	public void layerFromOutcropAllEmptyValuesTest()
 	{
-		String valueIdentifier = RefSample.TYPE.getKey();
-		String outcropIdentifier = RefSample.OUTCROP.getKey();
+		String valueIdentifier = SampleKey.TYPE.getKey();
+		String outcropIdentifier = SampleKey.OUTCROP.getKey();
 		String outcropValue = "GOB";
 
 		Sample outcropEmptyLayerSample = new Sample(new HashMap<>()
@@ -364,7 +364,7 @@ public class UtilEmptyLineTest
 
 		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcropValue, RefSample.TYPE);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcropValue, SampleKey.TYPE);
 
 		Assert.assertFalse(exists);
 	}
@@ -372,8 +372,8 @@ public class UtilEmptyLineTest
 	@Test
 	public void layerFromOutcropAnEmptyListProvidedTest()
 	{
-		String valueIdentifier = RefSample.TYPE.getKey();
-		String outcropIdentifier = RefSample.OUTCROP.getKey();
+		String valueIdentifier = SampleKey.TYPE.getKey();
+		String outcropIdentifier = SampleKey.OUTCROP.getKey();
 		String outcropValue = "GOB";
 
 		Sample outcropEmptyLayerSample = new Sample(new HashMap<>()
@@ -406,7 +406,7 @@ public class UtilEmptyLineTest
 
 		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcropValue, RefSample.TYPE);
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcropValue, SampleKey.TYPE);
 
 		Assert.assertFalse(exists);
 	}

@@ -3,10 +3,10 @@ package sbt.automization.templates.appendix.site;
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
-import sbt.automization.data.references.RefChemistry;
-import sbt.automization.data.references.RefLP;
-import sbt.automization.data.references.RefProbe;
-import sbt.automization.data.references.RefSample;
+import sbt.automization.data.key.ChemistryKey;
+import sbt.automization.data.key.LpKey;
+import sbt.automization.data.key.ProbeKey;
+import sbt.automization.data.key.SampleKey;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.data.Outcrop;
 import sbt.automization.templates.appendix.Appendix;
@@ -42,7 +42,7 @@ public final class BaseCourseWithoutBinder extends Appendix
 		if (dataTable instanceof Probe)
 		{
 			this.probe = (Probe) dataTable;
-			List<Sample> samplesOfOutcrop = probe.getSamplesBy(RefSample.OUTCROP, Outcrop.TOB.toString());
+			List<Sample> samplesOfOutcrop = probe.getSamplesBy(SampleKey.OUTCROP, Outcrop.TOB.toString());
 
 			for (Sample sample : samplesOfOutcrop)
 			{
@@ -56,29 +56,29 @@ public final class BaseCourseWithoutBinder extends Appendix
 
 	private void setOutcrop(DataTable dataTable)
 	{
-		outcrop = dataTable.get(RefProbe.OUTCROP_TOB);
+		outcrop = dataTable.get(ProbeKey.OUTCROP_TOB);
 	}
 
 	private String createRow(Sample sample)
 	{
 		String row = HtmlFactory.createRow("Normal", new String[]{
 				HtmlFactory.createCellAsString("Normal",
-						new String[]{sample.get(RefSample.TYPE),
+						new String[]{sample.get(SampleKey.TYPE),
 								TextFormatUtil.printLineBreak(),
-								sample.get(RefSample.GRANULATION),
-								sample.get(RefSample.ROUNDING_GRADATION)}),
+								sample.get(SampleKey.GRANULATION),
+								sample.get(SampleKey.ROUNDING_GRADATION)}),
 				HtmlFactory.createCellAsString("NormalCenter",
-						new String[]{sample.get(RefSample.THICKNESS)}),
+						new String[]{sample.get(SampleKey.THICKNESS)}),
 				HtmlFactory.createCellAsString("NormalCenter",
-						new String[]{sample.get(RefSample.DEPTH_END)}),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, RefChemistry.MUFV)),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, RefChemistry.LAGA_BO)),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, RefChemistry.LAGA_RC)),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, RefChemistry.TL_ROCK_STRATUM)),
+						new String[]{sample.get(SampleKey.DEPTH_END)}),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.MUFV)),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.LAGA_BO)),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.LAGA_RC)),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.TL_ROCK_STRATUM)),
 				HtmlFactory.createCellAsString("NormalCenter",
 						new String[]{printEV()}),
 				HtmlFactory.createCellAsString("NormalCenter",
-						new String[]{sample.get(RefSample.GRAIN_SIZE_DISTRIBUTION)})
+						new String[]{sample.get(SampleKey.GRAIN_SIZE_DISTRIBUTION)})
 		});
 
 		return row;
@@ -158,11 +158,11 @@ public final class BaseCourseWithoutBinder extends Appendix
 
 	private String printEV()
 	{
-		if (probe.containsValueFor(RefProbe.LP_ID) && ! alreadyPrintedLP)
+		if (probe.containsValueFor(ProbeKey.LP_ID) && ! alreadyPrintedLP)
 		{
-			String formattedEV = probe.getParameterValueBy(RefProbe.LP_ID, RefLP.EV2)
+			String formattedEV = probe.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV2)
 					.concat(TextFormatUtil.printLineBreak())
-					.concat(probe.getParameterValueBy(RefProbe.LP_ID, RefLP.EV85));
+					.concat(probe.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV85));
 			alreadyPrintedLP = true;
 
 			return formattedEV;

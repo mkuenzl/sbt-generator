@@ -1,6 +1,6 @@
-package sbt.automization.data.references;
+package sbt.automization.data.key;
 
-public enum RefProbe implements Reference
+public enum ProbeKey implements Key
 {
 	FOOTNOTE_1
 			{

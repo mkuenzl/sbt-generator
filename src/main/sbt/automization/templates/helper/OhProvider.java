@@ -1,7 +1,7 @@
 package sbt.automization.templates.helper;
 
 import sbt.automization.data.DataTable;
-import sbt.automization.data.references.RefProbe;
+import sbt.automization.data.key.ProbeKey;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlRow;
 
@@ -40,7 +40,7 @@ public final class OhProvider extends RowProvider
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", normalCellWidth)
-                    .appendContent(dataTable.get(RefProbe.OUTCROP_UG_OH_BA))
+                    .appendContent(dataTable.get(ProbeKey.OUTCROP_UG_OH_BA))
                     .build();
 
             row.appendContent(cell.appendTag());

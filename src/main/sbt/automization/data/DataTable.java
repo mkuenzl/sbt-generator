@@ -1,6 +1,6 @@
 package sbt.automization.data;
 
-import sbt.automization.data.references.Reference;
+import sbt.automization.data.key.Key;
 
 import java.util.List;
 import java.util.Map;
@@ -9,21 +9,21 @@ public interface DataTable
 {
 	void add(String key, String value);
 
-	void add(Reference key, String value);
+	void add(Key key, String value);
 
-	String get(Reference key);
+	String get(Key key);
 
 	String get(String key);
 
-	String getAsString(Reference key);
+	String getAsString(Key key);
 
 	String getAsString(String key);
 
-	Integer getAsInteger(Reference key);
+	Integer getAsInteger(Key key);
 
 	Integer getAsInteger(String key);
 
-	Double getAsDouble(Reference key);
+	Double getAsDouble(Key key);
 
 	Double getAsDouble(String key);
 
@@ -31,7 +31,7 @@ public interface DataTable
 
 	void setTable(Map<String, String> table);
 
-	boolean containsReference(Reference key);
+	boolean containsReference(Key key);
 
 	boolean containsReference(String key);
 
@@ -39,17 +39,17 @@ public interface DataTable
 
 	boolean isEmpty();
 
-	boolean isRelatedBy(Reference source, DataTable target);
+	boolean isRelatedBy(Key source, DataTable target);
 
-	boolean containsValueFor(Reference reference);
+	boolean containsValueFor(Key key);
 
-	boolean hasSampleWith(final Reference reference, final String value);
+	boolean hasSampleWith(final Key key, final String value);
 
-	List<Sample> getSamplesBy(final Reference reference, final String[] values);
+	List<Sample> getSamplesBy(final Key key, final String[] values);
 
-	List<Sample> getSamplesBy(final Reference reference, final String value);
+	List<Sample> getSamplesBy(final Key key, final String value);
 
-	String getParameterValueBy(Reference parameterID, Reference valueID);
+	String getParameterValueBy(Key parameterID, Key valueID);
 
-	Parameter getParameterBy(final Reference reference);
+	Parameter getParameterBy(final Key key);
 }

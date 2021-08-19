@@ -1,6 +1,6 @@
-package sbt.automization.data.references;
+package sbt.automization.data.key;
 
-public enum RefLP implements Reference
+public enum LpKey implements Key
 {
 	ID
 			{

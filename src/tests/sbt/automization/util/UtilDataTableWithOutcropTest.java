@@ -6,7 +6,7 @@ import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
 import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
-import sbt.automization.data.references.RefSample;
+import sbt.automization.data.key.SampleKey;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -38,15 +38,15 @@ public class UtilDataTableWithOutcropTest
 		Probe dataTable = new Probe();
 		dataTable.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), "GOB");
 		}}));
 		dataTable.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "TOB");
+			put(SampleKey.OUTCROP.getKey(), "TOB");
 		}}));
 		dataTable.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "FUGE");
+			put(SampleKey.OUTCROP.getKey(), "FUGE");
 		}}));
 
 		List<DataTable> sitesWhichIncludeOutcrop = DatatableFilter.getProbesWhichIncludeOutcrop(Arrays.asList(dataTable), Outcrop.UG);
@@ -60,15 +60,15 @@ public class UtilDataTableWithOutcropTest
 		Probe dataTable = new Probe();
 		dataTable.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), "GOB");
 		}}));
 		dataTable.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "TOB");
+			put(SampleKey.OUTCROP.getKey(), "TOB");
 		}}));
 		dataTable.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "FUGE");
+			put(SampleKey.OUTCROP.getKey(), "FUGE");
 		}}));
 
 		List<DataTable> sitesWhichIncludeOutcrop = DatatableFilter.getProbesWhichIncludeOutcrop(Arrays.asList(dataTable), Outcrop.TOB);
@@ -82,45 +82,45 @@ public class UtilDataTableWithOutcropTest
 		Probe dataTableOne = new Probe();
 		dataTableOne.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), "GOB");
 		}}));
 		dataTableOne.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "FUGE");
+			put(SampleKey.OUTCROP.getKey(), "FUGE");
 		}}));
 
 		Probe dataTableTwo = new Probe();
 		dataTableTwo.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), "GOB");
 		}}));
 		dataTableTwo.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "TOB");
+			put(SampleKey.OUTCROP.getKey(), "TOB");
 		}}));
 		dataTableTwo.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "FUGE");
+			put(SampleKey.OUTCROP.getKey(), "FUGE");
 		}}));
 
 		Probe dataTableThree = new Probe();
 		dataTableThree.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), "GOB");
 		}}));
 		dataTableThree.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "TOB");
+			put(SampleKey.OUTCROP.getKey(), "TOB");
 		}}));
 		dataTableThree.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "FUGE");
+			put(SampleKey.OUTCROP.getKey(), "FUGE");
 		}}));
 
 		Probe dataTableFour = new Probe();
 		dataTableFour.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "FUGE");
+			put(SampleKey.OUTCROP.getKey(), "FUGE");
 		}}));
 
 		List<DataTable> sites = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree, dataTableFour);
@@ -135,45 +135,45 @@ public class UtilDataTableWithOutcropTest
 		Probe dataTableOne = new Probe();
 		dataTableOne.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), "GOB");
 		}}));
 		dataTableOne.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "FUGE");
+			put(SampleKey.OUTCROP.getKey(), "FUGE");
 		}}));
 
 		Probe dataTableTwo = new Probe();
 		dataTableTwo.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), "GOB");
 		}}));
 		dataTableTwo.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "TOB");
+			put(SampleKey.OUTCROP.getKey(), "TOB");
 		}}));
 		dataTableTwo.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "FUGE");
+			put(SampleKey.OUTCROP.getKey(), "FUGE");
 		}}));
 
 		Probe dataTableThree = new Probe();
 		dataTableThree.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), "GOB");
 		}}));
 		dataTableThree.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "TOB");
+			put(SampleKey.OUTCROP.getKey(), "TOB");
 		}}));
 		dataTableThree.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "FUGE");
+			put(SampleKey.OUTCROP.getKey(), "FUGE");
 		}}));
 
 		Probe dataTableFour = new Probe();
 		dataTableFour.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "FUGE");
+			put(SampleKey.OUTCROP.getKey(), "FUGE");
 		}}));
 
 		List<DataTable> sites = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree, dataTableFour);
@@ -188,45 +188,45 @@ public class UtilDataTableWithOutcropTest
 		Probe dataTableOne = new Probe();
 		dataTableOne.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), "GOB");
 		}}));
 		dataTableOne.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "FUGE");
+			put(SampleKey.OUTCROP.getKey(), "FUGE");
 		}}));
 
 		Probe dataTableTwo = new Probe();
 		dataTableTwo.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), "GOB");
 		}}));
 		dataTableTwo.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "TOB");
+			put(SampleKey.OUTCROP.getKey(), "TOB");
 		}}));
 		dataTableTwo.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "FUGE");
+			put(SampleKey.OUTCROP.getKey(), "FUGE");
 		}}));
 
 		Probe dataTableThree = new Probe();
 		dataTableThree.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), "GOB");
 		}}));
 		dataTableThree.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "TOB");
+			put(SampleKey.OUTCROP.getKey(), "TOB");
 		}}));
 		dataTableThree.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "FUGE");
+			put(SampleKey.OUTCROP.getKey(), "FUGE");
 		}}));
 
 		Probe dataTableFour = new Probe();
 		dataTableFour.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "FUGE");
+			put(SampleKey.OUTCROP.getKey(), "FUGE");
 		}}));
 
 		List<DataTable> sites = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree, dataTableFour);
@@ -241,45 +241,45 @@ public class UtilDataTableWithOutcropTest
 		Probe dataTableOne = new Probe();
 		dataTableOne.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), "GOB");
 		}}));
 		dataTableOne.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "FUGE");
+			put(SampleKey.OUTCROP.getKey(), "FUGE");
 		}}));
 
 		Probe dataTableTwo = new Probe();
 		dataTableTwo.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), "GOB");
 		}}));
 		dataTableTwo.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "TOB");
+			put(SampleKey.OUTCROP.getKey(), "TOB");
 		}}));
 		dataTableTwo.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "FUGE");
+			put(SampleKey.OUTCROP.getKey(), "FUGE");
 		}}));
 
 		Probe dataTableThree = new Probe();
 		dataTableThree.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), "GOB");
 		}}));
 		dataTableThree.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "TOB");
+			put(SampleKey.OUTCROP.getKey(), "TOB");
 		}}));
 		dataTableThree.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "FUGE");
+			put(SampleKey.OUTCROP.getKey(), "FUGE");
 		}}));
 
 		Probe dataTableFour = new Probe();
 		dataTableFour.addSample(new Sample(new HashMap<>()
 		{{
-			put(RefSample.OUTCROP.getKey(), "FUGE");
+			put(SampleKey.OUTCROP.getKey(), "FUGE");
 		}}));
 
 		List<DataTable> sites = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree, dataTableFour);

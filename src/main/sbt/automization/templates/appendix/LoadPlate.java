@@ -4,8 +4,8 @@ package sbt.automization.templates.appendix;
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Parameter;
 import sbt.automization.data.Probe;
-import sbt.automization.data.references.RefLP;
-import sbt.automization.data.references.RefProbe;
+import sbt.automization.data.key.LpKey;
+import sbt.automization.data.key.ProbeKey;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.html.HtmlFactory;
 import sbt.automization.html.HtmlTable;
@@ -117,32 +117,32 @@ public final class LoadPlate extends Appendix
 			{
 				Probe probe = (Probe) dataTable;
 
-				Parameter parameter = probe.getParameterBy(RefProbe.LP_ID);
+				Parameter parameter = probe.getParameterBy(ProbeKey.LP_ID);
 
 				if (parameter != null)
 				{
-					String formattedEV2 = TextFormatUtil.formatLP(parameter.get(RefLP.EV2),
-							parameter.get(RefLP.EV85));
+					String formattedEV2 = TextFormatUtil.formatLP(parameter.get(LpKey.EV2),
+							parameter.get(LpKey.EV85));
 
 					String row = HtmlFactory.createRow("Normal", new String[]{
 							HtmlFactory.createCellAsString("NormalCenter",
-									new String[]{dataTable.get(RefProbe.LP_ID)}),
+									new String[]{dataTable.get(ProbeKey.LP_ID)}),
 							HtmlFactory.createCellAsString("NormalCenter",
-									new String[]{dataTable.get(RefProbe.ID)}),
+									new String[]{dataTable.get(ProbeKey.ID)}),
 							HtmlFactory.createCellAsString("Normal",
-									new String[]{dataTable.get(RefProbe.LOCATION)}),
+									new String[]{dataTable.get(ProbeKey.LOCATION)}),
 							HtmlFactory.createCellAsString("NormalCenter",
-									new String[]{parameter.get(RefLP.VALUE_1)}),
+									new String[]{parameter.get(LpKey.VALUE_1)}),
 							HtmlFactory.createCellAsString("NormalCenter",
-									new String[]{parameter.get(RefLP.VALUE_2)}),
+									new String[]{parameter.get(LpKey.VALUE_2)}),
 							HtmlFactory.createCellAsString("NormalCenter",
-									new String[]{parameter.get(RefLP.VALUE_3)}),
+									new String[]{parameter.get(LpKey.VALUE_3)}),
 							HtmlFactory.createCellAsString("NormalCenter",
-									new String[]{parameter.get(RefLP.MEAN)}),
+									new String[]{parameter.get(LpKey.MEAN)}),
 							HtmlFactory.createCellAsString("NormalCenter",
-									new String[]{parameter.get(RefLP.EV)}),
+									new String[]{parameter.get(LpKey.EV)}),
 							HtmlFactory.createCellAsString("NormalCenter",
-									new String[]{parameter.get(RefLP.EV85)}),
+									new String[]{parameter.get(LpKey.EV85)}),
 							HtmlFactory.createCellAsString("NormalCenter",
 									new String[]{formattedEV2}),
 					});

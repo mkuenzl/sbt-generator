@@ -1,4 +1,4 @@
-package sbt.automization.gui;
+package sbt.automization.gui.listener;
 
 import javax.swing.*;
 import java.awt.*;

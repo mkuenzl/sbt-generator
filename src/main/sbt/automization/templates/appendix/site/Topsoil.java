@@ -3,9 +3,9 @@ package sbt.automization.templates.appendix.site;
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
-import sbt.automization.data.references.RefChemistry;
-import sbt.automization.data.references.RefProbe;
-import sbt.automization.data.references.RefSample;
+import sbt.automization.data.key.ChemistryKey;
+import sbt.automization.data.key.ProbeKey;
+import sbt.automization.data.key.SampleKey;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.data.Outcrop;
 import sbt.automization.templates.appendix.Appendix;
@@ -39,7 +39,7 @@ public final class Topsoil extends Appendix
 		if (dataTable instanceof Probe)
 		{
 			Probe probe = (Probe) dataTable;
-			List<Sample> samplesOfOutcrop = probe.getSamplesBy(RefSample.OUTCROP, Outcrop.OH.toString());
+			List<Sample> samplesOfOutcrop = probe.getSamplesBy(SampleKey.OUTCROP, Outcrop.OH.toString());
 
 			for (Sample sample : samplesOfOutcrop)
 			{
@@ -53,25 +53,25 @@ public final class Topsoil extends Appendix
 
 	private void setOutcrop(DataTable dataTable)
 	{
-		outcrop = dataTable.get(RefProbe.OUTCROP_UG_OH_BA);
+		outcrop = dataTable.get(ProbeKey.OUTCROP_UG_OH_BA);
 	}
 
 	private String createRow(Sample sample)
 	{
 		String row = HtmlFactory.createRow("Normal", new String[]{
 				HtmlFactory.createCellAsString("Normal",
-						new String[]{TextFormatUtil.formatSoilGroup(sample.get(RefSample.TYPE))}),
+						new String[]{TextFormatUtil.formatSoilGroup(sample.get(SampleKey.TYPE))}),
 				HtmlFactory.createCellAsString("NormalCenter",
-						new String[]{sample.get(RefSample.THICKNESS)}),
+						new String[]{sample.get(SampleKey.THICKNESS)}),
 				HtmlFactory.createCellAsString("NormalCenter",
-						new String[]{sample.get(RefSample.DEPTH_END)}),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, RefChemistry.MUFV)),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, RefChemistry.LAGA_BO)),
-				HtmlFactory.createChemistryCell(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, RefChemistry.LAGA_RC)),
+						new String[]{sample.get(SampleKey.DEPTH_END)}),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.MUFV)),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.LAGA_BO)),
+				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.LAGA_RC)),
 				HtmlFactory.createCellAsString("NormalCenter",
-						new String[]{sample.get(RefSample.WATER_CONTENT)}),
+						new String[]{sample.get(SampleKey.WATER_CONTENT)}),
 				HtmlFactory.createCellAsString("NormalCenter",
-						new String[]{sample.get(RefSample.WATER_PROCTOR)}),
+						new String[]{sample.get(SampleKey.WATER_PROCTOR)}),
 				HtmlFactory.createCellAsString("NormalCenter",
 						new String[]{"-"})
 		});

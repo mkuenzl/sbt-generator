@@ -1,6 +1,6 @@
 package sbt.automization.data;
 
-import sbt.automization.data.references.Reference;
+import sbt.automization.data.key.Key;
 
 import java.io.Serializable;
 import java.util.*;
@@ -32,13 +32,13 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 	}
 
 	@Override
-	public void add(Reference key, String value)
+	public void add(Key key, String value)
 	{
 		this.informationMap.put(key.getKey(), value);
 	}
 
 	@Override
-	public String get(Reference key)
+	public String get(Key key)
 	{
 		return this.informationMap.get(key.getKey());
 	}
@@ -50,7 +50,7 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 	}
 
 	@Override
-	public String getAsString(Reference key)
+	public String getAsString(Key key)
 	{
 		String value = get(key);
 		return value;
@@ -64,7 +64,7 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 	}
 
 	@Override
-	public Integer getAsInteger(Reference key)
+	public Integer getAsInteger(Key key)
 	{
 		String value = get(key);
 		if (isNumeric(value))
@@ -86,7 +86,7 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 	}
 
 	@Override
-	public Double getAsDouble(Reference key)
+	public Double getAsDouble(Key key)
 	{
 		String value = get(key);
 		if (isNumeric(value))
@@ -120,7 +120,7 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 	}
 
 	@Override
-	public boolean containsReference(Reference key)
+	public boolean containsReference(Key key)
 	{
 		return informationMap.containsKey(key.getKey());
 	}
@@ -193,7 +193,7 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 		return true;
 	}
 
-	public boolean isRelatedBy(Reference source, DataTable target)
+	public boolean isRelatedBy(Key source, DataTable target)
 	{
 		String sourceValue = get(source);
 
@@ -209,36 +209,36 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 		return informationMap.containsValue(value);
 	}
 
-	public boolean containsValueFor(Reference reference)
+	public boolean containsValueFor(Key key)
 	{
-		String value = informationMap.get(reference.getKey());
+		String value = informationMap.get(key.getKey());
 
 		if (value == null) return false;
 
 		return !"".equals(value);
 	}
 
-	public Parameter getParameterBy(final Reference reference)
+	public Parameter getParameterBy(final Key key)
 	{
 		return new Parameter();
 	}
 
-	public String getParameterValueBy(Reference parameterID, Reference valueID)
+	public String getParameterValueBy(Key parameterID, Key valueID)
 	{
 		return "";
 	}
 
-	public List<Sample> getSamplesBy(final Reference reference, final String value)
+	public List<Sample> getSamplesBy(final Key key, final String value)
 	{
 		return new ArrayList<>();
 	}
 
-	public List<Sample> getSamplesBy(final Reference reference, final String[] values)
+	public List<Sample> getSamplesBy(final Key key, final String[] values)
 	{
 		return new ArrayList<>();
 	}
 
-	public boolean hasSampleWith(final Reference reference, final String value)
+	public boolean hasSampleWith(final Key key, final String value)
 	{
 		return false;
 	}

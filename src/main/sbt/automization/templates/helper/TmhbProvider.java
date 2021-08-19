@@ -3,8 +3,8 @@ package sbt.automization.templates.helper;
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
-import sbt.automization.data.references.RefProbe;
-import sbt.automization.data.references.RefSample;
+import sbt.automization.data.key.ProbeKey;
+import sbt.automization.data.key.SampleKey;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlRow;
@@ -56,7 +56,7 @@ public final class TmhbProvider extends RowProvider
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(dataTable.get(RefProbe.OUTCROP_TOB))
+					.appendContent(dataTable.get(ProbeKey.OUTCROP_TOB))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -87,10 +87,10 @@ public final class TmhbProvider extends RowProvider
 		{
 			Probe probe = (Probe) dataTable;
 
-			List<Sample> samplesByGob = probe.getSamplesBy(RefSample.OUTCROP, "GOB");
+			List<Sample> samplesByGob = probe.getSamplesBy(SampleKey.OUTCROP, "GOB");
 			Double gobSize = TextFormatUtil.measureThicknessOfSamples(samplesByGob);
 
-			List<Sample> samplesByOutcrop = probe.getSamplesBy(RefSample.OUTCROP, outcrop);
+			List<Sample> samplesByOutcrop = probe.getSamplesBy(SampleKey.OUTCROP, outcrop);
 			Double tobSize = TextFormatUtil.measureThicknessOfSamples(samplesByOutcrop);
 
 			String doubleValue = String.valueOf(Math.round(gobSize + tobSize));

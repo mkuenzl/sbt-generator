@@ -1,7 +1,7 @@
 package sbt.automization.templates.helper.strategy;
 
 import sbt.automization.data.DataTable;
-import sbt.automization.data.references.Reference;
+import sbt.automization.data.key.Key;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.data.Outcrop;
 import sbt.automization.templates.styles.ReportStyle;
@@ -13,9 +13,9 @@ import java.util.List;
 
 public class InformationRowWithDepth extends RowStrategy
 {
-	public InformationRowWithDepth(List<DataTable> dataTables, Outcrop outcrop, Reference reference)
+	public InformationRowWithDepth(List<DataTable> dataTables, Outcrop outcrop, Key key)
 	{
-		super(dataTables, outcrop, reference);
+		super(dataTables, outcrop, key);
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class InformationRowWithDepth extends RowStrategy
 	String createCell(DataTable table)
 	{
 		HtmlCell cell = HtmlFactory.createCell(ReportStyle.CELL.getStyleClass(), ReportStyle.CELL.getStyle(),
-				new String[]{TextFormatUtil.printLayerInformationWithDepth(table, outcrop.toString(), reference)});
+				new String[]{TextFormatUtil.printLayerInformationWithDepth(table, outcrop.toString(), key)});
 
 		return cell.appendTag();
 	}

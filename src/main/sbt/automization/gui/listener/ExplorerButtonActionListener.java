@@ -1,4 +1,6 @@
-package sbt.automization.gui;
+package sbt.automization.gui.listener;
+
+import sbt.automization.gui.TableToolVisualInterface;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

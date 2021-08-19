@@ -2,10 +2,10 @@ package sbt.automization.format;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Sample;
-import sbt.automization.data.references.RefChemistry;
-import sbt.automization.data.references.RefRuK;
-import sbt.automization.data.references.RefSample;
-import sbt.automization.data.references.Reference;
+import sbt.automization.data.key.ChemistryKey;
+import sbt.automization.data.key.RuKKey;
+import sbt.automization.data.key.SampleKey;
+import sbt.automization.data.key.Key;
 import sbt.automization.html.HtmlText;
 
 import java.util.List;
@@ -124,7 +124,7 @@ public final class TextFormatUtil
 		double heightValue = 0.0;
 		for (DataTable table : samples)
 		{
-			heightValue = heightValue + Double.parseDouble(table.get(RefSample.THICKNESS).replace(",", "."));
+			heightValue = heightValue + Double.parseDouble(table.get(SampleKey.THICKNESS).replace(",", "."));
 		}
 		return heightValue;
 	}
@@ -303,18 +303,18 @@ public final class TextFormatUtil
 	{
 		StringBuilder formattedLayerMaterial = new StringBuilder();
 
-		List<Sample> outcropLayerSamples = dataTable.getSamplesBy(RefSample.OUTCROP, outcrop);
+		List<Sample> outcropLayerSamples = dataTable.getSamplesBy(SampleKey.OUTCROP, outcrop);
 		int size = outcropLayerSamples.size();
 
 		for (int i = 0 ; i < size ; i++)
 		{
 			Sample sample = outcropLayerSamples.get(i);
 
-			formattedLayerMaterial.append(formatLayerAttributes(sample.get(RefSample.TYPE),
-					sample.get(RefSample.ROUNDING_GRADATION),
-					sample.get(RefSample.GRANULATION)));
+			formattedLayerMaterial.append(formatLayerAttributes(sample.get(SampleKey.TYPE),
+					sample.get(SampleKey.ROUNDING_GRADATION),
+					sample.get(SampleKey.GRANULATION)));
 
-			formattedLayerMaterial.append(formatDepthSpecified(sample.get(RefSample.DEPTH_START), sample.get(RefSample.DEPTH_END)));
+			formattedLayerMaterial.append(formatDepthSpecified(sample.get(SampleKey.DEPTH_START), sample.get(SampleKey.DEPTH_END)));
 
 			if (i + 1 < size)
 			{
@@ -420,7 +420,7 @@ public final class TextFormatUtil
 	 * @param tag
 	 * @return
 	 */
-	public static String printLayerInformationWithDepth(final DataTable dataTable, final String outcrop, final Reference tag)
+	public static String printLayerInformationWithDepth(final DataTable dataTable, final String outcrop, final Key tag)
 	{
 		List<Sample> samples = CombineSampleUtil.combineSamplesOfOutcrop(dataTable, outcrop, tag);
 
@@ -434,20 +434,20 @@ public final class TextFormatUtil
 
 			String formattedTag;
 
-			if (tag instanceof RefChemistry)
+			if (tag instanceof ChemistryKey)
 			{
-				formattedTag = printChemistryMarkup(sample.getParameterValueBy(RefSample.CHEMISTRY_ID, tag));
-			} else if (tag instanceof RefRuK)
+				formattedTag = printChemistryMarkup(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, tag));
+			} else if (tag instanceof RuKKey)
 			{
 				formattedTag = new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(sample.getParameterValueBy(RefSample.RUK_ID, tag))
+						.appendContent(sample.getParameterValueBy(SampleKey.RUK_ID, tag))
 						.build().appendTag();
-			} else if (tag == RefSample.MOISTURE)
+			} else if (tag == SampleKey.MOISTURE)
 			{
 				formattedTag = new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(TextFormatUtil.formatProctor(sample.get(RefSample.WATER_PROCTOR)))
+						.appendContent(TextFormatUtil.formatProctor(sample.get(SampleKey.WATER_PROCTOR)))
 						.build().appendTag();
 			} else
 			{
@@ -464,8 +464,8 @@ public final class TextFormatUtil
 
 			stringBuilder.append(formattedTag);
 			stringBuilder.append(printLineEmpty());
-			stringBuilder.append(formatDepthSpecified(sample.get(RefSample.DEPTH_START),
-					sample.get(RefSample.DEPTH_END)));
+			stringBuilder.append(formatDepthSpecified(sample.get(SampleKey.DEPTH_START),
+					sample.get(SampleKey.DEPTH_END)));
 
 		}
 
@@ -603,13 +603,13 @@ public final class TextFormatUtil
 
 	public static String printRukLayers(final DataTable dataTable, final String outcrop)
 	{
-		List<Sample> samples = dataTable.getSamplesBy(RefSample.OUTCROP, outcrop);
+		List<Sample> samples = dataTable.getSamplesBy(SampleKey.OUTCROP, outcrop);
 
 		StringBuilder stringBuilder = new StringBuilder();
 
 		for (Sample sample : samples)
 		{
-			String rukValue = sample.getParameterValueBy(RefSample.RUK_ID, RefRuK.VALUE);
+			String rukValue = sample.getParameterValueBy(SampleKey.RUK_ID, RuKKey.VALUE);
 
 			if (! "-".equals(rukValue) && ! "".equals(rukValue))
 			{
@@ -620,7 +620,7 @@ public final class TextFormatUtil
 
 				HtmlText layerKind = new HtmlText.Builder()
 						.appendAttribute("class", "Normal6")
-						.appendContent(sample.get(RefSample.TYPE))
+						.appendContent(sample.get(SampleKey.TYPE))
 						.build();
 
 				HtmlText rukText = new HtmlText.Builder()

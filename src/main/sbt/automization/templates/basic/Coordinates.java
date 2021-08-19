@@ -1,7 +1,7 @@
 package sbt.automization.templates.basic;
 
 import sbt.automization.data.DataTable;
-import sbt.automization.data.references.RefProbe;
+import sbt.automization.data.key.ProbeKey;
 import sbt.automization.html.HtmlFactory;
 
 import java.util.Arrays;
@@ -78,14 +78,14 @@ public final class Coordinates extends TableTemplate
 	{
 		String firstRow = HtmlFactory.createRow("NormalThin", new String[]{
 				HtmlFactory.createCellAsString("NormalCenter", 2, 1,
-						new String[]{dataTable.get(RefProbe.ID)}),
+						new String[]{dataTable.get(ProbeKey.ID)}),
 				HtmlFactory.createCellAsString("Normal", 1, 4,
-						new String[]{dataTable.get(RefProbe.LOCATION)})
+						new String[]{dataTable.get(ProbeKey.LOCATION)})
 		});
 
 		addToTable(firstRow);
 
-		List<String> coordinateSplit = splitCoordinate(dataTable.get(RefProbe.COORDINATES));
+		List<String> coordinateSplit = splitCoordinate(dataTable.get(ProbeKey.COORDINATES));
 
 		String secondRow = HtmlFactory.createRow("NormalThin", new String[]{
 				HtmlFactory.createCellAsString("Normal",

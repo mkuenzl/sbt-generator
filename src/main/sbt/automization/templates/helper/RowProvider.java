@@ -2,7 +2,7 @@ package sbt.automization.templates.helper;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Sample;
-import sbt.automization.data.references.*;
+import sbt.automization.data.key.*;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.util.CheckDataAvailability;
 import sbt.automization.html.HtmlCell;
@@ -42,7 +42,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{table.get(RefProbe.ID)});
+					new String[]{table.get(ProbeKey.ID)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -61,7 +61,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{dataTable.get(RefProbe.OUTCROP_UG_OH_BA)});
+					new String[]{dataTable.get(ProbeKey.OUTCROP_UG_OH_BA)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -80,7 +80,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{dataTable.get(RefProbe.OUTCROP_GOB)});
+					new String[]{dataTable.get(ProbeKey.OUTCROP_GOB)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -99,7 +99,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{dataTable.get(RefProbe.OUTCROP_TOB)});
+					new String[]{dataTable.get(ProbeKey.OUTCROP_TOB)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -123,7 +123,7 @@ public abstract class RowProvider
 		for (DataTable dataTable :
 				dataTables)
 		{
-			List<Sample> samples = dataTable.getSamplesBy(RefSample.OUTCROP, outcrop);
+			List<Sample> samples = dataTable.getSamplesBy(SampleKey.OUTCROP, outcrop);
 			String size = TextFormatUtil.printThicknessOfSamples(samples);
 
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
@@ -138,7 +138,7 @@ public abstract class RowProvider
 
 	public String createLoadClassRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefProbe.LOAD_CLASS;
+		Key tag = ProbeKey.LOAD_CLASS;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", tag)) return "";
 
@@ -173,7 +173,7 @@ public abstract class RowProvider
 
 	public String createEvDynRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefLP.EV;
+		Key tag = LpKey.EV;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", tag)) return "";
 
@@ -191,7 +191,7 @@ public abstract class RowProvider
 		for (DataTable dataTable :
 				dataTables)
 		{
-			String parameterValue = dataTable.getParameterValueBy(RefProbe.LP_ID, RefLP.EV85);
+			String parameterValue = dataTable.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV85);
 
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
 					new String[]{parameterValue});
@@ -203,7 +203,7 @@ public abstract class RowProvider
 
 	public String createEvDyn85Row(List<DataTable> dataTables)
 	{
-		Reference tag = RefLP.EV85;
+		Key tag = LpKey.EV85;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", tag)) return "";
 
@@ -221,7 +221,7 @@ public abstract class RowProvider
 		for (DataTable dataTable :
 				dataTables)
 		{
-			String parameterValue = dataTable.getParameterValueBy(RefProbe.LP_ID, RefLP.EV85);
+			String parameterValue = dataTable.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV85);
 
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
 					new String[]{parameterValue});
@@ -233,7 +233,7 @@ public abstract class RowProvider
 
 	public String createEv2Row(List<DataTable> dataTables)
 	{
-		Reference tag = RefLP.EV2;
+		Key tag = LpKey.EV2;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", tag)) return "";
 
@@ -251,8 +251,8 @@ public abstract class RowProvider
 		for (DataTable dataTable :
 				dataTables)
 		{
-			String parameterEV2 = dataTable.getParameterValueBy(RefProbe.LP_ID, RefLP.EV2);
-			String parameterEV85 = dataTable.getParameterValueBy(RefProbe.LP_ID, RefLP.EV85);
+			String parameterEV2 = dataTable.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV2);
+			String parameterEV85 = dataTable.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV85);
 
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
 					new String[]{TextFormatUtil.formatLP(parameterEV2, parameterEV85)});
@@ -264,7 +264,7 @@ public abstract class RowProvider
 
 	public String createEvMinimumBorderRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefLP.EV2_TARGET;
+		Key tag = LpKey.EV2_TARGET;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", tag)) return "";
 
@@ -283,7 +283,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{table.getParameterValueBy(RefProbe.LP_ID, tag)});
+					new String[]{table.getParameterValueBy(ProbeKey.LP_ID, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -292,7 +292,7 @@ public abstract class RowProvider
 
 	public String createCompressiveStrengthRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefSample.COMPRESSIVE_STRENGTH;
+		Key tag = SampleKey.COMPRESSIVE_STRENGTH;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -320,7 +320,7 @@ public abstract class RowProvider
 
 	public String createGrainSizeDistributionRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefSample.GRAIN_SIZE_DISTRIBUTION;
+		Key tag = SampleKey.GRAIN_SIZE_DISTRIBUTION;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -348,7 +348,7 @@ public abstract class RowProvider
 
 	public String createWaterContentRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefSample.WATER_CONTENT;
+		Key tag = SampleKey.WATER_CONTENT;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -377,7 +377,7 @@ public abstract class RowProvider
 
 	public String createMoistureRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefSample.MOISTURE;
+		Key tag = SampleKey.MOISTURE;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -399,7 +399,7 @@ public abstract class RowProvider
 
 	public String createConsistencyRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefSample.CONSISTENCY;
+		Key tag = SampleKey.CONSISTENCY;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -421,7 +421,7 @@ public abstract class RowProvider
 
 	public String createWaterProctorRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefSample.WATER_PROCTOR;
+		Key tag = SampleKey.WATER_PROCTOR;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -451,7 +451,7 @@ public abstract class RowProvider
 	@Deprecated
 	public String createProctorDifferenceRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefSample.COLOR;
+		Key tag = SampleKey.COLOR;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", tag)) return "";
 
@@ -487,7 +487,7 @@ public abstract class RowProvider
 
 	public String createCompressibilityRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefSample.COMPRESSIBILITY;
+		Key tag = SampleKey.COMPRESSIBILITY;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -509,7 +509,7 @@ public abstract class RowProvider
 
 	public String createWearPlanumRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefProbe.WEAR_PLANUM;
+		Key tag = ProbeKey.WEAR_PLANUM;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -542,7 +542,7 @@ public abstract class RowProvider
 
 	public String createWearSoleRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefProbe.WEAR_TRENCH_BOTTOM;
+		Key tag = ProbeKey.WEAR_TRENCH_BOTTOM;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -563,7 +563,7 @@ public abstract class RowProvider
 		{
 			String formattedCellText = new HtmlText.Builder().appendAttribute("class", unitCellClass)
 					.appendContent("[T:")
-					.appendContent(table.get(RefProbe.SOLE_DEPTH))
+					.appendContent(table.get(ProbeKey.SOLE_DEPTH))
 					.appendContent("]").build().appendTag();
 
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
@@ -576,7 +576,7 @@ public abstract class RowProvider
 
 	public String createZTVRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefSample.FROST_SENSITIVITY_CLASS;
+		Key tag = SampleKey.FROST_SENSITIVITY_CLASS;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -609,7 +609,7 @@ public abstract class RowProvider
 
 	public String createChemieIDRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefSample.CHEMISTRY_ID;
+		Key tag = SampleKey.CHEMISTRY_ID;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -632,7 +632,7 @@ public abstract class RowProvider
 
 	public String createChemieMufvRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefChemistry.MUFV;
+		Key tag = ChemistryKey.MUFV;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -661,7 +661,7 @@ public abstract class RowProvider
 
 	public String createChemieLagaBoRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefChemistry.LAGA_BO;
+		Key tag = ChemistryKey.LAGA_BO;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -690,7 +690,7 @@ public abstract class RowProvider
 
 	public String createChemieLagaRcRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefChemistry.LAGA_RC;
+		Key tag = ChemistryKey.LAGA_RC;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -719,7 +719,7 @@ public abstract class RowProvider
 
 	public String createChemieLagaRcOrientationRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefChemistry.LAGA_RC_ORIENTATION;
+		Key tag = ChemistryKey.LAGA_RC_ORIENTATION;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -748,7 +748,7 @@ public abstract class RowProvider
 
 	public String createChemieTlRockRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefChemistry.TL_ROCK_STRATUM;
+		Key tag = ChemistryKey.TL_ROCK_STRATUM;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -777,7 +777,7 @@ public abstract class RowProvider
 
 	public String createChemieDepvRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefChemistry.DEPV;
+		Key tag = ChemistryKey.DEPV;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -806,7 +806,7 @@ public abstract class RowProvider
 
 	public String createChemieDecisionSupportRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefChemistry.DECISION_SUPPORT;
+		Key tag = ChemistryKey.DECISION_SUPPORT;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -835,7 +835,7 @@ public abstract class RowProvider
 
 	public String createChemieAVVRow(List<DataTable> dataTables)
 	{
-		Reference tag = RefChemistry.WASTE_KEY;
+		Key tag = ChemistryKey.WASTE_KEY;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -864,7 +864,7 @@ public abstract class RowProvider
 
 	public String createREKUROW(List<DataTable> dataTables)
 	{
-		Reference tag = RefChemistry.REKU;
+		Key tag = ChemistryKey.REKU;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -896,7 +896,7 @@ public abstract class RowProvider
 
 	public String createDIN18196Row(List<DataTable> dataTables)
 	{
-		Reference tag = RefSample.TYPE;
+		Key tag = SampleKey.TYPE;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -926,7 +926,7 @@ public abstract class RowProvider
 
 	public String createDIN18915Row(List<DataTable> dataTables)
 	{
-		Reference tag = RefSample.SOIL_CLASS;
+		Key tag = SampleKey.SOIL_CLASS;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -957,7 +957,7 @@ public abstract class RowProvider
 
 	public String createDIN18300Row(List<DataTable> dataTables)
 	{
-		Reference tag = RefSample.SOIL_CLASS;
+		Key tag = SampleKey.SOIL_CLASS;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -986,7 +986,7 @@ public abstract class RowProvider
 
 	public String createDIN18320Row(List<DataTable> dataTables)
 	{
-		Reference tag = RefSample.HOMOGENEOUS_RANGE;
+		Key tag = SampleKey.HOMOGENEOUS_RANGE;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -1017,7 +1017,7 @@ public abstract class RowProvider
 
 	public String createDIN19682Row(List<DataTable> dataTables)
 	{
-		Reference tag = RefSample.SOIL_TYPE;
+		Key tag = SampleKey.SOIL_TYPE;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 
@@ -1046,7 +1046,7 @@ public abstract class RowProvider
 
 	public String createDIN18300_09Row(List<DataTable> dataTables)
 	{
-		Reference tag = RefSample.HOMOGENEOUS_RANGE;
+		Key tag = SampleKey.HOMOGENEOUS_RANGE;
 
 		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
 

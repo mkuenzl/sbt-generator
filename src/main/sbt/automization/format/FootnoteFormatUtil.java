@@ -1,8 +1,8 @@
 package sbt.automization.format;
 
 import sbt.automization.data.DataTable;
-import sbt.automization.data.references.RefProbe;
-import sbt.automization.data.references.Reference;
+import sbt.automization.data.key.ProbeKey;
+import sbt.automization.data.key.Key;
 import sbt.automization.html.HtmlText;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public final class FootnoteFormatUtil
 		stringBuilder.append(formatInformationFootnote())
 				.append(printFootnoteWithText("Messeinheit: Garmin eTrex 10, herstellerseitig angegebene Lagegenauigkeit ~ 3 m"));
 
-		for (RefProbe footnoteReference : getFootnoteReferences())
+		for (ProbeKey footnoteReference : getFootnoteReferences())
 		{
 			if (checkExistenceOfFootnote(table, footnoteReference))
 			{
@@ -63,33 +63,33 @@ public final class FootnoteFormatUtil
 		return footnote.appendTag();
 	}
 
-	private static List<RefProbe> getFootnoteReferences()
+	private static List<ProbeKey> getFootnoteReferences()
 	{
-		List<RefProbe> references = new ArrayList<>()
+		List<ProbeKey> references = new ArrayList<>()
 		{{
-			add(RefProbe.LP_ID);
-			add(RefProbe.FOOTNOTE_1);
-			add(RefProbe.FOOTNOTE_2);
-			add(RefProbe.FOOTNOTE_3);
-			add(RefProbe.FOOTNOTE_4);
-			add(RefProbe.FOOTNOTE_5);
-			add(RefProbe.FOOTNOTE_6);
-			add(RefProbe.FOOTNOTE_7);
-			add(RefProbe.FOOTNOTE_8);
-			add(RefProbe.FOOTNOTE_9);
-			add(RefProbe.FOOTNOTE_10);
+			add(ProbeKey.LP_ID);
+			add(ProbeKey.FOOTNOTE_1);
+			add(ProbeKey.FOOTNOTE_2);
+			add(ProbeKey.FOOTNOTE_3);
+			add(ProbeKey.FOOTNOTE_4);
+			add(ProbeKey.FOOTNOTE_5);
+			add(ProbeKey.FOOTNOTE_6);
+			add(ProbeKey.FOOTNOTE_7);
+			add(ProbeKey.FOOTNOTE_8);
+			add(ProbeKey.FOOTNOTE_9);
+			add(ProbeKey.FOOTNOTE_10);
 		}};
 
 		return references;
 	}
 
-	private static boolean checkExistenceOfFootnote(DataTable table, Reference reference)
+	private static boolean checkExistenceOfFootnote(DataTable table, Key key)
 	{
-		String footnote = table.get(reference);
+		String footnote = table.get(key);
 		return (footnote != null && ! footnote.equals("#") && ! footnote.equals("-") && ! footnote.equals(""));
 	}
 
-	private static String printFootnoteForReference(DataTable table, RefProbe footnoteReference)
+	private static String printFootnoteForReference(DataTable table, ProbeKey footnoteReference)
 	{
 		switch (footnoteReference)
 		{
@@ -111,7 +111,7 @@ public final class FootnoteFormatUtil
 
 	private static String printFootnoteForLP(DataTable table)
 	{
-		if (! table.containsValueFor(RefProbe.LP_ID)) return "";
+		if (! table.containsValueFor(ProbeKey.LP_ID)) return "";
 
 		return printFootnoteWithText(new String[]{
 				"Prüfergebnisse unter Berücksichtigung einer ca. 15 % Reduzierung aufgrund der Einspannung durch den ",

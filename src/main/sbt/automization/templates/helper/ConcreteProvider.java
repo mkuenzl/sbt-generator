@@ -1,8 +1,8 @@
 package sbt.automization.templates.helper;
 
 import sbt.automization.data.DataTable;
-import sbt.automization.data.references.RefProbe;
-import sbt.automization.data.references.RefSample;
+import sbt.automization.data.key.ProbeKey;
+import sbt.automization.data.key.SampleKey;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlRow;
@@ -37,7 +37,7 @@ public final class ConcreteProvider extends RowProvider
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", normalCellWidth)
-                    .appendContent(dataTable.get(RefProbe.OUTCROP_GOB))
+                    .appendContent(dataTable.get(ProbeKey.OUTCROP_GOB))
                     .build();
 
             row.appendContent(cell.appendTag());
@@ -69,7 +69,7 @@ public final class ConcreteProvider extends RowProvider
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", normalCellWidth)
-                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(dataTable, outcrop, RefSample.TYPE))
+                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(dataTable, outcrop, SampleKey.TYPE))
                     .build();
 
             row.appendContent(cell.appendTag());

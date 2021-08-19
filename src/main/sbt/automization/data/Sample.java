@@ -1,6 +1,6 @@
 package sbt.automization.data;
 
-import sbt.automization.data.references.Reference;
+import sbt.automization.data.key.Key;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,11 +42,11 @@ public final class Sample extends DataTableImpl
 	}
 
 	@Override
-	public Parameter getParameterBy(Reference referenceID)
+	public Parameter getParameterBy(Key keyID)
 	{
 		for (Parameter par : parameters)
 		{
-			String value = this.get(referenceID);
+			String value = this.get(keyID);
 			if (par.contains(value)) return par;
 		}
 
@@ -54,7 +54,7 @@ public final class Sample extends DataTableImpl
 	}
 
 	@Override
-	public String getParameterValueBy(Reference parameterID, Reference valueID)
+	public String getParameterValueBy(Key parameterID, Key valueID)
 	{
 		for (Parameter par : parameters)
 		{

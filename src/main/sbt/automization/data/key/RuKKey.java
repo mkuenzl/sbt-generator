@@ -1,6 +1,6 @@
-package sbt.automization.data.references;
+package sbt.automization.data.key;
 
-public enum RefRuK implements Reference
+public enum RuKKey implements Key
 {
 	ID
 			{

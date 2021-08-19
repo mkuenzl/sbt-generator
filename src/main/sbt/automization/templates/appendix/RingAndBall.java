@@ -4,9 +4,9 @@ import sbt.automization.data.Sample;
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Parameter;
 import sbt.automization.data.Probe;
-import sbt.automization.data.references.RefProbe;
-import sbt.automization.data.references.RefRuK;
-import sbt.automization.data.references.RefSample;
+import sbt.automization.data.key.ProbeKey;
+import sbt.automization.data.key.RuKKey;
+import sbt.automization.data.key.SampleKey;
 import sbt.automization.html.HtmlFactory;
 import sbt.automization.html.HtmlTable;
 
@@ -96,7 +96,7 @@ public final class RingAndBall extends Appendix
 
 				for (Sample sample : probe.getSamples())
 				{
-					Parameter parameter = sample.getParameterBy(RefSample.RUK_ID);
+					Parameter parameter = sample.getParameterBy(SampleKey.RUK_ID);
 
 					if (parameter != null)
 					{
@@ -104,22 +104,22 @@ public final class RingAndBall extends Appendix
 
 						String row = HtmlFactory.createRow("Normal", new String[]{
 								HtmlFactory.createCellAsString("NormalCenter",
-										new String[]{probe.get(RefProbe.ID)}),
+										new String[]{probe.get(ProbeKey.ID)}),
 								HtmlFactory.createCellAsString("NormalCenter",
-										new String[]{parameter.get(RefRuK.ID)}),
+										new String[]{parameter.get(RuKKey.ID)}),
 								HtmlFactory.createCellAsString("NormalCenter",
-										new String[]{parameter.get(RefRuK.SAMPLE)}),
+										new String[]{parameter.get(RuKKey.SAMPLE)}),
 								HtmlFactory.createCellAsString("Normal",
-										new String[]{sample.get(RefSample.TYPE), " ",
-												sample.get(RefSample.GRANULATION)}),
+										new String[]{sample.get(SampleKey.TYPE), " ",
+												sample.get(SampleKey.GRANULATION)}),
 								HtmlFactory.createCellAsString("NormalCenter",
-										new String[]{sample.get(RefSample.DEPTH_START)}),
+										new String[]{sample.get(SampleKey.DEPTH_START)}),
 								HtmlFactory.createCellAsString("NormalCenter",
 										new String[]{"-"}),
 								HtmlFactory.createCellAsString("NormalCenter",
-										new String[]{sample.get(RefSample.DEPTH_END)}),
+										new String[]{sample.get(SampleKey.DEPTH_END)}),
 								HtmlFactory.createCellAsString("NormalCenter",
-										new String[]{parameter.get(RefRuK.VALUE)})
+										new String[]{parameter.get(RuKKey.VALUE)})
 						});
 
 						table.appendContent(row);

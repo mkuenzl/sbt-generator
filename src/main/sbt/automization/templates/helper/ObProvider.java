@@ -2,8 +2,8 @@ package sbt.automization.templates.helper;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Sample;
-import sbt.automization.data.references.RefProbe;
-import sbt.automization.data.references.RefSample;
+import sbt.automization.data.key.ProbeKey;
+import sbt.automization.data.key.SampleKey;
 import sbt.automization.format.HtmlCellFormatUtil;
 import sbt.automization.format.TextFormatUtil;
 import sbt.automization.data.Outcrop;
@@ -51,7 +51,7 @@ public final class ObProvider extends RowProvider
 		for (DataTable dataTable :
 				dataTables)
 		{
-			List<Sample> samples = dataTable.getSamplesBy(RefSample.OUTCROP, new String[]{outcrop,
+			List<Sample> samples = dataTable.getSamplesBy(SampleKey.OUTCROP, new String[]{outcrop,
 					Outcrop.CONCRETE.toString(),
 					Outcrop.COATING.toString(),
 					Outcrop.TMHB.toString(),
@@ -158,7 +158,7 @@ public final class ObProvider extends RowProvider
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(dataTable.get(RefProbe.PITCH_QUALITATIVE))
+					.appendContent(dataTable.get(ProbeKey.PITCH_QUALITATIVE))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -187,7 +187,7 @@ public final class ObProvider extends RowProvider
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(dataTable.get(RefProbe.PITCH_HALF_QUANTITATIVE))
+					.appendContent(dataTable.get(ProbeKey.PITCH_HALF_QUANTITATIVE))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -216,7 +216,7 @@ public final class ObProvider extends RowProvider
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(dataTable.get(RefProbe.PITCH_QUANTITATIVE))
+					.appendContent(dataTable.get(ProbeKey.PITCH_QUANTITATIVE))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -318,7 +318,7 @@ public final class ObProvider extends RowProvider
 		{
 			boolean empty = true;
 
-			List<Sample> samples = dataTable.getSamplesBy(RefSample.OUTCROP, outcrop);
+			List<Sample> samples = dataTable.getSamplesBy(SampleKey.OUTCROP, outcrop);
 
 			if (samples != null)
 			{
@@ -332,10 +332,10 @@ public final class ObProvider extends RowProvider
 				for (Sample sample : samples)
 				{
 					//TODO CHANGE TO TRUE & FALSE PECH
-					String layerSize = sample.get(RefSample.THICKNESS);
+					String layerSize = sample.get(SampleKey.THICKNESS);
 					layerSize = layerSize.replace(",", ".");
 
-					String layerPitch = sample.get(RefSample.PITCH);
+					String layerPitch = sample.get(SampleKey.PITCH);
 
 					if (pitch && "JA".equalsIgnoreCase(layerPitch))
 					{

@@ -1,8 +1,8 @@
 package sbt.automization.templates.helper;
 
 import sbt.automization.data.DataTable;
-import sbt.automization.data.references.RefProbe;
-import sbt.automization.data.references.RefSample;
+import sbt.automization.data.key.ProbeKey;
+import sbt.automization.data.key.SampleKey;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlRow;
 
@@ -31,7 +31,7 @@ public final class HeapProvider extends RowProvider
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(dataTable.get(RefProbe.OUTCROP_UG_OH_BA))
+					.appendContent(dataTable.get(ProbeKey.OUTCROP_UG_OH_BA))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -58,7 +58,7 @@ public final class HeapProvider extends RowProvider
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(dataTable.get(RefSample.TYPE))
+					.appendContent(dataTable.get(SampleKey.TYPE))
 					.build();
 
 			row.appendContent(cell.appendTag());

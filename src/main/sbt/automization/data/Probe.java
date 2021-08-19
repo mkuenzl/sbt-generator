@@ -1,6 +1,6 @@
 package sbt.automization.data;
 
-import sbt.automization.data.references.Reference;
+import sbt.automization.data.key.Key;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,11 +93,11 @@ public final class Probe extends DataTableImpl
 	}
 
 	@Override
-	public Parameter getParameterBy(final Reference reference)
+	public Parameter getParameterBy(final Key key)
 	{
 		for (Parameter par : parameters)
 		{
-			String value = this.get(reference);
+			String value = this.get(key);
 			if (par.contains(value)) return par;
 		}
 
@@ -105,7 +105,7 @@ public final class Probe extends DataTableImpl
 	}
 
 	@Override
-	public String getParameterValueBy(Reference parameterID, Reference valueID)
+	public String getParameterValueBy(Key parameterID, Key valueID)
 	{
 		for (Parameter par : parameters)
 		{
@@ -120,13 +120,13 @@ public final class Probe extends DataTableImpl
 	}
 
 	@Override
-	public List<Sample> getSamplesBy(final Reference reference, final String value)
+	public List<Sample> getSamplesBy(final Key key, final String value)
 	{
 		List<Sample> samplesWithValue = new ArrayList<>();
 
 		for (Sample sample : this.samples)
 		{
-			String valueToCompare = sample.get(reference);
+			String valueToCompare = sample.get(key);
 			if (value.equals(valueToCompare))
 			{
 				samplesWithValue.add(sample);
@@ -136,13 +136,13 @@ public final class Probe extends DataTableImpl
 	}
 
 	@Override
-	public List<Sample> getSamplesBy(final Reference reference, final String[] values)
+	public List<Sample> getSamplesBy(final Key key, final String[] values)
 	{
 		List<Sample> samplesWithValue = new ArrayList<>();
 
 		for (Sample sample : this.samples)
 		{
-			String valueToCompare = sample.get(reference);
+			String valueToCompare = sample.get(key);
 			for (String value : values)
 			{
 				if (value.equals(valueToCompare))
@@ -155,11 +155,11 @@ public final class Probe extends DataTableImpl
 	}
 
 	@Override
-	public boolean hasSampleWith(final Reference reference, final String value)
+	public boolean hasSampleWith(final Key key, final String value)
 	{
 		for (Sample sample : this.samples)
 		{
-			String valueToCompare = sample.get(reference);
+			String valueToCompare = sample.get(key);
 			if (value.equals(valueToCompare))
 			{
 				return true;
