@@ -3,9 +3,9 @@ package sbt.automization.format;
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Sample;
 import sbt.automization.data.key.ChemistryKey;
+import sbt.automization.data.key.Key;
 import sbt.automization.data.key.RuKKey;
 import sbt.automization.data.key.SampleKey;
-import sbt.automization.data.key.Key;
 import sbt.automization.html.HtmlText;
 
 import java.util.List;
@@ -124,7 +124,10 @@ public final class TextFormatUtil
 		double heightValue = 0.0;
 		for (DataTable table : samples)
 		{
-			heightValue = heightValue + Double.parseDouble(table.get(SampleKey.THICKNESS).replace(",", "."));
+			if (table.containsValueFor(SampleKey.THICKNESS))
+			{
+				heightValue = heightValue + Double.parseDouble(table.get(SampleKey.THICKNESS).replace(",", "."));
+			}
 		}
 		return heightValue;
 	}
