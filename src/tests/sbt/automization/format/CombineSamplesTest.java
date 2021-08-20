@@ -5,6 +5,7 @@ import org.junit.Test;
 import sbt.automization.data.Sample;
 import sbt.automization.data.key.SampleKey;
 import sbt.automization.data.key.Key;
+import sbt.automization.format.datatable.SampleFormatter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +32,7 @@ public class CombineSamplesTest
 			put(SampleKey.DEPTH_END.getKey(), "35");
 		}});
 
-		Sample combinedSample = CombineSampleUtil.combineSamples(sampleOne, sampleTwo, key);
+		Sample combinedSample = SampleFormatter.combineSamples(sampleOne, sampleTwo, key);
 
 		Sample compareToSample = new Sample(new HashMap<>()
 		{{
@@ -62,7 +63,7 @@ public class CombineSamplesTest
 			put(SampleKey.DEPTH_END.getKey(), "35");
 		}});
 
-		Sample combinedSample = CombineSampleUtil.combineSamples(sampleOne, sampleTwo, key);
+		Sample combinedSample = SampleFormatter.combineSamples(sampleOne, sampleTwo, key);
 
 		Sample compareToSample = new Sample(new HashMap<>()
 		{{
@@ -93,7 +94,7 @@ public class CombineSamplesTest
 			put(SampleKey.DEPTH_END.getKey(), "35");
 		}});
 
-		Sample combinedSample = CombineSampleUtil.combineSamples(sampleOne, sampleTwo, key);
+		Sample combinedSample = SampleFormatter.combineSamples(sampleOne, sampleTwo, key);
 
 		Assert.assertNull(combinedSample);
 	}
@@ -110,7 +111,7 @@ public class CombineSamplesTest
 			put(SampleKey.DEPTH_END.getKey(), "15");
 		}});
 
-		Sample combinedSample = CombineSampleUtil.combineSamples(sample, null, key);
+		Sample combinedSample = SampleFormatter.combineSamples(sample, null, key);
 
 		Assert.assertEquals(combinedSample, sample);
 	}
@@ -127,7 +128,7 @@ public class CombineSamplesTest
 			put(SampleKey.DEPTH_END.getKey(), "35");
 		}});
 
-		Sample combinedSample = CombineSampleUtil.combineSamples(null, sample, key);
+		Sample combinedSample = SampleFormatter.combineSamples(null, sample, key);
 
 		Assert.assertEquals(combinedSample, sample);
 	}
@@ -151,7 +152,7 @@ public class CombineSamplesTest
 			put(SampleKey.DEPTH_END.getKey(), "35");
 		}});
 
-		Sample combinedSample = CombineSampleUtil.combineSamples(sampleOne, sampleTwo, null);
+		Sample combinedSample = SampleFormatter.combineSamples(sampleOne, sampleTwo, null);
 
 		Assert.assertNull(combinedSample);
 	}
@@ -165,7 +166,7 @@ public class CombineSamplesTest
 
 		List<Sample> compareToSamples = new ArrayList<>();
 
-		List<Sample> combinedSamples = CombineSampleUtil.combineSamples(samples, key);
+		List<Sample> combinedSamples = SampleFormatter.combineSamples(samples, key);
 
 		Assert.assertEquals(compareToSamples, combinedSamples);
 	}
@@ -197,7 +198,7 @@ public class CombineSamplesTest
 			}}));
 		}};
 
-		List<Sample> combinedSamples = CombineSampleUtil.combineSamples(samples, key);
+		List<Sample> combinedSamples = SampleFormatter.combineSamples(samples, key);
 
 		Assert.assertEquals(compareToSamples, combinedSamples);
 	}
@@ -269,7 +270,7 @@ public class CombineSamplesTest
 			}}));
 		}};
 
-		List<Sample> combinedSamples = CombineSampleUtil.combineSamples(samples, key);
+		List<Sample> combinedSamples = SampleFormatter.combineSamples(samples, key);
 
 		Assert.assertEquals(compareToSamples, combinedSamples);
 	}
@@ -359,7 +360,7 @@ public class CombineSamplesTest
 			}}));
 		}};
 
-		List<Sample> combinedSamples = CombineSampleUtil.combineSamples(samples, key);
+		List<Sample> combinedSamples = SampleFormatter.combineSamples(samples, key);
 
 		Assert.assertEquals(compareToSamples, combinedSamples);
 	}
@@ -461,7 +462,7 @@ public class CombineSamplesTest
 			}}));
 		}};
 
-		List<Sample> combinedSamples = CombineSampleUtil.combineSamples(samples, key);
+		List<Sample> combinedSamples = SampleFormatter.combineSamples(samples, key);
 
 		Assert.assertEquals(compareToSamples, combinedSamples);
 	}

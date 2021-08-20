@@ -1,7 +1,7 @@
 package sbt.automization.templates.appendix;
 
 import sbt.automization.data.DataTable;
-import sbt.automization.format.TextFormatUtil;
+import sbt.automization.format.text.TextFormatter;
 import sbt.automization.html.HtmlRow;
 import sbt.automization.html.HtmlTableHeader;
 
@@ -174,7 +174,7 @@ public final class SamplingProtocolHeap extends Appendix
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "105")
 				.appendContent("Behältnis")
-				.appendContent(TextFormatUtil.printLineBreak())
+				.appendContent(TextFormatter.printLineBreak())
 				.appendContent("Vol.")
 				.build();
 
@@ -182,7 +182,7 @@ public final class SamplingProtocolHeap extends Appendix
 				.appendAttribute("class", "NormalTableHeader")
 				.appendAttribute("width", "60")
 				.appendContent("Haufwerk")
-				.appendContent(TextFormatUtil.printLineBreak())
+				.appendContent(TextFormatter.printLineBreak())
 				.appendContent("Vol.")
 				.build();
 
@@ -199,9 +199,9 @@ public final class SamplingProtocolHeap extends Appendix
 				.appendAttribute("width", "76")
 				.appendAttribute("rowspan", "2")
 				.appendContent("Farbe")
-				.appendContent(TextFormatUtil.printLineBreak())
+				.appendContent(TextFormatter.printLineBreak())
 				.appendContent("Geruch")
-				.appendContent(TextFormatUtil.printLineBreak())
+				.appendContent(TextFormatter.printLineBreak())
 				.appendContent("Bodenart")
 				.build();
 

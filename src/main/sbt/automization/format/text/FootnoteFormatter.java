@@ -1,18 +1,19 @@
-package sbt.automization.format;
+package sbt.automization.format.text;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.Key;
+import sbt.automization.format.text.TextFormatter;
 import sbt.automization.html.HtmlText;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public final class FootnoteFormatUtil
+public final class FootnoteFormatter
 {
 	private static int counter;
 
-	private FootnoteFormatUtil() {}
+	private FootnoteFormatter() {}
 
 	public static String printFootnotes(DataTable table)
 	{
@@ -38,19 +39,19 @@ public final class FootnoteFormatUtil
 		counter = 1;
 	}
 
-	public static String formatInformationFootnote()
+	private static String formatInformationFootnote()
 	{
 		return new HtmlText.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent("Angaben:")
-				.appendContent(TextFormatUtil.printLineBreak())
+				.appendContent(TextFormatter.printLineBreak())
 				.appendContent("KGV = Korngrößenverteilung, WG = Wassergehalt, LP = Plattendruckversuch, wPr = optimaler Wassergehalt")
-				.appendContent(TextFormatUtil.printLineBreak())
+				.appendContent(TextFormatter.printLineBreak())
 				.appendContent("Gem. a. G. = Gemisch aus Gesteinskörnungen, NS = Naturstein, LS = Lavaschlacke, HO = Hochofenschlacke")
-				.appendContent(TextFormatUtil.printLineBreak())
+				.appendContent(TextFormatter.printLineBreak())
 				.appendContent("RC = Rezyklierte Gesteinskörnung, BK = Brechkorn, RK = Rundkorn, sg = stetig gestuft, ug = unstetig gestuft")
-				.appendContent(TextFormatUtil.printLineBreak())
-				.appendContent(TextFormatUtil.printLineEmpty())
+				.appendContent(TextFormatter.printLineBreak())
+				.appendContent(TextFormatter.printLineEmpty())
 				.build()
 				.appendTag();
 	}
@@ -115,7 +116,7 @@ public final class FootnoteFormatUtil
 
 		return printFootnoteWithText(new String[]{
 				"Prüfergebnisse unter Berücksichtigung einer ca. 15 % Reduzierung aufgrund der Einspannung durch den ",
-				TextFormatUtil.printLineBreak(),
+				TextFormatter.printLineBreak(),
 				"gebundenen Oberbau"});
 	}
 

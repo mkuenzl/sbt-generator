@@ -5,7 +5,7 @@ import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
 import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.SampleKey;
-import sbt.automization.format.TextFormatUtil;
+import sbt.automization.format.text.TextFormatter;
 import sbt.automization.data.Outcrop;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlRow;
@@ -66,7 +66,7 @@ public final class TobProvider extends RowProvider
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.formatOutcropLayers(dataTable, outcrop))
+					.appendContent(TextFormatter.formatOutcropLayers(dataTable, outcrop))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -104,8 +104,8 @@ public final class TobProvider extends RowProvider
 
 			List<Sample> samplesByOutcrop = ((Probe) dataTable).getSamplesBy(SampleKey.OUTCROP, outcrop);
 
-			Double gobSize = TextFormatUtil.measureThicknessOfSamples(samplesByGoB);
-			Double tobSize = TextFormatUtil.measureThicknessOfSamples(samplesByOutcrop);
+			Double gobSize = TextFormatter.measureThicknessOfSamples(samplesByGoB);
+			Double tobSize = TextFormatter.measureThicknessOfSamples(samplesByOutcrop);
 
 			String doubleValue = String.valueOf(Math.round(gobSize + tobSize));
 			String totalSize = doubleValue.replace(".",",");
@@ -135,7 +135,7 @@ public final class TobProvider extends RowProvider
 						.appendAttribute("colspan", String.valueOf(1 + dataTables.size()))
 						.appendAttribute("width", String.valueOf(size))
 						.appendContent("Anmerkungen:")
-						.appendContent(TextFormatUtil.printLineBreak())
+						.appendContent(TextFormatter.printLineBreak())
 						.appendContent("Für die angegebenen Tiefen (T[]) gilt die Einheit cm. ")
 						.appendContent("Gem. a. G. = Gemisch aus Gesteinskörnungen, NS = Naturstein, LS = Lavaschlacke, HO = Hochofenschlacke,")
 						.appendContent("RC = Rezyklierte Gesteinskörnung, BK = Brechkorn, RK = Rundkorn, sg = stetig gestuft, ug = unstetig gestuft")

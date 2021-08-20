@@ -3,7 +3,7 @@ package sbt.automization.templates.helper;
 import sbt.automization.data.DataTable;
 import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.SampleKey;
-import sbt.automization.format.TextFormatUtil;
+import sbt.automization.format.text.TextFormatter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlRow;
 import sbt.automization.html.HtmlText;
@@ -69,7 +69,7 @@ public final class ConcreteProvider extends RowProvider
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", normalCellWidth)
-                    .appendContent(TextFormatUtil.printLayerInformationWithDepth(dataTable, outcrop, SampleKey.TYPE))
+                    .appendContent(TextFormatter.printLayerInformationWithDepth(dataTable, outcrop, SampleKey.TYPE))
                     .build();
 
             row.appendContent(cell.appendTag());

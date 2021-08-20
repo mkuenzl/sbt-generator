@@ -1,4 +1,4 @@
-package sbt.automization.format;
+package sbt.automization.format.text;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Sample;
@@ -6,6 +6,7 @@ import sbt.automization.data.key.ChemistryKey;
 import sbt.automization.data.key.Key;
 import sbt.automization.data.key.RuKKey;
 import sbt.automization.data.key.SampleKey;
+import sbt.automization.format.datatable.SampleFormatter;
 import sbt.automization.html.HtmlText;
 
 import java.util.List;
@@ -13,9 +14,9 @@ import java.util.List;
 /**
  * Class for formatting information of ExplorationSites and Layers.
  */
-public final class TextFormatUtil
+public final class TextFormatter
 {
-	private TextFormatUtil() {}
+	private TextFormatter() {}
 
 	/**
 	 * Method used for pretty printing the cell text for "Belastungsklasse"
@@ -189,7 +190,7 @@ public final class TextFormatUtil
 			return "-";
 		}
 
-		if (layerKind.contains("-"))
+		if (layerKind.contains("-") || ("").equals(layerKind))
 		{
 			return layerKind;
 		}
@@ -350,7 +351,7 @@ public final class TextFormatUtil
 				.appendContent(granulation)
 				.build();
 
-		stringBuilder.append(NameFormatUtil.formatLayerKind(kind));
+		stringBuilder.append(formatLayerKind(kind));
 		stringBuilder.append(printLineEmpty());
 		stringBuilder.append(attributes.appendTag());
 
@@ -425,7 +426,7 @@ public final class TextFormatUtil
 	 */
 	public static String printLayerInformationWithDepth(final DataTable dataTable, final String outcrop, final Key tag)
 	{
-		List<Sample> samples = CombineSampleUtil.combineSamplesOfOutcrop(dataTable, outcrop, tag);
+		List<Sample> samples = SampleFormatter.combineSamplesOfOutcrop(dataTable, outcrop, tag);
 
 		StringBuilder stringBuilder = new StringBuilder();
 
@@ -450,7 +451,7 @@ public final class TextFormatUtil
 			{
 				formattedTag = new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(TextFormatUtil.formatProctor(sample.get(SampleKey.WATER_PROCTOR)))
+						.appendContent(TextFormatter.formatProctor(sample.get(SampleKey.WATER_PROCTOR)))
 						.build().appendTag();
 			} else
 			{
@@ -638,5 +639,36 @@ public final class TextFormatUtil
 		}
 
 		return stringBuilder.toString();
+	}
+
+	/**
+	 * Formats different names for better visualisation in each template, replacement for automatic line breaks.
+	 * (Gem. a. G. (NS))
+	 *
+	 * @param name layer kind
+	 * @return formatted String with line breaks
+	 */
+	public static String formatLayerKind(final String name)
+	{
+		String formattedName = null;
+
+		if (name.contains("Gem"))
+		{
+			//Gem. a. G. (NS)
+			String[] split = name.split(" ");
+
+			HtmlText htmlText = new HtmlText.Builder()
+					.appendAttribute("class", "Normal")
+					.appendContent(split[0].concat(" ").concat(split[1]).concat(" ").concat(split[2]))
+					.appendContent(printLineBreak())
+					.appendContent(split[3])
+					.build();
+
+			formattedName = htmlText.appendTag();
+		} else
+		{
+			return name;
+		}
+		return formattedName;
 	}
 }

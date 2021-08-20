@@ -6,7 +6,7 @@ import sbt.automization.data.Sample;
 import sbt.automization.data.key.ChemistryKey;
 import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.SampleKey;
-import sbt.automization.format.TextFormatUtil;
+import sbt.automization.format.text.TextFormatter;
 import sbt.automization.data.Outcrop;
 import sbt.automization.templates.appendix.Appendix;
 import sbt.automization.html.HtmlFactory;
@@ -60,7 +60,7 @@ public final class Underground extends Appendix
 	{
 		String row = HtmlFactory.createRow("Normal", new String[]{
 				HtmlFactory.createCellAsString("Normal",
-						new String[]{TextFormatUtil.formatSoilGroup(sample.get(SampleKey.TYPE))}),
+						new String[]{TextFormatter.formatSoilGroup(sample.get(SampleKey.TYPE))}),
 				HtmlFactory.createCellAsString("NormalCenter",
 						new String[]{sample.get(SampleKey.THICKNESS)}),
 				HtmlFactory.createCellAsString("NormalCenter",

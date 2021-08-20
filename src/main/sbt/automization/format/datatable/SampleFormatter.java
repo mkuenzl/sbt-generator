@@ -1,4 +1,4 @@
-package sbt.automization.format;
+package sbt.automization.format.datatable;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Parameter;
@@ -15,9 +15,9 @@ import java.util.List;
 /**
  * Class to provide static methods for layer manipulation.
  */
-public final class CombineSampleUtil
+public final class SampleFormatter
 {
-	private CombineSampleUtil() {}
+	private SampleFormatter() {}
 
 	/**
 	 * Method used to combine layers of an outcrop from an exploration site based on a specific tag

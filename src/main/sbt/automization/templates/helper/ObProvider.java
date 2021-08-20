@@ -4,10 +4,10 @@ import sbt.automization.data.DataTable;
 import sbt.automization.data.Sample;
 import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.SampleKey;
-import sbt.automization.format.HtmlCellFormatUtil;
-import sbt.automization.format.TextFormatUtil;
+import sbt.automization.format.text.TextFormatter;
 import sbt.automization.data.Outcrop;
 import sbt.automization.html.HtmlCell;
+import sbt.automization.html.HtmlFactory;
 import sbt.automization.html.HtmlRow;
 import sbt.automization.html.HtmlText;
 
@@ -37,7 +37,7 @@ public final class ObProvider extends RowProvider
 						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", headerCellWidth)
 						.appendContent("Gesamtdicke geb.")
-						.appendContent(TextFormatUtil.printLineBreak())
+						.appendContent(TextFormatter.printLineBreak())
 						.appendContent("Oberbau,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", unitCellClass)
@@ -60,7 +60,7 @@ public final class ObProvider extends RowProvider
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printThicknessOfSamples(samples))
+					.appendContent(TextFormatter.printThicknessOfSamples(samples))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -78,7 +78,7 @@ public final class ObProvider extends RowProvider
 						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", headerCellWidth)
 						.appendContent("Erweichungspunkt")
-						.appendContent(TextFormatUtil.printLineBreak())
+						.appendContent(TextFormatter.printLineBreak())
 						.appendContent("RuK<sup>[31]</sup>,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", unitCellClass)
@@ -95,7 +95,7 @@ public final class ObProvider extends RowProvider
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatUtil.printRukLayers(dataTable, outcrop))
+					.appendContent(TextFormatter.printRukLayers(dataTable, outcrop))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -146,7 +146,7 @@ public final class ObProvider extends RowProvider
 						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", headerCellWidth)
 						.appendContent("Pechnachweis")
-						.appendContent(TextFormatUtil.printLineBreak())
+						.appendContent(TextFormatter.printLineBreak())
 						.appendContent("qualitativ")
 						.build()
 						.appendTag())
@@ -175,7 +175,7 @@ public final class ObProvider extends RowProvider
 						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Pechnachweis")
-						.appendContent(TextFormatUtil.printLineBreak())
+						.appendContent(TextFormatter.printLineBreak())
 						.appendContent("halbquantitativ")
 						.build()
 						.appendTag())
@@ -204,7 +204,7 @@ public final class ObProvider extends RowProvider
 						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", headerCellWidth)
 						.appendContent("Pechnachweis")
-						.appendContent(TextFormatUtil.printLineBreak())
+						.appendContent(TextFormatter.printLineBreak())
 						.appendContent("quantitativ")
 						.build()
 						.appendTag())
@@ -270,7 +270,7 @@ public final class ObProvider extends RowProvider
 						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", headerCellWidth)
 						.appendContent("Abgrenzung")
-						.appendContent(TextFormatUtil.printLineBreak())
+						.appendContent(TextFormatter.printLineBreak())
 						.appendContent("Gefährlichkeit,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", unitCellClass)
@@ -374,10 +374,7 @@ public final class ObProvider extends RowProvider
 
 			rowPitchSize.appendContent(cellPitchSize.appendTag());
 
-			//MUFV
-			HtmlCell cellPitchMufv = HtmlCellFormatUtil.formatChemistry(mufv);
-
-			rowPitchMufv.appendContent(cellPitchMufv.appendTag());
+			rowPitchMufv.appendContent(HtmlFactory.createChemistryCell(mufv));
 
 			//RUVA
 			HtmlCell cellPitchRuva = new HtmlCell.Builder()

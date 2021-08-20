@@ -7,7 +7,7 @@ import sbt.automization.data.key.ChemistryKey;
 import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.RuKKey;
 import sbt.automization.data.key.SampleKey;
-import sbt.automization.format.TextFormatUtil;
+import sbt.automization.format.text.TextFormatter;
 import sbt.automization.data.Outcrop;
 import sbt.automization.templates.appendix.Appendix;
 import sbt.automization.html.HtmlFactory;
@@ -71,7 +71,7 @@ public final class BoundSuperstructure extends Appendix
 	{
 		String row = HtmlFactory.createRow("Normal", new String[]{
 				HtmlFactory.createCellAsString("Normal",
-						new String[]{TextFormatUtil.formatKindAndGranulation(sample.get(SampleKey.TYPE),
+						new String[]{TextFormatter.formatKindAndGranulation(sample.get(SampleKey.TYPE),
 								sample.get(SampleKey.GRANULATION))}),
 				HtmlFactory.createCellAsString("NormalCenter",
 						new String[]{sample.get(SampleKey.THICKNESS)}),
@@ -96,10 +96,10 @@ public final class BoundSuperstructure extends Appendix
 				HtmlFactory.createCellAsString("NormalCenter", 1, 5,
 						new String[]{""}),
 				HtmlFactory.createCellAsString("NormalCenter", 1, 2,
-						new String[]{TextFormatUtil.formatLoadClass(probe.get(ProbeKey.LOAD_CLASS))}),
+						new String[]{TextFormatter.formatLoadClass(probe.get(ProbeKey.LOAD_CLASS))}),
 				HtmlFactory.createCellAsString("NormalCenter", 1, 2,
 						new String[]{"RStO<sup>[5]</sup>",
-								TextFormatUtil.printLineBreak(),
+								TextFormatter.printLineBreak(),
 								probe.get(ProbeKey.LOAD_CLASS_BOARD)})
 		});
 
