@@ -81,13 +81,13 @@ public final class Gap extends Appendix
 	{
 		String firstRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "width:125px;text-align:left",
-						new String[]{"FUGE"}),
+						new String[]{"Fuge"}),
 				HtmlFactory.createHeader("NormalTableHeader", "text-align:left", 1, 8,
 						new String[]{"Aufschlussverfahren:", outcrop}),
 		});
 
 		String secondRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
-				HtmlFactory.createHeader("NormalTableHeader", "text-align:left", 1, 2,
+				HtmlFactory.createHeader("NormalTableHeader", "text-align:left", 2, 1,
 						new String[]{"Art der Schicht"}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
 						new String[]{"Dicke", "<div>[7]</div>"}),

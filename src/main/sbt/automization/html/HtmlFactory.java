@@ -1,6 +1,6 @@
 package sbt.automization.html;
 
-import sbt.automization.format.text.TextFormatter;
+import sbt.automization.format.printer.TextFormatterMulti;
 
 import java.util.Locale;
 
@@ -475,7 +475,7 @@ public class HtmlFactory
 				htmlCell = new HtmlCell.Builder()
 						.appendAttribute("class", "ChemieBlack")
 						.appendContent("nachweis-")
-						.appendContent(TextFormatter.printLineBreak())
+						.appendContent(TextFormatterMulti.printLineBreak())
 						.appendContent("bar")
 						.build();
 				break;
@@ -483,7 +483,7 @@ public class HtmlFactory
 				htmlCell = new HtmlCell.Builder()
 						.appendAttribute("class", "ChemieWhite")
 						.appendContent("nicht")
-						.appendContent(TextFormatter.printLineBreak())
+						.appendContent(TextFormatterMulti.printLineBreak())
 						.appendContent("gefährlich")
 						.build();
 				break;
@@ -491,9 +491,9 @@ public class HtmlFactory
 				htmlCell = new HtmlCell.Builder()
 						.appendAttribute("class", "ChemieWhite")
 						.appendContent("nicht")
-						.appendContent(TextFormatter.printLineBreak())
+						.appendContent(TextFormatterMulti.printLineBreak())
 						.appendContent("nachweis-")
-						.appendContent(TextFormatter.printLineBreak())
+						.appendContent(TextFormatterMulti.printLineBreak())
 						.appendContent("bar")
 						.build();
 				break;

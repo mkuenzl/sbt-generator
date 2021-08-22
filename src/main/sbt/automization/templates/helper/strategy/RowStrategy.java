@@ -3,7 +3,7 @@ package sbt.automization.templates.helper.strategy;
 import sbt.automization.data.DataTable;
 import sbt.automization.data.key.Key;
 import sbt.automization.data.Outcrop;
-import sbt.automization.templates.styles.ReportStyle;
+import sbt.automization.styles.ReportStyle;
 import sbt.automization.html.HtmlRow;
 import sbt.automization.html.HtmlText;
 

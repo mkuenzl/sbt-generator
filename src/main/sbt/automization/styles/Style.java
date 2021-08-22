@@ -1,4 +1,4 @@
-package sbt.automization.templates.styles;
+package sbt.automization.styles;
 
 public interface Style
 {

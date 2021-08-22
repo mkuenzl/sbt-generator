@@ -6,7 +6,8 @@ import sbt.automization.data.Parameter;
 import sbt.automization.data.Probe;
 import sbt.automization.data.key.LpKey;
 import sbt.automization.data.key.ProbeKey;
-import sbt.automization.format.text.TextFormatter;
+import sbt.automization.format.text.LoadPlateTextFormatter;
+import sbt.automization.format.printer.TextFormatterMulti;
 import sbt.automization.html.HtmlFactory;
 import sbt.automization.html.HtmlTable;
 
@@ -40,7 +41,7 @@ public final class LoadPlate extends Appendix
 	{
 		String firstRow = HtmlFactory.createRow(2, new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "width:55px", 3, 1,
-						new String[]{"Versuch", TextFormatter.printLineBreak(), "Nr."}),
+						new String[]{"Versuch", TextFormatterMulti.printLineBreak(), "Nr."}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:65px", 3, 1,
 						new String[]{"Erk. St."}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:185px", 3, 1,
@@ -50,7 +51,7 @@ public final class LoadPlate extends Appendix
 				HtmlFactory.createHeader("NormalTableHeader", "width:45px", 2, 1,
 						new String[]{"E<sub>Vdyn</sub>"}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:45px", 2, 1,
-						new String[]{"E<sub>Vdyn</sub>", TextFormatter.printLineBreak(), "<sub>(-15%)</sub>"}),
+						new String[]{"E<sub>Vdyn</sub>", TextFormatterMulti.printLineBreak(), "<sub>(-15%)</sub>"}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:45px", 2, 1,
 						new String[]{"E<sub>V2</sub>", "<div>[41]</div>"})
 		});
@@ -121,7 +122,7 @@ public final class LoadPlate extends Appendix
 
 				if (parameter != null)
 				{
-					String formattedEV2 = TextFormatter.formatLP(parameter.get(LpKey.EV2),
+					String formattedEV2 = new LoadPlateTextFormatter().format(parameter.get(LpKey.EV2),
 							parameter.get(LpKey.EV85));
 
 					String row = HtmlFactory.createRow("Normal", new String[]{

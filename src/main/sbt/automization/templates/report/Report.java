@@ -3,7 +3,7 @@ package sbt.automization.templates.report;
 import sbt.automization.data.DataTable;
 import sbt.automization.templates.HtmlTemplate;
 import sbt.automization.data.Outcrop;
-import sbt.automization.templates.styles.ReportStyle;
+import sbt.automization.styles.ReportStyle;
 import sbt.automization.util.DatatableFilter;
 import sbt.automization.util.Separator;
 import sbt.automization.html.HtmlCell;

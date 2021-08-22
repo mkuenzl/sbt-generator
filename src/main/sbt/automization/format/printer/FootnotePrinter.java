@@ -1,21 +1,21 @@
-package sbt.automization.format.text;
+package sbt.automization.format.printer;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.Key;
-import sbt.automization.format.text.TextFormatter;
+import sbt.automization.format.printer.TextFormatterMulti;
 import sbt.automization.html.HtmlText;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public final class FootnoteFormatter
+public final class FootnotePrinter
 {
 	private static int counter;
 
-	private FootnoteFormatter() {}
+	private FootnotePrinter() {}
 
-	public static String printFootnotes(DataTable table)
+	public static String print(DataTable table)
 	{
 		StringBuilder stringBuilder = new StringBuilder();
 
@@ -44,14 +44,14 @@ public final class FootnoteFormatter
 		return new HtmlText.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent("Angaben:")
-				.appendContent(TextFormatter.printLineBreak())
+				.appendContent(TextFormatterMulti.printLineBreak())
 				.appendContent("KGV = Korngrößenverteilung, WG = Wassergehalt, LP = Plattendruckversuch, wPr = optimaler Wassergehalt")
-				.appendContent(TextFormatter.printLineBreak())
+				.appendContent(TextFormatterMulti.printLineBreak())
 				.appendContent("Gem. a. G. = Gemisch aus Gesteinskörnungen, NS = Naturstein, LS = Lavaschlacke, HO = Hochofenschlacke")
-				.appendContent(TextFormatter.printLineBreak())
+				.appendContent(TextFormatterMulti.printLineBreak())
 				.appendContent("RC = Rezyklierte Gesteinskörnung, BK = Brechkorn, RK = Rundkorn, sg = stetig gestuft, ug = unstetig gestuft")
-				.appendContent(TextFormatter.printLineBreak())
-				.appendContent(TextFormatter.printLineEmpty())
+				.appendContent(TextFormatterMulti.printLineBreak())
+				.appendContent(TextFormatterMulti.printLineEmpty())
 				.build()
 				.appendTag();
 	}
@@ -116,7 +116,7 @@ public final class FootnoteFormatter
 
 		return printFootnoteWithText(new String[]{
 				"Prüfergebnisse unter Berücksichtigung einer ca. 15 % Reduzierung aufgrund der Einspannung durch den ",
-				TextFormatter.printLineBreak(),
+				TextFormatterMulti.printLineBreak(),
 				"gebundenen Oberbau"});
 	}
 

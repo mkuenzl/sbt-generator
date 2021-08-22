@@ -5,7 +5,7 @@ import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
 import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.SampleKey;
-import sbt.automization.format.text.TextFormatter;
+import sbt.automization.format.printer.TextFormatterMulti;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlRow;
 import sbt.automization.html.HtmlText;
@@ -29,7 +29,7 @@ public final class TmhbProvider extends RowProvider
 						.appendAttribute("colspan", String.valueOf(1 + dataTables.size()))
 						.appendAttribute("width", String.valueOf(size))
 						.appendContent("Anmerkungen:")
-						.appendContent(TextFormatter.printLineBreak())
+						.appendContent(TextFormatterMulti.printLineBreak())
 						.appendContent("Für die angegebenen Tiefen (T[]) gilt die Einheit cm.")
 						.build()
 						.appendTag())
@@ -88,10 +88,10 @@ public final class TmhbProvider extends RowProvider
 			Probe probe = (Probe) dataTable;
 
 			List<Sample> samplesByGob = probe.getSamplesBy(SampleKey.OUTCROP, "GOB");
-			Double gobSize = TextFormatter.measureThicknessOfSamples(samplesByGob);
+			Double gobSize = TextFormatterMulti.measureThicknessOfSamples(samplesByGob);
 
 			List<Sample> samplesByOutcrop = probe.getSamplesBy(SampleKey.OUTCROP, outcrop);
-			Double tobSize = TextFormatter.measureThicknessOfSamples(samplesByOutcrop);
+			Double tobSize = TextFormatterMulti.measureThicknessOfSamples(samplesByOutcrop);
 
 			String doubleValue = String.valueOf(Math.round(gobSize + tobSize));
 			String totalSize = doubleValue.replace(".", ",");

@@ -2,7 +2,7 @@ package sbt.automization.templates.basic;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.templates.HtmlTemplate;
-import sbt.automization.templates.styles.BasicStyle;
+import sbt.automization.styles.BasicStyle;
 import sbt.automization.util.Separator;
 import sbt.automization.html.HtmlTable;
 

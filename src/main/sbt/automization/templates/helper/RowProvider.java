@@ -3,7 +3,8 @@ package sbt.automization.templates.helper;
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Sample;
 import sbt.automization.data.key.*;
-import sbt.automization.format.text.TextFormatter;
+import sbt.automization.format.text.LoadPlateTextFormatter;
+import sbt.automization.format.printer.TextFormatterMulti;
 import sbt.automization.util.CheckDataAvailability;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlFactory;
@@ -124,7 +125,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			List<Sample> samples = dataTable.getSamplesBy(SampleKey.OUTCROP, outcrop);
-			String size = TextFormatter.printThicknessOfSamples(samples);
+			String size = TextFormatterMulti.printThicknessOfSamples(samples);
 
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
 					new String[]{size});
@@ -255,7 +256,7 @@ public abstract class RowProvider
 			String parameterEV85 = dataTable.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV85);
 
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.formatLP(parameterEV2, parameterEV85)});
+					new String[]{new LoadPlateTextFormatter().format(parameterEV2, parameterEV85)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -311,7 +312,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -339,7 +340,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -368,7 +369,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -390,7 +391,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -412,7 +413,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -441,7 +442,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -476,7 +477,7 @@ public abstract class RowProvider
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatter.printLayerInformationWithDepth(dataTable, outcrop, tag))
+					.appendContent(TextFormatterMulti.printLayerInformationWithDepth(dataTable, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -500,7 +501,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -516,7 +517,7 @@ public abstract class RowProvider
 		String formattedUnitText = new HtmlText.Builder()
 				.appendAttribute("class", unitCellClass)
 				.appendContent("Soll: E<sub>V2</sub> >= 45 MN/m²")
-				.appendContent(TextFormatter.printLineBreak())
+				.appendContent(TextFormatterMulti.printLineBreak())
 				.appendContent("Ansatz Planum: FOK -60cm")
 				.build()
 				.appendTag();
@@ -524,7 +525,7 @@ public abstract class RowProvider
 		//Erkundungsstellen ID
 		HtmlRow row = HtmlFactory.createRow(rowClass, new HtmlCell[]{
 				HtmlFactory.createCell(headerCellClass, "width:" + headerCellWidth,
-						new String[]{"Tragfähigkeit", TextFormatter.printLineBreak(), "Planum", formattedUnitText})
+						new String[]{"Tragfähigkeit", TextFormatterMulti.printLineBreak(), "Planum", formattedUnitText})
 		});
 
 		for (DataTable table :
@@ -555,7 +556,7 @@ public abstract class RowProvider
 		//Erkundungsstellen ID
 		HtmlRow row = HtmlFactory.createRow(rowClass, new HtmlCell[]{
 				HtmlFactory.createCell(headerCellClass, "width:" + headerCellWidth,
-						new String[]{"Tragfähigkeit", TextFormatter.printLineBreak(), "Grabensohle", formattedHeaderText})
+						new String[]{"Tragfähigkeit", TextFormatterMulti.printLineBreak(), "Grabensohle", formattedHeaderText})
 		});
 
 		for (DataTable table :
@@ -567,7 +568,7 @@ public abstract class RowProvider
 					.appendContent("]").build().appendTag();
 
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{table.get(tag), TextFormatter.printLineEmpty(), formattedCellText});
+					new String[]{table.get(tag), TextFormatterMulti.printLineEmpty(), formattedCellText});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -589,14 +590,14 @@ public abstract class RowProvider
 		//Erkundungsstellen ID
 		HtmlRow row = HtmlFactory.createRow(rowClass, new HtmlCell[]{
 				HtmlFactory.createCell(headerCellClass, "width:" + headerCellWidth,
-						new String[]{"Frostempfindlichkeits-", TextFormatter.printLineBreak(), "klasse,", formattedUnitText})
+						new String[]{"Frostempfindlichkeits-", TextFormatterMulti.printLineBreak(), "klasse,", formattedUnitText})
 		});
 
 		for (DataTable table :
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -623,7 +624,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -645,14 +646,14 @@ public abstract class RowProvider
 		//Erkundungsstellen ID
 		HtmlRow row = HtmlFactory.createRow(rowClass, new HtmlCell[]{
 				HtmlFactory.createCell(headerCellClass, "width:" + headerCellWidth,
-						new String[]{"Abgrenzung", TextFormatter.printLineBreak(), "Gefährlichkeit,", formattedUnitText})
+						new String[]{"Abgrenzung", TextFormatterMulti.printLineBreak(), "Gefährlichkeit,", formattedUnitText})
 		});
 
 		for (DataTable table :
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -681,7 +682,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -710,7 +711,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -739,7 +740,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -768,7 +769,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -797,7 +798,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -826,7 +827,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -855,7 +856,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -883,7 +884,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -917,7 +918,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -947,7 +948,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -976,7 +977,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -1007,7 +1008,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -1029,14 +1030,14 @@ public abstract class RowProvider
 
 		HtmlRow row = HtmlFactory.createRow(rowClass, new HtmlCell[]{
 				HtmlFactory.createCell(headerCellClass, "width:" + headerCellWidth,
-						new String[]{"Bodenarten-", TextFormatter.printLineBreak(), "hauptgruppe,", formattedUnitText})
+						new String[]{"Bodenarten-", TextFormatterMulti.printLineBreak(), "hauptgruppe,", formattedUnitText})
 		});
 
 		for (DataTable table :
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -1065,7 +1066,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{TextFormatter.printLayerInformationWithDepth(table, outcrop, tag)});
+					new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}

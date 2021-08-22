@@ -4,7 +4,7 @@ import sbt.automization.data.DataTable;
 import sbt.automization.data.Probe;
 import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.SampleKey;
-import sbt.automization.format.text.FootnoteFormatter;
+import sbt.automization.format.printer.FootnotePrinter;
 import sbt.automization.data.Outcrop;
 import sbt.automization.templates.appendix.site.*;
 import sbt.automization.html.HtmlCell;
@@ -125,7 +125,7 @@ public final class ExplorationSite extends Appendix
 	{
 		HtmlCell cell = new HtmlCell.Builder()
 				.appendAttribute("class", "NormalHeader")
-				.appendContent(FootnoteFormatter.printFootnotes(dataTable))
+				.appendContent(FootnotePrinter.print(dataTable))
 				.build();
 
 		HtmlRow row = new HtmlRow.Builder()
