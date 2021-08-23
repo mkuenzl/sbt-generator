@@ -82,6 +82,7 @@ public final class Probe extends DataTableImpl
 		return true;
 	}
 
+	@Override
 	public List<Sample> getSamples()
 	{
 		return samples;

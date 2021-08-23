@@ -45,6 +45,8 @@ public interface DataTable
 
 	boolean hasSampleWith(final Key key, final String value);
 
+	List<Sample> getSamples();
+
 	List<Sample> getSamplesBy(final Key key, final String[] values);
 
 	List<Sample> getSamplesBy(final Key key, final String value);

@@ -238,6 +238,11 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 		return new ArrayList<>();
 	}
 
+	public List<Sample> getSamples()
+	{
+		return new ArrayList<>();
+	}
+
 	public boolean hasSampleWith(final Key key, final String value)
 	{
 		return false;

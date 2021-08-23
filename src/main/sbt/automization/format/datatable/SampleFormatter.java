@@ -1,12 +1,13 @@
 package sbt.automization.format.datatable;
 
 import sbt.automization.data.DataTable;
+import sbt.automization.data.Outcrop;
 import sbt.automization.data.Parameter;
 import sbt.automization.data.Sample;
 import sbt.automization.data.key.ChemistryKey;
+import sbt.automization.data.key.Key;
 import sbt.automization.data.key.RuKKey;
 import sbt.automization.data.key.SampleKey;
-import sbt.automization.data.key.Key;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,35 +18,54 @@ import java.util.List;
  */
 public final class SampleFormatter
 {
-	private SampleFormatter() {}
+	private DataTable dataTable;
+	private String outcrop;
+
+	public SampleFormatter()
+	{}
+
+	public SampleFormatter(DataTable dataTable)
+	{
+		this.dataTable = dataTable;
+	}
+
+	public SampleFormatter(DataTable dataTable, String outcrop)
+	{
+		this.dataTable = dataTable;
+		this.outcrop = outcrop;
+	}
 
 	/**
 	 * Method used to combine layers of an outcrop from an exploration site based on a specific tag
 	 *
-	 * @param dataTable a ExplorationSite Object
-	 * @param outcrop a String defining an outcrop
-	 * @param tag a String specifying an information tag
+	 * @param tag       a String specifying an information tag
 	 * @return an updated list of layers with all possible layers combined
 	 */
-	public static List<Sample> combineSamplesOfOutcrop(final DataTable dataTable, final String outcrop, final Key tag)
+	public List<Sample> combineSamplesByTag(final Key tag)
 	{
-		List<Sample> datatablesWithOutcrop = dataTable.getSamplesBy(SampleKey.OUTCROP, outcrop);
-
-		return combineSamples(datatablesWithOutcrop, tag);
+		if (outcrop != null)
+		{
+			List<Sample> samplesWithOutcrop = dataTable.getSamplesBy(SampleKey.OUTCROP, outcrop);
+			return combineSamples(samplesWithOutcrop, tag);
+		} else
+		{
+			List<Sample> samples = dataTable.getSamples();
+			return combineSamples(samples, tag);
+		}
 	}
 
 	/**
 	 * Method used to combine consecutive identical layers in a list.
 	 *
 	 * @param samples a List of Layers
-	 * @param tag a String representing the information to compare
+	 * @param tag     a String representing the information to compare
 	 * @return an updated list of layers with all possible layers combined
 	 */
-	public static List<Sample> combineSamples(final List<Sample> samples, final Key tag)
+	public List<Sample> combineSamples(final List<Sample> samples, final Key tag)
 	{
 		List<Sample> updatedSamples = new ArrayList<>();
 
-		for (int i = 0; i < samples.size() ; i++)
+		for (int i = 0 ; i < samples.size() ; i++)
 		{
 			Sample sample = samples.get(i);
 			Sample finalSample = sample;
@@ -78,10 +98,10 @@ public final class SampleFormatter
 	 *
 	 * @param firstSample  a Layer Object
 	 * @param secondSample a Layer Object
-	 * @param tag         a String representing a column of the excel template
+	 * @param tag          a String representing a column of the excel template
 	 * @return a Layer Object with the tag, the depth start from the first layer and end from the second layer.
 	 */
-	public static Sample combineSamples(final Sample firstSample, final Sample secondSample, final Key tag)
+	public Sample combineSamples(final Sample firstSample, final Sample secondSample, final Key tag)
 	{
 		if (firstSample == null) return secondSample;
 		if (secondSample == null) return firstSample;
@@ -89,7 +109,7 @@ public final class SampleFormatter
 
 		if (tag instanceof SampleKey)
 		{
-			if (!firstSample.get(tag).equals(secondSample.get(tag)))
+			if (! firstSample.get(tag).equals(secondSample.get(tag)))
 				return null;
 			else
 			{
@@ -122,6 +142,7 @@ public final class SampleFormatter
 				}});
 				Sample sample = new Sample(new HashMap<>()
 				{{
+					put(SampleKey.CHEMISTRY_ID.getKey(), firstSample.get(SampleKey.CHEMISTRY_ID));
 					put(SampleKey.DEPTH_START.getKey(),
 							firstSample.get(SampleKey.DEPTH_START));
 					put(SampleKey.DEPTH_END.getKey(),
@@ -150,6 +171,7 @@ public final class SampleFormatter
 				}});
 				Sample sample = new Sample(new HashMap<>()
 				{{
+					put(SampleKey.RUK_ID.getKey(), firstSample.get(SampleKey.RUK_ID));
 					put(SampleKey.DEPTH_START.getKey(),
 							firstSample.get(SampleKey.DEPTH_START));
 					put(SampleKey.DEPTH_END.getKey(),
@@ -161,6 +183,11 @@ public final class SampleFormatter
 				return sample;
 			}
 		}
+		return null;
+	}
+
+	private Sample checkChemistryTag()
+	{
 		return null;
 	}
 }
