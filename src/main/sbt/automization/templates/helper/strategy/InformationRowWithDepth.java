@@ -2,7 +2,7 @@ package sbt.automization.templates.helper.strategy;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.key.Key;
-import sbt.automization.format.printer.TextFormatterMulti;
+import sbt.automization.format.printer.SamplePrinter;
 import sbt.automization.data.Outcrop;
 import sbt.automization.styles.ReportStyle;
 import sbt.automization.html.HtmlCell;
@@ -31,7 +31,7 @@ public class InformationRowWithDepth extends RowStrategy
 	String createCell(DataTable table)
 	{
 		HtmlCell cell = HtmlFactory.createCell(ReportStyle.CELL.getStyleClass(), ReportStyle.CELL.getStyle(),
-				new String[]{TextFormatterMulti.printLayerInformationWithDepth(table, outcrop.toString(), key)});
+				new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop.toString(), key)});
 
 		return cell.appendTag();
 	}

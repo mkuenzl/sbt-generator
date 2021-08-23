@@ -7,8 +7,8 @@ import sbt.automization.data.key.ChemistryKey;
 import sbt.automization.data.key.LpKey;
 import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.SampleKey;
-import sbt.automization.format.printer.TextFormatterMulti;
 import sbt.automization.data.Outcrop;
+import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.templates.appendix.Appendix;
 import sbt.automization.html.HtmlFactory;
 import sbt.automization.html.HtmlTable;
@@ -64,7 +64,7 @@ public final class BaseCourseWithoutBinder extends Appendix
 		String row = HtmlFactory.createRow("Normal", new String[]{
 				HtmlFactory.createCellAsString("Normal",
 						new String[]{sample.get(SampleKey.TYPE),
-								TextFormatterMulti.printLineBreak(),
+								UtilityPrinter.printLineBreak(),
 								sample.get(SampleKey.GRANULATION),
 								sample.get(SampleKey.ROUNDING_GRADATION)}),
 				HtmlFactory.createCellAsString("NormalCenter",
@@ -89,7 +89,7 @@ public final class BaseCourseWithoutBinder extends Appendix
 	{
 		String firstRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "width:125px;text-align:left",
-						new String[]{"Tragschicht ohne", TextFormatterMulti.printLineBreak(), "Bindemittel"}),
+						new String[]{"Tragschicht ohne", UtilityPrinter.printLineBreak(), "Bindemittel"}),
 				HtmlFactory.createHeader("NormalTableHeader", "text-align:left", 1, 8,
 						new String[]{"Aufschlussverfahren:", outcrop}),
 		});
@@ -111,9 +111,9 @@ public final class BaseCourseWithoutBinder extends Appendix
 						new String[]{"TL Ge.", "<div>[27]</div>"}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
 						new String[]{"E<sub>V2</sub>",
-								TextFormatterMulti.printLineBreak(),
+								UtilityPrinter.printLineBreak(),
 								"E<sub>Vdyn</sub>",
-								TextFormatterMulti.printLineBreak(),
+								UtilityPrinter.printLineBreak(),
 								"<sub>(-15%)</sub>",
 								"<div>[41]</div>"
 						}),
@@ -161,7 +161,7 @@ public final class BaseCourseWithoutBinder extends Appendix
 		if (probe.containsValueFor(ProbeKey.LP_ID) && ! alreadyPrintedLP)
 		{
 			String formattedEV = probe.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV2)
-					.concat(TextFormatterMulti.printLineBreak())
+					.concat(UtilityPrinter.printLineBreak())
 					.concat(probe.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV85));
 			alreadyPrintedLP = true;
 

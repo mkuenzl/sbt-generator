@@ -2,7 +2,7 @@ package sbt.automization.templates.helper;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.key.ProbeKey;
-import sbt.automization.format.printer.TextFormatterMulti;
+import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlRow;
 import sbt.automization.html.HtmlText;
@@ -158,7 +158,7 @@ public final class UgProvider extends RowProvider
 						.appendAttribute("colspan", String.valueOf(1 + dataTables.size()))
 						.appendAttribute("width", String.valueOf(size))
 						.appendContent("Anmerkungen:")
-						.appendContent(TextFormatterMulti.printLineBreak())
+						.appendContent(UtilityPrinter.printLineBreak())
 						.appendContent("Für die angegebenen Tiefen (T[]) gilt die Einheit cm. ")
 						.appendContent("Die Einstufung der Verdichtungsfähigkeit erfolgt unter Berücksichtigung der Bodenfeuchtigkeit und der Konsistenz\n" +
 								"des Materials zum Erkundungszeitpunkt.")

@@ -125,7 +125,7 @@ public final class ExplorationSite extends Appendix
 	{
 		HtmlCell cell = new HtmlCell.Builder()
 				.appendAttribute("class", "NormalHeader")
-				.appendContent(FootnotePrinter.print(dataTable))
+				.appendContent(new FootnotePrinter().print(dataTable))
 				.build();
 
 		HtmlRow row = new HtmlRow.Builder()

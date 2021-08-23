@@ -3,19 +3,18 @@ package sbt.automization.format.printer;
 import sbt.automization.data.DataTable;
 import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.Key;
-import sbt.automization.format.printer.TextFormatterMulti;
 import sbt.automization.html.HtmlText;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public final class FootnotePrinter
+public final class FootnotePrinter implements TextPrinter
 {
 	private static int counter;
 
-	private FootnotePrinter() {}
+	public FootnotePrinter() {}
 
-	public static String print(DataTable table)
+	public String print(DataTable table)
 	{
 		StringBuilder stringBuilder = new StringBuilder();
 
@@ -34,29 +33,35 @@ public final class FootnotePrinter
 		return stringBuilder.toString();
 	}
 
+	@Override
+	public String print()
+	{
+		return null;
+	}
+
 	static void startCounter()
 	{
 		counter = 1;
 	}
 
-	private static String formatInformationFootnote()
+	private String formatInformationFootnote()
 	{
 		return new HtmlText.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent("Angaben:")
-				.appendContent(TextFormatterMulti.printLineBreak())
+				.appendContent(UtilityPrinter.printLineBreak())
 				.appendContent("KGV = Korngrößenverteilung, WG = Wassergehalt, LP = Plattendruckversuch, wPr = optimaler Wassergehalt")
-				.appendContent(TextFormatterMulti.printLineBreak())
+				.appendContent(UtilityPrinter.printLineBreak())
 				.appendContent("Gem. a. G. = Gemisch aus Gesteinskörnungen, NS = Naturstein, LS = Lavaschlacke, HO = Hochofenschlacke")
-				.appendContent(TextFormatterMulti.printLineBreak())
+				.appendContent(UtilityPrinter.printLineBreak())
 				.appendContent("RC = Rezyklierte Gesteinskörnung, BK = Brechkorn, RK = Rundkorn, sg = stetig gestuft, ug = unstetig gestuft")
-				.appendContent(TextFormatterMulti.printLineBreak())
-				.appendContent(TextFormatterMulti.printLineEmpty())
+				.appendContent(UtilityPrinter.printLineBreak())
+				.appendContent(UtilityPrinter.printLineEmpty())
 				.build()
 				.appendTag();
 	}
 
-	private static String printFootnoteWithText(String line)
+	private String printFootnoteWithText(String line)
 	{
 		HtmlText footnote = createFootnote();
 		footnote.appendContent(line);
@@ -64,7 +69,7 @@ public final class FootnotePrinter
 		return footnote.appendTag();
 	}
 
-	private static List<ProbeKey> getFootnoteReferences()
+	private List<ProbeKey> getFootnoteReferences()
 	{
 		List<ProbeKey> references = new ArrayList<>()
 		{{
@@ -84,13 +89,13 @@ public final class FootnotePrinter
 		return references;
 	}
 
-	private static boolean checkExistenceOfFootnote(DataTable table, Key key)
+	private boolean checkExistenceOfFootnote(DataTable table, Key key)
 	{
 		String footnote = table.get(key);
 		return (footnote != null && ! footnote.equals("#") && ! footnote.equals("-") && ! footnote.equals(""));
 	}
 
-	private static String printFootnoteForReference(DataTable table, ProbeKey footnoteReference)
+	private String printFootnoteForReference(DataTable table, ProbeKey footnoteReference)
 	{
 		switch (footnoteReference)
 		{
@@ -101,7 +106,7 @@ public final class FootnotePrinter
 		}
 	}
 
-	private static HtmlText createFootnote()
+	private HtmlText createFootnote()
 	{
 		return new HtmlText.Builder()
 				.appendAttribute("class", "Normal")
@@ -110,17 +115,17 @@ public final class FootnotePrinter
 				.build();
 	}
 
-	private static String printFootnoteForLP(DataTable table)
+	private String printFootnoteForLP(DataTable table)
 	{
 		if (! table.containsValueFor(ProbeKey.LP_ID)) return "";
 
 		return printFootnoteWithText(new String[]{
 				"Prüfergebnisse unter Berücksichtigung einer ca. 15 % Reduzierung aufgrund der Einspannung durch den ",
-				TextFormatterMulti.printLineBreak(),
+				UtilityPrinter.printLineBreak(),
 				"gebundenen Oberbau"});
 	}
 
-	private static String printFootnoteWithText(String[] lines)
+	private String printFootnoteWithText(String[] lines)
 	{
 		HtmlText footnote = createFootnote();
 

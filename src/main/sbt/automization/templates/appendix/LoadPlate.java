@@ -6,8 +6,8 @@ import sbt.automization.data.Parameter;
 import sbt.automization.data.Probe;
 import sbt.automization.data.key.LpKey;
 import sbt.automization.data.key.ProbeKey;
+import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.format.text.LoadPlateTextFormatter;
-import sbt.automization.format.printer.TextFormatterMulti;
 import sbt.automization.html.HtmlFactory;
 import sbt.automization.html.HtmlTable;
 
@@ -41,7 +41,7 @@ public final class LoadPlate extends Appendix
 	{
 		String firstRow = HtmlFactory.createRow(2, new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "width:55px", 3, 1,
-						new String[]{"Versuch", TextFormatterMulti.printLineBreak(), "Nr."}),
+						new String[]{"Versuch", UtilityPrinter.printLineBreak(), "Nr."}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:65px", 3, 1,
 						new String[]{"Erk. St."}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:185px", 3, 1,
@@ -51,7 +51,7 @@ public final class LoadPlate extends Appendix
 				HtmlFactory.createHeader("NormalTableHeader", "width:45px", 2, 1,
 						new String[]{"E<sub>Vdyn</sub>"}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:45px", 2, 1,
-						new String[]{"E<sub>Vdyn</sub>", TextFormatterMulti.printLineBreak(), "<sub>(-15%)</sub>"}),
+						new String[]{"E<sub>Vdyn</sub>", UtilityPrinter.printLineBreak(), "<sub>(-15%)</sub>"}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:45px", 2, 1,
 						new String[]{"E<sub>V2</sub>", "<div>[41]</div>"})
 		});

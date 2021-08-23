@@ -1,8 +1,8 @@
 package sbt.automization.format.text;
 
-public abstract class TextFormatterImpl implements TextFormatter
+public abstract class AbstractTextFormatter implements TextFormatter
 {
-	public TextFormatterImpl(){}
+	public AbstractTextFormatter(){}
 
 	protected String replaceIfEmpty(String text)
 	{

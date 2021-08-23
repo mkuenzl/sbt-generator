@@ -5,8 +5,9 @@ import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
 import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.SampleKey;
-import sbt.automization.format.printer.TextFormatterMulti;
+import sbt.automization.format.printer.SamplePrinter;
 import sbt.automization.data.Outcrop;
+import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlRow;
 import sbt.automization.html.HtmlText;
@@ -66,7 +67,7 @@ public final class TobProvider extends RowProvider
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatterMulti.formatOutcropLayers(dataTable, outcrop))
+					.appendContent(new SamplePrinter(Outcrop.TOB).printSamplesMaterials(dataTable))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -104,8 +105,9 @@ public final class TobProvider extends RowProvider
 
 			List<Sample> samplesByOutcrop = ((Probe) dataTable).getSamplesBy(SampleKey.OUTCROP, outcrop);
 
-			Double gobSize = TextFormatterMulti.measureThicknessOfSamples(samplesByGoB);
-			Double tobSize = TextFormatterMulti.measureThicknessOfSamples(samplesByOutcrop);
+			SamplePrinter samplePrinter = new SamplePrinter();
+			Double gobSize = samplePrinter.measureThickness(samplesByGoB);
+			Double tobSize = samplePrinter.measureThickness(samplesByOutcrop);
 
 			String doubleValue = String.valueOf(Math.round(gobSize + tobSize));
 			String totalSize = doubleValue.replace(".",",");
@@ -135,7 +137,7 @@ public final class TobProvider extends RowProvider
 						.appendAttribute("colspan", String.valueOf(1 + dataTables.size()))
 						.appendAttribute("width", String.valueOf(size))
 						.appendContent("Anmerkungen:")
-						.appendContent(TextFormatterMulti.printLineBreak())
+						.appendContent(UtilityPrinter.printLineBreak())
 						.appendContent("Für die angegebenen Tiefen (T[]) gilt die Einheit cm. ")
 						.appendContent("Gem. a. G. = Gemisch aus Gesteinskörnungen, NS = Naturstein, LS = Lavaschlacke, HO = Hochofenschlacke,")
 						.appendContent("RC = Rezyklierte Gesteinskörnung, BK = Brechkorn, RK = Rundkorn, sg = stetig gestuft, ug = unstetig gestuft")

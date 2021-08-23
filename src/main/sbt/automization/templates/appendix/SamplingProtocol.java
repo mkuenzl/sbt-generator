@@ -6,10 +6,10 @@ import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
 import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.SampleKey;
+import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.format.text.DepthTextFormatter;
 import sbt.automization.format.text.LineBreakTextFormatter;
 import sbt.automization.format.text.SampleTypeTextFormatter;
-import sbt.automization.format.printer.TextFormatterMulti;
 import sbt.automization.html.HtmlFactory;
 import sbt.automization.html.HtmlTable;
 
@@ -51,17 +51,17 @@ public final class SamplingProtocol extends Appendix
 	{
 		String firstRow = HtmlFactory.createRow("NormalHeader", new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "width:40px", 2, 1,
-						new String[]{"Probe", TextFormatterMulti.printLineBreak(), "Nr."}),
+						new String[]{"Probe", UtilityPrinter.printLineBreak(), "Nr."}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:40px", 2, 1,
 						new String[]{"Art"}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:105px",
-						new String[]{"Behältnis", TextFormatterMulti.printLineBreak(), "Vol."}),
+						new String[]{"Behältnis", UtilityPrinter.printLineBreak(), "Vol."}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
-						new String[]{"Haufwerk", TextFormatterMulti.printLineBreak(), "Vol."}),
+						new String[]{"Haufwerk", UtilityPrinter.printLineBreak(), "Vol."}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:140px", 2, 2,
 						new String[]{"Abfallart"}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:76px", 2, 1,
-						new String[]{"Farbe", TextFormatterMulti.printLineBreak(), "Geruch", TextFormatterMulti.printLineBreak(), "Bodenart"}),
+						new String[]{"Farbe", UtilityPrinter.printLineBreak(), "Geruch", UtilityPrinter.printLineBreak(), "Bodenart"}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:35px", 2, 1,
 						new String[]{"Erk. St."}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:70px",
@@ -133,8 +133,8 @@ public final class SamplingProtocol extends Appendix
 							HtmlFactory.createCellAsString("NormalCenter", "width:50px",
 									new String[]{sample.get(SampleKey.GRANULATION)}),
 							HtmlFactory.createCellAsString("Normal", "left",
-									new String[]{sample.get(SampleKey.COLOR), TextFormatterMulti.printLineBreak(),
-											sample.get(SampleKey.SMELL), TextFormatterMulti.printLineBreak(),
+									new String[]{sample.get(SampleKey.COLOR), UtilityPrinter.printLineBreak(),
+											sample.get(SampleKey.SMELL), UtilityPrinter.printLineBreak(),
 											sample.get(SampleKey.SOIL_TYPE)}),
 							HtmlFactory.createCellAsString("NormalCenter",
 									new String[]{probe.get(ProbeKey.ID)}),

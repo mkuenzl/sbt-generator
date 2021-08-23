@@ -4,8 +4,10 @@ import sbt.automization.data.DataTable;
 import sbt.automization.data.Sample;
 import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.SampleKey;
-import sbt.automization.format.printer.TextFormatterMulti;
+import sbt.automization.format.printer.RuKPrinter;
+import sbt.automization.format.printer.SamplePrinter;
 import sbt.automization.data.Outcrop;
+import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlFactory;
 import sbt.automization.html.HtmlRow;
@@ -37,7 +39,7 @@ public final class ObProvider extends RowProvider
 						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", headerCellWidth)
 						.appendContent("Gesamtdicke geb.")
-						.appendContent(TextFormatterMulti.printLineBreak())
+						.appendContent(UtilityPrinter.printLineBreak())
 						.appendContent("Oberbau,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", unitCellClass)
@@ -60,7 +62,7 @@ public final class ObProvider extends RowProvider
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatterMulti.printThicknessOfSamples(samples))
+					.appendContent(new SamplePrinter().printThickness(samples))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -78,7 +80,7 @@ public final class ObProvider extends RowProvider
 						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", headerCellWidth)
 						.appendContent("Erweichungspunkt")
-						.appendContent(TextFormatterMulti.printLineBreak())
+						.appendContent(UtilityPrinter.printLineBreak())
 						.appendContent("RuK<sup>[31]</sup>,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", unitCellClass)
@@ -95,7 +97,7 @@ public final class ObProvider extends RowProvider
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(TextFormatterMulti.printRukLayers(dataTable, outcrop))
+					.appendContent(new RuKPrinter().printRukLayers(dataTable, outcrop))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -146,7 +148,7 @@ public final class ObProvider extends RowProvider
 						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", headerCellWidth)
 						.appendContent("Pechnachweis")
-						.appendContent(TextFormatterMulti.printLineBreak())
+						.appendContent(UtilityPrinter.printLineBreak())
 						.appendContent("qualitativ")
 						.build()
 						.appendTag())
@@ -175,7 +177,7 @@ public final class ObProvider extends RowProvider
 						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", "100")
 						.appendContent("Pechnachweis")
-						.appendContent(TextFormatterMulti.printLineBreak())
+						.appendContent(UtilityPrinter.printLineBreak())
 						.appendContent("halbquantitativ")
 						.build()
 						.appendTag())
@@ -204,7 +206,7 @@ public final class ObProvider extends RowProvider
 						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", headerCellWidth)
 						.appendContent("Pechnachweis")
-						.appendContent(TextFormatterMulti.printLineBreak())
+						.appendContent(UtilityPrinter.printLineBreak())
 						.appendContent("quantitativ")
 						.build()
 						.appendTag())
@@ -270,7 +272,7 @@ public final class ObProvider extends RowProvider
 						.appendAttribute("class", headerCellClass)
 						.appendAttribute("width", headerCellWidth)
 						.appendContent("Abgrenzung")
-						.appendContent(TextFormatterMulti.printLineBreak())
+						.appendContent(UtilityPrinter.printLineBreak())
 						.appendContent("Gefährlichkeit,")
 						.appendContent(new HtmlText.Builder()
 								.appendAttribute("class", unitCellClass)

@@ -7,9 +7,9 @@ import sbt.automization.data.key.ChemistryKey;
 import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.RuKKey;
 import sbt.automization.data.key.SampleKey;
+import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.format.text.KindAndGranulationTextFormatter;
 import sbt.automization.format.text.LoadClassTextFormatter;
-import sbt.automization.format.printer.TextFormatterMulti;
 import sbt.automization.data.Outcrop;
 import sbt.automization.templates.appendix.Appendix;
 import sbt.automization.html.HtmlFactory;
@@ -101,7 +101,7 @@ public final class BoundSuperstructure extends Appendix
 						new String[]{new LoadClassTextFormatter().format(probe.get(ProbeKey.LOAD_CLASS))}),
 				HtmlFactory.createCellAsString("NormalCenter", 1, 2,
 						new String[]{"RStO<sup>[5]</sup>",
-								TextFormatterMulti.printLineBreak(),
+								UtilityPrinter.printLineBreak(),
 								probe.get(ProbeKey.LOAD_CLASS_BOARD)})
 		});
 
