@@ -2,7 +2,7 @@ package sbt.automization.format.text;
 
 import sbt.automization.html.HtmlText;
 
-public final class DepthTextFormatter extends TextFormatterImpl
+public final class DepthTextFormatter extends AbstractTextFormatter
 {
 	private final boolean specified;
 

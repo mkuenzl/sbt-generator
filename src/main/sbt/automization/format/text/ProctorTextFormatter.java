@@ -1,6 +1,6 @@
 package sbt.automization.format.text;
 
-public final class ProctorTextFormatter extends TextFormatterImpl
+public final class ProctorTextFormatter extends AbstractTextFormatter
 {
 	@Override
 	public String format(final String moisture)

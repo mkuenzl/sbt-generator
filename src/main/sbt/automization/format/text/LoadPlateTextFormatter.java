@@ -2,7 +2,7 @@ package sbt.automization.format.text;
 
 import sbt.automization.html.HtmlText;
 
-public final class LoadPlateTextFormatter extends TextFormatterImpl
+public final class LoadPlateTextFormatter extends AbstractTextFormatter
 {
 	@Override
 	public String format(String text)

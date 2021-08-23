@@ -1,10 +1,10 @@
 package sbt.automization.format.text;
 
-import sbt.automization.format.printer.TextFormatterMulti;
+import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.html.HtmlText;
 import sbt.automization.styles.BasicStyle;
 
-public final class LoadClassTextFormatter extends TextFormatterImpl
+public final class LoadClassTextFormatter extends AbstractTextFormatter
 {
 	/**
 	 * Method used for pretty printing the cell loadClassText for "Belastungsklasse"
@@ -32,7 +32,7 @@ public final class LoadClassTextFormatter extends TextFormatterImpl
 		return new HtmlText.Builder()
 				.appendAttribute("class", BasicStyle.ROW.getStyleClass())
 				.appendContent("Belastungsklasse")
-				.appendContent(TextFormatterMulti.printLineBreak())
+				.appendContent(UtilityPrinter.printLineBreak())
 				.appendContent(formattedText)
 				.build()
 				.appendTag();

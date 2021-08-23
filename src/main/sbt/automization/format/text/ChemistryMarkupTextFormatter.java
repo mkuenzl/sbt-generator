@@ -2,7 +2,7 @@ package sbt.automization.format.text;
 
 import sbt.automization.html.HtmlText;
 
-public final class ChemistryMarkupTextFormatter extends TextFormatterImpl
+public final class ChemistryMarkupTextFormatter extends AbstractTextFormatter
 {
 	@Override
 	public String format(final String classification)
@@ -115,7 +115,7 @@ public final class ChemistryMarkupTextFormatter extends TextFormatterImpl
 			default:
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(classification)
+						.appendContent(replaceIfEmpty(classification))
 						.build().appendTag());
 				break;
 		}

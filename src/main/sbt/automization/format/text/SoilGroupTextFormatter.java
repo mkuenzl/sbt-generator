@@ -1,6 +1,6 @@
 package sbt.automization.format.text;
 
-public final class SoilGroupTextFormatter extends TextFormatterImpl
+public final class SoilGroupTextFormatter extends AbstractTextFormatter
 {
 	/**
 	 * Expects a valid soil group and formats the String for representation in the appendix ExplorationSite

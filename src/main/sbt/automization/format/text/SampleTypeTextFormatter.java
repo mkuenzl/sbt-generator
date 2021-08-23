@@ -1,6 +1,6 @@
 package sbt.automization.format.text;
 
-public final class SampleTypeTextFormatter extends TextFormatterImpl
+public final class SampleTypeTextFormatter extends AbstractTextFormatter
 {
 	/**
 	 * Method for specifying whether a sample is a single probe or could contain multiple.

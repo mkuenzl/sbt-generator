@@ -1,9 +1,9 @@
 package sbt.automization.format.text;
 
-import sbt.automization.format.printer.TextFormatterMulti;
+import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.html.HtmlText;
 
-public final class LineBreakTextFormatter extends TextFormatterImpl
+public final class LineBreakTextFormatter extends AbstractTextFormatter
 {
 	/**
 	 * Formats different names for better visualisation in each template, replacement for automatic line breaks.
@@ -50,7 +50,7 @@ public final class LineBreakTextFormatter extends TextFormatterImpl
 		HtmlText htmlText = new HtmlText.Builder()
 				.appendAttribute("class", "Normal")
 				.appendContent(words[0].concat(" ").concat(words[1]).concat(" ").concat(words[2]))
-				.appendContent(TextFormatterMulti.printLineBreak())
+				.appendContent(UtilityPrinter.printLineBreak())
 				.appendContent(words[3])
 				.build();
 

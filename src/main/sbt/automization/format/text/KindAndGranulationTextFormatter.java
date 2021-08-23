@@ -1,6 +1,6 @@
 package sbt.automization.format.text;
 
-public final class KindAndGranulationTextFormatter extends TextFormatterImpl
+public final class KindAndGranulationTextFormatter extends AbstractTextFormatter
 {
 	@Override
 	public String format(String text)
