@@ -123,6 +123,6 @@ public final class RingAndBall extends Appendix
 	@Override
 	public String getExportFileName()
 	{
-		return "Anlage-RUK";
+		return "RUK-Anlage";
 	}
 }

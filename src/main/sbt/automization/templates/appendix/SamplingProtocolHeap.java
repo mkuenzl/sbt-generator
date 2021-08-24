@@ -82,7 +82,7 @@ public final class SamplingProtocolHeap extends Appendix
 	@Override
 	public String getExportFileName()
 	{
-		return "Anlage-Haufwerk-PN";
+		return "HAUFWERK-PN-Anlage";
 	}
 
 	@Override

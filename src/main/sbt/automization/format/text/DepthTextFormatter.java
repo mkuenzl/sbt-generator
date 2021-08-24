@@ -46,7 +46,7 @@ public final class DepthTextFormatter extends AbstractTextFormatter
 		String depth = "[T: " + startDepth + " - " + endDepth + "]";
 
 		HtmlText formattedDepth = new HtmlText.Builder()
-				.appendAttribute("class", "Normal6")
+				.appendAttribute("class", "Normal5")
 				.appendContent(depth)
 				.build();
 

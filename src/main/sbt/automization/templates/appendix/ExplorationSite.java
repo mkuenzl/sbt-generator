@@ -82,24 +82,24 @@ public final class ExplorationSite extends Appendix
 		});
 
 		String thirdRow = HtmlFactory.createRow("Normal", new String[]{
-				HtmlFactory.createCellAsString("NormalHeader", "width:100px",
+				HtmlFactory.createCellAsString("NormalHeader",
 						new String[]{"Koordinaten<sup>1)</sup>"}),
-				HtmlFactory.createCellAsString("Normal", "width:200px",
+				HtmlFactory.createCellAsString("Normal",
 						new String[]{probe.get(ProbeKey.COORDINATES)}),
-				HtmlFactory.createCellAsString("NormalHeader", "width:100px",
+				HtmlFactory.createCellAsString("NormalHeader",
 						new String[]{"Probenehmer"}),
-				HtmlFactory.createCellAsString("Normal", "width:200px",
+				HtmlFactory.createCellAsString("Normal",
 						new String[]{probe.get(ProbeKey.INSPECTOR)}),
 		});
 
 		String fourthRow = HtmlFactory.createRow("Normal", new String[]{
-				HtmlFactory.createCellAsString("NormalHeader", "width:100px",
+				HtmlFactory.createCellAsString("NormalHeader",
 						new String[]{"Bereich"}),
-				HtmlFactory.createCellAsString("Normal", "width:200px",
+				HtmlFactory.createCellAsString("Normal",
 						new String[]{probe.get(ProbeKey.REGION)}),
-				HtmlFactory.createCellAsString("NormalHeader", "width:100px",
+				HtmlFactory.createCellAsString("NormalHeader",
 						new String[]{"Ansprechpartner"}),
-				HtmlFactory.createCellAsString("Normal", "width:200px",
+				HtmlFactory.createCellAsString("Normal",
 						new String[]{probe.get(ProbeKey.CONTACT_PERSON)}),
 		});
 
@@ -124,7 +124,7 @@ public final class ExplorationSite extends Appendix
 	private String createFooter(DataTable dataTable)
 	{
 		HtmlCell cell = new HtmlCell.Builder()
-				.appendAttribute("class", "NormalHeader")
+				.appendAttribute("class", "NormalHeaderSmallFont")
 				.appendContent(new FootnotePrinter().print(dataTable))
 				.build();
 

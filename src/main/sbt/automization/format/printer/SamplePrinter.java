@@ -100,7 +100,7 @@ public final class SamplePrinter implements TextPrinter
 		StringBuilder stringBuilder = new StringBuilder();
 
 		stringBuilder.append(new LineBreakTextFormatter().format(sample.get(SampleKey.TYPE)));
-		stringBuilder.append(UtilityPrinter.printLineEmpty());
+		stringBuilder.append(UtilityPrinter.printLineEmptyThin());
 
 		HtmlText attributes = new HtmlText.Builder()
 				.appendAttribute("class", "Normal6")
@@ -135,7 +135,7 @@ public final class SamplePrinter implements TextPrinter
 			}
 
 			stringBuilder.append(formattedTag);
-			stringBuilder.append(UtilityPrinter.printLineEmpty());
+			stringBuilder.append(UtilityPrinter.printLineEmptyThin());
 			stringBuilder.append(new DepthTextFormatter(true).format(sample.get(SampleKey.DEPTH_START),
 					sample.get(SampleKey.DEPTH_END)));
 

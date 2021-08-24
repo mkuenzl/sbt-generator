@@ -396,11 +396,11 @@ public class HtmlFactory
 		switch (information.toUpperCase(Locale.ROOT))
 		{
 			case "NEIN":
-				htmlCell.appendAttribute("class", "ChemieWhite");
+				htmlCell.appendAttribute("class", "ChemistryWhite");
 				htmlCell.appendContent("FREI");
 				break;
 			case "JA":
-				htmlCell.appendAttribute("class", "ChemieBlack");
+				htmlCell.appendAttribute("class", "ChemistryBlack");
 				htmlCell.appendContent("PECH");
 				break;
 			default:
@@ -427,13 +427,13 @@ public class HtmlFactory
 			case "Z0":
 			case "DK0":
 				htmlCell = new HtmlCell.Builder()
-						.appendAttribute("class", "ChemieWhite")
+						.appendAttribute("class", "ChemistryWhite")
 						.appendContent(classification)
 						.build();
 				break;
 			case "Z0*":
 				htmlCell = new HtmlCell.Builder()
-						.appendAttribute("class", "ChemieBlue")
+						.appendAttribute("class", "ChemistryBlue")
 						.appendContent(classification)
 						.build();
 				break;
@@ -442,7 +442,7 @@ public class HtmlFactory
 			case "RC1":
 			case "DK1":
 				htmlCell = new HtmlCell.Builder()
-						.appendAttribute("class", "ChemieGreen")
+						.appendAttribute("class", "ChemistryGreen")
 						.appendContent(classification)
 						.build();
 				break;
@@ -450,7 +450,7 @@ public class HtmlFactory
 			case "RC2":
 			case "DK2":
 				htmlCell = new HtmlCell.Builder()
-						.appendAttribute("class", "ChemieYellow")
+						.appendAttribute("class", "ChemistryYellow")
 						.appendContent(classification)
 						.build();
 				break;
@@ -458,7 +458,7 @@ public class HtmlFactory
 			case "RC3":
 			case "DK3":
 				htmlCell = new HtmlCell.Builder()
-						.appendAttribute("class", "ChemieRed")
+						.appendAttribute("class", "ChemistryRed")
 						.appendContent(classification)
 						.build();
 				break;
@@ -467,13 +467,13 @@ public class HtmlFactory
 			case ">RC3":
 			case "gefährlich":
 				htmlCell = new HtmlCell.Builder()
-						.appendAttribute("class", "ChemieBlack")
+						.appendAttribute("class", "ChemistryBlack")
 						.appendContent(classification)
 						.build();
 				break;
 			case "nachweisbar":
 				htmlCell = new HtmlCell.Builder()
-						.appendAttribute("class", "ChemieBlack")
+						.appendAttribute("class", "ChemistryBlack")
 						.appendContent("nachweis-")
 						.appendContent(UtilityPrinter.printLineBreak())
 						.appendContent("bar")
@@ -481,7 +481,7 @@ public class HtmlFactory
 				break;
 			case "nicht gefährlich":
 				htmlCell = new HtmlCell.Builder()
-						.appendAttribute("class", "ChemieWhite")
+						.appendAttribute("class", "ChemistryWhite")
 						.appendContent("nicht")
 						.appendContent(UtilityPrinter.printLineBreak())
 						.appendContent("gefährlich")
@@ -489,7 +489,7 @@ public class HtmlFactory
 				break;
 			case "nicht nachweisbar":
 				htmlCell = new HtmlCell.Builder()
-						.appendAttribute("class", "ChemieWhite")
+						.appendAttribute("class", "ChemistryWhite")
 						.appendContent("nicht")
 						.appendContent(UtilityPrinter.printLineBreak())
 						.appendContent("nachweis-")

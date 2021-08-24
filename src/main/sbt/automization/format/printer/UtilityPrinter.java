@@ -15,12 +15,12 @@ public final class UtilityPrinter implements TextPrinter
 		StringBuilder stringBuilder = new StringBuilder();
 
 		HtmlText textDivider = new HtmlText.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent("_________")
+				.appendAttribute("class", "Normal2")
+				.appendContent("_____________________________________")
 				.build();
 
 		stringBuilder.append(textDivider.appendTag())
-				.append(printLineEmpty());
+				.append(printLineEmptyThin());
 
 		return stringBuilder.toString();
 	}
@@ -48,6 +48,16 @@ public final class UtilityPrinter implements TextPrinter
 	public static String printLineBreak()
 	{
 		return "<br>";
+	}
+
+	public static String printLineEmptyThin()
+	{
+		HtmlText emptyRow = new HtmlText.Builder()
+				.appendAttribute("class", "Normal2")
+				.appendContent("&nbsp;")
+				.build();
+
+		return emptyRow.appendTag();
 	}
 
 	@Override

@@ -46,6 +46,18 @@
                 font-size:6.0pt;
                 font-family:"Arial",sans-serif;
             }
+            p.Normal5, li.Normal5, div.Normal5
+            {
+                margin:0cm;
+                font-size:5.0pt;
+                font-family:"Arial",sans-serif;
+            }
+            p.Normal2, li.Normal2, div.Normal2
+            {
+                margin:0cm;
+                font-size:2.0pt;
+                font-family:"Arial",sans-serif;
+            }
 			span.Normal
 			{
                 font-size:8.0pt;
@@ -79,9 +91,10 @@
                 page-break-inside:avoid;
                 height:1cm;
 			}
-			tr.NormalInner
+			tr.NormalThin
             {
                 page-break-inside:avoid;
+                height:0.5cm;
             }
 			tr.NormalHeader
 			{
@@ -89,6 +102,12 @@
                 background:grey;
                 height:1.0cm;
 			}
+			tr.NormalThinHeader
+            {
+                page-break-inside:avoid;
+                background:grey;
+                height:0.5cm;
+            }
 			tr.NormalHeaderUnits
             {
                 page-break-inside:avoid;
@@ -100,6 +119,11 @@
                 page-break-inside:avoid;
                 height:0.7cm;
 			}
+			tr.NormalThin5
+            {
+                page-break-inside:avoid;
+                height:0.5cm;
+            }
 			td.Normal
 			{
                 border:solid windowtext .5pt;
@@ -107,35 +131,11 @@
                 padding:0cm 1.4pt 0cm 3.4pt;
                 overflow:hidden;
 			}
-            td.NormalInner
-			{
-                border:solid windowtext .5pt;
-                height:1cm;
-                background:white;
-                padding:0cm 1.4pt 0cm 3.4pt;
-                text-align:center;
-                overflow:hidden;
-			}
-			td.NormalNoBorder
-            {
-                background:white;
-                padding:0cm 1.4pt 0cm 1.4pt;
-                text-align:center;
-                overflow:hidden;
-            }
-			td.NormalCentered
+			td.NormalCenterNoPadding
             {
                 border:solid windowtext .5pt;
                 background:white;
                 padding:0cm 1.4pt 0cm 1.4pt;
-                text-align:center;
-                overflow:hidden;
-            }
-			td.NormalErkundungsstelle
-            {
-                border:solid windowtext .5pt;
-                background:white;
-                padding:2.4pt 1.4pt 2.4pt 1.4pt;
                 text-align:center;
                 overflow:hidden;
             }
@@ -156,15 +156,6 @@
                 font-weight: bold;
                 overflow:hidden;
             }
-            td.NormalBold.Left
-            {
-                border:solid windowtext .5pt;
-                background:white;
-                padding:2.4pt 1.4pt 2.4pt 1.4pt;
-                text-align:left;
-                font-weight: bold;
-                overflow:hidden;
-            }
 			td.NormalHeader
 			{
                 border:solid windowtext .5pt;
@@ -172,7 +163,7 @@
                 padding:2.4pt 1.4pt 2.4pt 1.4pt;
                 word-break:break-all;
             }
-			td.NormalHeader.Center
+			td.NormalHeaderCenter
             {
                 border:solid windowtext .5pt;
                 background:#F3F3F3;
@@ -180,7 +171,15 @@
                 padding:2.4pt 1.4pt 2.4pt 1.4pt;
                 word-break:break-all;
             }
-			td.ChemieWhite
+            td.NormalHeaderSmallFont
+            {
+                border:solid windowtext .5pt;
+                font-size:6.0pt;
+                background:#F3F3F3;
+                padding:2.4pt 1.4pt 2.4pt 1.4pt;
+                word-break:break-all;
+            }
+			td.ChemistryWhite
             {
                 border:solid windowtext .5pt;
                 background:white;
@@ -189,7 +188,7 @@
                 font-weight: bold;
                 overflow:hidden;
             }
-			td.ChemieRed
+			td.ChemistryRed
 			{
                 border:solid windowtext .5pt;
                 background:#FF0000;
@@ -199,7 +198,7 @@
                 color:white;
                 overflow:hidden;
 			}
-			td.ChemieBlack
+			td.ChemistryBlack
 			{
                 border:solid windowtext .5pt;
                 background:black;
@@ -209,7 +208,7 @@
                 font-weight: bold;
                 overflow:hidden;
             }
-			td.ChemieGreen
+			td.ChemistryGreen
 			{
                 border:solid windowtext .5pt;
                 background:#00FF00;
@@ -218,7 +217,7 @@
                 font-weight: bold;
                 overflow:hidden;
 			}
-			td.ChemieBlue
+			td.ChemistryBlue
 			{
                 border:solid windowtext .5pt;
                 background:#00FFFF;
@@ -227,7 +226,7 @@
                 font-weight: bold;
                 overflow:hidden;
 			}
-			td.ChemieYellow
+			td.ChemistryYellow
 			{
                 border:solid windowtext .5pt;
                 background:#FFFF00;
@@ -382,37 +381,37 @@ Laborprobe
 <td style=width:60 class=NormalBold >
 <p class=Normal >
 C1
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 0 - 17]
 </p>
 </td>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
 C2
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 0 - 4]
-</p><p class=Normal >
-_________
-</p><p class=Normal >
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal >
 C1
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 4 - 11]
 </p>
 </td>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
 C7
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 15 - 21]
 </p>
 </td>
@@ -432,9 +431,9 @@ Schreiben des MUFV<sup>[18]</sup>
   color: white">
 gefährlich
 </span>
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 0 - 17]
 </p>
 </td>
@@ -448,31 +447,31 @@ nicht
 <span style="font-weight: bold";>
 gefährlich
 </span>
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 0 - 4]
-</p><p class=Normal >
-_________
-</p><p class=Normal >
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal >
 <span style="background-color: black;font-weight: bold;
   color: white">
 gefährlich
 </span>
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 4 - 11]
 </p>
 </td>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
 -
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 15 - 21]
 </p>
 </td>
@@ -490,9 +489,9 @@ LAGA Bauschutt<sup>[28]</sup>
   color: white">
 >Z2
 </span>
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 0 - 17]
 </p>
 </td>
@@ -502,31 +501,31 @@ LAGA Bauschutt<sup>[28]</sup>
   color: white">
 Z2
 </span>
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 0 - 4]
-</p><p class=Normal >
-_________
-</p><p class=Normal >
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal >
 <span style="background-color: black;font-weight: bold;
   color: white">
 >Z2
 </span>
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 4 - 11]
 </p>
 </td>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
 -
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 15 - 21]
 </p>
 </td>
@@ -547,9 +546,9 @@ nicht
 <span style="font-weight: bold";>
 eingehalten
 </span>
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 0 - 17]
 </p>
 </td>
@@ -558,13 +557,13 @@ eingehalten
 <span style="font-weight: bold";>
 eingehalten
 </span>
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 0 - 4]
-</p><p class=Normal >
-_________
-</p><p class=Normal >
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal >
 <span style="font-weight: bold";>
@@ -574,18 +573,18 @@ nicht
 <span style="font-weight: bold";>
 eingehalten
 </span>
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 4 - 11]
 </p>
 </td>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
 -
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 15 - 21]
 </p>
 </td>
@@ -600,9 +599,9 @@ TL Gestein<sup>[27]</sup>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
 -
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 0 - 17]
 </p>
 </td>
@@ -612,28 +611,28 @@ TL Gestein<sup>[27]</sup>
   color: black">
 RC1
 </span>
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 0 - 4]
-</p><p class=Normal >
-_________
-</p><p class=Normal >
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal >
 -
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 4 - 11]
 </p>
 </td>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
 -
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 15 - 21]
 </p>
 </td>
@@ -652,9 +651,9 @@ DepV<sup>[15]</sup>
   color: black">
 DK0
 </span>
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 0 - 17]
 </p>
 </td>
@@ -664,13 +663,13 @@ DK0
   color: black">
 DK1
 </span>
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 0 - 4]
-</p><p class=Normal >
-_________
-</p><p class=Normal >
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal >
 <span style="background-color: white;font-weight: bold;
@@ -678,18 +677,18 @@ _________
   color: black">
 DK0
 </span>
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 4 - 11]
 </p>
 </td>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
 -
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 15 - 21]
 </p>
 </td>
@@ -704,46 +703,46 @@ AVV<sup>[14]</sup>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
 11-32-13
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 0 - 17]
 </p>
 </td>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
 11-32-14
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 0 - 4]
-</p><p class=Normal >
-_________
-</p><p class=Normal >
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal >
 11-32-13
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 4 - 11]
 </p>
 </td>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
 -
-</p><p class=Normal >
+</p><p class=Normal2 >
 &nbsp;
-</p><p class=Normal6 >
+</p><p class=Normal5 >
 [T: 15 - 21]
 </p>
 </td>
 </tr>
 <tr class=Normal >
-<td colspan=4 width=290 class=NormalHeader >
+<td colspan=4 width=290 class=NormalHeaderSmallFont >
 Anmerkungen:
 <br>
-Für die angegebenen Tiefen (T[]) gilt die Einheit cm.
+Für die angegebenen Tiefen [] gilt die Einheit cm.
 </td>
 </tr>
 </table><br>

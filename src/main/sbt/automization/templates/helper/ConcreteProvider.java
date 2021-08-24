@@ -86,10 +86,10 @@ public final class ConcreteProvider extends RowProvider
         HtmlRow rowLegende = new HtmlRow.Builder()
                 .appendAttribute("class", rowClass)
                 .appendContent(new HtmlCell.Builder()
-                        .appendAttribute("class", headerCellClass)
+                        .appendAttribute("class", legendCellClass)
                         .appendAttribute("colspan", String.valueOf(1 + dataTables.size()))
                         .appendAttribute("width", String.valueOf(size))
-                        .appendContent("Für die angegebenen Tiefen (T[]) gilt die Einheit cm.")
+                        .appendContent("Für die angegebenen Tiefen [] gilt die Einheit cm.")
                         .build()
                         .appendTag())
                 .build();

@@ -150,6 +150,6 @@ public final class LoadPlate extends Appendix
 	@Override
 	public String getExportFileName()
 	{
-		return "Anlage-LP";
+		return "LP-Anlage";
 	}
 }

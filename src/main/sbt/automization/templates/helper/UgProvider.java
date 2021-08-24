@@ -2,6 +2,7 @@ package sbt.automization.templates.helper;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.key.ProbeKey;
+import sbt.automization.format.printer.SamplePrinter;
 import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlRow;
@@ -42,7 +43,7 @@ public final class UgProvider extends RowProvider
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					//.appendContent(String.valueOf(dataTable.getThickness()).replace(".", ","))
+					.appendContent(new SamplePrinter().printThickness(dataTable.getSamples()))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -154,12 +155,12 @@ public final class UgProvider extends RowProvider
 		HtmlRow rowLegende = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", headerCellClass)
+						.appendAttribute("class", legendCellClass)
 						.appendAttribute("colspan", String.valueOf(1 + dataTables.size()))
 						.appendAttribute("width", String.valueOf(size))
 						.appendContent("Anmerkungen:")
 						.appendContent(UtilityPrinter.printLineBreak())
-						.appendContent("Für die angegebenen Tiefen (T[]) gilt die Einheit cm. ")
+						.appendContent("Für die angegebenen Tiefen [] gilt die Einheit cm. ")
 						.appendContent("Die Einstufung der Verdichtungsfähigkeit erfolgt unter Berücksichtigung der Bodenfeuchtigkeit und der Konsistenz\n" +
 								"des Materials zum Erkundungszeitpunkt.")
 						.build()

@@ -43,7 +43,7 @@ public final class SamplingProtocol extends Appendix
 	@Override
 	public String getExportFileName()
 	{
-		return "Anlage-PN";
+		return "PN-Anlage";
 	}
 
 	@Override

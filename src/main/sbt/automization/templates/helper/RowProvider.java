@@ -20,6 +20,7 @@ import java.util.List;
 public abstract class RowProvider
 {
 	protected static final String rowClass = "Normal";
+	protected static final String legendCellClass = "NormalHeaderSmallFont";
 	protected static final String headerCellClass = "NormalHeader";
 	protected static final String normalCellClass = "NormalBold";
 	protected static final String unitCellClass = "Normal6";

@@ -74,4 +74,18 @@ public abstract class TableTemplate implements HtmlTemplate
 		table.appendContent(content);
 	}
 
+	protected void addAndResetTableOnPageBreak()
+	{
+		if (linesPerPage >= 20)
+		{
+			addTable();
+			addPageBreak();
+			addPageBreak();
+
+			linesPerPage = 0;
+
+			createTable();
+		}
+	}
+
 }

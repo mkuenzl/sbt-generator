@@ -57,7 +57,7 @@ public final class Banquet extends Report
 	@Override
 	public String getExportFileName()
 	{
-		return "Bankett-Report";
+		return "BANKETT-Report";
 	}
 
 	@Override

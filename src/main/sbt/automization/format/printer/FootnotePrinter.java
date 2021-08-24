@@ -47,16 +47,13 @@ public final class FootnotePrinter implements TextPrinter
 	private String formatInformationFootnote()
 	{
 		return new HtmlText.Builder()
-				.appendAttribute("class", "Normal")
+				.appendAttribute("class", "Normal6")
 				.appendContent("Angaben:")
 				.appendContent(UtilityPrinter.printLineBreak())
-				.appendContent("KGV = Korngrößenverteilung, WG = Wassergehalt, LP = Plattendruckversuch, wPr = optimaler Wassergehalt")
+				.appendContent("KGV = Korngrößenverteilung, WG = Wassergehalt, LP = Plattendruckversuch, wPr = optimaler Wassergehalt, Gem. a. G. = Gemisch aus Gesteinskörnungen, NS = ")
 				.appendContent(UtilityPrinter.printLineBreak())
-				.appendContent("Gem. a. G. = Gemisch aus Gesteinskörnungen, NS = Naturstein, LS = Lavaschlacke, HO = Hochofenschlacke")
-				.appendContent(UtilityPrinter.printLineBreak())
-				.appendContent("RC = Rezyklierte Gesteinskörnung, BK = Brechkorn, RK = Rundkorn, sg = stetig gestuft, ug = unstetig gestuft")
-				.appendContent(UtilityPrinter.printLineBreak())
-				.appendContent(UtilityPrinter.printLineEmpty())
+				.appendContent("Naturstein, LS = Lavaschlacke, HO = Hochofenschlacke, RC = Rezyklierte Gesteinskörnung, BK = Brechkorn, RK = Rundkorn, sg = stetig gestuft, ug = unstetig gestuft")
+				.appendContent(UtilityPrinter.printLineEmptyThin())
 				.build()
 				.appendTag();
 	}
@@ -109,7 +106,7 @@ public final class FootnotePrinter implements TextPrinter
 	private HtmlText createFootnote()
 	{
 		return new HtmlText.Builder()
-				.appendAttribute("class", "Normal")
+				.appendAttribute("class", "Normal6")
 				.appendContent(String.valueOf(counter++))
 				.appendContent(".) ")
 				.build();
@@ -120,9 +117,7 @@ public final class FootnotePrinter implements TextPrinter
 		if (! table.containsValueFor(ProbeKey.LP_ID)) return "";
 
 		return printFootnoteWithText(new String[]{
-				"Prüfergebnisse unter Berücksichtigung einer ca. 15 % Reduzierung aufgrund der Einspannung durch den ",
-				UtilityPrinter.printLineBreak(),
-				"gebundenen Oberbau"});
+				"Prüfergebnisse unter Berücksichtigung einer ca. 15 % Reduzierung aufgrund der Einspannung durch den gebundenen Oberbau"});
 	}
 
 	private String printFootnoteWithText(String[] lines)

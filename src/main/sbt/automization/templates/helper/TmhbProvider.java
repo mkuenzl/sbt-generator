@@ -24,14 +24,14 @@ public final class TmhbProvider extends RowProvider
 
 		//Umwelttechnische Merkmale Trennzeile
 		HtmlRow rowLegende = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
+				.appendAttribute("class", rowClass)
 				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", "NormalHeader")
+						.appendAttribute("class", legendCellClass)
 						.appendAttribute("colspan", String.valueOf(1 + dataTables.size()))
 						.appendAttribute("width", String.valueOf(size))
 						.appendContent("Anmerkungen:")
 						.appendContent(UtilityPrinter.printLineBreak())
-						.appendContent("Für die angegebenen Tiefen (T[]) gilt die Einheit cm.")
+						.appendContent("Für die angegebenen Tiefen [] gilt die Einheit cm.")
 						.build()
 						.appendTag())
 				.build();
