@@ -13,7 +13,7 @@ public class CsvButtonActionListener implements ActionListener
 	{
 		try
 		{
-			FileExport.copyFileToUserDirectory("/sbt-excel-template.xlsx");
+			FileExport.copyFileToUserDirectory("/datenbank-template.xlsx");
 		} catch (IOException ioException)
 		{
 			ioException.printStackTrace();
