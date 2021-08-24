@@ -1,11 +1,11 @@
 package sbt.automization.export;
 
-import sbt.automization.data.TableInformation;
-import sbt.automization.data.ExplorationSite;
-import sbt.automization.templates.IHtmlTable;
-import sbt.automization.util.html.Html;
-import sbt.automization.util.html.HtmlBody;
-import sbt.automization.util.html.HtmlDiv;
+import sbt.automization.data.DataTable;
+import sbt.automization.data.Examination;
+import sbt.automization.templates.HtmlTemplate;
+import sbt.automization.html.Html;
+import sbt.automization.html.HtmlBody;
+import sbt.automization.html.HtmlDiv;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -18,119 +18,123 @@ import java.util.List;
  */
 public final class HtmlTemplateExport extends ATemplateExport
 {
-    static final String HTML_BODY_STYLE_ATTRIBUTE = "'tab-interval:35.4pt;word-wrap:break-word'";
-    /**
-     * Necessary for the import into Microsoft Word.
-     */
-    static final String HTML_ATTRIBUTE_XMLNSO = "\"urn:schemas-microsoft-com:office:office\"";
-    static final String HTML_ATTRIBUTE_XMLNS = "\"http://www.w3.org/TR/REC-html40\"";
+	static final String HTML_BODY_STYLE_ATTRIBUTE = "'tab-interval:35.4pt;word-wrap:break-word'";
+	/**
+	 * Necessary for the import into Microsoft Word.
+	 */
+	static final String HTML_ATTRIBUTE_XMLNSO = "\"urn:schemas-microsoft-com:office:office\"";
+	static final String HTML_ATTRIBUTE_XMLNS = "\"http://www.w3.org/TR/REC-html40\"";
 
-    public HtmlTemplateExport(final IHtmlTable strategy)
-    {
-        super(strategy);
-    }
+	public HtmlTemplateExport(final HtmlTemplate strategy)
+	{
+		super(strategy);
+	}
 
-    public HtmlTemplateExport() {
-        super();
-    }
+	public HtmlTemplateExport()
+	{
+		super();
+	}
 
-    @Override
-    String format(final TableInformation tableInformation)
-    {
-        return format(tableInformation.getExplorationSites());
-    }
+	@Override
+	String format(final Examination examination)
+	{
+		return format(examination);
+	}
 
-    /**
-     * Method creates a path based on the location of the csv and the table strategy file name
-     * @return
-     */
-    @Override
-    public String getPath() {
-        if (TableInformation.exportPath == null)
-            return System.getProperty("user.dir").concat(File.separator).concat(tableStrategy.getExportFileName()).concat(".html");
+	/**
+	 * Method constructs a complete HTML file with
+	 * <html>
+	 * <head>
+	 * <css>
+	 *
+	 * </css>
+	 * </head>
+	 * <body>
+	 *          <div>
+	 *              <table>
+	 *                  from strategy
+	 *              </table>
+	 *          </div>
+	 *      </body>
+	 * </html>
+	 *
+	 * @param tables expects a list of explorations sites
+	 * @return a HTML file containing the strategy table
+	 */
+	@Override
+	String format(List<DataTable> tables)
+	{
+		tableExportStrategy.constructTemplate(tables);
 
-        return TableInformation.exportPath.concat(File.separator).concat(tableStrategy.getExportFileName()).concat(".html");
-    }
+		return format(tableExportStrategy.getTemplate());
+	}
 
-    /**
-     * Method constructs a complete HTML file with
-     * <html>
-     *      <head>
-     *          <css>
-     *
-     *          </css>
-     *      </head>
-     *      <body>
-     *          <div>
-     *              <table>
-     *                  from strategy
-     *              </table>
-     *          </div>
-     *      </body>
-     * </html>
-     *
-     * @param explorationSites expects a list of explorations sites
-     * @return a HTML file containing the strategy table
-     */
-    @Override
-    String format(List<ExplorationSite> explorationSites)
-    {
-        tableStrategy.constructTable(explorationSites);
+	@Override
+	String format(String htmlCode)
+	{
+		HtmlDiv div = new HtmlDiv.Builder()
+				.appendAttribute("class", "WordSection1")
+				.appendContent(htmlCode)
+				.build();
 
-        return format(tableStrategy.getTable());
-    }
+		HtmlBody body = new HtmlBody.Builder()
+				.appendAttribute("lang", "DE")
+				.appendAttribute("style", HTML_BODY_STYLE_ATTRIBUTE)
+				.appendContent(div.appendTag())
+				.build();
 
-    @Override
-    String format(String htmlCode)
-    {
-        HtmlDiv div = new HtmlDiv.Builder()
-                .appendAttribute("class", "WordSection1")
-                .appendContent(htmlCode)
-                .build();
+		Html template = new Html.Builder()
+				.appendAttribute("xmlns:o", HTML_ATTRIBUTE_XMLNSO)
+				.appendAttribute("xmlns", HTML_ATTRIBUTE_XMLNS)
+				.appendContent(constructAndGetHtmlHead())
+				.appendContent(body.appendTag())
+				.build();
 
-        HtmlBody body = new HtmlBody.Builder()
-                .appendAttribute("lang", "DE")
-                .appendAttribute("style", HTML_BODY_STYLE_ATTRIBUTE)
-                .appendContent(div.appendTag())
-                .build();
+		return template.appendTag();
+	}
 
-        Html template = new Html.Builder()
-                .appendAttribute("xmlns:o", HTML_ATTRIBUTE_XMLNSO)
-                .appendAttribute("xmlns", HTML_ATTRIBUTE_XMLNS)
-                .appendContent(constructAndGetHtmlHead())
-                .appendContent(body.appendTag())
-                .build();
+	@Override
+	public String getPath()
+	{
+		if (Examination.exportPath == null)
+			return System.getProperty("user.dir").concat(File.separator).concat(tableExportStrategy.getExportFileName()).concat(".html");
 
-        return template.appendTag();
-    }
+		return Examination.exportPath.concat(File.separator).concat(tableExportStrategy.getExportFileName()).concat(".html");
+	}
 
-    /**
-     * Method loads the resource/sbt-table-stylesheet.txt which contains the actual header and css.
-     * @return as String the read text file from the resource folder
-     */
-    private String constructAndGetHtmlHead()
-    {
-        StringBuilder stringBuilder = new StringBuilder();
+	@Override
+	public String getPath(String path)
+	{
+		return path.concat(tableExportStrategy.getExportFileName()).concat(".html");
+	}
 
-        try (InputStreamReader inputStreamReader = new InputStreamReader(getClass().getResourceAsStream("/sbt-table-stylesheet.txt"));
-             BufferedReader bufferedReader = new BufferedReader(inputStreamReader))
-        {
-            String line;
-            String ls = System.getProperty("line.separator");
-            while ((line = bufferedReader.readLine()) != null)
-            {
-                stringBuilder.append(line);
-                stringBuilder.append(ls);
-            }
-            // delete the last new line separator
-            stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+	/**
+	 * Method loads the resource/sbt-table-stylesheet.txt which contains the actual header and css.
+	 *
+	 * @return as String the read text file from the resource folder
+	 */
+	private String constructAndGetHtmlHead()
+	{
+		StringBuilder stringBuilder = new StringBuilder();
 
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-            stringBuilder.append("<head></head>");
-        }
+		try (InputStreamReader inputStreamReader = new InputStreamReader(getClass().getResourceAsStream("/sbt-table-stylesheet.txt")) ;
+		     BufferedReader bufferedReader = new BufferedReader(inputStreamReader))
+		{
+			String line;
+			String ls = System.getProperty("line.separator");
+			while ((line = bufferedReader.readLine()) != null)
+			{
+				stringBuilder.append(line);
+				stringBuilder.append(ls);
+			}
+			// delete the last new line separator
+			stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+			stringBuilder.append("<head></head>");
+		}
 
-        return stringBuilder.toString();
-    }
+		return stringBuilder.toString();
+	}
 }

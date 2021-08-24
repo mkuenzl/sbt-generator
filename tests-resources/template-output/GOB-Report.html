@@ -1,0 +1,608 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40" >
+<head>
+	<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+		<xml>
+			<o:DocumentProperties>
+				<o:Author>mKuenzl</o:Author>
+				<o:Template/>
+				<o:LastAuthor></o:LastAuthor>
+				<o:Revision/>
+				<o:Created></o:Created>
+				<o:LastSaved></o:LastSaved>
+				<o:Pages/>
+				<o:Words/>
+				<o:Characters/>
+				<o:Lines/>
+				<o:Paragraphs/>
+				<o:CharactersWithSpaces/>
+				<o:Version></o:Version>
+			</o:DocumentProperties>
+			<o:OfficeDocumentSettings>
+				<o:AllowPNG/>
+			</o:OfficeDocumentSettings>
+		</xml>
+		<style>
+			/* Font Definitions */
+			@font-face
+			{font-family:"Cambria Math";
+			panose-1:2 4 5 3 5 4 6 3 2 4;
+			}
+			/* Style Definitions */
+			p.Normal, li.Normal, div.Normal
+			{
+                margin:0cm;
+                font-size:8.0pt;
+                font-family:"Arial",sans-serif;
+			}
+			p.Normal7, li.Normal7, div.Normal7
+            {
+                margin:0cm;
+                font-size:7.0pt;
+                font-family:"Arial",sans-serif;
+            }
+            p.Normal6, li.Normal6, div.Normal6
+            {
+                margin:0cm;
+                font-size:6.0pt;
+                font-family:"Arial",sans-serif;
+            }
+            p.Normal5, li.Normal5, div.Normal5
+            {
+                margin:0cm;
+                font-size:5.0pt;
+                font-family:"Arial",sans-serif;
+            }
+            p.Normal2, li.Normal2, div.Normal2
+            {
+                margin:0cm;
+                font-size:2.0pt;
+                font-family:"Arial",sans-serif;
+            }
+			span.Normal
+			{
+                font-size:8.0pt;
+                font-family:"Arial",sans-serif;
+                font-weight:normal; /*bold*/
+                text-decoration:underline;
+                text-underline:single;
+			}
+			span.ChemieWhite
+			{
+                font-size:8.0pt;
+                font-family:"Arial",sans-serif;
+                color:white;
+                font-weight:bold;
+                text-decoration:underline;
+                text-underline:single;
+			}
+			p.Standard-Tabelle, li.Standard-Tabelle, div.Standard-Tabelle
+			{
+                margin:0cm;
+                font-size:8.0pt;
+                font-family:"Arial",sans-serif;
+			}
+			div.WordSection1
+			{page:WordSection1;}
+		</style>
+		<style>
+			/* Style Definitions */
+			tr.Normal
+			{
+                page-break-inside:avoid;
+                height:1cm;
+			}
+			tr.NormalThin
+            {
+                page-break-inside:avoid;
+                height:0.5cm;
+            }
+			tr.NormalHeader
+			{
+                page-break-inside:avoid;
+                background:grey;
+                height:1.0cm;
+			}
+			tr.NormalThinHeader
+            {
+                page-break-inside:avoid;
+                background:grey;
+                height:0.5cm;
+            }
+			tr.NormalHeaderUnits
+            {
+                page-break-inside:avoid;
+                background:grey;
+                height:0.5cm;
+            }
+			tr.NormalThin
+			{
+                page-break-inside:avoid;
+                height:0.7cm;
+			}
+			tr.NormalThin5
+            {
+                page-break-inside:avoid;
+                height:0.5cm;
+            }
+			td.Normal
+			{
+                border:solid windowtext .5pt;
+                background:white;
+                padding:0cm 1.4pt 0cm 3.4pt;
+                overflow:hidden;
+			}
+			td.NormalCenterNoPadding
+            {
+                border:solid windowtext .5pt;
+                background:white;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
+                overflow:hidden;
+            }
+            td.NormalCenter
+            {
+                border:solid windowtext .5pt;
+                background:white;
+                padding:2.4pt 1.4pt 2.4pt 1.4pt;
+                text-align:center;
+                overflow:hidden;
+            }
+            td.NormalBold
+            {
+                border:solid windowtext .5pt;
+                background:white;
+                padding:2.4pt 1.4pt 2.4pt 1.4pt;
+                text-align:center;
+                font-weight: bold;
+                overflow:hidden;
+            }
+			td.NormalHeader
+			{
+                border:solid windowtext .5pt;
+                background:#F3F3F3;
+                padding:2.4pt 1.4pt 2.4pt 1.4pt;
+                word-break:break-all;
+            }
+			td.NormalHeaderCenter
+            {
+                border:solid windowtext .5pt;
+                background:#F3F3F3;
+                text-align:center;
+                padding:2.4pt 1.4pt 2.4pt 1.4pt;
+                word-break:break-all;
+            }
+            td.NormalHeaderSmallFont
+            {
+                border:solid windowtext .5pt;
+                font-size:6.0pt;
+                background:#F3F3F3;
+                padding:2.4pt 1.4pt 2.4pt 1.4pt;
+                word-break:break-all;
+            }
+			td.ChemistryWhite
+            {
+                border:solid windowtext .5pt;
+                background:white;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
+                font-weight: bold;
+                overflow:hidden;
+            }
+			td.ChemistryRed
+			{
+                border:solid windowtext .5pt;
+                background:#FF0000;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
+                font-weight: bold;
+                color:white;
+                overflow:hidden;
+			}
+			td.ChemistryBlack
+			{
+                border:solid windowtext .5pt;
+                background:black;
+                color:white;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
+                font-weight: bold;
+                overflow:hidden;
+            }
+			td.ChemistryGreen
+			{
+                border:solid windowtext .5pt;
+                background:#00FF00;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
+                font-weight: bold;
+                overflow:hidden;
+			}
+			td.ChemistryBlue
+			{
+                border:solid windowtext .5pt;
+                background:#00FFFF;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
+                font-weight: bold;
+                overflow:hidden;
+			}
+			td.ChemistryYellow
+			{
+                border:solid windowtext .5pt;
+                background:#FFFF00;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
+                font-weight: bold;
+                overflow:hidden;
+			}
+			th.NormalTableHeader
+			{
+                border:solid windowtext .5pt;
+                background:#F2F2F2;
+                padding:2.4pt 1.4pt 2.4pt 1.4pt;
+			}
+
+			th.NormalTableHeader div {
+                position: relative;
+                font-size: 5.0pt;
+            }
+
+			th.NormalTableHeaderUnits
+			{
+                border:solid windowtext .5pt;
+                background:#F2F2F2;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                font-style:italic;
+            }
+			table.MsoNormalTable
+			{
+                table-layout:fixed;
+                padding-alt:0cm 1.4pt 0cm 1.4pt;
+                para-margin:0cm;
+                pagination:widow-orphan;
+                font-size:8.0pt;
+                font-family:"Arial",sans-serif;
+                word-break:break-all;
+                border-collapse: collapse;
+			}
+			table.MsoTableGrid
+            {
+                table-layout:fixed;
+                width:100.0%;
+                height:100.0%;
+                border:solid windowtext 1.0pt;
+                padding-alt:0cm 1.4pt 0cm 1.4pt;
+                para-margin:0cm;
+                pagination:widow-orphan;
+                font-size:8.0pt;
+                font-family:"Arial",sans-serif;
+                word-break:break-all;
+                border-collapse: collapse;
+            }
+		</style>
+</head>
+<body style='tab-interval:35.4pt;word-wrap:break-word' lang=DE >
+<div class=WordSection1 >
+<table border=1 cellpadding=0 cellspacing=0 style='border-collapse:collapse;mso-table-layout-alt:fixed;border:none;mso-border-alt:solid windowtext .5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt' class=MsoNormalTable >
+<tr class=Normal >
+<td style=width:110 class=NormalHeader >
+Erkundungsstelle
+</td>
+<td style=width:60 class=NormalBold >
+FB1
+</td>
+<td style=width:60 class=NormalBold >
+FB2
+</td>
+<td style=width:60 class=NormalBold >
+FB0
+</td>
+</tr>
+<tr class=Normal >
+<td style=width:110 class=NormalHeader >
+Aufschlussart
+</td>
+<td style=width:60 class=NormalBold >
+Aufstemmen
+</td>
+<td style=width:60 class=NormalBold >
+Auskratzen
+</td>
+<td style=width:60 class=NormalBold >
+
+</td>
+</tr>
+<tr class=Normal >
+<td colspan=4 rowspan=1 class=NormalHeader >
+Technische Merkmale
+</td>
+</tr>
+<tr class=Normal >
+<td width=110 class=NormalHeader >
+Gesamtdicke geb.
+<br>
+Oberbau,
+<p class=Normal6 >
+cm
+</p>
+</td>
+<td width=60 class=NormalBold >
+12,0
+</td>
+<td width=60 class=NormalBold >
+3,0
+</td>
+<td width=60 class=NormalBold >
+29,0
+</td>
+</tr>
+<tr class=Normal >
+<td style=width:110 class=NormalHeader >
+Belastungklasse,
+<p class=Normal6 >
+RStO<sup>[5]</sup>
+</p>
+</td>
+<td style=width:60 class=NormalBold >
+keine
+</td>
+<td style=width:60 class=NormalBold >
+0,3
+</td>
+<td style=width:60 class=NormalBold >
+
+</td>
+</tr>
+<tr class=Normal >
+<td width=110 class=NormalHeader >
+Erweichungspunkt
+<br>
+RuK<sup>[31]</sup>,
+<p class=Normal6 >
+°C
+</p>
+</td>
+<td width=60 class=NormalBold >
+<p class=Normal6 >
+Deckschicht
+</p><p class=Normal >
+77,0
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal6 >
+Deckschicht
+</p><p class=Normal >
+3,0
+</p>
+</td>
+<td width=60 class=NormalBold >
+<p class=Normal6 >
+Tragschicht
+</p><p class=Normal >
+3,0
+</p>
+</td>
+<td width=60 class=NormalBold >
+
+</td>
+</tr>
+<tr class=Normal >
+<td width=110 class=NormalHeader >
+Soll Einzelwert,
+<p class=Normal6 >
+RuK
+</p>
+</td>
+<td width=60 class=NormalBold >
+77
+</td>
+<td width=60 class=NormalBold >
+77
+</td>
+<td width=60 class=NormalBold >
+77
+</td>
+</tr>
+<tr class=Normal >
+<td colspan=4 rowspan=1 class=NormalHeader >
+Umwelttechnische Merkmale
+</td>
+</tr>
+<tr class=Normal >
+<td width=110 class=NormalHeader >
+Pechnachweis
+<br>
+qualitativ
+</td>
+<td width=60 class=NormalBold >
+x
+</td>
+<td width=60 class=NormalBold >
+x
+</td>
+<td width=60 class=NormalBold >
+
+</td>
+</tr>
+<tr class=Normal >
+<td width=100 class=NormalHeader >
+Pechnachweis
+<br>
+halbquantitativ
+</td>
+<td width=60 class=NormalBold >
+x
+</td>
+<td width=60 class=NormalBold >
+x
+</td>
+<td width=60 class=NormalBold >
+
+</td>
+</tr>
+<tr class=Normal >
+<td width=110 class=NormalHeader >
+Pechnachweis
+<br>
+quantitativ
+</td>
+<td width=60 class=NormalBold >
+x
+</td>
+<td width=60 class=NormalBold >
+
+</td>
+<td width=60 class=NormalBold >
+
+</td>
+</tr>
+<tr class=Normal >
+<td colspan=4 class=NormalHeader >
+Pechfreier Querschnitt
+</td>
+</tr><tr class=Normal >
+<td width=110 class=NormalHeader >
+Dicke,
+<p class=Normal6 >
+cm
+</p>
+</td>
+<td width=60 class=NormalBold >
+3,0
+</td>
+<td width=60 class=NormalBold >
+-
+</td>
+<td width=60 class=NormalBold >
+-
+</td>
+</tr><tr class=Normal >
+<td width=110 class=NormalHeader >
+Abgrenzung
+<br>
+Gefährlichkeit,
+<p class=Normal6 >
+Schreiben des MUFV<sup>[11]</sup>
+</p>
+</td>
+<td class=ChemistryWhite >
+nicht
+<br>
+gefährlich
+</td>
+<td class=NormalCenter >
+-
+</td>
+<td class=NormalCenter >
+-
+</td>
+</tr><tr class=Normal >
+<td width=110 class=NormalHeader >
+Verwertungsklasse,
+<p class=Normal6 >
+RuVA<sup>[6]</sup>
+</p>
+</td>
+<td width=60 class=NormalBold >
+A
+</td>
+<td width=60 class=NormalBold >
+-
+</td>
+<td width=60 class=NormalBold >
+-
+</td>
+</tr><tr class=Normal >
+<td width=110 class=NormalHeader >
+Abfallschlüssel,
+<p class=Normal6 >
+AVV<sup>[14]</sup>
+</p>
+</td>
+<td width=60 class=NormalBold >
+17 03 02
+</td>
+<td width=60 class=NormalBold >
+-
+</td>
+<td width=60 class=NormalBold >
+-
+</td>
+</tr>
+<tr class=Normal >
+<td colspan=4 class=NormalHeader >
+Pechhaltiger Querschnitt
+</td>
+</tr><tr class=Normal >
+<td width=110 class=NormalHeader >
+Dicke,
+<p class=Normal6 >
+cm
+</p>
+</td>
+<td width=60 class=NormalBold >
+5,0
+</td>
+<td width=60 class=NormalBold >
+-
+</td>
+<td width=60 class=NormalBold >
+-
+</td>
+</tr><tr class=Normal >
+<td width=110 class=NormalHeader >
+Abgrenzung
+<br>
+Gefährlichkeit,
+<p class=Normal6 >
+Schreiben des MUFV<sup>[11]</sup>
+</p>
+</td>
+<td class=ChemistryBlack >
+gefährlich
+</td>
+<td class=NormalCenter >
+-
+</td>
+<td class=NormalCenter >
+-
+</td>
+</tr><tr class=Normal >
+<td width=110 class=NormalHeader >
+Verwertungsklasse,
+<p class=Normal6 >
+RuVA<sup>[6]</sup>
+</p>
+</td>
+<td width=60 class=NormalBold >
+B
+</td>
+<td width=60 class=NormalBold >
+-
+</td>
+<td width=60 class=NormalBold >
+-
+</td>
+</tr><tr class=Normal >
+<td width=110 class=NormalHeader >
+Abfallschlüssel,
+<p class=Normal6 >
+AVV<sup>[14]</sup>
+</p>
+</td>
+<td width=60 class=NormalBold >
+17 03 01*
+</td>
+<td width=60 class=NormalBold >
+-
+</td>
+<td width=60 class=NormalBold >
+-
+</td>
+</tr>
+</table><br>
+</div>
+</body>
+</html>

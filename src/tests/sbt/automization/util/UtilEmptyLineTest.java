@@ -2,9 +2,11 @@ package sbt.automization.util;
 
 import org.junit.Assert;
 import org.junit.Test;
-import sbt.automization.data.ExplorationSite;
-import sbt.automization.data.InformationTag;
-import sbt.automization.data.LayerSample;
+import sbt.automization.data.DataTable;
+import sbt.automization.data.Probe;
+import sbt.automization.data.Sample;
+import sbt.automization.data.key.ProbeKey;
+import sbt.automization.data.key.SampleKey;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -12,375 +14,401 @@ import java.util.List;
 
 public class UtilEmptyLineTest
 {
-    @Test
-    public void explorationSiteNoEmptyValueTest()
-    {
-        String identifier = InformationTag.SITE_ID.getIdentifier();
+	@Test
+	public void explorationSiteNoEmptyValueTest()
+	{
+		String identifier = ProbeKey.ID.getKey();
+
+		DataTable dataTableOne = new Probe(new HashMap<>()
+		{{
+			put(identifier, "FB1");
+		}});
+		DataTable dataTableTwo = new Probe(new HashMap<>()
+		{{
+			put(identifier, "FB2");
+		}});
+		DataTable dataTableThree = new Probe(new HashMap<>()
+		{{
+			put(identifier, "FB3");
+		}});
+
+		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
+
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", ProbeKey.ID);
+
+		Assert.assertTrue(exists);
+	}
+
+	@Test
+	public void explorationSiteSomeEmptyValuesTest()
+	{
+		String identifier = ProbeKey.ID.getKey();
+
+		DataTable dataTableOne = new Probe(new HashMap<>()
+		{{
+			put(identifier, "FB1");
+		}});
+		DataTable dataTableTwo = new Probe();
+		DataTable dataTableThree = new Probe(new HashMap<>()
+		{{
+			put(identifier, "FB3");
+		}});
+
+		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
+
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", ProbeKey.ID);
 
-        ExplorationSite explorationSiteOne = new ExplorationSite(new HashMap<>(){{
-            put(identifier, "FB1");
-        }});
-        ExplorationSite explorationSiteTwo = new ExplorationSite(new HashMap<>(){{
-            put(identifier, "FB2");
-        }});
-        ExplorationSite explorationSiteThree = new ExplorationSite(new HashMap<>(){{
-            put(identifier, "FB3");
-        }});
-
-        List<ExplorationSite> explorationSites = Arrays.asList(explorationSiteOne, explorationSiteTwo, explorationSiteThree);
+		Assert.assertTrue(exists);
+	}
+
+	@Test
+	public void explorationSiteAllEmptyValuesTest()
+	{
+		String identifier = ProbeKey.ID.getKey();
+
+		DataTable dataTableOne = new Probe(new HashMap<>() {});
+		DataTable dataTableTwo = new Probe(new HashMap<>() {});
+		DataTable dataTableThree = new Probe(new HashMap<>() {});
+
+		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
+
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", ProbeKey.ID);
+
+		Assert.assertFalse(exists);
+	}
+
+	@Test
+	public void explorationSiteAnEmptyListProvidedTest()
+	{
+		List<DataTable> dataTables = List.of();
+
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", ProbeKey.ID);
+
+		Assert.assertFalse(exists);
+	}
+
+	@Test
+	public void layerNoEmptyValueTest()
+	{
+		String identifier = SampleKey.TYPE.getKey();
+
+		Sample emptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(identifier, "");
+		}});
+		Sample nonEmptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(identifier, "value");
+		}});
+
+
+		Probe dataTableOne = new Probe();
+		dataTableOne.addSample(emptyLayerSample);
+		dataTableOne.addSample(nonEmptyLayerSample);
+		dataTableOne.addSample(nonEmptyLayerSample);
+
+		Probe dataTableTwo = new Probe();
+		dataTableTwo.addSample(nonEmptyLayerSample);
+		dataTableTwo.addSample(nonEmptyLayerSample);
 
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", InformationTag.SITE_ID);
+		Probe dataTableThree = new Probe();
+		dataTableThree.addSample(nonEmptyLayerSample);
+		dataTableThree.addSample(emptyLayerSample);
 
-        Assert.assertTrue(exists);
-    }
-
-    @Test
-    public void explorationSiteSomeEmptyValuesTest()
-    {
-        String identifier = InformationTag.SITE_ID.getIdentifier();
+		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
 
-        ExplorationSite explorationSiteOne = new ExplorationSite(new HashMap<>(){{
-            put(identifier, "FB1");
-        }});
-        ExplorationSite explorationSiteTwo = new ExplorationSite();
-        ExplorationSite explorationSiteThree = new ExplorationSite(new HashMap<>(){{
-            put(identifier, "FB3");
-        }});
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", SampleKey.TYPE);
 
-        List<ExplorationSite> explorationSites = Arrays.asList(explorationSiteOne, explorationSiteTwo, explorationSiteThree);
+		Assert.assertTrue(exists);
+	}
 
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", InformationTag.SITE_ID);
+	@Test
+	public void layerSomeEmptyValuesTest()
+	{
+		String identifier = SampleKey.TYPE.getKey();
 
-        Assert.assertTrue(exists);
-    }
+		Sample emptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(identifier, "");
+		}});
+		Sample nonEmptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(identifier, "value");
+		}});
 
-    @Test
-    public void explorationSiteAllEmptyValuesTest()
-    {
-        String identifier = InformationTag.SITE_ID.getIdentifier();
 
-        ExplorationSite explorationSiteOne = new ExplorationSite(new HashMap<>(){{
-        }});
-        ExplorationSite explorationSiteTwo = new ExplorationSite(new HashMap<>(){{
-        }});
-        ExplorationSite explorationSiteThree = new ExplorationSite(new HashMap<>(){{
-        }});
+		Probe dataTableOne = new Probe();
+		dataTableOne.addSample(emptyLayerSample);
+		dataTableOne.addSample(nonEmptyLayerSample);
+		dataTableOne.addSample(nonEmptyLayerSample);
 
-        List<ExplorationSite> explorationSites = Arrays.asList(explorationSiteOne, explorationSiteTwo, explorationSiteThree);
+		Probe dataTableTwo = new Probe();
+		dataTableTwo.addSample(emptyLayerSample);
+		dataTableTwo.addSample(emptyLayerSample);
+
+		Probe dataTableThree = new Probe();
+		dataTableThree.addSample(nonEmptyLayerSample);
+		dataTableThree.addSample(emptyLayerSample);
+
+		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
+
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", SampleKey.TYPE);
+
+		Assert.assertTrue(exists);
+	}
+
+	@Test
+	public void layerAllEmptyValuesTest()
+	{
+		String identifier = SampleKey.TYPE.getKey();
+
+		Sample emptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(identifier, "");
+		}});
+		Sample nonEmptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(identifier, "value");
+		}});
 
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", InformationTag.SITE_ID);
 
-        Assert.assertFalse(exists);
-    }
-
-    @Test
-    public void explorationSiteAnEmptyListProvidedTest()
-    {
-        List<ExplorationSite> explorationSites = Arrays.asList();
-
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", InformationTag.SITE_ID);
-
-        Assert.assertFalse(exists);
-    }
-
-    @Test
-    public void layerNoEmptyValueTest()
-    {
-        String identifier = InformationTag.LAYER_RUK.getIdentifier();
-
-        LayerSample emptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(identifier, "");
-        }});
-        LayerSample nonEmptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(identifier, "value");
-        }});
-
-
-        ExplorationSite explorationSiteOne = new ExplorationSite();
-        explorationSiteOne.addLayer(emptyLayerSample);
-        explorationSiteOne.addLayer(nonEmptyLayerSample);
-        explorationSiteOne.addLayer(nonEmptyLayerSample);
-
-        ExplorationSite explorationSiteTwo = new ExplorationSite();
-        explorationSiteTwo.addLayer(nonEmptyLayerSample);
-        explorationSiteTwo.addLayer(nonEmptyLayerSample);
-
-        ExplorationSite explorationSiteThree = new ExplorationSite();
-        explorationSiteThree.addLayer(nonEmptyLayerSample);
-        explorationSiteThree.addLayer(emptyLayerSample);
-
-        List<ExplorationSite> explorationSites = Arrays.asList(explorationSiteOne, explorationSiteTwo, explorationSiteThree);
-
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", InformationTag.LAYER_RUK);
-
-        Assert.assertTrue(exists);
-    }
-
-    @Test
-    public void layerSomeEmptyValuesTest()
-    {
-        String identifier = InformationTag.LAYER_RUK.getIdentifier();
-
-        LayerSample emptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(identifier, "");
-        }});
-        LayerSample nonEmptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(identifier, "value");
-        }});
-
-
-        ExplorationSite explorationSiteOne = new ExplorationSite();
-        explorationSiteOne.addLayer(emptyLayerSample);
-        explorationSiteOne.addLayer(nonEmptyLayerSample);
-        explorationSiteOne.addLayer(nonEmptyLayerSample);
-
-        ExplorationSite explorationSiteTwo = new ExplorationSite();
-        explorationSiteTwo.addLayer(emptyLayerSample);
-        explorationSiteTwo.addLayer(emptyLayerSample);
-
-        ExplorationSite explorationSiteThree = new ExplorationSite();
-        explorationSiteThree.addLayer(nonEmptyLayerSample);
-        explorationSiteThree.addLayer(emptyLayerSample);
-
-        List<ExplorationSite> explorationSites = Arrays.asList(explorationSiteOne, explorationSiteTwo, explorationSiteThree);
-
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", InformationTag.LAYER_RUK);
-
-        Assert.assertTrue(exists);
-    }
-
-    @Test
-    public void layerAllEmptyValuesTest()
-    {
-        String identifier = InformationTag.LAYER_RUK.getIdentifier();
-
-        LayerSample emptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(identifier, "");
-        }});
-        LayerSample nonEmptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(identifier, "value");
-        }});
-
-
-        ExplorationSite explorationSiteOne = new ExplorationSite();
-        explorationSiteOne.addLayer(emptyLayerSample);
-        explorationSiteOne.addLayer(emptyLayerSample);
-        explorationSiteOne.addLayer(emptyLayerSample);
-
-        ExplorationSite explorationSiteTwo = new ExplorationSite();
-        explorationSiteTwo.addLayer(emptyLayerSample);
-        explorationSiteTwo.addLayer(emptyLayerSample);
-
-        ExplorationSite explorationSiteThree = new ExplorationSite();
-        explorationSiteThree.addLayer(emptyLayerSample);
-        explorationSiteThree.addLayer(emptyLayerSample);
-
-        List<ExplorationSite> explorationSites = Arrays.asList(explorationSiteOne, explorationSiteTwo, explorationSiteThree);
-
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", InformationTag.LAYER_RUK);
-
-        Assert.assertFalse(exists);
-    }
-
-    @Test
-    public void layerAnEmptyListProvidedTest()
-    {
-        String identifier = InformationTag.LAYER_RUK.getIdentifier();
-
-        LayerSample emptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(identifier, "");
-        }});
-        LayerSample nonEmptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(identifier, "value");
-        }});
-
-
-        ExplorationSite explorationSiteOne = new ExplorationSite();
-
-        ExplorationSite explorationSiteTwo = new ExplorationSite();
-
-        ExplorationSite explorationSiteThree = new ExplorationSite();
-        explorationSiteThree.addLayer(emptyLayerSample);
-        explorationSiteThree.addLayer(emptyLayerSample);
-
-        List<ExplorationSite> explorationSites = Arrays.asList(explorationSiteOne, explorationSiteTwo, explorationSiteThree);
-
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, "", InformationTag.LAYER_RUK);
-
-        Assert.assertFalse(exists);
-    }
-
-    @Test
-    public void layerFromOutcropNoEmptyValueTest()
-    {
-        String valueIdentifier = InformationTag.LAYER_RUK.getIdentifier();
-        String outcropIdentifier = InformationTag.LAYER_OUTCROP.getIdentifier();
-        String outcropValue = "GOB";
-
-        LayerSample outcropEmptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(outcropIdentifier, outcropValue);
-            put(valueIdentifier, "");
-        }});
-        LayerSample outcropNonEmptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(outcropIdentifier, outcropValue);
-            put(valueIdentifier, "value");
-        }});
-        LayerSample wrongOutcropEmptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(outcropIdentifier, "nonExistent");
-            put(valueIdentifier, "");
-        }});
-        LayerSample wrongOutcropNonEmptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(outcropIdentifier, "nonExistent");
-            put(valueIdentifier, "value");
-        }});
-
-
-        ExplorationSite explorationSiteOne = new ExplorationSite();
-        explorationSiteOne.addLayer(outcropEmptyLayerSample);
-        explorationSiteOne.addLayer(outcropNonEmptyLayerSample);
-        explorationSiteOne.addLayer(outcropNonEmptyLayerSample);
-
-        ExplorationSite explorationSiteTwo = new ExplorationSite();
-        explorationSiteTwo.addLayer(outcropEmptyLayerSample);
-        explorationSiteTwo.addLayer(outcropEmptyLayerSample);
-
-        ExplorationSite explorationSiteThree = new ExplorationSite();
-        explorationSiteThree.addLayer(outcropNonEmptyLayerSample);
-        explorationSiteThree.addLayer(outcropEmptyLayerSample);
-
-        List<ExplorationSite> explorationSites = Arrays.asList(explorationSiteOne, explorationSiteTwo, explorationSiteThree);
-
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, outcropValue, InformationTag.LAYER_RUK);
-
-        Assert.assertTrue(exists);
-    }
-
-    @Test
-    public void layerFromOutcropSomeEmptyValuesTest()
-    {
-        String valueIdentifier = InformationTag.LAYER_RUK.getIdentifier();
-        String outcropIdentifier = InformationTag.LAYER_OUTCROP.getIdentifier();
-        String outcropValue = "GOB";
-
-        LayerSample outcropEmptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(outcropIdentifier, outcropValue);
-            put(valueIdentifier, "");
-        }});
-        LayerSample outcropNonEmptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(outcropIdentifier, outcropValue);
-            put(valueIdentifier, "value");
-        }});
-        LayerSample wrongOutcropEmptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(outcropIdentifier, "nonExistent");
-            put(valueIdentifier, "");
-        }});
-        LayerSample wrongOutcropNonEmptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(outcropIdentifier, "nonExistent");
-            put(valueIdentifier, "value");
-        }});
-
-
-        ExplorationSite explorationSiteOne = new ExplorationSite();
-        explorationSiteOne.addLayer(outcropEmptyLayerSample);
-        explorationSiteOne.addLayer(outcropNonEmptyLayerSample);
-        explorationSiteOne.addLayer(outcropNonEmptyLayerSample);
-
-        ExplorationSite explorationSiteTwo = new ExplorationSite();
-        explorationSiteTwo.addLayer(wrongOutcropEmptyLayerSample);
-        explorationSiteTwo.addLayer(wrongOutcropNonEmptyLayerSample);
-
-        ExplorationSite explorationSiteThree = new ExplorationSite();
-        explorationSiteThree.addLayer(wrongOutcropEmptyLayerSample);
-        explorationSiteThree.addLayer(wrongOutcropEmptyLayerSample);
-
-        List<ExplorationSite> explorationSites = Arrays.asList(explorationSiteOne, explorationSiteTwo, explorationSiteThree);
-
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, outcropValue, InformationTag.LAYER_RUK);
-
-        Assert.assertTrue(exists);
-    }
-
-    @Test
-    public void layerFromOutcropAllEmptyValuesTest()
-    {
-        String valueIdentifier = InformationTag.LAYER_RUK.getIdentifier();
-        String outcropIdentifier = InformationTag.LAYER_OUTCROP.getIdentifier();
-        String outcropValue = "GOB";
-
-        LayerSample outcropEmptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(outcropIdentifier, outcropValue);
-            put(valueIdentifier, "");
-        }});
-        LayerSample outcropNonEmptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(outcropIdentifier, outcropValue);
-            put(valueIdentifier, "value");
-        }});
-        LayerSample wrongOutcropEmptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(outcropIdentifier, "nonExistent");
-            put(valueIdentifier, "");
-        }});
-        LayerSample wrongOutcropNonEmptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(outcropIdentifier, "nonExistent");
-            put(valueIdentifier, "value");
-        }});
-
-
-        ExplorationSite explorationSiteOne = new ExplorationSite();
-        explorationSiteOne.addLayer(wrongOutcropEmptyLayerSample);
-        explorationSiteOne.addLayer(wrongOutcropEmptyLayerSample);
-        explorationSiteOne.addLayer(wrongOutcropEmptyLayerSample);
-
-        ExplorationSite explorationSiteTwo = new ExplorationSite();
-        explorationSiteTwo.addLayer(wrongOutcropEmptyLayerSample);
-        explorationSiteTwo.addLayer(wrongOutcropNonEmptyLayerSample);
-
-        ExplorationSite explorationSiteThree = new ExplorationSite();
-        explorationSiteThree.addLayer(wrongOutcropEmptyLayerSample);
-        explorationSiteThree.addLayer(wrongOutcropEmptyLayerSample);
-
-        List<ExplorationSite> explorationSites = Arrays.asList(explorationSiteOne, explorationSiteTwo, explorationSiteThree);
-
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, outcropValue, InformationTag.LAYER_RUK);
-
-        Assert.assertFalse(exists);
-    }
-
-    @Test
-    public void layerFromOutcropAnEmptyListProvidedTest()
-    {
-        String valueIdentifier = InformationTag.LAYER_RUK.getIdentifier();
-        String outcropIdentifier = InformationTag.LAYER_OUTCROP.getIdentifier();
-        String outcropValue = "GOB";
-
-        LayerSample outcropEmptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(outcropIdentifier, outcropValue);
-            put(valueIdentifier, "");
-        }});
-        LayerSample outcropNonEmptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(outcropIdentifier, outcropValue);
-            put(valueIdentifier, "value");
-        }});
-        LayerSample wrongOutcropEmptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(outcropIdentifier, "nonExistent");
-            put(valueIdentifier, "");
-        }});
-        LayerSample wrongOutcropNonEmptyLayerSample = new LayerSample(new HashMap<>(){{
-            put(outcropIdentifier, "nonExistent");
-            put(valueIdentifier, "value");
-        }});
-
-
-        ExplorationSite explorationSiteOne = new ExplorationSite();
-
-        ExplorationSite explorationSiteTwo = new ExplorationSite();
-
-        ExplorationSite explorationSiteThree = new ExplorationSite();
-
-        List<ExplorationSite> explorationSites = Arrays.asList(explorationSiteOne, explorationSiteTwo, explorationSiteThree);
-
-        boolean exists = Util.thereExistsAnExplorationSiteWithData(explorationSites, outcropValue, InformationTag.LAYER_RUK);
-
-        Assert.assertFalse(exists);
-    }
+		Probe dataTableOne = new Probe();
+		dataTableOne.addSample(emptyLayerSample);
+		dataTableOne.addSample(emptyLayerSample);
+		dataTableOne.addSample(emptyLayerSample);
+
+		Probe dataTableTwo = new Probe();
+		dataTableTwo.addSample(emptyLayerSample);
+		dataTableTwo.addSample(emptyLayerSample);
+
+		Probe dataTableThree = new Probe();
+		dataTableThree.addSample(emptyLayerSample);
+		dataTableThree.addSample(emptyLayerSample);
+
+		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
+
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", SampleKey.TYPE);
+
+		Assert.assertFalse(exists);
+	}
+
+	@Test
+	public void layerAnEmptyListProvidedTest()
+	{
+		String identifier = SampleKey.TYPE.getKey();
+
+		Sample emptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(identifier, "");
+		}});
+		Sample nonEmptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(identifier, "value");
+		}});
+
+
+		Probe dataTableOne = new Probe();
+
+		Probe dataTableTwo = new Probe();
+
+		Probe dataTableThree = new Probe();
+		dataTableThree.addSample(emptyLayerSample);
+		dataTableThree.addSample(emptyLayerSample);
+
+		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
+
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, "", SampleKey.TYPE);
+
+		Assert.assertFalse(exists);
+	}
+
+	@Test
+	public void layerFromOutcropNoEmptyValueTest()
+	{
+		String valueIdentifier = SampleKey.TYPE.getKey();
+		String outcropIdentifier = SampleKey.OUTCROP.getKey();
+		String outcropValue = "GOB";
+
+		Sample outcropEmptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(outcropIdentifier, outcropValue);
+			put(valueIdentifier, "");
+		}});
+		Sample outcropNonEmptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(outcropIdentifier, outcropValue);
+			put(valueIdentifier, "value");
+		}});
+		Sample wrongOutcropEmptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(outcropIdentifier, "nonExistent");
+			put(valueIdentifier, "");
+		}});
+		Sample wrongOutcropNonEmptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(outcropIdentifier, "nonExistent");
+			put(valueIdentifier, "value");
+		}});
+
+
+		Probe dataTableOne = new Probe();
+		dataTableOne.addSample(outcropEmptyLayerSample);
+		dataTableOne.addSample(outcropNonEmptyLayerSample);
+		dataTableOne.addSample(outcropNonEmptyLayerSample);
+
+		Probe dataTableTwo = new Probe();
+		dataTableTwo.addSample(outcropEmptyLayerSample);
+		dataTableTwo.addSample(outcropEmptyLayerSample);
+
+		Probe dataTableThree = new Probe();
+		dataTableThree.addSample(outcropNonEmptyLayerSample);
+		dataTableThree.addSample(outcropEmptyLayerSample);
+
+		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
+
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcropValue, SampleKey.TYPE);
+
+		Assert.assertTrue(exists);
+	}
+
+	@Test
+	public void layerFromOutcropSomeEmptyValuesTest()
+	{
+		String valueIdentifier = SampleKey.TYPE.getKey();
+		String outcropIdentifier = SampleKey.OUTCROP.getKey();
+		String outcropValue = "GOB";
+
+		Sample outcropEmptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(outcropIdentifier, outcropValue);
+			put(valueIdentifier, "");
+		}});
+		Sample outcropNonEmptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(outcropIdentifier, outcropValue);
+			put(valueIdentifier, "value");
+		}});
+		Sample wrongOutcropEmptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(outcropIdentifier, "nonExistent");
+			put(valueIdentifier, "");
+		}});
+		Sample wrongOutcropNonEmptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(outcropIdentifier, "nonExistent");
+			put(valueIdentifier, "value");
+		}});
+
+
+		Probe dataTableOne = new Probe();
+		dataTableOne.addSample(outcropEmptyLayerSample);
+		dataTableOne.addSample(outcropNonEmptyLayerSample);
+		dataTableOne.addSample(outcropNonEmptyLayerSample);
+
+		Probe dataTableTwo = new Probe();
+		dataTableTwo.addSample(wrongOutcropEmptyLayerSample);
+		dataTableTwo.addSample(wrongOutcropNonEmptyLayerSample);
+
+		Probe dataTableThree = new Probe();
+		dataTableThree.addSample(wrongOutcropEmptyLayerSample);
+		dataTableThree.addSample(wrongOutcropEmptyLayerSample);
+
+		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
+
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcropValue, SampleKey.TYPE);
+
+		Assert.assertTrue(exists);
+	}
+
+	@Test
+	public void layerFromOutcropAllEmptyValuesTest()
+	{
+		String valueIdentifier = SampleKey.TYPE.getKey();
+		String outcropIdentifier = SampleKey.OUTCROP.getKey();
+		String outcropValue = "GOB";
+
+		Sample outcropEmptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(outcropIdentifier, outcropValue);
+			put(valueIdentifier, "");
+		}});
+		Sample outcropNonEmptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(outcropIdentifier, outcropValue);
+			put(valueIdentifier, "value");
+		}});
+		Sample wrongOutcropEmptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(outcropIdentifier, "nonExistent");
+			put(valueIdentifier, "");
+		}});
+		Sample wrongOutcropNonEmptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(outcropIdentifier, "nonExistent");
+			put(valueIdentifier, "value");
+		}});
+
+
+		Probe dataTableOne = new Probe();
+		dataTableOne.addSample(wrongOutcropEmptyLayerSample);
+		dataTableOne.addSample(wrongOutcropEmptyLayerSample);
+		dataTableOne.addSample(wrongOutcropEmptyLayerSample);
+
+		Probe dataTableTwo = new Probe();
+		dataTableTwo.addSample(wrongOutcropEmptyLayerSample);
+		dataTableTwo.addSample(wrongOutcropNonEmptyLayerSample);
+
+		Probe dataTableThree = new Probe();
+		dataTableThree.addSample(wrongOutcropEmptyLayerSample);
+		dataTableThree.addSample(wrongOutcropEmptyLayerSample);
+
+		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
+
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcropValue, SampleKey.TYPE);
+
+		Assert.assertFalse(exists);
+	}
+
+	@Test
+	public void layerFromOutcropAnEmptyListProvidedTest()
+	{
+		String valueIdentifier = SampleKey.TYPE.getKey();
+		String outcropIdentifier = SampleKey.OUTCROP.getKey();
+		String outcropValue = "GOB";
+
+		Sample outcropEmptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(outcropIdentifier, outcropValue);
+			put(valueIdentifier, "");
+		}});
+		Sample outcropNonEmptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(outcropIdentifier, outcropValue);
+			put(valueIdentifier, "value");
+		}});
+		Sample wrongOutcropEmptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(outcropIdentifier, "nonExistent");
+			put(valueIdentifier, "");
+		}});
+		Sample wrongOutcropNonEmptyLayerSample = new Sample(new HashMap<>()
+		{{
+			put(outcropIdentifier, "nonExistent");
+			put(valueIdentifier, "value");
+		}});
+
+
+		Probe dataTableOne = new Probe();
+
+		Probe dataTableTwo = new Probe();
+
+		Probe dataTableThree = new Probe();
+
+		List<DataTable> dataTables = Arrays.asList(dataTableOne, dataTableTwo, dataTableThree);
+
+		boolean exists = CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcropValue, SampleKey.TYPE);
+
+		Assert.assertFalse(exists);
+	}
 
 }

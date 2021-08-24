@@ -2,11 +2,9 @@ package sbt.automization.format;
 
 import org.junit.Assert;
 import org.junit.Test;
-import sbt.automization.export.HtmlTemplateExport;
+import sbt.automization.format.text.LoadPlateTextFormatter;
 
 import java.io.IOException;
-
-import static sbt.automization.templates.TemplateBuildingTest.openExportFile;
 
 
 /* View results
@@ -19,7 +17,7 @@ public class TextFormatLPTest
 {
     @Test
     public void formatEmptyEv85Test() throws IOException {
-        String formattedCode = TextFormatUtil.formatLP("< 80", "-");
+        String formattedCode = new LoadPlateTextFormatter().format("< 80", "-");
 
         Assert.assertEquals(formattedCode, "<p class=Normal >\n" +
                 "< 80\n" +
@@ -28,7 +26,7 @@ public class TextFormatLPTest
 
     @Test
     public void formatEmptyTest() throws IOException {
-        String formattedCode = TextFormatUtil.formatLP("-", "-");
+        String formattedCode = new LoadPlateTextFormatter().format("-", "-");
 
         Assert.assertEquals(formattedCode, "<p class=Normal >\n" +
                 "-\n" +

@@ -1,9 +1,0 @@
-sbt
-sbt.automization.data
-sbt.automization.export
-sbt.automization.format
-sbt.automization.gui
-sbt.automization.templates
-sbt.automization.templates.helper
-sbt.automization.util
-sbt.automization.util.html

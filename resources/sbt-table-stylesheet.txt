@@ -45,7 +45,7 @@
                 font-size:6.0pt;
                 font-family:"Arial",sans-serif;
             }
-            p.Normal5, li.Normal25, div.Normal5
+            p.Normal5, li.Normal5, div.Normal5
             {
                 margin:0cm;
                 font-size:5.0pt;
@@ -88,16 +88,11 @@
 			tr.Normal
 			{
                 page-break-inside:avoid;
-                height:0.8cm;
+                height:1cm;
 			}
-			tr.NormalInner
+			tr.NormalThin
             {
                 page-break-inside:avoid;
-            }
-            tr.NormalThinHeader
-            {
-                page-break-inside:avoid;
-                background:grey;
                 height:0.5cm;
             }
 			tr.NormalHeader
@@ -106,6 +101,12 @@
                 background:grey;
                 height:1.0cm;
 			}
+			tr.NormalThinHeader
+            {
+                page-break-inside:avoid;
+                background:grey;
+                height:0.5cm;
+            }
 			tr.NormalHeaderUnits
             {
                 page-break-inside:avoid;
@@ -115,8 +116,13 @@
 			tr.NormalThin
 			{
                 page-break-inside:avoid;
-                height:0.5cm;
+                height:0.7cm;
 			}
+			tr.NormalThin5
+            {
+                page-break-inside:avoid;
+                height:0.5cm;
+            }
 			td.Normal
 			{
                 border:solid windowtext .5pt;
@@ -124,23 +130,7 @@
                 padding:0cm 1.4pt 0cm 3.4pt;
                 overflow:hidden;
 			}
-            td.NormalInner
-			{
-                border:solid windowtext .5pt;
-                height:1cm;
-                background:white;
-                padding:0cm 1.4pt 0cm 3.4pt;
-                text-align:center;
-                overflow:hidden;
-			}
-			td.NormalNoBorder
-            {
-                background:white;
-                padding:0cm 1.4pt 0cm 1.4pt;
-                text-align:center;
-                overflow:hidden;
-            }
-			td.NormalCentered
+			td.NormalCenterNoPadding
             {
                 border:solid windowtext .5pt;
                 background:white;
@@ -148,7 +138,7 @@
                 text-align:center;
                 overflow:hidden;
             }
-			td.NormalErkundungsstelle
+            td.NormalCenter
             {
                 border:solid windowtext .5pt;
                 background:white;
@@ -165,19 +155,18 @@
                 font-weight: bold;
                 overflow:hidden;
             }
-            td.NormalBold.Left
-            {
-                border:solid windowtext .5pt;
-                background:white;
-                padding:2.4pt 1.4pt 2.4pt 1.4pt;
-                text-align:left;
-                font-weight: bold;
-                overflow:hidden;
-            }
 			td.NormalHeader
 			{
                 border:solid windowtext .5pt;
                 background:#F3F3F3;
+                padding:2.4pt 1.4pt 2.4pt 1.4pt;
+                word-break:break-all;
+            }
+			td.NormalHeaderCenter
+            {
+                border:solid windowtext .5pt;
+                background:#F3F3F3;
+                text-align:center;
                 padding:2.4pt 1.4pt 2.4pt 1.4pt;
                 word-break:break-all;
             }
@@ -189,15 +178,7 @@
                 padding:2.4pt 1.4pt 2.4pt 1.4pt;
                 word-break:break-all;
             }
-			td.NormalHeader.Center
-            {
-                border:solid windowtext .5pt;
-                background:#F3F3F3;
-                text-align:center;
-                padding:2.4pt 1.4pt 2.4pt 1.4pt;
-                word-break:break-all;
-            }
-			td.ChemieWhite
+			td.ChemistryWhite
             {
                 border:solid windowtext .5pt;
                 background:white;
@@ -206,7 +187,7 @@
                 font-weight: bold;
                 overflow:hidden;
             }
-			td.ChemieRed
+			td.ChemistryRed
 			{
                 border:solid windowtext .5pt;
                 background:#FF0000;
@@ -216,7 +197,7 @@
                 color:white;
                 overflow:hidden;
 			}
-			td.ChemieBlack
+			td.ChemistryBlack
 			{
                 border:solid windowtext .5pt;
                 background:black;
@@ -226,7 +207,7 @@
                 font-weight: bold;
                 overflow:hidden;
             }
-			td.ChemieGreen
+			td.ChemistryGreen
 			{
                 border:solid windowtext .5pt;
                 background:#00FF00;
@@ -235,7 +216,7 @@
                 font-weight: bold;
                 overflow:hidden;
 			}
-			td.ChemieBlue
+			td.ChemistryBlue
 			{
                 border:solid windowtext .5pt;
                 background:#00FFFF;
@@ -244,7 +225,7 @@
                 font-weight: bold;
                 overflow:hidden;
 			}
-			td.ChemieYellow
+			td.ChemistryYellow
 			{
                 border:solid windowtext .5pt;
                 background:#FFFF00;

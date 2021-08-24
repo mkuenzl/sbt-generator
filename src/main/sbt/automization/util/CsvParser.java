@@ -29,53 +29,17 @@ public final class CsvParser
 	}
 
 	/**
-	 * Method uses the Apache CSV parser to read the csv and provide each line as record.
-	 * The excel export of .csv files in UTF-8 is always with BOM information (first bytes of each line)
-	 * therefore the BOMInputStream from Apache IO is used.
-	 * @return a list of maps, each map contains the information of one csv row
-	 * @throws Exception if anything happens while reading or exporting the csv
-	 */
-	public List<Map<String, String>> parse() throws Exception
-	{
-		List<Map<String, String>> csvData = new ArrayList<>();
-
-		try (FileInputStream fileInputStream = new FileInputStream(csv);
-			 BOMInputStream bomInputStream = new BOMInputStream(fileInputStream);
-			 InputStreamReader inputStreamReader = new InputStreamReader(bomInputStream, StandardCharsets.UTF_8))
-		{
-			CSVParser csvParser = CSVFormat.EXCEL.withDelimiter(';').withFirstRecordAsHeader().withIgnoreEmptyLines(true).parse(inputStreamReader);
-
-			List<String> providedCsv = csvParser.getHeaderNames();
-			if (! compareHeader(providedCsv))
-			{
-				ErrorPopup.showErrorMessage("Es wurde eine veraltete Version des Excel Templates verwendet.");
-			}
-
-			for (CSVRecord record : csvParser)
-			{	// each record represents a line from the csv
-				if (! "".equals(record.get(0)))
-				{ // prevent wrong excel formatting of .csv files to crash the program
-					Map<String, String> map = record.toMap();
-					csvData.add(map);
-				}
-			}
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		return csvData;
-	}
-
-	/**
 	 * Method for testing purposes
+	 *
 	 * @param csv a file of a csv
 	 * @return a list of headers as Strings
 	 */
-	public List<String> parseHeader(File csv){
+	public static List<String> parseHeader(File csv)
+	{
 		List<String> headers = null;
 
-		try (FileInputStream fileInputStream = new FileInputStream(csv);
-		     BOMInputStream bomInputStream = new BOMInputStream(fileInputStream);
+		try (FileInputStream fileInputStream = new FileInputStream(csv) ;
+		     BOMInputStream bomInputStream = new BOMInputStream(fileInputStream) ;
 		     InputStreamReader inputStreamReader = new InputStreamReader(bomInputStream, StandardCharsets.UTF_8))
 		{
 			CSVParser csvParser = CSVFormat.EXCEL.withDelimiter(';').withFirstRecordAsHeader().withIgnoreEmptyLines(true).parse(inputStreamReader);
@@ -90,6 +54,48 @@ public final class CsvParser
 	}
 
 	/**
+	 * Method uses the Apache CSV parser to read the csv and provide each line as record.
+	 * The excel export of .csv files in UTF-8 is always with BOM information (first bytes of each line)
+	 * therefore the BOMInputStream from Apache IO is used.
+	 *
+	 * @return a list of maps, each map contains the information of one csv row
+	 * @throws Exception if anything happens while reading or exporting the csv
+	 */
+	public List<Map<String, String>> parse() throws Exception
+	{
+		List<Map<String, String>> csvData = new ArrayList<>();
+
+		try (FileInputStream fileInputStream = new FileInputStream(csv) ;
+		     BOMInputStream bomInputStream = new BOMInputStream(fileInputStream) ;
+		     InputStreamReader inputStreamReader = new InputStreamReader(bomInputStream, StandardCharsets.UTF_8))
+		{
+			CSVParser csvParser = CSVFormat.EXCEL.withDelimiter(';')
+					.withFirstRecordAsHeader()
+					.withIgnoreEmptyLines(true)
+					.parse(inputStreamReader);
+
+			List<String> providedCsv = csvParser.getHeaderNames();
+			if (! compareHeader(providedCsv))
+			{
+				ErrorPopup.showErrorMessage("Es wird eine veraltete Version des Excel Templates verwendet.");
+			}
+
+			for (CSVRecord record : csvParser)
+			{    // each record represents a line from the csv
+				if (! "".equals(record.get(0)))
+				{ // prevent wrong excel formatting of .csv files to crash the program
+					Map<String, String> map = record.toMap();
+					csvData.add(map);
+				}
+			}
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		return csvData;
+	}
+
+	/**
 	 * This function compares a list of necessary csv headers with the input csv headers, if the input contains all of
 	 * them it returns true, else false.
 	 * This function has to be up to date with the excel template! TODO
@@ -99,25 +105,32 @@ public final class CsvParser
 	 */
 	public static boolean compareHeader(List<String> input)
 	{
-		String headers = "ERK_ID;ERK_NUMMER;ERK_DATUM;ERK_PRUEFER;ERK_BEREICH;ERK_ANSPRECHPARTNER;ERK_KOORDINATEN;" +
-				"ERK_ORT;ERK_AUFSCHLUSS_OB;ERK_AUFSCHLUSS_TOB;ERK_AUFSCHLUSS_UG_OH_BA;ERK_OBERKANTE;ERK_BELASTUNGSKLASSE;" +
-				"ERK_BELASTUNGSKLASSE_TAFEL;ERK_PECH_QUALITATIV;ERK_PECH_HALBQUANTITATIV;ERK_PECH_QUANTITATIV;" +
-				"ERK_TRAG_PLANUM;ERK_TRAG_GRABENSOHLE;ERK_SOHLE_TIEFE;ERK_VERBUND_UNTERLAGE;ERK_LP;ERK_LP1;ERK_LP2;" +
-				"ERK_LP3;ERK_LP_MEAN;ERK_LP_EV;ERK_LP_EV15;ERK_LP_EV2;ERK_LP_EV2_SOLL;ERK_ZIELTIEFE;" +
-				"ERK_HAUFWERK_MATERIAL;ERK_HAUFWERK_VOLUMEN;ERK_HAUFWERK_PROBEN_ANZAHL;ERK_LEITFADEN_AUSBAUASPHALT;" +
-				"ERK_TEILWEISE_VERFESTIGT;ERK_UEBERSCHREITUNG_ORIENT;ERK_RAMMHINDERNIS;ERK_KABELTRASSE;" +
-				"ERK_FREMDBESTANDTEILE;ERK_GUENSTIGE_EINSTUFUNG;ERK_VERNACHLAESSIGUNG_LEITFAEHIGKEIT;" +
-				"ERK_VARIABLE_FOOTNOTE1;ERK_VARIABLE_FOOTNOTE2;ERK_VARIABLE_FOOTNOTE3;SCHICHT_ID;ERK_ID.1;" +
-				"CHEMIE_ID;SCHICHT_NR;SCHICHT_AUFSCHLUSS;SCHICHT_ART;SCHICHT_KOERNUNG;SCHICHT_BODENKLASSE;" +
-				"SCHICHT_DICKE;SCHICHT_TIEFE_START;SCHICHT_TIEFE_ENDE;SCHICHT_PECH;SCHICHT_PAK;" +
-				"SCHICHT_RUNDUNGSGRAD_GESTUFTHEIT;SCHICHT_FARBE;SCHICHT_BODENART;SCHICHT_KONSISTENZ;" +
-				"SCHICHT_FEUCHTIGKEIT;SCHICHT_WASSERGEHALT;SCHICHT_WASSERPROCTOR;SCHICHT_NOTIZ;SCHICHT_BEHAELTNIS;" +
-				"SCHICHT_ABFALLART;SCHICHT_GERUCH;SCHICHT_KORNGROESSENVERTEILUNG;SCHICHT_RUK_NR;SCHICHT_RUK_PROBE;" +
-				"SCHICHT_RUK;SCHICHT_DRUCKFESTIGKEIT;SCHICHT_FROSTEMPFINDLICHKEITSKLASSE;SCHICHT_DIFFERENZ_WN_WOPT;" +
-				"SCHICHT_VERDICHTUNGSFAEHIGKEIT;SCHICHT_HOMOGENBEREICH;CHEMIE_ID.1;CHEMIE_MUFV;CHEMIE_LFS;" +
-				"CHEMIE_LAGA_BO;CHEMIE_LAGA_RC;CHEMIE_LAGARC_ORIENTIERUNGSWERT;CHEMIE_TLGESTEIN;CHEMIE_DEPV;" +
-				"CHEMIE_ENTSCHEIDUNGSHILFE;CHEMIE_DEPV_ODER_ENTSCHEIDUNGSHILFE;CHEMIE_REKU;CHEMIE_ABFALLSCHLUESSEL;" +
-				"CHEMIE_ASBEST;CHEMIE_PCB;CHEMIE_BTEX";
+		String headers = "PROBE.ID;PROBE.NUMMER;PROBE.LP.ID;PROBE.DATUM;PROBE.PRUEFER;PROBE.BEREICH;PROBE.ANSPRECHPARTNER;" +
+				"PROBE.KOORDINATEN;PROBE.ORT;PROBE.AUFSCHLUSS_OB;PROBE.AUFSCHLUSS_TOB;PROBE.AUFSCHLUSS_UG_OH_BA;" +
+				"PROBE.OBERKANTE;PROBE.BELASTUNGSKLASSE;PROBE.BELASTUNGSKLASSE_TAFEL;PROBE.PECH_QUALITATIV;" +
+				"PROBE.PECH_HALBQUANTITATIV;PROBE.PECH_QUANTITATIV;PROBE.TRAG_PLANUM;PROBE.TRAG_GRABENSOHLE;" +
+				"PROBE.SOHLE_TIEFE;PROBE.VERBUND_UNTERLAGE;PROBE.ZIELTIEFE;PROBE.FOOTNOTE_1;PROBE.FOOTNOTE_2;" +
+				"PROBE.FOOTNOTE_3;PROBE.FOOTNOTE_4;PROBE.FOOTNOTE_5;PROBE.FOOTNOTE_6;PROBE.FOOTNOTE_7;PROBE.FOOTNOTE_8;" +
+				"PROBE.FOOTNOTE_9;PROBE.FOOTNOTE_10;PROBE.BAUTEIL;PROBE.PROBENCHARAKTER;PROBE.GERUCH;PROBE.PROBENNUMMER;" +
+				"PROBE.GEBAEUDE;PROBE.ETAGE;PROBE.RAUM;PROBE.ENTNAHME;SAMPLE.ID;SAMPLE.PROBE.ID;SAMPLE.CHEMISTRY.ID;" +
+				"SAMPLE.RUK.ID;SAMPLE.NUMMER;SAMPLE.AUFSCHLUSS;SAMPLE.ART;SAMPLE.KOERNUNG;SAMPLE.BODENKLASSE;" +
+				"SAMPLE.DICKE;SAMPLE.TIEFE_START;SAMPLE.TIEFE_ENDE;SAMPLE.PECH;SAMPLE.PAK;SAMPLE.RUNDUNGSGRAD_GESTUFTHEIT;" +
+				"SAMPLE.FARBE;SAMPLE.BODENART;SAMPLE.KONSISTENZ;SAMPLE.FEUCHTIGKEIT;SAMPLE.WASSERGEHALT;" +
+				"SAMPLE.WASSERPROCTOR;SAMPLE.NOTIZ;SAMPLE.BEHAELTNIS;SAMPLE.ABFALLART;SAMPLE.GERUCH;" +
+				"SAMPLE.KORNGROESSENVERTEILUNG;SAMPLE.DRUCKFESTIGKEIT;SAMPLE.FROSTEMPFINDLICHKEITSKLASSE;" +
+				"SAMPLE.VERDICHTUNGSFAEHIGKEIT;SAMPLE.HOMOGENBEREICH;SAMPLE.MATERIAL;SAMPLE.VOLUMEN;" +
+				"SAMPLE.PROBEN;SAMPLE.ENTNAHME;SAMPLE.SCHADSTOFFVERDACHT;SAMPLE.ABFALLSCHLUESSEL_MATERIAL;" +
+				"SAMPLE.ABFALLSCHLUESSEL_GEMISCH;PARAMETER.CHEMISTRY.ID;PARAMETER.CHEMISTRY.MUFV;" +
+				"PARAMETER.CHEMISTRY.MUFV_PARAMETER;PARAMETER.CHEMISTRY.LFS;PARAMETER.CHEMISTRY.LAGA_BO;" +
+				"PARAMETER.CHEMISTRY.LAGA_RC;PARAMETER.CHEMISTRY.LAGA_RC_ORIENTIERUNGSWERT;" +
+				"PARAMETER.CHEMISTRY.TL_GESTEIN;PARAMETER.CHEMISTRY.DEPV;PARAMETER.CHEMISTRY.ENTSCHEIDUNGSHILFE;" +
+				"PARAMETER.CHEMISTRY.REKU;PARAMETER.CHEMISTRY.ABFALLSCHLUESSEL;PARAMETER.CHEMISTRY.ASBEST;" +
+				"PARAMETER.CHEMISTRY.PCB;PARAMETER.CHEMISTRY.BTEX;PARAMETER.CHEMISTRY.EOX;" +
+				"PARAMETER.CHEMISTRY.PHENOLE;PARAMETER.CHEMISTRY.ICP_SCREENING;PARAMETER.CHEMISTRY.SULFAT;" +
+				"PARAMETER.CHEMISTRY.KMF;PARAMETER.CHEMISTRY.PAK;PARAMETER.CHEMISTRY.ALTHOLZ_VERORDNUNG;" +
+				"PARAMETER.LP.ID;PARAMETER.LP.NUMMER;PARAMETER.LP.WERT_1;PARAMETER.LP.WERT_2;PARAMETER.LP.WERT_3;" +
+				"PARAMETER.LP.MITTELWERT;PARAMETER.LP.EV;PARAMETER.LP.EV85;PARAMETER.LP.EV2;PARAMETER.LP.EV2_SOLL;" +
+				"PARAMETER.RUK.ID;PARAMETER.RUK.NUMMER;PARAMETER.RUK.PROBENART;PARAMETER.RUK.WERT";
 
 		String[] splitHeaders = headers.split(";");
 		List<String> actualHeaders = Arrays.asList(splitHeaders);

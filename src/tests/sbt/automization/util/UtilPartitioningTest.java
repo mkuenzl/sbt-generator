@@ -2,10 +2,9 @@ package sbt.automization.util;
 
 import org.junit.Assert;
 import org.junit.Test;
-import sbt.automization.data.ExplorationSite;
-import sbt.automization.templates.ExplorationSiteFactory;
+import sbt.automization.data.DataTable;
+import sbt.automization.DatatableProvider;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -18,14 +17,14 @@ public class UtilPartitioningTest
 	@Test
 	public void partitioningTest()
 	{
-		List<ExplorationSite> explorationSites = new ArrayList<>();
-		ExplorationSiteFactory explorationSiteFactory = new ExplorationSiteFactory();
+		List<DataTable> dataTables = new ArrayList<>();
+		DatatableProvider datatableProvider = new DatatableProvider();
 		for (int i = 0 ; i < 100 ; i++)
 		{
-			explorationSites.add(explorationSiteFactory.getTestErkundungsstelle1());
+			dataTables.add(datatableProvider.getTestDataTable());
 		}
 
-		Collection<List<ExplorationSite>> partitionBasedOnSize = Util.separateBasedOnSize(explorationSites, 5);
+		Collection<List<DataTable>> partitionBasedOnSize = Separator.separateBasedOnSize(dataTables, 5);
 
 		Assert.assertTrue(partitionBasedOnSize.size() == 20);
 	}
@@ -33,14 +32,14 @@ public class UtilPartitioningTest
 	@Test
 	public void partitioningLessThenExpectedTest()
 	{
-		List<ExplorationSite> explorationSites = new ArrayList<>();
-		ExplorationSiteFactory explorationSiteFactory = new ExplorationSiteFactory();
+		List<DataTable> dataTables = new ArrayList<>();
+		DatatableProvider datatableProvider = new DatatableProvider();
 		for (int i = 0 ; i < 3 ; i++)
 		{
-			explorationSites.add(explorationSiteFactory.getTestErkundungsstelle1());
+			dataTables.add(datatableProvider.getTestDataTable());
 		}
 
-		Collection<List<ExplorationSite>> partitionBasedOnSize = Util.separateBasedOnSize(explorationSites, 5);
+		Collection<List<DataTable>> partitionBasedOnSize = Separator.separateBasedOnSize(dataTables, 5);
 
 		Assert.assertTrue(partitionBasedOnSize.size() == 1);
 	}
@@ -48,14 +47,14 @@ public class UtilPartitioningTest
 	@Test
 	public void partitioningIrregularAmountTest()
 	{
-		List<ExplorationSite> explorationSites = new ArrayList<>();
-		ExplorationSiteFactory explorationSiteFactory = new ExplorationSiteFactory();
+		List<DataTable> dataTables = new ArrayList<>();
+		DatatableProvider datatableProvider = new DatatableProvider();
 		for (int i = 0 ; i < 17 ; i++)
 		{
-			explorationSites.add(explorationSiteFactory.getTestErkundungsstelle1());
+			dataTables.add(datatableProvider.getTestDataTable());
 		}
 
-		Collection<List<ExplorationSite>> partitionBasedOnSize = Util.separateBasedOnSize(explorationSites, 5);
+		Collection<List<DataTable>> partitionBasedOnSize = Separator.separateBasedOnSize(dataTables, 5);
 
 		Assert.assertTrue(partitionBasedOnSize.size() == 4);
 	}
@@ -63,9 +62,9 @@ public class UtilPartitioningTest
 	@Test
 	public void partitioningNullTest()
 	{
-		List<ExplorationSite> explorationSites = new ArrayList<>();
+		List<DataTable> dataTables = new ArrayList<>();
 
-		Collection<List<ExplorationSite>> partitionBasedOnSize = Util.separateBasedOnSize(explorationSites, 5);
+		Collection<List<DataTable>> partitionBasedOnSize = Separator.separateBasedOnSize(dataTables, 5);
 
 		Assert.assertTrue(partitionBasedOnSize.size() == 0);
 	}

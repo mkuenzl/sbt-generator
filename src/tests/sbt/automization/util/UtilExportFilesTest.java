@@ -9,7 +9,7 @@ public class UtilExportFilesTest
     @Test
     public void exportCSVTemplate() throws IOException
     {
-        Util.exportFile("/sbt-excel-template.xlsx");
+        FileExport.copyFileToUserDirectory("/datenbank-template.xlsx");
 
         //TODO implement option to check if there is a file created
     }

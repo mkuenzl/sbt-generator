@@ -1,12 +1,18 @@
 package sbt.automization.gui;
 
+import sbt.automization.gui.listener.*;
+
 import javax.swing.*;
 import java.awt.*;
 
 
 public class TableToolVisualInterface extends JFrame
 {
-	static JTextArea textField;
+	public static JTextArea textField;
+
+	public static void main(String[] args) {
+		new TableToolVisualInterface();
+	}
 
 	public TableToolVisualInterface()
 	{
