@@ -36,10 +36,12 @@ public final class AttemptTemplate extends Appendix
 	public void constructTemplate(List<DataTable> dataTables)
 	{
 
-	}	@Override
-	public HtmlTable constructAndGetTableObject()
+	}
+
+	@Override
+	public void createTable()
 	{
-		HtmlTable table = new HtmlTable.Builder()
+		table = new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
 				.appendAttribute("width", "605")
 				.appendAttribute("border", "1")
@@ -48,8 +50,6 @@ public final class AttemptTemplate extends Appendix
 				.appendAttribute("cellpadding", "0")
 				.appendContent(constructAndGetTableHeader())
 				.build();
-
-		return table;
 	}
 
 	@Override

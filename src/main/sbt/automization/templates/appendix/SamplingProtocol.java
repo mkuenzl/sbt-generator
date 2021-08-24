@@ -87,25 +87,9 @@ public final class SamplingProtocol extends Appendix
 	}
 
 	@Override
-	public HtmlTable constructAndGetTableObject()
-	{
-		HtmlTable table = new HtmlTable.Builder()
-				.appendAttribute("class", "MsoNormalTable")
-				.appendAttribute("width", "605")
-				.appendAttribute("border", "1")
-				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
-				.appendAttribute("cellspacing", "0")
-				.appendAttribute("cellpadding", "0")
-				.appendContent(constructAndGetTableHeader())
-				.build();
-
-		return table;
-	}
-
-	@Override
 	public void constructTemplate(List<DataTable> dataTables)
 	{
-		this.table = constructAndGetTableObject();
+		createTable();
 
 		for (DataTable dataTable : dataTables)
 		{
@@ -147,7 +131,7 @@ public final class SamplingProtocol extends Appendix
 
 					linesPerPage++;
 
-					this.table.appendContent(row);
+					addToTable(row);
 				}
 			}
 		}

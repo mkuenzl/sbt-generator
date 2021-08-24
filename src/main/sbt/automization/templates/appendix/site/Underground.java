@@ -34,7 +34,7 @@ public final class Underground extends Appendix
 	public void constructTemplate(DataTable dataTable)
 	{
 		setOutcrop(dataTable);
-		HtmlTable table = constructAndGetTableObject();
+		createTable();
 
 		if (dataTable instanceof Probe)
 		{
@@ -129,21 +129,5 @@ public final class Underground extends Appendix
 				.append(thirdRow);
 
 		return stringBuilder.toString();
-	}
-
-	@Override
-	public HtmlTable constructAndGetTableObject()
-	{
-		HtmlTable table = new HtmlTable.Builder()
-				.appendAttribute("class", "MsoNormalTable")
-				.appendAttribute("width", "605")
-				.appendAttribute("border", "1")
-				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
-				.appendAttribute("cellspacing", "0")
-				.appendAttribute("cellpadding", "0")
-				.appendContent(constructAndGetTableHeader())
-				.build();
-
-		return table;
 	}
 }

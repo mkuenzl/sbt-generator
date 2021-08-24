@@ -48,7 +48,7 @@ public final class ExplorationSite extends Appendix
 		{
 			Probe probe = (Probe) dataTable;
 
-			HtmlTable table = constructAndGetTableObject();
+			createTable();
 			String headOfTable = createHeadOfTable(probe);
 			table.appendContent(headOfTable);
 			addToTemplate(table.appendTag());
@@ -150,20 +150,6 @@ public final class ExplorationSite extends Appendix
 	protected String constructAndGetTableHeader()
 	{
 		return "";
-	}
-
-	@Override
-	public HtmlTable constructAndGetTableObject()
-	{
-		return new HtmlTable.Builder()
-				.appendAttribute("class", "MsoNormalTable")
-				.appendAttribute("width", "605")
-				.appendAttribute("border", "1")
-				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
-				.appendAttribute("cellspacing", "0")
-				.appendAttribute("cellpadding", "0")
-				.appendContent(constructAndGetTableHeader())
-				.build();
 	}
 
 	private void createBanquetTemplate(Probe probe)

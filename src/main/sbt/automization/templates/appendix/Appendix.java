@@ -44,20 +44,35 @@ public abstract class Appendix implements HtmlTemplate
 		this.template.append(table);
 	}
 
+	void addPageBreak()
+	{
+		this.template.append("<br>");
+	}
+
+	void addTable()
+	{
+		String tableString = table.appendTag();
+		this.template.append(tableString);
+	}
+
 	protected abstract String constructAndGetTableHeader();
 
-	public HtmlTable constructAndGetTableObject()
+	public void createTable()
 	{
-		HtmlTable table = new HtmlTable.Builder()
+		table = new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
 				.appendAttribute("width", "605")
 				.appendAttribute("border", "1")
 				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
 				.appendAttribute("cellspacing", "0")
 				.appendAttribute("cellpadding", "0")
+				.appendContent(constructAndGetTableHeader())
 				.build();
+	}
 
-		return table;
+	void addToTable(String content)
+	{
+		table.appendContent(content);
 	}
 
 	protected void addAndResetTableOnPageBreak()
@@ -70,7 +85,7 @@ public abstract class Appendix implements HtmlTemplate
 
 			linesPerPage = 0;
 
-			table = constructAndGetTableObject();
+			createTable();
 		}
 	}
 }

@@ -67,7 +67,8 @@ public class TemplateBuildingTest
 		dataTables.add(DatatableSerializationFactory.readSerializedDatatable(serializableFilePath + "Probe_8"));
 		dataTables.add(DatatableSerializationFactory.readSerializedDatatable(serializableFilePath + "Probe_9"));
 		dataTables.add(DatatableSerializationFactory.readSerializedDatatable(serializableFilePath + "Probe_10"));
-		//dataTables.add(DatatableSerializationFactory.readSerializedDatatable(serializableFilePath + "Probe_11"));
+		dataTables.add(DatatableSerializationFactory.readSerializedDatatable(serializableFilePath + "Probe_11"));
+		dataTables.add(DatatableSerializationFactory.readSerializedDatatable(serializableFilePath + "Probe_12"));
 	}
 
 	@Test

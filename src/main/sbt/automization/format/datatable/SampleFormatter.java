@@ -1,13 +1,11 @@
 package sbt.automization.format.datatable;
 
 import sbt.automization.data.DataTable;
-import sbt.automization.data.Outcrop;
 import sbt.automization.data.Parameter;
 import sbt.automization.data.Sample;
-import sbt.automization.data.key.ChemistryKey;
-import sbt.automization.data.key.Key;
-import sbt.automization.data.key.RuKKey;
-import sbt.automization.data.key.SampleKey;
+import sbt.automization.data.key.*;
+import sbt.automization.gui.ErrorPopup;
+import sbt.automization.util.HeapConstruction;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -189,5 +187,39 @@ public final class SampleFormatter
 	private Sample checkChemistryTag()
 	{
 		return null;
+	}
+
+	public List<Sample> createHeapSamples()
+	{
+		List<Sample> splitHeapSamples = new ArrayList<>();
+
+		List<Sample> heapSamples = dataTable.getSamplesBy(SampleKey.OUTCROP, outcrop);
+
+		for (Sample heapSample : heapSamples)
+		{
+			int[] sampleVolumes = HeapConstruction.calculateVolumes(heapSample);
+			List<Sample> split = splitHeap(heapSample, sampleVolumes);
+			splitHeapSamples.addAll(split);
+		}
+		return splitHeapSamples;
+	}
+
+	private List<Sample> splitHeap(Sample sample, int[] volumes)
+	{
+		List<Sample> clonedSamples = new ArrayList<>();
+
+		for (int volume : volumes)
+		{
+			try
+			{
+				Sample clonedSample = (Sample) sample.clone();
+				clonedSample.add(SampleKey.VOLUME, String.valueOf(volume));
+				clonedSamples.add(clonedSample);
+			} catch (CloneNotSupportedException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		return clonedSamples;
 	}
 }

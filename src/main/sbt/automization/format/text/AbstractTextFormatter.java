@@ -2,7 +2,7 @@ package sbt.automization.format.text;
 
 public abstract class AbstractTextFormatter implements TextFormatter
 {
-	public AbstractTextFormatter(){}
+	public AbstractTextFormatter() {}
 
 	protected String replaceIfEmpty(String text)
 	{

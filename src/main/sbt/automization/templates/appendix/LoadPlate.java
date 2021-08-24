@@ -94,23 +94,9 @@ public final class LoadPlate extends Appendix
 	}
 
 	@Override
-	public HtmlTable constructAndGetTableObject()
-	{
-		return new HtmlTable.Builder()
-				.appendAttribute("class", "MsoNormalTable")
-				.appendAttribute("width", "605")
-				.appendAttribute("border", "1")
-				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
-				.appendAttribute("cellspacing", "0")
-				.appendAttribute("cellpadding", "0")
-				.appendContent(constructAndGetTableHeader())
-				.build();
-	}
-
-	@Override
 	public void constructTemplate(List<DataTable> dataTables)
 	{
-		this.table = constructAndGetTableObject();
+		createTable();
 
 		for (DataTable dataTable : dataTables)
 		{

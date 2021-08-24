@@ -1,8 +1,8 @@
 package sbt.automization.format.printer;
 
 import sbt.automization.data.DataTable;
-import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.Key;
+import sbt.automization.data.key.ProbeKey;
 import sbt.automization.html.HtmlText;
 
 import java.util.ArrayList;

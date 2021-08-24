@@ -178,7 +178,7 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 	 * @throws CloneNotSupportedException only if there was a problem creating another map
 	 */
 	@Override
-	public Object clone() throws CloneNotSupportedException
+	public DataTable clone() throws CloneNotSupportedException
 	{
 		DataTable cloned = (DataTable) super.clone();
 		return cloned;
