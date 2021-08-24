@@ -181,6 +181,11 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 	public DataTable clone() throws CloneNotSupportedException
 	{
 		DataTable cloned = (DataTable) super.clone();
+
+		Map<String, String> clonedMap = new HashMap<>(this.informationMap);
+
+		cloned.setTable(clonedMap);
+
 		return cloned;
 	}
 
