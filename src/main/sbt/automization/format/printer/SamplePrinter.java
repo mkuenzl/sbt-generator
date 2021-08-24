@@ -113,7 +113,7 @@ public final class SamplePrinter implements TextPrinter
 		return stringBuilder.toString();
 	}
 
-	public String printAttributeOfSamples(final DataTable dataTable, final String outcrop, final Key tag)
+	public String printAttributeOfSamplesWithDepth(final DataTable dataTable, final String outcrop, final Key tag)
 	{
 		SampleFormatter sampleFormatter = new SampleFormatter(dataTable, outcrop);
 
@@ -127,31 +127,7 @@ public final class SamplePrinter implements TextPrinter
 		{
 			Sample sample = samples.get(i);
 
-			String formattedTag;
-
-			if (tag instanceof ChemistryKey)
-			{
-				formattedTag = new ChemistryMarkupTextFormatter().format(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, tag));
-			} else if (tag instanceof RuKKey)
-			{
-				formattedTag = new HtmlText.Builder()
-						.appendAttribute("class", "Normal")
-						.appendContent(sample.getParameterValueBy(SampleKey.RUK_ID, tag))
-						.build().appendTag();
-			} else if (tag == SampleKey.MOISTURE)
-			{
-				//TODO ERROR?
-				formattedTag = new HtmlText.Builder()
-						.appendAttribute("class", "Normal")
-						.appendContent(new ProctorTextFormatter().format(sample.get(SampleKey.MOISTURE)))
-						.build().appendTag();
-			} else
-			{
-				formattedTag = new HtmlText.Builder()
-						.appendAttribute("class", "Normal")
-						.appendContent(sample.get(tag))
-						.build().appendTag();
-			}
+			String formattedTag = printAttributeOfDatatable(sample, tag);
 
 			if (i > 0)
 			{
@@ -166,6 +142,62 @@ public final class SamplePrinter implements TextPrinter
 		}
 
 		return stringBuilder.toString();
+	}
+
+	public String printAttributeOfSamples(final DataTable dataTable, final String outcrop, final Key tag)
+	{
+		SampleFormatter sampleFormatter = new SampleFormatter(dataTable, outcrop);
+
+		List<Sample> samples = sampleFormatter.combineSamplesByTag(tag);
+
+		StringBuilder stringBuilder = new StringBuilder();
+
+		int amountOfSamples = samples.size();
+
+		for (int i = 0 ; i < amountOfSamples ; i++)
+		{
+			Sample sample = samples.get(i);
+
+			String formattedTag = printAttributeOfDatatable(sample, tag);
+
+			if (i > 0)
+			{
+				stringBuilder.append(UtilityPrinter.printCellTextDivider());
+			}
+
+			stringBuilder.append(formattedTag);
+		}
+
+		return stringBuilder.toString();
+	}
+
+	public String printAttributeOfDatatable(final DataTable dataTable, final Key tag)
+	{
+			String formattedTag;
+
+			if (tag instanceof ChemistryKey)
+			{
+				formattedTag = new ChemistryMarkupTextFormatter().format(dataTable.getParameterValueBy(SampleKey.CHEMISTRY_ID, tag));
+			} else if (tag instanceof RuKKey)
+			{
+				formattedTag = new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent(dataTable.getParameterValueBy(SampleKey.RUK_ID, tag))
+						.build().appendTag();
+			} else if (tag == SampleKey.MOISTURE)
+			{
+				formattedTag = new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent(new ProctorTextFormatter().format(dataTable.get(SampleKey.MOISTURE)))
+						.build().appendTag();
+			} else
+			{
+				formattedTag = new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent(dataTable.get(tag))
+						.build().appendTag();
+			}
+		return formattedTag;
 	}
 
 	@Override

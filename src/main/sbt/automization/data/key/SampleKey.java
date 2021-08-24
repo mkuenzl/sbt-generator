@@ -34,6 +34,14 @@ public enum SampleKey implements Key
 					return addSampleTag("ENTNAHME");
 				}
 			},
+	MATERIAL
+			{
+				@Override
+				public String getKey()
+				{
+					return addSampleTag("MATERIAL");
+				}
+			},
 	SAMPLE_AMOUNT
 			{
 				@Override

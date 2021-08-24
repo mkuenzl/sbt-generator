@@ -31,7 +31,7 @@ public class InformationRowWithDepth extends RowStrategy
 	String createCell(DataTable table)
 	{
 		HtmlCell cell = HtmlFactory.createCell(ReportStyle.CELL.getStyleClass(), ReportStyle.CELL.getStyle(),
-				new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop.toString(), key)});
+				new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop.toString(), key)});
 
 		return cell.appendTag();
 	}

@@ -2,6 +2,10 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
+import sbt.automization.html.HtmlCell;
+import sbt.automization.html.HtmlFactory;
+import sbt.automization.html.HtmlRow;
+import sbt.automization.styles.ReportStyle;
 import sbt.automization.templates.helper.HeapProvider;
 
 import java.util.Collection;
@@ -59,7 +63,25 @@ public final class Heap extends Report
 		addToTable(provider.createOutcropRow(dataTables));
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
-		addToTable(provider.createLegendRow(dataTables));
+		//addToTable(provider.createLegendRow(dataTables));
+	}
+
+	@Override
+	void addTechnicalHeader(List<DataTable> dataTables)
+	{
+		int colspan = 1;
+
+		for (DataTable dataTable : dataTables)
+		{
+			colspan += dataTable.getSamples().size();
+		}
+
+		HtmlRow row = HtmlFactory.createRow(ReportStyle.ROW.getStyleClass(), new HtmlCell[]{
+				HtmlFactory.createCell(ReportStyle.HEADER.getStyleClass(), 1, colspan,
+						new String[]{"Technische Merkmale"})
+		});
+
+		addToTable(row.appendTag());
 	}
 
 	@Override
@@ -70,6 +92,23 @@ public final class Heap extends Report
 		addToTable(provider.createMaterialRow(dataTables));
 		addToTable(provider.createDIN18300Row(dataTables));
 		addToTable(provider.createDIN18196Row(dataTables));
+	}
+
+	@Override
+	void addEnvironmentTechnicalHeader(List<DataTable> dataTables)
+	{
+		int colspan = 1;
+
+		for (DataTable dataTable : dataTables)
+		{
+			colspan += dataTable.getSamples().size();
+		}
+		HtmlRow row = HtmlFactory.createRow(ReportStyle.ROW.getStyleClass(), new HtmlCell[]{
+				HtmlFactory.createCell(ReportStyle.HEADER.getStyleClass(), 1, colspan,
+						new String[]{"Umwelttechnische Merkmale"})
+		});
+
+		addToTable(row.appendTag());
 	}
 
 	@Override

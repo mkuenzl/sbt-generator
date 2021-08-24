@@ -46,6 +46,26 @@ public class UtilHeapSampleSizeTest
 	}
 
 	@Test
+	public void calculateSamplesFifthTest()
+	{
+		int[] heapSampleSizes = HeapConstruction.calculateVolumes(656, 11);
+
+		int[] compareToSizes = {55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 106};
+
+		Assert.assertArrayEquals(compareToSizes, heapSampleSizes);
+	}
+
+	@Test
+	public void calculateSamplesSixthTest()
+	{
+		int[] heapSampleSizes = HeapConstruction.calculateVolumes(800, 12);
+
+		int[] compareToSizes = {65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 85};
+
+		Assert.assertArrayEquals(compareToSizes, heapSampleSizes);
+	}
+
+	@Test
 	public void calculateSamplesUnevenTest()
 	{
 		int[] heapSampleSizes = HeapConstruction.calculateVolumes(551.0, 10);

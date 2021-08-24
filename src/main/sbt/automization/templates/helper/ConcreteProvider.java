@@ -69,7 +69,7 @@ public final class ConcreteProvider extends RowProvider
             HtmlCell cell = new HtmlCell.Builder()
                     .appendAttribute("class", normalCellClass)
                     .appendAttribute("width", normalCellWidth)
-                    .appendContent(new SamplePrinter().printAttributeOfSamples(dataTable, outcrop, SampleKey.TYPE))
+                    .appendContent(new SamplePrinter().printAttributeOfSamplesWithDepth(dataTable, outcrop, SampleKey.TYPE))
                     .build();
 
             row.appendContent(cell.appendTag());

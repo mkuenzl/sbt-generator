@@ -313,7 +313,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -341,7 +341,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -370,7 +370,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -392,7 +392,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -414,7 +414,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -443,7 +443,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -478,7 +478,7 @@ public abstract class RowProvider
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(new SamplePrinter().printAttributeOfSamples(dataTable, outcrop, tag))
+					.appendContent(new SamplePrinter().printAttributeOfSamplesWithDepth(dataTable, outcrop, tag))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -502,7 +502,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -598,7 +598,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -625,7 +625,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -654,7 +654,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -683,7 +683,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -712,7 +712,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -741,7 +741,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -770,7 +770,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -799,7 +799,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -828,7 +828,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -857,7 +857,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -885,7 +885,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -919,7 +919,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -949,7 +949,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -978,7 +978,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -1009,7 +1009,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -1038,7 +1038,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}
@@ -1067,7 +1067,7 @@ public abstract class RowProvider
 				dataTables)
 		{
 			HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-					new String[]{new SamplePrinter().printAttributeOfSamples(table, outcrop, tag)});
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, tag)});
 
 			row.appendContent(cell.appendTag());
 		}

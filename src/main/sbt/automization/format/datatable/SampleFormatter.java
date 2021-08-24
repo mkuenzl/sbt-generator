@@ -207,7 +207,6 @@ public final class SampleFormatter
 	private List<Sample> splitHeap(Sample sample, int[] volumes)
 	{
 		List<Sample> clonedSamples = new ArrayList<>();
-
 		for (int volume : volumes)
 		{
 			try
