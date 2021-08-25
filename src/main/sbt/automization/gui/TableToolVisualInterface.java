@@ -142,7 +142,6 @@ public class TableToolVisualInterface extends JFrame
 		JCheckBox checkBoxAppendixPNHEAP = new CustomCheckBox("ANLAGE_PN_HAUFWERK", false);
 		checkBoxAppendixPNHEAP.setBounds(10, 330, 265, 20);
 		checkBoxAppendixPNHEAP.addItemListener(new CheckBoxItemListener());
-		checkBoxAppendixPNHEAP.setEnabled(false);
 		panel.add(checkBoxAppendixPNHEAP);
 
 		JCheckBox checkBox5 = new CustomCheckBox("BERICHT_GOB", false);
@@ -183,7 +182,6 @@ public class TableToolVisualInterface extends JFrame
 		JCheckBox checkBoxReportHeap = new CustomCheckBox("BERICHT_HAUFWERK", false);
 		checkBoxReportHeap.setBounds(310, 420, 265, 20);
 		checkBoxReportHeap.addItemListener(new CheckBoxItemListener());
-		checkBoxReportHeap.setEnabled(false);
 		panel.add(checkBoxReportHeap);
 
 		JCheckBox checkBoxReportCoordinates = new CustomCheckBox("BERICHT_KOORDINATEN", false);

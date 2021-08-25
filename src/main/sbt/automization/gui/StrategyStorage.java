@@ -50,7 +50,7 @@ public final class StrategyStorage
             case "ANLAGE_LP":
                 strategyList.add(LoadPlate.getInstance());
                 break;
-            case "ANLAGE_PN_HEAP":
+            case "ANLAGE_PN_HAUFWERK":
                 strategyList.add(SamplingProtocolHeap.getInstance());
                 break;
             case "BERICHT_GOB":
@@ -102,7 +102,7 @@ public final class StrategyStorage
             case "ANLAGE_LP":
                 strategyList.remove(LoadPlate.getInstance());
                 break;
-            case "ANLAGE_PN_HEAP":
+            case "ANLAGE_PN_HAUFWERK":
                 strategyList.remove(SamplingProtocolHeap.getInstance());
                 break;
             case "BERICHT_GOB":

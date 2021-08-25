@@ -38,7 +38,9 @@ public final class HtmlTemplateExport extends ATemplateExport
 	@Override
 	String format(final Examination examination)
 	{
-		return format(examination);
+		tableExportStrategy.constructTemplate(examination);
+
+		return format(tableExportStrategy.getTemplate());
 	}
 
 	/**
