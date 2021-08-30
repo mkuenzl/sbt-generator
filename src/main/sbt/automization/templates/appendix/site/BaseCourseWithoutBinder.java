@@ -11,7 +11,6 @@ import sbt.automization.data.Outcrop;
 import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.templates.appendix.Appendix;
 import sbt.automization.html.HtmlFactory;
-import sbt.automization.html.HtmlTable;
 
 import java.util.List;
 
@@ -61,13 +60,13 @@ public final class BaseCourseWithoutBinder extends Appendix
 
 	private String createRow(Sample sample)
 	{
-		String row = HtmlFactory.createRow("Normal", new String[]{
+		String row = HtmlFactory.createRowAsString("Normal", new String[]{
 				HtmlFactory.createCellAsString("Normal",
 						new String[]{sample.get(SampleKey.TYPE),
 								UtilityPrinter.printLineBreak(),
 								sample.get(SampleKey.GRANULATION),
 								sample.get(SampleKey.ROUNDING_GRADATION)}),
-				HtmlFactory.createCellAsString("NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 						new String[]{sample.get(SampleKey.THICKNESS)}),
 				HtmlFactory.createCellAsString("NormalCenter",
 						new String[]{sample.get(SampleKey.DEPTH_END)}),
@@ -75,9 +74,9 @@ public final class BaseCourseWithoutBinder extends Appendix
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.LAGA_BO)),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.LAGA_RC)),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.TL_ROCK_STRATUM)),
-				HtmlFactory.createCellAsString("NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 						new String[]{printEV()}),
-				HtmlFactory.createCellAsString("NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 						new String[]{sample.get(SampleKey.GRAIN_SIZE_DISTRIBUTION)})
 		});
 
@@ -87,14 +86,14 @@ public final class BaseCourseWithoutBinder extends Appendix
 	@Override
 	public String constructAndGetTableHeader()
 	{
-		String firstRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
+		String firstRow = HtmlFactory.createRowAsString("NormalTableHeader", new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "width:125px;text-align:left",
 						new String[]{"Tragschicht ohne", UtilityPrinter.printLineBreak(), "Bindemittel"}),
 				HtmlFactory.createHeader("NormalTableHeader", "text-align:left", 1, 8,
 						new String[]{"Aufschlussverfahren:", outcrop}),
 		});
 
-		String secondRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
+		String secondRow = HtmlFactory.createRowAsString("NormalTableHeader", new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "text-align:left", 2, 1,
 						new String[]{"Art der Schicht"}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
@@ -121,7 +120,7 @@ public final class BaseCourseWithoutBinder extends Appendix
 						new String[]{"KGV", "<div>[25]</div>"})
 		});
 
-		String thirdRow = HtmlFactory.createRow("NormalHeaderUnits", new String[]{
+		String thirdRow = HtmlFactory.createRowAsString("NormalHeaderUnits", new String[]{
 				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"cm"}),
 				HtmlFactory.createHeader("NormalTableHeaderUnits",

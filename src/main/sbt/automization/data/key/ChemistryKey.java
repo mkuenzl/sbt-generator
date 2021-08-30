@@ -177,6 +177,14 @@ public enum ChemistryKey implements Key
 				{
 					return addChemistryTag("ID");
 				}
+			},
+	RUVA
+			{
+				@Override
+				public String getKey()
+				{
+					return addChemistryTag("RUVA");
+				}
 			};
 
 	private static String addChemistryTag(String parameter){

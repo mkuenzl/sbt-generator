@@ -1,0 +1,7 @@
+Testsuite: sbt.automization.util.UtilPartitioningTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,025 sec
+
+Testcase: partitioningLessThenExpectedTest took 0,01 sec
+Testcase: partitioningTest took 0,003 sec
+Testcase: partitioningIrregularAmountTest took 0 sec
+Testcase: partitioningNullTest took 0 sec

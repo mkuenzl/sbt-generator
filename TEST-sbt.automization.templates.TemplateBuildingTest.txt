@@ -1,0 +1,19 @@
+Testsuite: sbt.automization.templates.TemplateBuildingTest
+Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6,009 sec
+
+Testcase: createReportHeapTemplate took 0,562 sec
+Testcase: createReportUGTemplate took 0,517 sec
+Testcase: createPnTemplate took 0,502 sec
+Testcase: createRukTemplate took 0,326 sec
+Testcase: createReportBankettTemplate took 0,186 sec
+Testcase: createReportCoordinateTemplate took 0,147 sec
+Testcase: createReportOBTemplate took 0,151 sec
+Testcase: createReportTOBTemplate took 0,163 sec
+Testcase: createPnHeapTemplate took 0,15 sec
+Testcase: createLpTemplate took 0,146 sec
+Testcase: createReportBETONTemplate took 0,152 sec
+Testcase: createExampleTemplate took 0,135 sec
+Testcase: createExplorationSiteTemplate took 0,164 sec
+Testcase: createReportOHTemplate took 0,199 sec
+Testcase: createReportTMHBTemplate took 0,189 sec
+Testcase: createReportFUGETemplate took 0,185 sec

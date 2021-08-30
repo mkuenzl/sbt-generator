@@ -1,6 +1,7 @@
 package sbt.automization.html;
 
 import sbt.automization.format.printer.UtilityPrinter;
+import sbt.automization.format.text.TextFormatter;
 
 import java.util.Locale;
 
@@ -167,6 +168,165 @@ public class HtmlFactory
 		return cell.appendTag();
 	}
 
+	public static String createCellAsString(TextFormatter textFormatter, String classID, int width, int height, int rowspan, int colspan, String[] content)
+	{
+		HtmlCell cell = new HtmlCell.Builder()
+				.appendAttribute("class", classID)
+				.appendAttribute("width", String.valueOf(width))
+				.appendAttribute("height", String.valueOf(height))
+				.appendAttribute("rowspan", String.valueOf(rowspan))
+				.appendAttribute("colspan", String.valueOf(colspan))
+				.build();
+
+		for (String line : content)
+		{
+			cell.appendContent(textFormatter.format(line));
+		}
+
+		return cell.appendTag();
+	}
+
+	public static String createCellAsString(TextFormatter textFormatter, String classID, int width, int rowspan, int colspan, String[] content)
+	{
+		HtmlCell cell = new HtmlCell.Builder()
+				.appendAttribute("class", classID)
+				.appendAttribute("width", String.valueOf(width))
+				.appendAttribute("rowspan", String.valueOf(rowspan))
+				.appendAttribute("colspan", String.valueOf(colspan))
+				.build();
+
+		for (String line : content)
+		{
+			cell.appendContent(textFormatter.format(line));
+		}
+
+		return cell.appendTag();
+	}
+
+	public static String createCellAsString(TextFormatter textFormatter, String classID, String[] content)
+	{
+		HtmlCell cell = new HtmlCell.Builder()
+				.appendAttribute("class", classID)
+				.build();
+
+		for (String line : content)
+		{
+			cell.appendContent(textFormatter.format(line));
+		}
+
+		return cell.appendTag();
+	}
+
+	public static String createCellAsString(TextFormatter textFormatter, String classID, int rowspan, int colspan, String[] content)
+	{
+		HtmlCell cell = new HtmlCell.Builder()
+				.appendAttribute("class", classID)
+				.appendAttribute("rowspan", String.valueOf(rowspan))
+				.appendAttribute("colspan", String.valueOf(colspan))
+				.build();
+
+		for (String line : content)
+		{
+			cell.appendContent(textFormatter.format(line));
+		}
+
+		return cell.appendTag();
+	}
+
+	public static String createCellAsString(TextFormatter textFormatter, String classID, int width, String[] content)
+	{
+		HtmlCell cell = new HtmlCell.Builder()
+				.appendAttribute("class", classID)
+				.appendAttribute("width", String.valueOf(width))
+				.build();
+
+		for (String line : content)
+		{
+			cell.appendContent(textFormatter.format(line));
+		}
+
+		return cell.appendTag();
+	}
+
+	public static String createCellAsString(TextFormatter textFormatter, String classID, int width, String align, String[] content)
+	{
+		HtmlCell cell = new HtmlCell.Builder()
+				.appendAttribute("class", classID)
+				.appendAttribute("width", String.valueOf(width))
+				.appendAttribute("align", align)
+				.build();
+
+		for (String line : content)
+		{
+			cell.appendContent(textFormatter.format(line));
+		}
+
+		return cell.appendTag();
+	}
+
+	public static String createCellAsString(TextFormatter textFormatter, String classID, String style, String[] content)
+	{
+		HtmlCell cell = new HtmlCell.Builder()
+				.appendAttribute("class", classID)
+				.appendAttribute("style", style)
+				.build();
+
+		for (String line : content)
+		{
+			cell.appendContent(textFormatter.format(line));
+		}
+
+		return cell.appendTag();
+	}
+
+	public static HtmlCell createCell(TextFormatter textFormatter, String classID, String style, String[] content)
+	{
+		HtmlCell cell = new HtmlCell.Builder()
+				.appendAttribute("class", classID)
+				.appendAttribute("style", style)
+				.build();
+
+		for (String line : content)
+		{
+			cell.appendContent(textFormatter.format(line));
+		}
+
+		return cell;
+	}
+
+	public static HtmlCell createCell(TextFormatter textFormatter, String classID, int rowspan, int colspan, String[] content)
+	{
+		HtmlCell cell = new HtmlCell.Builder()
+				.appendAttribute("class", classID)
+				.appendAttribute("rowspan", String.valueOf(rowspan))
+				.appendAttribute("colspan", String.valueOf(colspan))
+				.build();
+
+		for (String line : content)
+		{
+			cell.appendContent(textFormatter.format(line));
+		}
+
+		return cell;
+	}
+
+	public static String createCellAsString(TextFormatter textFormatter, String classID, String style, int rowspan, int colspan, String[] content)
+	{
+		HtmlCell cell = new HtmlCell.Builder()
+				.appendAttribute("class", classID)
+				.appendAttribute("style", style)
+				.appendAttribute("rowspan", String.valueOf(rowspan))
+				.appendAttribute("colspan", String.valueOf(colspan))
+				.build();
+
+		for (String line : content)
+		{
+			cell.appendContent(textFormatter.format(line));
+		}
+
+		return cell.appendTag();
+	}
+
 	public static String createHeader(String classID, int width, int height, int rowspan, int colspan, String align, String[] content)
 	{
 		HtmlTableHeader cell = new HtmlTableHeader.Builder()
@@ -299,7 +459,7 @@ public class HtmlFactory
 		return cell.appendTag();
 	}
 
-	public static String createRow(String classID, int height, String[] content)
+	public static String createRowAsString(String classID, int height, String[] content)
 	{
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", classID)
@@ -314,7 +474,7 @@ public class HtmlFactory
 		return row.appendTag();
 	}
 
-	public static String createRow(int height, String[] content)
+	public static String createRowAsString(int height, String[] content)
 	{
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("height", String.valueOf(height))
@@ -328,7 +488,7 @@ public class HtmlFactory
 		return row.appendTag();
 	}
 
-	public static String createRow(String[] content)
+	public static String createRowAsString(String[] content)
 	{
 		HtmlRow row = new HtmlRow.Builder()
 				.build();
@@ -341,7 +501,7 @@ public class HtmlFactory
 		return row.appendTag();
 	}
 
-	public static String createRow(String classID, String[] content)
+	public static String createRowAsString(String classID, String[] content)
 	{
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", classID)
@@ -353,6 +513,20 @@ public class HtmlFactory
 		}
 
 		return row.appendTag();
+	}
+
+	public static HtmlRow createRow(String classID, String[] content)
+	{
+		HtmlRow row = new HtmlRow.Builder()
+				.appendAttribute("class", classID)
+				.build();
+
+		for (String line : content)
+		{
+			row.appendContent(line);
+		}
+
+		return row;
 	}
 
 	public static HtmlRow createRow(HtmlCell[] content)

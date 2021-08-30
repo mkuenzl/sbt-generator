@@ -60,6 +60,7 @@ public final class Heap extends Report
 		createTable();
 
 		addToTable(provider.createIDRow(dataTables));
+		addToTable(provider.createAreaRow(dataTables));
 		addToTable(provider.createOutcropRow(dataTables));
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
@@ -117,15 +118,17 @@ public final class Heap extends Report
 		addEnvironmentTechnicalHeader(dataTables);
 
 		addToTable(provider.createChemieIDRow(dataTables));
+		addToTable(provider.createChemistryPak(dataTables));
 		addToTable(provider.createChemieMufvRow(dataTables));
 		addToTable(provider.createChemieLagaBoRow(dataTables));
 		addToTable(provider.createChemieLagaRcRow(dataTables));
 		addToTable(provider.createChemieLagaRcOrientationRow(dataTables));
 		addToTable(provider.createChemieTlRockRow(dataTables));
-		addToTable(provider.createREKUROW(dataTables));
+		addToTable(provider.createChemistryReku(dataTables));
 		addToTable(provider.createChemieDepvRow(dataTables));
-		addToTable(provider.createChemieAVVRow(dataTables));
 		addToTable(provider.createChemieDecisionSupportRow(dataTables));
+		addToTable(provider.createChemistryRuva(dataTables));
+		addToTable(provider.createChemieAVVRow(dataTables));
 	}
 
 	@Override

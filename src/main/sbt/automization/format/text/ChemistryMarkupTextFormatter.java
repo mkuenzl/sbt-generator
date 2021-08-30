@@ -66,6 +66,7 @@ public final class ChemistryMarkupTextFormatter extends AbstractTextFormatter
 				break;
 			case ">Z2":
 			case ">DK3":
+			case ">RC3":
 			case "gefährlich":
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")

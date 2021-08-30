@@ -1,0 +1,15 @@
+Testsuite: sbt.automization.util.UtilHeapSampleSizeTest
+Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,017 sec
+
+Testcase: calculateSamplesVolumeZeroTest took 0,004 sec
+Testcase: calculateSamplesFifthTest took 0 sec
+Testcase: calculateSamplesVolumeRoundingDoubleTest took 0 sec
+Testcase: calculateSamplesSecondTest took 0 sec
+Testcase: calculateSamplesSixthTest took 0 sec
+Testcase: calculateSamplesThirdTest took 0 sec
+Testcase: calculateSamplesCountGreaterVolumeTest took 0 sec
+Testcase: calculateSamplesVolumeDoubleTest took 0 sec
+Testcase: calculateSamplesCountZeroTest took 0 sec
+Testcase: calculateSamplesFirstTest took 0 sec
+Testcase: calculateSamplesUnevenTest took 0 sec
+Testcase: calculateSamplesFourthTest took 0 sec

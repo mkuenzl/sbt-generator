@@ -21,31 +21,4 @@ public final class OhProvider extends RowProvider
 
         return null;
     }
-
-    public String createGroundExposureRow(List<DataTable> dataTables)
-    {
-        HtmlRow row = new HtmlRow.Builder()
-                .appendAttribute("class", rowClass)
-                .appendContent(new HtmlCell.Builder()
-                        .appendAttribute("class", headerCellClass)
-                        .appendAttribute("width", headerCellWidth)
-                        .appendContent("Aufschlussart")
-                        .build()
-                        .appendTag())
-                .build();
-
-        for (DataTable dataTable :
-		        dataTables)
-        {
-            HtmlCell cell = new HtmlCell.Builder()
-                    .appendAttribute("class", normalCellClass)
-                    .appendAttribute("width", normalCellWidth)
-                    .appendContent(dataTable.get(ProbeKey.OUTCROP_UG_OH_BA))
-                    .build();
-
-            row.appendContent(cell.appendTag());
-        }
-
-        return row.appendTag();
-    }
 }

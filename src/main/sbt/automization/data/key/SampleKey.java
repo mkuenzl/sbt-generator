@@ -186,14 +186,6 @@ public enum SampleKey implements Key
 					return addSampleTag("RUNDUNGSGRAD_GESTUFTHEIT");
 				}
 			},
-	PAK
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("PAK");
-				}
-			},
 	PITCH
 			{   //TAR
 

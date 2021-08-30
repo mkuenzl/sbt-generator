@@ -57,7 +57,7 @@ public final class BaseCourseWithoutBinder extends Report
 		createTable();
 
 		addToTable(provider.createIDRow(dataTables));
-		addToTable(provider.createOutcropRow(dataTables));
+		addToTable(provider.createBaseCourseExposureRow(dataTables));
 
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);

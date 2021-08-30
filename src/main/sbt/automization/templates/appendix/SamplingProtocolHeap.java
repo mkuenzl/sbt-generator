@@ -7,12 +7,9 @@ import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.SampleKey;
 import sbt.automization.format.datatable.SampleFormatter;
 import sbt.automization.format.printer.UtilityPrinter;
-import sbt.automization.format.text.DepthTextFormatter;
 import sbt.automization.format.text.LineBreakTextFormatter;
 import sbt.automization.format.text.SampleTypeTextFormatter;
 import sbt.automization.html.HtmlFactory;
-import sbt.automization.html.HtmlRow;
-import sbt.automization.html.HtmlTableHeader;
 
 import java.util.List;
 
@@ -40,7 +37,7 @@ public final class SamplingProtocolHeap extends Appendix
 	@Override
 	protected String constructAndGetTableHeader()
 	{
-		String firstRow = HtmlFactory.createRow("NormalHeader", new String[]{
+		String firstRow = HtmlFactory.createRowAsString("NormalHeader", new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "width:40px", 2, 1,
 						new String[]{"Probe", UtilityPrinter.printLineBreak(), "Nr."}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:40px", 2, 1,
@@ -63,7 +60,7 @@ public final class SamplingProtocolHeap extends Appendix
 						new String[]{"Notiz"})
 		});
 
-		String secondRow = HtmlFactory.createRow("NormalHeaderUnits", new String[]{
+		String secondRow = HtmlFactory.createRowAsString("NormalHeaderUnits", new String[]{
 				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"l"}),
 				HtmlFactory.createHeader("NormalTableHeaderUnits",
@@ -105,29 +102,29 @@ public final class SamplingProtocolHeap extends Appendix
 			{
 				addAndResetTableOnPageBreak();
 
-				String row = HtmlFactory.createRow("Normal", new String[]{
-						HtmlFactory.createCellAsString("NormalCenter",
+				String row = HtmlFactory.createRowAsString("Normal", new String[]{
+						HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 								new String[]{"P".concat(String.valueOf(++ lines))}),
-						HtmlFactory.createCellAsString("NormalCenter",
+						HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 								new String[]{new SampleTypeTextFormatter().format(sample.get(SampleKey.CONTAINER))}),
-						HtmlFactory.createCellAsString("Normal",
+						HtmlFactory.createCellAsString(textFormatter,"Normal",
 								new String[]{sample.get(SampleKey.CONTAINER)}),
-						HtmlFactory.createCellAsString("NormalCenter",
+						HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 								new String[]{sample.get(SampleKey.VOLUME)}),
-						HtmlFactory.createCellAsString("Normal",
+						HtmlFactory.createCellAsString(textFormatter,"Normal",
 								new String[]{new LineBreakTextFormatter().format(sample.get(SampleKey.WASTE_TYPE))}),
-						HtmlFactory.createCellAsString("NormalCenter",
+						HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 								new String[]{sample.get(SampleKey.GRANULATION)}),
-						HtmlFactory.createCellAsString("Normal", "left",
+						HtmlFactory.createCellAsString(textFormatter,"Normal", "left",
 								new String[]{sample.get(SampleKey.COLOR), UtilityPrinter.printLineBreak(),
 										sample.get(SampleKey.SMELL), UtilityPrinter.printLineBreak(),
 										sample.get(SampleKey.SOIL_TYPE)}),
-						HtmlFactory.createCellAsString("NormalCenter",
+						HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 								new String[]{"-"}),
-						HtmlFactory.createCellAsString("NormalCenter",
+						HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 								new String[]{dataTable.get(ProbeKey.ID)}),
-						HtmlFactory.createCellAsString("NormalCenter",
-								new String[]{dataTable.get(ProbeKey.TOP_EDGE)})
+						HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
+								new String[]{new LineBreakTextFormatter().breakPerWord(sample.get(SampleKey.NOTE))})
 				});
 
 				linesPerPage++;

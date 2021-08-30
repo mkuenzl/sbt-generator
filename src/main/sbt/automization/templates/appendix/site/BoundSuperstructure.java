@@ -13,7 +13,6 @@ import sbt.automization.format.text.LoadClassTextFormatter;
 import sbt.automization.data.Outcrop;
 import sbt.automization.templates.appendix.Appendix;
 import sbt.automization.html.HtmlFactory;
-import sbt.automization.html.HtmlTable;
 
 import java.util.List;
 
@@ -71,21 +70,21 @@ public final class BoundSuperstructure extends Appendix
 
 	private String createRow(Sample sample)
 	{
-		String row = HtmlFactory.createRow("Normal", new String[]{
-				HtmlFactory.createCellAsString("Normal",
+		String row = HtmlFactory.createRowAsString("Normal", new String[]{
+				HtmlFactory.createCellAsString(textFormatter,"Normal",
 						new String[]{new KindAndGranulationTextFormatter().format(sample.get(SampleKey.TYPE),
 								sample.get(SampleKey.GRANULATION))}),
-				HtmlFactory.createCellAsString("NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 						new String[]{sample.get(SampleKey.THICKNESS)}),
-				HtmlFactory.createCellAsString("NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 						new String[]{sample.get(SampleKey.DEPTH_END)}),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.MUFV)),
 				HtmlFactory.createPitchCell(sample.get(SampleKey.PITCH)),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.LAGA_RC)),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.TL_ROCK_STRATUM)),
-				HtmlFactory.createCellAsString("NormalCenter",
-						new String[]{sample.get(SampleKey.PAK)}),
-				HtmlFactory.createCellAsString("NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+						new String[]{sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.PAK)}),
+				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 						new String[]{sample.getParameterValueBy(SampleKey.RUK_ID, RuKKey.VALUE)})
 		});
 
@@ -94,7 +93,7 @@ public final class BoundSuperstructure extends Appendix
 
 	private String createLoadClassRow()
 	{
-		String row = HtmlFactory.createRow("Normal", new String[]{
+		String row = HtmlFactory.createRowAsString("Normal", new String[]{
 				HtmlFactory.createCellAsString("NormalCenter", 1, 5,
 						new String[]{""}),
 				HtmlFactory.createCellAsString("NormalCenter", 1, 2,
@@ -112,14 +111,14 @@ public final class BoundSuperstructure extends Appendix
 	@Override
 	public String constructAndGetTableHeader()
 	{
-		String firstRow = HtmlFactory.createRow("NormalHeader", new String[]{
+		String firstRow = HtmlFactory.createRowAsString("NormalHeader", new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "width:125;text-align:left", 1, 1,
 						new String[]{"Gebundener Oberbau"}),
 				HtmlFactory.createHeader("NormalTableHeader", "text-align:left", 1, 8,
 						new String[]{"Aufschlussverfahren:", outcrop}),
 		});
 
-		String secondRow = HtmlFactory.createRow("NormalHeader", new String[]{
+		String secondRow = HtmlFactory.createRowAsString("NormalHeader", new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "text-align:left", 2, 1,
 						new String[]{"Art der Schicht"}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
@@ -140,7 +139,7 @@ public final class BoundSuperstructure extends Appendix
 						new String[]{"RuK", "<div>[31]</div>"})
 		});
 
-		String thirdRow = HtmlFactory.createRow("NormalHeaderUnits", new String[]{
+		String thirdRow = HtmlFactory.createRowAsString("NormalHeaderUnits", new String[]{
 				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"cm"}),
 				HtmlFactory.createHeader("NormalTableHeaderUnits",

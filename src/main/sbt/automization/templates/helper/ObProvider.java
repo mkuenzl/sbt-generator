@@ -1,12 +1,13 @@
 package sbt.automization.templates.helper;
 
 import sbt.automization.data.DataTable;
+import sbt.automization.data.Outcrop;
 import sbt.automization.data.Sample;
+import sbt.automization.data.key.ChemistryKey;
 import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.SampleKey;
 import sbt.automization.format.printer.RuKPrinter;
 import sbt.automization.format.printer.SamplePrinter;
-import sbt.automization.data.Outcrop;
 import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlFactory;
@@ -25,7 +26,7 @@ public final class ObProvider extends RowProvider
 	@Override
 	public String createLegendRow(List<DataTable> dataTables)
 	{
-		int size = Integer.valueOf(headerCellWidth) + dataTables.size()* Integer.valueOf(normalCellWidth);
+		int size = Integer.valueOf(headerCellWidth) + dataTables.size() * Integer.valueOf(normalCellWidth);
 
 		return null;
 	}
@@ -139,7 +140,7 @@ public final class ObProvider extends RowProvider
 		return row.appendTag();
 	}
 
-	public String createPechQualitativRow(List<DataTable> dataTables)
+	public String createPitchQualitativeRow(List<DataTable> dataTables)
 	{
 		//Pechnachweis qualitativ
 		HtmlRow row = new HtmlRow.Builder()
@@ -160,7 +161,7 @@ public final class ObProvider extends RowProvider
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(dataTable.get(ProbeKey.PITCH_QUALITATIVE))
+					.appendContent(textFormatter.format(dataTable.get(ProbeKey.PITCH_QUALITATIVE)))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -168,7 +169,7 @@ public final class ObProvider extends RowProvider
 		return row.appendTag();
 	}
 
-	public String createPechHalbQuantitativRow(List<DataTable> dataTables)
+	public String createPitchHalfQuantitativeRow(List<DataTable> dataTables)
 	{
 		//Pechnachweis quantitativ
 		HtmlRow row = new HtmlRow.Builder()
@@ -189,7 +190,7 @@ public final class ObProvider extends RowProvider
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(dataTable.get(ProbeKey.PITCH_HALF_QUANTITATIVE))
+					.appendContent(textFormatter.format(dataTable.get(ProbeKey.PITCH_HALF_QUANTITATIVE)))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -197,7 +198,7 @@ public final class ObProvider extends RowProvider
 		return row.appendTag();
 	}
 
-	public String createPechQuantitativRow(List<DataTable> dataTables)
+	public String createPitchQuantitativeRow(List<DataTable> dataTables)
 	{
 		//Pechnachweis quantitativ
 		HtmlRow row = new HtmlRow.Builder()
@@ -218,7 +219,7 @@ public final class ObProvider extends RowProvider
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(dataTable.get(ProbeKey.PITCH_QUANTITATIVE))
+					.appendContent(textFormatter.format(dataTable.get(ProbeKey.PITCH_QUANTITATIVE)))
 					.build();
 
 			row.appendContent(cell.appendTag());
@@ -226,13 +227,13 @@ public final class ObProvider extends RowProvider
 		return row.appendTag();
 	}
 
-	public String createPechQuerschnittRows(List<DataTable> dataTables, boolean pitch)
+	public String createPitchCrossSectionRows(List<DataTable> dataTables, boolean pitch)
 	{
-		StringBuilder querschnittBuilder = new StringBuilder();
+		StringBuilder crossSectionBuilder = new StringBuilder();
 
 		boolean isThereDataToBuild = false;
 
-		String querschnitt = pitch ? "Pechhaltiger Querschnitt" : "Pechfreier Querschnitt";
+		String crossSection = pitch ? "Pechhaltiger Querschnitt" : "Pechfreier Querschnitt";
 		String size = "-";
 		String mufv = pitch ? "gefährlich" : "nicht gefährlich";
 		String ruva = pitch ? "B" : "A";
@@ -244,7 +245,7 @@ public final class ObProvider extends RowProvider
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", headerCellClass)
 						.appendAttribute("colspan", String.valueOf(1 + dataTables.size()))
-						.appendContent(querschnitt)
+						.appendContent(crossSection)
 						.build()
 						.appendTag())
 				.build();
@@ -264,6 +265,16 @@ public final class ObProvider extends RowProvider
 						.build()
 						.appendTag())
 				.build();
+
+
+		HtmlRow rowPitchPaK = HtmlFactory.createRow(rowClass, new HtmlCell[]{
+				HtmlFactory.createCell(headerCellClass, "width:" + headerCellWidth,
+						new String[]{"PAK,", new HtmlText.Builder()
+								.appendAttribute("class", unitCellClass)
+								.appendContent("mg/kg")
+								.build()
+								.appendTag()})
+		});
 
 		//MUFV Querschnitt
 		HtmlRow rowPitchMufv = new HtmlRow.Builder()
@@ -324,7 +335,7 @@ public final class ObProvider extends RowProvider
 
 			if (samples != null)
 			{
-				double d = 0;
+				double depth = 0;
 
 				//TODO
 				//Wie viele Schichten haben Pech und wie viele haben kein Pech
@@ -334,26 +345,25 @@ public final class ObProvider extends RowProvider
 				for (Sample sample : samples)
 				{
 					//TODO CHANGE TO TRUE & FALSE PECH
-					String layerSize = sample.get(SampleKey.THICKNESS);
-					layerSize = layerSize.replace(",", ".");
+					Double thicknessOfSample = sample.getAsDouble(SampleKey.THICKNESS);
 
-					String layerPitch = sample.get(SampleKey.PITCH);
+					String isPitch = sample.get(SampleKey.PITCH);
 
-					if (pitch && "JA".equalsIgnoreCase(layerPitch))
+					if (pitch && "JA".equalsIgnoreCase(isPitch))
 					{
 						//Zähle Dicke der pechhaltigen Schichten
-						d += Double.parseDouble(layerSize);
+						depth += thicknessOfSample;
 					}
-					if (! pitch && "NEIN".equalsIgnoreCase(layerPitch))
+					if (! pitch && "NEIN".equalsIgnoreCase(isPitch))
 					{
 						//Zähle Dicke der pechfreien Schichten
-						d += Double.parseDouble(layerSize);
+						depth += thicknessOfSample;
 					}
 				}
 
-				if (d > 0)
+				if (depth > 0)
 				{
-					size = String.valueOf(d).replace(".", ",");
+					size = String.valueOf(depth).replace(".", ",");
 					empty = false;
 					isThereDataToBuild = true;
 				}
@@ -375,6 +385,10 @@ public final class ObProvider extends RowProvider
 					.build();
 
 			rowPitchSize.appendContent(cellPitchSize.appendTag());
+
+			//TODO
+			rowPitchPaK.appendContent(HtmlFactory.createCellAsString(normalCellClass, "width:" + normalCellWidth,
+					new String[]{new SamplePrinter().printAttributeOfSamplesWithDepth(dataTable, outcrop, ChemistryKey.PAK)}));
 
 			rowPitchMufv.appendContent(HtmlFactory.createChemistryCell(mufv));
 
@@ -400,13 +414,13 @@ public final class ObProvider extends RowProvider
 
 		if (isThereDataToBuild)
 		{
-			querschnittBuilder.append(rowHeader.appendTag())
+			crossSectionBuilder.append(rowHeader.appendTag())
 					.append(rowPitchSize.appendTag())
 					.append(rowPitchMufv.appendTag())
 					.append(rowPitchRuva.appendTag())
 					.append(rowPitchAvv.appendTag());
 		}
 
-		return querschnittBuilder.toString();
+		return crossSectionBuilder.toString();
 	}
 }

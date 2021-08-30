@@ -11,7 +11,6 @@ import sbt.automization.format.text.SoilGroupTextFormatter;
 import sbt.automization.data.Outcrop;
 import sbt.automization.templates.appendix.Appendix;
 import sbt.automization.html.HtmlFactory;
-import sbt.automization.html.HtmlTable;
 
 import java.util.List;
 
@@ -59,21 +58,21 @@ public final class Banquet extends Appendix
 
 	private String createRow(Sample sample)
 	{
-		String row = HtmlFactory.createRow("Normal", new String[]{
-				HtmlFactory.createCellAsString("Normal",
+		String row = HtmlFactory.createRowAsString("Normal", new String[]{
+				HtmlFactory.createCellAsString(textFormatter,"Normal",
 						new String[]{new SoilGroupTextFormatter().format(sample.get(SampleKey.TYPE))}),
-				HtmlFactory.createCellAsString("NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 						new String[]{sample.get(SampleKey.THICKNESS)}),
-				HtmlFactory.createCellAsString("NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 						new String[]{sample.get(SampleKey.DEPTH_END)}),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.MUFV)),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.LAGA_BO)),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.LAGA_RC)),
-				HtmlFactory.createCellAsString("NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 						new String[]{sample.get(SampleKey.WATER_CONTENT)}),
-				HtmlFactory.createCellAsString("NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 						new String[]{new ProctorTextFormatter().format(sample.get(SampleKey.WATER_PROCTOR))}),
-				HtmlFactory.createCellAsString("NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 						new String[]{"-"})
 		});
 
@@ -83,14 +82,14 @@ public final class Banquet extends Appendix
 	@Override
 	public String constructAndGetTableHeader()
 	{
-		String firstRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
+		String firstRow = HtmlFactory.createRowAsString("NormalTableHeader", new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "width:125px;text-align:left",
 						new String[]{"Bankett"}),
 				HtmlFactory.createHeader("NormalTableHeader", "text-align:left", 1, 8,
 						new String[]{"Aufschlussverfahren:", outcrop}),
 		});
 
-		String secondRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
+		String secondRow = HtmlFactory.createRowAsString("NormalTableHeader", new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "text-align:left", 2, 1,
 						new String[]{"Bodengruppe"}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
@@ -111,7 +110,7 @@ public final class Banquet extends Appendix
 						new String[]{"Proctor", "<div>[20]</div>"})
 		});
 
-		String thirdRow = HtmlFactory.createRow("NormalHeaderUnits", new String[]{
+		String thirdRow = HtmlFactory.createRowAsString("NormalHeaderUnits", new String[]{
 				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"cm"}),
 				HtmlFactory.createHeader("NormalTableHeaderUnits",

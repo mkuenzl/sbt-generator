@@ -9,7 +9,6 @@ import sbt.automization.data.key.SampleKey;
 import sbt.automization.data.Outcrop;
 import sbt.automization.templates.appendix.Appendix;
 import sbt.automization.html.HtmlFactory;
-import sbt.automization.html.HtmlTable;
 
 import java.util.List;
 
@@ -57,18 +56,18 @@ public final class Gap extends Appendix
 
 	private String createRow(Sample sample)
 	{
-		String row = HtmlFactory.createRow("Normal", new String[]{
-				HtmlFactory.createCellAsString("Normal",
+		String row = HtmlFactory.createRowAsString("Normal", new String[]{
+				HtmlFactory.createCellAsString(textFormatter,"Normal",
 						new String[]{sample.get(SampleKey.TYPE)}),
-				HtmlFactory.createCellAsString("NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 						new String[]{sample.get(SampleKey.THICKNESS)}),
-				HtmlFactory.createCellAsString("NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 						new String[]{sample.get(SampleKey.DEPTH_END)}),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.MUFV)),
-				HtmlFactory.createCellAsString("NormalCenter", 1, 3,
+				HtmlFactory.createCellAsString(textFormatter,"NormalCenter", 1, 3,
 						new String[]{""}),
-				HtmlFactory.createCellAsString("NormalCenter",
-						new String[]{sample.get(SampleKey.PAK)}),
+				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+						new String[]{sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.PAK)}),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.ASBESTOS)),
 		});
 
@@ -79,14 +78,14 @@ public final class Gap extends Appendix
 	@Override
 	public String constructAndGetTableHeader()
 	{
-		String firstRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
+		String firstRow = HtmlFactory.createRowAsString("NormalTableHeader", new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "width:125px;text-align:left",
 						new String[]{"Fuge"}),
 				HtmlFactory.createHeader("NormalTableHeader", "text-align:left", 1, 8,
 						new String[]{"Aufschlussverfahren:", outcrop}),
 		});
 
-		String secondRow = HtmlFactory.createRow("NormalTableHeader", new String[]{
+		String secondRow = HtmlFactory.createRowAsString("NormalTableHeader", new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "text-align:left", 2, 1,
 						new String[]{"Art der Schicht"}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
@@ -103,7 +102,7 @@ public final class Gap extends Appendix
 						new String[]{"Asbest"})
 		});
 
-		String thirdRow = HtmlFactory.createRow("NormalHeaderUnits", new String[]{
+		String thirdRow = HtmlFactory.createRowAsString("NormalHeaderUnits", new String[]{
 				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"cm"}),
 				HtmlFactory.createHeader("NormalTableHeaderUnits",

@@ -4,6 +4,7 @@ import sbt.automization.data.DataTable;
 import sbt.automization.data.Sample;
 import sbt.automization.data.key.ChemistryKey;
 import sbt.automization.data.key.Key;
+import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.SampleKey;
 import sbt.automization.format.printer.SamplePrinter;
 import sbt.automization.format.printer.UtilityPrinter;
@@ -33,7 +34,29 @@ public final class HeapProvider extends RowProvider
 			for (Sample sample : table.getSamples())
 			{
 				HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-						new String[]{sample.get(SampleKey.PROBE_ID), UtilityPrinter.printLineBreak(), "(", sample.get(SampleKey.ID), ")"});
+						new String[]{sample.get(SampleKey.PROBE_ID)});
+
+				row.appendContent(cell.appendTag());
+			}
+		}
+
+		return row.appendTag();
+	}
+
+	public String createAreaRow(List<DataTable> dataTables)
+	{
+		//Erkundungsstellen ID
+		HtmlRow row = HtmlFactory.createRow(rowClass, new HtmlCell[]{
+				HtmlFactory.createCell(headerCellClass, "width:" + headerCellWidth,
+						new String[]{"Bereich"})
+		});
+
+		for (DataTable table : dataTables)
+		{
+			for (Sample sample : table.getSamples())
+			{
+				HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
+						new String[]{table.get(ProbeKey.NUMBER).concat(".").concat(sample.get(SampleKey.NUMBER))});
 
 				row.appendContent(cell.appendTag());
 			}
@@ -82,7 +105,7 @@ public final class HeapProvider extends RowProvider
 			for (Sample sample : table.getSamples())
 			{
 				HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-						new String[]{sample.get(tag)});
+						new String[]{textFormatter.format(sample.get(tag))});
 
 				row.appendContent(cell.appendTag());
 			}
@@ -133,7 +156,7 @@ public final class HeapProvider extends RowProvider
 			for (Sample sample : table.getSamples())
 			{
 				HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-						new String[]{sample.get(tag)});
+						new String[]{new SamplePrinter().printAttributeOfDatatable(sample, tag)});
 
 				row.appendContent(cell.appendTag());
 			}
@@ -167,7 +190,7 @@ public final class HeapProvider extends RowProvider
 			for (Sample sample : table.getSamples())
 			{
 				HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
-						new String[]{sample.get(tag)});
+						new String[]{new SamplePrinter().printAttributeOfDatatable(sample, tag)});
 
 				row.appendContent(cell.appendTag());
 			}
@@ -467,7 +490,7 @@ public final class HeapProvider extends RowProvider
 	}
 
 	@Override
-	public String createREKUROW(List<DataTable> dataTables)
+	public String createChemistryReku(List<DataTable> dataTables)
 	{
 		Key tag = ChemistryKey.REKU;
 
@@ -495,6 +518,39 @@ public final class HeapProvider extends RowProvider
 				row.appendContent(cell.appendTag());
 			}
 		}
+		return row.appendTag();
+	}
+
+	@Override
+	public String createChemistryPak(List<DataTable> dataTables)
+	{
+		Key tag = ChemistryKey.PAK;
+
+		if (! CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop, tag)) return "";
+
+		String formattedUnitText = new HtmlText.Builder()
+				.appendAttribute("class", unitCellClass)
+				.appendContent("mg/kg")
+				.build()
+				.appendTag();
+
+		HtmlRow row = HtmlFactory.createRow(rowClass, new HtmlCell[]{
+				HtmlFactory.createCell(headerCellClass, "width:" + headerCellWidth,
+						new String[]{"PAK,", formattedUnitText})
+		});
+
+		for (DataTable table :
+				dataTables)
+		{
+			for (Sample sample : table.getSamples())
+			{
+				HtmlCell cell = HtmlFactory.createCell(normalCellClass, "width:" + normalCellWidth,
+						new String[]{new SamplePrinter().printAttributeOfDatatable(sample, tag)});
+
+				row.appendContent(cell.appendTag());
+			}
+		}
+
 		return row.appendTag();
 	}
 }

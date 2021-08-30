@@ -81,7 +81,7 @@ public final class UgProvider extends RowProvider
 				cell = new HtmlCell.Builder()
 						.appendAttribute("class", normalCellClass)
 						.appendAttribute("width", normalCellWidth)
-						.appendContent(targetDepth)
+						.appendContent(textFormatter.format(targetDepth))
 						.build();
 			} else {
 				double depth = Double.parseDouble(targetDepth);
@@ -111,34 +111,6 @@ public final class UgProvider extends RowProvider
 						.build();
 
 			}
-
-			row.appendContent(cell.appendTag());
-		}
-
-		return row.appendTag();
-	}
-
-	public String createGroundExposureRow(List<DataTable> dataTables)
-	{
-		//Erkundungsstellen Aufschlussart
-		HtmlRow row = new HtmlRow.Builder()
-				.appendAttribute("class", rowClass)
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", headerCellClass)
-						.appendAttribute("width", headerCellWidth)
-						.appendContent("Aufschlussart")
-						.build()
-						.appendTag())
-				.build();
-
-		for (DataTable dataTable :
-				dataTables)
-		{
-			HtmlCell cell = new HtmlCell.Builder()
-					.appendAttribute("class", normalCellClass)
-					.appendAttribute("width", normalCellWidth)
-					.appendContent(dataTable.get(ProbeKey.OUTCROP_UG_OH_BA))
-					.build();
 
 			row.appendContent(cell.appendTag());
 		}

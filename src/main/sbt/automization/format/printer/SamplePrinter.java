@@ -8,10 +8,7 @@ import sbt.automization.data.key.Key;
 import sbt.automization.data.key.RuKKey;
 import sbt.automization.data.key.SampleKey;
 import sbt.automization.format.datatable.SampleFormatter;
-import sbt.automization.format.text.ChemistryMarkupTextFormatter;
-import sbt.automization.format.text.DepthTextFormatter;
-import sbt.automization.format.text.LineBreakTextFormatter;
-import sbt.automization.format.text.ProctorTextFormatter;
+import sbt.automization.format.text.*;
 import sbt.automization.html.HtmlText;
 
 import java.util.List;
@@ -182,19 +179,19 @@ public final class SamplePrinter implements TextPrinter
 			{
 				formattedTag = new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(dataTable.getParameterValueBy(SampleKey.RUK_ID, tag))
+						.appendContent(new StandardCellTextFormatter().format(dataTable.getParameterValueBy(SampleKey.RUK_ID, tag)))
 						.build().appendTag();
 			} else if (tag == SampleKey.MOISTURE)
 			{
 				formattedTag = new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(new ProctorTextFormatter().format(dataTable.get(SampleKey.MOISTURE)))
+						.appendContent(new StandardCellTextFormatter().format(new ProctorTextFormatter().format(dataTable.get(SampleKey.MOISTURE))))
 						.build().appendTag();
 			} else
 			{
 				formattedTag = new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
-						.appendContent(dataTable.get(tag))
+						.appendContent(new StandardCellTextFormatter().format(dataTable.get(tag)))
 						.build().appendTag();
 			}
 		return formattedTag;

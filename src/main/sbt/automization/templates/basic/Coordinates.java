@@ -55,7 +55,7 @@ public final class Coordinates extends TableTemplate
 	@Override
 	void addTableHeader()
 	{
-		String firstRow = HtmlFactory.createRow("NormalThinHeader", new String[]{
+		String firstRow = HtmlFactory.createRowAsString("NormalThinHeader", new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "width:75px", 2, 1,
 						new String[]{"Erk. St."}),
 				HtmlFactory.createHeader("NormalTableHeader", 1, 4,
@@ -64,7 +64,7 @@ public final class Coordinates extends TableTemplate
 
 		addToTable(firstRow);
 
-		String secondRow = HtmlFactory.createRow("NormalThinHeader", new String[]{
+		String secondRow = HtmlFactory.createRowAsString("NormalThinHeader", new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "width:75px",
 						new String[]{"Zone"}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:75px",
@@ -80,7 +80,7 @@ public final class Coordinates extends TableTemplate
 
 	private void addRows(DataTable dataTable)
 	{
-		String firstRow = HtmlFactory.createRow("NormalThin5", new String[]{
+		String firstRow = HtmlFactory.createRowAsString("NormalThin5", new String[]{
 				HtmlFactory.createCellAsString("NormalCenter", 2, 1,
 						new String[]{dataTable.get(ProbeKey.ID)}),
 				HtmlFactory.createCellAsString("Normal", 1, 4,
@@ -91,7 +91,7 @@ public final class Coordinates extends TableTemplate
 
 		List<String> coordinateSplit = splitCoordinate(dataTable.get(ProbeKey.COORDINATES));
 
-		String secondRow = HtmlFactory.createRow("NormalThin5", new String[]{
+		String secondRow = HtmlFactory.createRowAsString("NormalThin5", new String[]{
 				HtmlFactory.createCellAsString("Normal",
 						new String[]{coordinateSplit.get(0)}),
 				HtmlFactory.createCellAsString("Normal",

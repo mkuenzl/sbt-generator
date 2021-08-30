@@ -1,0 +1,8 @@
+Testsuite: sbt.automization.data.DataTableFactoryParseMapTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0,015 sec
+
+Testcase: parseMapWithIdentifierTest took 0,004 sec
+Testcase: parseMapWithoutIdentifierTest took 0 sec
+Testcase: parseNullWithIdentifierTest took 0 sec
+	SKIPPED
+Testcase: parseEmptyMapWithIdentifierTest took 0 sec

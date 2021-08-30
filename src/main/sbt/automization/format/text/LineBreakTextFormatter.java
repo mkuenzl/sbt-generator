@@ -5,6 +5,25 @@ import sbt.automization.html.HtmlText;
 
 public final class LineBreakTextFormatter extends AbstractTextFormatter
 {
+	public String breakPerWord(final String name)
+	{
+		String formattedName = null;
+
+		if ("".equals(name)) return "";
+
+		String[] words = name.split(" ");
+
+		HtmlText htmlText = new HtmlText();
+		htmlText.appendAttribute("class", "Normal");
+
+		for (String word : words)
+		{
+			htmlText.appendContent(word);
+			htmlText.appendContent(UtilityPrinter.printLineBreak());
+		}
+		return htmlText.appendTag();
+	}
+
 	/**
 	 * Formats different names for better visualisation in each template, replacement for automatic line breaks.
 	 * (Gem. a. G. (NS))

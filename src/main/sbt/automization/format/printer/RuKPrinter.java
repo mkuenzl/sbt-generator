@@ -5,6 +5,7 @@ import sbt.automization.data.Sample;
 import sbt.automization.data.key.RuKKey;
 import sbt.automization.data.key.SampleKey;
 import sbt.automization.html.HtmlText;
+import sbt.automization.util.CheckDataAvailability;
 
 import java.util.List;
 
@@ -13,6 +14,11 @@ public final class RuKPrinter implements TextPrinter
 	public String printRukLayers(final DataTable dataTable, final String outcrop)
 	{
 		List<Sample> samples = dataTable.getSamplesBy(SampleKey.OUTCROP, outcrop);
+
+		if (!CheckDataAvailability.thereExistsAnSampleWithData(dataTable, outcrop, RuKKey.VALUE))
+		{
+			return "-";
+		}
 
 		StringBuilder stringBuilder = new StringBuilder();
 

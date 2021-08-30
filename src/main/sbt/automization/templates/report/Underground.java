@@ -97,7 +97,7 @@ public final class Underground extends Report
 		addToTable(provider.createChemieLagaRcRow(dataTables));
 		addToTable(provider.createChemieLagaRcOrientationRow(dataTables));
 		addToTable(provider.createChemieTlRockRow(dataTables));
-		addToTable(provider.createREKUROW(dataTables));
+		addToTable(provider.createChemistryReku(dataTables));
 		addToTable(provider.createChemieDepvRow(dataTables));
 		addToTable(provider.createChemieDecisionSupportRow(dataTables));
 		addToTable(provider.createChemieAVVRow(dataTables));

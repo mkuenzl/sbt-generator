@@ -62,8 +62,8 @@ public final class BoundSuperstructure extends Report
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
 
-		addToTable(provider.createPechQuerschnittRows(dataTables, false));
-		addToTable(provider.createPechQuerschnittRows(dataTables, true));
+		addToTable(provider.createPitchCrossSectionRows(dataTables, false));
+		addToTable(provider.createPitchCrossSectionRows(dataTables, true));
 	}
 
 	@Override
@@ -82,9 +82,9 @@ public final class BoundSuperstructure extends Report
 	{
 		addEnvironmentTechnicalHeader(dataTables);
 
-		addToTable(provider.createPechQualitativRow(dataTables));
-		addToTable(provider.createPechHalbQuantitativRow(dataTables));
-		addToTable(provider.createPechQuantitativRow(dataTables));
+		addToTable(provider.createPitchQualitativeRow(dataTables));
+		addToTable(provider.createPitchHalfQuantitativeRow(dataTables));
+		addToTable(provider.createPitchQuantitativeRow(dataTables));
 	}
 
 	@Override

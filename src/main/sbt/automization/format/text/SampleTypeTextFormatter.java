@@ -12,7 +12,7 @@ public final class SampleTypeTextFormatter extends AbstractTextFormatter
 	public String format(final String container)
 	{
 		String sampleType;
-		if ("-".equals(container))
+		if ("-".equals(container) || "".equals(container))
 		{
 			sampleType = "EP";
 		} else

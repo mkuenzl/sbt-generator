@@ -1,5 +1,7 @@
 package sbt.automization.templates.appendix;
 
+import sbt.automization.format.text.StandardCellTextFormatter;
+import sbt.automization.format.text.TextFormatter;
 import sbt.automization.templates.HtmlTemplate;
 import sbt.automization.html.HtmlTable;
 
@@ -8,6 +10,8 @@ import sbt.automization.html.HtmlTable;
  */
 public abstract class Appendix implements HtmlTemplate
 {
+	protected TextFormatter textFormatter = new StandardCellTextFormatter();
+
 	public static final String HTML_BASIC_TABLE_STYLE = new StringBuilder()
 			.append("'")
 			.append("border-collapse:collapse")

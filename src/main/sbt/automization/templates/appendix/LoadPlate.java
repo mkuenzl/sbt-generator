@@ -9,7 +9,6 @@ import sbt.automization.data.key.ProbeKey;
 import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.format.text.LoadPlateTextFormatter;
 import sbt.automization.html.HtmlFactory;
-import sbt.automization.html.HtmlTable;
 
 import java.util.List;
 
@@ -39,7 +38,7 @@ public final class LoadPlate extends Appendix
 	@Override
 	protected String constructAndGetTableHeader()
 	{
-		String firstRow = HtmlFactory.createRow(2, new String[]{
+		String firstRow = HtmlFactory.createRowAsString(2, new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "width:55px", 3, 1,
 						new String[]{"Versuch", UtilityPrinter.printLineBreak(), "Nr."}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:65px", 3, 1,
@@ -56,7 +55,7 @@ public final class LoadPlate extends Appendix
 						new String[]{"E<sub>V2</sub>", "<div>[41]</div>"})
 		});
 
-		String secondRow = HtmlFactory.createRow(new String[]{
+		String secondRow = HtmlFactory.createRowAsString(new String[]{
 				HtmlFactory.createHeader("NormalTableHeader", "width:40px",
 						new String[]{"S<sub>1</sub>"}),
 				HtmlFactory.createHeader("NormalTableHeader", "width:40px",
@@ -67,7 +66,7 @@ public final class LoadPlate extends Appendix
 						new String[]{"x̅"})
 		});
 
-		String thirdRow = HtmlFactory.createRow(new String[]{
+		String thirdRow = HtmlFactory.createRowAsString(new String[]{
 				HtmlFactory.createHeader("NormalTableHeaderUnits",
 						new String[]{"mm"}),
 				HtmlFactory.createHeader("NormalTableHeaderUnits",
@@ -111,26 +110,26 @@ public final class LoadPlate extends Appendix
 					String formattedEV2 = new LoadPlateTextFormatter().format(parameter.get(LpKey.EV2),
 							parameter.get(LpKey.EV85));
 
-					String row = HtmlFactory.createRow("Normal", new String[]{
-							HtmlFactory.createCellAsString("NormalCenter",
+					String row = HtmlFactory.createRowAsString("Normal", new String[]{
+							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 									new String[]{dataTable.get(ProbeKey.LP_ID)}),
-							HtmlFactory.createCellAsString("NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 									new String[]{dataTable.get(ProbeKey.ID)}),
-							HtmlFactory.createCellAsString("Normal",
+							HtmlFactory.createCellAsString(textFormatter,"Normal",
 									new String[]{dataTable.get(ProbeKey.LOCATION)}),
-							HtmlFactory.createCellAsString("NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 									new String[]{parameter.get(LpKey.VALUE_1)}),
-							HtmlFactory.createCellAsString("NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 									new String[]{parameter.get(LpKey.VALUE_2)}),
-							HtmlFactory.createCellAsString("NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 									new String[]{parameter.get(LpKey.VALUE_3)}),
-							HtmlFactory.createCellAsString("NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 									new String[]{parameter.get(LpKey.MEAN)}),
-							HtmlFactory.createCellAsString("NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 									new String[]{parameter.get(LpKey.EV)}),
-							HtmlFactory.createCellAsString("NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 									new String[]{parameter.get(LpKey.EV85)}),
-							HtmlFactory.createCellAsString("NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
 									new String[]{formattedEV2}),
 					});
 

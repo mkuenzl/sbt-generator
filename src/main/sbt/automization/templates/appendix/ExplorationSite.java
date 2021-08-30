@@ -63,43 +63,43 @@ public final class ExplorationSite extends Appendix
 
 	private String createHeadOfTable(Probe probe)
 	{
-		String firstRow = HtmlFactory.createRow("Normal", new String[]{
+		String firstRow = HtmlFactory.createRowAsString("Normal", new String[]{
 				HtmlFactory.createCellAsString("NormalHeader", "width:100px",
 						new String[]{"Erkund.-Stelle"}),
-				HtmlFactory.createCellAsString("Normal", 1, 3,
+				HtmlFactory.createCellAsString(textFormatter,"Normal", 1, 3,
 						new String[]{probe.get(ProbeKey.LOCATION)}),
 		});
 
-		String secondRow = HtmlFactory.createRow("Normal", new String[]{
+		String secondRow = HtmlFactory.createRowAsString("Normal", new String[]{
 				HtmlFactory.createCellAsString("NormalHeader",
 						new String[]{"Bezeichnung"}),
-				HtmlFactory.createCellAsString("Normal", "width:200px",
+				HtmlFactory.createCellAsString(textFormatter,"Normal", "width:200px",
 						new String[]{probe.get(ProbeKey.ID)}),
 				HtmlFactory.createCellAsString("NormalHeader", "width:100px",
 						new String[]{"Datum"}),
-				HtmlFactory.createCellAsString("Normal", "width:200px",
+				HtmlFactory.createCellAsString(textFormatter,"Normal", "width:200px",
 						new String[]{probe.get(ProbeKey.DATE)}),
 		});
 
-		String thirdRow = HtmlFactory.createRow("Normal", new String[]{
+		String thirdRow = HtmlFactory.createRowAsString("Normal", new String[]{
 				HtmlFactory.createCellAsString("NormalHeader",
 						new String[]{"Koordinaten<sup>1)</sup>"}),
-				HtmlFactory.createCellAsString("Normal",
+				HtmlFactory.createCellAsString(textFormatter,"Normal",
 						new String[]{probe.get(ProbeKey.COORDINATES)}),
 				HtmlFactory.createCellAsString("NormalHeader",
 						new String[]{"Probenehmer"}),
-				HtmlFactory.createCellAsString("Normal",
+				HtmlFactory.createCellAsString(textFormatter,"Normal",
 						new String[]{probe.get(ProbeKey.INSPECTOR)}),
 		});
 
-		String fourthRow = HtmlFactory.createRow("Normal", new String[]{
+		String fourthRow = HtmlFactory.createRowAsString("Normal", new String[]{
 				HtmlFactory.createCellAsString("NormalHeader",
 						new String[]{"Bereich"}),
-				HtmlFactory.createCellAsString("Normal",
+				HtmlFactory.createCellAsString(textFormatter,"Normal",
 						new String[]{probe.get(ProbeKey.REGION)}),
 				HtmlFactory.createCellAsString("NormalHeader",
 						new String[]{"Ansprechpartner"}),
-				HtmlFactory.createCellAsString("Normal",
+				HtmlFactory.createCellAsString(textFormatter,"Normal",
 						new String[]{probe.get(ProbeKey.CONTACT_PERSON)}),
 		});
 
