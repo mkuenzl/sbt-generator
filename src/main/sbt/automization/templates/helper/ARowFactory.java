@@ -9,6 +9,7 @@ import sbt.automization.util.html.HtmlRow;
 import sbt.automization.util.html.HtmlText;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Factory Class TODO
@@ -587,7 +588,7 @@ public abstract class ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(explorationSite.getInformation(tag))
+					.appendContent(explorationSite.getInformation(tag).toUpperCase(Locale.ROOT))
 					.build();
 
 			row.appendContent(cell.appendTag());

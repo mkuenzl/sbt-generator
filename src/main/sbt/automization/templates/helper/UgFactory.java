@@ -42,7 +42,7 @@ public final class UgFactory extends ARowFactory
 			HtmlCell cell = new HtmlCell.Builder()
 					.appendAttribute("class", normalCellClass)
 					.appendAttribute("width", normalCellWidth)
-					.appendContent(String.valueOf(explorationSite.getThickness()).replace(".", ","))
+					.appendContent(String.valueOf(Math.round(explorationSite.getThickness())).replace(".", ","))
 					.build();
 
 			row.appendContent(cell.appendTag());

@@ -118,9 +118,17 @@ public final class TextFormatUtil
 		{
 			heightValue = heightValue + Double.parseDouble(layerSample.getInformation(InformationTag.LAYER_THICKNESS).replace(",", "."));
 		}
-		String height = String.valueOf(heightValue);
-		return height.replace(".", ",");
+
+		if (heightValue % 1 == 0)
+		{
+			return String.valueOf(Math.round(heightValue));
+		} else
+		{
+			String height = String.valueOf(heightValue);
+			return height.replace(".", ",");
+		}
 	}
+
 
 	/**
 	 * Method for specifying whether a sample is a single probe or could contain multiple.
@@ -296,9 +304,6 @@ public final class TextFormatUtil
 				break;
 			case "F":
 				kindText = "Mudden";
-				break;
-			case "Bankettandeckung":
-				kindText = "Bankettandeckung";
 				break;
 			default:
 				kindText = "";

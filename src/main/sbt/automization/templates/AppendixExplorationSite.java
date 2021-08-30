@@ -182,7 +182,11 @@ public final class AppendixExplorationSite extends AHtmlTable
 				stringBuilder.append(tableOH.getTable());
 			}
 
-			if (explorationSite.getLayersWithOutcrop("GOB").size() > 0)
+			if (explorationSite.getLayersWithOutcrop("GOB").size() > 0 ||
+					explorationSite.getLayersWithOutcrop("BETON").size() > 0 ||
+					explorationSite.getLayersWithOutcrop("TMHB").size() > 0 ||
+					explorationSite.getLayersWithOutcrop("BESCHICHTUNG").size() > 0||
+					explorationSite.getLayersWithOutcrop("ABDICHTUNG").size() > 0)
 			{
 				AppendixSiteGOB tableGOB = new AppendixSiteGOB();
 				tableGOB.constructTable(explorationSite);
