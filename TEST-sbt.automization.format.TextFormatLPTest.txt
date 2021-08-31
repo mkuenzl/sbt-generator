@@ -1,5 +1,0 @@
-Testsuite: sbt.automization.format.TextFormatLPTest
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,013 sec
-
-Testcase: formatEmptyEv85Test took 0,005 sec
-Testcase: formatEmptyTest took 0 sec

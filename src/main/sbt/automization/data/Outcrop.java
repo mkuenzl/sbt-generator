@@ -89,5 +89,5 @@ public enum Outcrop
 				{
 					return "OH";
 				}
-			};
+			}, BUILDING;
 }
