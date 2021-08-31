@@ -104,6 +104,7 @@ public final class ReportBANKETT extends AReportTable
 
 		umweltTechBuilder.append(rowUMWELTMERKMALE.appendTag())
 				.append(factory.createChemieIDRow(explorationSites))
+				.append(factory.createChemieMufvRow(explorationSites))
 				.append(factory.createChemieLagaBoRow(explorationSites))
 				.append(factory.createChemieDepvRow(explorationSites))
 				.append(factory.createChemieDecisionSupportRow(explorationSites))
