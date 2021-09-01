@@ -88,7 +88,7 @@ public final class SamplingProtocol extends Appendix
 	@Override
 	public void constructTemplate(List<DataTable> dataTables)
 	{
-		createTable();
+		createTableWithHeader();
 
 		for (DataTable dataTable : dataTables)
 		{

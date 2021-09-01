@@ -91,7 +91,7 @@ public final class SamplingProtocolHeap extends Appendix
 
 	private void buildTable(List<DataTable> dataTables)
 	{
-		createTable();
+		createTableWithHeader();
 
 		for (DataTable dataTable : dataTables)
 		{

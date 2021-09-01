@@ -89,5 +89,13 @@ public enum Outcrop
 				{
 					return "OH";
 				}
-			}, BUILDING;
+			},
+	BUILDING
+			{
+				@Override
+				public String toString()
+				{
+					return "GEBAEUDE";
+				}
+			};
 }

@@ -1,4 +1,4 @@
-package sbt.automization.templates;
+package sbt.automization.templates.appendix;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -6,9 +6,6 @@ import org.junit.Test;
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Examination;
 import sbt.automization.export.HtmlTemplateExport;
-import sbt.automization.templates.appendix.*;
-import sbt.automization.templates.basic.Coordinates;
-import sbt.automization.templates.report.*;
 import sbt.automization.util.CsvParser;
 import sbt.automization.util.DatatableSerializationFactory;
 
@@ -18,7 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TemplateBuildingTest
+public class AppendixTemplateBuildingTest
 {
 	List<DataTable> dataTables = new ArrayList<>();
 
@@ -69,6 +66,16 @@ public class TemplateBuildingTest
 		dataTables.add(DatatableSerializationFactory.readSerializedDatatable(serializableFilePath + "Probe_10"));
 		dataTables.add(DatatableSerializationFactory.readSerializedDatatable(serializableFilePath + "Probe_11"));
 		dataTables.add(DatatableSerializationFactory.readSerializedDatatable(serializableFilePath + "Probe_12"));
+		dataTables.add(DatatableSerializationFactory.readSerializedDatatable(serializableFilePath + "Probe_13"));
+		dataTables.add(DatatableSerializationFactory.readSerializedDatatable(serializableFilePath + "Probe_14"));
+		dataTables.add(DatatableSerializationFactory.readSerializedDatatable(serializableFilePath + "Probe_15"));
+		dataTables.add(DatatableSerializationFactory.readSerializedDatatable(serializableFilePath + "Probe_16"));
+		dataTables.add(DatatableSerializationFactory.readSerializedDatatable(serializableFilePath + "Probe_17"));
+		dataTables.add(DatatableSerializationFactory.readSerializedDatatable(serializableFilePath + "Probe_18"));
+		dataTables.add(DatatableSerializationFactory.readSerializedDatatable(serializableFilePath + "Probe_19"));
+		dataTables.add(DatatableSerializationFactory.readSerializedDatatable(serializableFilePath + "Probe_20"));
+		dataTables.add(DatatableSerializationFactory.readSerializedDatatable(serializableFilePath + "Probe_21"));
+		dataTables.add(DatatableSerializationFactory.readSerializedDatatable(serializableFilePath + "Probe_22"));
 	}
 
 	@Test
@@ -123,99 +130,9 @@ public class TemplateBuildingTest
 	}
 
 	@Test
-	public void createReportOBTemplate() throws IOException
+	public void createPnBuildingTemplate() throws IOException
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(BoundSuperstructure.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
-	}
-
-	@Test
-	public void createReportTOBTemplate() throws IOException
-	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(BaseCourseWithoutBinder.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
-	}
-
-	@Test
-	public void createReportUGTemplate() throws IOException
-	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Underground.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
-	}
-
-	@Test
-	public void createReportOHTemplate() throws IOException
-	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Topsoil.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
-	}
-
-	@Test
-	public void createExampleTemplate() throws IOException
-	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(AttemptTemplate.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
-	}
-
-	@Test
-	public void createReportTMHBTemplate() throws IOException
-	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(BaseCourseWithHydraulicBinder.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
-	}
-
-	@Test
-	public void createReportBETONTemplate() throws IOException
-	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Concrete.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
-	}
-
-	@Test
-	public void createReportFUGETemplate() throws IOException
-	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Gap.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
-	}
-
-	@Test
-	public void createReportHeapTemplate() throws IOException
-	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Heap.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
-	}
-
-	@Test
-	public void createReportCoordinateTemplate() throws IOException
-	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Coordinates.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
-	}
-
-	@Test
-	public void createReportBankettTemplate() throws IOException
-	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Banquet.getInstance());
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(SamplingProtocolBuilding.getInstance());
 		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
 
 		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));

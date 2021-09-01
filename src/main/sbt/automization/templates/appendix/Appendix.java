@@ -61,6 +61,13 @@ public abstract class Appendix implements HtmlTemplate
 
 	protected abstract String constructAndGetTableHeader();
 
+	public void createTableWithHeader()
+	{
+
+		createTable();
+		table.appendContent(constructAndGetTableHeader());
+	}
+
 	public void createTable()
 	{
 		table = new HtmlTable.Builder()
@@ -70,7 +77,6 @@ public abstract class Appendix implements HtmlTemplate
 				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
 				.appendAttribute("cellspacing", "0")
 				.appendAttribute("cellpadding", "0")
-				.appendContent(constructAndGetTableHeader())
 				.build();
 	}
 
@@ -89,7 +95,7 @@ public abstract class Appendix implements HtmlTemplate
 
 			linesPerPage = 0;
 
-			createTable();
+			createTableWithHeader();
 		}
 	}
 }

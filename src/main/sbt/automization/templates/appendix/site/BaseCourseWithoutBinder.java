@@ -36,7 +36,7 @@ public final class BaseCourseWithoutBinder extends Appendix
 	public void constructTemplate(DataTable dataTable)
 	{
 		setOutcrop(dataTable);
-		createTable();
+		createTableWithHeader();
 
 		if (dataTable instanceof Probe)
 		{

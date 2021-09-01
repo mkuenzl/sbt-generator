@@ -39,7 +39,7 @@ public final class AttemptTemplate extends Appendix
 	}
 
 	@Override
-	public void createTable()
+	public void createTableWithHeader()
 	{
 		table = new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
