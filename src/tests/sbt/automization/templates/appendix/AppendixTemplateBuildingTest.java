@@ -137,10 +137,5 @@ public class AppendixTemplateBuildingTest
 		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
 
 		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
-
-		WordTemplateExport wordTemplateExport = new WordTemplateExport(SamplingProtocolBuilding.getInstance());
-		wordTemplateExport.export(templateExportPath, dataTables);
-
-		openExportFile(wordTemplateExport.getPath(templateExportPath));
 	}
 }

@@ -96,6 +96,16 @@
                 page-break-inside:avoid;
                 height:0.5cm;
             }
+            tr.NormalThin8
+            {
+                page-break-inside:avoid;
+                height:0.8cm;
+            }
+             tr.NormalThin6
+            {
+                page-break-inside:avoid;
+                height:0.6cm;
+            }
 			tr.NormalHeader
 			{
                 page-break-inside:avoid;
@@ -131,6 +141,14 @@
                 padding:0cm 1.4pt 0cm 3.4pt;
                 overflow:hidden;
 			}
+			td.NormalBuilding
+            {
+                border:solid windowtext .5pt;
+                background:white;
+                font-size:10.0pt;
+                padding:0cm 1.4pt 0cm 3.4pt;
+                overflow:hidden;
+            }
 			td.NormalCenterNoPadding
             {
                 border:solid windowtext .5pt;
@@ -241,7 +259,13 @@
                 background:#F2F2F2;
                 padding:2.4pt 1.4pt 2.4pt 1.4pt;
 			}
-
+            th.NormalTableHeaderBuilding
+			{
+                border:solid windowtext .5pt;
+                font-size:10.0pt;
+                background:#E7E6E6;
+                padding:2.4pt 1.4pt 2.4pt 1.4pt;
+			}
 			th.NormalTableHeader div {
                 position: relative;
                 font-size: 5.0pt;
@@ -271,7 +295,7 @@
                 width:100.0%;
                 height:100.0%;
                 border:solid windowtext 1.0pt;
-                padding-alt:0cm 1.4pt 0cm 1.4pt;
+                padding-alt:0cm 0cm 0cm 0cm;
                 para-margin:0cm;
                 pagination:widow-orphan;
                 font-size:8.0pt;
@@ -288,10 +312,10 @@
 <td style=width:110 class=NormalHeader >
 Erkundungsstelle
 </td>
-<td style=width:60 class=NormalBold >
+<td style=width:2.4cm class=NormalBold >
 FB0
 </td>
-<td style=width:60 class=NormalBold >
+<td style=width:2.4cm class=NormalBold >
 FB8
 </td>
 </tr>
@@ -299,10 +323,10 @@ FB8
 <td style=width:110 class=NormalHeader >
 Aufschlussart
 </td>
-<td style=width:60 class=NormalBold >
+<td style=width:2.4cm class=NormalBold >
 -
 </td>
-<td style=width:60 class=NormalBold >
+<td style=width:2.4cm class=NormalBold >
 -
 </td>
 </tr>
@@ -318,7 +342,7 @@ Bodengruppe,
 DIN 18196<sup>[22]</sup>
 </p>
 </td>
-<td style=width:60 class=NormalBold >
+<td style=width:2.4cm class=NormalBold >
 <p class=Normal >
 4
 </p><p class=Normal2 >
@@ -327,8 +351,18 @@ DIN 18196<sup>[22]</sup>
 [T: 6 - 10]
 </p>
 </td>
-<td style=width:60 class=NormalBold >
+<td style=width:2.4cm class=NormalBold >
 <p class=Normal >
+OH
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 3 - 10]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
 ST
 </p><p class=Normal2 >
 &nbsp;
@@ -344,16 +378,6 @@ GE
 &nbsp;
 </p><p class=Normal5 >
 [T: 1 - 3]
-</p><p class=Normal2 >
-_____________________________________
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal >
-OH
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 3 - 10]
 </p>
 </td>
 </tr>
@@ -368,7 +392,7 @@ Umwelttechnische Merkmale
 <td style=width:110 class=NormalHeader >
 Laborprobe
 </td>
-<td style=width:60 class=NormalBold >
+<td style=width:2.4cm class=NormalBold >
 <p class=Normal >
 C7
 </p><p class=Normal2 >
@@ -377,8 +401,28 @@ C7
 [T: 6 - 10]
 </p>
 </td>
-<td style=width:60 class=NormalBold >
+<td style=width:2.4cm class=NormalBold >
 <p class=Normal >
+C5
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 3 - 6]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
+C2
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 6 - 10]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
 C6
 </p><p class=Normal2 >
 &nbsp;
@@ -393,17 +437,7 @@ C5
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 1 - 6]
-</p><p class=Normal2 >
-_____________________________________
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal >
-C2
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 6 - 10]
+[T: 1 - 3]
 </p>
 </td>
 </tr>
@@ -414,7 +448,7 @@ Zuordnungsklasse,
 LAGA Boden<sup>[11]</sup>
 </p>
 </td>
-<td style=width:60 class=NormalBold >
+<td style=width:2.4cm class=NormalBold >
 <p class=Normal >
 -
 </p><p class=Normal2 >
@@ -423,8 +457,34 @@ LAGA Boden<sup>[11]</sup>
 [T: 6 - 10]
 </p>
 </td>
-<td style=width:60 class=NormalBold >
+<td style=width:2.4cm class=NormalBold >
 <p class=Normal >
+<span style="background-color: red;font-weight: bold;
+  color: white">
+Z2
+</span>
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 3 - 6]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
+<span style="background-color: #00FFFF;font-weight: bold;
+  color: black">
+Z0*
+</span>
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 6 - 10]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
 <span style="background-color: black;font-weight: bold;
   color: white">
 >Z2
@@ -445,20 +505,7 @@ Z2
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 1 - 6]
-</p><p class=Normal2 >
-_____________________________________
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal >
-<span style="background-color: #00FFFF;font-weight: bold;
-  color: black">
-Z0*
-</span>
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 6 - 10]
+[T: 1 - 3]
 </p>
 </td>
 </tr>
@@ -469,7 +516,7 @@ Deponieklasse,
 DepV<sup>[15]</sup>
 </p>
 </td>
-<td style=width:60 class=NormalBold >
+<td style=width:2.4cm class=NormalBold >
 <p class=Normal >
 -
 </p><p class=Normal2 >
@@ -478,8 +525,34 @@ DepV<sup>[15]</sup>
 [T: 6 - 10]
 </p>
 </td>
-<td style=width:60 class=NormalBold >
+<td style=width:2.4cm class=NormalBold >
 <p class=Normal >
+<span style="background-color: black;font-weight: bold;
+  color: white">
+>DK3
+</span>
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 3 - 6]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
+<span style="background-color: #00FF00;font-weight: bold;
+  color: black">
+DK1
+</span>
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 6 - 10]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
 -
 </p><p class=Normal2 >
 &nbsp;
@@ -497,20 +570,7 @@ _____________________________________
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 1 - 6]
-</p><p class=Normal2 >
-_____________________________________
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal >
-<span style="background-color: #00FF00;font-weight: bold;
-  color: black">
-DK1
-</span>
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 6 - 10]
+[T: 1 - 3]
 </p>
 </td>
 </tr>
@@ -521,7 +581,7 @@ Entscheidungshilfe,
 DepV<sup>[17]</sup>
 </p>
 </td>
-<td style=width:60 class=NormalBold >
+<td style=width:2.4cm class=NormalBold >
 <p class=Normal >
 -
 </p><p class=Normal2 >
@@ -530,13 +590,13 @@ DepV<sup>[17]</sup>
 [T: 6 - 10]
 </p>
 </td>
-<td style=width:60 class=NormalBold >
+<td style=width:2.4cm class=NormalBold >
 <p class=Normal >
 -
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 0 - 6]
+[T: 3 - 6]
 </p><p class=Normal2 >
 _____________________________________
 </p><p class=Normal2 >
@@ -547,6 +607,16 @@ Spalte 5
 &nbsp;
 </p><p class=Normal5 >
 [T: 6 - 10]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
+-
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 0 - 3]
 </p>
 </td>
 </tr>
@@ -557,7 +627,7 @@ Abfallschlüssel,
 AVV<sup>[14]</sup>
 </p>
 </td>
-<td style=width:60 class=NormalBold >
+<td style=width:2.4cm class=NormalBold >
 <p class=Normal >
 -
 </p><p class=Normal2 >
@@ -566,8 +636,28 @@ AVV<sup>[14]</sup>
 [T: 6 - 10]
 </p>
 </td>
-<td style=width:60 class=NormalBold >
+<td style=width:2.4cm class=NormalBold >
 <p class=Normal >
+11-32-17
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 3 - 6]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
+11-32-14
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 6 - 10]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
 11-32-18
 </p><p class=Normal2 >
 &nbsp;
@@ -582,17 +672,7 @@ _____________________________________
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 1 - 6]
-</p><p class=Normal2 >
-_____________________________________
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal >
-11-32-14
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 6 - 10]
+[T: 1 - 3]
 </p>
 </td>
 </tr>

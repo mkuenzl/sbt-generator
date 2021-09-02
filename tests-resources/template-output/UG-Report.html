@@ -96,6 +96,16 @@
                 page-break-inside:avoid;
                 height:0.5cm;
             }
+            tr.NormalThin8
+            {
+                page-break-inside:avoid;
+                height:0.8cm;
+            }
+             tr.NormalThin6
+            {
+                page-break-inside:avoid;
+                height:0.6cm;
+            }
 			tr.NormalHeader
 			{
                 page-break-inside:avoid;
@@ -131,6 +141,14 @@
                 padding:0cm 1.4pt 0cm 3.4pt;
                 overflow:hidden;
 			}
+			td.NormalBuilding
+            {
+                border:solid windowtext .5pt;
+                background:white;
+                font-size:10.0pt;
+                padding:0cm 1.4pt 0cm 3.4pt;
+                overflow:hidden;
+            }
 			td.NormalCenterNoPadding
             {
                 border:solid windowtext .5pt;
@@ -241,7 +259,13 @@
                 background:#F2F2F2;
                 padding:2.4pt 1.4pt 2.4pt 1.4pt;
 			}
-
+            th.NormalTableHeaderBuilding
+			{
+                border:solid windowtext .5pt;
+                font-size:10.0pt;
+                background:#E7E6E6;
+                padding:2.4pt 1.4pt 2.4pt 1.4pt;
+			}
 			th.NormalTableHeader div {
                 position: relative;
                 font-size: 5.0pt;
@@ -271,7 +295,7 @@
                 width:100.0%;
                 height:100.0%;
                 border:solid windowtext 1.0pt;
-                padding-alt:0cm 1.4pt 0cm 1.4pt;
+                padding-alt:0cm 0cm 0cm 0cm;
                 para-margin:0cm;
                 pagination:widow-orphan;
                 font-size:8.0pt;
@@ -289,13 +313,13 @@
 Erkundungsstelle
 </td>
 <td style=width:60 class=NormalBold >
+FB0
+</td>
+<td style=width:60 class=NormalBold >
 FB1
 </td>
 <td style=width:60 class=NormalBold >
 FB2
-</td>
-<td style=width:60 class=NormalBold >
-FB0
 </td>
 </tr>
 <tr class=Normal >
@@ -303,13 +327,13 @@ FB0
 Aufschlussart
 </td>
 <td style=width:60 class=NormalBold >
+-
+</td>
+<td style=width:60 class=NormalBold >
 Kleinrammbohrung
 </td>
 <td style=width:60 class=NormalBold >
 Baggerschurf
-</td>
-<td style=width:60 class=NormalBold >
--
 </td>
 </tr>
 <tr class=Normal >
@@ -320,13 +344,13 @@ cm
 </p>
 </td>
 <td style=width:60 class=NormalBold >
+3,0
+</td>
+<td style=width:60 class=NormalBold >
 114,0
 </td>
 <td style=width:60 class=NormalBold >
 6,0
-</td>
-<td style=width:60 class=NormalBold >
-3,0
 </td>
 </tr>
 <tr class=Normal >
@@ -337,13 +361,13 @@ cm
 </p>
 </td>
 <td width=60 class=NormalBold >
+55,0
+</td>
+<td width=60 class=NormalBold >
 135,0
 </td>
 <td width=60 class=NormalBold >
 9,0
-</td>
-<td width=60 class=NormalBold >
-55,0
 </td>
 </tr>
 <tr class=Normal >
@@ -352,6 +376,9 @@ Zieltiefe,
 <p class=Normal6 >
 cm
 </p>
+</td>
+<td width=60 class=NormalBold >
+-
 </td>
 <td width=60 class=NormalBold >
 <p class=Normal >
@@ -371,9 +398,6 @@ cm
 </span>
 </p>
 </td>
-<td width=60 class=NormalBold >
--
-</td>
 </tr>
 <tr class=Normal >
 <td colspan=4 rowspan=1 class=NormalHeader >
@@ -389,11 +413,20 @@ DIN 18196<sup>[22]</sup>
 </td>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
-ST*
+3
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 21 - 108]
+[T: 3 - 6]
+</p>
+</td>
+<td style=width:60 class=NormalBold >
+<p class=Normal >
+SW
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 120 - 135]
 </p><p class=Normal2 >
 _____________________________________
 </p><p class=Normal2 >
@@ -409,11 +442,11 @@ _____________________________________
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal >
-SW
+ST*
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 120 - 135]
+[T: 21 - 108]
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -423,15 +456,6 @@ ST*
 &nbsp;
 </p><p class=Normal5 >
 [T: 3 - 9]
-</p>
-</td>
-<td style=width:60 class=NormalBold >
-<p class=Normal >
-3
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 3 - 6]
 </p>
 </td>
 </tr>
@@ -455,13 +479,13 @@ Ansatz Planum: FOK -60cm
 </p>
 </td>
 <td style=width:60 class=NormalBold >
+-
+</td>
+<td style=width:60 class=NormalBold >
 10
 </td>
 <td style=width:60 class=NormalBold >
 20
-</td>
-<td style=width:60 class=NormalBold >
--
 </td>
 </tr>
 <tr class=Normal >
@@ -471,6 +495,17 @@ Tragfähigkeit
 Grabensohle
 <p class=Normal6 >
 Ansatz Sohle
+</p>
+</td>
+<td style=width:60 class=NormalBold >
+-
+<p class=Normal >
+&nbsp;
+</p>
+<p class=Normal6 >
+[T:
+
+]
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -495,17 +530,6 @@ Sohle 2
 ]
 </p>
 </td>
-<td style=width:60 class=NormalBold >
--
-<p class=Normal >
-&nbsp;
-</p>
-<p class=Normal6 >
-[T:
-
-]
-</p>
-</td>
 </tr>
 <tr class=Normal >
 <td colspan=4 rowspan=1 class=NormalHeader >
@@ -518,21 +542,20 @@ Laborprobe
 </td>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
-C4
+C7
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 21 - 99]
-</p><p class=Normal2 >
-_____________________________________
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal >
-C5
+[T: 3 - 6]
+</p>
+</td>
+<td style=width:60 class=NormalBold >
+<p class=Normal >
+C7
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 99 - 108]
+[T: 120 - 135]
 </p><p class=Normal2 >
 _____________________________________
 </p><p class=Normal2 >
@@ -548,11 +571,21 @@ _____________________________________
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal >
-C7
+C4
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 120 - 135]
+[T: 21 - 99]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
+C5
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 99 - 108]
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -562,15 +595,6 @@ C1
 &nbsp;
 </p><p class=Normal5 >
 [T: 3 - 9]
-</p>
-</td>
-<td style=width:60 class=NormalBold >
-<p class=Normal >
-C7
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 3 - 6]
 </p>
 </td>
 </tr>
@@ -585,6 +609,25 @@ Schreiben des MUFV<sup>[18]</sup>
 </td>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
+-
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 3 - 6]
+</p>
+</td>
+<td style=width:60 class=NormalBold >
+<p class=Normal >
+-
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 120 - 135]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
 <span style="background-color: white;font-weight: bold;
   color: black">
 nicht
@@ -596,7 +639,7 @@ gefährlich
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 21 - 99]
+[T: 108 - 99]
 </p><p class=Normal2 >
 _____________________________________
 </p><p class=Normal2 >
@@ -610,33 +653,6 @@ gefährlich
 &nbsp;
 </p><p class=Normal5 >
 [T: 99 - 108]
-</p><p class=Normal2 >
-_____________________________________
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal >
-<span style="background-color: white;font-weight: bold;
-  color: black">
-nicht
-</span>
-</p><p class=Normal >
-<span style="font-weight: bold";>
-gefährlich
-</span>
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 108 - 120]
-</p><p class=Normal2 >
-_____________________________________
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal >
--
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 120 - 135]
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -651,15 +667,6 @@ gefährlich
 [T: 3 - 9]
 </p>
 </td>
-<td style=width:60 class=NormalBold >
-<p class=Normal >
--
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 3 - 6]
-</p>
-</td>
 </tr>
 <tr class=Normal >
 <td style=width:110 class=NormalHeader >
@@ -670,6 +677,38 @@ LAGA Boden<sup>[11]</sup>
 </td>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
+-
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 3 - 6]
+</p>
+</td>
+<td style=width:60 class=NormalBold >
+<p class=Normal >
+-
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 120 - 135]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
+<span style="background-color: black;font-weight: bold;
+  color: white">
+>Z2
+</span>
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 108 - 120]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
 <span style="background-color: yellow;font-weight: bold;
   color: black">
 Z1.2
@@ -691,29 +730,6 @@ Z2
 &nbsp;
 </p><p class=Normal5 >
 [T: 99 - 108]
-</p><p class=Normal2 >
-_____________________________________
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal >
-<span style="background-color: black;font-weight: bold;
-  color: white">
->Z2
-</span>
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 108 - 120]
-</p><p class=Normal2 >
-_____________________________________
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal >
--
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 120 - 135]
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -729,15 +745,6 @@ Z0
 [T: 3 - 9]
 </p>
 </td>
-<td style=width:60 class=NormalBold >
-<p class=Normal >
--
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 3 - 6]
-</p>
-</td>
 </tr>
 <tr class=Normal >
 <td style=width:110 class=NormalHeader >
@@ -748,6 +755,39 @@ LAGA Bauschutt<sup>[28]</sup>
 </td>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
+-
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 3 - 6]
+</p>
+</td>
+<td style=width:60 class=NormalBold >
+<p class=Normal >
+-
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 120 - 135]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
+<span style="background-color: white;font-weight: bold;
+
+  color: black">
+Z0
+</span>
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 108 - 120]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
 <span style="background-color: #00FF00;font-weight: bold;
   color: black">
 Z1.1
@@ -769,30 +809,6 @@ Z0*
 &nbsp;
 </p><p class=Normal5 >
 [T: 99 - 108]
-</p><p class=Normal2 >
-_____________________________________
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal >
-<span style="background-color: white;font-weight: bold;
-
-  color: black">
-Z0
-</span>
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 108 - 120]
-</p><p class=Normal2 >
-_____________________________________
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal >
--
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 120 - 135]
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -807,15 +823,6 @@ _____________________________________
 [T: 3 - 9]
 </p>
 </td>
-<td style=width:60 class=NormalBold >
-<p class=Normal >
--
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 3 - 6]
-</p>
-</td>
 </tr>
 <tr class=Normal >
 <td style=width:110 class=NormalHeader >
@@ -826,6 +833,25 @@ LAGA Bauschutt<sup>[28]</sup>
 </td>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
+-
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 3 - 6]
+</p>
+</td>
+<td style=width:60 class=NormalBold >
+<p class=Normal >
+-
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 120 - 120]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
 <span style="font-weight: bold";>
 eingehalten
 </span>
@@ -849,16 +875,6 @@ eingehalten
 &nbsp;
 </p><p class=Normal5 >
 [T: 99 - 108]
-</p><p class=Normal2 >
-_____________________________________
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal >
--
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 108 - 135]
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -876,15 +892,6 @@ eingehalten
 [T: 3 - 9]
 </p>
 </td>
-<td style=width:60 class=NormalBold >
-<p class=Normal >
--
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 3 - 6]
-</p>
-</td>
 </tr>
 <tr class=Normal >
 <td style=width:110 class=NormalHeader >
@@ -895,6 +902,25 @@ TL Gestein<sup>[27]</sup>
 </td>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
+-
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 3 - 6]
+</p>
+</td>
+<td style=width:60 class=NormalBold >
+<p class=Normal >
+-
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 120 - 120]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
 <span style="background-color: red;font-weight: bold;
   color: white">
 RC3
@@ -916,16 +942,6 @@ _____________________________________
 &nbsp;
 </p><p class=Normal5 >
 [T: 99 - 108]
-</p><p class=Normal2 >
-_____________________________________
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal >
--
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 108 - 135]
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -935,15 +951,6 @@ _____________________________________
 &nbsp;
 </p><p class=Normal5 >
 [T: 3 - 9]
-</p>
-</td>
-<td style=width:60 class=NormalBold >
-<p class=Normal >
--
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 3 - 6]
 </p>
 </td>
 </tr>
@@ -956,6 +963,25 @@ Reku<sup>[7]</sup>
 </td>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
+-
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 3 - 6]
+</p>
+</td>
+<td style=width:60 class=NormalBold >
+<p class=Normal >
+-
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 120 - 120]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
 <span style="font-weight: bold";>
 eingehalten
 </span>
@@ -979,16 +1005,6 @@ eingehalten
 &nbsp;
 </p><p class=Normal5 >
 [T: 99 - 108]
-</p><p class=Normal2 >
-_____________________________________
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal >
--
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 108 - 135]
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -1002,15 +1018,6 @@ eingehalten
 [T: 3 - 9]
 </p>
 </td>
-<td style=width:60 class=NormalBold >
-<p class=Normal >
--
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 3 - 6]
-</p>
-</td>
 </tr>
 <tr class=Normal >
 <td style=width:110 class=NormalHeader >
@@ -1021,6 +1028,25 @@ DepV<sup>[15]</sup>
 </td>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
+-
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 3 - 6]
+</p>
+</td>
+<td style=width:60 class=NormalBold >
+<p class=Normal >
+-
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 120 - 120]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
 <span style="background-color: red;font-weight: bold;
   color: white">
 DK3
@@ -1042,16 +1068,6 @@ _____________________________________
 &nbsp;
 </p><p class=Normal5 >
 [T: 99 - 108]
-</p><p class=Normal2 >
-_____________________________________
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal >
--
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 108 - 135]
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -1067,15 +1083,6 @@ DK0
 [T: 3 - 9]
 </p>
 </td>
-<td style=width:60 class=NormalBold >
-<p class=Normal >
--
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 3 - 6]
-</p>
-</td>
 </tr>
 <tr class=Normal >
 <td style=width:110 class=NormalHeader >
@@ -1086,6 +1093,25 @@ DepV<sup>[17]</sup>
 </td>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
+-
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 3 - 6]
+</p>
+</td>
+<td style=width:60 class=NormalBold >
+<p class=Normal >
+-
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 120 - 120]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
 <span style="background-color: yellow;font-weight: bold;
   color: black">
 DK2
@@ -1103,7 +1129,7 @@ _____________________________________
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 99 - 135]
+[T: 99 - 108]
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -1113,15 +1139,6 @@ _____________________________________
 &nbsp;
 </p><p class=Normal5 >
 [T: 3 - 9]
-</p>
-</td>
-<td style=width:60 class=NormalBold >
-<p class=Normal >
--
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 3 - 6]
 </p>
 </td>
 </tr>
@@ -1134,21 +1151,20 @@ AVV<sup>[14]</sup>
 </td>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
-11-32-16
+-
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 21 - 99]
-</p><p class=Normal2 >
-_____________________________________
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal >
-11-32-17
+[T: 3 - 6]
+</p>
+</td>
+<td style=width:60 class=NormalBold >
+<p class=Normal >
+-
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 99 - 108]
+[T: 120 - 135]
 </p><p class=Normal2 >
 _____________________________________
 </p><p class=Normal2 >
@@ -1164,11 +1180,21 @@ _____________________________________
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal >
--
+11-32-16
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 120 - 135]
+[T: 21 - 99]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
+11-32-17
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 99 - 108]
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -1178,15 +1204,6 @@ _____________________________________
 &nbsp;
 </p><p class=Normal5 >
 [T: 3 - 9]
-</p>
-</td>
-<td style=width:60 class=NormalBold >
-<p class=Normal >
--
-</p><p class=Normal2 >
-&nbsp;
-</p><p class=Normal5 >
-[T: 3 - 6]
 </p>
 </td>
 </tr>
