@@ -6,6 +6,7 @@ import org.junit.Test;
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Examination;
 import sbt.automization.export.HtmlTemplateExport;
+import sbt.automization.export.WordTemplateExport;
 import sbt.automization.util.CsvParser;
 import sbt.automization.util.DatatableSerializationFactory;
 
@@ -136,5 +137,10 @@ public class AppendixTemplateBuildingTest
 		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
 
 		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
+
+		WordTemplateExport wordTemplateExport = new WordTemplateExport(SamplingProtocolBuilding.getInstance());
+		wordTemplateExport.export(templateExportPath, dataTables);
+
+		openExportFile(wordTemplateExport.getPath(templateExportPath));
 	}
 }

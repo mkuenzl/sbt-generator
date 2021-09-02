@@ -1,5 +1,11 @@
 package sbt.automization.export;
 
+import org.docx4j.convert.in.xhtml.XHTMLImporter;
+import org.docx4j.convert.in.xhtml.XHTMLImporterImpl;
+import org.docx4j.openpackaging.exceptions.Docx4JException;
+import org.docx4j.openpackaging.exceptions.InvalidFormatException;
+import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
+import org.jodconverter.local.JodConverter;
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Examination;
 import sbt.automization.templates.HtmlTemplate;

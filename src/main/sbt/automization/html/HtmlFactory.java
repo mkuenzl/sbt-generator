@@ -515,6 +515,21 @@ public class HtmlFactory
 		return row.appendTag();
 	}
 
+	public static String createRowAsString(String classID, String style, String[] content)
+	{
+		HtmlRow row = new HtmlRow.Builder()
+				.appendAttribute("class", classID)
+				.appendAttribute("style", style)
+				.build();
+
+		for (String line : content)
+		{
+			row.appendContent(line);
+		}
+
+		return row.appendTag();
+	}
+
 	public static HtmlRow createRow(String classID, String[] content)
 	{
 		HtmlRow row = new HtmlRow.Builder()

@@ -16,12 +16,26 @@ public enum BuildingStyle implements Style
 					return null;
 				}
 			},
-	ROW_THIN
+	ROW_THIN_8
 			{
 				@Override
 				public String getStyleClass()
 				{
 					return "NormalThin8";
+				}
+
+				@Override
+				public String getStyle()
+				{
+					return null;
+				}
+			},
+	ROW_THIN_6
+			{
+				@Override
+				public String getStyleClass()
+				{
+					return "NormalThin6";
 				}
 
 				@Override
@@ -70,6 +84,34 @@ public enum BuildingStyle implements Style
 				public String getStyle()
 				{
 					return "";
+				}
+			},
+	ROW_PHOTO
+			{
+				@Override
+				public String getStyleClass()
+				{
+					return null;
+				}
+
+				@Override
+				public String getStyle()
+				{
+					return "height:7.0cm";
+				}
+			},
+	CELL_PHOTO
+			{
+				@Override
+				public String getStyleClass()
+				{
+					return "NormalBuilding";
+				}
+
+				@Override
+				public String getStyle()
+				{
+					return "width:5.3cm;height:7.0cm;text-align:center;padding:0cm 0cm 0cm 0cm";
 				}
 			},
 	TABLE

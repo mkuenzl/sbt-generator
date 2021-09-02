@@ -38,7 +38,7 @@ public class SamplingProtocolBuilding extends Appendix
 	@Override
 	protected String constructAndGetTableHeader()
 	{
-		String firstRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN.getStyleClass(), new String[]{
+		String firstRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN_8.getStyleClass(), new String[]{
 				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(), "width:2cm",
 						new String[]{"Aufbau"}),
 				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(), "width:3.6cm",
@@ -80,7 +80,7 @@ public class SamplingProtocolBuilding extends Appendix
 
 	private void buildTable(DataTable dataTable)
 	{
-		createHeadTable(dataTable);
+		buildHeadTable(dataTable);
 
 		createTableWithHeader();
 
@@ -110,18 +110,20 @@ public class SamplingProtocolBuilding extends Appendix
 		addTotalDepthRow(dataTable);
 		addToTemplate(table.appendTag());
 
+		buildPhotoTable();
+
 		addPageBreak();
 		addPageBreak();
 	}
 
-	private void createHeadTable(DataTable probe)
+	private void buildHeadTable(DataTable probe)
 	{
 		String firstRow = HtmlFactory.createRowAsString("Normal", new String[]{
 				HtmlFactory.createHeader(BuildingStyle.HEAD.getStyleClass(), BuildingStyle.HEAD.getStyle(), 1, 4,
 						new String[]{"Probenahmeprotokoll"})
 		});
 
-		String secondRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN.getStyleClass(), new String[]{
+		String secondRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN_6.getStyleClass(), new String[]{
 				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(), "width:4cm",
 						new String[]{"Datum"}),
 				HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(), "width:4cm",
@@ -132,7 +134,7 @@ public class SamplingProtocolBuilding extends Appendix
 						new String[]{probe.get(ProbeKey.PROBE_NUMBER)}),
 		});
 
-		String thirdRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN.getStyleClass(), new String[]{
+		String thirdRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN_6.getStyleClass(), new String[]{
 				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(),
 						new String[]{"Erkundungsstelle"}),
 				HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(),
@@ -143,7 +145,7 @@ public class SamplingProtocolBuilding extends Appendix
 						new String[]{probe.get(ProbeKey.BUILDING)}),
 		});
 
-		String fourthRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN.getStyleClass(), new String[]{
+		String fourthRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN_6.getStyleClass(), new String[]{
 				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(),
 						new String[]{"Bauteil"}),
 				HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(),
@@ -154,7 +156,7 @@ public class SamplingProtocolBuilding extends Appendix
 						new String[]{probe.get(ProbeKey.FLOOR)}),
 		});
 
-		String fifthRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN.getStyleClass(), new String[]{
+		String fifthRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN_6.getStyleClass(), new String[]{
 				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(),
 						new String[]{"Probencharakter"}),
 				HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(),
@@ -165,7 +167,7 @@ public class SamplingProtocolBuilding extends Appendix
 						new String[]{probe.get(ProbeKey.ROOM)}),
 		});
 
-		String sixthRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN.getStyleClass(), new String[]{
+		String sixthRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN_6.getStyleClass(), new String[]{
 				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(),
 						new String[]{"Geruch"}),
 				HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(),
@@ -188,13 +190,35 @@ public class SamplingProtocolBuilding extends Appendix
 		addToTable(content);
 
 		addToTemplate(table.appendTag());
-		addPageBreak();
 	}
 
 	@Override
 	public void constructTemplate(DataTable dataTable)
 	{
 
+	}
+
+	private void buildPhotoTable()
+	{
+		createTable();
+
+		String firstRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN_8.getStyleClass(), new String[]{
+				HtmlFactory.createHeader(BuildingStyle.HEAD.getStyleClass(), BuildingStyle.HEAD.getStyle(), 1, 3,
+						new String[]{"Fotodokumentation"})
+		});
+		addToTable(firstRow);
+
+		String secondRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_PHOTO.getStyleClass(), BuildingStyle.ROW_PHOTO.getStyle(), new String[]{
+				HtmlFactory.createCellAsString(BuildingStyle.CELL_PHOTO.getStyleClass(), BuildingStyle.CELL_PHOTO.getStyle(),
+						new String[]{""}),
+				HtmlFactory.createCellAsString(BuildingStyle.CELL_PHOTO.getStyleClass(), BuildingStyle.CELL_PHOTO.getStyle(),
+						new String[]{""}),
+				HtmlFactory.createCellAsString(BuildingStyle.CELL_PHOTO.getStyleClass(), BuildingStyle.CELL_PHOTO.getStyle(),
+						new String[]{""}),
+		});
+		addToTable(secondRow);
+
+		addToTemplate(table.appendTag());
 	}
 
 	private void addTotalDepthRow(DataTable dataTable)
