@@ -50,6 +50,9 @@ public final class Building extends Report
 		createTable();
 
 		addToTable(provider.createIDRow(dataTables));
+		addToTable(provider.createComponentRow(dataTables));
+		addToTable(provider.createMaterialRow(dataTables));
+
 		constructEnvironmentTechnicalFeatures(dataTables);
 		//addToTable(provider.createLegendRow(dataTables));
 	}
@@ -76,18 +79,25 @@ public final class Building extends Report
 	void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addToTable(provider.createChemieIDRow(dataTables));
-		//addToTable(schadstoffverdacht);
+		addToTable(provider.createSuspectedPollutantRow(dataTables));
 		addToTable(provider.createChemistryPak(dataTables));
-		addToTable(provider.createChemistryPak(dataTables)); // PCB
-		addToTable(provider.createChemistryPak(dataTables)); // ASBEST
-		addToTable(provider.createChemistryPak(dataTables)); // KMF
+		addToTable(provider.createChemistryPCB(dataTables)); // PCB
+		addToTable(provider.createChemistryAsbestos(dataTables)); // ASBEST
+
+		addToTable(provider.createChemistryBTEX(dataTables));
+		addToTable(provider.createChemistryPhenol(dataTables)); // KMF
+		addToTable(provider.createChemistryKMF(dataTables)); // KMF
+		addToTable(provider.createChemistrySulfate(dataTables));
+		addToTable(provider.createChemistryICP(dataTables));
+		addToTable(provider.createChemistryEOX(dataTables));
+
 		addToTable(provider.createChemieLagaBoRow(dataTables));
 		addToTable(provider.createChemieLagaRcRow(dataTables));
 		addToTable(provider.createChemieLagaRcOrientationRow(dataTables));
 		addToTable(provider.createChemieTlRockRow(dataTables));
 		addToTable(provider.createChemieMufvRow(dataTables)); // Einstufung
-		addToTable(provider.createChemieMufvRow(dataTables)); // Parameter
-		addToTable(provider.createChemieAVVRow(dataTables));  // Material
-		addToTable(provider.createChemieAVVRow(dataTables));  // gemischt
+		addToTable(provider.createChemieMufvParameterRow(dataTables)); // Parameter
+		addToTable(provider.createChemieMaterialAVVRow(dataTables));  // Material
+		addToTable(provider.createChemieMixedAVVRow(dataTables));  // gemischt
 	}
 }

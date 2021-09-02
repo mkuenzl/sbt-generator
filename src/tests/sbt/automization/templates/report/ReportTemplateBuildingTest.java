@@ -185,4 +185,13 @@ public class ReportTemplateBuildingTest
 
 		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
 	}
+
+	@Test
+	public void createBuildingTemplate() throws IOException
+	{
+		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Building.getInstance());
+		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
+
+		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
+	}
 }

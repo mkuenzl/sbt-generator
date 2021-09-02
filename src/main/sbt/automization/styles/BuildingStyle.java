@@ -2,19 +2,102 @@ package sbt.automization.styles;
 
 public enum BuildingStyle implements Style
 {
-	TABLE {
-		@Override
-		public String getStyleClass()
-		{
-			return null;
-		}
+	ROW
+			{
+				@Override
+				public String getStyleClass()
+				{
+					return "Normal";
+				}
 
-		@Override
-		public String getStyle()
-		{
-			return null;
-		}
-	}
+				@Override
+				public String getStyle()
+				{
+					return null;
+				}
+			},
+	ROW_THIN
+			{
+				@Override
+				public String getStyleClass()
+				{
+					return "NormalThin8";
+				}
 
+				@Override
+				public String getStyle()
+				{
+					return null;
+				}
+			},
+	HEAD
+			{
+				@Override
+				public String getStyleClass()
+				{
+					return "NormalTableHeader";
+				}
 
+				@Override
+				public String getStyle()
+				{
+					return "text-align:center;font-size:14.0pt;background:#AEAAAA;";
+				}
+			},
+	HEADER_CELL
+			{
+				@Override
+				public String getStyleClass()
+				{
+					return "NormalTableHeaderBuilding";
+				}
+
+				@Override
+				public String getStyle()
+				{
+					return "";
+				}
+			},
+	CELL
+			{
+				@Override
+				public String getStyleClass()
+				{
+					return "NormalBuilding";
+				}
+
+				@Override
+				public String getStyle()
+				{
+					return "";
+				}
+			},
+	TABLE
+			{
+				@Override
+				public String getStyleClass()
+				{
+					return "MsoNormalTable";
+				}
+
+				@Override
+				public String getStyle()
+				{
+					return new StringBuilder()
+							.append("'")
+							.append("border-collapse:collapse")
+							.append(";")
+							.append("mso-table-layout-alt:fixed")
+							.append(";")
+							.append("border:none")
+							.append(";")
+							.append("mso-border-alt:solid windowtext .5pt")
+							.append(";")
+							.append("mso-padding-alt:0cm 5.4pt 0cm 5.4pt")
+							.append(";")
+							.append("font-size:10.0pt")
+							.append("'")
+							.toString();
+				}
+			}
 }

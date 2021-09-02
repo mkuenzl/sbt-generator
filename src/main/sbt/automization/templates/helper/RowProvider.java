@@ -27,7 +27,7 @@ public abstract class RowProvider
 	protected static final String headerCellClass = "NormalHeader";
 	protected static final String normalCellClass = "NormalBold";
 	protected static final String unitCellClass = "Normal6";
-	protected static final String normalCellWidth = "60";
+	protected static String normalCellWidth = "60";
 	protected static final String headerCellWidth = "110";
 	protected static final TextFormatter textFormatter = new StandardCellTextFormatter();
 	protected String outcrop;

@@ -1,5 +1,7 @@
 package sbt.automization.util;
 
+import sbt.automization.data.DataTable;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
