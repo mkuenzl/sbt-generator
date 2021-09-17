@@ -103,7 +103,7 @@ public final class BuildingProvider extends RowProvider
 	}
 
 	@Override
-	public String createChemieIDRow(List<DataTable> dataTables)
+	public String createChemistryIDRow(List<DataTable> dataTables)
 	{
 		Key tag = SampleKey.CHEMISTRY_ID;
 

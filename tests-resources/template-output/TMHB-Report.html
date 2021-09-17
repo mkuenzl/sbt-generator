@@ -96,6 +96,16 @@
                 page-break-inside:avoid;
                 height:0.5cm;
             }
+            tr.NormalThin8
+            {
+                page-break-inside:avoid;
+                height:0.8cm;
+            }
+             tr.NormalThin6
+            {
+                page-break-inside:avoid;
+                height:0.6cm;
+            }
 			tr.NormalHeader
 			{
                 page-break-inside:avoid;
@@ -131,6 +141,14 @@
                 padding:0cm 1.4pt 0cm 3.4pt;
                 overflow:hidden;
 			}
+			td.NormalBuilding
+            {
+                border:solid windowtext .5pt;
+                background:white;
+                font-size:10.0pt;
+                padding:0cm 1.4pt 0cm 3.4pt;
+                overflow:hidden;
+            }
 			td.NormalCenterNoPadding
             {
                 border:solid windowtext .5pt;
@@ -241,7 +259,13 @@
                 background:#F2F2F2;
                 padding:2.4pt 1.4pt 2.4pt 1.4pt;
 			}
-
+            th.NormalTableHeaderBuilding
+			{
+                border:solid windowtext .5pt;
+                font-size:10.0pt;
+                background:#E7E6E6;
+                padding:2.4pt 1.4pt 2.4pt 1.4pt;
+			}
 			th.NormalTableHeader div {
                 position: relative;
                 font-size: 5.0pt;
@@ -271,7 +295,7 @@
                 width:100.0%;
                 height:100.0%;
                 border:solid windowtext 1.0pt;
-                padding-alt:0cm 1.4pt 0cm 1.4pt;
+                padding-alt:0cm 0cm 0cm 0cm;
                 para-margin:0cm;
                 pagination:widow-orphan;
                 font-size:8.0pt;
@@ -289,13 +313,13 @@
 Erkundungsstelle
 </td>
 <td style=width:60 class=NormalBold >
+FB0
+</td>
+<td style=width:60 class=NormalBold >
 FB5
 </td>
 <td style=width:60 class=NormalBold >
 FB6
-</td>
-<td style=width:60 class=NormalBold >
-FB0
 </td>
 </tr>
 <tr class=Normal >
@@ -306,10 +330,10 @@ Aufschlussart
 -
 </td>
 <td style=width:60 class=NormalBold >
-Kleinrammbohrung
+-
 </td>
 <td style=width:60 class=NormalBold >
--
+Kleinrammbohrung
 </td>
 </tr>
 <tr class=Normal >
@@ -320,30 +344,30 @@ cm
 </p>
 </td>
 <td width=60 class=NormalBold >
+7
+</td>
+<td width=60 class=NormalBold >
 17
 </td>
 <td width=60 class=NormalBold >
 11
 </td>
-<td width=60 class=NormalBold >
-7
-</td>
 </tr>
 <tr class=Normal >
 <td style=width:110 class=NormalHeader >
-Belastungklasse,
+Belastungsklasse,
 <p class=Normal6 >
 RStO<sup>[5]</sup>
 </p>
+</td>
+<td style=width:60 class=NormalBold >
+-
 </td>
 <td style=width:60 class=NormalBold >
 3,2
 </td>
 <td style=width:60 class=NormalBold >
 10
-</td>
-<td style=width:60 class=NormalBold >
--
 </td>
 </tr>
 <tr class=Normal >
@@ -359,13 +383,13 @@ cm
 </p>
 </td>
 <td style=width:60 class=NormalBold >
-17,0
+6
 </td>
 <td style=width:60 class=NormalBold >
-11,0
+17
 </td>
 <td style=width:60 class=NormalBold >
-6,0
+11
 </td>
 </tr>
 
@@ -377,6 +401,15 @@ Umwelttechnische Merkmale
 <tr class=Normal >
 <td style=width:110 class=NormalHeader >
 Laborprobe
+</td>
+<td style=width:60 class=NormalBold >
+<p class=Normal >
+C7
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 15 - 21]
+</p>
 </td>
 <td style=width:60 class=NormalBold >
 <p class=Normal >
@@ -393,7 +426,7 @@ C2
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 0 - 4]
+[T: 0 - 3]
 </p><p class=Normal2 >
 _____________________________________
 </p><p class=Normal2 >
@@ -404,15 +437,16 @@ C1
 &nbsp;
 </p><p class=Normal5 >
 [T: 4 - 11]
-</p>
-</td>
-<td style=width:60 class=NormalBold >
-<p class=Normal >
-C7
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
+C2
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 15 - 21]
+[T: 3 - 4]
 </p>
 </td>
 </tr>
@@ -423,6 +457,15 @@ Abgrenzung
 Gefährlichkeit,
 <p class=Normal6 >
 Schreiben des MUFV<sup>[18]</sup>
+</p>
+</td>
+<td style=width:60 class=NormalBold >
+<p class=Normal >
+-
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 15 - 21]
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -450,7 +493,7 @@ gefährlich
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 0 - 4]
+[T: 0 - 3]
 </p><p class=Normal2 >
 _____________________________________
 </p><p class=Normal2 >
@@ -464,6 +507,31 @@ gefährlich
 &nbsp;
 </p><p class=Normal5 >
 [T: 4 - 11]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
+<span style="background-color: white;font-weight: bold;
+  color: black">
+nicht
+</span>
+</p><p class=Normal >
+<span style="font-weight: bold";>
+gefährlich
+</span>
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 3 - 4]
+</p>
+</td>
+</tr>
+<tr class=Normal >
+<td style=width:110 class=NormalHeader >
+Zuordnungsklasse,
+<p class=Normal6 >
+LAGA Bauschutt<sup>[28]</sup>
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -473,14 +541,6 @@ gefährlich
 &nbsp;
 </p><p class=Normal5 >
 [T: 15 - 21]
-</p>
-</td>
-</tr>
-<tr class=Normal >
-<td style=width:110 class=NormalHeader >
-Zuordnungsklasse,
-<p class=Normal6 >
-LAGA Bauschutt<sup>[28]</sup>
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -504,7 +564,7 @@ Z2
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 0 - 4]
+[T: 0 - 3]
 </p><p class=Normal2 >
 _____________________________________
 </p><p class=Normal2 >
@@ -518,6 +578,27 @@ _____________________________________
 &nbsp;
 </p><p class=Normal5 >
 [T: 4 - 11]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
+<span style="background-color: red;font-weight: bold;
+  color: white">
+Z2
+</span>
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 3 - 4]
+</p>
+</td>
+</tr>
+<tr class=Normal >
+<td style=width:110 class=NormalHeader >
+Orientierungswert,
+<p class=Normal6 >
+LAGA Bauschutt<sup>[28]</sup>
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -527,14 +608,6 @@ _____________________________________
 &nbsp;
 </p><p class=Normal5 >
 [T: 15 - 21]
-</p>
-</td>
-</tr>
-<tr class=Normal >
-<td style=width:110 class=NormalHeader >
-Orientierungswert,
-<p class=Normal6 >
-LAGA Bauschutt<sup>[28]</sup>
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -560,7 +633,7 @@ eingehalten
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 0 - 4]
+[T: 0 - 3]
 </p><p class=Normal2 >
 _____________________________________
 </p><p class=Normal2 >
@@ -577,6 +650,26 @@ eingehalten
 &nbsp;
 </p><p class=Normal5 >
 [T: 4 - 11]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
+<span style="font-weight: bold";>
+eingehalten
+</span>
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 3 - 4]
+</p>
+</td>
+</tr>
+<tr class=Normal >
+<td style=width:110 class=NormalHeader >
+Verwertungsklasse,
+<p class=Normal6 >
+TL Gestein<sup>[27]</sup>
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -586,14 +679,6 @@ eingehalten
 &nbsp;
 </p><p class=Normal5 >
 [T: 15 - 21]
-</p>
-</td>
-</tr>
-<tr class=Normal >
-<td style=width:110 class=NormalHeader >
-Verwertungsklasse,
-<p class=Normal6 >
-TL Gestein<sup>[27]</sup>
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -614,7 +699,7 @@ RC1
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 0 - 4]
+[T: 0 - 3]
 </p><p class=Normal2 >
 _____________________________________
 </p><p class=Normal2 >
@@ -625,6 +710,27 @@ _____________________________________
 &nbsp;
 </p><p class=Normal5 >
 [T: 4 - 11]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
+<span style="background-color: #00FF00;font-weight: bold;
+  color: black">
+RC1
+</span>
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 3 - 4]
+</p>
+</td>
+</tr>
+<tr class=Normal >
+<td style=width:110 class=NormalHeader >
+Deponieklasse,
+<p class=Normal6 >
+DepV<sup>[15]</sup>
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -634,14 +740,6 @@ _____________________________________
 &nbsp;
 </p><p class=Normal5 >
 [T: 15 - 21]
-</p>
-</td>
-</tr>
-<tr class=Normal >
-<td style=width:110 class=NormalHeader >
-Deponieklasse,
-<p class=Normal6 >
-DepV<sup>[15]</sup>
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -666,7 +764,7 @@ DK1
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 0 - 4]
+[T: 0 - 3]
 </p><p class=Normal2 >
 _____________________________________
 </p><p class=Normal2 >
@@ -681,6 +779,27 @@ DK0
 &nbsp;
 </p><p class=Normal5 >
 [T: 4 - 11]
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
+<span style="background-color: #00FF00;font-weight: bold;
+  color: black">
+DK1
+</span>
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal5 >
+[T: 3 - 4]
+</p>
+</td>
+</tr>
+<tr class=Normal >
+<td style=width:110 class=NormalHeader >
+Abfallschlüssel,
+<p class=Normal6 >
+AVV<sup>[14]</sup>
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -690,14 +809,6 @@ DK0
 &nbsp;
 </p><p class=Normal5 >
 [T: 15 - 21]
-</p>
-</td>
-</tr>
-<tr class=Normal >
-<td style=width:110 class=NormalHeader >
-Abfallschlüssel,
-<p class=Normal6 >
-AVV<sup>[14]</sup>
 </p>
 </td>
 <td style=width:60 class=NormalBold >
@@ -715,7 +826,7 @@ AVV<sup>[14]</sup>
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 0 - 4]
+[T: 0 - 3]
 </p><p class=Normal2 >
 _____________________________________
 </p><p class=Normal2 >
@@ -726,15 +837,16 @@ _____________________________________
 &nbsp;
 </p><p class=Normal5 >
 [T: 4 - 11]
-</p>
-</td>
-<td style=width:60 class=NormalBold >
-<p class=Normal >
--
+</p><p class=Normal2 >
+_____________________________________
+</p><p class=Normal2 >
+&nbsp;
+</p><p class=Normal >
+11-32-14
 </p><p class=Normal2 >
 &nbsp;
 </p><p class=Normal5 >
-[T: 15 - 21]
+[T: 3 - 4]
 </p>
 </td>
 </tr>

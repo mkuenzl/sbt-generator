@@ -79,7 +79,7 @@ public final class BaseCourseWithHydraulicBinder extends Report
 	void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addEnvironmentTechnicalHeader(dataTables);
-		addToTable(provider.createChemieIDRow(dataTables));
+		addToTable(provider.createChemistryIDRow(dataTables));
 		addToTable(provider.createChemieMufvRow(dataTables));
 		addToTable(provider.createChemieLagaRcRow(dataTables));
 		addToTable(provider.createChemieLagaRcOrientationRow(dataTables));

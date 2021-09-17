@@ -85,6 +85,7 @@ public abstract class TableTemplate implements HtmlTemplate
 			linesPerPage = 0;
 
 			createTable();
+			addTableHeader();
 		}
 	}
 

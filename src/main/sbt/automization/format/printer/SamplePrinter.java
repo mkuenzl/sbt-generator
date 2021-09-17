@@ -37,8 +37,14 @@ public final class SamplePrinter implements TextPrinter
 	{
 		Double thicknessOfSamples = measureThickness(samples);
 
-		String height = String.valueOf(thicknessOfSamples);
-		return height.replace(".", ",");
+		if (thicknessOfSamples % 1 == 0)
+		{
+			return String.format("%.0f", thicknessOfSamples);
+		} else
+		{
+			String height = String.valueOf(thicknessOfSamples);
+			return height.replace(".", ",");
+		}
 	}
 
 	public Double measureThickness(List<Sample> samples)

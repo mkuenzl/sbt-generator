@@ -18,34 +18,6 @@ public final class ConcreteProvider extends RowProvider
         super("BETON");
     }
 
-    public String createGroundExposureRow(List<DataTable> dataTables)
-    {
-        //Erkundungsstellen Aufschlussart
-        HtmlRow row = new HtmlRow.Builder()
-                .appendAttribute("class", rowClass)
-                .appendContent(new HtmlCell.Builder()
-                        .appendAttribute("class", headerCellClass)
-                        .appendAttribute("width", headerCellWidth)
-                        .appendContent("Aufschlussart")
-                        .build()
-                        .appendTag())
-                .build();
-
-        for (DataTable dataTable :
-                dataTables)
-        {
-            HtmlCell cell = new HtmlCell.Builder()
-                    .appendAttribute("class", normalCellClass)
-                    .appendAttribute("width", normalCellWidth)
-                    .appendContent(dataTable.get(ProbeKey.OUTCROP_GOB))
-                    .build();
-
-            row.appendContent(cell.appendTag());
-        }
-
-        return row.appendTag();
-    }
-
     public String createMaterialRow(List<DataTable> dataTables)
     {
         //Zonen Material 1 - Anzahl Schichten

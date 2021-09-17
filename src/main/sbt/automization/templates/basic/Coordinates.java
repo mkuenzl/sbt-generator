@@ -56,7 +56,7 @@ public final class Coordinates extends TableTemplate
 	void addTableHeader()
 	{
 		String firstRow = HtmlFactory.createRowAsString("NormalThinHeader", new String[]{
-				HtmlFactory.createHeader("NormalTableHeader", "width:75px", 2, 1,
+				HtmlFactory.createHeader("NormalTableHeader", "width:2cm", 2, 1,
 						new String[]{"Erk. St."}),
 				HtmlFactory.createHeader("NormalTableHeader", 1, 4,
 						new String[]{"UTM"})
@@ -65,13 +65,13 @@ public final class Coordinates extends TableTemplate
 		addToTable(firstRow);
 
 		String secondRow = HtmlFactory.createRowAsString("NormalThinHeader", new String[]{
-				HtmlFactory.createHeader("NormalTableHeader", "width:75px",
+				HtmlFactory.createHeader("NormalTableHeader", "width:2cm",
 						new String[]{"Zone"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:75px",
+				HtmlFactory.createHeader("NormalTableHeader", "width:2cm",
 						new String[]{"Ostwert"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:75px",
+				HtmlFactory.createHeader("NormalTableHeader", "width:2cm",
 						new String[]{"Nordwert"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:305px",
+				HtmlFactory.createHeader("NormalTableHeader", "width:8cm",
 						new String[]{""})
 		});
 

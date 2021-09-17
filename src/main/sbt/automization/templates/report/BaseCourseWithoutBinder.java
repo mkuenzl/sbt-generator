@@ -72,7 +72,7 @@ public final class BaseCourseWithoutBinder extends Report
 
 		addToTable(provider.createEvDynRow(dataTables));
 		addToTable(provider.createEvDyn85Row(dataTables));
-		addToTable(provider.createEv2Row(dataTables));
+		addToTable(provider.createEv2With85Row(dataTables));
 		addToTable(provider.createEvMinimumBorderRow(dataTables));
 		addToTable(provider.createMaterialRow(dataTables));
 		addToTable(provider.createSizeRow(dataTables));
@@ -85,7 +85,7 @@ public final class BaseCourseWithoutBinder extends Report
 	{
 		addEnvironmentTechnicalHeader(dataTables);
 
-		addToTable(provider.createChemieIDRow(dataTables));
+		addToTable(provider.createChemistryIDRow(dataTables));
 		addToTable(provider.createChemieMufvRow(dataTables));
 		addToTable(provider.createChemieLagaBoRow(dataTables));
 		addToTable(provider.createChemieLagaRcRow(dataTables));

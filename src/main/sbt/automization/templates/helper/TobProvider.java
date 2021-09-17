@@ -48,8 +48,7 @@ public final class TobProvider extends RowProvider
 	}
 
 	public String createTotalSizeRow(List<DataTable> dataTables)
-	{   //TODO ERROR Dicken werden falsch berechnet!
-		//Gesamtdicke Oberbau
+	{
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", rowClass)
 				.appendContent(new HtmlCell.Builder()

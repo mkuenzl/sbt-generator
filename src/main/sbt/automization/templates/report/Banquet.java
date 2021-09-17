@@ -47,7 +47,7 @@ public final class Banquet extends Report
 	{
 		addEnvironmentTechnicalHeader(dataTables);
 		
-		addToTable(provider.createChemieIDRow(dataTables));
+		addToTable(provider.createChemistryIDRow(dataTables));
 		addToTable(provider.createChemieLagaBoRow(dataTables));
 		addToTable(provider.createChemieDepvRow(dataTables));
 		addToTable(provider.createChemieDecisionSupportRow(dataTables));

@@ -2,7 +2,7 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
-import sbt.automization.templates.helper.FugeProvider;
+import sbt.automization.templates.helper.GapProvider;
 
 import java.util.Collection;
 import java.util.List;
@@ -10,12 +10,12 @@ import java.util.List;
 public final class Gap extends Report
 {
 	private static Gap instance;
-	private final FugeProvider provider;
+	private final GapProvider provider;
 
 	private Gap()
 	{
 		super(Outcrop.GAP);
-		provider = new FugeProvider();
+		provider = new GapProvider();
 	}
 
 	public static Gap getInstance()
@@ -43,7 +43,7 @@ public final class Gap extends Report
 	void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addEnvironmentTechnicalHeader(dataTables);
-		addToTable(provider.createChemieIDRow(dataTables));
+		addToTable(provider.createChemistryIDRow(dataTables));
 		addToTable(provider.createChemieMufvRow(dataTables));
 		addToTable(provider.createChemieAVVRow(dataTables));
 	}
