@@ -1,10 +1,10 @@
 package sbt.automization.templates.basic;
 
 import sbt.automization.data.DataTable;
-import sbt.automization.templates.HtmlTemplate;
-import sbt.automization.styles.BasicStyle;
-import sbt.automization.util.Separator;
 import sbt.automization.html.HtmlTable;
+import sbt.automization.styles.BasicStyle;
+import sbt.automization.templates.HtmlTemplate;
+import sbt.automization.util.Separator;
 
 import java.util.Collection;
 import java.util.List;
@@ -33,7 +33,8 @@ public abstract class TableTemplate implements HtmlTemplate
 
 	abstract void addTableHeader();
 
-	void addPageBreak(){
+	void addPageBreak()
+	{
 		this.template.append("<br>");
 	}
 

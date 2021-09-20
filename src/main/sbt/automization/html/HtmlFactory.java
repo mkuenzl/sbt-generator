@@ -686,6 +686,20 @@ public class HtmlFactory
 						.appendContent("bar")
 						.build();
 				break;
+			case "nicht eingehalten":
+				htmlCell = new HtmlCell.Builder()
+						.appendAttribute("class", "ChemistryBlack")
+						.appendContent("nicht")
+						.appendContent(UtilityPrinter.printLineBreak())
+						.appendContent("eingehalten")
+						.build();
+				break;
+			case "eingehalten":
+				htmlCell = new HtmlCell.Builder()
+						.appendAttribute("class", "ChemistryWhite")
+						.appendContent("eingehalten")
+						.build();
+				break;
 			default:
 				htmlCell = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalCenter")

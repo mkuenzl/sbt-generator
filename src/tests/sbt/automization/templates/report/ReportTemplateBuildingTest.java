@@ -88,7 +88,7 @@ public class ReportTemplateBuildingTest
 	}
 
 	@Test
-	public void createReportOBTemplate() throws IOException
+	public void GOBTemplateTest() throws IOException
 	{
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(BoundSuperstructure.getInstance());
 		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
@@ -97,7 +97,7 @@ public class ReportTemplateBuildingTest
 	}
 
 	@Test
-	public void createReportTOBTemplate() throws IOException
+	public void TOBTemplateTest() throws IOException
 	{
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(BaseCourseWithoutBinder.getInstance());
 		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
@@ -106,7 +106,7 @@ public class ReportTemplateBuildingTest
 	}
 
 	@Test
-	public void createReportUGTemplate() throws IOException
+	public void UGTemplateTest() throws IOException
 	{
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Underground.getInstance());
 		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
@@ -115,7 +115,7 @@ public class ReportTemplateBuildingTest
 	}
 
 	@Test
-	public void createReportOHTemplate() throws IOException
+	public void OHTemplateTest() throws IOException
 	{
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Topsoil.getInstance());
 		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
@@ -124,7 +124,7 @@ public class ReportTemplateBuildingTest
 	}
 
 	@Test
-	public void createExampleTemplate() throws IOException
+	public void ExampleTemplateTest() throws IOException
 	{
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(AttemptTemplate.getInstance());
 		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
@@ -133,7 +133,7 @@ public class ReportTemplateBuildingTest
 	}
 
 	@Test
-	public void createReportTMHBTemplate() throws IOException
+	public void TMHBTemplateTest() throws IOException
 	{
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(BaseCourseWithHydraulicBinder.getInstance());
 		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
@@ -142,7 +142,7 @@ public class ReportTemplateBuildingTest
 	}
 
 	@Test
-	public void createReportBETONTemplate() throws IOException
+	public void CONCRETETemplateTest() throws IOException
 	{
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Concrete.getInstance());
 		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
@@ -151,7 +151,7 @@ public class ReportTemplateBuildingTest
 	}
 
 	@Test
-	public void createReportFUGETemplate() throws IOException
+	public void GAPTemplateTest() throws IOException
 	{
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Gap.getInstance());
 		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
@@ -160,7 +160,7 @@ public class ReportTemplateBuildingTest
 	}
 
 	@Test
-	public void createReportHeapTemplate() throws IOException
+	public void HEAPTemplateTest() throws IOException
 	{
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Heap.getInstance());
 		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
@@ -169,7 +169,7 @@ public class ReportTemplateBuildingTest
 	}
 
 	@Test
-	public void createReportCoordinateTemplate() throws IOException
+	public void COORDINATETemplateTest() throws IOException
 	{
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Coordinates.getInstance());
 		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
@@ -178,7 +178,7 @@ public class ReportTemplateBuildingTest
 	}
 
 	@Test
-	public void createReportBankettTemplate() throws IOException
+	public void BANQUETTemplateTest() throws IOException
 	{
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Banquet.getInstance());
 		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
@@ -187,7 +187,7 @@ public class ReportTemplateBuildingTest
 	}
 
 	@Test
-	public void createBuildingTemplate() throws IOException
+	public void BUILDINGTemplateTest() throws IOException
 	{
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Building.getInstance());
 		htmlTemplateExportStrategy.export(templateExportPath, dataTables);

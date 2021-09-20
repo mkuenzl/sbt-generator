@@ -1,6 +1,8 @@
 package sbt.automization.templates.helper.strategy;
 
 import sbt.automization.data.DataTable;
+import sbt.automization.data.Probe;
+import sbt.automization.data.Sample;
 import sbt.automization.data.key.Key;
 import sbt.automization.data.key.LpKey;
 import sbt.automization.data.key.ProbeKey;
@@ -11,11 +13,16 @@ import sbt.automization.styles.StyleParameter;
 
 import java.util.List;
 
-public class Ev2Row extends RowConstructionStrategy
+public class Ev2Row extends RowConstruction
 {
 	public Ev2Row(List<DataTable> probes, String outcrop, Key key, StyleParameter styleParameter)
 	{
 		super(probes, outcrop, key, styleParameter);
+	}
+
+	public Ev2Row()
+	{
+		super(LpKey.EV2);
 	}
 
 	@Override
@@ -30,9 +37,9 @@ public class Ev2Row extends RowConstructionStrategy
 	}
 
 	@Override
-	String createCellFromProbe(DataTable table)
+	String createCellFrom(Probe probe)
 	{
-		String parameterValue = table.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV2);
+		String parameterValue = probe.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV2);
 
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
 				styleParameter.getNormalCellClass(),
@@ -43,9 +50,9 @@ public class Ev2Row extends RowConstructionStrategy
 	}
 
 	@Override
-	String createCellFromSample(DataTable table)
+	String createCellFrom(Sample sample)
 	{
-		String parameterValue = table.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV2);
+		String parameterValue = sample.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV2);
 
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
 				styleParameter.getNormalCellClass(),

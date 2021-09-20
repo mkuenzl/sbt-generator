@@ -2,7 +2,8 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
-import sbt.automization.templates.helper.ObProvider;
+import sbt.automization.templates.helper.RowProvider;
+import sbt.automization.templates.helper.strategy.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -10,12 +11,12 @@ import java.util.List;
 public final class BoundSuperstructure extends Report
 {
 	private static BoundSuperstructure instance;
-	private final ObProvider provider;
+	private final RowProvider rowProvider;
 
 	private BoundSuperstructure()
 	{
 		super(Outcrop.GOB);
-		provider = new ObProvider();
+		rowProvider = new RowProvider(Outcrop.GOB);
 	}
 
 	public static BoundSuperstructure getInstance()
@@ -55,15 +56,16 @@ public final class BoundSuperstructure extends Report
 	private void buildTable(List<DataTable> dataTables)
 	{
 		createTable();
+		rowProvider.setDataTables(dataTables);
 
-		addToTable(provider.createIDRow(dataTables));
-		addToTable(provider.createSuperstructureExposureRow(dataTables));
+		addToTable(rowProvider.getRowWithProbes(new IdRow()));
+		addToTable(rowProvider.getRowWithProbes(new SuperstructureExposureRow()));
 
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
 
-		addToTable(provider.createPitchCrossSectionRows(dataTables, false));
-		addToTable(provider.createPitchCrossSectionRows(dataTables, true));
+		addToTable(rowProvider.getRowWithProbes(new CrossSectionWithPitchRows()));
+		addToTable(rowProvider.getRowWithProbes(new CrossSectionWithoutPitchRows()));
 	}
 
 	@Override
@@ -71,10 +73,10 @@ public final class BoundSuperstructure extends Report
 	{
 		addTechnicalHeader(dataTables);
 
-		addToTable(provider.createSizeOBRow(dataTables));
-		addToTable(provider.createLoadClassRow(dataTables));
-		addToTable(provider.createRukRow(dataTables));
-		addToTable(provider.createRukSingleValueRow(dataTables));
+		addToTable(rowProvider.getRowWithProbes(new SizeTotalObRow()));
+		addToTable(rowProvider.getRowWithProbes(new LoadClassRow()));
+		addToTable(rowProvider.getRowWithProbes(new RuKCombinedRow()));
+		addToTable(rowProvider.getRowWithProbes(new RuKSingleValueRow()));
 	}
 
 	@Override
@@ -82,9 +84,9 @@ public final class BoundSuperstructure extends Report
 	{
 		addEnvironmentTechnicalHeader(dataTables);
 
-		addToTable(provider.createPitchQualitativeRow(dataTables));
-		addToTable(provider.createPitchHalfQuantitativeRow(dataTables));
-		addToTable(provider.createPitchQuantitativeRow(dataTables));
+		addToTable(rowProvider.getRowWithProbes(new PitchQualitativeRow()));
+		addToTable(rowProvider.getRowWithProbes(new PitchHalfQuantitativeRow()));
+		addToTable(rowProvider.getRowWithProbes(new PitchQuantitativeRow()));
 	}
 
 	@Override

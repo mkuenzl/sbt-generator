@@ -1,6 +1,7 @@
 package sbt.automization.templates.helper.strategy;
 
 import sbt.automization.data.DataTable;
+import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
 import sbt.automization.data.key.Key;
 import sbt.automization.data.key.SampleKey;
@@ -12,11 +13,16 @@ import sbt.automization.styles.StyleParameter;
 
 import java.util.List;
 
-public class SizeRow extends RowConstructionStrategy
+public class SizeRow extends RowConstruction
 {
 	public SizeRow(List<DataTable> probes, String outcrop, Key key, StyleParameter styleParameter)
 	{
 		super(probes, outcrop, key, styleParameter);
+	}
+
+	public SizeRow()
+	{
+		super(SampleKey.ID);
 	}
 
 	@Override
@@ -31,9 +37,9 @@ public class SizeRow extends RowConstructionStrategy
 	}
 
 	@Override
-	String createCellFromProbe(DataTable table)
+	String createCellFrom(Probe probe)
 	{
-		List<Sample> samples = table.getSamplesBy(SampleKey.OUTCROP, outcrop);
+		List<Sample> samples = probe.getSamplesBy(SampleKey.OUTCROP, outcrop);
 		String size = new SamplePrinter().printThickness(samples);
 
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
@@ -45,9 +51,9 @@ public class SizeRow extends RowConstructionStrategy
 	}
 
 	@Override
-	String createCellFromSample(DataTable table)
+	String createCellFrom(Sample sample)
 	{
-		List<Sample> samples = table.getSamplesBy(SampleKey.OUTCROP, outcrop);
+		List<Sample> samples = sample.getSamplesBy(SampleKey.OUTCROP, outcrop);
 		String size = new SamplePrinter().printThickness(samples);
 
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),

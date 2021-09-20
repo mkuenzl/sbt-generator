@@ -1,6 +1,7 @@
 package sbt.automization.templates.appendix.site;
 
 import sbt.automization.data.DataTable;
+import sbt.automization.data.Outcrop;
 import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
 import sbt.automization.data.key.ChemistryKey;
@@ -10,9 +11,8 @@ import sbt.automization.data.key.SampleKey;
 import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.format.text.KindAndGranulationTextFormatter;
 import sbt.automization.format.text.LoadClassTextFormatter;
-import sbt.automization.data.Outcrop;
-import sbt.automization.templates.appendix.Appendix;
 import sbt.automization.html.HtmlFactory;
+import sbt.automization.templates.appendix.Appendix;
 
 import java.util.List;
 
@@ -71,20 +71,20 @@ public final class BoundSuperstructure extends Appendix
 	private String createRow(Sample sample)
 	{
 		String row = HtmlFactory.createRowAsString("Normal", new String[]{
-				HtmlFactory.createCellAsString(textFormatter,"Normal",
+				HtmlFactory.createCellAsString(textFormatter, "Normal",
 						new String[]{new KindAndGranulationTextFormatter().format(sample.get(SampleKey.TYPE),
 								sample.get(SampleKey.GRANULATION))}),
-				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{sample.get(SampleKey.THICKNESS)}),
-				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{sample.get(SampleKey.DEPTH_END)}),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.MUFV)),
 				HtmlFactory.createPitchCell(sample.get(SampleKey.PITCH)),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.LAGA_RC)),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.TL_ROCK_STRATUM)),
-				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.PAK)}),
-				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{sample.getParameterValueBy(SampleKey.RUK_ID, RuKKey.VALUE)})
 		});
 

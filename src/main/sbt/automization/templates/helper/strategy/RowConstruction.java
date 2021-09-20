@@ -1,28 +1,26 @@
 package sbt.automization.templates.helper.strategy;
 
 import sbt.automization.data.DataTable;
+import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
 import sbt.automization.data.key.Key;
-import sbt.automization.data.key.LpKey;
-import sbt.automization.data.key.ProbeKey;
-import sbt.automization.data.key.SampleKey;
 import sbt.automization.html.HtmlRow;
 import sbt.automization.html.HtmlText;
-import sbt.automization.styles.ReportStyle;
 import sbt.automization.styles.StyleParameter;
 import sbt.automization.util.CheckDataAvailability;
 
 import java.util.List;
 
-public abstract class RowConstructionStrategy
+public abstract class RowConstruction implements RowStrategy
 {
-	private final List<DataTable> probes;
 	protected String outcrop;
-	protected final Key key;
 	protected StyleParameter styleParameter;
+	protected Key key;
+	protected List<DataTable> probes;
+
 	private HtmlRow row;
 
-	public RowConstructionStrategy(List<DataTable> probes, String outcrop, Key key, StyleParameter styleParameter)
+	public RowConstruction(List<DataTable> probes, String outcrop, Key key, StyleParameter styleParameter)
 	{
 		this.probes = probes;
 		this.outcrop = outcrop;
@@ -30,17 +28,8 @@ public abstract class RowConstructionStrategy
 		this.styleParameter = styleParameter;
 	}
 
-	public RowConstructionStrategy(List<DataTable> probes, String outcrop, Key key)
+	public RowConstruction(Key key)
 	{
-		this.probes = probes;
-		this.outcrop = outcrop;
-		this.key = key;
-	}
-
-	public RowConstructionStrategy(List<DataTable> probes, Key key)
-	{
-		this.probes = probes;
-		this.outcrop = null;
 		this.key = key;
 	}
 
@@ -62,14 +51,14 @@ public abstract class RowConstructionStrategy
 	{
 		for (DataTable probe : probes)
 		{
-			String cell = createCellFromProbe(probe);
+			String cell = createCellFrom((Probe) probe);
 			row.appendContent(cell);
 		}
 	}
 
 	abstract HtmlRow createRow();
 
-	abstract String createCellFromProbe(DataTable table);
+	abstract String createCellFrom(Probe probe);
 
 	public String buildWithSamples()
 	{
@@ -86,20 +75,13 @@ public abstract class RowConstructionStrategy
 		{
 			for (Sample sample : probe.getSamples())
 			{
-				String cell;
-				if (key instanceof ProbeKey || key instanceof LpKey)
-				{
-					cell = createCellFromSample(probe);
-				} else
-				{
-					cell = createCellFromSample(sample);
-				}
+				String cell = createCellFrom(sample);
 				row.appendContent(cell);
 			}
 		}
 	}
 
-	abstract String createCellFromSample(DataTable table);
+	abstract String createCellFrom(Sample sample);
 
 	protected String formatUnit(String text)
 	{
@@ -120,5 +102,10 @@ public abstract class RowConstructionStrategy
 	public void setOutcrop(String outcrop)
 	{
 		this.outcrop = outcrop;
+	}
+
+	public void setTables(List<DataTable> dataTables)
+	{
+		this.probes = dataTables;
 	}
 }

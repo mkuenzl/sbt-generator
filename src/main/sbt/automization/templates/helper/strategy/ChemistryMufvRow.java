@@ -1,7 +1,11 @@
 package sbt.automization.templates.helper.strategy;
 
 import sbt.automization.data.DataTable;
+import sbt.automization.data.Probe;
+import sbt.automization.data.Sample;
+import sbt.automization.data.key.ChemistryKey;
 import sbt.automization.data.key.Key;
+import sbt.automization.data.key.SampleKey;
 import sbt.automization.format.printer.SamplePrinter;
 import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.html.HtmlCell;
@@ -11,11 +15,16 @@ import sbt.automization.styles.StyleParameter;
 
 import java.util.List;
 
-public class ChemistryMufvRow extends RowConstructionStrategy
+public class ChemistryMufvRow extends RowConstruction
 {
 	public ChemistryMufvRow(List<DataTable> probes, String outcrop, Key key, StyleParameter styleParameter)
 	{
 		super(probes, outcrop, key, styleParameter);
+	}
+
+	public ChemistryMufvRow()
+	{
+		super(ChemistryKey.MUFV);
 	}
 
 	@Override
@@ -30,9 +39,9 @@ public class ChemistryMufvRow extends RowConstructionStrategy
 	}
 
 	@Override
-	String createCellFromProbe(DataTable table)
+	String createCellFrom(Probe probe)
 	{
-		String mufv = new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, key);
+		String mufv = new SamplePrinter().printAttributeOfSamplesWithDepth(probe, outcrop, key);
 
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
 				styleParameter.getNormalCellClass(),
@@ -43,9 +52,9 @@ public class ChemistryMufvRow extends RowConstructionStrategy
 	}
 
 	@Override
-	String createCellFromSample(DataTable table)
+	String createCellFrom(Sample sample)
 	{
-		String cell = HtmlFactory.createChemistryCell(table.get(key));
+		String cell = HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, key));
 
 		return cell;
 	}

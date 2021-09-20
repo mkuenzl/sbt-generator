@@ -1,16 +1,16 @@
 package sbt.automization.templates.appendix.site;
 
 import sbt.automization.data.DataTable;
+import sbt.automization.data.Outcrop;
 import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
 import sbt.automization.data.key.ChemistryKey;
 import sbt.automization.data.key.LpKey;
 import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.SampleKey;
-import sbt.automization.data.Outcrop;
 import sbt.automization.format.printer.UtilityPrinter;
-import sbt.automization.templates.appendix.Appendix;
 import sbt.automization.html.HtmlFactory;
+import sbt.automization.templates.appendix.Appendix;
 
 import java.util.List;
 
@@ -66,7 +66,7 @@ public final class BaseCourseWithoutBinder extends Appendix
 								UtilityPrinter.printLineBreak(),
 								sample.get(SampleKey.GRANULATION),
 								sample.get(SampleKey.ROUNDING_GRADATION)}),
-				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{sample.get(SampleKey.THICKNESS)}),
 				HtmlFactory.createCellAsString("NormalCenter",
 						new String[]{sample.get(SampleKey.DEPTH_END)}),
@@ -74,9 +74,9 @@ public final class BaseCourseWithoutBinder extends Appendix
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.LAGA_BO)),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.LAGA_RC)),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.TL_ROCK_STRATUM)),
-				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{printEV()}),
-				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{sample.get(SampleKey.GRAIN_SIZE_DISTRIBUTION)})
 		});
 

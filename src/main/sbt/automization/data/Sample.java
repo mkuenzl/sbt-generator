@@ -8,6 +8,7 @@ import java.util.Map;
 
 public final class Sample extends DataTableImpl
 {
+	private Probe probe;
 	private final List<Parameter> parameters = new ArrayList<>();
 
 	public Sample(Map<String, String> informationMap)
@@ -33,6 +34,11 @@ public final class Sample extends DataTableImpl
 	public void addListOfParameter(List<Parameter> parameter)
 	{
 		this.parameters.addAll(parameter);
+	}
+
+	public void setProbe(Probe probe)
+	{
+		this.probe = probe;
 	}
 
 	@Override
@@ -66,5 +72,10 @@ public final class Sample extends DataTableImpl
 		}
 
 		return "";
+	}
+
+	public Probe getProbe()
+	{
+		return this.probe;
 	}
 }

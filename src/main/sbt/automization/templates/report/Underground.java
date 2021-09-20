@@ -2,7 +2,8 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
-import sbt.automization.templates.helper.UgProvider;
+import sbt.automization.templates.helper.RowProvider;
+import sbt.automization.templates.helper.strategy.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -11,12 +12,12 @@ public final class Underground extends Report
 {
 	private static Underground instance;
 
-	private final UgProvider provider;
+	private final RowProvider provider;
 
 	private Underground()
 	{
 		super(Outcrop.UG);
-		provider = new UgProvider();
+		provider = new RowProvider(Outcrop.UG);
 	}
 
 	public static Underground getInstance()
@@ -55,17 +56,18 @@ public final class Underground extends Report
 	private void buildTable(List<DataTable> dataTables)
 	{
 		createTable();
+		provider.setDataTables(dataTables);
 
-		addToTable(provider.createIDRow(dataTables));
-		addToTable(provider.createGroundExposureRow(dataTables));
-		addToTable(provider.createSizeRow(dataTables));
-		addToTable(provider.createTotalSizeRow(dataTables));
-		addToTable(provider.createTargetDepthRow(dataTables));
+		addToTable(provider.getRowWithProbes(new IdRow()));
+		addToTable(provider.getRowWithProbes(new GroundExposureRow()));
+		addToTable(provider.getRowWithProbes(new SizeRow()));
+		addToTable(provider.getRowWithProbes(new SizeTotalRow()));
+		addToTable(provider.getRowWithProbes(new TargetDepthRow()));
 
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
 
-		addToTable(provider.createLegendRow(dataTables));
+		addToTable(provider.getRowWithProbes(new LegendDepthAndClassificationRow()));
 	}
 
 	@Override
@@ -73,17 +75,17 @@ public final class Underground extends Report
 	{
 		addTechnicalHeader(dataTables);
 
-		addToTable(provider.createDIN18196Row(dataTables));
-		addToTable(provider.createDIN18300Row(dataTables));
-		addToTable(provider.createDIN19682Row(dataTables));
-		addToTable(provider.createDIN18300_09Row(dataTables));
-		addToTable(provider.createZTVRow(dataTables));
-		addToTable(provider.createWaterContentRow(dataTables));
-		addToTable(provider.createMoistureRow(dataTables));
-		addToTable(provider.createConsistencyRow(dataTables));
-		addToTable(provider.createCompressibilityRow(dataTables));
-		addToTable(provider.createWearPlanumRow(dataTables));
-		addToTable(provider.createWearSoleRow(dataTables));
+		addToTable(provider.getRowWithProbes(new DIN18196Row()));
+		addToTable(provider.getRowWithProbes(new DIN18300Row()));
+		addToTable(provider.getRowWithProbes(new DIN19682Row()));
+		addToTable(provider.getRowWithProbes(new DIN18300_09Row()));
+		addToTable(provider.getRowWithProbes(new ZTVRow()));
+		addToTable(provider.getRowWithProbes(new WaterContentRow()));
+		addToTable(provider.getRowWithProbes(new MoistureRow()));
+		addToTable(provider.getRowWithProbes(new ConsistencyRow()));
+		addToTable(provider.getRowWithProbes(new CompressibilityRow()));
+		addToTable(provider.getRowWithProbes(new WearPlanumRow()));
+		addToTable(provider.getRowWithProbes(new WearSoleRow()));
 	}
 
 	@Override
@@ -91,16 +93,16 @@ public final class Underground extends Report
 	{
 		addEnvironmentTechnicalHeader(dataTables);
 
-		addToTable(provider.createChemistryIDRow(dataTables));
-		addToTable(provider.createChemieMufvRow(dataTables));
-		addToTable(provider.createChemieLagaBoRow(dataTables));
-		addToTable(provider.createChemieLagaRcRow(dataTables));
-		addToTable(provider.createChemieLagaRcOrientationRow(dataTables));
-		addToTable(provider.createChemieTlRockRow(dataTables));
-		addToTable(provider.createChemistryReku(dataTables));
-		addToTable(provider.createChemieDepvRow(dataTables));
-		addToTable(provider.createChemieDecisionSupportRow(dataTables));
-		addToTable(provider.createChemieAVVRow(dataTables));
+		addToTable(provider.getRowWithProbes(new ChemistryIdRow()));
+		addToTable(provider.getRowWithProbes(new ChemistryMufvRow()));
+		addToTable(provider.getRowWithProbes(new ChemistryLagaBoRow()));
+		addToTable(provider.getRowWithProbes(new ChemistryLagaRc()));
+		addToTable(provider.getRowWithProbes(new ChemistryLagaRcOrientation()));
+		addToTable(provider.getRowWithProbes(new ChemistryTlRockRow()));
+		addToTable(provider.getRowWithProbes(new ChemistryRekuRow()));
+		addToTable(provider.getRowWithProbes(new ChemistryDepvRow()));
+		addToTable(provider.getRowWithProbes(new ChemistryDecisionSupport()));
+		addToTable(provider.getRowWithProbes(new ChemistryAvvRow()));
 	}
 
 	@Override

@@ -16,7 +16,8 @@ public final class LoadPlate extends Appendix
 {
 	private static LoadPlate instance;
 
-	private LoadPlate() {
+	private LoadPlate()
+	{
 		super();
 	}
 
@@ -111,25 +112,25 @@ public final class LoadPlate extends Appendix
 							parameter.get(LpKey.EV85));
 
 					String row = HtmlFactory.createRowAsString("Normal", new String[]{
-							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 									new String[]{dataTable.get(ProbeKey.LP_ID)}),
-							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 									new String[]{dataTable.get(ProbeKey.ID)}),
-							HtmlFactory.createCellAsString(textFormatter,"Normal",
+							HtmlFactory.createCellAsString(textFormatter, "Normal",
 									new String[]{dataTable.get(ProbeKey.LOCATION)}),
-							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 									new String[]{parameter.get(LpKey.VALUE_1)}),
-							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 									new String[]{parameter.get(LpKey.VALUE_2)}),
-							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 									new String[]{parameter.get(LpKey.VALUE_3)}),
-							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 									new String[]{parameter.get(LpKey.MEAN)}),
-							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 									new String[]{parameter.get(LpKey.EV)}),
-							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 									new String[]{parameter.get(LpKey.EV85)}),
-							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 									new String[]{formattedEV2}),
 					});
 

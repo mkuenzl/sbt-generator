@@ -1,7 +1,11 @@
 package sbt.automization.templates.helper.strategy;
 
 import sbt.automization.data.DataTable;
+import sbt.automization.data.Probe;
+import sbt.automization.data.Sample;
+import sbt.automization.data.key.ChemistryKey;
 import sbt.automization.data.key.Key;
+import sbt.automization.data.key.SampleKey;
 import sbt.automization.format.printer.SamplePrinter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlFactory;
@@ -10,11 +14,16 @@ import sbt.automization.styles.StyleParameter;
 
 import java.util.List;
 
-public class ChemistryTlRockRow extends RowConstructionStrategy
+public class ChemistryTlRockRow extends RowConstruction
 {
 	public ChemistryTlRockRow(List<DataTable> probes, String outcrop, Key key, StyleParameter styleParameter)
 	{
 		super(probes, outcrop, key, styleParameter);
+	}
+
+	public ChemistryTlRockRow()
+	{
+		super(ChemistryKey.TL_ROCK_STRATUM);
 	}
 
 	@Override
@@ -29,9 +38,9 @@ public class ChemistryTlRockRow extends RowConstructionStrategy
 	}
 
 	@Override
-	String createCellFromProbe(DataTable table)
+	String createCellFrom(Probe probe)
 	{
-		String tlRock = new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, key);
+		String tlRock = new SamplePrinter().printAttributeOfSamplesWithDepth(probe, outcrop, key);
 
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
 				styleParameter.getNormalCellClass(),
@@ -42,9 +51,9 @@ public class ChemistryTlRockRow extends RowConstructionStrategy
 	}
 
 	@Override
-	String createCellFromSample(DataTable table)
+	String createCellFrom(Sample sample)
 	{
-		String cell = HtmlFactory.createChemistryCell(table.get(key));
+		String cell = HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, key));
 
 		return cell;
 	}

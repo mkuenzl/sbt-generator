@@ -2,7 +2,8 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
-import sbt.automization.templates.helper.BankettProvider;
+import sbt.automization.templates.helper.RowProvider;
+import sbt.automization.templates.helper.strategy.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -10,12 +11,12 @@ import java.util.List;
 public final class Banquet extends Report
 {
 	private static Banquet instance;
-	private final BankettProvider provider;
+	private final RowProvider rowProvider;
 
 	private Banquet()
 	{
 		super(Outcrop.BANQUET);
-		provider = new BankettProvider();
+		rowProvider = new RowProvider(Outcrop.BANQUET);
 	}
 
 	public static Banquet getInstance()
@@ -37,21 +38,21 @@ public final class Banquet extends Report
 	void constructTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addTechnicalHeader(dataTables);
-		addToTable(provider.createDIN18196Row(dataTables));
-		addToTable(provider.createDIN18915Row(dataTables));
-		addToTable(provider.createDIN18320Row(dataTables));
+		addToTable(rowProvider.getRowWithProbes(new DIN18196Row()));
+		addToTable(rowProvider.getRowWithProbes(new DIN18915Row()));
+		addToTable(rowProvider.getRowWithProbes(new DIN18320Row()));
 	}
 
 	@Override
 	void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addEnvironmentTechnicalHeader(dataTables);
-		
-		addToTable(provider.createChemistryIDRow(dataTables));
-		addToTable(provider.createChemieLagaBoRow(dataTables));
-		addToTable(provider.createChemieDepvRow(dataTables));
-		addToTable(provider.createChemieDecisionSupportRow(dataTables));
-		addToTable(provider.createChemieAVVRow(dataTables));
+
+		addToTable(rowProvider.getRowWithProbes(new ChemistryIdRow()));
+		addToTable(rowProvider.getRowWithProbes(new ChemistryLagaBoRow()));
+		addToTable(rowProvider.getRowWithProbes(new ChemistryDepvRow()));
+		addToTable(rowProvider.getRowWithProbes(new ChemistryDecisionSupport()));
+		addToTable(rowProvider.getRowWithProbes(new ChemistryAvvRow()));
 	}
 
 	@Override
@@ -75,10 +76,11 @@ public final class Banquet extends Report
 	private void buildTable(List<DataTable> dataTables)
 	{
 		createTable();
+		rowProvider.setDataTables(dataTables);
 
-		addToTable(provider.createIDRow(dataTables));
-		addToTable(provider.createGroundExposureRow(dataTables));
-		
+		addToTable(rowProvider.getRowWithProbes(new IdRow()));
+		addToTable(rowProvider.getRowWithProbes(new GroundExposureRow()));
+
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
 	}

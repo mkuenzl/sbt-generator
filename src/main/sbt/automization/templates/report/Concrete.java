@@ -2,7 +2,8 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
-import sbt.automization.templates.helper.ConcreteProvider;
+import sbt.automization.templates.helper.RowProvider;
+import sbt.automization.templates.helper.strategy.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -11,12 +12,12 @@ public final class Concrete extends Report
 {
 
 	private static Concrete instance;
-	private final ConcreteProvider provider;
+	private final RowProvider rowProvider;
 
 	private Concrete()
 	{
 		super(Outcrop.CONCRETE);
-		provider = new ConcreteProvider();
+		rowProvider = new RowProvider(Outcrop.CONCRETE);
 	}
 
 	public static Concrete getInstance()
@@ -56,14 +57,15 @@ public final class Concrete extends Report
 	private void buildTable(List<DataTable> dataTables)
 	{
 		createTable();
+		rowProvider.setDataTables(dataTables);
 
-		addToTable(provider.createIDRow(dataTables));
-		addToTable(provider.createSuperstructureExposureRow(dataTables));
+		addToTable(rowProvider.getRowWithProbes(new IdRow()));
+		addToTable(rowProvider.getRowWithProbes(new SuperstructureExposureRow()));
 
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
 
-		addToTable(provider.createLegendRow(dataTables));
+		addToTable(rowProvider.getRowWithProbes(new LegendWithDepthRow()));
 	}
 
 	@Override
@@ -71,8 +73,8 @@ public final class Concrete extends Report
 	{
 		addTechnicalHeader(dataTables);
 
-		addToTable(provider.createMaterialRow(dataTables));
-		addToTable(provider.createCompressiveStrengthRow(dataTables));
+		addToTable(rowProvider.getRowWithProbes(new MaterialRow()));
+		addToTable(rowProvider.getRowWithProbes(new CompressiveStrengthRow()));
 	}
 
 	@Override
@@ -80,13 +82,13 @@ public final class Concrete extends Report
 	{
 		addEnvironmentTechnicalHeader(dataTables);
 
-		addToTable(provider.createChemistryIDRow(dataTables));
-		addToTable(provider.createChemieMufvRow(dataTables));
-		addToTable(provider.createChemieLagaRcRow(dataTables));
-		addToTable(provider.createChemieLagaRcOrientationRow(dataTables));
-		addToTable(provider.createChemieTlRockRow(dataTables));
-		addToTable(provider.createChemieDepvRow(dataTables));
-		addToTable(provider.createChemieAVVRow(dataTables));
+		addToTable(rowProvider.getRowWithProbes(new ChemistryIdRow()));
+		addToTable(rowProvider.getRowWithProbes(new ChemistryMufvRow()));
+		addToTable(rowProvider.getRowWithProbes(new ChemistryLagaRc()));
+		addToTable(rowProvider.getRowWithProbes(new ChemistryLagaRcOrientation()));
+		addToTable(rowProvider.getRowWithProbes(new ChemistryTlRockRow()));
+		addToTable(rowProvider.getRowWithProbes(new ChemistryDepvRow()));
+		addToTable(rowProvider.getRowWithProbes(new ChemistryAvvRow()));
 	}
 
 	@Override

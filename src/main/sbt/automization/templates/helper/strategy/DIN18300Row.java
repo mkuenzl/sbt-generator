@@ -1,20 +1,18 @@
 package sbt.automization.templates.helper.strategy;
 
-import sbt.automization.data.DataTable;
-import sbt.automization.data.key.Key;
+import sbt.automization.data.Probe;
+import sbt.automization.data.Sample;
+import sbt.automization.data.key.SampleKey;
 import sbt.automization.format.printer.SamplePrinter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlFactory;
 import sbt.automization.html.HtmlRow;
-import sbt.automization.styles.StyleParameter;
 
-import java.util.List;
-
-public class DIN18300Row extends RowConstructionStrategy
+public class DIN18300Row extends RowConstruction
 {
-	public DIN18300Row(List<DataTable> probes, String outcrop, Key key, StyleParameter styleParameter)
+	public DIN18300Row()
 	{
-		super(probes, outcrop, key, styleParameter);
+		super(SampleKey.SOIL_CLASS);
 	}
 
 	@Override
@@ -29,9 +27,9 @@ public class DIN18300Row extends RowConstructionStrategy
 	}
 
 	@Override
-	String createCellFromProbe(DataTable table)
+	String createCellFrom(Probe probe)
 	{
-		String din = new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, key);
+		String din = new SamplePrinter().printAttributeOfSamplesWithDepth(probe, outcrop, key);
 
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
 				styleParameter.getNormalCellClass(),
@@ -42,10 +40,13 @@ public class DIN18300Row extends RowConstructionStrategy
 	}
 
 	@Override
-	String createCellFromSample(DataTable table)
+	String createCellFrom(Sample sample)
 	{
-		String cell = HtmlFactory.createChemistryCell(table.get(key));
+		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
+				styleParameter.getNormalCellClass(),
+				styleParameter.getNormalCellWidth(),
+				new String[]{new SamplePrinter().printAttributeOfDatatable(sample, key)});
 
-		return cell;
+		return cell.appendTag();
 	}
 }

@@ -2,7 +2,8 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
-import sbt.automization.templates.helper.TmhbProvider;
+import sbt.automization.templates.helper.RowProvider;
+import sbt.automization.templates.helper.strategy.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -10,12 +11,12 @@ import java.util.List;
 public final class BaseCourseWithHydraulicBinder extends Report
 {
 	private static BaseCourseWithHydraulicBinder instance;
-	private final TmhbProvider provider;
+	private final RowProvider provider;
 
 	private BaseCourseWithHydraulicBinder()
 	{
 		super(Outcrop.TMHB);
-		provider = new TmhbProvider();
+		provider = new RowProvider(Outcrop.TMHB);
 	}
 
 	public static BaseCourseWithHydraulicBinder getInstance()
@@ -55,37 +56,39 @@ public final class BaseCourseWithHydraulicBinder extends Report
 	private void buildTable(List<DataTable> dataTables)
 	{
 		createTable();
-
-		addToTable(provider.createIDRow(dataTables));
-		addToTable(provider.createBaseCourseExposureRow(dataTables));
-		addToTable(provider.createTotalSizeRow(dataTables));
-		addToTable(provider.createLoadClassRow(dataTables));
+		provider.setDataTables(dataTables);
+		addToTable(provider.getRowWithProbes(new IdRow()));
+		addToTable(provider.getRowWithProbes(new BaseCourseExposureRow()));
+		addToTable(provider.getRowWithProbes(new SizeTotalTmhbRow()));
+		addToTable(provider.getRowWithProbes(new LoadClassRow()));
 
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
 
-		addToTable(provider.createLegendRow(dataTables));
+		addToTable(provider.getRowWithProbes(new LegendWithDepthRow()));
 	}
 
 	@Override
 	void constructTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addTechnicalHeader(dataTables);
-		addToTable(provider.createSizeRow(dataTables));
-		addToTable(provider.createCompressiveStrengthRow(dataTables));
+
+		addToTable(provider.getRowWithProbes(new SizeRow()));
+		addToTable(provider.getRowWithProbes(new CompressiveStrengthRow()));
 	}
 
 	@Override
 	void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addEnvironmentTechnicalHeader(dataTables);
-		addToTable(provider.createChemistryIDRow(dataTables));
-		addToTable(provider.createChemieMufvRow(dataTables));
-		addToTable(provider.createChemieLagaRcRow(dataTables));
-		addToTable(provider.createChemieLagaRcOrientationRow(dataTables));
-		addToTable(provider.createChemieTlRockRow(dataTables));
-		addToTable(provider.createChemieDepvRow(dataTables));
-		addToTable(provider.createChemieAVVRow(dataTables));
+
+		addToTable(provider.getRowWithProbes(new ChemistryIdRow()));
+		addToTable(provider.getRowWithProbes(new ChemistryMufvRow()));
+		addToTable(provider.getRowWithProbes(new ChemistryLagaRc()));
+		addToTable(provider.getRowWithProbes(new ChemistryLagaRcOrientation()));
+		addToTable(provider.getRowWithProbes(new ChemistryTlRockRow()));
+		addToTable(provider.getRowWithProbes(new ChemistryDepvRow()));
+		addToTable(provider.getRowWithProbes(new ChemistryAvvRow()));
 	}
 
 	@Override

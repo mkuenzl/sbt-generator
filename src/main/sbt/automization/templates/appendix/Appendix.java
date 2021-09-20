@@ -2,8 +2,8 @@ package sbt.automization.templates.appendix;
 
 import sbt.automization.format.text.StandardCellTextFormatter;
 import sbt.automization.format.text.TextFormatter;
-import sbt.automization.templates.HtmlTemplate;
 import sbt.automization.html.HtmlTable;
+import sbt.automization.templates.HtmlTemplate;
 
 /**
  * Abstract class for all html tables

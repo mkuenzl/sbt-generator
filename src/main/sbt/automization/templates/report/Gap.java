@@ -2,7 +2,8 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
-import sbt.automization.templates.helper.GapProvider;
+import sbt.automization.templates.helper.RowProvider;
+import sbt.automization.templates.helper.strategy.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -10,12 +11,12 @@ import java.util.List;
 public final class Gap extends Report
 {
 	private static Gap instance;
-	private final GapProvider provider;
+	private final RowProvider rowProvider;
 
 	private Gap()
 	{
 		super(Outcrop.GAP);
-		provider = new GapProvider();
+		rowProvider = new RowProvider(Outcrop.GAP);
 	}
 
 	public static Gap getInstance()
@@ -43,9 +44,13 @@ public final class Gap extends Report
 	void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addEnvironmentTechnicalHeader(dataTables);
-		addToTable(provider.createChemistryIDRow(dataTables));
-		addToTable(provider.createChemieMufvRow(dataTables));
-		addToTable(provider.createChemieAVVRow(dataTables));
+		addToTable(rowProvider.getRowWithProbes(new ChemistryIdRow()));
+		addToTable(rowProvider.getRowWithProbes(new ChemistryMufvRow()));
+		addToTable(rowProvider.getRowWithProbes(new ChemistryLagaRc()));
+		addToTable(rowProvider.getRowWithProbes(new ChemistryLagaRcOrientation()));
+		addToTable(rowProvider.getRowWithProbes(new ChemistryTlRockRow()));
+		addToTable(rowProvider.getRowWithProbes(new ChemistryDepvRow()));
+		addToTable(rowProvider.getRowWithProbes(new ChemistryAvvRow()));
 	}
 
 	@Override
@@ -70,9 +75,10 @@ public final class Gap extends Report
 	private void buildTable(List<DataTable> dataTables)
 	{
 		createTable();
+		rowProvider.setDataTables(dataTables);
 
-		addToTable(provider.createIDRow(dataTables));
-		addToTable(provider.createSuperstructureExposureRow(dataTables));
+		addToTable(rowProvider.getRowWithProbes(new IdRow()));
+		addToTable(rowProvider.getRowWithProbes(new SuperstructureExposureRow()));
 
 		constructEnvironmentTechnicalFeatures(dataTables);
 	}

@@ -6,7 +6,8 @@ import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlFactory;
 import sbt.automization.html.HtmlRow;
 import sbt.automization.styles.ReportStyle;
-import sbt.automization.templates.helper.HeapProvider;
+import sbt.automization.templates.helper.RowProvider;
+import sbt.automization.templates.helper.strategy.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -14,12 +15,12 @@ import java.util.List;
 public final class Heap extends Report
 {
 	private static Heap instance;
-	private final HeapProvider provider;
+	private final RowProvider provider;
 
 	private Heap()
 	{
 		super(Outcrop.HEAP);
-		provider = new HeapProvider();
+		provider = new RowProvider(Outcrop.HEAP);
 	}
 
 	public static Heap getInstance()
@@ -58,13 +59,14 @@ public final class Heap extends Report
 	private void buildTable(List<DataTable> dataTables)
 	{
 		createTable();
+		provider.setDataTables(dataTables);
 
-		addToTable(provider.createIDRow(dataTables));
-		addToTable(provider.createAreaRow(dataTables));
-		addToTable(provider.createOutcropRow(dataTables));
+		addToTable(provider.getRowWithSamples(new IdRow()));
+		addToTable(provider.getRowWithSamples(new AreaRow()));
+		addToTable(provider.getRowWithSamples(new HeapExposureRow()));
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
-		//addToTable(provider.createLegendRow(dataTables));
+		//addToTable(provider.getRowWithSamples(new LegendWithDepthRow()));
 	}
 
 	@Override
@@ -90,9 +92,9 @@ public final class Heap extends Report
 	{
 		addTechnicalHeader(dataTables);
 
-		addToTable(provider.createMaterialRow(dataTables));
-		addToTable(provider.createDIN18300Row(dataTables));
-		addToTable(provider.createDIN18196Row(dataTables));
+		addToTable(provider.getRowWithSamples(new MaterialHeapRow()));
+		addToTable(provider.getRowWithSamples(new DIN18300Row()));
+		addToTable(provider.getRowWithSamples(new DIN18196Row()));
 	}
 
 	@Override
@@ -117,18 +119,18 @@ public final class Heap extends Report
 	{
 		addEnvironmentTechnicalHeader(dataTables);
 
-		addToTable(provider.createChemistryIDRow(dataTables));
-		addToTable(provider.createChemistryPak(dataTables));
-		addToTable(provider.createChemieMufvRow(dataTables));
-		addToTable(provider.createChemieLagaBoRow(dataTables));
-		addToTable(provider.createChemieLagaRcRow(dataTables));
-		addToTable(provider.createChemieLagaRcOrientationRow(dataTables));
-		addToTable(provider.createChemieTlRockRow(dataTables));
-		addToTable(provider.createChemistryReku(dataTables));
-		addToTable(provider.createChemieDepvRow(dataTables));
-		addToTable(provider.createChemieDecisionSupportRow(dataTables));
-		addToTable(provider.createChemistryRuva(dataTables));
-		addToTable(provider.createChemieAVVRow(dataTables));
+		addToTable(provider.getRowWithSamples(new ChemistryIdRow()));
+		addToTable(provider.getRowWithSamples(new ChemistryPak()));
+		addToTable(provider.getRowWithSamples(new ChemistryMufvRow()));
+		addToTable(provider.getRowWithSamples(new ChemistryLagaBoRow()));
+		addToTable(provider.getRowWithSamples(new ChemistryLagaRc()));
+		addToTable(provider.getRowWithSamples(new ChemistryLagaRcOrientation()));
+		addToTable(provider.getRowWithSamples(new ChemistryTlRockRow()));
+		addToTable(provider.getRowWithSamples(new ChemistryRekuRow()));
+		addToTable(provider.getRowWithSamples(new ChemistryDepvRow()));
+		addToTable(provider.getRowWithSamples(new ChemistryDecisionSupport()));
+		addToTable(provider.getRowWithSamples(new ChemistryRuvaRow()));
+		addToTable(provider.getRowWithSamples(new ChemistryAvvRow()));
 	}
 
 	@Override

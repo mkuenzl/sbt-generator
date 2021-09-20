@@ -1,14 +1,14 @@
 package sbt.automization.templates.appendix.site;
 
 import sbt.automization.data.DataTable;
+import sbt.automization.data.Outcrop;
 import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
 import sbt.automization.data.key.ChemistryKey;
 import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.SampleKey;
-import sbt.automization.data.Outcrop;
-import sbt.automization.templates.appendix.Appendix;
 import sbt.automization.html.HtmlFactory;
+import sbt.automization.templates.appendix.Appendix;
 
 import java.util.List;
 
@@ -57,16 +57,16 @@ public final class Gap extends Appendix
 	private String createRow(Sample sample)
 	{
 		String row = HtmlFactory.createRowAsString("Normal", new String[]{
-				HtmlFactory.createCellAsString(textFormatter,"Normal",
+				HtmlFactory.createCellAsString(textFormatter, "Normal",
 						new String[]{sample.get(SampleKey.TYPE)}),
-				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{sample.get(SampleKey.THICKNESS)}),
-				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{sample.get(SampleKey.DEPTH_END)}),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.MUFV)),
-				HtmlFactory.createCellAsString(textFormatter,"NormalCenter", 1, 3,
+				HtmlFactory.createCellAsString(textFormatter, "NormalCenter", 1, 3,
 						new String[]{""}),
-				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.PAK)}),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.ASBESTOS)),
 		});

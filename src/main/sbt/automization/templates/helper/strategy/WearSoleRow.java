@@ -1,9 +1,10 @@
 package sbt.automization.templates.helper.strategy;
 
 import sbt.automization.data.DataTable;
+import sbt.automization.data.Probe;
+import sbt.automization.data.Sample;
 import sbt.automization.data.key.Key;
 import sbt.automization.data.key.ProbeKey;
-import sbt.automization.format.printer.SamplePrinter;
 import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlFactory;
@@ -13,11 +14,16 @@ import sbt.automization.styles.StyleParameter;
 
 import java.util.List;
 
-public class WearSoleRow extends RowConstructionStrategy
+public class WearSoleRow extends RowConstruction
 {
 	public WearSoleRow(List<DataTable> probes, String outcrop, Key key, StyleParameter styleParameter)
 	{
 		super(probes, outcrop, key, styleParameter);
+	}
+
+	public WearSoleRow()
+	{
+		super(ProbeKey.WEAR_TRENCH_BOTTOM);
 	}
 
 	@Override
@@ -32,28 +38,28 @@ public class WearSoleRow extends RowConstructionStrategy
 	}
 
 	@Override
-	String createCellFromProbe(DataTable table)
+	String createCellFrom(Probe probe)
 	{
 		String formattedCellText = new HtmlText.Builder().appendAttribute("class", styleParameter.getUnitCellClass())
 				.appendContent("[T:")
-				.appendContent(table.get(ProbeKey.SOLE_DEPTH))
+				.appendContent(probe.get(ProbeKey.SOLE_DEPTH))
 				.appendContent("]").build().appendTag();
 
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
 				styleParameter.getNormalCellClass(),
 				styleParameter.getNormalCellWidth(),
-				new String[]{table.get(key), UtilityPrinter.printLineEmpty(), formattedCellText});
+				new String[]{probe.get(key), UtilityPrinter.printLineEmpty(), formattedCellText});
 
 		return cell.appendTag();
 	}
 
 	@Override
-	String createCellFromSample(DataTable table)
+	String createCellFrom(Sample sample)
 	{
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
 				styleParameter.getNormalCellClass(),
 				styleParameter.getNormalCellWidth(),
-				new String[]{table.get(key)});
+				new String[]{sample.get(key)});
 
 		return cell.appendTag();
 	}

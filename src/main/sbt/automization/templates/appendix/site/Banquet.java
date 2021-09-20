@@ -1,6 +1,7 @@
 package sbt.automization.templates.appendix.site;
 
 import sbt.automization.data.DataTable;
+import sbt.automization.data.Outcrop;
 import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
 import sbt.automization.data.key.ChemistryKey;
@@ -8,9 +9,8 @@ import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.SampleKey;
 import sbt.automization.format.text.ProctorTextFormatter;
 import sbt.automization.format.text.SoilGroupTextFormatter;
-import sbt.automization.data.Outcrop;
-import sbt.automization.templates.appendix.Appendix;
 import sbt.automization.html.HtmlFactory;
+import sbt.automization.templates.appendix.Appendix;
 
 import java.util.List;
 
@@ -59,20 +59,20 @@ public final class Banquet extends Appendix
 	private String createRow(Sample sample)
 	{
 		String row = HtmlFactory.createRowAsString("Normal", new String[]{
-				HtmlFactory.createCellAsString(textFormatter,"Normal",
+				HtmlFactory.createCellAsString(textFormatter, "Normal",
 						new String[]{new SoilGroupTextFormatter().format(sample.get(SampleKey.TYPE))}),
-				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{sample.get(SampleKey.THICKNESS)}),
-				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{sample.get(SampleKey.DEPTH_END)}),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.MUFV)),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.LAGA_BO)),
 				HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.LAGA_RC)),
-				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{sample.get(SampleKey.WATER_CONTENT)}),
-				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{new ProctorTextFormatter().format(sample.get(SampleKey.WATER_PROCTOR))}),
-				HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{"-"})
 		});
 

@@ -1,9 +1,9 @@
 package sbt.automization.templates.appendix;
 
-import sbt.automization.data.Sample;
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Parameter;
 import sbt.automization.data.Probe;
+import sbt.automization.data.Sample;
 import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.RuKKey;
 import sbt.automization.data.key.SampleKey;
@@ -15,7 +15,8 @@ public final class RingAndBall extends Appendix
 {
 	private static RingAndBall instance;
 
-	private RingAndBall() {
+	private RingAndBall()
+	{
 		super();
 	}
 
@@ -86,22 +87,22 @@ public final class RingAndBall extends Appendix
 						addAndResetTableOnPageBreak();
 
 						String row = HtmlFactory.createRowAsString("Normal", new String[]{
-								HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 										new String[]{probe.get(ProbeKey.ID)}),
-								HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 										new String[]{parameter.get(RuKKey.ID)}),
-								HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 										new String[]{parameter.get(RuKKey.SAMPLE)}),
 								HtmlFactory.createCellAsString("Normal",
 										new String[]{sample.get(SampleKey.TYPE), " ",
 												sample.get(SampleKey.GRANULATION)}),
-								HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 										new String[]{sample.get(SampleKey.DEPTH_START)}),
-								HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 										new String[]{"-"}),
-								HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 										new String[]{sample.get(SampleKey.DEPTH_END)}),
-								HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 										new String[]{parameter.get(RuKKey.VALUE)})
 						});
 

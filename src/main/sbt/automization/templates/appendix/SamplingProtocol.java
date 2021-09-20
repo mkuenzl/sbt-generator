@@ -103,28 +103,28 @@ public final class SamplingProtocol extends Appendix
 					addAndResetTableOnPageBreak();
 
 					String row = HtmlFactory.createRowAsString("Normal", new String[]{
-							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 									new String[]{"P".concat(String.valueOf(++ lines))}),
-							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 									new String[]{new SampleTypeTextFormatter().format(sample.get(SampleKey.CONTAINER))}),
-							HtmlFactory.createCellAsString(textFormatter,"Normal",
+							HtmlFactory.createCellAsString(textFormatter, "Normal",
 									new String[]{sample.get(SampleKey.CONTAINER)}),
-							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 									new String[]{"-"}),
-							HtmlFactory.createCellAsString(textFormatter,"Normal", "width:110px",
+							HtmlFactory.createCellAsString(textFormatter, "Normal", "width:110px",
 									new String[]{new LineBreakTextFormatter().format(sample.get(SampleKey.WASTE_TYPE))}),
-							HtmlFactory.createCellAsString(textFormatter,"NormalCenter", "width:50px",
+							HtmlFactory.createCellAsString(textFormatter, "NormalCenter", "width:50px",
 									new String[]{sample.get(SampleKey.GRANULATION)}),
-							HtmlFactory.createCellAsString(textFormatter,"Normal", "left",
+							HtmlFactory.createCellAsString(textFormatter, "Normal", "left",
 									new String[]{sample.get(SampleKey.COLOR), UtilityPrinter.printLineBreak(),
 											sample.get(SampleKey.SMELL), UtilityPrinter.printLineBreak(),
 											sample.get(SampleKey.SOIL_TYPE)}),
-							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 									new String[]{probe.get(ProbeKey.ID)}),
-							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 									new String[]{new DepthTextFormatter().format(sample.get(SampleKey.DEPTH_START),
 											sample.get(SampleKey.DEPTH_END))}),
-							HtmlFactory.createCellAsString(textFormatter,"NormalCenter",
+							HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 									new String[]{probe.get(ProbeKey.TOP_EDGE)})
 					});
 

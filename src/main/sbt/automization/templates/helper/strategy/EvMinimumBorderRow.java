@@ -1,7 +1,10 @@
 package sbt.automization.templates.helper.strategy;
 
 import sbt.automization.data.DataTable;
+import sbt.automization.data.Probe;
+import sbt.automization.data.Sample;
 import sbt.automization.data.key.Key;
+import sbt.automization.data.key.LpKey;
 import sbt.automization.data.key.ProbeKey;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlFactory;
@@ -10,11 +13,16 @@ import sbt.automization.styles.StyleParameter;
 
 import java.util.List;
 
-public class EvMinimumBorderRow extends RowConstructionStrategy
+public class EvMinimumBorderRow extends RowConstruction
 {
 	public EvMinimumBorderRow(List<DataTable> probes, String outcrop, Key key, StyleParameter styleParameter)
 	{
 		super(probes, outcrop, key, styleParameter);
+	}
+
+	public EvMinimumBorderRow()
+	{
+		super(LpKey.EV2_TARGET);
 	}
 
 	@Override
@@ -29,9 +37,9 @@ public class EvMinimumBorderRow extends RowConstructionStrategy
 	}
 
 	@Override
-	String createCellFromProbe(DataTable table)
+	String createCellFrom(Probe probe)
 	{
-		String minBorder = table.getParameterValueBy(ProbeKey.LP_ID, key);
+		String minBorder = probe.getParameterValueBy(ProbeKey.LP_ID, key);
 
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
 				styleParameter.getNormalCellClass(),
@@ -42,9 +50,9 @@ public class EvMinimumBorderRow extends RowConstructionStrategy
 	}
 
 	@Override
-	String createCellFromSample(DataTable table)
+	String createCellFrom(Sample sample)
 	{
-		String minBorder = table.getParameterValueBy(ProbeKey.LP_ID, key);
+		String minBorder = sample.getParameterValueBy(ProbeKey.LP_ID, key);
 
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
 				styleParameter.getNormalCellClass(),

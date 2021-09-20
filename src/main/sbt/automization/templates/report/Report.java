@@ -1,15 +1,15 @@
 package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
-import sbt.automization.templates.HtmlTemplate;
 import sbt.automization.data.Outcrop;
-import sbt.automization.styles.ReportStyle;
-import sbt.automization.util.DatatableFilter;
-import sbt.automization.util.Separator;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlFactory;
 import sbt.automization.html.HtmlRow;
 import sbt.automization.html.HtmlTable;
+import sbt.automization.styles.ReportStyle;
+import sbt.automization.templates.HtmlTemplate;
+import sbt.automization.util.DatatableFilter;
+import sbt.automization.util.Separator;
 
 import java.util.Collection;
 import java.util.List;

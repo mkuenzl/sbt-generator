@@ -80,7 +80,12 @@ public final class StyleParameter
 
 	public String getNormalCellWidth()
 	{
-		return normalCellWidth;
+		return "width:".concat(normalCellWidth);
+	}
+
+	public int getNormalCellWidthAsInt()
+	{
+		return Integer.parseInt(normalCellWidth);
 	}
 
 	StyleParameter setNormalCellWidth(String normalCellWidth)
@@ -91,7 +96,12 @@ public final class StyleParameter
 
 	public String getHeaderCellWidth()
 	{
-		return headerCellWidth;
+		return "width:".concat(headerCellWidth);
+	}
+
+	public int getHeaderCellWidthAsInt()
+	{
+		return Integer.parseInt(headerCellWidth);
 	}
 
 	StyleParameter setHeaderCellWidth(String headerCellWidth)

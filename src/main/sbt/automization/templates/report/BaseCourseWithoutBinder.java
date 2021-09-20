@@ -2,7 +2,8 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
-import sbt.automization.templates.helper.TobProvider;
+import sbt.automization.templates.helper.RowProvider;
+import sbt.automization.templates.helper.strategy.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -10,12 +11,12 @@ import java.util.List;
 public final class BaseCourseWithoutBinder extends Report
 {
 	private static BaseCourseWithoutBinder instance;
-	private final TobProvider provider;
+	private final RowProvider provider;
 
 	private BaseCourseWithoutBinder()
 	{
 		super(Outcrop.TOB);
-		provider = new TobProvider();
+		provider = new RowProvider(Outcrop.TOB);
 	}
 
 	public static BaseCourseWithoutBinder getInstance()
@@ -55,14 +56,15 @@ public final class BaseCourseWithoutBinder extends Report
 	private void buildTable(List<DataTable> dataTables)
 	{
 		createTable();
+		provider.setDataTables(dataTables);
 
-		addToTable(provider.createIDRow(dataTables));
-		addToTable(provider.createBaseCourseExposureRow(dataTables));
+		addToTable(provider.getRowWithProbes(new IdRow()));
+		addToTable(provider.getRowWithProbes(new BaseCourseExposureRow()));
 
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
 
-		addToTable(provider.createLegendRow(dataTables));
+		addToTable(provider.getRowWithProbes(new LegendDepthAndAcronymRow()));
 	}
 
 	@Override
@@ -70,14 +72,14 @@ public final class BaseCourseWithoutBinder extends Report
 	{
 		addTechnicalHeader(dataTables);
 
-		addToTable(provider.createEvDynRow(dataTables));
-		addToTable(provider.createEvDyn85Row(dataTables));
-		addToTable(provider.createEv2With85Row(dataTables));
-		addToTable(provider.createEvMinimumBorderRow(dataTables));
-		addToTable(provider.createMaterialRow(dataTables));
-		addToTable(provider.createSizeRow(dataTables));
-		addToTable(provider.createGrainSizeDistributionRow(dataTables));
-		addToTable(provider.createTotalSizeRow(dataTables));
+		addToTable(provider.getRowWithProbes(new EvDynRow()));
+		addToTable(provider.getRowWithProbes(new EvDyn85Row()));
+		addToTable(provider.getRowWithProbes(new Ev2WithEv85Row()));
+		addToTable(provider.getRowWithProbes(new EvMinimumBorderRow()));
+		addToTable(provider.getRowWithProbes(new MaterialTobRow()));
+		addToTable(provider.getRowWithProbes(new SizeRow()));
+		addToTable(provider.getRowWithProbes(new GrainSizeDistributionRow()));
+		addToTable(provider.getRowWithProbes(new SizeTotalTobRow()));
 	}
 
 	@Override
@@ -85,15 +87,15 @@ public final class BaseCourseWithoutBinder extends Report
 	{
 		addEnvironmentTechnicalHeader(dataTables);
 
-		addToTable(provider.createChemistryIDRow(dataTables));
-		addToTable(provider.createChemieMufvRow(dataTables));
-		addToTable(provider.createChemieLagaBoRow(dataTables));
-		addToTable(provider.createChemieLagaRcRow(dataTables));
-		addToTable(provider.createChemieLagaRcOrientationRow(dataTables));
-		addToTable(provider.createChemieTlRockRow(dataTables));
-		addToTable(provider.createChemieDepvRow(dataTables));
-		addToTable(provider.createChemieDecisionSupportRow(dataTables));
-		addToTable(provider.createChemieAVVRow(dataTables));
+		addToTable(provider.getRowWithProbes(new ChemistryIdRow()));
+		addToTable(provider.getRowWithProbes(new ChemistryMufvRow()));
+		addToTable(provider.getRowWithProbes(new ChemistryLagaBoRow()));
+		addToTable(provider.getRowWithProbes(new ChemistryLagaRc()));
+		addToTable(provider.getRowWithProbes(new ChemistryLagaRcOrientation()));
+		addToTable(provider.getRowWithProbes(new ChemistryTlRockRow()));
+		addToTable(provider.getRowWithProbes(new ChemistryDepvRow()));
+		addToTable(provider.getRowWithProbes(new ChemistryDecisionSupport()));
+		addToTable(provider.getRowWithProbes(new ChemistryAvvRow()));
 	}
 
 	@Override

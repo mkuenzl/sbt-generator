@@ -106,6 +106,7 @@ public final class DataTableFactory
 			{
 				if (table.isRelatedBy(ProbeKey.ID, sample)) {
 					table.addSample((Sample) sample);
+					((Sample) sample).setProbe(table);
 				}
 			}
 		}

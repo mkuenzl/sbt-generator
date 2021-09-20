@@ -2,7 +2,8 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
-import sbt.automization.templates.helper.BuildingProvider;
+import sbt.automization.templates.helper.RowProvider;
+import sbt.automization.templates.helper.strategy.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -10,12 +11,12 @@ import java.util.List;
 public final class Building extends Report
 {
 	private static Building instance;
-	private final BuildingProvider provider;
+	private final RowProvider provider;
 
 	private Building()
 	{
 		super(Outcrop.BUILDING);
-		provider = new BuildingProvider();
+		provider = new RowProvider(Outcrop.BUILDING);
 	}
 
 	public static Building getInstance()
@@ -48,13 +49,14 @@ public final class Building extends Report
 	private void buildTable(List<DataTable> dataTables)
 	{
 		createTable();
+		provider.setDataTables(dataTables);
 
-		addToTable(provider.createIDRow(dataTables));
-		addToTable(provider.createComponentRow(dataTables));
-		addToTable(provider.createMaterialRow(dataTables));
+		addToTable(provider.getRowWithSamples(new IdRow()));
+		addToTable(provider.getRowWithSamples(new ComponentRow()));
+		addToTable(provider.getRowWithSamples(new MaterialBuildingRow()));
 
 		constructEnvironmentTechnicalFeatures(dataTables);
-		//addToTable(provider.createLegendRow(dataTables));
+		addToTable(provider.getRowWithSamples(new LegendWithDepthRow()));
 	}
 
 	@Override
@@ -78,26 +80,26 @@ public final class Building extends Report
 	@Override
 	void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
-		addToTable(provider.createChemistryIDRow(dataTables));
-		addToTable(provider.createSuspectedPollutantRow(dataTables));
-		addToTable(provider.createChemistryPak(dataTables));
-		addToTable(provider.createChemistryPCB(dataTables)); // PCB
-		addToTable(provider.createChemistryAsbestos(dataTables)); // ASBEST
+		addToTable(provider.getRowWithSamples(new ChemistryIdRow()));
+		addToTable(provider.getRowWithSamples(new SuspectedPollutantRow()));
+		addToTable(provider.getRowWithSamples(new ChemistryPak()));
+		addToTable(provider.getRowWithSamples(new ChemistryPcbRow())); // PCB
+		addToTable(provider.getRowWithSamples(new ChemistryAsbestosRow())); // ASBEST
 
-		addToTable(provider.createChemistryBTEX(dataTables));
-		addToTable(provider.createChemistryPhenol(dataTables)); // KMF
-		addToTable(provider.createChemistryKMF(dataTables)); // KMF
-		addToTable(provider.createChemistrySulfate(dataTables));
-		addToTable(provider.createChemistryICP(dataTables));
-		addToTable(provider.createChemistryEOX(dataTables));
+		addToTable(provider.getRowWithSamples(new ChemistryBtexRow()));
+		addToTable(provider.getRowWithSamples(new ChemistryPhenolRow())); // KMF
+		addToTable(provider.getRowWithSamples(new ChemistryKmfRow())); // KMF
+		addToTable(provider.getRowWithSamples(new ChemistrySulfateRow()));
+		addToTable(provider.getRowWithSamples(new ChemistryIcpScreeningRow()));
+		addToTable(provider.getRowWithSamples(new ChemistryEoxRow()));
 
-		addToTable(provider.createChemieLagaBoRow(dataTables));
-		addToTable(provider.createChemieLagaRcRow(dataTables));
-		addToTable(provider.createChemieLagaRcOrientationRow(dataTables));
-		addToTable(provider.createChemieTlRockRow(dataTables));
-		addToTable(provider.createChemieMufvRow(dataTables)); // Einstufung
-		addToTable(provider.createChemieMufvParameterRow(dataTables)); // Parameter
-		addToTable(provider.createChemieMaterialAVVRow(dataTables));  // Material
-		addToTable(provider.createChemieMixedAVVRow(dataTables));  // gemischt
+		addToTable(provider.getRowWithSamples(new ChemistryLagaBoRow()));
+		addToTable(provider.getRowWithSamples(new ChemistryLagaRc()));
+		addToTable(provider.getRowWithSamples(new ChemistryLagaRcOrientation()));
+		addToTable(provider.getRowWithSamples(new ChemistryTlRockRow()));
+		addToTable(provider.getRowWithSamples(new ChemistryMufvClassificationRow())); // Einstufung
+		addToTable(provider.getRowWithSamples(new ChemistryMufvParameterRow())); // Parameter
+		addToTable(provider.getRowWithSamples(new WasteKeyMaterialRow()));  // Material
+		addToTable(provider.getRowWithSamples(new WasteKeyMixRow()));  // gemischt
 	}
 }

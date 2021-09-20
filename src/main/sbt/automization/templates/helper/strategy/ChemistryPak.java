@@ -1,6 +1,8 @@
 package sbt.automization.templates.helper.strategy;
 
 import sbt.automization.data.DataTable;
+import sbt.automization.data.Probe;
+import sbt.automization.data.Sample;
 import sbt.automization.data.key.ChemistryKey;
 import sbt.automization.data.key.Key;
 import sbt.automization.data.key.SampleKey;
@@ -12,11 +14,16 @@ import sbt.automization.styles.StyleParameter;
 
 import java.util.List;
 
-public class ChemistryPak extends RowConstructionStrategy
+public class ChemistryPak extends RowConstruction
 {
 	public ChemistryPak(List<DataTable> probes, String outcrop, Key key, StyleParameter styleParameter)
 	{
 		super(probes, outcrop, key, styleParameter);
+	}
+
+	public ChemistryPak()
+	{
+		super(ChemistryKey.PAK);
 	}
 
 	@Override
@@ -31,9 +38,9 @@ public class ChemistryPak extends RowConstructionStrategy
 	}
 
 	@Override
-	String createCellFromProbe(DataTable table)
+	String createCellFrom(Probe probe)
 	{
-		String pak = new SamplePrinter().printAttributeOfSamplesWithDepth(table, outcrop, key);
+		String pak = new SamplePrinter().printAttributeOfSamplesWithDepth(probe, outcrop, key);
 
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
 				styleParameter.getNormalCellClass(),
@@ -44,9 +51,9 @@ public class ChemistryPak extends RowConstructionStrategy
 	}
 
 	@Override
-	String createCellFromSample(DataTable table)
+	String createCellFrom(Sample sample)
 	{
-		String pak = table.getParameterValueBy(SampleKey.CHEMISTRY_ID, key);
+		String pak = sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, key);
 
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
 				styleParameter.getNormalCellClass(),
