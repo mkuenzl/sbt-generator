@@ -2,6 +2,7 @@ package sbt.automization.data;
 
 import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.SampleKey;
+import sbt.automization.gui.ErrorPopup;
 
 import java.util.*;
 
@@ -115,7 +116,13 @@ public final class DataTableFactory
 
 	private static void sortSamples(Probe table)
 	{
-		table.getSamples().sort(Comparator.comparing(a -> a.get(SampleKey.NUMBER)));
+		try
+		{
+			table.getSamples().sort(Comparator.comparing(a -> a.get(SampleKey.NUMBER)));
+		} catch (NullPointerException e)
+		{
+			ErrorPopup.showErrorMessage("Es fehlt eine Nummerierung der Samples. Demnach kann eine Sorierung nicht durchgeführt werden.");
+		}
 	}
 
 	public static void createListOfProbes(List<Map<String, String>> csvTable)

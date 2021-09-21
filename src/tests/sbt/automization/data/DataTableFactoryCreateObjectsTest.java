@@ -417,6 +417,7 @@ public class DataTableFactoryCreateObjectsTest
 				put("PARAMETER.LP.ID", "LP1");
 				put("SAMPLE.CHEMISTRY.ID", "C1");
 				put("PARAMETER.CHEMISTRY.ID", "C1");
+				put("SAMPLE.NUMMER", "1");
 			}});
 			add(new HashMap<>()
 			{{
@@ -427,6 +428,7 @@ public class DataTableFactoryCreateObjectsTest
 				put("SAMPLE.PROBE.ID", "FB1");
 				put("SAMPLE.RUK.ID", "A1");
 				put("PARAMETER.RUK.ID", "A1");
+				put("SAMPLE.NUMMER", "2");
 			}});
 			add(new HashMap<>()
 			{{
@@ -435,6 +437,7 @@ public class DataTableFactoryCreateObjectsTest
 				put("SAMPLE.PROBE.ID", "FB1");
 				put("PROBE.LP.ID", "LP1");
 				put("PARAMETER.LP.ID", "LP1");
+				put("SAMPLE.NUMMER", "3");
 			}});
 		}};
 
@@ -458,6 +461,7 @@ public class DataTableFactoryCreateObjectsTest
 			put("SAMPLE.ID", "1");
 			put("SAMPLE.PROBE.ID", "FB1");
 			put("SAMPLE.CHEMISTRY.ID", "C1");
+			put("SAMPLE.NUMMER", "1");
 		}});
 
 		firstSample.addParameter(new Parameter(new HashMap<>()
@@ -473,6 +477,7 @@ public class DataTableFactoryCreateObjectsTest
 			put("SAMPLE.ID", "2");
 			put("SAMPLE.RUK.ID", "A1");
 			put("SAMPLE.PROBE.ID", "FB1");
+			put("SAMPLE.NUMMER", "2");
 		}});
 
 		secondSample.addParameter(new Parameter(new HashMap<>()
@@ -487,6 +492,7 @@ public class DataTableFactoryCreateObjectsTest
 		{{
 			put("SAMPLE.ID", "3");
 			put("SAMPLE.PROBE.ID", "FB1");
+			put("SAMPLE.NUMMER", "3");
 		}});
 		expectedProbe.addSample(thirdSample);
 
@@ -509,18 +515,21 @@ public class DataTableFactoryCreateObjectsTest
 				put("PROBE.ID", "FB1");
 				put("SAMPLE.PROBE.ID", "FB1");
 				put("SAMPLE.ID", "1");
+				put("SAMPLE.NUMMER", "1");
 			}});
 			add(new HashMap<>()
 			{{
 				put("PROBE.ID", "FB1");
 				put("SAMPLE.PROBE.ID", "FB1");
 				put("SAMPLE.ID", "2");
+				put("SAMPLE.NUMMER", "2");
 			}});
 			add(new HashMap<>()
 			{{
 				put("PROBE.ID", "FB1");
 				put("SAMPLE.PROBE.ID", "FB1");
 				put("SAMPLE.ID", "3");
+				put("SAMPLE.NUMMER", "3");
 			}});
 		}};
 
@@ -534,18 +543,21 @@ public class DataTableFactoryCreateObjectsTest
 		expectedProbe.addSample(new Sample(new HashMap<>()
 		{{
 			put("SAMPLE.ID", "1");
+			put("SAMPLE.NUMMER", "1");
 			put("SAMPLE.PROBE.ID", "FB1");
 		}}));
 
 		expectedProbe.addSample(new Sample(new HashMap<>()
 		{{
 			put("SAMPLE.ID", "2");
+			put("SAMPLE.NUMMER", "2");
 			put("SAMPLE.PROBE.ID", "FB1");
 		}}));
 
 		expectedProbe.addSample(new Sample(new HashMap<>()
 		{{
 			put("SAMPLE.ID", "3");
+			put("SAMPLE.NUMMER", "3");
 			put("SAMPLE.PROBE.ID", "FB1");
 		}}));
 
