@@ -39,9 +39,9 @@ public class SamplingProtocolBuilding extends Appendix
 	protected String constructAndGetTableHeader()
 	{
 		String firstRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN_8.getStyleClass(), new String[]{
-				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(), "width:2cm",
-						new String[]{"Aufbau"}),
-				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(), "width:3.6cm",
+				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(), "width:0.8cm",
+						new String[]{"QS"}),
+				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(), "width:4.8cm",
 						new String[]{"Material"}),
 				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(), "width:2cm",
 						new String[]{"Farbe"}),
@@ -88,18 +88,18 @@ public class SamplingProtocolBuilding extends Appendix
 		{
 			String row = HtmlFactory.createRowAsString("Normal", new String[]{
 					HtmlFactory.createCellAsString(textFormatter, "NormalCenter", "font-size:10.0pt",
-							new String[]{"Querschnitt", UtilityPrinter.printLineBreak(), String.valueOf(++ linesPerPage)}),
+							new String[]{String.valueOf(++ linesPerPage)}),
 					HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(),
 							new String[]{sample.get(SampleKey.MATERIAL)}),
-					HtmlFactory.createCellAsString(textFormatter, "NormalCenter", "font-size:10.0pt",
-							new String[]{sample.get(SampleKey.COLOR)}),
+					HtmlFactory.createCellAsString(textFormatter, "Normal", "font-size:10.0pt",
+							new String[]{printSampleColor(sample)}),
 					HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(),
-							new String[]{new DepthTextFormatter(false).format(sample.get(SampleKey.DEPTH_START), sample.get(SampleKey.DEPTH_END))}),
-					HtmlFactory.createCellAsString(textFormatter, "NormalCenter", "font-size:10.0pt",
-							new String[]{"P".concat(String.valueOf(++ lines))}),
-					HtmlFactory.createCellAsString(textFormatter, "NormalCenter", "font-size:10.0pt",
+							new String[]{printSampleDepth(sample)}),
+					HtmlFactory.createCellAsString(textFormatter, "Normal", "font-size:10.0pt",
+							new String[]{printSampleNumber(sample)}),
+					HtmlFactory.createCellAsString(textFormatter, "Normal", "font-size:10.0pt",
 							new String[]{sample.get(SampleKey.CHEMISTRY_ID)}),
-					HtmlFactory.createCellAsString(textFormatter, "NormalCenter", "font-size:10.0pt",
+					HtmlFactory.createCellAsString(textFormatter, "Normal", "font-size:10.0pt",
 							new String[]{sample.get(SampleKey.SUSPECTED_POLLUTANT)})
 			});
 			addToTable(row);
@@ -115,6 +115,61 @@ public class SamplingProtocolBuilding extends Appendix
 		addPageBreak();
 		addPageBreak();
 	}
+
+	private String printSampleDepth(Sample sample)
+	{
+		String depthStart = sample.get(SampleKey.DEPTH_START);
+		String depthEnd = sample.get(SampleKey.DEPTH_END);
+
+		if (depthStart.equals(depthEnd)) return "";
+
+		StringBuilder stringBuilder = new StringBuilder();
+
+		String beginningSymbol = "0".equals(depthStart) ? "±" : "-";
+
+		stringBuilder.append(beginningSymbol)
+				.append(" ")
+				.append(depthStart)
+				.append(" ")
+				.append("bis")
+				.append(UtilityPrinter.printLineBreak())
+				.append("-")
+				.append(" ")
+				.append(depthEnd)
+				.append(" ")
+				.append("cm");
+
+		return stringBuilder.toString();
+	}
+
+	private String printSampleColor(Sample sample)
+	{
+		String colorsString = sample.get(SampleKey.COLOR);
+
+		String[] colors = colorsString.split("(,|/)");
+
+		StringBuilder stringBuilder = new StringBuilder();
+
+		for (String color : colors)
+		{
+			stringBuilder.append(color)
+					.append(UtilityPrinter.printLineBreak());
+		}
+
+		return stringBuilder.toString();
+	}
+
+
+	private String printSampleNumber(Sample sample)
+	{
+		String extraction = sample.get(SampleKey.EXTRACTION);
+
+		if ("JA".equalsIgnoreCase(extraction)) return "P".concat(String.valueOf(++ lines));
+
+		return "";
+	}
+
+
 
 	private void buildHeadTable(DataTable probe)
 	{
@@ -227,7 +282,7 @@ public class SamplingProtocolBuilding extends Appendix
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold", "font-size:10.0pt", 1, 3,
 						new String[]{"Gesamttiefe von Bauteiloberfläche (BOF):"}),
 				HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(), 1, 4,
-						new String[]{new SamplePrinter().printThickness(dataTable.getSamples())})
+						new String[]{new SamplePrinter().printThickness(dataTable.getSamples()).concat(" cm")})
 		});
 
 		addToTable(depthRow);
