@@ -3,6 +3,7 @@ package sbt.automization.data;
 import sbt.automization.data.key.Key;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,6 +46,26 @@ public final class Sample extends DataTableImpl
 	public int compareTo(DataTable o)
 	{
 		return 0;
+	}
+
+	/**
+	 * Used to create multiple objects of the same table. Necessary for PN Template.
+	 *
+	 * @return a new object with the same information
+	 * @throws CloneNotSupportedException only if there was a problem creating another map
+	 */
+	@Override
+	public DataTable clone() throws CloneNotSupportedException
+	{
+		Sample cloned = (Sample) super.clone();
+
+		Map<String, String> clonedMap = new HashMap<>(this.informationMap);
+
+		cloned.setTable(clonedMap);
+		cloned.addListOfParameter(this.getParameters());
+		cloned.setProbe(this.probe);
+
+		return cloned;
 	}
 
 	@Override

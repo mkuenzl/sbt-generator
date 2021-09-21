@@ -107,86 +107,97 @@ public final class SampleFormatter
 
 		if (tag instanceof SampleKey)
 		{
-			if (! firstSample.get(tag).equals(secondSample.get(tag)))
-				return null;
-			else
-			{
-				Sample sample = new Sample(new HashMap<>()
-				{{
-					put(tag.getKey(), firstSample.get(tag));
-					put(SampleKey.DEPTH_START.getKey(),
-							firstSample.get(SampleKey.DEPTH_START));
-					put(SampleKey.DEPTH_END.getKey(),
-							secondSample.get(SampleKey.DEPTH_END));
-				}});
-
-				return sample;
-			}
+			return combineBySampleTag(firstSample, secondSample, tag);
 		}
 
 		if (tag instanceof ChemistryKey)
 		{
-			final String parameterValueOfFirstSample = firstSample.getParameterValueBy(SampleKey.CHEMISTRY_ID, tag);
-			String parameterValueOfSecondSample = secondSample.getParameterValueBy(SampleKey.CHEMISTRY_ID, tag);
-
-			if (! parameterValueOfFirstSample.equals(parameterValueOfSecondSample))
-				return null;
-			else
-			{
-				Parameter parameter = new Parameter(new HashMap<>()
-				{{
-					put(tag.getKey(), parameterValueOfFirstSample);
-					put(ChemistryKey.ID.getKey(), firstSample.get(SampleKey.CHEMISTRY_ID));
-				}});
-				Sample sample = new Sample(new HashMap<>()
-				{{
-					put(SampleKey.CHEMISTRY_ID.getKey(), firstSample.get(SampleKey.CHEMISTRY_ID));
-					put(SampleKey.DEPTH_START.getKey(),
-							firstSample.get(SampleKey.DEPTH_START));
-					put(SampleKey.DEPTH_END.getKey(),
-							secondSample.get(SampleKey.DEPTH_END));
-				}});
-
-				sample.addParameter(parameter);
-
-				return sample;
-			}
+			return combineByChemistryTag(firstSample, secondSample, tag);
 		}
 
 		if (tag instanceof RuKKey)
 		{
-			final String parameterValueOfFirstSample = firstSample.getParameterValueBy(SampleKey.RUK_ID, tag);
-			String parameterValueOfSecondSample = secondSample.getParameterValueBy(SampleKey.RUK_ID, tag);
-
-			if (! parameterValueOfFirstSample.equals(parameterValueOfSecondSample))
-				return null;
-			else
-			{
-				Parameter parameter = new Parameter(new HashMap<>()
-				{{
-					put(tag.getKey(), parameterValueOfFirstSample);
-					put(RuKKey.ID.getKey(), firstSample.get(SampleKey.RUK_ID));
-				}});
-				Sample sample = new Sample(new HashMap<>()
-				{{
-					put(SampleKey.RUK_ID.getKey(), firstSample.get(SampleKey.RUK_ID));
-					put(SampleKey.DEPTH_START.getKey(),
-							firstSample.get(SampleKey.DEPTH_START));
-					put(SampleKey.DEPTH_END.getKey(),
-							secondSample.get(SampleKey.DEPTH_END));
-				}});
-
-				sample.addParameter(parameter);
-
-				return sample;
-			}
+			return combineByRuKTag(firstSample, secondSample, tag);
 		}
+
 		return null;
 	}
 
-	private Sample checkChemistryTag()
+	private Sample combineBySampleTag(final Sample firstSample, final Sample secondSample, final Key tag)
 	{
-		return null;
+		if (! firstSample.get(tag).equals(secondSample.get(tag)))
+			return null;
+		else
+		{
+			Sample sample = new Sample(new HashMap<>()
+			{{
+				put(tag.getKey(), firstSample.get(tag));
+				put(SampleKey.DEPTH_START.getKey(),
+						firstSample.get(SampleKey.DEPTH_START));
+				put(SampleKey.DEPTH_END.getKey(),
+						secondSample.get(SampleKey.DEPTH_END));
+			}});
+
+			return sample;
+		}
+	}
+
+	private Sample combineByRuKTag(final Sample firstSample, final Sample secondSample, final Key tag)
+	{
+		final String parameterValueOfFirstSample = firstSample.getParameterValueBy(SampleKey.RUK_ID, tag);
+		String parameterValueOfSecondSample = secondSample.getParameterValueBy(SampleKey.RUK_ID, tag);
+
+		if (! parameterValueOfFirstSample.equals(parameterValueOfSecondSample))
+			return null;
+		else
+		{
+			Parameter parameter = new Parameter(new HashMap<>()
+			{{
+				put(tag.getKey(), parameterValueOfFirstSample);
+				put(RuKKey.ID.getKey(), firstSample.get(SampleKey.RUK_ID));
+			}});
+			Sample sample = new Sample(new HashMap<>()
+			{{
+				put(SampleKey.RUK_ID.getKey(), firstSample.get(SampleKey.RUK_ID));
+				put(SampleKey.DEPTH_START.getKey(),
+						firstSample.get(SampleKey.DEPTH_START));
+				put(SampleKey.DEPTH_END.getKey(),
+						secondSample.get(SampleKey.DEPTH_END));
+			}});
+
+			sample.addParameter(parameter);
+
+			return sample;
+		}
+	}
+
+	private Sample combineByChemistryTag(final Sample firstSample, final Sample secondSample, final Key tag)
+	{
+		final String parameterValueOfFirstSample = firstSample.getParameterValueBy(SampleKey.CHEMISTRY_ID, tag);
+		String parameterValueOfSecondSample = secondSample.getParameterValueBy(SampleKey.CHEMISTRY_ID, tag);
+
+		if (! parameterValueOfFirstSample.equals(parameterValueOfSecondSample))
+			return null;
+		else
+		{
+			Parameter parameter = new Parameter(new HashMap<>()
+			{{
+				put(tag.getKey(), parameterValueOfFirstSample);
+				put(ChemistryKey.ID.getKey(), firstSample.get(SampleKey.CHEMISTRY_ID));
+			}});
+			Sample sample = new Sample(new HashMap<>()
+			{{
+				put(SampleKey.CHEMISTRY_ID.getKey(), firstSample.get(SampleKey.CHEMISTRY_ID));
+				put(SampleKey.DEPTH_START.getKey(),
+						firstSample.get(SampleKey.DEPTH_START));
+				put(SampleKey.DEPTH_END.getKey(),
+						secondSample.get(SampleKey.DEPTH_END));
+			}});
+
+			sample.addParameter(parameter);
+
+			return sample;
+		}
 	}
 
 	public List<Sample> createHeapSamples()

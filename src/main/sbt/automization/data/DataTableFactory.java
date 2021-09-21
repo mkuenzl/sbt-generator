@@ -109,7 +109,13 @@ public final class DataTableFactory
 					((Sample) sample).setProbe(table);
 				}
 			}
+			sortSamples(table);
 		}
+	}
+
+	private static void sortSamples(Probe table)
+	{
+		table.getSamples().sort(Comparator.comparing(a -> a.get(SampleKey.NUMBER)));
 	}
 
 	public static void createListOfProbes(List<Map<String, String>> csvTable)
