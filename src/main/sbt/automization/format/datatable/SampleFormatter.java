@@ -10,6 +10,7 @@ import sbt.automization.util.HeapConstruction;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Class to provide static methods for layer manipulation.
@@ -39,7 +40,7 @@ public final class SampleFormatter
 	 * @param tag       a String specifying an information tag
 	 * @return an updated list of layers with all possible layers combined
 	 */
-	public List<Sample> combineSamplesByTag(final Key tag)
+	public List<Sample> combineSamplesByTag(final Key... tag)
 	{
 		if (outcrop != null)
 		{
@@ -59,7 +60,7 @@ public final class SampleFormatter
 	 * @param tag     a String representing the information to compare
 	 * @return an updated list of layers with all possible layers combined
 	 */
-	public List<Sample> combineSamples(final List<Sample> samples, final Key tag)
+	public List<Sample> combineSamples(final List<Sample> samples, final Key... tag)
 	{
 		List<Sample> updatedSamples = new ArrayList<>();
 
@@ -91,113 +92,65 @@ public final class SampleFormatter
 		return updatedSamples;
 	}
 
-	/**
-	 * Method used for combination of the layers based on a specified tag.
-	 *
-	 * @param firstSample  a Layer Object
-	 * @param secondSample a Layer Object
-	 * @param tag          a String representing a column of the excel template
-	 * @return a Layer Object with the tag, the depth start from the first layer and end from the second layer.
-	 */
-	public Sample combineSamples(final Sample firstSample, final Sample secondSample, final Key tag)
+	public Sample combineSamples(final Sample firstSample, final Sample secondSample, final Key... keys)
 	{
 		if (firstSample == null) return secondSample;
 		if (secondSample == null) return firstSample;
-		if (tag == null) return null;
+		if (keys == null) return null;
 
-		if (tag instanceof SampleKey)
+		if (samplesAreEqualByTags(firstSample,secondSample,keys))
 		{
-			return combineBySampleTag(firstSample, secondSample, tag);
-		}
-
-		if (tag instanceof ChemistryKey)
-		{
-			return combineByChemistryTag(firstSample, secondSample, tag);
-		}
-
-		if (tag instanceof RuKKey)
-		{
-			return combineByRuKTag(firstSample, secondSample, tag);
+			Sample sample = new Sample(firstSample);
+			Map<String, String> sampleTable = sample.getTable();
+			sampleTable.put(SampleKey.DEPTH_END.getKey(), secondSample.get(SampleKey.DEPTH_END));
+			return sample;
 		}
 
 		return null;
 	}
 
-	private Sample combineBySampleTag(final Sample firstSample, final Sample secondSample, final Key tag)
+	private boolean samplesAreEqualByTags(final Sample firstSample, final Sample secondSample, final Key... keys)
 	{
-		if (! firstSample.get(tag).equals(secondSample.get(tag)))
-			return null;
-		else
+		boolean isEquals = true;
+
+		for (Key key : keys)
 		{
-			Sample sample = new Sample(new HashMap<>()
-			{{
-				put(tag.getKey(), firstSample.get(tag));
-				put(SampleKey.DEPTH_START.getKey(),
-						firstSample.get(SampleKey.DEPTH_START));
-				put(SampleKey.DEPTH_END.getKey(),
-						secondSample.get(SampleKey.DEPTH_END));
-			}});
+			if (key instanceof SampleKey)
+			{
+				if (! firstSample.get(key).equals(secondSample.get(key)))
+				{
+					isEquals = false;
+					break;
+				}
+			}
 
-			return sample;
+			if (key instanceof ChemistryKey)
+			{
+				final String parameterValueOfFirstSample = firstSample.getParameterValueBy(SampleKey.CHEMISTRY_ID, key);
+				String parameterValueOfSecondSample = secondSample.getParameterValueBy(SampleKey.CHEMISTRY_ID, key);
+
+				if (! parameterValueOfFirstSample.equals(parameterValueOfSecondSample))
+				{
+					isEquals = false;
+					break;
+				}
+			}
+
+			if (key instanceof RuKKey)
+			{
+				final String parameterValueOfFirstSample = firstSample.getParameterValueBy(SampleKey.RUK_ID, key);
+				String parameterValueOfSecondSample = secondSample.getParameterValueBy(SampleKey.RUK_ID, key);
+
+				if (! parameterValueOfFirstSample.equals(parameterValueOfSecondSample))
+				{
+					isEquals = false;
+					break;
+				}
+			}
+
 		}
-	}
 
-	private Sample combineByRuKTag(final Sample firstSample, final Sample secondSample, final Key tag)
-	{
-		final String parameterValueOfFirstSample = firstSample.getParameterValueBy(SampleKey.RUK_ID, tag);
-		String parameterValueOfSecondSample = secondSample.getParameterValueBy(SampleKey.RUK_ID, tag);
-
-		if (! parameterValueOfFirstSample.equals(parameterValueOfSecondSample))
-			return null;
-		else
-		{
-			Parameter parameter = new Parameter(new HashMap<>()
-			{{
-				put(tag.getKey(), parameterValueOfFirstSample);
-				put(RuKKey.ID.getKey(), firstSample.get(SampleKey.RUK_ID));
-			}});
-			Sample sample = new Sample(new HashMap<>()
-			{{
-				put(SampleKey.RUK_ID.getKey(), firstSample.get(SampleKey.RUK_ID));
-				put(SampleKey.DEPTH_START.getKey(),
-						firstSample.get(SampleKey.DEPTH_START));
-				put(SampleKey.DEPTH_END.getKey(),
-						secondSample.get(SampleKey.DEPTH_END));
-			}});
-
-			sample.addParameter(parameter);
-
-			return sample;
-		}
-	}
-
-	private Sample combineByChemistryTag(final Sample firstSample, final Sample secondSample, final Key tag)
-	{
-		final String parameterValueOfFirstSample = firstSample.getParameterValueBy(SampleKey.CHEMISTRY_ID, tag);
-		String parameterValueOfSecondSample = secondSample.getParameterValueBy(SampleKey.CHEMISTRY_ID, tag);
-
-		if (! parameterValueOfFirstSample.equals(parameterValueOfSecondSample))
-			return null;
-		else
-		{
-			Parameter parameter = new Parameter(new HashMap<>()
-			{{
-				put(tag.getKey(), parameterValueOfFirstSample);
-				put(ChemistryKey.ID.getKey(), firstSample.get(SampleKey.CHEMISTRY_ID));
-			}});
-			Sample sample = new Sample(new HashMap<>()
-			{{
-				put(SampleKey.CHEMISTRY_ID.getKey(), firstSample.get(SampleKey.CHEMISTRY_ID));
-				put(SampleKey.DEPTH_START.getKey(),
-						firstSample.get(SampleKey.DEPTH_START));
-				put(SampleKey.DEPTH_END.getKey(),
-						secondSample.get(SampleKey.DEPTH_END));
-			}});
-
-			sample.addParameter(parameter);
-
-			return sample;
-		}
+		return isEquals;
 	}
 
 	public List<Sample> createHeapSamples()

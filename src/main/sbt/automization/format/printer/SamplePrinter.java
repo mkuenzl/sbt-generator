@@ -73,7 +73,7 @@ public final class SamplePrinter implements TextPrinter
 		StringBuilder formattedSampleMaterial = new StringBuilder();
 
 		SampleFormatter sampleFormatter = new SampleFormatter(dataTable, outcrop.toString());
-		List<Sample> outcropLayerSamples = sampleFormatter.combineSamplesByTag(SampleKey.TYPE);
+		List<Sample> outcropLayerSamples = sampleFormatter.combineSamplesByTag(SampleKey.TYPE, SampleKey.ROUNDING_GRADATION, SampleKey.GRANULATION);
 
 		//List<Sample> outcropLayerSamples = dataTable.getSamplesBy(SampleKey.OUTCROP, outcrop.toString());
 

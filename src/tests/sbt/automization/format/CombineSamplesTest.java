@@ -466,4 +466,46 @@ public class CombineSamplesTest
 
 		Assert.assertEquals(compareToSamples, combinedSamples);
 	}
+
+	@Test
+	public void combineTwoLayersBasedOnMultipleTag()
+	{
+		Key color = SampleKey.COLOR;
+		Key type = SampleKey.TYPE;
+		Key rounding = SampleKey.ROUNDING_GRADATION;
+
+		Sample sampleOne = new Sample(new HashMap<>()
+		{{
+			put(color.getKey(), "grey");
+			put(type.getKey(), "concrete");
+			put(rounding.getKey(), "round");
+
+			put(SampleKey.DEPTH_START.getKey(), "5");
+			put(SampleKey.DEPTH_END.getKey(), "15");
+		}});
+
+		Sample sampleTwo = new Sample(new HashMap<>()
+		{{
+			put(color.getKey(), "grey");
+			put(type.getKey(), "concrete");
+			put(rounding.getKey(), "round");
+
+			put(SampleKey.DEPTH_START.getKey(), "25");
+			put(SampleKey.DEPTH_END.getKey(), "35");
+		}});
+
+		Sample combinedSample = new SampleFormatter().combineSamples(sampleOne, sampleTwo, color, type, rounding);
+
+		Sample compareToSample = new Sample(new HashMap<>()
+		{{
+			put(color.getKey(), "grey");
+			put(type.getKey(), "concrete");
+			put(rounding.getKey(), "round");
+
+			put(SampleKey.DEPTH_START.getKey(), "5");
+			put(SampleKey.DEPTH_END.getKey(), "35");
+		}});
+
+		Assert.assertEquals(combinedSample, compareToSample);
+	}
 }

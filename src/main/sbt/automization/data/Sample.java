@@ -22,6 +22,13 @@ public final class Sample extends DataTableImpl
 		super();
 	}
 
+	public Sample(Sample copyFrom)
+	{
+		this.probe = copyFrom.probe;
+		this.informationMap = new HashMap<>(copyFrom.informationMap);
+		this.parameters.addAll(copyFrom.parameters);
+	}
+
 	public List<Parameter> getParameters()
 	{
 		return parameters;
