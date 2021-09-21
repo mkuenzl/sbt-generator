@@ -4,6 +4,8 @@ import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
 import sbt.automization.templates.helper.RowProvider;
 import sbt.automization.templates.helper.strategy.*;
+import sbt.automization.util.DatatableFilter;
+import sbt.automization.util.Separator;
 
 import java.util.Collection;
 import java.util.List;
@@ -35,9 +37,20 @@ public final class Building extends Report
 	}
 
 	@Override
+	Collection<List<DataTable>> splitIntoPortionPerPage(List<DataTable> tables)
+	{
+		List<DataTable> probesWhichIncludeOutcrop = DatatableFilter.getProbesWhichIncludeOutcrop(tables, outcrop);
+
+		Collection<List<DataTable>> portions = Separator.separateProbesBySizeOfSamples(probesWhichIncludeOutcrop, 12);
+
+		return portions;
+	}
+
+	@Override
 	public void constructTemplate(List<DataTable> dataTables)
 	{
 		Collection<List<DataTable>> tablesSplitIntoPortions = splitIntoPortionPerPage(dataTables);
+
 		for (List<DataTable> portion : tablesSplitIntoPortions)
 		{
 			buildTable(portion);
