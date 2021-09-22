@@ -4,6 +4,7 @@ import sbt.automization.data.DataTable;
 import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
 import sbt.automization.data.key.Key;
+import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlRow;
 import sbt.automization.html.HtmlText;
 import sbt.automization.styles.StyleParameter;
@@ -51,14 +52,14 @@ public abstract class RowConstruction implements RowStrategy
 	{
 		for (DataTable probe : probes)
 		{
-			String cell = createCellFrom((Probe) probe);
-			row.appendContent(cell);
+			HtmlCell cell = createCellFrom((Probe) probe);
+			row.appendContent(cell.appendTag());
 		}
 	}
 
 	abstract HtmlRow createRow();
 
-	abstract String createCellFrom(Probe probe);
+	abstract HtmlCell createCellFrom(Probe probe);
 
 	public String buildWithSamples()
 	{
@@ -75,13 +76,56 @@ public abstract class RowConstruction implements RowStrategy
 		{
 			for (Sample sample : probe.getSamples())
 			{
-				String cell = createCellFrom(sample);
-				row.appendContent(cell);
+				HtmlCell cell = createCellFrom(sample);
+				row.appendContent(cell.appendTag());
 			}
 		}
 	}
 
-	abstract String createCellFrom(Sample sample);
+	abstract HtmlCell createCellFrom(Sample sample);
+
+	public String buildWithSamplesCombined()
+	{
+		if (! CheckDataAvailability.thereExistsAnTableWithData(probes, outcrop, key)) return "";
+
+		initializeRow();
+		createCombinedCellsForSamples();
+		return row.appendTag();
+	}
+
+	private void createCombinedCellsForSamples()
+	{
+		for (DataTable probe : probes)
+		{
+			HtmlCell lastCell = null;
+			int columnSpan = 1;
+
+			for (Sample sample : probe.getSamples())
+			{
+				HtmlCell cell = createCellFrom(sample);
+
+				//case 1 sample
+				if (null == lastCell)
+				{
+					lastCell = cell;
+					continue;
+				}
+
+				if (cell.appendTag().equals(lastCell.appendTag()))
+				{
+					lastCell = cell;
+					columnSpan++;
+				} else
+				{
+					row.appendContent(lastCell.appendTag());
+					columnSpan = 1;
+					lastCell = cell;
+				}
+			}
+			lastCell.appendAttribute("colspan", String.valueOf(columnSpan));
+			row.appendContent(lastCell.appendTag());
+		}
+	}
 
 	protected String formatUnit(String text)
 	{

@@ -65,6 +65,13 @@ public class RowProvider
 		return rowStrategy.buildWithSamples();
 	}
 
+	public String getRowWithSamplesCombined(RowConstruction rowConstruction)
+	{
+		RowStrategy rowStrategy = setUp(rowConstruction);
+
+		return rowStrategy.buildWithSamplesCombined();
+	}
+
 	public void setDataTables(List<DataTable> tables)
 	{
 		this.dataTables = tables;
