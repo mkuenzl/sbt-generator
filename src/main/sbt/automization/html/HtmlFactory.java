@@ -607,7 +607,14 @@ public class HtmlFactory
 	 * @param classification a String of a chemistry classification
 	 * @return a formatted html cell object for a specific chemistry classification
 	 */
-	public static String createChemistryCell(final String classification)
+	public static String createChemistryCellAsString(final String classification)
+	{
+		HtmlCell chemistryCell = createChemistryCell(classification);
+
+		return chemistryCell.appendTag();
+	}
+
+	public static HtmlCell createChemistryCell(final String classification)
 	{
 		HtmlCell htmlCell;
 
@@ -708,8 +715,6 @@ public class HtmlFactory
 				break;
 		}
 
-		return htmlCell.appendTag();
+		return htmlCell;
 	}
-
-
 }
