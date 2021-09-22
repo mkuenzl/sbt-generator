@@ -37,7 +37,7 @@ public class ConsistencyRow extends RowConstruction
 	}
 
 	@Override
-	String createCellFrom(Probe probe)
+	HtmlCell createCellFrom(Probe probe)
 	{
 		String consistency = new SamplePrinter().printAttributeOfSamplesWithDepth(probe, outcrop, key);
 
@@ -46,17 +46,17 @@ public class ConsistencyRow extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{consistency});
 
-		return cell.appendTag();
+		return cell;
 	}
 
 	@Override
-	String createCellFrom(Sample sample)
+	HtmlCell createCellFrom(Sample sample)
 	{
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
 				styleParameter.getNormalCellClass(),
 				styleParameter.getNormalCellWidth(),
 				new String[]{sample.get(key)});
 
-		return cell.appendTag();
+		return cell;
 	}
 }

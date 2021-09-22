@@ -38,7 +38,7 @@ public class ChemistryAvvRow extends RowConstruction
 	}
 
 	@Override
-	String createCellFrom(Probe probe)
+	HtmlCell createCellFrom(Probe probe)
 	{
 		String avv = new SamplePrinter().printAttributeOfSamplesWithDepth(probe, outcrop, key);
 
@@ -47,17 +47,17 @@ public class ChemistryAvvRow extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{avv});
 
-		return cell.appendTag();
+		return cell;
 	}
 
 	@Override
-	String createCellFrom(Sample sample)
+	HtmlCell createCellFrom(Sample sample)
 	{
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
 				styleParameter.getNormalCellClass(),
 				styleParameter.getNormalCellWidth(),
 				new String[]{sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, key)});
 
-		return cell.appendTag();
+		return cell;
 	}
 }

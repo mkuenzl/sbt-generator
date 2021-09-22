@@ -121,7 +121,7 @@ public class CrossSectionWithoutPitchRows extends RowConstruction
 				new String[]{size});
 		rowSize.appendContent(cellPitchSize.appendTag());
 
-		rowMufv.appendContent(HtmlFactory.createChemistryCell(mufv));
+		rowMufv.appendContent(HtmlFactory.createChemistryCellAsString(mufv));
 
 		HtmlCell cellPitchRuva = HtmlFactory.createCell(styleParameter.getNormalCellClass(), styleParameter.getNormalCellWidth(),
 				new String[]{ruva});
@@ -154,7 +154,7 @@ public class CrossSectionWithoutPitchRows extends RowConstruction
 	}
 
 	@Override
-	String createCellFrom(Probe probe)
+	HtmlCell createCellFrom(Probe probe)
 	{
 		return null;
 	}
@@ -166,7 +166,7 @@ public class CrossSectionWithoutPitchRows extends RowConstruction
 	}
 
 	@Override
-	String createCellFrom(Sample sample)
+	HtmlCell createCellFrom(Sample sample)
 	{
 		return null;
 	}

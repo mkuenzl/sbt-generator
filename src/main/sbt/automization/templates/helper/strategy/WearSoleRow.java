@@ -38,7 +38,7 @@ public class WearSoleRow extends RowConstruction
 	}
 
 	@Override
-	String createCellFrom(Probe probe)
+	HtmlCell createCellFrom(Probe probe)
 	{
 		String formattedCellText = new HtmlText.Builder().appendAttribute("class", styleParameter.getUnitCellClass())
 				.appendContent("[T:")
@@ -50,17 +50,17 @@ public class WearSoleRow extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{probe.get(key), UtilityPrinter.printLineEmpty(), formattedCellText});
 
-		return cell.appendTag();
+		return cell;
 	}
 
 	@Override
-	String createCellFrom(Sample sample)
+	HtmlCell createCellFrom(Sample sample)
 	{
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
 				styleParameter.getNormalCellClass(),
 				styleParameter.getNormalCellWidth(),
 				new String[]{sample.get(key)});
 
-		return cell.appendTag();
+		return cell;
 	}
 }

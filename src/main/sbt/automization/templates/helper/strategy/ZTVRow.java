@@ -38,7 +38,7 @@ public class ZTVRow extends RowConstruction
 	}
 
 	@Override
-	String createCellFrom(Probe probe)
+	HtmlCell createCellFrom(Probe probe)
 	{
 		String ztv = new SamplePrinter().printAttributeOfSamplesWithDepth(probe, outcrop, key);
 
@@ -47,17 +47,17 @@ public class ZTVRow extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{ztv});
 
-		return cell.appendTag();
+		return cell;
 	}
 
 	@Override
-	String createCellFrom(Sample sample)
+	HtmlCell createCellFrom(Sample sample)
 	{
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
 				styleParameter.getNormalCellClass(),
 				styleParameter.getNormalCellWidth(),
 				new String[]{sample.get(key)});
 
-		return cell.appendTag();
+		return cell;
 	}
 }

@@ -37,7 +37,7 @@ public class CompressibilityRow extends RowConstruction
 	}
 
 	@Override
-	String createCellFrom(Probe probe)
+	HtmlCell createCellFrom(Probe probe)
 	{
 		String compressibility = new SamplePrinter().printAttributeOfSamplesWithDepth(probe, outcrop, key);
 
@@ -46,17 +46,17 @@ public class CompressibilityRow extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{compressibility});
 
-		return cell.appendTag();
+		return cell;
 	}
 
 	@Override
-	String createCellFrom(Sample sample)
+	HtmlCell createCellFrom(Sample sample)
 	{
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
 				styleParameter.getNormalCellClass(),
 				styleParameter.getNormalCellWidth(),
 				new String[]{sample.get(key)});
 
-		return cell.appendTag();
+		return cell;
 	}
 }

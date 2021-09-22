@@ -42,7 +42,7 @@ public class RuKCombinedRow extends RowConstruction
 	}
 
 	@Override
-	String createCellFrom(Probe probe)
+	HtmlCell createCellFrom(Probe probe)
 	{
 		String rukLayers = new RuKPrinter().printRukLayers(probe, outcrop);
 
@@ -51,11 +51,11 @@ public class RuKCombinedRow extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{rukLayers});
 
-		return cell.appendTag();
+		return cell;
 	}
 
 	@Override
-	String createCellFrom(Sample sample)
+	HtmlCell createCellFrom(Sample sample)
 	{
 		String rukParameter = sample.getParameterValueBy(SampleKey.RUK_ID, RuKKey.VALUE);
 
@@ -64,6 +64,6 @@ public class RuKCombinedRow extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{rukParameter});
 
-		return cell.appendTag();
+		return cell;
 	}
 }

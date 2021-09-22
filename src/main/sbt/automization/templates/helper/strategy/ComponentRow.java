@@ -37,7 +37,7 @@ public class ComponentRow extends RowConstruction
 	}
 
 	@Override
-	String createCellFrom(Probe probe)
+	HtmlCell createCellFrom(Probe probe)
 	{
 		String component = new SamplePrinter().printAttributeOfSamplesWithDepth(probe, outcrop, key);
 
@@ -46,11 +46,11 @@ public class ComponentRow extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{component});
 
-		return cell.appendTag();
+		return cell;
 	}
 
 	@Override
-	String createCellFrom(Sample sample)
+	HtmlCell createCellFrom(Sample sample)
 	{
 		Probe probe = sample.getProbe();
 
@@ -59,6 +59,6 @@ public class ComponentRow extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{probe.get(key)});
 
-		return cell.appendTag();
+		return cell;
 	}
 }

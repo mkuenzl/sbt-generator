@@ -38,7 +38,7 @@ public class Ev2WithEv85Row extends RowConstruction
 	}
 
 	@Override
-	String createCellFrom(Probe probe)
+	HtmlCell createCellFrom(Probe probe)
 	{
 		String ev2 = probe.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV2);
 		String ev85 = probe.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV85);
@@ -49,11 +49,11 @@ public class Ev2WithEv85Row extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{new LoadPlateTextFormatter().format(ev2, ev85)});
 
-		return cell.appendTag();
+		return cell;
 	}
 
 	@Override
-	String createCellFrom(Sample sample)
+	HtmlCell createCellFrom(Sample sample)
 	{
 		String ev2 = sample.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV2);
 		String ev85 = sample.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV85);
@@ -63,6 +63,6 @@ public class Ev2WithEv85Row extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{new LoadPlateTextFormatter().format(ev2, ev85)});
 
-		return cell.appendTag();
+		return cell;
 	}
 }

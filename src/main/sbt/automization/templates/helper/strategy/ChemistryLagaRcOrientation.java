@@ -38,7 +38,7 @@ public class ChemistryLagaRcOrientation extends RowConstruction
 	}
 
 	@Override
-	String createCellFrom(Probe probe)
+	HtmlCell createCellFrom(Probe probe)
 	{
 		String lagaRcOrientation = new SamplePrinter().printAttributeOfSamplesWithDepth(probe, outcrop, key);
 
@@ -47,13 +47,13 @@ public class ChemistryLagaRcOrientation extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{lagaRcOrientation});
 
-		return cell.appendTag();
+		return cell;
 	}
 
 	@Override
-	String createCellFrom(Sample sample)
+	HtmlCell createCellFrom(Sample sample)
 	{
-		String cell = HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, key));
+		HtmlCell cell = HtmlFactory.createChemistryCell(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, key));
 
 		return cell;
 	}

@@ -38,7 +38,7 @@ public class ChemistryPak extends RowConstruction
 	}
 
 	@Override
-	String createCellFrom(Probe probe)
+	HtmlCell createCellFrom(Probe probe)
 	{
 		String pak = new SamplePrinter().printAttributeOfSamplesWithDepth(probe, outcrop, key);
 
@@ -47,11 +47,11 @@ public class ChemistryPak extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{pak});
 
-		return cell.appendTag();
+		return cell;
 	}
 
 	@Override
-	String createCellFrom(Sample sample)
+	HtmlCell createCellFrom(Sample sample)
 	{
 		String pak = sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, key);
 
@@ -60,6 +60,6 @@ public class ChemistryPak extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{pak});
 
-		return cell.appendTag();
+		return cell;
 	}
 }

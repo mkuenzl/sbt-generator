@@ -38,7 +38,7 @@ public class SizeTotalTmhbRow extends RowConstruction
 	}
 
 	@Override
-	String createCellFrom(Probe probe)
+	HtmlCell createCellFrom(Probe probe)
 	{
 		List<Sample> samples = probe.getSamplesBy(SampleKey.OUTCROP, new String[]{
 				outcrop,
@@ -54,11 +54,11 @@ public class SizeTotalTmhbRow extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{size});
 
-		return cell.appendTag();
+		return cell;
 	}
 
 	@Override
-	String createCellFrom(Sample sample)
+	HtmlCell createCellFrom(Sample sample)
 	{
 		List<Sample> samples = sample.getSamplesBy(SampleKey.OUTCROP, outcrop);
 		String size = new SamplePrinter().printThickness(samples);
@@ -68,6 +68,6 @@ public class SizeTotalTmhbRow extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{size});
 
-		return cell.appendTag();
+		return cell;
 	}
 }

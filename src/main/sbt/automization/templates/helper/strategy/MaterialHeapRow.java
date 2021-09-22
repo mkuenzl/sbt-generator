@@ -27,18 +27,18 @@ public class MaterialHeapRow extends RowConstruction
 	}
 
 	@Override
-	String createCellFrom(Probe probe)
+	HtmlCell createCellFrom(Probe probe)
 	{
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
 				styleParameter.getNormalCellClass(),
 				styleParameter.getNormalCellWidth(),
 				new String[]{new SamplePrinter().printAttributeOfSamples(probe, outcrop, key)});
 
-		return cell.appendTag();
+		return cell;
 	}
 
 	@Override
-	String createCellFrom(Sample sample)
+	HtmlCell createCellFrom(Sample sample)
 	{
 		Probe probe = sample.getProbe();
 
@@ -47,6 +47,6 @@ public class MaterialHeapRow extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{sample.get(key)});
 
-		return cell.appendTag();
+		return cell;
 	}
 }

@@ -38,7 +38,7 @@ public class ChemistryBtexRow extends RowConstruction
 	}
 
 	@Override
-	String createCellFrom(Probe probe)
+	HtmlCell createCellFrom(Probe probe)
 	{
 		String btex = new SamplePrinter().printAttributeOfSamplesWithDepth(probe, outcrop, key);
 
@@ -47,11 +47,11 @@ public class ChemistryBtexRow extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{btex});
 
-		return cell.appendTag();
+		return cell;
 	}
 
 	@Override
-	String createCellFrom(Sample sample)
+	HtmlCell createCellFrom(Sample sample)
 	{
 		String parameter = sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, key);
 
@@ -60,6 +60,6 @@ public class ChemistryBtexRow extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{parameter});
 
-		return cell.appendTag();
+		return cell;
 	}
 }

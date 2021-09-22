@@ -64,9 +64,9 @@ public final class Building extends Report
 		createTable();
 		provider.setDataTables(dataTables);
 
-		addToTable(provider.getRowWithSamples(new IdRow()));
-		addToTable(provider.getRowWithSamples(new ComponentRow()));
-		addToTable(provider.getRowWithSamples(new MaterialBuildingRow()));
+		addToTable(provider.getRowWithSamplesCombined(new IdRow()));
+		addToTable(provider.getRowWithSamplesCombined(new ComponentRow()));
+		addToTable(provider.getRowWithSamplesCombined(new MaterialBuildingRow()));
 
 		constructEnvironmentTechnicalFeatures(dataTables);
 		addToTable(provider.getRowWithSamples(new LegendWithDepthRow()));

@@ -38,7 +38,7 @@ public class MaterialTobRow extends RowConstruction
 	}
 
 	@Override
-	String createCellFrom(Probe probe)
+	HtmlCell createCellFrom(Probe probe)
 	{
 		String material = new SamplePrinter(Outcrop.TOB).printSamplesMaterials(probe);
 
@@ -47,17 +47,17 @@ public class MaterialTobRow extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{material});
 
-		return cell.appendTag();
+		return cell;
 	}
 
 	@Override
-	String createCellFrom(Sample sample)
+	HtmlCell createCellFrom(Sample sample)
 	{
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
 				styleParameter.getNormalCellClass(),
 				styleParameter.getNormalCellWidth(),
 				new String[]{sample.get(key)});
 
-		return cell.appendTag();
+		return cell;
 	}
 }

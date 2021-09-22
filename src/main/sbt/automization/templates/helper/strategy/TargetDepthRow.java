@@ -37,7 +37,7 @@ public class TargetDepthRow extends RowConstruction
 	}
 
 	@Override
-	String createCellFrom(Probe probe)
+	HtmlCell createCellFrom(Probe probe)
 	{
 		String targetDepth = probe.get(ProbeKey.TARGET_DEPTH);
 		HtmlCell cell;
@@ -87,17 +87,17 @@ public class TargetDepthRow extends RowConstruction
 //					.build();
 
 		}
-		return cell.appendTag();
+		return cell;
 	}
 
 	@Override
-	String createCellFrom(Sample sample)
+	HtmlCell createCellFrom(Sample sample)
 	{
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
 				styleParameter.getNormalCellClass(),
 				styleParameter.getNormalCellWidth(),
 				new String[]{sample.get(key)});
 
-		return cell.appendTag();
+		return cell;
 	}
 }

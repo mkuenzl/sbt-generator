@@ -37,7 +37,7 @@ public class EvMinimumBorderRow extends RowConstruction
 	}
 
 	@Override
-	String createCellFrom(Probe probe)
+	HtmlCell createCellFrom(Probe probe)
 	{
 		String minBorder = probe.getParameterValueBy(ProbeKey.LP_ID, key);
 
@@ -46,11 +46,11 @@ public class EvMinimumBorderRow extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{minBorder});
 
-		return cell.appendTag();
+		return cell;
 	}
 
 	@Override
-	String createCellFrom(Sample sample)
+	HtmlCell createCellFrom(Sample sample)
 	{
 		String minBorder = sample.getParameterValueBy(ProbeKey.LP_ID, key);
 
@@ -59,6 +59,6 @@ public class EvMinimumBorderRow extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{minBorder});
 
-		return cell.appendTag();
+		return cell;
 	}
 }

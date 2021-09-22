@@ -28,7 +28,7 @@ public class DIN19682Row extends RowConstruction
 	}
 
 	@Override
-	String createCellFrom(Probe probe)
+	HtmlCell createCellFrom(Probe probe)
 	{
 		String din = new SamplePrinter().printAttributeOfSamplesWithDepth(probe, outcrop, key);
 
@@ -37,13 +37,13 @@ public class DIN19682Row extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{din});
 
-		return cell.appendTag();
+		return cell;
 	}
 
 	@Override
-	String createCellFrom(Sample sample)
+	HtmlCell createCellFrom(Sample sample)
 	{
-		String cell = HtmlFactory.createChemistryCell(sample.get(key));
+		HtmlCell cell = HtmlFactory.createChemistryCell(sample.get(key));
 
 		return cell;
 	}

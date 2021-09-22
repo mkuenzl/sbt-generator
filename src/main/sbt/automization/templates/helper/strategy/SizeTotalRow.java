@@ -37,7 +37,7 @@ public class SizeTotalRow extends RowConstruction
 	}
 
 	@Override
-	String createCellFrom(Probe probe)
+	HtmlCell createCellFrom(Probe probe)
 	{
 		String size = new SamplePrinter().printThickness(probe.getSamples());
 
@@ -46,11 +46,11 @@ public class SizeTotalRow extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{size});
 
-		return cell.appendTag();
+		return cell;
 	}
 
 	@Override
-	String createCellFrom(Sample sample)
+	HtmlCell createCellFrom(Sample sample)
 	{
 		String size = new SamplePrinter().printThickness(sample.getSamples());
 
@@ -59,6 +59,6 @@ public class SizeTotalRow extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{size});
 
-		return cell.appendTag();
+		return cell;
 	}
 }

@@ -38,7 +38,7 @@ public class ChemistryKmfRow extends RowConstruction
 	}
 
 	@Override
-	String createCellFrom(Probe probe)
+	HtmlCell createCellFrom(Probe probe)
 	{
 		String attributesOfSamples = new SamplePrinter().printAttributeOfSamplesWithDepth(probe, outcrop, key);
 
@@ -47,15 +47,15 @@ public class ChemistryKmfRow extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{attributesOfSamples});
 
-		return cell.appendTag();
+		return cell;
 	}
 
 	@Override
-	String createCellFrom(Sample sample)
+	HtmlCell createCellFrom(Sample sample)
 	{
 		String parameter = sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, key);
 
-		String cell = HtmlFactory.createChemistryCell(parameter);
+		HtmlCell cell = HtmlFactory.createChemistryCell(parameter);
 
 		return cell;
 	}

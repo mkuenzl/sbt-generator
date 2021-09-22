@@ -37,7 +37,7 @@ public class EvDynRow extends RowConstruction
 	}
 
 	@Override
-	String createCellFrom(Probe probe)
+	HtmlCell createCellFrom(Probe probe)
 	{
 		String parameterValue = probe.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV);
 
@@ -46,11 +46,11 @@ public class EvDynRow extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{parameterValue});
 
-		return cell.appendTag();
+		return cell;
 	}
 
 	@Override
-	String createCellFrom(Sample sample)
+	HtmlCell createCellFrom(Sample sample)
 	{
 		String parameterValue = sample.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV);
 
@@ -59,6 +59,6 @@ public class EvDynRow extends RowConstruction
 				styleParameter.getNormalCellWidth(),
 				new String[]{parameterValue});
 
-		return cell.appendTag();
+		return cell;
 	}
 }
