@@ -39,7 +39,7 @@ public final class Separator
 		{
 			int amountOfSamples = dataTable.getSamples().size();
 
-			if (amountOfSamplesInTables + amountOfSamples <= 12)
+			if (amountOfSamplesInTables + amountOfSamples <= size)
 			{
 				tables.add(dataTable);
 				amountOfSamplesInTables += amountOfSamples;
