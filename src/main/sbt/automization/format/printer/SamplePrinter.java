@@ -11,6 +11,9 @@ import sbt.automization.format.datatable.SampleFormatter;
 import sbt.automization.format.text.*;
 import sbt.automization.html.HtmlText;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.List;
 
 public final class SamplePrinter implements TextPrinter
@@ -42,8 +45,11 @@ public final class SamplePrinter implements TextPrinter
 			return String.format("%.0f", thicknessOfSamples);
 		} else
 		{
-			String height = String.valueOf(thicknessOfSamples);
-			return height.replace(".", ",");
+			double height = Math.round(thicknessOfSamples * 10.0) / 10.0;
+			//String height = String.valueOf(thicknessOfSamples);
+			String replace = String.valueOf(height).replace(".", ",");
+
+			return replace;
 		}
 	}
 
@@ -57,7 +63,7 @@ public final class SamplePrinter implements TextPrinter
 		return heightValue;
 	}
 
-	public Double measureThickness(Sample sample)
+	public double measureThickness(Sample sample)
 	{
 		if (sample.containsValueFor(SampleKey.THICKNESS))
 		{

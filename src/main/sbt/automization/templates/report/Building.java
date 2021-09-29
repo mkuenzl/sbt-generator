@@ -2,6 +2,9 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
+import sbt.automization.format.text.StandardCellTextFormatter;
+import sbt.automization.styles.StyleParameter;
+import sbt.automization.styles.StyleParameterBuilder;
 import sbt.automization.templates.helper.RowProvider;
 import sbt.automization.templates.helper.strategy.*;
 import sbt.automization.util.DatatableFilter;
@@ -18,7 +21,8 @@ public final class Building extends Report
 	private Building()
 	{
 		super(Outcrop.BUILDING);
-		provider = new RowProvider(Outcrop.BUILDING);
+		provider = new RowProvider(Outcrop.BUILDING, getStyleParameter());
+
 	}
 
 	public static Building getInstance()
@@ -34,6 +38,20 @@ public final class Building extends Report
 			}
 		}
 		return instance;
+	}
+
+	private StyleParameter getStyleParameter()
+	{
+		return new StyleParameterBuilder()
+				.setRowClass("NormalThin9")
+				.setHeaderCellClass("NormalHeader")
+				.setHeaderCellWidth("5")
+				.setNormalCellClass("NormalBold")
+				.setNormalCellWidth("2.5")
+				.setUnitCellClass("Normal6")
+				.setLegendCellClass("NormalHeaderSmallFont")
+				.setTextFormatter(new StandardCellTextFormatter())
+				.build();
 	}
 
 	@Override
@@ -69,7 +87,7 @@ public final class Building extends Report
 		addToTable(provider.getRowWithSamplesCombined(new MaterialBuildingRow()));
 
 		constructEnvironmentTechnicalFeatures(dataTables);
-		addToTable(provider.getRowWithSamples(new LegendWithDepthRow()));
+		addToTable(provider.getRowWithSamples(new LegendWithBuildingInformationRow()));
 	}
 
 	@Override
@@ -93,26 +111,26 @@ public final class Building extends Report
 	@Override
 	void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
-		addToTable(provider.getRowWithSamples(new ChemistryIdRow()));
-		addToTable(provider.getRowWithSamples(new SuspectedPollutantRow()));
-		addToTable(provider.getRowWithSamples(new ChemistryPak()));
-		addToTable(provider.getRowWithSamples(new ChemistryPcbRow())); // PCB
-		addToTable(provider.getRowWithSamples(new ChemistryAsbestosRow())); // ASBEST
+		addToTable(provider.getRowWithSamplesCombined(new ChemistryIdRow()));
+		addToTable(provider.getRowWithSamplesCombined(new SuspectedPollutantRow()));
+		addToTable(provider.getRowWithSamplesCombined(new ChemistryPak()));
+		addToTable(provider.getRowWithSamplesCombined(new ChemistryPcbRow())); // PCB
+		addToTable(provider.getRowWithSamplesCombined(new ChemistryAsbestosRow())); // ASBEST
 
-		addToTable(provider.getRowWithSamples(new ChemistryBtexRow()));
-		addToTable(provider.getRowWithSamples(new ChemistryPhenolRow())); // KMF
-		addToTable(provider.getRowWithSamples(new ChemistryKmfRow())); // KMF
-		addToTable(provider.getRowWithSamples(new ChemistrySulfateRow()));
-		addToTable(provider.getRowWithSamples(new ChemistryIcpScreeningRow()));
-		addToTable(provider.getRowWithSamples(new ChemistryEoxRow()));
+		addToTable(provider.getRowWithSamplesCombined(new ChemistryBtexRow()));
+		addToTable(provider.getRowWithSamplesCombined(new ChemistryPhenolRow())); // KMF
+		addToTable(provider.getRowWithSamplesCombined(new ChemistryKmfRow())); // KMF
+		addToTable(provider.getRowWithSamplesCombined(new ChemistrySulfateRow()));
+		addToTable(provider.getRowWithSamplesCombined(new ChemistryIcpScreeningRow()));
+		addToTable(provider.getRowWithSamplesCombined(new ChemistryEoxRow()));
 
-		addToTable(provider.getRowWithSamples(new ChemistryLagaBoRow()));
-		addToTable(provider.getRowWithSamples(new ChemistryLagaRc()));
-		addToTable(provider.getRowWithSamples(new ChemistryLagaRcOrientation()));
-		addToTable(provider.getRowWithSamples(new ChemistryTlRockRow()));
-		addToTable(provider.getRowWithSamples(new ChemistryMufvClassificationRow())); // Einstufung
-		addToTable(provider.getRowWithSamples(new ChemistryMufvParameterRow())); // Parameter
-		addToTable(provider.getRowWithSamples(new WasteKeyMaterialRow()));  // Material
-		addToTable(provider.getRowWithSamples(new WasteKeyMixRow()));  // gemischt
+		addToTable(provider.getRowWithSamplesCombined(new ChemistryLagaBoRow()));
+		addToTable(provider.getRowWithSamplesCombined(new ChemistryLagaRc()));
+		addToTable(provider.getRowWithSamplesCombined(new ChemistryLagaRcOrientation()));
+		addToTable(provider.getRowWithSamplesCombined(new ChemistryTlRockRow()));
+		addToTable(provider.getRowWithSamplesCombined(new ChemistryMufvClassificationRow())); // Einstufung
+		addToTable(provider.getRowWithSamplesCombined(new ChemistryMufvParameterRow())); // Parameter
+		addToTable(provider.getRowWithSamplesCombined(new WasteKeyMaterialRow()));  // Material
+		addToTable(provider.getRowWithSamplesCombined(new WasteKeyMixRow()));  // gemischt
 	}
 }

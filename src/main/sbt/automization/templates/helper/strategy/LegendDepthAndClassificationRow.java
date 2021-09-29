@@ -16,7 +16,7 @@ public class LegendDepthAndClassificationRow extends RowConstruction
 	@Override
 	public String buildWithProbes()
 	{
-		int size = styleParameter.getHeaderCellWidthAsInt() + this.probes.size() * styleParameter.getNormalCellWidthAsInt();
+		double size = styleParameter.getHeaderCellWidthAsDouble() + this.probes.size() * styleParameter.getNormalCellWidthAsDouble();
 
 		//Umwelttechnische Merkmale Trennzeile
 		HtmlRow rowLegend = new HtmlRow.Builder()

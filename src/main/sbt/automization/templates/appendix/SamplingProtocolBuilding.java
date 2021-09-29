@@ -14,7 +14,7 @@ import sbt.automization.util.DatatableFilter;
 
 import java.util.List;
 
-public class SamplingProtocolBuilding extends Appendix
+public final class SamplingProtocolBuilding extends Appendix
 {
 	private static SamplingProtocolBuilding instance;
 
@@ -86,7 +86,7 @@ public class SamplingProtocolBuilding extends Appendix
 
 		for (Sample sample : dataTable.getSamplesBy(SampleKey.OUTCROP, Outcrop.BUILDING.toString()))
 		{
-			String row = HtmlFactory.createRowAsString("Normal", new String[]{
+			String row = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN_8.getStyleClass(), new String[]{
 					HtmlFactory.createCellAsString(textFormatter, "NormalCenter", "font-size:10.0pt",
 							new String[]{String.valueOf(++ linesPerPage)}),
 					HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(),
@@ -112,7 +112,6 @@ public class SamplingProtocolBuilding extends Appendix
 
 		buildPhotoTable();
 
-		addPageBreak();
 		addPageBreak();
 	}
 
@@ -278,7 +277,7 @@ public class SamplingProtocolBuilding extends Appendix
 
 	private void addTotalDepthRow(DataTable dataTable)
 	{
-		String depthRow = HtmlFactory.createRowAsString("Normal", new String[]{
+		String depthRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN_8.getStyleClass(), new String[]{
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold", "font-size:10.0pt", 1, 3,
 						new String[]{"Gesamttiefe von Bauteiloberfläche (BOF):"}),
 				HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(), 1, 4,

@@ -102,7 +102,7 @@ public final class SamplingProtocol extends Appendix
 				{
 					addAndResetTableOnPageBreak();
 
-					String row = HtmlFactory.createRowAsString("Normal", new String[]{
+					String row = HtmlFactory.createRowAsString("NormalThin8", new String[]{
 							HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 									new String[]{"P".concat(String.valueOf(++ lines))}),
 							HtmlFactory.createCellAsString(textFormatter, "NormalCenter",

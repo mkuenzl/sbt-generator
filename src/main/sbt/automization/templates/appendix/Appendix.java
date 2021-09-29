@@ -50,7 +50,7 @@ public abstract class Appendix implements HtmlTemplate
 
 	void addPageBreak()
 	{
-		this.template.append("<br>");
+		this.template.append("<pre><br clear=all style='mso-special-character:line-break;page-break-before:always'></pre>");
 	}
 
 	void addTable()
@@ -87,12 +87,10 @@ public abstract class Appendix implements HtmlTemplate
 
 	protected void addAndResetTableOnPageBreak()
 	{
-		if (linesPerPage >= 20)
+		if (linesPerPage >= 19)
 		{
-			template.append(table.appendTag())
-					.append("<br>")
-					.append("<br>");
-
+			template.append(table.appendTag());
+			addPageBreak();
 			linesPerPage = 0;
 
 			createTableWithHeader();

@@ -7,9 +7,9 @@ import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlRow;
 
-public class LegendWithDepthRow extends RowConstruction
+public class LegendWithBuildingInformationRow extends RowConstruction
 {
-	public LegendWithDepthRow()
+	public LegendWithBuildingInformationRow()
 	{
 		super(null);
 	}
@@ -28,7 +28,12 @@ public class LegendWithDepthRow extends RowConstruction
 						.appendAttribute("width", String.valueOf(size))
 						.appendContent("Anmerkungen:")
 						.appendContent(UtilityPrinter.printLineBreak())
-						.appendContent("Für die angegebenen Tiefen [] gilt die Einheit cm.")
+						.appendContent("Die abschließende Zuordnung zu einem Abfallschlüssel hängt u. a. von der " +
+								"Zusammensetzung der abzufahrenden, separierten Abfälle und von den Annahmebedingungen " +
+								"und der Abfalleinstufung der vorgesehenen Entsorgungseinrichtung ab. ")
+						.appendContent(UtilityPrinter.printLineBreak())
+						.appendContent("AVV 17 09 04: Nicht gefährliche und nicht getrennte Bauteile können i.d.R. unter" +
+								" dem vorgenannten Abfallschlüssel, gemischte Bau- und Abbruchabfälle zusammen entsorgt werden.")
 						.build()
 						.appendTag())
 				.build();
@@ -57,7 +62,12 @@ public class LegendWithDepthRow extends RowConstruction
 						.appendAttribute("width", String.valueOf(size))
 						.appendContent("Anmerkungen:")
 						.appendContent(UtilityPrinter.printLineBreak())
-						.appendContent("Für die angegebenen Tiefen [] gilt die Einheit cm.")
+						.appendContent("Die abschließende Zuordnung zu einem Abfallschlüssel hängt u. a. von der " +
+								"Zusammensetzung der abzufahrenden, separierten Abfälle und von den Annahmebedingungen " +
+								"und der Abfalleinstufung der vorgesehenen Entsorgungseinrichtung ab. ")
+						.appendContent(UtilityPrinter.printLineBreak())
+						.appendContent("AVV 17 09 04: Nicht gefährliche und nicht getrennte Bauteile können i.d.R. unter" +
+								" dem vorgenannten Abfallschlüssel, gemischte Bau- und Abbruchabfälle zusammen entsorgt werden.")
 						.build()
 						.appendTag())
 				.build();

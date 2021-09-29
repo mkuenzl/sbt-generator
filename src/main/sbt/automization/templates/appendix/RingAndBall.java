@@ -86,7 +86,7 @@ public final class RingAndBall extends Appendix
 					{
 						addAndResetTableOnPageBreak();
 
-						String row = HtmlFactory.createRowAsString("Normal", new String[]{
+						String row = HtmlFactory.createRowAsString("NormalThin8", new String[]{
 								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 										new String[]{probe.get(ProbeKey.ID)}),
 								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",

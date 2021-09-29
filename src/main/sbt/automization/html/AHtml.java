@@ -16,6 +16,11 @@ abstract class AHtml implements IHtmlCode
     {
     }
 
+    public String getContent()
+    {
+        return content;
+    }
+
     /**
      * Method formats all attributes to String
      * @return a String to put into the html tag

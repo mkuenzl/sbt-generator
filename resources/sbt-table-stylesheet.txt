@@ -100,6 +100,11 @@
                 page-break-inside:avoid;
                 height:0.8cm;
             }
+            tr.NormalThin9
+            {
+                page-break-inside:avoid;
+                height:0.9cm;
+            }
              tr.NormalThin6
             {
                 page-break-inside:avoid;
@@ -263,6 +268,7 @@
                 border:solid windowtext .5pt;
                 font-size:10.0pt;
                 background:#E7E6E6;
+                text-align: left;
                 padding:2.4pt 1.4pt 2.4pt 1.4pt;
 			}
 			th.NormalTableHeader div {

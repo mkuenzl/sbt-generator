@@ -30,7 +30,7 @@ public class MaterialBuildingRow extends RowConstruction
 	{
 		HtmlRow row = HtmlFactory.createRow(styleParameter.getRowClass(), new HtmlCell[]{
 				HtmlFactory.createCell(styleParameter.getHeaderCellClass(), styleParameter.getHeaderCellWidth(),
-						new String[]{"Bauteil"})
+						new String[]{"Material"})
 		});
 
 		return row;

@@ -57,7 +57,7 @@ public final class Topsoil extends Appendix
 
 	private String createRow(Sample sample)
 	{
-		String row = HtmlFactory.createRowAsString("Normal", new String[]{
+		String row = HtmlFactory.createRowAsString("NormalThin8", new String[]{
 				HtmlFactory.createCellAsString(textFormatter, "Normal",
 						new String[]{new SoilGroupTextFormatter().format(sample.get(SampleKey.TYPE))}),
 				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",

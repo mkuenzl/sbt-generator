@@ -42,7 +42,7 @@ public abstract class Report implements HtmlTemplate
 
 	void addPageBreak()
 	{
-		this.template.append("<br>");
+		this.template.append("<pre><br clear=all style='mso-special-character:line-break;page-break-before:always'></pre>");
 	}
 
 	void addTable()

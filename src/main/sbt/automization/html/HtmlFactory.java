@@ -683,6 +683,14 @@ public class HtmlFactory
 						.appendContent("gefährlich")
 						.build();
 				break;
+			case "keine Auffälligkeit":
+				htmlCell = new HtmlCell.Builder()
+						.appendAttribute("class", "ChemistryWhite")
+						.appendContent("keine")
+						.appendContent(UtilityPrinter.printLineBreak())
+						.appendContent("Auffälligkeit")
+						.build();
+				break;
 			case "nicht nachweisbar":
 				htmlCell = new HtmlCell.Builder()
 						.appendAttribute("class", "ChemistryWhite")

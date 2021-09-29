@@ -111,7 +111,7 @@ public final class LoadPlate extends Appendix
 					String formattedEV2 = new LoadPlateTextFormatter().format(parameter.get(LpKey.EV2),
 							parameter.get(LpKey.EV85));
 
-					String row = HtmlFactory.createRowAsString("Normal", new String[]{
+					String row = HtmlFactory.createRowAsString("NormalThin8", new String[]{
 							HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 									new String[]{dataTable.get(ProbeKey.LP_ID)}),
 							HtmlFactory.createCellAsString(textFormatter, "NormalCenter",

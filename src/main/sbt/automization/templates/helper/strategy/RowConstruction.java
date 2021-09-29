@@ -111,12 +111,13 @@ public abstract class RowConstruction implements RowStrategy
 					continue;
 				}
 
-				if (cell.appendTag().equals(lastCell.appendTag()))
+				if (checkCellContent(lastCell, cell))
 				{
 					lastCell = cell;
 					columnSpan++;
 				} else
 				{
+					lastCell.appendAttribute("colspan", String.valueOf(columnSpan));
 					row.appendContent(lastCell.appendTag());
 					columnSpan = 1;
 					lastCell = cell;
@@ -125,6 +126,14 @@ public abstract class RowConstruction implements RowStrategy
 			lastCell.appendAttribute("colspan", String.valueOf(columnSpan));
 			row.appendContent(lastCell.appendTag());
 		}
+	}
+
+	private boolean checkCellContent(HtmlCell first, HtmlCell second)
+	{
+		String firstContent = first.getContent();
+		String secondContent = second.getContent();
+
+		return firstContent.equals(secondContent) && ! "-".equals(firstContent);
 	}
 
 	protected String formatUnit(String text)

@@ -35,7 +35,7 @@ public abstract class TableTemplate implements HtmlTemplate
 
 	void addPageBreak()
 	{
-		this.template.append("<br>");
+		this.template.append("<pre><br clear=all style='mso-special-character:line-break;page-break-before:always'></pre>");
 	}
 
 	void addTable()
@@ -77,7 +77,7 @@ public abstract class TableTemplate implements HtmlTemplate
 
 	protected void addAndResetTableOnPageBreak()
 	{
-		if (linesPerPage >= 20)
+		if (linesPerPage >= 19)
 		{
 			addTable();
 			addPageBreak();

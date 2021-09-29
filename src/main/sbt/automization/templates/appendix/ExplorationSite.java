@@ -57,20 +57,20 @@ public final class ExplorationSite extends Appendix
 
 			String footer = createFooter(dataTable);
 			addToTemplate(footer);
-			addToTemplate("<br></br>");
+			addPageBreak();
 		}
 	}
 
 	private String createHeadOfTable(Probe probe)
 	{
-		String firstRow = HtmlFactory.createRowAsString("Normal", new String[]{
+		String firstRow = HtmlFactory.createRowAsString("NormalThin8", new String[]{
 				HtmlFactory.createCellAsString("NormalHeader", "width:100px",
 						new String[]{"Erkund.-Stelle"}),
 				HtmlFactory.createCellAsString(textFormatter, "Normal", 1, 3,
 						new String[]{probe.get(ProbeKey.LOCATION)}),
 		});
 
-		String secondRow = HtmlFactory.createRowAsString("Normal", new String[]{
+		String secondRow = HtmlFactory.createRowAsString("NormalThin8", new String[]{
 				HtmlFactory.createCellAsString("NormalHeader",
 						new String[]{"Bezeichnung"}),
 				HtmlFactory.createCellAsString(textFormatter, "Normal", "width:200px",
@@ -81,7 +81,7 @@ public final class ExplorationSite extends Appendix
 						new String[]{probe.get(ProbeKey.DATE)}),
 		});
 
-		String thirdRow = HtmlFactory.createRowAsString("Normal", new String[]{
+		String thirdRow = HtmlFactory.createRowAsString("NormalThin8", new String[]{
 				HtmlFactory.createCellAsString("NormalHeader",
 						new String[]{"Koordinaten<sup>1)</sup>"}),
 				HtmlFactory.createCellAsString(textFormatter, "Normal",
@@ -92,7 +92,7 @@ public final class ExplorationSite extends Appendix
 						new String[]{probe.get(ProbeKey.INSPECTOR)}),
 		});
 
-		String fourthRow = HtmlFactory.createRowAsString("Normal", new String[]{
+		String fourthRow = HtmlFactory.createRowAsString("NormalThin8", new String[]{
 				HtmlFactory.createCellAsString("NormalHeader",
 						new String[]{"Bereich"}),
 				HtmlFactory.createCellAsString(textFormatter, "Normal",
@@ -129,7 +129,7 @@ public final class ExplorationSite extends Appendix
 				.build();
 
 		HtmlRow row = new HtmlRow.Builder()
-				.appendAttribute("class", "Normal")
+				.appendAttribute("class", "NormalThin8")
 				.appendContent(cell.appendTag())
 				.build();
 

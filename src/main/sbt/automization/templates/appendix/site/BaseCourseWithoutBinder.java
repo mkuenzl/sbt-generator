@@ -60,7 +60,7 @@ public final class BaseCourseWithoutBinder extends Appendix
 
 	private String createRow(Sample sample)
 	{
-		String row = HtmlFactory.createRowAsString("Normal", new String[]{
+		String row = HtmlFactory.createRowAsString("NormalThin8", new String[]{
 				HtmlFactory.createCellAsString("Normal",
 						new String[]{sample.get(SampleKey.TYPE),
 								UtilityPrinter.printLineBreak(),

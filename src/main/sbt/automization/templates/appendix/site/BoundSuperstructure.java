@@ -70,7 +70,7 @@ public final class BoundSuperstructure extends Appendix
 
 	private String createRow(Sample sample)
 	{
-		String row = HtmlFactory.createRowAsString("Normal", new String[]{
+		String row = HtmlFactory.createRowAsString("NormalThin8", new String[]{
 				HtmlFactory.createCellAsString(textFormatter, "Normal",
 						new String[]{new KindAndGranulationTextFormatter().format(sample.get(SampleKey.TYPE),
 								sample.get(SampleKey.GRANULATION))}),
