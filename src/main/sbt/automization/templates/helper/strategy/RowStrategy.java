@@ -7,4 +7,6 @@ public interface RowStrategy
 	String buildWithSamples();
 
 	String buildWithSamplesCombined();
+
+	String buildWithChemistrySamplesCombined();
 }

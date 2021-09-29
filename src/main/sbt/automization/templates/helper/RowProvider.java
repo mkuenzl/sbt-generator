@@ -15,6 +15,7 @@ public class RowProvider
 	private final Outcrop outcrop;
 	private StyleParameter styleParameter;
 	private List<DataTable> dataTables;
+	private boolean checkDataAvailability;
 
 	public RowProvider(Outcrop outcrop)
 	{
@@ -70,6 +71,45 @@ public class RowProvider
 		RowStrategy rowStrategy = setUp(rowConstruction);
 
 		return rowStrategy.buildWithSamplesCombined();
+	}
+
+	public String getRowWithChemistrySamplesCombined(RowConstruction rowConstruction)
+	{
+		RowStrategy rowStrategy = setUp(rowConstruction);
+
+		return rowStrategy.buildWithChemistrySamplesCombined();
+	}
+
+	public String getRowWithProbesWithoutDataCheck(RowConstruction rowConstruction)
+	{
+		rowConstruction.setCheckData(false);
+		RowStrategy rowStrategy = setUp(rowConstruction);
+
+		return rowStrategy.buildWithProbes();
+	}
+
+	public String getRowWithSamplesWithoutDataCheck(RowConstruction rowConstruction)
+	{
+		rowConstruction.setCheckData(false);
+		RowStrategy rowStrategy = setUp(rowConstruction);
+
+		return rowStrategy.buildWithSamples();
+	}
+
+	public String getRowWithSamplesCombinedWithoutDataCheck(RowConstruction rowConstruction)
+	{
+		rowConstruction.setCheckData(false);
+		RowStrategy rowStrategy = setUp(rowConstruction);
+
+		return rowStrategy.buildWithSamplesCombined();
+	}
+
+	public String getRowWithChemistrySamplesCombinedWithoutDataCheck(RowConstruction rowConstruction)
+	{
+		rowConstruction.setCheckData(false);
+		RowStrategy rowStrategy = setUp(rowConstruction);
+
+		return rowStrategy.buildWithChemistrySamplesCombined();
 	}
 
 	public void setDataTables(List<DataTable> tables)

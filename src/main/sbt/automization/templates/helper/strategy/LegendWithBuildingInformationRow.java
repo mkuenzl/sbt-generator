@@ -3,9 +3,14 @@ package sbt.automization.templates.helper.strategy;
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
+import sbt.automization.data.key.ProbeKey;
+import sbt.automization.data.key.SampleKey;
 import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlRow;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LegendWithBuildingInformationRow extends RowConstruction
 {
@@ -46,10 +51,23 @@ public class LegendWithBuildingInformationRow extends RowConstruction
 	{
 		int amountOfSamples = 0;
 
+		List<String> additionalFootnotes = new ArrayList<>();
+
 		for (DataTable probe : probes)
 		{
-			amountOfSamples += probe.getSamples().size();
+			List<Sample> samples = probe.getSamples();
+			amountOfSamples += samples.size();
+
+			for (Sample sample : samples)
+			{
+				String footnote = sample.get(SampleKey.MATERIAL_COMPARISON);
+				if (!"".equals(footnote))
+				{
+					additionalFootnotes.add(footnote);
+				}
+			}
 		}
+		//TODO
 
 		double size = styleParameter.getHeaderCellWidthAsDouble() + amountOfSamples * styleParameter.getNormalCellWidthAsDouble();
 

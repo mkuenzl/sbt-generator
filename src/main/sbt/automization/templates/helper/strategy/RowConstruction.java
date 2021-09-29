@@ -4,6 +4,7 @@ import sbt.automization.data.DataTable;
 import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
 import sbt.automization.data.key.Key;
+import sbt.automization.data.key.SampleKey;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlRow;
 import sbt.automization.html.HtmlText;
@@ -20,6 +21,7 @@ public abstract class RowConstruction implements RowStrategy
 	protected List<DataTable> probes;
 
 	private HtmlRow row;
+	private boolean checkDataAvailability = true;
 
 	public RowConstruction(List<DataTable> probes, String outcrop, Key key, StyleParameter styleParameter)
 	{
@@ -36,7 +38,7 @@ public abstract class RowConstruction implements RowStrategy
 
 	public String buildWithProbes()
 	{
-		if (! CheckDataAvailability.thereExistsAnTableWithData(probes, outcrop, key)) return "";
+		if (checkDataAvailability && ! CheckDataAvailability.thereExistsAnTableWithData(probes, outcrop, key)) return "";
 
 		initializeRow();
 		createCellForEachProbe();
@@ -63,7 +65,7 @@ public abstract class RowConstruction implements RowStrategy
 
 	public String buildWithSamples()
 	{
-		if (! CheckDataAvailability.thereExistsAnTableWithData(probes, outcrop, key)) return "";
+		if (checkDataAvailability && ! CheckDataAvailability.thereExistsAnTableWithData(probes, outcrop, key)) return "";
 
 		initializeRow();
 		createCellForEachSample();
@@ -86,7 +88,7 @@ public abstract class RowConstruction implements RowStrategy
 
 	public String buildWithSamplesCombined()
 	{
-		if (! CheckDataAvailability.thereExistsAnTableWithData(probes, outcrop, key)) return "";
+		if (checkDataAvailability && ! CheckDataAvailability.thereExistsAnTableWithData(probes, outcrop, key)) return "";
 
 		initializeRow();
 		createCombinedCellsForSamples();
@@ -128,6 +130,55 @@ public abstract class RowConstruction implements RowStrategy
 		}
 	}
 
+	public String buildWithChemistrySamplesCombined()
+	{
+		if (checkDataAvailability && ! CheckDataAvailability.thereExistsAnTableWithData(probes, outcrop, key)) return "";
+
+		initializeRow();
+		createCombinedCellsForSameChemistrySamples();
+		return row.appendTag();
+	}
+
+	private void createCombinedCellsForSameChemistrySamples()
+	{
+		for (DataTable probe : probes)
+		{
+			HtmlCell lastCell = null;
+			String lastCellChemistryId = null;
+			int columnSpan = 1;
+
+			for (Sample sample : probe.getSamples())
+			{
+				String cellChemistryId = sample.get(SampleKey.CHEMISTRY_ID);
+				HtmlCell cell = createCellFrom(sample);
+
+				//case 1 sample
+				if (null == lastCell)
+				{
+					lastCell = cell;
+					lastCellChemistryId = cellChemistryId;
+					continue;
+				}
+
+				if (checkCellContent(lastCell, cell) && lastCellChemistryId.equals(cellChemistryId))
+				{
+					lastCell = cell;
+					lastCellChemistryId = cellChemistryId;
+					columnSpan++;
+				} else
+				{
+					lastCell.appendAttribute("colspan", String.valueOf(columnSpan));
+					row.appendContent(lastCell.appendTag());
+					columnSpan = 1;
+					lastCell = cell;
+					lastCellChemistryId = cellChemistryId;
+				}
+			}
+			lastCell.appendAttribute("colspan", String.valueOf(columnSpan));
+			row.appendContent(lastCell.appendTag());
+		}
+	}
+
 	private boolean checkCellContent(HtmlCell first, HtmlCell second)
 	{
 		String firstContent = first.getContent();
@@ -160,5 +211,10 @@ public abstract class RowConstruction implements RowStrategy
 	public void setTables(List<DataTable> dataTables)
 	{
 		this.probes = dataTables;
+	}
+
+	public void setCheckData(boolean printAlways)
+	{
+		this.checkDataAvailability = printAlways;
 	}
 }

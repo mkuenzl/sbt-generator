@@ -39,11 +39,11 @@ public final class SamplingProtocolBuilding extends Appendix
 	protected String constructAndGetTableHeader()
 	{
 		String firstRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN_8.getStyleClass(), new String[]{
-				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(), "width:0.8cm",
+				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(), "width:0.7cm",
 						new String[]{"QS"}),
-				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(), "width:4.8cm",
+				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(), "width:4.0cm",
 						new String[]{"Material"}),
-				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(), "width:2cm",
+				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(), "width:2.3cm",
 						new String[]{"Farbe"}),
 				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(), "width:1.5cm",
 						new String[]{"Tiefe"}),
@@ -51,7 +51,7 @@ public final class SamplingProtocolBuilding extends Appendix
 						new String[]{"Probe"}),
 				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(), "width:1.5cm",
 						new String[]{"Chemie"}),
-				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(), "width:3cm",
+				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(), "width:2.5cm",
 						new String[]{"Umfang"})
 		});
 
@@ -87,7 +87,7 @@ public final class SamplingProtocolBuilding extends Appendix
 		for (Sample sample : dataTable.getSamplesBy(SampleKey.OUTCROP, Outcrop.BUILDING.toString()))
 		{
 			String row = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN_8.getStyleClass(), new String[]{
-					HtmlFactory.createCellAsString(textFormatter, "NormalCenter", "font-size:10.0pt",
+					HtmlFactory.createCellAsString(textFormatter, "Normal", "font-size:10.0pt",
 							new String[]{String.valueOf(++ linesPerPage)}),
 					HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(),
 							new String[]{sample.get(SampleKey.MATERIAL)}),
@@ -147,6 +147,11 @@ public final class SamplingProtocolBuilding extends Appendix
 
 		String[] colors = colorsString.split("(,|/)");
 
+		if (colors.length == 1)
+		{
+			return colors[0];
+		}
+
 		StringBuilder stringBuilder = new StringBuilder();
 
 		for (String color : colors)
@@ -178,55 +183,55 @@ public final class SamplingProtocolBuilding extends Appendix
 		});
 
 		String secondRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN_6.getStyleClass(), new String[]{
-				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(), "width:4cm",
+				HtmlFactory.createCellAsString(BuildingStyle.HEADER_CELL.getStyleClass(), "width:4.0cm",
 						new String[]{"Datum"}),
-				HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(), "width:4cm",
+				HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(), "width:4.0cm",
 						new String[]{probe.get(ProbeKey.DATE)}),
-				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(), "width:4cm",
+				HtmlFactory.createCellAsString(BuildingStyle.HEADER_CELL.getStyleClass(), "width:4.0cm",
 						new String[]{"Probe-Nr."}),
-				HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(), "width:4cm",
+				HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(), "width:4.0cm",
 						new String[]{probe.get(ProbeKey.PROBE_NUMBER)}),
 		});
 
 		String thirdRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN_6.getStyleClass(), new String[]{
-				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(),
+				HtmlFactory.createCellAsString(BuildingStyle.HEADER_CELL.getStyleClass(),
 						new String[]{"Erkundungsstelle"}),
 				HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(),
 						new String[]{probe.get(ProbeKey.NUMBER)}),
-				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(),
+				HtmlFactory.createCellAsString(BuildingStyle.HEADER_CELL.getStyleClass(),
 						new String[]{"Gebäude"}),
 				HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(),
 						new String[]{probe.get(ProbeKey.BUILDING)}),
 		});
 
 		String fourthRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN_6.getStyleClass(), new String[]{
-				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(),
+				HtmlFactory.createCellAsString(BuildingStyle.HEADER_CELL.getStyleClass(),
 						new String[]{"Bauteil"}),
 				HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(),
 						new String[]{probe.get(ProbeKey.COMPONENT)}),
-				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(),
+				HtmlFactory.createCellAsString(BuildingStyle.HEADER_CELL.getStyleClass(),
 						new String[]{"Etage"}),
 				HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(),
 						new String[]{probe.get(ProbeKey.FLOOR)}),
 		});
 
 		String fifthRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN_6.getStyleClass(), new String[]{
-				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(),
+				HtmlFactory.createCellAsString(BuildingStyle.HEADER_CELL.getStyleClass(),
 						new String[]{"Probencharakter"}),
 				HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(),
 						new String[]{probe.get(ProbeKey.CHARACTER)}),
-				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(),
+				HtmlFactory.createCellAsString(BuildingStyle.HEADER_CELL.getStyleClass(),
 						new String[]{"Raum"}),
 				HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(),
 						new String[]{probe.get(ProbeKey.ROOM)}),
 		});
 
 		String sixthRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN_6.getStyleClass(), new String[]{
-				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(),
+				HtmlFactory.createCellAsString(BuildingStyle.HEADER_CELL.getStyleClass(),
 						new String[]{"Geruch"}),
 				HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(),
 						new String[]{probe.get(ProbeKey.SMELL)}),
-				HtmlFactory.createHeader(BuildingStyle.HEADER_CELL.getStyleClass(),
+				HtmlFactory.createCellAsString(BuildingStyle.HEADER_CELL.getStyleClass(),
 						new String[]{"Entnahme"}),
 				HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(),
 						new String[]{probe.get(ProbeKey.EXTRACTION)}),
@@ -278,7 +283,7 @@ public final class SamplingProtocolBuilding extends Appendix
 	private void addTotalDepthRow(DataTable dataTable)
 	{
 		String depthRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN_8.getStyleClass(), new String[]{
-				HtmlFactory.createCellAsString(textFormatter, "NormalBold", "font-size:10.0pt", 1, 3,
+				HtmlFactory.createCellAsString(BuildingStyle.HEADER_CELL.getStyleClass(), 1, 3,
 						new String[]{"Gesamttiefe von Bauteiloberfläche (BOF):"}),
 				HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(), 1, 4,
 						new String[]{new SamplePrinter().printThickness(dataTable.getSamples()).concat(" cm")})

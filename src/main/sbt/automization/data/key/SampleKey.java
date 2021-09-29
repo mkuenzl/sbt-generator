@@ -18,6 +18,14 @@ public enum SampleKey implements Key
 					return addSampleTag("ABFALLSCHLUESSEL_MATERIAL");
 				}
 			},
+	MATERIAL_COMPARISON
+			{
+				@Override
+				public String getKey()
+				{
+					return addSampleTag("MATERIAL_VERGLEICH");
+				}
+			},
 	SUSPECTED_POLLUTANT
 			{
 				@Override

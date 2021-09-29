@@ -6,6 +6,7 @@ import sbt.automization.data.Sample;
 import sbt.automization.data.key.Key;
 import sbt.automization.data.key.SampleKey;
 import sbt.automization.format.printer.SamplePrinter;
+import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlFactory;
 import sbt.automization.html.HtmlRow;
@@ -52,10 +53,18 @@ public class WasteKeyMaterialRow extends RowConstruction
 	@Override
 	HtmlCell createCellFrom(Sample sample)
 	{
+		String avvParameter = sample.get(key);
+
+		if (avvParameter.contains("("))
+		{
+			String[] split = avvParameter.split("[(]");
+			avvParameter = split[0] + UtilityPrinter.printLineBreak() + "(" + split[1];
+		}
+
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
 				styleParameter.getNormalCellClass(),
 				styleParameter.getNormalCellWidth(),
-				new String[]{sample.get(key)});
+				new String[]{avvParameter});
 
 		return cell;
 	}

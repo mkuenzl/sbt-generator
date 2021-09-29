@@ -7,6 +7,7 @@ import sbt.automization.data.key.ChemistryKey;
 import sbt.automization.data.key.Key;
 import sbt.automization.data.key.SampleKey;
 import sbt.automization.format.printer.SamplePrinter;
+import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlFactory;
 import sbt.automization.html.HtmlRow;
@@ -53,10 +54,12 @@ public class ChemistryAvvRow extends RowConstruction
 	@Override
 	HtmlCell createCellFrom(Sample sample)
 	{
+		String avvParameter = sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, key);
+
 		HtmlCell cell = HtmlFactory.createCell(styleParameter.getTextFormatter(),
 				styleParameter.getNormalCellClass(),
 				styleParameter.getNormalCellWidth(),
-				new String[]{sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, key)});
+				new String[]{avvParameter});
 
 		return cell;
 	}

@@ -55,7 +55,7 @@ public enum BuildingStyle implements Style
 				@Override
 				public String getStyle()
 				{
-					return "text-align:center;font-size:14.0pt;background:#AEAAAA;";
+					return "text-align:center;font-size:14.0pt;background:#AEAAAA";
 				}
 			},
 	HEADER_CELL
