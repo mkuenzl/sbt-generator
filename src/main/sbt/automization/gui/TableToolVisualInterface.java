@@ -25,7 +25,7 @@ public class TableToolVisualInterface extends JFrame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setIconImage(img.getImage());
 		this.setLayout(null);
-		this.setSize(600, 550);
+		this.setSize(600, 580);
 		this.setResizable(false);
 		constructPanel();
 		//this.setJMenuBar(menuBar);
@@ -65,7 +65,7 @@ public class TableToolVisualInterface extends JFrame
 	{
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBounds(0, 0, 600, 550);
+		panel.setBounds(0, 0, 600, 580);
 		panel.setBackground(Color.gray);
 
 		// BUTTONS.
@@ -144,6 +144,11 @@ public class TableToolVisualInterface extends JFrame
 		checkBoxAppendixPNHEAP.addItemListener(new CheckBoxItemListener());
 		panel.add(checkBoxAppendixPNHEAP);
 
+		JCheckBox checkBoxAppendixPNBUILDING = new CustomCheckBox("ANLAGE_PN_GEBÄUDE", false);
+		checkBoxAppendixPNBUILDING.setBounds(10, 360, 265, 20);
+		checkBoxAppendixPNBUILDING.addItemListener(new CheckBoxItemListener());
+		panel.add(checkBoxAppendixPNBUILDING);
+
 		JCheckBox checkBox5 = new CustomCheckBox("BERICHT_GOB", false);
 		checkBox5.setBounds(310, 210, 265, 20);
 		checkBox5.addItemListener(new CheckBoxItemListener());
@@ -195,6 +200,12 @@ public class TableToolVisualInterface extends JFrame
 		checkBoxReportBankett.addItemListener(new CheckBoxItemListener());
 		checkBoxReportBankett.setEnabled(true);
 		panel.add(checkBoxReportBankett);
+
+		JCheckBox checkBoxReportBuilding = new CustomCheckBox("BERICHT_GEBÄUDE", false);
+		checkBoxReportBuilding.setBounds(310, 510, 265, 20);
+		checkBoxReportBuilding.addItemListener(new CheckBoxItemListener());
+		checkBoxReportBuilding.setEnabled(true);
+		panel.add(checkBoxReportBuilding);
 
 		// BUTTONS.
 		JButton executeButton = new CustomButton("Erstelle Tabellen");

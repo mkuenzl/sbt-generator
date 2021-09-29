@@ -53,6 +53,9 @@ public final class StrategyStorage
             case "ANLAGE_PN_HAUFWERK":
                 strategyList.add(SamplingProtocolHeap.getInstance());
                 break;
+            case "ANLAGE_PN_GEBÄUDE":
+                strategyList.add(SamplingProtocolBuilding.getInstance());
+                break;
             case "BERICHT_GOB":
                 strategyList.add(BoundSuperstructure.getInstance());
                 break;
@@ -83,6 +86,9 @@ public final class StrategyStorage
             case "BERICHT_BANKETT":
                 strategyList.add(Banquet.getInstance());
                 break;
+            case "BERICHT_GEBÄUDE":
+                strategyList.add(Building.getInstance());
+                break;
         }
     }
 
@@ -104,6 +110,9 @@ public final class StrategyStorage
                 break;
             case "ANLAGE_PN_HAUFWERK":
                 strategyList.remove(SamplingProtocolHeap.getInstance());
+                break;
+            case "ANLAGE_PN_GEBÄUDE":
+                strategyList.remove(SamplingProtocolBuilding.getInstance());
                 break;
             case "BERICHT_GOB":
                 strategyList.remove(BoundSuperstructure.getInstance());
@@ -134,6 +143,9 @@ public final class StrategyStorage
                 break;
             case "BERICHT_BANKETT":
                 strategyList.remove(Banquet.getInstance());
+                break;
+            case "BERICHT_GEBÄUDE":
+                strategyList.remove(Building.getInstance());
                 break;
         }
     }
