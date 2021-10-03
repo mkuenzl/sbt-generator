@@ -31,7 +31,7 @@ public class ChemistryPhenolRow extends RowConstruction
 	{
 		HtmlRow row = HtmlFactory.createRow(styleParameter.getRowClass(), new HtmlCell[]{
 				HtmlFactory.createCell(styleParameter.getHeaderCellClass(), styleParameter.getHeaderCellWidth(),
-						new String[]{"Phenole,", formatUnit("-")})
+						new String[]{"Phenole,", formatUnit("mg/l")})
 		});
 
 		return row;

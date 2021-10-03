@@ -95,6 +95,7 @@ public final class Underground extends Report
 
 		addToTable(provider.getRowWithProbes(new ChemistryIdRow()));
 		addToTable(provider.getRowWithProbes(new ChemistryMufvRow()));
+		addToTable(provider.getRowWithProbes(new ChemistryLfsRow()));
 		addToTable(provider.getRowWithProbes(new ChemistryLagaBoRow()));
 		addToTable(provider.getRowWithProbes(new ChemistryLagaRc()));
 		addToTable(provider.getRowWithProbes(new ChemistryLagaRcOrientation()));

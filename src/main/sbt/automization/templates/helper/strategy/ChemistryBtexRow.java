@@ -31,7 +31,7 @@ public class ChemistryBtexRow extends RowConstruction
 	{
 		HtmlRow row = HtmlFactory.createRow(styleParameter.getRowClass(), new HtmlCell[]{
 				HtmlFactory.createCell(styleParameter.getHeaderCellClass(), styleParameter.getHeaderCellWidth(),
-						new String[]{"BTEX,", formatUnit("-")})
+						new String[]{"BTEX,", formatUnit("mg/kg")})
 		});
 
 		return row;

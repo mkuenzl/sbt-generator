@@ -31,7 +31,7 @@ public class ChemistryEoxRow extends RowConstruction
 	{
 		HtmlRow row = HtmlFactory.createRow(styleParameter.getRowClass(), new HtmlCell[]{
 				HtmlFactory.createCell(styleParameter.getHeaderCellClass(), styleParameter.getHeaderCellWidth(),
-						new String[]{"EOX,", formatUnit("-")})
+						new String[]{"EOX,", formatUnit("mg/kg")})
 		});
 
 		return row;

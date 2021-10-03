@@ -40,47 +40,47 @@ public final class LoadPlate extends Appendix
 	protected String constructAndGetTableHeader()
 	{
 		String firstRow = HtmlFactory.createRowAsString(2, new String[]{
-				HtmlFactory.createHeader("NormalTableHeader", "width:55px", 3, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:55px", 3, 1,
 						new String[]{"Versuch", UtilityPrinter.printLineBreak(), "Nr."}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:65px", 3, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:65px", 3, 1,
 						new String[]{"Erk. St."}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:185px", 3, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:185px", 3, 1,
 						new String[]{"Lage der Messstelle"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:160px", 1, 4,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:160px", 1, 4,
 						new String[]{"Setzung"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:45px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:45px", 2, 1,
 						new String[]{"E<sub>Vdyn</sub>"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:45px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:45px", 2, 1,
 						new String[]{"E<sub>Vdyn</sub>", UtilityPrinter.printLineBreak(), "<sub>(-15%)</sub>"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:45px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:45px", 2, 1,
 						new String[]{"E<sub>V2</sub>", "<div>[41]</div>"})
 		});
 
 		String secondRow = HtmlFactory.createRowAsString(new String[]{
-				HtmlFactory.createHeader("NormalTableHeader", "width:40px",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:40px",
 						new String[]{"S<sub>1</sub>"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:40px",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:40px",
 						new String[]{"S<sub>2</sub>"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:40px",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:40px",
 						new String[]{"S<sub>3</sub>"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:40px",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:40px",
 						new String[]{"x̅"})
 		});
 
 		String thirdRow = HtmlFactory.createRowAsString(new String[]{
-				HtmlFactory.createHeader("NormalTableHeaderUnits",
+				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"mm"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits",
+				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"mm"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits",
+				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"mm"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits",
+				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"mm"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits",
+				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"MN/m²"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits",
+				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"MN/m²"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits",
+				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"MN/m²"})
 		});
 

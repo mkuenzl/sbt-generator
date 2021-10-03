@@ -6,6 +6,7 @@ import sbt.automization.format.text.StandardCellTextFormatter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlFactory;
 import sbt.automization.html.HtmlRow;
+import sbt.automization.styles.BuildingStyle;
 import sbt.automization.styles.ReportStyle;
 import sbt.automization.styles.StyleParameter;
 import sbt.automization.styles.StyleParameterBuilder;
@@ -105,7 +106,7 @@ public final class Building extends Report
 			colspan += size;
 		}
 
-		HtmlRow row = HtmlFactory.createRow(ReportStyle.ROW.getStyleClass(), new HtmlCell[]{
+		HtmlRow row = HtmlFactory.createRow(BuildingStyle.ROW_THIN_8.getStyleClass(), new HtmlCell[]{
 				HtmlFactory.createCell(ReportStyle.HEADER.getStyleClass(), 1, colspan,
 						new String[]{"Hinweise zur Einstufung in Abhängigkeit des Rückbauverfahrens (informativ)"})
 		});
@@ -150,7 +151,7 @@ public final class Building extends Report
 	void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addToTable(provider.getRowWithSamplesWithoutDataCheck(new ChemistryIdRow()));
-		addToTable(provider.getRowWithChemistrySamplesCombined(new SuspectedPollutantRow()));
+		addToTable(provider.getRowWithSamplesWithoutDataCheck(new SuspectedPollutantRow()));
 		addToTable(provider.getRowWithChemistrySamplesCombined(new ChemistryPak()));
 		addToTable(provider.getRowWithChemistrySamplesCombined(new ChemistryPcbRow())); // PCB
 		addToTable(provider.getRowWithChemistrySamplesCombined(new ChemistryAsbestosRow())); // ASBEST

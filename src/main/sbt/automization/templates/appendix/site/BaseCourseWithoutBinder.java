@@ -87,28 +87,28 @@ public final class BaseCourseWithoutBinder extends Appendix
 	public String constructAndGetTableHeader()
 	{
 		String firstRow = HtmlFactory.createRowAsString("NormalTableHeader", new String[]{
-				HtmlFactory.createHeader("NormalTableHeader", "width:125px;text-align:left",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:125px;text-align:left",
 						new String[]{"Tragschicht ohne", UtilityPrinter.printLineBreak(), "Bindemittel"}),
-				HtmlFactory.createHeader("NormalTableHeader", "text-align:left", 1, 8,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "text-align:left", 1, 8,
 						new String[]{"Aufschlussverfahren:", outcrop}),
 		});
 
 		String secondRow = HtmlFactory.createRowAsString("NormalTableHeader", new String[]{
-				HtmlFactory.createHeader("NormalTableHeader", "text-align:left", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "text-align:left", 2, 1,
 						new String[]{"Art der Schicht"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px",
 						new String[]{"Dicke", "<div>[7]</div>"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px",
 						new String[]{"Tiefe"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:60px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px", 2, 1,
 						new String[]{"MUFV", "<div>[18]</div>"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:60px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px", 2, 1,
 						new String[]{"LAGA BO", "<div>[11]</div>"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:60px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px", 2, 1,
 						new String[]{"LAGA RC", "<div>[28]</div>"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:60px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px", 2, 1,
 						new String[]{"TL Ge.", "<div>[27]</div>"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px",
 						new String[]{"E<sub>V2</sub>",
 								UtilityPrinter.printLineBreak(),
 								"E<sub>Vdyn</sub>",
@@ -116,18 +116,18 @@ public final class BaseCourseWithoutBinder extends Appendix
 								"<sub>(-15%)</sub>",
 								"<div>[41]</div>"
 						}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px",
 						new String[]{"KGV", "<div>[25]</div>"})
 		});
 
 		String thirdRow = HtmlFactory.createRowAsString("NormalHeaderUnits", new String[]{
-				HtmlFactory.createHeader("NormalTableHeaderUnits",
+				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"cm"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits",
+				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"cm"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits",
+				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"MN/m²"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits",
+				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"M.-%"})
 		});
 

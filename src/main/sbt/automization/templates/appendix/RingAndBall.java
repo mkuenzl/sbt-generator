@@ -39,24 +39,24 @@ public final class RingAndBall extends Appendix
 	protected String constructAndGetTableHeader()
 	{
 		String firstRow = HtmlFactory.createRowAsString("NormalTableHeader", new String[]{
-				HtmlFactory.createHeader("NormalTableHeader", "width:75px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:75px", 2, 1,
 						new String[]{"Erk. St."}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:75px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:75px", 2, 1,
 						new String[]{"Versuch Nr."}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:95px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:95px", 2, 1,
 						new String[]{"Probenart"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:165px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:165px", 2, 1,
 						new String[]{"Prüfschicht"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:100px", 1, 3,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:100px", 1, 3,
 						new String[]{"Prüftiefe"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:95px",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:95px",
 						new String[]{"Erw. RuK", "<div>[31]</div>"}),
 		});
 
 		String secondRow = HtmlFactory.createRowAsString("NormalHeaderUnits", new String[]{
-				HtmlFactory.createHeader("NormalTableHeaderUnits", 1, 3,
+				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits", 1, 3,
 						new String[]{"cm"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits",
+				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"°C"}),
 		});
 

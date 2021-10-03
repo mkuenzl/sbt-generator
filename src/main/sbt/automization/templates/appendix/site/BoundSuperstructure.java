@@ -112,41 +112,41 @@ public final class BoundSuperstructure extends Appendix
 	public String constructAndGetTableHeader()
 	{
 		String firstRow = HtmlFactory.createRowAsString("NormalHeader", new String[]{
-				HtmlFactory.createHeader("NormalTableHeader", "width:125;text-align:left", 1, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:125;text-align:left", 1, 1,
 						new String[]{"Gebundener Oberbau"}),
-				HtmlFactory.createHeader("NormalTableHeader", "text-align:left", 1, 8,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "text-align:left", 1, 8,
 						new String[]{"Aufschlussverfahren:", outcrop}),
 		});
 
 		String secondRow = HtmlFactory.createRowAsString("NormalHeader", new String[]{
-				HtmlFactory.createHeader("NormalTableHeader", "text-align:left", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "text-align:left", 2, 1,
 						new String[]{"Art der Schicht"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px",
 						new String[]{"Dicke"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px",
 						new String[]{"Tiefe"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:60px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px", 2, 1,
 						new String[]{"MUFV", "<div>[18]</div>"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:60px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px", 2, 1,
 						new String[]{"PECH", "<div>[10]</div>"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:60px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px", 2, 1,
 						new String[]{"LAGA RC", "<div>[28]</div>"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:60px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px", 2, 1,
 						new String[]{"TL Ge.", "<div>[27]</div>"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px",
 						new String[]{"PAK"}),
-				HtmlFactory.createHeader("NormalTableHeader", "width:60px",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px",
 						new String[]{"RuK", "<div>[31]</div>"})
 		});
 
 		String thirdRow = HtmlFactory.createRowAsString("NormalHeaderUnits", new String[]{
-				HtmlFactory.createHeader("NormalTableHeaderUnits",
+				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"cm"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits",
+				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"cm"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits",
+				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"mg/kg"}),
-				HtmlFactory.createHeader("NormalTableHeaderUnits",
+				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"°C"})
 		});
 

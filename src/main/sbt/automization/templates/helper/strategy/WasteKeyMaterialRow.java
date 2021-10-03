@@ -31,7 +31,7 @@ public class WasteKeyMaterialRow extends RowConstruction
 	{
 		HtmlRow row = HtmlFactory.createRow(styleParameter.getRowClass(), new HtmlCell[]{
 				HtmlFactory.createCell(styleParameter.getHeaderCellClass(), styleParameter.getHeaderCellWidth(),
-						new String[]{"Abfallschlüssel", formatUnit("AVV<sup>[14]</sup>")})
+						new String[]{"Abfallschlüssel<sup>1,2</sup>", formatUnit("AVV<sup>[7]</sup>, materialspezifisch")})
 		});
 
 		return row;

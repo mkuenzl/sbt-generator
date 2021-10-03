@@ -20,6 +20,8 @@ public abstract class RowConstruction implements RowStrategy
 	protected Key key;
 	protected List<DataTable> probes;
 
+	private List<HtmlCell> cells;
+
 	private HtmlRow row;
 	private boolean checkDataAvailability = true;
 
@@ -113,7 +115,7 @@ public abstract class RowConstruction implements RowStrategy
 					continue;
 				}
 
-				if (checkCellContent(lastCell, cell))
+				if (compareContent(lastCell, cell))
 				{
 					lastCell = cell;
 					columnSpan++;
@@ -160,7 +162,7 @@ public abstract class RowConstruction implements RowStrategy
 					continue;
 				}
 
-				if (checkCellContent(lastCell, cell) && lastCellChemistryId.equals(cellChemistryId))
+				if (compareContent(lastCell, cell) && lastCellChemistryId.equals(cellChemistryId))
 				{
 					lastCell = cell;
 					lastCellChemistryId = cellChemistryId;
@@ -179,7 +181,7 @@ public abstract class RowConstruction implements RowStrategy
 		}
 	}
 
-	private boolean checkCellContent(HtmlCell first, HtmlCell second)
+	private boolean compareContent(HtmlCell first, HtmlCell second)
 	{
 		String firstContent = first.getContent();
 		String secondContent = second.getContent();

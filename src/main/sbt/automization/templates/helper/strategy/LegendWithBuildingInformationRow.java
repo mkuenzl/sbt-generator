@@ -67,27 +67,38 @@ public class LegendWithBuildingInformationRow extends RowConstruction
 				}
 			}
 		}
-		//TODO
 
 		double size = styleParameter.getHeaderCellWidthAsDouble() + amountOfSamples * styleParameter.getNormalCellWidthAsDouble();
 
 		//Umwelttechnische Merkmale Trennzeile
+		HtmlCell content = new HtmlCell.Builder()
+				.appendAttribute("class", styleParameter.getLegendCellClass())
+				.appendAttribute("colspan", String.valueOf(1 + amountOfSamples))
+				.appendAttribute("width", String.valueOf(size))
+				.appendContent("Anmerkungen:")
+				.appendContent(UtilityPrinter.printLineBreak())
+				.appendContent("1) Die abschließende Zuordnung zu einem Abfallschlüssel hängt u. a. von der " +
+						"Zusammensetzung der abzufahrenden, separierten Abfälle und von den Annahmebedingungen " +
+						"und der Abfalleinstufung der vorgesehenen Entsorgungseinrichtung ab. ")
+				.appendContent(UtilityPrinter.printLineBreak())
+				.appendContent("2) AVV 17 09 04: Nicht gefährliche und nicht getrennte Bauteile können i.d.R. unter" +
+						" dem vorgenannten Abfallschlüssel, gemischte Bau- und Abbruchabfälle zusammen entsorgt werden.")
+				.build();
+
+		int number = 3;
+		for (String additionalFootnote : additionalFootnotes)
+		{
+			String[] splitter = additionalFootnote.split(",");
+			String footnote = String.format("%d) Einstufung aufgrund des an der Erk.-St. %s ermittelten Untersuchungsergebnisses der Probe %s unter " +
+					"Zugrundelegung der Vergleichbarkeit der vorhandenen Materialien.",number, splitter[0], splitter[1]);
+			number++;
+			content.appendContent(UtilityPrinter.printLineBreak());
+			content.appendContent(footnote);
+		}
+
 		HtmlRow rowLegend = new HtmlRow.Builder()
 				.appendAttribute("class", styleParameter.getRowClass())
-				.appendContent(new HtmlCell.Builder()
-						.appendAttribute("class", styleParameter.getLegendCellClass())
-						.appendAttribute("colspan", String.valueOf(1 + amountOfSamples))
-						.appendAttribute("width", String.valueOf(size))
-						.appendContent("Anmerkungen:")
-						.appendContent(UtilityPrinter.printLineBreak())
-						.appendContent("Die abschließende Zuordnung zu einem Abfallschlüssel hängt u. a. von der " +
-								"Zusammensetzung der abzufahrenden, separierten Abfälle und von den Annahmebedingungen " +
-								"und der Abfalleinstufung der vorgesehenen Entsorgungseinrichtung ab. ")
-						.appendContent(UtilityPrinter.printLineBreak())
-						.appendContent("AVV 17 09 04: Nicht gefährliche und nicht getrennte Bauteile können i.d.R. unter" +
-								" dem vorgenannten Abfallschlüssel, gemischte Bau- und Abbruchabfälle zusammen entsorgt werden.")
-						.build()
-						.appendTag())
+				.appendContent(content.appendTag())
 				.build();
 
 		return rowLegend.appendTag();

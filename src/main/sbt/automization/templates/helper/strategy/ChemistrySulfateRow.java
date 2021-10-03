@@ -23,7 +23,7 @@ public class ChemistrySulfateRow extends RowConstruction
 
 	public ChemistrySulfateRow()
 	{
-		super(ChemistryKey.ICP_SCREENING);
+		super(ChemistryKey.SULFATE);
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class ChemistrySulfateRow extends RowConstruction
 	{
 		HtmlRow row = HtmlFactory.createRow(styleParameter.getRowClass(), new HtmlCell[]{
 				HtmlFactory.createCell(styleParameter.getHeaderCellClass(), styleParameter.getHeaderCellWidth(),
-						new String[]{"Sulfat,", formatUnit("-")})
+						new String[]{"Sulfat,", formatUnit("mg/l")})
 		});
 
 		return row;

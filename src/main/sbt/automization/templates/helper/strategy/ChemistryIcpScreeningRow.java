@@ -31,7 +31,7 @@ public class ChemistryIcpScreeningRow extends RowConstruction
 	{
 		HtmlRow row = HtmlFactory.createRow(styleParameter.getRowClass(), new HtmlCell[]{
 				HtmlFactory.createCell(styleParameter.getHeaderCellClass(), styleParameter.getHeaderCellWidth(),
-						new String[]{"ICP Screening,", formatUnit("-")})
+						new String[]{"ICP Screening,", formatUnit("mg/kg")})
 		});
 
 		return row;
