@@ -10,8 +10,9 @@ import sbt.automization.styles.BuildingStyle;
 import sbt.automization.styles.ReportStyle;
 import sbt.automization.styles.StyleParameter;
 import sbt.automization.styles.StyleParameterBuilder;
-import sbt.automization.templates.helper.RowProvider;
-import sbt.automization.templates.helper.strategy.*;
+import sbt.automization.templates.helper.*;
+import sbt.automization.templates.helper.rows.LegendWithBuildingInformationRow;
+import sbt.automization.templates.helper.information.*;
 import sbt.automization.util.DatatableFilter;
 import sbt.automization.util.Separator;
 
@@ -26,8 +27,7 @@ public final class Building extends Report
 	private Building()
 	{
 		super(Outcrop.BUILDING);
-		provider = new RowProvider(Outcrop.BUILDING, getStyleParameter());
-
+		this.provider = new RowProvider(Outcrop.BUILDING, getStyleParameter());
 	}
 
 	public static Building getInstance()
@@ -118,15 +118,14 @@ public final class Building extends Report
 	{
 		createTable();
 		provider.setDataTables(dataTables);
+		provider.setCellStrategy(new CombinedSampleCellStrategy());
 
-		RowProvider headerProvider = new RowProvider(Outcrop.BUILDING, getStyleParameterHeader());
-		headerProvider.setDataTables(dataTables);
-		addToTable(headerProvider.getRowWithSamplesCombined(new IdRow()));
-		addToTable(headerProvider.getRowWithSamplesCombined(new ComponentRow()));
-		addToTable(headerProvider.getRowWithSamplesCombined(new MaterialBuildingRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new IdRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Bauteil"}), new ComponentRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Material"}), new MaterialBuildingRow()));
 
 		constructEnvironmentTechnicalFeatures(dataTables);
-		addToTable(this.provider.getRowWithSamples(new LegendWithBuildingInformationRow()));
+		//addToTable(this.provider.getRowWithSamples(new LegendWithBuildingInformationRow()));
 	}
 
 	@Override
@@ -150,27 +149,31 @@ public final class Building extends Report
 	@Override
 	void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
-		addToTable(provider.getRowWithSamplesWithoutDataCheck(new ChemistryIdRow()));
-		addToTable(provider.getRowWithSamplesWithoutDataCheck(new SuspectedPollutantRow()));
-		addToTable(provider.getRowWithChemistrySamplesCombined(new ChemistryPak()));
-		addToTable(provider.getRowWithChemistrySamplesCombined(new ChemistryPcbRow())); // PCB
-		addToTable(provider.getRowWithChemistrySamplesCombined(new ChemistryAsbestosRow())); // ASBEST
+		provider.setCellStrategy(new SampleCellStrategy());
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryIdRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new SuspectedPollutantRow()));
 
-		addToTable(provider.getRowWithChemistrySamplesCombined(new ChemistryBtexRow()));
-		addToTable(provider.getRowWithChemistrySamplesCombined(new ChemistryPhenolRow())); // KMF
-		addToTable(provider.getRowWithChemistrySamplesCombined(new ChemistryKmfRow())); // KMF
-		addToTable(provider.getRowWithChemistrySamplesCombined(new ChemistrySulfateRow()));
-		addToTable(provider.getRowWithChemistrySamplesCombined(new ChemistryIcpScreeningRow()));
-		addToTable(provider.getRowWithChemistrySamplesCombined(new ChemistryEoxRow()));
+		provider.setCellStrategy(new CombinedSampleByChemistryCellStrategy());
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryPak()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryPcbRow())); // PCB
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryAsbestosRow())); // ASBEST
 
-		addToTable(provider.getRowWithChemistrySamplesCombined(new ChemistryLagaBoRow()));
-		addToTable(provider.getRowWithChemistrySamplesCombined(new ChemistryLagaRc()));
-		addToTable(provider.getRowWithChemistrySamplesCombined(new ChemistryLagaRcOrientation()));
-		addToTable(provider.getRowWithChemistrySamplesCombined(new ChemistryTlRockRow()));
-		addToTable(provider.getRowWithChemistrySamplesCombinedWithoutDataCheck(new ChemistryMufvClassificationRow())); // Einstufung
-		addToTable(provider.getRowWithChemistrySamplesCombinedWithoutDataCheck(new ChemistryMufvParameterRow())); // Parameter
-		addToTable(provider.getRowWithChemistrySamplesCombinedWithoutDataCheck(new WasteKeyMaterialRow()));  // Material
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryBtexRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryPhenolRow())); // KMF
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryKmfRow())); // KMF
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistrySulfateRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryIcpScreeningRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryEoxRow()));
+
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaBoRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaRc()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaRcOrientation()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryTlRockRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryMufvClassificationRow())); // Einstufung
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryMufvParameterRow())); // Parameter
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new WasteKeyMaterialRow()));  // Material
 		addInformationHeader(dataTables);
-		addToTable(provider.getRowWithSamplesCombinedWithoutDataCheck(new WasteKeyMixRow()));  // gemischt
+		provider.setCellStrategy(new CombinedSampleCellStrategy());
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new WasteKeyMixRow()));  // gemischt
 	}
 }

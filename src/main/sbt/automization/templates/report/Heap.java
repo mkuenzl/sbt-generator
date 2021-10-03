@@ -6,8 +6,8 @@ import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlFactory;
 import sbt.automization.html.HtmlRow;
 import sbt.automization.styles.ReportStyle;
-import sbt.automization.templates.helper.RowProvider;
-import sbt.automization.templates.helper.strategy.*;
+import sbt.automization.templates.helper.*;
+import sbt.automization.templates.helper.information.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -60,10 +60,11 @@ public final class Heap extends Report
 	{
 		createTable();
 		provider.setDataTables(dataTables);
+		provider.setCellStrategy(new SampleCellStrategy());
 
-		addToTable(provider.getRowWithSamples(new IdRow()));
-		addToTable(provider.getRowWithSamples(new AreaRow()));
-		addToTable(provider.getRowWithSamples(new HeapExposureRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new IdRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new AreaRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new HeapExposureRow()));
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
 		//addToTable(provider.getRowWithSamples(new LegendWithDepthRow()));
@@ -92,9 +93,9 @@ public final class Heap extends Report
 	{
 		addTechnicalHeader(dataTables);
 
-		addToTable(provider.getRowWithSamples(new MaterialHeapRow()));
-		addToTable(provider.getRowWithSamples(new DIN18300Row()));
-		addToTable(provider.getRowWithSamples(new DIN18196Row()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new MaterialHeapRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new DIN18300Row()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new DIN18196Row()));
 	}
 
 	@Override
@@ -118,19 +119,20 @@ public final class Heap extends Report
 	void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addEnvironmentTechnicalHeader(dataTables);
+		provider.setCellStrategy(new SampleCellStrategy());
 
-		addToTable(provider.getRowWithSamples(new ChemistryIdRow()));
-		addToTable(provider.getRowWithSamples(new ChemistryPak()));
-		addToTable(provider.getRowWithSamples(new ChemistryMufvRow()));
-		addToTable(provider.getRowWithSamples(new ChemistryLagaBoRow()));
-		addToTable(provider.getRowWithSamples(new ChemistryLagaRc()));
-		addToTable(provider.getRowWithSamples(new ChemistryLagaRcOrientation()));
-		addToTable(provider.getRowWithSamples(new ChemistryTlRockRow()));
-		addToTable(provider.getRowWithSamples(new ChemistryRekuRow()));
-		addToTable(provider.getRowWithSamples(new ChemistryDepvRow()));
-		addToTable(provider.getRowWithSamples(new ChemistryDecisionSupport()));
-		addToTable(provider.getRowWithSamples(new ChemistryRuvaRow()));
-		addToTable(provider.getRowWithSamples(new ChemistryAvvRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryIdRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryPak()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryMufvRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaBoRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaRc()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaRcOrientation()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryTlRockRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryRekuRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryDepvRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryDecisionSupport()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryRuvaRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryAvvRow()));
 	}
 
 	@Override

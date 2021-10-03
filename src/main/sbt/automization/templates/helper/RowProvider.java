@@ -2,31 +2,29 @@ package sbt.automization.templates.helper;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
+import sbt.automization.data.key.Key;
 import sbt.automization.format.text.StandardCellTextFormatter;
+import sbt.automization.html.HtmlCell;
+import sbt.automization.html.HtmlFactory;
+import sbt.automization.html.HtmlRow;
 import sbt.automization.styles.StyleParameter;
 import sbt.automization.styles.StyleParameterBuilder;
-import sbt.automization.templates.helper.strategy.RowConstruction;
-import sbt.automization.templates.helper.strategy.RowStrategy;
+import sbt.automization.templates.helper.information.InformationRetrievalStrategy;
+import sbt.automization.util.CheckDataAvailability;
 
 import java.util.List;
 
-public class RowProvider
+public final class RowProvider
 {
 	private final Outcrop outcrop;
+	private CellStrategy cellStrategy;
 	private StyleParameter styleParameter;
 	private List<DataTable> dataTables;
-	private boolean checkDataAvailability;
 
 	public RowProvider(Outcrop outcrop)
 	{
 		this.outcrop = outcrop;
 		createStandardStyle();
-	}
-
-	public RowProvider(Outcrop outcrop, StyleParameter styleParameter)
-	{
-		this.outcrop = outcrop;
-		this.styleParameter = styleParameter;
 	}
 
 	private void createStandardStyle()
@@ -43,77 +41,61 @@ public class RowProvider
 				.build();
 	}
 
-	private RowStrategy setUp(RowConstruction rowConstruction)
+	public RowProvider(Outcrop outcrop, StyleParameter styleParameter)
 	{
-		rowConstruction.setStyle(styleParameter);
-		rowConstruction.setOutcrop(outcrop.toString());
-		rowConstruction.setTables(dataTables);
-
-		return rowConstruction;
+		this.outcrop = outcrop;
+		this.styleParameter = styleParameter;
 	}
 
-	public String getRowWithProbes(RowConstruction rowConstruction)
+	public String getRowWithDataCheck(HtmlCell header, InformationRetrievalStrategy informationRetrievalStrategy)
 	{
-		RowStrategy rowStrategy = setUp(rowConstruction);
+		if (checkDataAvailability(informationRetrievalStrategy))
+		{
+			return getRow(header, informationRetrievalStrategy);
+		}
 
-		return rowStrategy.buildWithProbes();
+		return "";
 	}
 
-	public String getRowWithSamples(RowConstruction rowConstruction)
+	public boolean checkDataAvailability(InformationRetrievalStrategy informationRetrievalStrategy)
 	{
-		RowStrategy rowStrategy = setUp(rowConstruction);
+		Key dataKey = informationRetrievalStrategy.getInformationKey();
 
-		return rowStrategy.buildWithSamples();
+		return CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop.toString(), dataKey);
 	}
 
-	public String getRowWithSamplesCombined(RowConstruction rowConstruction)
+	public String getRow(HtmlCell header, InformationRetrievalStrategy informationRetrievalStrategy)
 	{
-		RowStrategy rowStrategy = setUp(rowConstruction);
+		cellStrategy.setRetrievalStrategy(informationRetrievalStrategy);
+		cellStrategy.setStyle(styleParameter);
+		informationRetrievalStrategy.setOutcrop(outcrop);
 
-		return rowStrategy.buildWithSamplesCombined();
+		return build(header);
 	}
 
-	public String getRowWithChemistrySamplesCombined(RowConstruction rowConstruction)
+	private String build(HtmlCell header)
 	{
-		RowStrategy rowStrategy = setUp(rowConstruction);
+		List<HtmlCell> cells = cellStrategy.build(dataTables);
 
-		return rowStrategy.buildWithChemistrySamplesCombined();
-	}
+		HtmlRow row = HtmlFactory.createRow(styleParameter.getRowClass());
 
-	public String getRowWithProbesWithoutDataCheck(RowConstruction rowConstruction)
-	{
-		rowConstruction.setCheckData(false);
-		RowStrategy rowStrategy = setUp(rowConstruction);
+		row.appendContent(header.appendTag());
 
-		return rowStrategy.buildWithProbes();
-	}
+		for (HtmlCell cell : cells)
+		{
+			row.appendContent(cell.appendTag());
+		}
 
-	public String getRowWithSamplesWithoutDataCheck(RowConstruction rowConstruction)
-	{
-		rowConstruction.setCheckData(false);
-		RowStrategy rowStrategy = setUp(rowConstruction);
-
-		return rowStrategy.buildWithSamples();
-	}
-
-	public String getRowWithSamplesCombinedWithoutDataCheck(RowConstruction rowConstruction)
-	{
-		rowConstruction.setCheckData(false);
-		RowStrategy rowStrategy = setUp(rowConstruction);
-
-		return rowStrategy.buildWithSamplesCombined();
-	}
-
-	public String getRowWithChemistrySamplesCombinedWithoutDataCheck(RowConstruction rowConstruction)
-	{
-		rowConstruction.setCheckData(false);
-		RowStrategy rowStrategy = setUp(rowConstruction);
-
-		return rowStrategy.buildWithChemistrySamplesCombined();
+		return row.appendTag();
 	}
 
 	public void setDataTables(List<DataTable> tables)
 	{
 		this.dataTables = tables;
+	}
+
+	public void setCellStrategy(CellStrategy cellStrategy)
+	{
+		this.cellStrategy = cellStrategy;
 	}
 }

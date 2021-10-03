@@ -2,8 +2,10 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
+import sbt.automization.templates.helper.ProbeCellStrategy;
 import sbt.automization.templates.helper.RowProvider;
-import sbt.automization.templates.helper.strategy.*;
+import sbt.automization.templates.helper.rows.LegendDepthAndAcronymRow;
+import sbt.automization.templates.helper.information.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -57,14 +59,15 @@ public final class BaseCourseWithoutBinder extends Report
 	{
 		createTable();
 		provider.setDataTables(dataTables);
+		provider.setCellStrategy(new ProbeCellStrategy());
 
-		addToTable(provider.getRowWithProbes(new IdRow()));
-		addToTable(provider.getRowWithProbes(new BaseCourseExposureRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new IdRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new BaseCourseExposureRow()));
 
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
 
-		addToTable(provider.getRowWithProbes(new LegendDepthAndAcronymRow()));
+		//addToTable(provider.getRowWithProbes(new LegendDepthAndAcronymRow()));
 	}
 
 	@Override
@@ -72,14 +75,14 @@ public final class BaseCourseWithoutBinder extends Report
 	{
 		addTechnicalHeader(dataTables);
 
-		addToTable(provider.getRowWithProbes(new EvDynRow()));
-		addToTable(provider.getRowWithProbes(new EvDyn85Row()));
-		addToTable(provider.getRowWithProbes(new Ev2WithEv85Row()));
-		addToTable(provider.getRowWithProbes(new EvMinimumBorderRow()));
-		addToTable(provider.getRowWithProbes(new MaterialTobRow()));
-		addToTable(provider.getRowWithProbes(new SizeRow()));
-		addToTable(provider.getRowWithProbes(new GrainSizeDistributionRow()));
-		addToTable(provider.getRowWithProbes(new SizeTotalTobRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new EvDynRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new EvDyn85Row()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new Ev2WithEv85Row()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new EvMinimumBorderRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new MaterialTobRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new SizeRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new GrainSizeDistributionRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new SizeTotalTobRow()));
 	}
 
 	@Override
@@ -87,15 +90,18 @@ public final class BaseCourseWithoutBinder extends Report
 	{
 		addEnvironmentTechnicalHeader(dataTables);
 
-		addToTable(provider.getRowWithProbes(new ChemistryIdRow()));
-		addToTable(provider.getRowWithProbes(new ChemistryMufvRow()));
-		addToTable(provider.getRowWithProbes(new ChemistryLagaBoRow()));
-		addToTable(provider.getRowWithProbes(new ChemistryLagaRc()));
-		addToTable(provider.getRowWithProbes(new ChemistryLagaRcOrientation()));
-		addToTable(provider.getRowWithProbes(new ChemistryTlRockRow()));
-		addToTable(provider.getRowWithProbes(new ChemistryDepvRow()));
-		addToTable(provider.getRowWithProbes(new ChemistryDecisionSupport()));
-		addToTable(provider.getRowWithProbes(new ChemistryAvvRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryIdRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryMufvRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLfsRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaBoRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaRc()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaRcOrientation()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryTlRockRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryRekuRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryDepvRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryDecisionSupport()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryAvvRow()));
+
 	}
 
 	@Override

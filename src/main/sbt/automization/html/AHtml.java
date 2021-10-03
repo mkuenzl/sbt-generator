@@ -16,6 +16,12 @@ abstract class AHtml implements IHtmlCode
     {
     }
 
+    public AHtml(AHtml copyFrom)
+    {
+        this.content = copyFrom.content;
+        this.attributes = new HashMap<>(copyFrom.attributes);
+    }
+
     public String getContent()
     {
         return content;

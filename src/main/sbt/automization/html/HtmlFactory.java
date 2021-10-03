@@ -662,6 +662,15 @@ public class HtmlFactory
 		return row.appendTag();
 	}
 
+	public static HtmlRow createRow(String classID)
+	{
+		HtmlRow row = new HtmlRow.Builder()
+				.appendAttribute("class", classID)
+				.build();
+
+		return row;
+	}
+
 	public static HtmlRow createRow(String classID, String[] content)
 	{
 		HtmlRow row = new HtmlRow.Builder()
@@ -749,6 +758,11 @@ public class HtmlFactory
 	public static HtmlCell createChemistryCell(final String classification)
 	{
 		HtmlCell htmlCell;
+
+		if ("".equals(classification)) return htmlCell = new HtmlCell.Builder()
+				.appendAttribute("class", "NormalCenter")
+				.appendContent("-")
+				.build();
 
 		switch (classification)
 		{
@@ -850,7 +864,7 @@ public class HtmlFactory
 			default:
 				htmlCell = new HtmlCell.Builder()
 						.appendAttribute("class", "NormalCenter")
-						.appendContent("-")
+						.appendContent(classification)
 						.build();
 				break;
 		}

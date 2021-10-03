@@ -2,8 +2,10 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
+import sbt.automization.templates.helper.ProbeCellStrategy;
 import sbt.automization.templates.helper.RowProvider;
-import sbt.automization.templates.helper.strategy.*;
+import sbt.automization.templates.helper.rows.LegendWithDepthRow;
+import sbt.automization.templates.helper.information.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -57,15 +59,16 @@ public final class BaseCourseWithHydraulicBinder extends Report
 	{
 		createTable();
 		provider.setDataTables(dataTables);
-		addToTable(provider.getRowWithProbes(new IdRow()));
-		addToTable(provider.getRowWithProbes(new BaseCourseExposureRow()));
-		addToTable(provider.getRowWithProbes(new SizeTotalTmhbRow()));
-		addToTable(provider.getRowWithProbes(new LoadClassRow()));
+		provider.setCellStrategy(new ProbeCellStrategy());
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new IdRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new BaseCourseExposureRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new SizeTotalTmhbRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new LoadClassRow()));
 
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
 
-		addToTable(provider.getRowWithProbes(new LegendWithDepthRow()));
+		//addToTable(provider.getRowWithProbes(new LegendWithDepthRow()));
 	}
 
 	@Override
@@ -73,8 +76,8 @@ public final class BaseCourseWithHydraulicBinder extends Report
 	{
 		addTechnicalHeader(dataTables);
 
-		addToTable(provider.getRowWithProbes(new SizeRow()));
-		addToTable(provider.getRowWithProbes(new CompressiveStrengthRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new SizeRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new CompressiveStrengthRow()));
 	}
 
 	@Override
@@ -82,13 +85,17 @@ public final class BaseCourseWithHydraulicBinder extends Report
 	{
 		addEnvironmentTechnicalHeader(dataTables);
 
-		addToTable(provider.getRowWithProbes(new ChemistryIdRow()));
-		addToTable(provider.getRowWithProbes(new ChemistryMufvRow()));
-		addToTable(provider.getRowWithProbes(new ChemistryLagaRc()));
-		addToTable(provider.getRowWithProbes(new ChemistryLagaRcOrientation()));
-		addToTable(provider.getRowWithProbes(new ChemistryTlRockRow()));
-		addToTable(provider.getRowWithProbes(new ChemistryDepvRow()));
-		addToTable(provider.getRowWithProbes(new ChemistryAvvRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryIdRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryMufvRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLfsRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaBoRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaRc()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaRcOrientation()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryTlRockRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryRekuRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryDepvRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryDecisionSupport()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryAvvRow()));
 	}
 
 	@Override

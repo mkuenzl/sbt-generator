@@ -2,6 +2,15 @@ package sbt.automization.html;
 
 public class HtmlCell extends AHtml
 {
+    public HtmlCell(HtmlCell lastCell)
+    {
+        super(lastCell);
+    }
+
+    public HtmlCell()
+    {
+        super();
+    }
 
     @Override
     public String appendTag()
@@ -21,7 +30,6 @@ public class HtmlCell extends AHtml
 
     public static class Builder extends BaseHtmlBuilder<HtmlCell, Builder>
     {
-
         @Override
         protected HtmlCell getActual()
         {

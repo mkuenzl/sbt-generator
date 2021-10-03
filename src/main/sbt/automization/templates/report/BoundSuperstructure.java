@@ -2,8 +2,11 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
+import sbt.automization.templates.helper.ProbeCellStrategy;
 import sbt.automization.templates.helper.RowProvider;
-import sbt.automization.templates.helper.strategy.*;
+import sbt.automization.templates.helper.rows.CrossSectionWithPitchRows;
+import sbt.automization.templates.helper.rows.CrossSectionWithoutPitchRows;
+import sbt.automization.templates.helper.information.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -11,12 +14,12 @@ import java.util.List;
 public final class BoundSuperstructure extends Report
 {
 	private static BoundSuperstructure instance;
-	private final RowProvider rowProvider;
+	private final RowProvider provider;
 
 	private BoundSuperstructure()
 	{
 		super(Outcrop.GOB);
-		rowProvider = new RowProvider(Outcrop.GOB);
+		provider = new RowProvider(Outcrop.GOB);
 	}
 
 	public static BoundSuperstructure getInstance()
@@ -56,16 +59,18 @@ public final class BoundSuperstructure extends Report
 	private void buildTable(List<DataTable> dataTables)
 	{
 		createTable();
-		rowProvider.setDataTables(dataTables);
+		provider.setDataTables(dataTables);
+		provider.setCellStrategy(new ProbeCellStrategy());
 
-		addToTable(rowProvider.getRowWithProbes(new IdRow()));
-		addToTable(rowProvider.getRowWithProbes(new SuperstructureExposureRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new IdRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new SuperstructureExposureRow()));
 
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
 
-		addToTable(rowProvider.getRowWithProbes(new CrossSectionWithPitchRows()));
-		addToTable(rowProvider.getRowWithProbes(new CrossSectionWithoutPitchRows()));
+		//TODO
+		//addToTable(provider.getRowWithProbes(new CrossSectionWithPitchRows()));
+		//addToTable(provider.getRowWithProbes(new CrossSectionWithoutPitchRows()));
 	}
 
 	@Override
@@ -73,10 +78,10 @@ public final class BoundSuperstructure extends Report
 	{
 		addTechnicalHeader(dataTables);
 
-		addToTable(rowProvider.getRowWithProbes(new SizeTotalObRow()));
-		addToTable(rowProvider.getRowWithProbes(new LoadClassRow()));
-		addToTable(rowProvider.getRowWithProbes(new RuKCombinedRow()));
-		addToTable(rowProvider.getRowWithProbes(new RuKSingleValueRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new SizeTotalObRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new LoadClassRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new RuKCombinedRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new RuKSingleValueRow()));
 	}
 
 	@Override
@@ -84,9 +89,9 @@ public final class BoundSuperstructure extends Report
 	{
 		addEnvironmentTechnicalHeader(dataTables);
 
-		addToTable(rowProvider.getRowWithProbes(new PitchQualitativeRow()));
-		addToTable(rowProvider.getRowWithProbes(new PitchHalfQuantitativeRow()));
-		addToTable(rowProvider.getRowWithProbes(new PitchQuantitativeRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new PitchQualitativeRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new PitchHalfQuantitativeRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new PitchQuantitativeRow()));
 	}
 
 	@Override

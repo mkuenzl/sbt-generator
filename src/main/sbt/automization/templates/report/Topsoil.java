@@ -2,8 +2,9 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
+import sbt.automization.templates.helper.ProbeCellStrategy;
 import sbt.automization.templates.helper.RowProvider;
-import sbt.automization.templates.helper.strategy.*;
+import sbt.automization.templates.helper.information.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -11,12 +12,12 @@ import java.util.List;
 public final class Topsoil extends Report
 {
 	private static Topsoil instance;
-	private final RowProvider rowProvider;
+	private final RowProvider provider;
 
 	private Topsoil()
 	{
 		super(Outcrop.OH);
-		rowProvider = new RowProvider(Outcrop.OH);
+		provider = new RowProvider(Outcrop.OH);
 	}
 
 	public static Topsoil getInstance()
@@ -55,10 +56,11 @@ public final class Topsoil extends Report
 	private void buildTable(List<DataTable> dataTables)
 	{
 		createTable();
-		rowProvider.setDataTables(dataTables);
+		provider.setDataTables(dataTables);
+		provider.setCellStrategy(new ProbeCellStrategy());
 
-		addToTable(rowProvider.getRowWithProbes(new IdRow()));
-		addToTable(rowProvider.getRowWithProbes(new GroundExposureRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new IdRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new GroundExposureRow()));
 
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
@@ -69,9 +71,9 @@ public final class Topsoil extends Report
 	{
 		addTechnicalHeader(dataTables);
 
-		addToTable(rowProvider.getRowWithProbes(new DIN18196Row()));
-		addToTable(rowProvider.getRowWithProbes(new DIN18915Row()));
-		addToTable(rowProvider.getRowWithProbes(new DIN18320Row()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new DIN18196Row()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new DIN18915Row()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new DIN18320Row()));
 	}
 
 	@Override
@@ -79,13 +81,17 @@ public final class Topsoil extends Report
 	{
 		addEnvironmentTechnicalHeader(dataTables);
 
-		addToTable(rowProvider.getRowWithProbes(new ChemistryIdRow()));
-		addToTable(rowProvider.getRowWithProbes(new ChemistryMufvRow()));
-		addToTable(rowProvider.getRowWithProbes(new ChemistryLagaRc()));
-		addToTable(rowProvider.getRowWithProbes(new ChemistryLagaRcOrientation()));
-		addToTable(rowProvider.getRowWithProbes(new ChemistryTlRockRow()));
-		addToTable(rowProvider.getRowWithProbes(new ChemistryDepvRow()));
-		addToTable(rowProvider.getRowWithProbes(new ChemistryAvvRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryIdRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryMufvRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLfsRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaBoRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaRc()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaRcOrientation()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryTlRockRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryRekuRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryDepvRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryDecisionSupport()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryAvvRow()));
 	}
 
 	@Override

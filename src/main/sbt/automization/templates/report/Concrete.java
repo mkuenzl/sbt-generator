@@ -2,8 +2,10 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
+import sbt.automization.templates.helper.ProbeCellStrategy;
 import sbt.automization.templates.helper.RowProvider;
-import sbt.automization.templates.helper.strategy.*;
+import sbt.automization.templates.helper.rows.LegendWithDepthRow;
+import sbt.automization.templates.helper.information.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -12,12 +14,12 @@ public final class Concrete extends Report
 {
 
 	private static Concrete instance;
-	private final RowProvider rowProvider;
+	private final RowProvider provider;
 
 	private Concrete()
 	{
 		super(Outcrop.CONCRETE);
-		rowProvider = new RowProvider(Outcrop.CONCRETE);
+		provider = new RowProvider(Outcrop.CONCRETE);
 	}
 
 	public static Concrete getInstance()
@@ -57,15 +59,16 @@ public final class Concrete extends Report
 	private void buildTable(List<DataTable> dataTables)
 	{
 		createTable();
-		rowProvider.setDataTables(dataTables);
+		provider.setDataTables(dataTables);
+		provider.setCellStrategy(new ProbeCellStrategy());
 
-		addToTable(rowProvider.getRowWithProbes(new IdRow()));
-		addToTable(rowProvider.getRowWithProbes(new SuperstructureExposureRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new IdRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new SuperstructureExposureRow()));
 
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
 
-		addToTable(rowProvider.getRowWithProbes(new LegendWithDepthRow()));
+		//addToTable(provider.getRowWithProbes(new LegendWithDepthRow()));
 	}
 
 	@Override
@@ -73,8 +76,8 @@ public final class Concrete extends Report
 	{
 		addTechnicalHeader(dataTables);
 
-		addToTable(rowProvider.getRowWithProbes(new MaterialRow()));
-		addToTable(rowProvider.getRowWithProbes(new CompressiveStrengthRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new MaterialRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new CompressiveStrengthRow()));
 	}
 
 	@Override
@@ -82,13 +85,17 @@ public final class Concrete extends Report
 	{
 		addEnvironmentTechnicalHeader(dataTables);
 
-		addToTable(rowProvider.getRowWithProbes(new ChemistryIdRow()));
-		addToTable(rowProvider.getRowWithProbes(new ChemistryMufvRow()));
-		addToTable(rowProvider.getRowWithProbes(new ChemistryLagaRc()));
-		addToTable(rowProvider.getRowWithProbes(new ChemistryLagaRcOrientation()));
-		addToTable(rowProvider.getRowWithProbes(new ChemistryTlRockRow()));
-		addToTable(rowProvider.getRowWithProbes(new ChemistryDepvRow()));
-		addToTable(rowProvider.getRowWithProbes(new ChemistryAvvRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryIdRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryMufvRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLfsRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaBoRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaRc()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaRcOrientation()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryTlRockRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryRekuRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryDepvRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryDecisionSupport()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryAvvRow()));
 	}
 
 	@Override

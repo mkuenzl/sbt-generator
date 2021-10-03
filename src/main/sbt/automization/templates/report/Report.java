@@ -2,12 +2,16 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
+import sbt.automization.format.text.StandardCellTextFormatter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlFactory;
 import sbt.automization.html.HtmlRow;
 import sbt.automization.html.HtmlTable;
 import sbt.automization.styles.ReportStyle;
+import sbt.automization.styles.StyleParameter;
+import sbt.automization.styles.StyleParameterBuilder;
 import sbt.automization.templates.HtmlTemplate;
+import sbt.automization.templates.helper.HeaderProvider;
 import sbt.automization.util.DatatableFilter;
 import sbt.automization.util.Separator;
 
@@ -22,17 +26,21 @@ public abstract class Report implements HtmlTemplate
 	protected final Outcrop outcrop;
 	protected final StringBuilder template;
 	protected HtmlTable table;
+	protected final HeaderProvider header;
+
 
 	public Report()
 	{
 		this.template = new StringBuilder();
 		this.outcrop = null;
+		this.header = new HeaderProvider(getStyleParameterHeader());
 	}
 
 	public Report(Outcrop outcrop)
 	{
 		this.template = new StringBuilder();
 		this.outcrop = outcrop;
+		this.header = new HeaderProvider(getStyleParameterHeader());
 	}
 
 	public String getTemplate()
@@ -109,5 +117,19 @@ public abstract class Report implements HtmlTemplate
 	void addToTable(String content)
 	{
 		table.appendContent(content);
+	}
+
+	private StyleParameter getStyleParameterHeader()
+	{
+		return new StyleParameterBuilder()
+				.setRowClass("NormalThin8")
+				.setHeaderCellClass("NormalHeader")
+				.setHeaderCellWidth("5")
+				.setNormalCellClass("NormalBoldHeader")
+				.setNormalCellWidth("2.5")
+				.setUnitCellClass("Normal6")
+				.setLegendCellClass("NormalHeaderSmallFont")
+				.setTextFormatter(new StandardCellTextFormatter())
+				.build();
 	}
 }
