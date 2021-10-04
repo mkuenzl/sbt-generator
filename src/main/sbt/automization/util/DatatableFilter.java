@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class DatatableFilter
 {
-	private DatatableFilter(){}
+	private DatatableFilter() {}
 
 	public static List<DataTable> getProbesWhichIncludeOutcrop(List<DataTable> tables, Outcrop outcrop)
 	{

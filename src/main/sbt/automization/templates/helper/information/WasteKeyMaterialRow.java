@@ -37,7 +37,7 @@ public class WasteKeyMaterialRow extends DatatableInformationRetrieval
 			avvParameter = split[0] + UtilityPrinter.printLineBreak() + "(" + split[1];
 		}
 
-		if (!"".equals(footnote) && !"".equals(avvParameter)) return "<em>".concat(avvParameter).concat("</em>");
+		if (! "".equals(footnote) && ! "".equals(avvParameter)) return "<em>".concat(avvParameter).concat("</em>");
 
 		return avvParameter;
 	}

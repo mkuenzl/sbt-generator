@@ -2,11 +2,8 @@ package sbt.automization.templates.report.superstructure;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
-import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
-import sbt.automization.data.key.ProbeKey;
 import sbt.automization.data.key.SampleKey;
-import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlFactory;
 import sbt.automization.html.HtmlRow;
@@ -14,7 +11,6 @@ import sbt.automization.html.HtmlText;
 import sbt.automization.styles.StyleParameter;
 import sbt.automization.templates.report.Report;
 
-import java.util.Collection;
 import java.util.List;
 
 public final class CrossSectionWithoutPitchRows extends Report

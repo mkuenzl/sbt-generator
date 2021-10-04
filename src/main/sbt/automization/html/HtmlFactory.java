@@ -7,7 +7,7 @@ import java.util.Locale;
 
 public class HtmlFactory
 {
-	private HtmlFactory(){}
+	private HtmlFactory() {}
 
 	public static String createCellAsString(String classID, int width, int height, int rowspan, int colspan, String[] content)
 	{

@@ -11,9 +11,6 @@ import sbt.automization.format.datatable.SampleFormatter;
 import sbt.automization.format.text.*;
 import sbt.automization.html.HtmlText;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.List;
 
 public final class SamplePrinter implements TextPrinter
@@ -182,30 +179,30 @@ public final class SamplePrinter implements TextPrinter
 
 	public String printAttributeOfDatatable(final DataTable dataTable, final Key tag)
 	{
-			String formattedTag;
+		String formattedTag;
 
-			if (tag instanceof ChemistryKey)
-			{
-				formattedTag = new ChemistryMarkupTextFormatter().format(dataTable.getParameterValueBy(SampleKey.CHEMISTRY_ID, tag));
-			} else if (tag instanceof RuKKey)
-			{
-				formattedTag = new HtmlText.Builder()
-						.appendAttribute("class", "Normal")
-						.appendContent(new StandardCellTextFormatter().format(dataTable.getParameterValueBy(SampleKey.RUK_ID, tag)))
-						.build().appendTag();
-			} else if (tag == SampleKey.MOISTURE)
-			{
-				formattedTag = new HtmlText.Builder()
-						.appendAttribute("class", "Normal")
-						.appendContent(new StandardCellTextFormatter().format(new ProctorTextFormatter().format(dataTable.get(SampleKey.MOISTURE))))
-						.build().appendTag();
-			} else
-			{
-				formattedTag = new HtmlText.Builder()
-						.appendAttribute("class", "Normal")
-						.appendContent(new StandardCellTextFormatter().format(dataTable.get(tag)))
-						.build().appendTag();
-			}
+		if (tag instanceof ChemistryKey)
+		{
+			formattedTag = new ChemistryMarkupTextFormatter().format(dataTable.getParameterValueBy(SampleKey.CHEMISTRY_ID, tag));
+		} else if (tag instanceof RuKKey)
+		{
+			formattedTag = new HtmlText.Builder()
+					.appendAttribute("class", "Normal")
+					.appendContent(new StandardCellTextFormatter().format(dataTable.getParameterValueBy(SampleKey.RUK_ID, tag)))
+					.build().appendTag();
+		} else if (tag == SampleKey.MOISTURE)
+		{
+			formattedTag = new HtmlText.Builder()
+					.appendAttribute("class", "Normal")
+					.appendContent(new StandardCellTextFormatter().format(new ProctorTextFormatter().format(dataTable.get(SampleKey.MOISTURE))))
+					.build().appendTag();
+		} else
+		{
+			formattedTag = new HtmlText.Builder()
+					.appendAttribute("class", "Normal")
+					.appendContent(new StandardCellTextFormatter().format(dataTable.get(tag)))
+					.build().appendTag();
+		}
 		return formattedTag;
 	}
 

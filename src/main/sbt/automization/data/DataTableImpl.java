@@ -23,7 +23,7 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 	 * Constructor
 	 */
 	public DataTableImpl()
-	{ this.informationMap = new HashMap<>();}
+	{this.informationMap = new HashMap<>();}
 
 	@Override
 	public void add(String key, String value)
@@ -193,7 +193,7 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 	{
 		for (String value : informationMap.values())
 		{
-			if (!"".equals(value)) return false;
+			if (! "".equals(value)) return false;
 		}
 		return true;
 	}
@@ -220,7 +220,7 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 
 		if (value == null) return false;
 
-		return !"".equals(value);
+		return ! "".equals(value);
 	}
 
 	public Parameter getParameterBy(final Key key)

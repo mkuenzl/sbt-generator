@@ -174,7 +174,6 @@ public final class SamplingProtocolBuilding extends Appendix
 	}
 
 
-
 	private void buildHeadTable(DataTable probe)
 	{
 		String firstRow = HtmlFactory.createRowAsString("Normal", new String[]{

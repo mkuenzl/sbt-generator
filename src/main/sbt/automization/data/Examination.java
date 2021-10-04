@@ -18,7 +18,7 @@ public final class Examination extends ArrayList<DataTable>
 	public Examination(List<Map<String, String>> parsedCsv, String exportPath)
 	{
 		this.addAll(DataTableFactory.getProbes(parsedCsv));
-		this.exportPath = exportPath;
+		Examination.exportPath = exportPath;
 	}
 
 	/**
@@ -30,7 +30,7 @@ public final class Examination extends ArrayList<DataTable>
 	public Examination(Collection<DataTable> probes, String exportPath)
 	{
 		this.addAll(probes);
-		this.exportPath = exportPath;
+		Examination.exportPath = exportPath;
 	}
 
 	/**
@@ -41,7 +41,7 @@ public final class Examination extends ArrayList<DataTable>
 	public Examination(Collection<DataTable> probes)
 	{
 		this.addAll(probes);
-		this.exportPath = "";
+		exportPath = "";
 	}
 
 	/**

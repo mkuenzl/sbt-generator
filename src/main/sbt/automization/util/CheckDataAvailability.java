@@ -4,8 +4,8 @@ import sbt.automization.data.DataTable;
 import sbt.automization.data.Parameter;
 import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
-import sbt.automization.data.key.SampleKey;
 import sbt.automization.data.key.Key;
+import sbt.automization.data.key.SampleKey;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +59,7 @@ public final class CheckDataAvailability
 				samples = ((Probe) dataTable).getSamplesBy(SampleKey.OUTCROP, outcrop);
 			} else
 			{
-				samples = ((Probe) dataTable).getSamples();
+				samples = dataTable.getSamples();
 			}
 
 			for (Sample sample : samples)

@@ -10,7 +10,8 @@ public class TableToolVisualInterface extends JFrame
 {
 	public static JTextArea textField;
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		new TableToolVisualInterface();
 	}
 

@@ -2,39 +2,39 @@ package sbt.automization.html;
 
 public class HtmlTable extends AHtml
 {
-    //table
+	//table
 
-    @Override
-    public String appendTag()
-    {
-        StringBuilder strb = new StringBuilder();
-        strb.append("<")
-                .append("table")
-                .append(" ")
-                .append(appendAttributes())
-                .append(">")
-                .append("\n")
-                .append(content)
-                .append("\n")
-                .append("</table>");
-        return strb.toString();
-    }
+	@Override
+	public String appendTag()
+	{
+		StringBuilder strb = new StringBuilder();
+		strb.append("<")
+				.append("table")
+				.append(" ")
+				.append(appendAttributes())
+				.append(">")
+				.append("\n")
+				.append(content)
+				.append("\n")
+				.append("</table>");
+		return strb.toString();
+	}
 
-    public static class Builder extends BaseHtmlBuilder<HtmlTable, Builder>
-    {
+	public static class Builder extends BaseHtmlBuilder<HtmlTable, Builder>
+	{
 
-        @Override
-        protected HtmlTable getActual()
-        {
-            return new HtmlTable();
-        }
+		@Override
+		protected HtmlTable getActual()
+		{
+			return new HtmlTable();
+		}
 
-        @Override
-        protected Builder getActualBuilder()
-        {
-            return this;
-        }
-    }
+		@Override
+		protected Builder getActualBuilder()
+		{
+			return this;
+		}
+	}
 
-    //Tags table,tr,td
+	//Tags table,tr,td
 }

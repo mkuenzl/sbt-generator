@@ -83,7 +83,8 @@ public enum LpKey implements Key
 				}
 			};
 
-	private static String addLPTag(String parameter){
+	private static String addLPTag(String parameter)
+	{
 		return "PARAMETER.LP." + parameter;
 	}
 }

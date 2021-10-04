@@ -11,7 +11,8 @@ public class FileDropDownActionListener implements ActionListener
 {
 	JComboBox comboBox;
 
-	public FileDropDownActionListener(JComboBox comboBox){
+	public FileDropDownActionListener(JComboBox comboBox)
+	{
 		super();
 		this.comboBox = comboBox;
 	}

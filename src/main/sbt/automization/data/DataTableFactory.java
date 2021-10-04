@@ -72,10 +72,12 @@ public final class DataTableFactory
 
 			for (DataTable parameter : parameters)
 			{
-				if (table.isRelatedBy(SampleKey.CHEMISTRY_ID, parameter)) {
+				if (table.isRelatedBy(SampleKey.CHEMISTRY_ID, parameter))
+				{
 					table.addParameter((Parameter) parameter);
 				}
-				if (table.isRelatedBy(SampleKey.RUK_ID, parameter)) {
+				if (table.isRelatedBy(SampleKey.RUK_ID, parameter))
+				{
 					table.addParameter((Parameter) parameter);
 				}
 			}
@@ -90,7 +92,8 @@ public final class DataTableFactory
 
 			for (DataTable parameter : parameters)
 			{
-				if (table.isRelatedBy(ProbeKey.LP_ID, parameter)) {
+				if (table.isRelatedBy(ProbeKey.LP_ID, parameter))
+				{
 					table.addParameter((Parameter) parameter);
 				}
 			}
@@ -105,7 +108,8 @@ public final class DataTableFactory
 
 			for (DataTable sample : samples)
 			{
-				if (table.isRelatedBy(ProbeKey.ID, sample)) {
+				if (table.isRelatedBy(ProbeKey.ID, sample))
+				{
 					table.addSample((Sample) sample);
 					((Sample) sample).setProbe(table);
 				}
@@ -172,7 +176,7 @@ public final class DataTableFactory
 		List<DataTable> parameter = new ArrayList<>();
 
 		parameter.add(createParameterFrom(csvRow, "PARAMETER.LP."));
-		parameter.add(createParameterFrom(csvRow,  "PARAMETER.CHEMISTRY."));
+		parameter.add(createParameterFrom(csvRow, "PARAMETER.CHEMISTRY."));
 		parameter.add(createParameterFrom(csvRow, "PARAMETER.RUK."));
 
 		return parameter;

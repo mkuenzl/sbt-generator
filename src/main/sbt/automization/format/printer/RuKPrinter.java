@@ -15,7 +15,7 @@ public final class RuKPrinter implements TextPrinter
 	{
 		List<Sample> samples = dataTable.getSamplesBy(SampleKey.OUTCROP, outcrop);
 
-		if (!CheckDataAvailability.thereExistsAnSampleWithData(dataTable, outcrop, RuKKey.VALUE))
+		if (! CheckDataAvailability.thereExistsAnSampleWithData(dataTable, outcrop, RuKKey.VALUE))
 		{
 			return "-";
 		}

@@ -2,13 +2,14 @@ package sbt.automization.html;
 
 public interface IHtmlCode
 {
-    /**
-     * Method is used as toString
-     * @return a String like <htmlObject attributes> content </htmlObject>
-     */
-    String appendTag();
+	/**
+	 * Method is used as toString
+	 *
+	 * @return a String like <htmlObject attributes> content </htmlObject>
+	 */
+	String appendTag();
 
-    void appendAttribute(String attribute, String content);
+	void appendAttribute(String attribute, String content);
 
-    void appendContent(String content);
+	void appendContent(String content);
 }

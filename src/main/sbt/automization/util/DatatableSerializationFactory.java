@@ -20,7 +20,7 @@ public final class DatatableSerializationFactory
 	public static void serializeDatatableToFile(DataTable dataTable, String fileName)
 	{
 		try (FileOutputStream fileOutputStream = new FileOutputStream(fileName) ;
-		     ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream) ;)
+		     ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream))
 		{
 			outputStream.writeObject(dataTable);
 		} catch (IOException e)
@@ -40,7 +40,7 @@ public final class DatatableSerializationFactory
 		DataTable table = null;
 
 		try (FileInputStream fileInputStream = new FileInputStream(filePath) ;
-		     ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream) ;)
+		     ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream))
 		{
 			table = (DataTable) objectInputStream.readObject();
 		} catch (IOException | ClassNotFoundException e)

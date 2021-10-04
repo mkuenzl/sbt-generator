@@ -2,10 +2,10 @@ package sbt.automization.export;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Examination;
-import sbt.automization.templates.HtmlTemplate;
 import sbt.automization.html.Html;
 import sbt.automization.html.HtmlBody;
 import sbt.automization.html.HtmlDiv;
+import sbt.automization.templates.HtmlTemplate;
 
 import java.io.BufferedReader;
 import java.io.File;

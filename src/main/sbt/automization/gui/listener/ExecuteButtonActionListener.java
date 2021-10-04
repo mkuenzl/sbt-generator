@@ -29,18 +29,19 @@ public class ExecuteButtonActionListener implements ActionListener
 			Examination examination = new Examination(parsedSiteInformation, csv.getParent());
 			for (HtmlTemplate strategy : StrategyStorage.getInstance().getStrategies())
 			{
-				try{
+				try
+				{
 					examination.export(new HtmlTemplateExport(strategy));
 				} catch (Exception exception)
 				{
 					ErrorPopup.showErrorMessage("Es gab einen Fehler bei der Erstellung der " + strategy.getExportFileName() + "\n"
-					                           + exception.toString());
+							+ exception);
 				}
 			}
 		} catch (Exception exception)
 		{
 			ErrorPopup.showErrorMessage("Es gab einen Fehler bei dem Lesen der CSV. " + "\n"
-					+ exception.toString());
+					+ exception);
 		}
 	}
 }

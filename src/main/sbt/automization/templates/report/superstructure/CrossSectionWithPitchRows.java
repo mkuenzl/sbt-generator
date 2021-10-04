@@ -4,7 +4,6 @@ import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
 import sbt.automization.data.Sample;
 import sbt.automization.data.key.SampleKey;
-import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlFactory;
 import sbt.automization.html.HtmlRow;

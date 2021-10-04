@@ -1,14 +1,14 @@
 package sbt.automization.format.datatable;
 
 import sbt.automization.data.DataTable;
-import sbt.automization.data.Parameter;
 import sbt.automization.data.Sample;
-import sbt.automization.data.key.*;
-import sbt.automization.gui.ErrorPopup;
+import sbt.automization.data.key.ChemistryKey;
+import sbt.automization.data.key.Key;
+import sbt.automization.data.key.RuKKey;
+import sbt.automization.data.key.SampleKey;
 import sbt.automization.util.HeapConstruction;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,7 +37,7 @@ public final class SampleFormatter
 	/**
 	 * Method used to combine layers of an outcrop from an exploration site based on a specific tag
 	 *
-	 * @param tag       a String specifying an information tag
+	 * @param tag a String specifying an information tag
 	 * @return an updated list of layers with all possible layers combined
 	 */
 	public List<Sample> combineSamplesByTag(final Key... tag)
@@ -98,7 +98,7 @@ public final class SampleFormatter
 		if (secondSample == null) return firstSample;
 		if (keys == null) return null;
 
-		if (samplesAreEqualByTags(firstSample,secondSample,keys))
+		if (samplesAreEqualByTags(firstSample, secondSample, keys))
 		{
 			Sample sample = new Sample(firstSample);
 			Map<String, String> sampleTable = sample.getTable();

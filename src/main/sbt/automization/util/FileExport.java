@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 
 public final class FileExport
 {
-	private FileExport(){}
+	private FileExport() {}
 
 	/**
 	 * Method used to export files from with the program resource folder

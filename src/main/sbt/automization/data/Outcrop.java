@@ -97,5 +97,5 @@ public enum Outcrop
 				{
 					return "GEBAEUDE";
 				}
-			};
+			}
 }

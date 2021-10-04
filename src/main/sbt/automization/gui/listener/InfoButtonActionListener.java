@@ -23,7 +23,7 @@ public class InfoButtonActionListener implements ActionListener
 		infotext.setEditable(false);
 		infotext.setWrapStyleWord(true);
 		infotext.setLineWrap(true);
-		infotext.setFont(new Font("Gill Sans MT",Font.BOLD, 14));
+		infotext.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
 		infotext.setText("How to use available soon.");
 		infotext.setVisible(true);
 
@@ -40,7 +40,7 @@ public class InfoButtonActionListener implements ActionListener
 		int x = (dim.width - w) / 2;
 		int y = (dim.height - h) / 2;
 
-		dialog.setLocation(x,y);
+		dialog.setLocation(x, y);
 		dialog.setVisible(true);
 		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 	}

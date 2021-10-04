@@ -331,7 +331,8 @@ public enum ProbeKey implements Key
 				}
 			};
 
-	private static String addProbeTag(String parameter){
+	private static String addProbeTag(String parameter)
+	{
 		return "PROBE." + parameter;
 	}
 }

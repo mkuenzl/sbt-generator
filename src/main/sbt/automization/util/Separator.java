@@ -1,7 +1,6 @@
 package sbt.automization.util;
 
 import sbt.automization.data.DataTable;
-import sbt.automization.data.Probe;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -53,7 +52,7 @@ public final class Separator
 			}
 		}
 
-		if (!tables.isEmpty()) lists.add(tables);
+		if (! tables.isEmpty()) lists.add(tables);
 
 		return lists;
 	}
