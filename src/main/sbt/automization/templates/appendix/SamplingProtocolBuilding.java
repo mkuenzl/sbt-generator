@@ -8,6 +8,7 @@ import sbt.automization.data.key.SampleKey;
 import sbt.automization.format.printer.SamplePrinter;
 import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.html.HtmlFactory;
+import sbt.automization.html.HtmlRow;
 import sbt.automization.styles.BuildingStyle;
 import sbt.automization.util.DatatableFilter;
 
@@ -281,13 +282,24 @@ public final class SamplingProtocolBuilding extends Appendix
 
 	private void addTotalDepthRow(DataTable dataTable)
 	{
-		String depthRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN_8.getStyleClass(), new String[]{
-				HtmlFactory.createCellAsString(BuildingStyle.HEADER_CELL.getStyleClass(), 1, 3,
-						new String[]{"Gesamttiefe von Bauteiloberfläche (BOF):"}),
-				HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(), 1, 4,
-						new String[]{new SamplePrinter().printThickness(dataTable.getSamples()).concat(" cm")})
-		});
+		String thickness = new SamplePrinter().printThickness(dataTable.getSamples());
 
-		addToTable(depthRow);
+		HtmlRow depthRow = HtmlFactory.createRow(BuildingStyle.ROW_THIN_8.getStyleClass(), new String[]{
+				HtmlFactory.createCellAsString(BuildingStyle.HEADER_CELL.getStyleClass(), 1, 3,
+						new String[]{"Gesamttiefe von Bauteiloberfläche (BOF):"})});
+
+		String printedThickness;
+		if ("0".equals(thickness))
+		{
+			printedThickness = "-";
+		} else
+		{
+			printedThickness = thickness.concat(" cm");
+		}
+
+		depthRow.appendContent(HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(), 1, 4,
+				new String[]{printedThickness}));
+
+		addToTable(depthRow.appendTag());
 	}
 }
