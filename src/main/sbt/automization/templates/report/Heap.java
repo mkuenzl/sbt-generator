@@ -90,7 +90,7 @@ public final class Heap extends Report
 	}
 
 	@Override
-	void constructTechnicalFeatures(List<DataTable> dataTables)
+	protected void constructTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addTechnicalHeader(dataTables);
 
@@ -117,7 +117,7 @@ public final class Heap extends Report
 	}
 
 	@Override
-	void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
+	protected void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addEnvironmentTechnicalHeader(dataTables);
 
@@ -148,6 +148,12 @@ public final class Heap extends Report
 		addToTable(provider.getRowWithDataCheck(chemistryRuvaHeader,new ChemistryRuvaRow()));
 		HtmlCell chemistryWasteKeyHeader = header.createCell(new String[]{"Abfallschlüssel,"}, "AVV<sup>[6]</sup>");
 		addToTable(provider.getRowWithDataCheck(chemistryWasteKeyHeader,new ChemistryAvvRow()));
+	}
+
+	@Override
+	protected void addLegendRow(List<DataTable> dataTables)
+	{
+
 	}
 
 	@Override

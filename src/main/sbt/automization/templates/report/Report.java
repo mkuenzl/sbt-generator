@@ -48,12 +48,12 @@ public abstract class Report implements HtmlTemplate
 		return template.toString();
 	}
 
-	void addPageBreak()
+	protected void addPageBreak()
 	{
 		this.template.append("<pre><br clear=all style='mso-special-character:line-break;page-break-before:always'></pre>");
 	}
 
-	void addTable()
+	protected void addTable()
 	{
 		String tableString = table.appendTag();
 		this.template.append(tableString);
@@ -66,7 +66,7 @@ public abstract class Report implements HtmlTemplate
 	 * @param tables a List of ExplorationSites
 	 * @return a Collection of Lists
 	 */
-	Collection<List<DataTable>> splitIntoPortionPerPage(List<DataTable> tables)
+	protected Collection<List<DataTable>> splitIntoPortionPerPage(List<DataTable> tables)
 	{
 		List<DataTable> probesWhichIncludeOutcrop = DatatableFilter.getProbesWhichIncludeOutcrop(tables, outcrop);
 
@@ -75,7 +75,7 @@ public abstract class Report implements HtmlTemplate
 		return portions;
 	}
 
-	abstract void constructTechnicalFeatures(List<DataTable> dataTables);
+	protected abstract void constructTechnicalFeatures(List<DataTable> dataTables);
 
 	void addTechnicalHeader(List<DataTable> dataTables)
 	{
@@ -89,7 +89,9 @@ public abstract class Report implements HtmlTemplate
 		addToTable(row.appendTag());
 	}
 
-	abstract void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables);
+	protected abstract void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables);
+
+	protected abstract void addLegendRow(List<DataTable> dataTables);
 
 	void addEnvironmentTechnicalHeader(List<DataTable> dataTables)
 	{
@@ -103,7 +105,7 @@ public abstract class Report implements HtmlTemplate
 		addToTable(row.appendTag());
 	}
 
-	void createTable()
+	protected void createTable()
 	{
 		this.table = new HtmlTable.Builder()
 				.appendAttribute("class", ReportStyle.TABLE.getStyleClass())
@@ -114,18 +116,32 @@ public abstract class Report implements HtmlTemplate
 				.build();
 	}
 
-	void addToTable(String content)
+	protected void addToTable(String content)
 	{
 		table.appendContent(content);
 	}
 
-	private StyleParameter getStyleParameterHeader()
+	protected StyleParameter getStyleParameterHeader()
 	{
 		return new StyleParameterBuilder()
 				.setRowClass("NormalThin8")
 				.setHeaderCellClass("NormalHeader")
 				.setHeaderCellWidth("5")
 				.setNormalCellClass("NormalBoldHeader")
+				.setNormalCellWidth("2.5")
+				.setUnitCellClass("Normal6")
+				.setLegendCellClass("NormalHeaderSmallFont")
+				.setTextFormatter(new StandardCellTextFormatter())
+				.build();
+	}
+
+	protected StyleParameter getStyleParameter()
+	{
+		return new StyleParameterBuilder()
+				.setRowClass("NormalThin8")
+				.setHeaderCellClass("NormalHeader")
+				.setHeaderCellWidth("5")
+				.setNormalCellClass("NormalBold")
 				.setNormalCellWidth("2.5")
 				.setUnitCellClass("Normal6")
 				.setLegendCellClass("NormalHeaderSmallFont")

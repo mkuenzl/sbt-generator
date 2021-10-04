@@ -4,9 +4,10 @@ import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
 import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.html.HtmlCell;
+import sbt.automization.html.HtmlRow;
+import sbt.automization.styles.StyleParameter;
 import sbt.automization.templates.helper.ProbeCellStrategy;
 import sbt.automization.templates.helper.RowProvider;
-import sbt.automization.templates.helper.rows.LegendDepthAndAcronymRow;
 import sbt.automization.templates.helper.information.*;
 
 import java.util.Collection;
@@ -69,11 +70,11 @@ public final class BaseCourseWithoutBinder extends Report
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
 
-		//addToTable(provider.getRowWithProbes(new LegendDepthAndAcronymRow()));
+		addLegendRow(dataTables);
 	}
 
 	@Override
-	void constructTechnicalFeatures(List<DataTable> dataTables)
+	protected void constructTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addTechnicalHeader(dataTables);
 
@@ -88,7 +89,7 @@ public final class BaseCourseWithoutBinder extends Report
 	}
 
 	@Override
-	void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
+	protected void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addEnvironmentTechnicalHeader(dataTables);
 
@@ -115,6 +116,31 @@ public final class BaseCourseWithoutBinder extends Report
 		HtmlCell chemistryWasteKeyHeader = header.createCell(new String[]{"Abfallschlüssel,"}, "AVV<sup>[14]</sup>");
 		addToTable(provider.getRowWithDataCheck(chemistryWasteKeyHeader,new ChemistryAvvRow()));
 
+	}
+
+	@Override
+	protected void addLegendRow(List<DataTable> dataTables)
+	{
+		StyleParameter styleParameter = getStyleParameter();
+		double size = styleParameter.getHeaderCellWidthAsDouble() + dataTables.size() * styleParameter.getNormalCellWidthAsDouble();
+
+		//Umwelttechnische Merkmale Trennzeile
+		HtmlRow rowLegend = new HtmlRow.Builder()
+				.appendAttribute("class", styleParameter.getRowClass())
+				.appendContent(new HtmlCell.Builder()
+						.appendAttribute("class", styleParameter.getLegendCellClass())
+						.appendAttribute("colspan", String.valueOf(1 + dataTables.size()))
+						.appendAttribute("width", String.valueOf(size))
+						.appendContent("Anmerkungen:")
+						.appendContent(UtilityPrinter.printLineBreak())
+						.appendContent("Für die angegebenen Tiefen [] gilt die Einheit cm. ")
+						.appendContent("Gem. a. G. = Gemisch aus Gesteinskörnungen, NS = Naturstein, LS = Lavaschlacke, HO = Hochofenschlacke,")
+						.appendContent("RC = Rezyklierte Gesteinskörnung, BK = Brechkorn, RK = Rundkorn, sg = stetig gestuft, ug = unstetig gestuft")
+						.build()
+						.appendTag())
+				.build();
+
+		addToTable(rowLegend.appendTag());
 	}
 
 	@Override

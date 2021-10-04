@@ -2,6 +2,8 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
+import sbt.automization.data.Sample;
+import sbt.automization.data.key.SampleKey;
 import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.format.text.StandardCellTextFormatter;
 import sbt.automization.html.HtmlCell;
@@ -12,11 +14,11 @@ import sbt.automization.styles.ReportStyle;
 import sbt.automization.styles.StyleParameter;
 import sbt.automization.styles.StyleParameterBuilder;
 import sbt.automization.templates.helper.*;
-import sbt.automization.templates.helper.rows.LegendWithBuildingInformationRow;
 import sbt.automization.templates.helper.information.*;
 import sbt.automization.util.DatatableFilter;
 import sbt.automization.util.Separator;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -46,21 +48,8 @@ public final class Building extends Report
 		return instance;
 	}
 
-	private StyleParameter getStyleParameter()
-	{
-		return new StyleParameterBuilder()
-				.setRowClass("NormalThin8")
-				.setHeaderCellClass("NormalHeader")
-				.setHeaderCellWidth("5")
-				.setNormalCellClass("NormalBold")
-				.setNormalCellWidth("2.5")
-				.setUnitCellClass("Normal6")
-				.setLegendCellClass("NormalHeaderSmallFont")
-				.setTextFormatter(new StandardCellTextFormatter())
-				.build();
-	}
-
-	private StyleParameter getStyleParameterHeader()
+	@Override
+	protected StyleParameter getStyleParameterHeader()
 	{
 		return new StyleParameterBuilder()
 				.setRowClass("NormalThin8")
@@ -75,7 +64,7 @@ public final class Building extends Report
 	}
 
 	@Override
-	Collection<List<DataTable>> splitIntoPortionPerPage(List<DataTable> tables)
+	protected Collection<List<DataTable>> splitIntoPortionPerPage(List<DataTable> tables)
 	{
 		List<DataTable> probesWhichIncludeOutcrop = DatatableFilter.getProbesWhichIncludeOutcrop(tables, outcrop);
 
@@ -126,7 +115,7 @@ public final class Building extends Report
 		addToTable(provider.getRow(header.createCell(new String[]{"Material"}), new MaterialBuildingRow()));
 
 		constructEnvironmentTechnicalFeatures(dataTables);
-		//addToTable(this.provider.getRowWithSamples(new LegendWithBuildingInformationRow()));
+		addLegendRow(dataTables);
 	}
 
 	@Override
@@ -142,13 +131,13 @@ public final class Building extends Report
 	}
 
 	@Override
-	void constructTechnicalFeatures(List<DataTable> dataTables)
+	protected void constructTechnicalFeatures(List<DataTable> dataTables)
 	{
 
 	}
 
 	@Override
-	void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
+	protected void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
 		provider.setCellStrategy(new SampleCellStrategy());
 		addToTable(provider.getRow(header.createCell(new String[]{"Laborprobe"}),new ChemistryIdRow()));
@@ -176,5 +165,74 @@ public final class Building extends Report
 		addInformationHeader(dataTables);
 		provider.setCellStrategy(new CombinedSampleCellStrategy());
 		addToTable(provider.getRow(header.createCell(new String[]{"Abfallschlüssel<sup>1,2</sup>"}, "AVV<sup>[7]</sup>, mehrschichtig / Gemisch"),new WasteKeyMixRow()));  // gemischt
+	}
+
+	@Override
+	protected void addLegendRow(List<DataTable> dataTables)
+	{
+		int amountOfSamples = 0;
+
+		List<String> additionalFootnotes = new ArrayList<>();
+
+		for (DataTable probe : dataTables)
+		{
+			List<Sample> samples = probe.getSamples();
+			amountOfSamples += samples.size();
+
+			for (Sample sample : samples)
+			{
+				String footnote = sample.get(SampleKey.MATERIAL_COMPARISON);
+				String explorationSite = sample.get(SampleKey.PROBE_ID);
+
+				if (!"".equals(footnote))
+				{
+					additionalFootnotes.add(explorationSite.concat(",").concat(footnote));
+				}
+			}
+		}
+
+		StyleParameter styleParameter = getStyleParameter();
+
+		double size = styleParameter.getHeaderCellWidthAsDouble() + amountOfSamples * styleParameter.getNormalCellWidthAsDouble();
+
+		//Umwelttechnische Merkmale Trennzeile
+		HtmlCell content = new HtmlCell.Builder()
+				.appendAttribute("class", styleParameter.getLegendCellClass())
+				.appendAttribute("colspan", String.valueOf(1 + amountOfSamples))
+				.appendAttribute("width", String.valueOf(size))
+				.appendContent("Anmerkungen:")
+				.appendContent(UtilityPrinter.printLineBreak())
+				.appendContent("1) Die abschließende Zuordnung zu einem Abfallschlüssel hängt u. a. von der " +
+						"Zusammensetzung der abzufahrenden, separierten Abfälle und von den Annahmebedingungen " +
+						"und der Abfalleinstufung der vorgesehenen Entsorgungseinrichtung ab. ")
+				.appendContent(UtilityPrinter.printLineBreak())
+				.appendContent("2) AVV 17 09 04: Nicht gefährliche und nicht getrennte Bauteile können i.d.R. unter" +
+						" dem vorgenannten Abfallschlüssel, gemischte Bau- und Abbruchabfälle zusammen entsorgt werden.")
+				.build();
+
+		int number = 3;
+		for (String additionalFootnote : additionalFootnotes)
+		{
+			String[] splitter = additionalFootnote.split(",");
+			String footnote;
+			if (splitter.length == 3)
+			{
+				footnote = String.format("%d) An der Erk-St %s: Einstufung aufgrund des an der Erk.-St. %s ermittelten Untersuchungsergebnisses der Probe %s unter " +
+						"Zugrundelegung der Vergleichbarkeit der vorhandenen Materialien.", number, splitter[0], splitter[1], splitter[2]);
+			} else
+			{
+				footnote = String.format("%d) Falsches Format der Excel Eingabe!", number);
+			}
+			number++;
+			content.appendContent(UtilityPrinter.printLineBreak());
+			content.appendContent(footnote);
+		}
+
+		HtmlRow rowLegend = new HtmlRow.Builder()
+				.appendAttribute("class", styleParameter.getRowClass())
+				.appendContent(content.appendTag())
+				.build();
+
+		addToTable(rowLegend.appendTag());
 	}
 }

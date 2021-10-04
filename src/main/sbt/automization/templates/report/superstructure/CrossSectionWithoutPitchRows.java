@@ -1,6 +1,7 @@
-package sbt.automization.templates.helper.rows;
+package sbt.automization.templates.report.superstructure;
 
 import sbt.automization.data.DataTable;
+import sbt.automization.data.Outcrop;
 import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
 import sbt.automization.data.key.ProbeKey;
@@ -9,10 +10,14 @@ import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlFactory;
 import sbt.automization.html.HtmlRow;
+import sbt.automization.html.HtmlText;
+import sbt.automization.styles.StyleParameter;
+import sbt.automization.templates.report.Report;
 
+import java.util.Collection;
 import java.util.List;
 
-public class CrossSectionWithPitchRows extends CellConstruction
+public final class CrossSectionWithoutPitchRows extends Report
 {
 	private String size;
 	private HtmlRow rowSize;
@@ -23,47 +28,39 @@ public class CrossSectionWithPitchRows extends CellConstruction
 	private String avv;
 	private HtmlRow rowAvv;
 
-	public CrossSectionWithPitchRows()
+	public CrossSectionWithoutPitchRows()
 	{
-		super(ProbeKey.ID);
+		super(Outcrop.GOB);
 	}
 
 	@Override
-	public String buildWithProbes()
+	protected void constructTechnicalFeatures(List<DataTable> dataTables)
 	{
-		StringBuilder crossSectionBuilder = new StringBuilder();
 
-		createVariableRows();
+	}
 
-		for (DataTable dataTable :
-				probes)
-		{
-			double depth = measureDepthOfPitchContent(dataTable);
+	@Override
+	protected void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
+	{
 
-			setCellStrings(depth);
+	}
 
-			addCellsToRows();
-		}
+	@Override
+	protected void addLegendRow(List<DataTable> dataTables)
+	{
 
-		crossSectionBuilder.append(createHeaderRow())
-				.append(rowSize.appendTag())
-				.append(rowMufv.appendTag())
-				.append(rowRuva.appendTag())
-				.append(rowAvv.appendTag());
-
-
-		return crossSectionBuilder.toString();
 	}
 
 	private void createVariableRows()
 	{
+		StyleParameter styleParameter = getStyleParameter();
 		rowSize = HtmlFactory.createRow(styleParameter.getRowClass(), new HtmlCell[]{
 				HtmlFactory.createCell(styleParameter.getHeaderCellClass(), styleParameter.getHeaderCellWidth(),
 						new String[]{"Dicke,", formatUnit("cm")})});
 
 		rowMufv = HtmlFactory.createRow(styleParameter.getRowClass(), new HtmlCell[]{
 				HtmlFactory.createCell(styleParameter.getHeaderCellClass(), styleParameter.getHeaderCellWidth(),
-						new String[]{"Abgrenzung", UtilityPrinter.printLineBreak(), "Gefährlichkeit,", formatUnit("Schreiben des MUFV<sup>[11]</sup>")})});
+						new String[]{"Abgrenzung Gefährlichkeit,", formatUnit("Schreiben des MUFV<sup>[11]</sup>")})});
 
 		rowRuva = HtmlFactory.createRow(styleParameter.getRowClass(), new HtmlCell[]{
 				HtmlFactory.createCell(styleParameter.getHeaderCellClass(), styleParameter.getHeaderCellWidth(),
@@ -78,7 +75,7 @@ public class CrossSectionWithPitchRows extends CellConstruction
 	{
 		double depth = 0;
 
-		List<Sample> samples = dataTable.getSamplesBy(SampleKey.OUTCROP, outcrop);
+		List<Sample> samples = dataTable.getSamplesBy(SampleKey.OUTCROP, outcrop.toString());
 
 		if (samples != null)
 		{
@@ -88,7 +85,7 @@ public class CrossSectionWithPitchRows extends CellConstruction
 
 				String isPitch = sample.get(SampleKey.PITCH);
 
-				if ("JA".equalsIgnoreCase(isPitch))
+				if ("NEIN".equalsIgnoreCase(isPitch))
 				{
 					depth += thicknessOfSample;
 				}
@@ -103,9 +100,9 @@ public class CrossSectionWithPitchRows extends CellConstruction
 		if (depth > 0)
 		{
 			size = String.valueOf(depth).replace(".", ",");
-			mufv = "gefährlich";
-			ruva = "B";
-			avv = "17 03 01*";
+			mufv = "nicht gefährlich";
+			ruva = "A";
+			avv = "17 03 02";
 		} else
 		{
 			size = "-";
@@ -117,6 +114,8 @@ public class CrossSectionWithPitchRows extends CellConstruction
 
 	private void addCellsToRows()
 	{
+		StyleParameter styleParameter = getStyleParameter();
+
 		HtmlCell cellPitchSize = HtmlFactory.createCell(styleParameter.getNormalCellClass(), styleParameter.getNormalCellWidth(),
 				new String[]{size});
 		rowSize.appendContent(cellPitchSize.appendTag());
@@ -132,14 +131,15 @@ public class CrossSectionWithPitchRows extends CellConstruction
 		rowAvv.appendContent(cellPitchAvv.appendTag());
 	}
 
-	private String createHeaderRow()
+	private String createHeaderRow(List<DataTable> dataTables)
 	{
+		StyleParameter styleParameter = getStyleParameter();
 		HtmlRow rowHeader = new HtmlRow.Builder()
 				.appendAttribute("class", styleParameter.getRowClass())
 				.appendContent(new HtmlCell.Builder()
 						.appendAttribute("class", styleParameter.getHeaderCellClass())
-						.appendAttribute("colspan", String.valueOf(1 + probes.size()))
-						.appendContent("Pechhaltiger Querschnitt")
+						.appendAttribute("colspan", String.valueOf(1 + dataTables.size()))
+						.appendContent("Pechfreier Querschnitt")
 						.build()
 						.appendTag())
 				.build();
@@ -148,26 +148,58 @@ public class CrossSectionWithPitchRows extends CellConstruction
 	}
 
 	@Override
-	HtmlRow createRow()
+	public String getExportFileName()
 	{
 		return null;
 	}
 
 	@Override
-	HtmlCell createCellFrom(Probe probe)
+	public void constructTemplate(List<DataTable> dataTables)
 	{
-		return null;
+		template.append(buildTable(dataTables));
+	}
+
+	private String buildTable(List<DataTable> dataTables)
+	{
+		StringBuilder crossSectionBuilder = new StringBuilder();
+
+		createVariableRows();
+
+		for (DataTable dataTable :
+				dataTables)
+		{
+			double depth = measureDepthOfPitchContent(dataTable);
+
+			setCellStrings(depth);
+
+			addCellsToRows();
+		}
+
+		crossSectionBuilder.append(createHeaderRow(dataTables))
+				.append(rowSize.appendTag())
+				.append(rowMufv.appendTag())
+				.append(rowRuva.appendTag())
+				.append(rowAvv.appendTag());
+
+
+		return crossSectionBuilder.toString();
 	}
 
 	@Override
-	public String buildWithSamples()
+	public void constructTemplate(DataTable dataTable)
 	{
-		return "";
+
 	}
 
-	@Override
-	HtmlCell createCellFrom(Sample sample)
+	private String formatUnit(String text)
 	{
-		return null;
+		StyleParameter styleParameter = getStyleParameter();
+		String formattedUnitText = new HtmlText.Builder()
+				.appendAttribute("class", styleParameter.getUnitCellClass())
+				.appendContent(text)
+				.build()
+				.appendTag();
+
+		return formattedUnitText;
 	}
 }
