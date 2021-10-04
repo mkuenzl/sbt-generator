@@ -63,8 +63,8 @@ public final class Topsoil extends Report
 		provider.setDataTables(dataTables);
 		provider.setCellStrategy(new ProbeCellStrategy());
 
-		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new IdRow()));
-		addToTable(provider.getRow(header.createCell(new String[]{"Aufschlussart"}),new GroundExposureRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}), new IdRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Aufschlussart"}), new GroundExposureRow()));
 
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
@@ -76,9 +76,8 @@ public final class Topsoil extends Report
 	{
 		addTechnicalHeader(dataTables);
 
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Bodengruppe,"}, "DIN 18196<sup>[22]</sup>"),new DIN18196Row()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Bodengruppe,"}, "DIN 18915<sup>[37]</sup>"),new DIN18915Row()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Homogenbereich,"}, "DIN 18320:2019-09<sup>[36]</sup>"),new DIN18320Row()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Bodengruppe,"}, "DIN 18196<sup>[22]</sup>"), new DIN18196Row()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Bodengruppe,"}, "DIN 18915<sup>[37]</sup>"), new DIN18915Row()));
 	}
 
 	@Override
@@ -87,27 +86,27 @@ public final class Topsoil extends Report
 		addEnvironmentTechnicalHeader(dataTables);
 
 		HtmlCell chemistryIdHeader = header.createCell(new String[]{"Laborprobe"});
-		addToTable(provider.getRowWithDataCheck(chemistryIdHeader,new ChemistryIdRow()));
-		HtmlCell chemistryMufvHeader = header.createCell(new String[]{"Abgrenzung", UtilityPrinter.printLineBreak(), "Gefährlichkeit,"}, "Schreiben des MUFV<sup>[18]</sup>");
-		addToTable(provider.getRowWithDataCheck(chemistryMufvHeader,new ChemistryMufvRow()));
+		addToTable(provider.getRowWithDataCheck(chemistryIdHeader, new ChemistryIdRow()));
+		HtmlCell chemistryMufvHeader = header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"}, "Schreiben des MUFV<sup>[18]</sup>");
+		addToTable(provider.getRowWithDataCheck(chemistryMufvHeader, new ChemistryMufvRow()));
 		HtmlCell chemistryLfsHeader = header.createCell(new String[]{"LFS"});
-		addToTable(provider.getRowWithDataCheck(chemistryLfsHeader,new ChemistryLfsRow()));
+		addToTable(provider.getRowWithDataCheck(chemistryLfsHeader, new ChemistryLfsRow()));
 		HtmlCell chemistryLagaBoHeader = header.createCell(new String[]{"Zuordnungsklasse,"}, "LAGA Boden<sup>[11]</sup>");
-		addToTable(provider.getRowWithDataCheck(chemistryLagaBoHeader,new ChemistryLagaBoRow()));
+		addToTable(provider.getRowWithDataCheck(chemistryLagaBoHeader, new ChemistryLagaBoRow()));
 		HtmlCell chemistryLagaRcHeader = header.createCell(new String[]{"Zuordnungsklasse,"}, "LAGA Bauschutt<sup>[28]</sup>");
-		addToTable(provider.getRowWithDataCheck(chemistryLagaRcHeader,new ChemistryLagaRc()));
+		addToTable(provider.getRowWithDataCheck(chemistryLagaRcHeader, new ChemistryLagaRc()));
 		HtmlCell chemistryLagaRc = header.createCell(new String[]{"Orientierungswert,"}, "LAGA Bauschutt<sup>[28]</sup>");
-		addToTable(provider.getRowWithDataCheck(chemistryLagaRc,new ChemistryLagaRcOrientation()));
+		addToTable(provider.getRowWithDataCheck(chemistryLagaRc, new ChemistryLagaRcOrientation()));
 		HtmlCell chemistryTlRockHeader = header.createCell(new String[]{"Verwertungsklasse,"}, "TL Gestein<sup>[27]</sup>");
-		addToTable(provider.getRowWithDataCheck(chemistryTlRockHeader,new ChemistryTlRockRow()));
+		addToTable(provider.getRowWithDataCheck(chemistryTlRockHeader, new ChemistryTlRockRow()));
 		HtmlCell chemistryRekuHeader = header.createCell(new String[]{"Rekultivierung,"}, "Reku<sup>[7]</sup>");
-		addToTable(provider.getRowWithDataCheck(chemistryRekuHeader,new ChemistryRekuRow()));
+		addToTable(provider.getRowWithDataCheck(chemistryRekuHeader, new ChemistryRekuRow()));
 		HtmlCell chemistryDepvHeader = header.createCell(new String[]{"Deponieklasse,"}, "DepV<sup>[15]</sup>");
-		addToTable(provider.getRowWithDataCheck(chemistryDepvHeader,new ChemistryDepvRow()));
+		addToTable(provider.getRowWithDataCheck(chemistryDepvHeader, new ChemistryDepvRow()));
 		HtmlCell chemistryDecisionHeader = header.createCell(new String[]{"Entscheidungshilfe,"}, "DepV<sup>[17]</sup>");
-		addToTable(provider.getRowWithDataCheck(chemistryDecisionHeader,new ChemistryDecisionSupport()));
+		addToTable(provider.getRowWithDataCheck(chemistryDecisionHeader, new ChemistryDecisionSupport()));
 		HtmlCell chemistryWasteKeyHeader = header.createCell(new String[]{"Abfallschlüssel,"}, "AVV<sup>[14]</sup>");
-		addToTable(provider.getRowWithDataCheck(chemistryWasteKeyHeader,new ChemistryAvvRow()));
+		addToTable(provider.getRowWithDataCheck(chemistryWasteKeyHeader, new ChemistryAvvRow()));
 	}
 
 	@Override

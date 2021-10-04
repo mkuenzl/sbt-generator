@@ -64,9 +64,9 @@ public final class Gap extends Appendix
 				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{sample.get(SampleKey.DEPTH_END)}),
 				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.MUFV)),
-				HtmlFactory.createCellAsString(textFormatter, "NormalCenter", 1, 3,
+				HtmlFactory.createCellAsString(textFormatter, "NormalBold", 1, 3,
 						new String[]{""}),
-				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
 						new String[]{sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.PAK)}),
 				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.ASBESTOS)),
 		});

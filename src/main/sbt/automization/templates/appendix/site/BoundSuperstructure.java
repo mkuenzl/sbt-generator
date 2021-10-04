@@ -82,9 +82,9 @@ public final class BoundSuperstructure extends Appendix
 				HtmlFactory.createPitchCell(sample.get(SampleKey.PITCH)),
 				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.LAGA_RC)),
 				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.TL_ROCK_STRATUM)),
-				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
 						new String[]{sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.PAK)}),
-				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
 						new String[]{sample.getParameterValueBy(SampleKey.RUK_ID, RuKKey.VALUE)})
 		});
 

@@ -67,11 +67,11 @@ public final class Underground extends Appendix
 				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.MUFV)),
 				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.LAGA_BO)),
 				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.LAGA_RC)),
-				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
 						new String[]{sample.get(SampleKey.WATER_CONTENT)}),
-				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
 						new String[]{sample.get(SampleKey.WATER_PROCTOR)}),
-				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
+				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
 						new String[]{""})
 		});
 

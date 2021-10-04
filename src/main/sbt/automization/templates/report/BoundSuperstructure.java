@@ -2,7 +2,6 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
-import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.templates.helper.ProbeCellStrategy;
 import sbt.automization.templates.helper.RowProvider;
 import sbt.automization.templates.helper.information.*;
@@ -63,8 +62,8 @@ public final class BoundSuperstructure extends Report
 		provider.setDataTables(dataTables);
 		provider.setCellStrategy(new ProbeCellStrategy());
 
-		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new IdRow()));
-		addToTable(provider.getRow(header.createCell(new String[]{"Aufbruch"}),new SuperstructureExposureRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}), new IdRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Aufbruch"}), new SuperstructureExposureRow()));
 
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
@@ -83,10 +82,10 @@ public final class BoundSuperstructure extends Report
 	{
 		addTechnicalHeader(dataTables);
 
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Gesamtdicke Oberbau,"}, "cm"),new SizeTotalObRow()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Belastungsklasse,"}, "RStO<sup>[5]</sup>"),new LoadClassRow()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erweichungspunkt RuK<sup>[31]</sup>,"}, "°C"),new RuKCombinedRow()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Soll Einzelwert,"}, "RuK"),new RuKSingleValueRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Gesamtdicke Oberbau,"}, "cm"), new SizeTotalObRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Belastungsklasse,"}, "RStO<sup>[5]</sup>"), new LoadClassRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erweichungspunkt RuK<sup>[31]</sup>,"}, "°C"), new RuKCombinedRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Soll Einzelwert,"}, "RuK"), new RuKSingleValueRow()));
 	}
 
 	@Override
@@ -94,9 +93,9 @@ public final class BoundSuperstructure extends Report
 	{
 		addEnvironmentTechnicalHeader(dataTables);
 
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Pechnachweis qualitativ"}),new PitchQualitativeRow()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Pechnachweis halbquantitativ"}),new PitchHalfQuantitativeRow()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Pechnachweis quantitativ"}),new PitchQuantitativeRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Pechnachweis qualitativ"}), new PitchQualitativeRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Pechnachweis halbquantitativ"}), new PitchHalfQuantitativeRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Pechnachweis quantitativ"}), new PitchQuantitativeRow()));
 	}
 
 	@Override
