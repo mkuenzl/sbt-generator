@@ -2,6 +2,7 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
+import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlFactory;
 import sbt.automization.html.HtmlRow;
@@ -63,8 +64,8 @@ public final class Heap extends Report
 		provider.setCellStrategy(new SampleCellStrategy());
 
 		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new IdRow()));
-		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new AreaRow()));
-		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new HeapExposureRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Bereich"}),new AreaRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Probenahmeverfahren"}),new HeapExposureRow()));
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
 		//addToTable(provider.getRowWithSamples(new LegendWithDepthRow()));
@@ -93,9 +94,9 @@ public final class Heap extends Report
 	{
 		addTechnicalHeader(dataTables);
 
-		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new MaterialHeapRow()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new DIN18300Row()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new DIN18196Row()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Material"}),new MaterialHeapRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Bodenklasse,"}, "DIN 18300<sup>[11]</sup>"),new DIN18300Row()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Bodengruppe,"}, "DIN 18196<sup>[10]</sup>"),new DIN18196Row()));
 	}
 
 	@Override
@@ -119,20 +120,34 @@ public final class Heap extends Report
 	void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addEnvironmentTechnicalHeader(dataTables);
-		provider.setCellStrategy(new SampleCellStrategy());
 
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryIdRow()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryPak()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryMufvRow()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaBoRow()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaRc()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaRcOrientation()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryTlRockRow()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryRekuRow()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryDepvRow()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryDecisionSupport()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryRuvaRow()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryAvvRow()));
+		provider.setCellStrategy(new SampleCellStrategy());
+		HtmlCell chemistryIdHeader = header.createCell(new String[]{"Laborprobe"});
+		addToTable(provider.getRowWithDataCheck(chemistryIdHeader,new ChemistryIdRow()));
+		HtmlCell chemistryPakHeader = header.createCell(new String[]{"PAK,"}, "mg/kg");
+		addToTable(provider.getRowWithDataCheck(chemistryPakHeader,new ChemistryPak()));
+		HtmlCell chemistryMufvHeader = header.createCell(new String[]{"Abgrenzung", UtilityPrinter.printLineBreak(), "Gefährlichkeit,"}, "Schreiben des MUFV<sup>[9]</sup>");
+		addToTable(provider.getRowWithDataCheck(chemistryMufvHeader,new ChemistryMufvRow()));
+		HtmlCell chemistryLfsHeader = header.createCell(new String[]{"LFS"});
+		addToTable(provider.getRowWithDataCheck(chemistryLfsHeader,new ChemistryLfsRow()));
+		HtmlCell chemistryLagaBoHeader = header.createCell(new String[]{"Zuordnungsklasse,"}, "LAGA Boden<sup>[2]</sup>");
+		addToTable(provider.getRowWithDataCheck(chemistryLagaBoHeader,new ChemistryLagaBoRow()));
+		HtmlCell chemistryLagaRcHeader = header.createCell(new String[]{"Zuordnungsklasse,"}, "LAGA Bauschutt<sup>[16]</sup>");
+		addToTable(provider.getRowWithDataCheck(chemistryLagaRcHeader,new ChemistryLagaRc()));
+		HtmlCell chemistryLagaRc = header.createCell(new String[]{"Orientierungswert,"}, "LAGA Bauschutt<sup>[16]</sup>");
+		addToTable(provider.getRowWithDataCheck(chemistryLagaRc,new ChemistryLagaRcOrientation()));
+		HtmlCell chemistryTlRockHeader = header.createCell(new String[]{"Verwertungsklasse,"}, "TL Gestein<sup>[15]</sup>");
+		addToTable(provider.getRowWithDataCheck(chemistryTlRockHeader,new ChemistryTlRockRow()));
+		HtmlCell chemistryRekuHeader = header.createCell(new String[]{"Rekultivierung,"}, "Reku<sup>[7]</sup>");
+		addToTable(provider.getRowWithDataCheck(chemistryRekuHeader,new ChemistryRekuRow()));
+		HtmlCell chemistryDepvHeader = header.createCell(new String[]{"Deponieklasse,"}, "DepV<sup>[7]</sup>");
+		addToTable(provider.getRowWithDataCheck(chemistryDepvHeader,new ChemistryDepvRow()));
+		HtmlCell chemistryDecisionHeader = header.createCell(new String[]{"Entscheidungshilfe,"}, "DepV<sup>[7]</sup>");
+		addToTable(provider.getRowWithDataCheck(chemistryDecisionHeader,new ChemistryDecisionSupport()));
+		HtmlCell chemistryRuvaHeader = header.createCell(new String[]{"Verwertungsklasse,"}, "RuVa-StB<sup>[1]</sup>");
+		addToTable(provider.getRowWithDataCheck(chemistryRuvaHeader,new ChemistryRuvaRow()));
+		HtmlCell chemistryWasteKeyHeader = header.createCell(new String[]{"Abfallschlüssel,"}, "AVV<sup>[6]</sup>");
+		addToTable(provider.getRowWithDataCheck(chemistryWasteKeyHeader,new ChemistryAvvRow()));
 	}
 
 	@Override

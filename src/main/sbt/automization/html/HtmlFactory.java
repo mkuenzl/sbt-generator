@@ -760,7 +760,7 @@ public class HtmlFactory
 		HtmlCell htmlCell;
 
 		if ("".equals(classification)) return htmlCell = new HtmlCell.Builder()
-				.appendAttribute("class", "NormalCenter")
+				.appendAttribute("class", "NormalBold")
 				.appendContent("-")
 				.build();
 
@@ -863,7 +863,7 @@ public class HtmlFactory
 				break;
 			default:
 				htmlCell = new HtmlCell.Builder()
-						.appendAttribute("class", "NormalCenter")
+						.appendAttribute("class", "NormalBold")
 						.appendContent(classification)
 						.build();
 				break;

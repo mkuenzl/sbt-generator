@@ -2,6 +2,7 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
+import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.format.text.StandardCellTextFormatter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlFactory;
@@ -150,30 +151,30 @@ public final class Building extends Report
 	void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
 		provider.setCellStrategy(new SampleCellStrategy());
-		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryIdRow()));
-		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new SuspectedPollutantRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Laborprobe"}),new ChemistryIdRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Schadstoffverdacht"}),new SuspectedPollutantRow()));
 
 		provider.setCellStrategy(new CombinedSampleByChemistryCellStrategy());
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryPak()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryPcbRow())); // PCB
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryAsbestosRow())); // ASBEST
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"PAK,"}, "mg/kg"),new ChemistryPak()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"PCB,"}, "mg/kg"),new ChemistryPcbRow())); // PCB
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Asbest,"}, "Nachweisgrenze"),new ChemistryAsbestosRow())); // ASBEST
 
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryBtexRow()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryPhenolRow())); // KMF
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryKmfRow())); // KMF
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistrySulfateRow()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryIcpScreeningRow()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryEoxRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"BTEX,"}, "mg/kg"),new ChemistryBtexRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Phenole,"}, "mg/l"),new ChemistryPhenolRow())); // PAtonal
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"KMF,"}, "Nachweisgrenze"),new ChemistryKmfRow())); // KMF
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Sulfat,"}, "mg/kg"),new ChemistrySulfateRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"ICP Screening,"}, "mg/kg"),new ChemistryIcpScreeningRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"EOX,"}, "mg/kg"),new ChemistryEoxRow()));
 
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaBoRow()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaRc()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryLagaRcOrientation()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryTlRockRow()));
-		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryMufvClassificationRow())); // Einstufung
-		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new ChemistryMufvParameterRow())); // Parameter
-		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new WasteKeyMaterialRow()));  // Material
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Zuordnungsklasse,"}, "LAGA Boden<sup>[4]</sup>"),new ChemistryLagaBoRow()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Zuordnungsklasse,"}, "LAGA Bauschutt<sup>[15]</sup>"),new ChemistryLagaRc()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Orientierungswert,"}, "LAGA Bauschutt<sup>[15]</sup>"),new ChemistryLagaRcOrientation()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Verwertungsklasse,"}, "TL Gestein<sup>[14]</sup>"),new ChemistryTlRockRow()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"}, "Einstufung"),new ChemistryMufvClassificationRow())); // Einstufung
+		addToTable(provider.getRow(header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"}, "Parameter"),new ChemistryMufvParameterRow())); // Parameter
+		addToTable(provider.getRow(header.createCell(new String[]{"Abfallschlüssel<sup>1,2</sup>"}, "AVV<sup>[7]</sup>, materialspezifisch"),new WasteKeyMaterialRow()));  // Material
 		addInformationHeader(dataTables);
 		provider.setCellStrategy(new CombinedSampleCellStrategy());
-		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}),new WasteKeyMixRow()));  // gemischt
+		addToTable(provider.getRow(header.createCell(new String[]{"Abfallschlüssel<sup>1,2</sup>"}, "AVV<sup>[7]</sup>, mehrschichtig / Gemisch"),new WasteKeyMixRow()));  // gemischt
 	}
 }

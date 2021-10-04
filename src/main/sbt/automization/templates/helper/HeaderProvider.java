@@ -34,9 +34,12 @@ public final class HeaderProvider
 
 	public HtmlCell createCell(String[] text, String unit)
 	{
-		List<String> strings = Arrays.asList(text);
-		strings.add(formatUnit(unit));
-		String[] formattedTexts = strings.toArray(new String[0]);
+		String[] formattedTexts = new String[text.length + 1];
+		for (int i = 0 ; i < text.length ; i++)
+		{
+			formattedTexts[i] = text[i];
+		}
+		formattedTexts[text.length] = formatUnit(unit);
 
 		HtmlCell cell = HtmlFactory.createCell(style.getHeaderCellClass(), style.getHeaderCellWidth(), formattedTexts);
 
