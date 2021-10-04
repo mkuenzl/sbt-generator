@@ -13,10 +13,10 @@ import sbt.automization.styles.BuildingStyle;
 import sbt.automization.styles.ReportStyle;
 import sbt.automization.styles.StyleParameter;
 import sbt.automization.styles.StyleParameterBuilder;
-import sbt.automization.templates.helper.CombinedSampleByChemistryCellStrategy;
-import sbt.automization.templates.helper.CombinedSampleCellStrategy;
-import sbt.automization.templates.helper.RowProvider;
-import sbt.automization.templates.helper.SampleCellStrategy;
+import sbt.automization.templates.helper.strategies.CellPerSampleCombinedChemistry;
+import sbt.automization.templates.helper.strategies.CellPerSampleCombined;
+import sbt.automization.templates.helper.RowFactory;
+import sbt.automization.templates.helper.strategies.CellPerSample;
 import sbt.automization.templates.helper.information.*;
 import sbt.automization.util.DatatableFilter;
 import sbt.automization.util.Separator;
@@ -28,12 +28,12 @@ import java.util.List;
 public final class Building extends Report
 {
 	private static Building instance;
-	private final RowProvider provider;
+	private final RowFactory provider;
 
 	private Building()
 	{
 		super(Outcrop.BUILDING);
-		this.provider = new RowProvider(Outcrop.BUILDING, getStyleParameter());
+		this.provider = new RowFactory(Outcrop.BUILDING, getStyleParameter());
 	}
 
 	public static Building getInstance()
@@ -111,7 +111,7 @@ public final class Building extends Report
 	{
 		createTable();
 		provider.setDataTables(dataTables);
-		provider.setCellStrategy(new CombinedSampleCellStrategy());
+		provider.setCellStrategy(new CellPerSampleCombined());
 
 		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}), new IdRetrieval()));
 		addToTable(provider.getRow(header.createCell(new String[]{"Bauteil"}), new ComponentRetrieval()));
@@ -142,11 +142,11 @@ public final class Building extends Report
 	@Override
 	protected void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
-		provider.setCellStrategy(new SampleCellStrategy());
+		provider.setCellStrategy(new CellPerSample());
 		addToTable(provider.getRow(header.createCell(new String[]{"Laborprobe"}), new ChemistryIdRetrieval()));
 		addToTable(provider.getRow(header.createCell(new String[]{"Schadstoffverdacht"}), new SuspectedPollutantRetrieval()));
 
-		provider.setCellStrategy(new CombinedSampleByChemistryCellStrategy());
+		provider.setCellStrategy(new CellPerSampleCombinedChemistry());
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"PAK,"}, "mg/kg"), new ChemistryPakRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"PCB,"}, "mg/kg"), new ChemistryPcbRetrieval())); // PCB
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Asbest,"}, "Nachweisgrenze"), new ChemistryAsbestosRetrieval())); // ASBEST
@@ -166,7 +166,7 @@ public final class Building extends Report
 		addToTable(provider.getRow(header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"}, "Parameter"), new ChemistryMufvParameterRetrieval())); // Parameter
 		addToTable(provider.getRow(header.createCell(new String[]{"Abfallschlüssel<sup>1,2</sup>"}, "AVV<sup>[7]</sup>, materialspezifisch"), new WasteKeyMaterialRetrieval()));  // Material
 		addInformationHeader(dataTables);
-		provider.setCellStrategy(new CombinedSampleCellStrategy());
+		provider.setCellStrategy(new CellPerSampleCombined());
 		addToTable(provider.getRow(header.createCell(new String[]{"Abfallschlüssel<sup>1,2</sup>"}, "AVV<sup>[7]</sup>, mehrschichtig / Gemisch"), new WasteKeyMixRetrieval()));  // gemischt
 	}
 

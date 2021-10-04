@@ -6,8 +6,8 @@ import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlRow;
 import sbt.automization.styles.StyleParameter;
-import sbt.automization.templates.helper.ProbeCellStrategy;
-import sbt.automization.templates.helper.RowProvider;
+import sbt.automization.templates.helper.strategies.CellPerProbe;
+import sbt.automization.templates.helper.RowFactory;
 import sbt.automization.templates.helper.information.*;
 
 import java.util.Collection;
@@ -16,12 +16,12 @@ import java.util.List;
 public final class Banquet extends Report
 {
 	private static Banquet instance;
-	private final RowProvider provider;
+	private final RowFactory provider;
 
 	private Banquet()
 	{
 		super(Outcrop.BANQUET);
-		provider = new RowProvider(Outcrop.BANQUET);
+		provider = new RowFactory(Outcrop.BANQUET);
 	}
 
 	public static Banquet getInstance()
@@ -61,7 +61,7 @@ public final class Banquet extends Report
 	{
 		createTable();
 		provider.setDataTables(dataTables);
-		provider.setCellStrategy(new ProbeCellStrategy());
+		provider.setCellStrategy(new CellPerProbe());
 
 		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}), new IdRetrieval()));
 		addToTable(provider.getRow(header.createCell(new String[]{"Aufschlussart"}), new GroundExposureRetrieval()));

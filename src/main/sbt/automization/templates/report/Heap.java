@@ -6,8 +6,8 @@ import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlFactory;
 import sbt.automization.html.HtmlRow;
 import sbt.automization.styles.ReportStyle;
-import sbt.automization.templates.helper.RowProvider;
-import sbt.automization.templates.helper.SampleCellStrategy;
+import sbt.automization.templates.helper.RowFactory;
+import sbt.automization.templates.helper.strategies.CellPerSample;
 import sbt.automization.templates.helper.information.*;
 
 import java.util.Collection;
@@ -16,12 +16,12 @@ import java.util.List;
 public final class Heap extends Report
 {
 	private static Heap instance;
-	private final RowProvider provider;
+	private final RowFactory provider;
 
 	private Heap()
 	{
 		super(Outcrop.HEAP);
-		provider = new RowProvider(Outcrop.HEAP);
+		provider = new RowFactory(Outcrop.HEAP);
 	}
 
 	public static Heap getInstance()
@@ -61,7 +61,7 @@ public final class Heap extends Report
 	{
 		createTable();
 		provider.setDataTables(dataTables);
-		provider.setCellStrategy(new SampleCellStrategy());
+		provider.setCellStrategy(new CellPerSample());
 
 		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}), new IdRetrieval()));
 		addToTable(provider.getRow(header.createCell(new String[]{"Bereich"}), new AreaRetrieval()));
@@ -121,7 +121,7 @@ public final class Heap extends Report
 	{
 		addEnvironmentTechnicalHeader(dataTables);
 
-		provider.setCellStrategy(new SampleCellStrategy());
+		provider.setCellStrategy(new CellPerSample());
 		HtmlCell chemistryIdHeader = header.createCell(new String[]{"Laborprobe"});
 		addToTable(provider.getRowWithDataCheck(chemistryIdHeader, new ChemistryIdRetrieval()));
 		HtmlCell chemistryPakHeader = header.createCell(new String[]{"PAK,"}, "mg/kg");

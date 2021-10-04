@@ -32,6 +32,8 @@ public abstract class ATemplateExport
 
 	private void export(String path, String content) throws Exception
 	{
+		tableExportStrategy.resetTemplate();
+
 		try (FileOutputStream fileOutputStream = new FileOutputStream(path) ;
 		     OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8) ;
 		     BufferedWriter bw = new BufferedWriter(outputStreamWriter))

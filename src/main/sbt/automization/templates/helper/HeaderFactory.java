@@ -9,11 +9,11 @@ import sbt.automization.styles.StyleParameter;
 import java.util.Arrays;
 import java.util.List;
 
-public final class HeaderProvider
+public final class HeaderFactory
 {
 	private final StyleParameter style;
 
-	public HeaderProvider(StyleParameter style)
+	public HeaderFactory(StyleParameter style)
 	{
 		this.style = style;
 	}

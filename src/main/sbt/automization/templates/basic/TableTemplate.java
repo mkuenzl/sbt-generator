@@ -90,4 +90,10 @@ public abstract class TableTemplate implements HtmlTemplate
 		}
 	}
 
+	@Override
+	public void resetTemplate()
+	{
+		template.setLength(0);
+	}
+
 }

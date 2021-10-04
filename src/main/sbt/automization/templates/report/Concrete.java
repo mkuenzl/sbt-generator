@@ -6,8 +6,8 @@ import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlRow;
 import sbt.automization.styles.StyleParameter;
-import sbt.automization.templates.helper.ProbeCellStrategy;
-import sbt.automization.templates.helper.RowProvider;
+import sbt.automization.templates.helper.strategies.CellPerProbe;
+import sbt.automization.templates.helper.RowFactory;
 import sbt.automization.templates.helper.information.*;
 
 import java.util.Collection;
@@ -17,12 +17,12 @@ public final class Concrete extends Report
 {
 
 	private static Concrete instance;
-	private final RowProvider provider;
+	private final RowFactory provider;
 
 	private Concrete()
 	{
 		super(Outcrop.CONCRETE);
-		provider = new RowProvider(Outcrop.CONCRETE);
+		provider = new RowFactory(Outcrop.CONCRETE);
 	}
 
 	public static Concrete getInstance()
@@ -63,7 +63,7 @@ public final class Concrete extends Report
 	{
 		createTable();
 		provider.setDataTables(dataTables);
-		provider.setCellStrategy(new ProbeCellStrategy());
+		provider.setCellStrategy(new CellPerProbe());
 
 		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}), new IdRetrieval()));
 		addToTable(provider.getRow(header.createCell(new String[]{"Aufschlussart"}), new SuperstructureExposureRetrieval()));

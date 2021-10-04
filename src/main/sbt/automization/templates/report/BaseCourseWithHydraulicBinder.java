@@ -6,8 +6,8 @@ import sbt.automization.format.printer.UtilityPrinter;
 import sbt.automization.html.HtmlCell;
 import sbt.automization.html.HtmlRow;
 import sbt.automization.styles.StyleParameter;
-import sbt.automization.templates.helper.ProbeCellStrategy;
-import sbt.automization.templates.helper.RowProvider;
+import sbt.automization.templates.helper.strategies.CellPerProbe;
+import sbt.automization.templates.helper.RowFactory;
 import sbt.automization.templates.helper.information.*;
 
 import java.util.Collection;
@@ -16,12 +16,12 @@ import java.util.List;
 public final class BaseCourseWithHydraulicBinder extends Report
 {
 	private static BaseCourseWithHydraulicBinder instance;
-	private final RowProvider provider;
+	private final RowFactory provider;
 
 	private BaseCourseWithHydraulicBinder()
 	{
 		super(Outcrop.TMHB);
-		provider = new RowProvider(Outcrop.TMHB);
+		provider = new RowFactory(Outcrop.TMHB);
 	}
 
 	public static BaseCourseWithHydraulicBinder getInstance()
@@ -62,7 +62,7 @@ public final class BaseCourseWithHydraulicBinder extends Report
 	{
 		createTable();
 		provider.setDataTables(dataTables);
-		provider.setCellStrategy(new ProbeCellStrategy());
+		provider.setCellStrategy(new CellPerProbe());
 		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}), new IdRetrieval()));
 		addToTable(provider.getRow(header.createCell(new String[]{"Aufbruch"}), new BaseCourseExposureRetrieval()));
 		addToTable(provider.getRow(header.createCell(new String[]{"Gesamtdicke Oberbau,"}, "cm"), new SizeTotalTmhbRetrieval()));

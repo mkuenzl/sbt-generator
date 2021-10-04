@@ -14,4 +14,6 @@ public interface HtmlTemplate
 	void constructTemplate(List<DataTable> dataTables);
 
 	void constructTemplate(DataTable dataTable);
+
+	void resetTemplate();
 }

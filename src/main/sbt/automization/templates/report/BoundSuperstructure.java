@@ -2,8 +2,8 @@ package sbt.automization.templates.report;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Outcrop;
-import sbt.automization.templates.helper.ProbeCellStrategy;
-import sbt.automization.templates.helper.RowProvider;
+import sbt.automization.templates.helper.strategies.CellPerProbe;
+import sbt.automization.templates.helper.RowFactory;
 import sbt.automization.templates.helper.information.*;
 import sbt.automization.templates.report.superstructure.CrossSectionWithPitchRows;
 import sbt.automization.templates.report.superstructure.CrossSectionWithoutPitchRows;
@@ -14,12 +14,12 @@ import java.util.List;
 public final class BoundSuperstructure extends Report
 {
 	private static BoundSuperstructure instance;
-	private final RowProvider provider;
+	private final RowFactory provider;
 
 	private BoundSuperstructure()
 	{
 		super(Outcrop.GOB);
-		provider = new RowProvider(Outcrop.GOB);
+		provider = new RowFactory(Outcrop.GOB);
 	}
 
 	public static BoundSuperstructure getInstance()
@@ -60,7 +60,7 @@ public final class BoundSuperstructure extends Report
 	{
 		createTable();
 		provider.setDataTables(dataTables);
-		provider.setCellStrategy(new ProbeCellStrategy());
+		provider.setCellStrategy(new CellPerProbe());
 
 		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}), new IdRetrieval()));
 		addToTable(provider.getRow(header.createCell(new String[]{"Aufbruch"}), new SuperstructureExposureRetrieval()));

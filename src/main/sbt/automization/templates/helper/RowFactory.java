@@ -10,18 +10,20 @@ import sbt.automization.html.HtmlRow;
 import sbt.automization.styles.StyleParameter;
 import sbt.automization.styles.StyleParameterBuilder;
 import sbt.automization.templates.helper.information.InformationRetrievalStrategy;
+import sbt.automization.templates.helper.strategies.CellRow;
+import sbt.automization.templates.helper.strategies.CellRowStrategy;
 import sbt.automization.util.CheckDataAvailability;
 
 import java.util.List;
 
-public final class RowProvider
+public final class RowFactory
 {
 	private final Outcrop outcrop;
-	private CellStrategy cellStrategy;
+	private CellRowStrategy cellRowStrategy;
 	private StyleParameter styleParameter;
 	private List<DataTable> dataTables;
 
-	public RowProvider(Outcrop outcrop)
+	public RowFactory(Outcrop outcrop)
 	{
 		this.outcrop = outcrop;
 		createStandardStyle();
@@ -41,7 +43,7 @@ public final class RowProvider
 				.build();
 	}
 
-	public RowProvider(Outcrop outcrop, StyleParameter styleParameter)
+	public RowFactory(Outcrop outcrop, StyleParameter styleParameter)
 	{
 		this.outcrop = outcrop;
 		this.styleParameter = styleParameter;
@@ -66,8 +68,8 @@ public final class RowProvider
 
 	public String getRow(HtmlCell header, InformationRetrievalStrategy informationRetrievalStrategy)
 	{
-		cellStrategy.setRetrievalStrategy(informationRetrievalStrategy);
-		cellStrategy.setStyle(styleParameter);
+		cellRowStrategy.setRetrievalStrategy(informationRetrievalStrategy);
+		cellRowStrategy.setStyle(styleParameter);
 		informationRetrievalStrategy.setOutcrop(outcrop);
 
 		return build(header);
@@ -75,7 +77,7 @@ public final class RowProvider
 
 	private String build(HtmlCell header)
 	{
-		List<HtmlCell> cells = cellStrategy.build(dataTables);
+		List<HtmlCell> cells = cellRowStrategy.build(dataTables);
 
 		HtmlRow row = HtmlFactory.createRow(styleParameter.getRowClass());
 
@@ -94,8 +96,8 @@ public final class RowProvider
 		this.dataTables = tables;
 	}
 
-	public void setCellStrategy(CellStrategy cellStrategy)
+	public void setCellStrategy(CellRow cellRow)
 	{
-		this.cellStrategy = cellStrategy;
+		this.cellRowStrategy = cellRow;
 	}
 }

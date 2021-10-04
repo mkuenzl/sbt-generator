@@ -1,4 +1,4 @@
-package sbt.automization.templates.helper;
+package sbt.automization.templates.helper.strategies;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Sample;
@@ -8,14 +8,14 @@ import sbt.automization.styles.StyleParameter;
 
 import java.util.List;
 
-public class CombinedSampleByChemistryCellStrategy extends CellStrategy
+public final class CellPerSampleCombinedChemistry extends CellRow
 {
-	public CombinedSampleByChemistryCellStrategy(StyleParameter styleParameter)
+	public CellPerSampleCombinedChemistry(StyleParameter styleParameter)
 	{
 		super(styleParameter);
 	}
 
-	public CombinedSampleByChemistryCellStrategy()
+	public CellPerSampleCombinedChemistry()
 	{
 		super();
 	}

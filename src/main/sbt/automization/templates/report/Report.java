@@ -11,7 +11,7 @@ import sbt.automization.styles.ReportStyle;
 import sbt.automization.styles.StyleParameter;
 import sbt.automization.styles.StyleParameterBuilder;
 import sbt.automization.templates.HtmlTemplate;
-import sbt.automization.templates.helper.HeaderProvider;
+import sbt.automization.templates.helper.HeaderFactory;
 import sbt.automization.util.DatatableFilter;
 import sbt.automization.util.Separator;
 
@@ -26,21 +26,21 @@ public abstract class Report implements HtmlTemplate
 	protected final Outcrop outcrop;
 	protected final StringBuilder template;
 	protected HtmlTable table;
-	protected final HeaderProvider header;
+	protected final HeaderFactory header;
 
 
 	public Report()
 	{
 		this.template = new StringBuilder();
 		this.outcrop = null;
-		this.header = new HeaderProvider(getStyleParameterHeader());
+		this.header = new HeaderFactory(getStyleParameterHeader());
 	}
 
 	public Report(Outcrop outcrop)
 	{
 		this.template = new StringBuilder();
 		this.outcrop = outcrop;
-		this.header = new HeaderProvider(getStyleParameterHeader());
+		this.header = new HeaderFactory(getStyleParameterHeader());
 	}
 
 	public String getTemplate()
@@ -147,5 +147,11 @@ public abstract class Report implements HtmlTemplate
 				.setLegendCellClass("NormalHeaderSmallFont")
 				.setTextFormatter(new StandardCellTextFormatter())
 				.build();
+	}
+
+	@Override
+	public void resetTemplate()
+	{
+		template.setLength(0);
 	}
 }

@@ -96,4 +96,10 @@ public abstract class Appendix implements HtmlTemplate
 			createTableWithHeader();
 		}
 	}
+
+	@Override
+	public void resetTemplate()
+	{
+		template.setLength(0);
+	}
 }

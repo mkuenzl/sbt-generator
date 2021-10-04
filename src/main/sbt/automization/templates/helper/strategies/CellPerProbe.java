@@ -1,4 +1,4 @@
-package sbt.automization.templates.helper;
+package sbt.automization.templates.helper.strategies;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.html.HtmlCell;
@@ -6,14 +6,14 @@ import sbt.automization.styles.StyleParameter;
 
 import java.util.List;
 
-public class ProbeCellStrategy extends CellStrategy
+public final class CellPerProbe extends CellRow
 {
-	public ProbeCellStrategy(StyleParameter styleParameter)
+	public CellPerProbe(StyleParameter styleParameter)
 	{
 		super(styleParameter);
 	}
 
-	public ProbeCellStrategy()
+	public CellPerProbe()
 	{
 		super();
 	}

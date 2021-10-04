@@ -1,4 +1,4 @@
-package sbt.automization.templates.helper;
+package sbt.automization.templates.helper.strategies;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.key.ChemistryKey;
@@ -10,19 +10,19 @@ import sbt.automization.templates.helper.information.InformationRetrievalStrateg
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class CellStrategy
+public abstract class CellRow implements CellRowStrategy
 {
 	protected StyleParameter styleParameter;
 	protected List<HtmlCell> cells = new ArrayList<>();
 
 	private InformationRetrievalStrategy retrievalStrategy;
 
-	public CellStrategy(StyleParameter styleParameter)
+	public CellRow(StyleParameter styleParameter)
 	{
 		this.styleParameter = styleParameter;
 	}
 
-	public CellStrategy()
+	public CellRow()
 	{
 	}
 
@@ -51,6 +51,7 @@ public abstract class CellStrategy
 		return cell;
 	}
 
+	@Override
 	public void setStyle(StyleParameter styleParameter)
 	{
 		this.styleParameter = styleParameter;
@@ -61,6 +62,7 @@ public abstract class CellStrategy
 		return this.retrievalStrategy;
 	}
 
+	@Override
 	public void setRetrievalStrategy(InformationRetrievalStrategy retrievalStrategy)
 	{
 		this.retrievalStrategy = retrievalStrategy;

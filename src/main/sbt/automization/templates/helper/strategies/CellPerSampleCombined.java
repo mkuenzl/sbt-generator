@@ -1,4 +1,4 @@
-package sbt.automization.templates.helper;
+package sbt.automization.templates.helper.strategies;
 
 import sbt.automization.data.DataTable;
 import sbt.automization.data.Sample;
@@ -7,14 +7,14 @@ import sbt.automization.styles.StyleParameter;
 
 import java.util.List;
 
-public class CombinedSampleCellStrategy extends CellStrategy
+public final class CellPerSampleCombined extends CellRow
 {
-	public CombinedSampleCellStrategy(StyleParameter styleParameter)
+	public CellPerSampleCombined(StyleParameter styleParameter)
 	{
 		super(styleParameter);
 	}
 
-	public CombinedSampleCellStrategy()
+	public CellPerSampleCombined()
 	{
 		super();
 	}
