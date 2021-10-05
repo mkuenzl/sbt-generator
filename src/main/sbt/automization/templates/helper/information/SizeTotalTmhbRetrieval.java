@@ -41,6 +41,7 @@ public class SizeTotalTmhbRetrieval extends DatatableInformationRetrieval
 		List<Sample> samples = probe.getSamplesBy(SampleKey.OUTCROP, new String[]{
 				outcrop.toString(),
 				Outcrop.CONCRETE.toString(),
+				Outcrop.TOB.toString(),
 				Outcrop.COATING.toString(),
 				Outcrop.GOB.toString(),
 				Outcrop.SEAL.toString()});

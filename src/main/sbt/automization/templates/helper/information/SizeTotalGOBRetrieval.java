@@ -8,9 +8,9 @@ import sbt.automization.format.printer.SamplePrinter;
 
 import java.util.List;
 
-public class SizeTotalObRetrieval extends DatatableInformationRetrieval
+public class SizeTotalGOBRetrieval extends DatatableInformationRetrieval
 {
-	public SizeTotalObRetrieval()
+	public SizeTotalGOBRetrieval()
 	{
 		super(SampleKey.ID);
 	}

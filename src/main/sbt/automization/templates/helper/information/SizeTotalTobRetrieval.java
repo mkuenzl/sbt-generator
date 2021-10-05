@@ -43,7 +43,6 @@ public class SizeTotalTobRetrieval extends DatatableInformationRetrieval
 						outcrop.toString(),
 						Outcrop.TMHB.toString(),
 						Outcrop.SEAL.toString(),
-						Outcrop.GAP.toString(),
 						Outcrop.COATING.toString(),
 						Outcrop.CONCRETE.toString()});
 
