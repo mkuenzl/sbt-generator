@@ -95,6 +95,7 @@ public class TableToolVisualInterface extends JFrame
 				"Lade Dokument ...",
 				"Chemie_Vorlage.xlsx",
 				"Bericht-Erkundung-Straße.docx",
+				"Bericht-Gebäude.docx",
 				"Bericht-Straßenbau-Vorerkundung.docx",
 				"Bericht-Straßenbau-Vorerkundung-(A3).docx",
 				"Regelwerk-Straßenbau.docx"
