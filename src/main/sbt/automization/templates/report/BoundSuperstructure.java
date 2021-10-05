@@ -5,8 +5,8 @@ import sbt.automization.data.Outcrop;
 import sbt.automization.templates.helper.strategies.CellPerProbe;
 import sbt.automization.templates.helper.RowFactory;
 import sbt.automization.templates.helper.information.*;
-import sbt.automization.templates.report.superstructure.CrossSectionWithPitchRows;
-import sbt.automization.templates.report.superstructure.CrossSectionWithoutPitchRows;
+import sbt.automization.templates.report.tableparts.CrossSectionWithPitch;
+import sbt.automization.templates.report.tableparts.CrossSectionWithoutPitch;
 
 import java.util.Collection;
 import java.util.List;
@@ -68,13 +68,13 @@ public final class BoundSuperstructure extends Report
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
 
-		CrossSectionWithPitchRows crossSectionWithPitchRows = new CrossSectionWithPitchRows();
-		crossSectionWithPitchRows.constructTemplate(dataTables);
-		addToTable(crossSectionWithPitchRows.getTemplate());
+		CrossSectionWithPitch crossSectionWithPitch = new CrossSectionWithPitch();
+		crossSectionWithPitch.constructTemplate(dataTables);
+		addToTable(crossSectionWithPitch.getTemplate());
 
-		CrossSectionWithoutPitchRows crossSectionWithoutPitchRows = new CrossSectionWithoutPitchRows();
-		crossSectionWithoutPitchRows.constructTemplate(dataTables);
-		addToTable(crossSectionWithoutPitchRows.getTemplate());
+		CrossSectionWithoutPitch crossSectionWithoutPitch = new CrossSectionWithoutPitch();
+		crossSectionWithoutPitch.constructTemplate(dataTables);
+		addToTable(crossSectionWithoutPitch.getTemplate());
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public final class BoundSuperstructure extends Report
 	{
 		addTechnicalHeader(dataTables);
 
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Gesamtdicke Oberbau,"}, "cm"), new SizeTotalObRetrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Gesamtdicke geb. Oberbau,"}, "cm"), new SizeTotalGOBRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Belastungsklasse,"}, "RStO<sup>[5]</sup>"), new LoadClassRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Erweichungspunkt RuK<sup>[31]</sup>,"}, "°C"), new RuKCombinedRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Soll Einzelwert,"}, "RuK"), new RuKSingleValueRetrieval()));

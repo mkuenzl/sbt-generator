@@ -65,8 +65,6 @@ public final class BaseCourseWithHydraulicBinder extends Report
 		provider.setCellStrategy(new CellPerProbe());
 		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}), new IdRetrieval()));
 		addToTable(provider.getRow(header.createCell(new String[]{"Aufbruch"}), new BaseCourseExposureRetrieval()));
-		addToTable(provider.getRow(header.createCell(new String[]{"Gesamtdicke Oberbau,"}, "cm"), new SizeTotalTmhbRetrieval()));
-		addToTable(provider.getRow(header.createCell(new String[]{"Belastungsklasse,"}, "RStO<sup>[5]</sup>"), new LoadClassRetrieval()));
 
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
@@ -78,8 +76,10 @@ public final class BaseCourseWithHydraulicBinder extends Report
 	{
 		addTechnicalHeader(dataTables);
 
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Dicke,"}, "cm"), new SizeRetrieval()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Belastungsklasse,"}, "RStO<sup>[5]</sup>"), new LoadClassRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Druckfestigkeit,"}, "N/mm²"), new CompressiveStrengthRetrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Dicke,"}, "cm"), new SizeRetrieval()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Gesamtdicke Oberbau,"}, "cm"), new SizeTotalTmhbRetrieval()));
 	}
 
 	@Override
