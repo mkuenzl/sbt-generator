@@ -734,7 +734,7 @@ public class HtmlFactory
 				htmlCell.appendContent("PECH");
 				break;
 			default:
-				htmlCell.appendAttribute("class", "NormalCenter");
+				htmlCell.appendAttribute("class", "NormalBold");
 				htmlCell.appendContent("-");
 				break;
 		}

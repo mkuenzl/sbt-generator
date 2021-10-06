@@ -5,9 +5,9 @@ public final class ProctorTextFormatter extends AbstractTextFormatter
 	@Override
 	public String format(final String moisture)
 	{
-		if ("-".equals(moisture))
+		if ("".equals(moisture))
 		{
-			return "-";
+			return "";
 		} else
 		{
 			return moisture.concat(" W<sub>Pr</sub>");

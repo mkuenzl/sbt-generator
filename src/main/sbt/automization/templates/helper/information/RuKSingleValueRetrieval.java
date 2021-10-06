@@ -2,7 +2,9 @@ package sbt.automization.templates.helper.information;
 
 import sbt.automization.data.Probe;
 import sbt.automization.data.Sample;
+import sbt.automization.data.key.RuKKey;
 import sbt.automization.data.key.SampleKey;
+import sbt.automization.util.CheckDataAvailability;
 
 public class RuKSingleValueRetrieval extends DatatableInformationRetrieval
 {
@@ -26,12 +28,21 @@ public class RuKSingleValueRetrieval extends DatatableInformationRetrieval
 	@Override
 	String retrieveFrom(Sample sample)
 	{
+		if (!"".equals(sample.get(informationKey)))
 		return "77";
+		else return "";
 	}
 
 	@Override
 	String retrieveFrom(Probe probe)
 	{
-		return "77";
+		if (CheckDataAvailability.thereExistsAnSampleWithData(probe, outcrop.toString(), informationKey))
+		{
+			return "77";
+		}
+		else
+		{
+			return "";
+		}
 	}
 }

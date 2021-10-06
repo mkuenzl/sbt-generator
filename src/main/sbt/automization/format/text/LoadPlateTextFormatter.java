@@ -49,11 +49,7 @@ public final class LoadPlateTextFormatter extends AbstractTextFormatter
 					.appendTag());
 		} else
 		{
-			stringBuilder.append(new HtmlText.Builder()
-					.appendAttribute("class", "Normal")
-					.appendContent(ev2)
-					.build()
-					.appendTag());
+			stringBuilder.append(ev2);
 		}
 
 		return stringBuilder.toString();

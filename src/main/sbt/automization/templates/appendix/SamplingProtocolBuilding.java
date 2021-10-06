@@ -115,6 +115,12 @@ public final class SamplingProtocolBuilding extends Appendix
 		addPageBreak();
 	}
 
+	private String formatDepthValue(String value)
+	{
+		if (value.contains(",")) return value;
+		else return value.concat(",0");
+	}
+
 	private String printSampleDepth(Sample sample)
 	{
 		String depthStart = sample.get(SampleKey.DEPTH_START);
@@ -128,13 +134,13 @@ public final class SamplingProtocolBuilding extends Appendix
 
 		stringBuilder.append(beginningSymbol)
 				.append(" ")
-				.append(depthStart)
+				.append(formatDepthValue(depthStart))
 				.append(" ")
 				.append("bis")
 				.append(UtilityPrinter.printLineBreak())
 				.append("-")
 				.append(" ")
-				.append(depthEnd)
+				.append(formatDepthValue(depthEnd))
 				.append(" ")
 				.append("cm");
 
@@ -293,7 +299,7 @@ public final class SamplingProtocolBuilding extends Appendix
 			printedThickness = "-";
 		} else
 		{
-			printedThickness = thickness.concat(" cm");
+			printedThickness = formatDepthValue(thickness).concat(" cm");
 		}
 
 		depthRow.appendContent(HtmlFactory.createCellAsString(textFormatter, BuildingStyle.CELL.getStyleClass(), 1, 4,
