@@ -80,12 +80,12 @@ public final class BaseCourseWithoutBinder extends Report
 
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"E<sub>Vdyn</sub>,"}, "MN/m²"), new EvDynRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"E<sub>Vdyn (-15%)</sub>,"}, "MN/m²"), new EvDyn85Retrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"E<sub>V2</sub><sup>[41]</sup>,"}, "MN/m²"), new Ev2Retrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"E<sub>V2</sub><sup>[41]</sup>,"}, "MN/m²"), new Ev2WithEv85Retrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Soll Wert,"}, "E<sub>V2</sub>"), new EvMinimumBorderRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Material"}), new MaterialTobRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Dicke,"}, "cm"), new SizeRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Korngrößenverteilung,"}, "Kornanteil < 0,063 mm"), new GrainSizeDistributionRetrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Gesamtdicke Oberbau,"}, "cm"), new SizeTotalTobRetrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Gesamtdicke Oberbau,"}, "cm"), new SizeTotalOBRetrieval()));
 	}
 
 	@Override
@@ -97,7 +97,7 @@ public final class BaseCourseWithoutBinder extends Report
 		addToTable(provider.getRowWithDataCheck(chemistryIdHeader, new ChemistryIdRetrieval()));
 		HtmlCell chemistryMufvHeader = header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"}, "Schreiben des MUFV<sup>[18]</sup>");
 		addToTable(provider.getRowWithDataCheck(chemistryMufvHeader, new ChemistryMufvRetrieval()));
-		HtmlCell chemistryLfsHeader = header.createCell(new String[]{"LFS"});
+		HtmlCell chemistryLfsHeader = header.createCell(new String[]{"Vollzugshinweise,"}, "LFS");
 		addToTable(provider.getRowWithDataCheck(chemistryLfsHeader, new ChemistryLfsRetrieval()));
 		HtmlCell chemistryLagaBoHeader = header.createCell(new String[]{"Zuordnungsklasse,"}, "LAGA Boden<sup>[11]</sup>");
 		addToTable(provider.getRowWithDataCheck(chemistryLagaBoHeader, new ChemistryLagaBoRetrieval()));
