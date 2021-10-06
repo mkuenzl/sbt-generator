@@ -8,7 +8,7 @@ public final class ErrorPopup
 
 	private ErrorPopup() {}
 
-	public static void showErrorMessage(String message)
+	public static void showMessage(String message)
 	{
 		JOptionPane.showMessageDialog(new JFrame(), message, "Error Dialog",
 				JOptionPane.ERROR_MESSAGE);
