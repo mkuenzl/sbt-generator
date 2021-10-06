@@ -67,6 +67,21 @@ public final class Building extends Report
 	}
 
 	@Override
+	protected StyleParameter getStyleParameter()
+	{
+		return new StyleParameterBuilder()
+				.setRowClass("NormalThin8")
+				.setHeaderCellClass("NormalHeader")
+				.setHeaderCellWidth("4")
+				.setNormalCellClass("NormalBold")
+				.setNormalCellWidth("2.5")
+				.setUnitCellClass("Normal6")
+				.setLegendCellClass("NormalHeaderSmallFont")
+				.setTextFormatter(new StandardCellTextFormatter())
+				.build();
+	}
+
+	@Override
 	protected Collection<List<DataTable>> splitIntoPortionPerPage(List<DataTable> tables)
 	{
 		List<DataTable> probesWhichIncludeOutcrop = DatatableFilter.getProbesWhichIncludeOutcrop(tables, outcrop);
@@ -157,6 +172,11 @@ public final class Building extends Report
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Sulfat,"}, "mg/kg"), new ChemistrySulfateRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"ICP Screening,"}, "mg/kg"), new ChemistryIcpScreeningRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"EOX,"}, "mg/kg"), new ChemistryEoxRetrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"HBCD,"}, "mg/kg"), new ChemistryHBCDRetrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"FCKW,"}, "mg/kg"), new ChemistryFCKWRetrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"MKW (C10 - C22),"}, "mg/kg"), new ChemistryMKWC22Retrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"MKW (C10 - C40),"}, "mg/kg"), new ChemistryMKWC40Retrieval()));
+
 
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Zuordnungsklasse,"}, "LAGA Boden<sup>[4]</sup>"), new ChemistryLagaBoRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Zuordnungsklasse,"}, "LAGA Bauschutt<sup>[15]</sup>"), new ChemistryLagaRcRetrieval()));

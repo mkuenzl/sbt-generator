@@ -2,6 +2,38 @@ package sbt.automization.data.key;
 
 public enum ChemistryKey implements Key
 {
+	MKW_C22
+			{
+				@Override
+				public String getKey()
+				{
+					return addChemistryTag("MKW_C10_C22");
+				}
+			},
+	MKW_C40
+			{
+				@Override
+				public String getKey()
+				{
+					return addChemistryTag("MKW_C10_C40");
+				}
+			},
+	HBCD
+			{
+				@Override
+				public String getKey()
+				{
+					return addChemistryTag("HBCD");
+				}
+			},
+	FCKW
+			{
+				@Override
+				public String getKey()
+				{
+					return addChemistryTag("FCKW");
+				}
+			},
 	WASTE_WOOD_ORDINANCE
 			{
 				@Override
