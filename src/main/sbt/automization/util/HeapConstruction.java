@@ -20,7 +20,7 @@ public final class HeapConstruction
 		} catch (NullPointerException exception)
 		{
 			String message = "Probe " + sample.get(SampleKey.PROBE_ID) + " fehlt in Bereich " + sample.get(SampleKey.ID) + " das Volumen oder die Anzahl an Proben.";
-			ErrorPopup.showErrorMessage(message);
+			ErrorPopup.showMessage(message);
 		}
 
 		return sampleVolumes;
