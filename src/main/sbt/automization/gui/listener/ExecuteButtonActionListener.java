@@ -39,8 +39,7 @@ public class ExecuteButtonActionListener implements ActionListener
 			}
 		} catch (Exception exception)
 		{
-			ErrorPopup.showMessage("Es gab einen Fehler bei dem Lesen der CSV. " + "\n"
-					+ exception);
+			System.out.println(exception.getMessage());
 		}
 	}
 }

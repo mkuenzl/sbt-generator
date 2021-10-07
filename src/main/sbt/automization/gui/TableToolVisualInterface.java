@@ -70,7 +70,7 @@ public class TableToolVisualInterface extends JFrame
 		panel.setBackground(Color.gray);
 
 		// BUTTONS.
-		JButton createCSVButton = new CustomButton("Generiere Excel-Template");
+		JButton createCSVButton = new CustomButton("1. Erstelle Excel-Template");
 		createCSVButton.setBounds(10, 10, 265, 40);
 		createCSVButton.addActionListener(new CsvButtonActionListener());
 		panel.add(createCSVButton);
@@ -85,7 +85,7 @@ public class TableToolVisualInterface extends JFrame
 		infoButton.addActionListener(new InfoButtonActionListener());
 		panel.add(infoButton);
 
-		JButton explorerButton = new CustomButton("Auswahl .CSV Datei");
+		JButton explorerButton = new CustomButton("2. Wähle eine .csv Datei");
 		explorerButton.setBounds(10, 60, 265, 40);
 		explorerButton.addActionListener(new ExplorerButtonActionListener());
 		panel.add(explorerButton);
@@ -114,7 +114,7 @@ public class TableToolVisualInterface extends JFrame
 		textField.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
 		panel.add(textField);
 
-		JLabel jLabel = new JLabel("Auswahl der Tabellen:", JLabel.LEFT);
+		JLabel jLabel = new JLabel("3. Wähle Tabellen aus:", JLabel.LEFT);
 		jLabel.setBounds(10, 160, 265, 40);
 		jLabel.setForeground(Color.BLACK);
 		jLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
@@ -210,7 +210,7 @@ public class TableToolVisualInterface extends JFrame
 		panel.add(checkBoxReportBuilding);
 
 		// BUTTONS.
-		JButton executeButton = new CustomButton("Erstelle Tabellen");
+		JButton executeButton = new CustomButton("4. Erstelle Tabellen");
 		executeButton.setBounds(10, 420, 265, 40);
 		executeButton.setFocusable(false);
 		executeButton.addActionListener(new ExecuteButtonActionListener());
