@@ -75,8 +75,8 @@ public final class CsvParser
 					.withIgnoreEmptyLines(true)
 					.parse(inputStreamReader);
 
-			List<String> providedCsv = csvParser.getHeaderNames();
-			showCSVInfoMessage(providedCsv);
+			List<String> providedHeader = csvParser.getHeaderNames();
+			showCSVInfoMessage(providedHeader);
 
 			for (CSVRecord record : csvParser)
 			{    // each record represents a line from the csv
@@ -147,7 +147,7 @@ public final class CsvParser
 		return input.contains(probeID) && input.contains(sampleID);
 	}
 
-	public void showCSVInfoMessage(List<String> input)
+	public void showCSVInfoMessage(List<String> input) throws Exception
 	{
 		StringBuilder messageBuilder = new StringBuilder();
 		messageBuilder.append("Die CSV enthält:");
@@ -158,8 +158,9 @@ public final class CsvParser
 			messageBuilder.append("\n- Proben");
 		} else
 		{
-			ErrorPopup.showMessage("Die CSV enthält keine Erkundungsstellen oder Proben!");
-			return;
+			//Implement Exception
+			ErrorPopup.showMessage("Der Datensatz enthält keine Erkundungsstellen oder Proben! \nÜberprüfen sie den Datensatz.");
+			throw new Exception("No valid database, either probes or samples are missing.");
 		}
 
 		String chemistryID = "PARAMETER.CHEMISTRY.ID";
@@ -168,12 +169,12 @@ public final class CsvParser
 			messageBuilder.append("\n- Chemie Parameter");
 		}
 		String rukID = "PARAMETER.RUK.ID";
-		if (input.contains(chemistryID))
+		if (input.contains(rukID))
 		{
 			messageBuilder.append("\n- RuK Parameter");
 		}
 		String lpID = "PARAMETER.LP.ID";
-		if (input.contains(chemistryID))
+		if (input.contains(lpID))
 		{
 			messageBuilder.append("\n- Lp Parameter");
 		}
