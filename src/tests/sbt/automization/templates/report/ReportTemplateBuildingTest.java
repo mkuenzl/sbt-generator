@@ -1,10 +1,11 @@
 package sbt.automization.templates.report;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import sbt.automization.data.DataTable;
 import sbt.automization.export.HtmlTemplateExport;
 import sbt.automization.templates.DatatableInitializer;
+import sbt.automization.templates.EnterRobot;
 import sbt.automization.templates.appendix.AttemptTemplate;
 import sbt.automization.templates.basic.Coordinates;
 
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class ReportTemplateBuildingTest
 {
-	List<DataTable> dataTables = new ArrayList<>();
+	static List<DataTable> dataTables = new ArrayList<>();
 
 	String templateExportPath = System.getProperty("user.dir")
 			.concat(File.separator)
@@ -25,10 +26,13 @@ public class ReportTemplateBuildingTest
 			.concat("template-output")
 			.concat(File.separator);
 
-	@Before
-	public void initializeDatatables() throws Exception
+	@BeforeClass
+	public static void initializeDatatables() throws Exception
 	{
+		Thread thread = new Thread(new EnterRobot());
+		thread.start();
 		dataTables = new DatatableInitializer().initializeDatatables();
+
 	}
 
 	@Test

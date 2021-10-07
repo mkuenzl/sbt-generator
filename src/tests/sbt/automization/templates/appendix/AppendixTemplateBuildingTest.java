@@ -1,15 +1,11 @@
 package sbt.automization.templates.appendix;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import sbt.automization.data.DataTable;
-import sbt.automization.data.Examination;
 import sbt.automization.export.HtmlTemplateExport;
-import sbt.automization.export.WordTemplateExport;
 import sbt.automization.templates.DatatableInitializer;
-import sbt.automization.util.CsvParser;
-import sbt.automization.util.DatatableSerializationFactory;
+import sbt.automization.templates.EnterRobot;
 
 import java.awt.*;
 import java.io.File;
@@ -19,7 +15,7 @@ import java.util.List;
 
 public class AppendixTemplateBuildingTest
 {
-	List<DataTable> dataTables = new ArrayList<>();
+	static List<DataTable> dataTables = new ArrayList<>();
 
 	String templateExportPath = System.getProperty("user.dir")
 			.concat(File.separator)
@@ -28,9 +24,11 @@ public class AppendixTemplateBuildingTest
 			.concat("template-output")
 			.concat(File.separator);
 
-	@Before
-	public void initializeDatatables() throws Exception
+	@BeforeClass
+	public static void initializeDatatables() throws Exception
 	{
+		Thread thread = new Thread(new EnterRobot());
+		thread.start();
 		dataTables = new DatatableInitializer().initializeDatatables();
 	}
 
