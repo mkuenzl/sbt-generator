@@ -100,4 +100,6 @@ public final class RowFactory
 	{
 		this.cellRowStrategy = cellRow;
 	}
+
+	public void setStyleParameter(StyleParameter styleParameter) { this.styleParameter = styleParameter; }
 }

@@ -127,10 +127,12 @@ public final class Building extends Report
 		createTable();
 		provider.setDataTables(dataTables);
 		provider.setCellStrategy(new CellPerSampleCombined());
-
+		provider.setStyleParameter(getStyleParameterHeader());
 		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}), new IdRetrieval()));
 		addToTable(provider.getRow(header.createCell(new String[]{"Bauteil"}), new ComponentRetrieval()));
 		addToTable(provider.getRow(header.createCell(new String[]{"Material"}), new MaterialBuildingRetrieval()));
+
+		provider.setStyleParameter(getStyleParameter());
 
 		constructEnvironmentTechnicalFeatures(dataTables);
 		addLegendRow(dataTables);
