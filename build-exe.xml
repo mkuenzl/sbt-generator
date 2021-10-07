@@ -16,7 +16,7 @@
 
     <!-- -->
     <property name="project" value="sbt-table-generator"/>
-    <property name="launch4j.dir" location="${user.home}/launch4j/" />
+    <property name="launch4j.dir" location="${user.home}/.launch4j/" />
 
     <taskdef name="launch4j"
              classname="net.sf.launch4j.ant.Launch4jTask"
