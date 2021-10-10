@@ -1,8 +1,8 @@
 package sbt.automization;
 
-import sbt.automization.data.DataTable;
-import sbt.automization.data.Probe;
-import sbt.automization.data.Sample;
+import sbt.automization.core.data.DataTable;
+import sbt.automization.core.data.Probe;
+import sbt.automization.core.data.Sample;
 
 import java.util.HashMap;
 import java.util.Map;

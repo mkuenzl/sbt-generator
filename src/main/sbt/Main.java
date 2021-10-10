@@ -1,11 +1,11 @@
 package sbt;
 
-import sbt.automization.gui.TableToolVisualInterface;
+import sbt.automization.view.GUI;
 
 public class Main
 {
     public static void main(String[] args)
     {
-        new TableToolVisualInterface();
+        new GUI();
     }
 }
