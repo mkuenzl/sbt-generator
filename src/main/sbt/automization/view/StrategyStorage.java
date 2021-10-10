@@ -1,9 +1,9 @@
-package sbt.automization.gui;
+package sbt.automization.view;
 
-import sbt.automization.templates.HtmlTemplate;
-import sbt.automization.templates.appendix.*;
-import sbt.automization.templates.basic.Coordinates;
-import sbt.automization.templates.report.*;
+import sbt.automization.core.templates.HtmlTemplate;
+import sbt.automization.core.templates.appendix.*;
+import sbt.automization.core.templates.basic.Coordinates;
+import sbt.automization.core.templates.report.*;
 
 import java.util.ArrayList;
 import java.util.List;

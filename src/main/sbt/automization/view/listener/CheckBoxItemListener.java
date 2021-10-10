@@ -1,6 +1,6 @@
-package sbt.automization.gui.listener;
+package sbt.automization.view.listener;
 
-import sbt.automization.gui.StrategyStorage;
+import sbt.automization.view.StrategyStorage;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;

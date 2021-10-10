@@ -1,4 +1,4 @@
-package sbt.automization.gui;
+package sbt.automization.view.element;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -6,18 +6,16 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class CustomCheckBox extends JCheckBox implements MouseListener
+public abstract class CustomButton extends JButton implements MouseListener
 {
-
-	Font defaultFont = new Font("Gill Sans MT", Font.BOLD, 10);
+	Font defaultFont = new Font("Gill Sans MT", Font.BOLD, 14);
 	Color textColor = Color.decode("#000000");
 	Color backgroundColor = Color.decode("#ffffff");
 	Color hoverColor = Color.decode("#00aced");
 
-	public CustomCheckBox(String s, Boolean selected)
+	public CustomButton(String s)
 	{
 		s = s.toUpperCase();
-		this.setSelected(selected);
 		this.setFocusPainted(false);
 		this.setText(s);
 		this.setBorder(null);
@@ -25,32 +23,28 @@ public class CustomCheckBox extends JCheckBox implements MouseListener
 		this.setBackground(backgroundColor);
 		this.setFont(defaultFont);
 		this.setOpaque(true);
+		this.setFocusable(false);
+
 		this.setBorder(new LineBorder(Color.BLACK));
-		this.setEnabled(true);
-		this.setVisible(true);
+
 		addMouseListener(this);
 	}
 
-	public CustomCheckBox(String s, Boolean selected, Color backgroundColor, Color hoverColor)
+	public CustomButton(String text, Rectangle position)
 	{
-		s = s.toUpperCase();
-		this.setSelected(selected);
+		text = text.toUpperCase();
 		this.setFocusPainted(false);
-		this.setText(s);
+		this.setText(text);
 		this.setBorder(null);
-		this.setHoverColor(hoverColor);
+		this.setForeground(textColor);
 		this.setBackground(backgroundColor);
 		this.setFont(defaultFont);
 		this.setOpaque(true);
-		this.setBorder(new LineBorder(Color.BLACK));
-		this.setEnabled(true);
-		this.setVisible(true);
-		addMouseListener(this);
-	}
+		this.setFocusable(false);
 
-	public void setBackgroundColor(Color color)
-	{
-		backgroundColor = color;
+		this.setBorder(new LineBorder(Color.BLACK));
+		this.setBounds(position);
+		addMouseListener(this);
 	}
 
 	public void setHoverColor(Color color)
@@ -58,14 +52,19 @@ public class CustomCheckBox extends JCheckBox implements MouseListener
 		hoverColor = color;
 	}
 
+	public void setBackgroundColor(Color color)
+	{
+		backgroundColor = color;
+	}
+
 	@Override
 	public void mouseClicked(MouseEvent me) {}
 
 	@Override
-	public void mouseReleased(MouseEvent me) {}
+	public void mousePressed(MouseEvent me) {}
 
 	@Override
-	public void mousePressed(MouseEvent me) {}
+	public void mouseReleased(MouseEvent me) {}
 
 	@Override
 	public void mouseEntered(MouseEvent e)

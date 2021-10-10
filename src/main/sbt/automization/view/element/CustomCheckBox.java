@@ -1,4 +1,4 @@
-package sbt.automization.gui;
+package sbt.automization.view.element;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -6,46 +6,48 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class FileDropDownMenu extends JComboBox implements MouseListener
+public abstract class CustomCheckBox extends JCheckBox implements MouseListener
 {
-	Font defaultFont = new Font("Gill Sans MT", Font.BOLD, 14);
+
+	Font defaultFont = new Font("Gill Sans MT", Font.BOLD, 10);
 	Color textColor = Color.decode("#000000");
 	Color backgroundColor = Color.decode("#ffffff");
 	Color hoverColor = Color.decode("#00aced");
 
-	public FileDropDownMenu(String[] pattern)
+	public CustomCheckBox(String text, Rectangle position)
 	{
-		super(pattern);
+		text = text.toUpperCase();
+		this.setBounds(position);
+		this.setSelected(false);
+		this.setFocusPainted(false);
+		this.setText(text);
 		this.setBorder(null);
 		this.setForeground(textColor);
 		this.setBackground(backgroundColor);
 		this.setFont(defaultFont);
 		this.setOpaque(true);
-		this.setFocusable(false);
-		this.setEditable(false);
 		this.setBorder(new LineBorder(Color.BLACK));
-
+		this.setEnabled(true);
+		this.setVisible(true);
 		addMouseListener(this);
 	}
 
-	public FileDropDownMenu(String[] pattern, Color backgroundColor, Color hoverColor)
+	public CustomCheckBox(String s, Rectangle position, Color backgroundColor, Color hoverColor)
 	{
-		super(pattern);
+		s = s.toUpperCase();
+		this.setBounds(position);
+		this.setSelected(false);
+		this.setFocusPainted(false);
+		this.setText(s);
 		this.setBorder(null);
 		this.setHoverColor(hoverColor);
 		this.setBackground(backgroundColor);
 		this.setFont(defaultFont);
 		this.setOpaque(true);
-		this.setFocusable(false);
-		this.setEditable(false);
 		this.setBorder(new LineBorder(Color.BLACK));
-
+		this.setEnabled(true);
+		this.setVisible(true);
 		addMouseListener(this);
-	}
-
-	public void setHoverColor(Color color)
-	{
-		hoverColor = color;
 	}
 
 	public void setBackgroundColor(Color color)
@@ -53,30 +55,27 @@ public class FileDropDownMenu extends JComboBox implements MouseListener
 		backgroundColor = color;
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent me) {}
+	public void setHoverColor(Color color)
+	{
+		hoverColor = color;
+	}
 
 	@Override
-	public void mousePressed(MouseEvent me) {}
+	public void mouseClicked(MouseEvent me) {}
 
 	@Override
 	public void mouseReleased(MouseEvent me) {}
 
 	@Override
+	public void mousePressed(MouseEvent me) {}
+
+	@Override
 	public void mouseEntered(MouseEvent e)
 	{
-		if (e.getSource() == this)
-		{
-			this.setBackground(this.hoverColor);
-		}
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e)
 	{
-		if (e.getSource() == this)
-		{
-			this.setBackground(this.backgroundColor);
-		}
 	}
 }

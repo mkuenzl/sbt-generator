@@ -1,4 +1,4 @@
-package sbt.automization.gui;
+package sbt.automization.view.popup;
 
 import javax.swing.*;
 
