@@ -35,9 +35,14 @@
                release="11"
                includeantruntime="false">
             <classpath>
-                <pathelement path="${lib.dir}/commons-cli-1.4.jar"/>
                 <pathelement path="${lib.dir}/commons-io-2.6.jar"/>
                 <pathelement path="${lib.dir}/commons-csv-1.8.jar"/>
+                <pathelement path="${lib.dir}/commons-collections4-4.4.jar"/>
+                <pathelement path="${lib.dir}/commons-compress-1.19.jar"/>
+                <pathelement path="${lib.dir}/xmlbeans-3.1.0.jar"/>
+                <pathelement path="${lib.dir}/poi-4.1.2.jar"/>
+                <pathelement path="${lib.dir}/poi-ooxml-4.1.2.jar"/>
+                <pathelement path="${lib.dir}/poi-ooxml-schemas-4.1.2.jar"/>
             </classpath>
         </javac>
     </target>
@@ -46,9 +51,14 @@
         <mkdir dir="${jar.dir}"/>
         <jar destfile="${jar.dir}/sbt-table-generator.jar" basedir="${main.classes}">
             <zipgroupfileset dir="${lib.dir}">
-                <include name="commons-cli-1.4.jar"/>
                 <include name="commons-io-2.6.jar"/>
                 <include name="commons-csv-1.8.jar"/>
+                <include name="commons-collections4-4.4.jar"/>
+                <include name="commons-compress-1.19.jar"/>
+                <include name="xmlbeans-3.1.0.jar"/>
+                <include name="poi-4.1.2.jar"/>
+                <include name="poi-ooxml-4.1.2.jar"/>
+                <include name="poi-ooxml-schemas-4.1.2.jar"/>
             </zipgroupfileset>
             <fileset dir="${main.resources}"/>
             <manifest>

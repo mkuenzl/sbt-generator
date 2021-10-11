@@ -59,9 +59,14 @@
     <!-- set paths -->
     <path id="libraries.path">
         <fileset dir="${lib.dir}">
-            <include name="commons-cli-1.4.jar"/>
             <include name="commons-io-2.6.jar"/>
             <include name="commons-csv-1.8.jar"/>
+            <include name="commons-collections4-4.4.jar"/>
+            <include name="commons-compress-1.19.jar"/>
+            <include name="xmlbeans-3.1.0.jar"/>
+            <include name="poi-4.1.2.jar"/>
+            <include name="poi-ooxml-4.1.2.jar"/>
+            <include name="poi-ooxml-schemas-4.1.2.jar"/>
         </fileset>
     </path>
 
@@ -132,9 +137,14 @@
         <mkdir dir="${jar.dir}"/>
         <jar destfile="${jar.dir}/sbt-table-generator.jar" basedir="${main.classes}">
             <zipgroupfileset dir="${lib.dir}">
-                <include name="commons-cli-1.4.jar"/>
                 <include name="commons-io-2.6.jar"/>
                 <include name="commons-csv-1.8.jar"/>
+                <include name="commons-collections4-4.4.jar"/>
+                <include name="commons-compress-1.19.jar"/>
+                <include name="xmlbeans-3.1.0.jar"/>
+                <include name="poi-4.1.2.jar"/>
+                <include name="poi-ooxml-4.1.2.jar"/>
+                <include name="poi-ooxml-schemas-4.1.2.jar"/>
             </zipgroupfileset>
             <fileset dir="${main.resources}"/>
             <manifest>
