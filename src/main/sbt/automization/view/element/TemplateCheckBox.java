@@ -1,18 +1,19 @@
 package sbt.automization.view.element;
 
-import sbt.automization.view.StrategyStorage;
+import sbt.automization.core.templates.HtmlTemplate;
+import sbt.automization.view.ViewConstant;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 public class TemplateCheckBox extends CustomCheckBox
 {
-    public TemplateCheckBox(String text, Rectangle position) {
+    private HtmlTemplate strategy;
+    public TemplateCheckBox(String text, Rectangle position, HtmlTemplate strategy) {
         super(text, position);
         addListener();
+        this.strategy = strategy;
     }
 
     public TemplateCheckBox(String s, Rectangle position, Color backgroundColor, Color hoverColor) {
@@ -20,22 +21,14 @@ public class TemplateCheckBox extends CustomCheckBox
         addListener();
     }
 
-    private void addListener()
-    {
+    private void addListener() {
         this.addItemListener(new ItemListener() {
             @Override
-            public void itemStateChanged(final ItemEvent e)
-            {
-                if (e.getStateChange() == ItemEvent.SELECTED)
-                {
-                    //System.out.println(((JCheckBox) e.getItem()).getText() + "- selected");
-
-                    StrategyStorage.getInstance().addStrategy(((JCheckBox) e.getItem()).getText());
-                } else
-                {
-                    StrategyStorage.getInstance().removeStrategy(((JCheckBox) e.getItem()).getText());
-
-                    //System.out.println(((JCheckBox) e.getItem()).getText() + "- unselected");
+            public void itemStateChanged(final ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    ViewConstant.strategyList.add(strategy);
+                } else {
+                    ViewConstant.strategyList.remove(strategy);
                 }
             }
         });

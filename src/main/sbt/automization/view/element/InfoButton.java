@@ -13,6 +13,7 @@ public class InfoButton extends CustomButton
         this.setBorder(new LineBorder(Color.white));
         addListener();
         setImage("/questionmark-icon.png");
+        this.setBackground(Color.white);
     }
 
     public InfoButton(String text, Rectangle position) {
@@ -20,6 +21,7 @@ public class InfoButton extends CustomButton
         this.setBorder(new LineBorder(Color.white));
         addListener();
         setImage("/questionmark-icon.png");
+        this.setBackground(Color.white);
     }
 
     private void setImage(String path)

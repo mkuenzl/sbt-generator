@@ -8,7 +8,7 @@ public class UtilHeapSampleSizeTest
 	@Test
 	public void calculateSamplesFirstTest()
 	{
-		int[] heapSampleSizes = HeapConstruction.calculateVolumes(1050.0, 12);
+		int[] heapSampleSizes = HeapUtil.calculateVolumes(1050.0, 12);
 
 		int[] compareToSizes = {85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 115};
 
@@ -18,7 +18,7 @@ public class UtilHeapSampleSizeTest
 	@Test
 	public void calculateSamplesSecondTest()
 	{
-		int[] heapSampleSizes = HeapConstruction.calculateVolumes(470.0, 9);
+		int[] heapSampleSizes = HeapUtil.calculateVolumes(470.0, 9);
 
 		int[] compareToSizes = {50, 50, 50, 50, 50, 50, 50, 50, 70};
 
@@ -28,7 +28,7 @@ public class UtilHeapSampleSizeTest
 	@Test
 	public void calculateSamplesThirdTest()
 	{
-		int[] heapSampleSizes = HeapConstruction.calculateVolumes(30.0, 2);
+		int[] heapSampleSizes = HeapUtil.calculateVolumes(30.0, 2);
 
 		int[] compareToSizes = {15, 15};
 
@@ -38,7 +38,7 @@ public class UtilHeapSampleSizeTest
 	@Test
 	public void calculateSamplesFourthTest()
 	{
-		int[] heapSampleSizes = HeapConstruction.calculateVolumes(550.0, 10);
+		int[] heapSampleSizes = HeapUtil.calculateVolumes(550.0, 10);
 
 		int[] compareToSizes = {55, 55, 55, 55, 55, 55, 55, 55, 55, 55};
 
@@ -48,7 +48,7 @@ public class UtilHeapSampleSizeTest
 	@Test
 	public void calculateSamplesFifthTest()
 	{
-		int[] heapSampleSizes = HeapConstruction.calculateVolumes(656, 11);
+		int[] heapSampleSizes = HeapUtil.calculateVolumes(656, 11);
 
 		int[] compareToSizes = {55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 106};
 
@@ -58,7 +58,7 @@ public class UtilHeapSampleSizeTest
 	@Test
 	public void calculateSamplesSixthTest()
 	{
-		int[] heapSampleSizes = HeapConstruction.calculateVolumes(800, 12);
+		int[] heapSampleSizes = HeapUtil.calculateVolumes(800, 12);
 
 		int[] compareToSizes = {65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 85};
 
@@ -68,7 +68,7 @@ public class UtilHeapSampleSizeTest
 	@Test
 	public void calculateSamplesUnevenTest()
 	{
-		int[] heapSampleSizes = HeapConstruction.calculateVolumes(551.0, 10);
+		int[] heapSampleSizes = HeapUtil.calculateVolumes(551.0, 10);
 
 		int[] compareToSizes = {55, 55, 55, 55, 55, 55, 55, 55, 55, 56};
 
@@ -78,7 +78,7 @@ public class UtilHeapSampleSizeTest
 	@Test
 	public void calculateSamplesCountZeroTest()
 	{
-		int[] heapSampleSizes = HeapConstruction.calculateVolumes(551.0, 0);
+		int[] heapSampleSizes = HeapUtil.calculateVolumes(551.0, 0);
 
 		int[] compareToSizes = null;
 
@@ -88,7 +88,7 @@ public class UtilHeapSampleSizeTest
 	@Test
 	public void calculateSamplesVolumeZeroTest()
 	{
-		int[] heapSampleSizes = HeapConstruction.calculateVolumes(0, 10);
+		int[] heapSampleSizes = HeapUtil.calculateVolumes(0, 10);
 
 		int[] compareToSizes = null;
 
@@ -98,7 +98,7 @@ public class UtilHeapSampleSizeTest
 	@Test
 	public void calculateSamplesCountGreaterVolumeTest()
 	{
-		int[] heapSampleSizes = HeapConstruction.calculateVolumes(5, 10);
+		int[] heapSampleSizes = HeapUtil.calculateVolumes(5, 10);
 
 		int[] compareToSizes = {0, 0, 0, 0, 0, 0, 0, 0, 0, 5};
 
@@ -108,7 +108,7 @@ public class UtilHeapSampleSizeTest
 	@Test
 	public void calculateSamplesVolumeDoubleTest()
 	{
-		int[] heapSampleSizes = HeapConstruction.calculateVolumes(555.55, 10);
+		int[] heapSampleSizes = HeapUtil.calculateVolumes(555.55, 10);
 
 		int[] compareToSizes = {55, 55, 55, 55, 55, 55, 55, 55, 55, 61};
 
@@ -118,7 +118,7 @@ public class UtilHeapSampleSizeTest
 	@Test
 	public void calculateSamplesVolumeRoundingDoubleTest()
 	{
-		int[] heapSampleSizes = HeapConstruction.calculateVolumes(555.42, 10);
+		int[] heapSampleSizes = HeapUtil.calculateVolumes(555.42, 10);
 
 		int[] compareToSizes = {55, 55, 55, 55, 55, 55, 55, 55, 55, 60};
 

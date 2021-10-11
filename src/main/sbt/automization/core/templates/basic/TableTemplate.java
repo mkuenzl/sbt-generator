@@ -4,7 +4,7 @@ import sbt.automization.core.data.DataTable;
 import sbt.automization.core.html.HtmlTable;
 import sbt.automization.core.styles.BasicStyle;
 import sbt.automization.core.templates.HtmlTemplate;
-import sbt.automization.core.util.Separator;
+import sbt.automization.core.util.ListSeparator;
 
 import java.util.Collection;
 import java.util.List;
@@ -54,7 +54,7 @@ public abstract class TableTemplate implements HtmlTemplate
 	 */
 	Collection<List<DataTable>> splitIntoPortionPerPage(List<DataTable> tables)
 	{
-		Collection<List<DataTable>> portions = Separator.separateBasedOnSize(tables, 17);
+		Collection<List<DataTable>> portions = ListSeparator.separateBasedOnSize(tables, 17);
 
 		return portions;
 	}

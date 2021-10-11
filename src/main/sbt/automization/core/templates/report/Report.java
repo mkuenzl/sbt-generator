@@ -13,7 +13,7 @@ import sbt.automization.core.styles.StyleParameterBuilder;
 import sbt.automization.core.templates.HtmlTemplate;
 import sbt.automization.core.templates.helper.HeaderFactory;
 import sbt.automization.core.util.DatatableFilter;
-import sbt.automization.core.util.Separator;
+import sbt.automization.core.util.ListSeparator;
 
 import java.util.Collection;
 import java.util.List;
@@ -70,7 +70,7 @@ public abstract class Report implements HtmlTemplate
 	{
 		List<DataTable> probesWhichIncludeOutcrop = DatatableFilter.getProbesWhichIncludeOutcrop(tables, outcrop);
 
-		Collection<List<DataTable>> portions = Separator.separateBasedOnSize(probesWhichIncludeOutcrop, 17);
+		Collection<List<DataTable>> portions = ListSeparator.separateBasedOnSize(probesWhichIncludeOutcrop, 17);
 
 		return portions;
 	}

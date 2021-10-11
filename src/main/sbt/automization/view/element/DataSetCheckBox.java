@@ -1,21 +1,22 @@
 package sbt.automization.view.element;
 
-import sbt.automization.view.StrategyStorage;
+import sbt.automization.view.ViewConstant;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class DataSetCheckBox extends CustomCheckBox
 {
+    private String dataSet = "";
+    private List<JCheckBox> relatedCheckBoxes = new ArrayList<>();
+
     public DataSetCheckBox(String text, Rectangle position) {
         super(text, position);
-        addListener();
-    }
-
-    public DataSetCheckBox(String s, Rectangle position, Color backgroundColor, Color hoverColor) {
-        super(s, position, backgroundColor, hoverColor);
         addListener();
     }
 
@@ -24,11 +25,24 @@ public class DataSetCheckBox extends CustomCheckBox
             @Override
             public void itemStateChanged(final ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    //TODO: set specific data variable
+                    for (JCheckBox relatedCheckBox : relatedCheckBoxes) {
+                        relatedCheckBox.setSelected(false);
+                    }
+                    ViewConstant.dataSet = dataSet;
                 } else {
-                    //TODO: set specific data variable
+                    ViewConstant.dataSet = "";
                 }
             }
         });
+    }
+
+    public void setDataSet(String name)
+    {
+        this.dataSet = name;
+    }
+
+    public void setRelatedCheckBoxes(JCheckBox... checkBoxes)
+    {
+        this.relatedCheckBoxes.addAll(Arrays.asList(checkBoxes));
     }
 }

@@ -4,9 +4,9 @@ import sbt.automization.core.data.Sample;
 import sbt.automization.core.data.key.SampleKey;
 import sbt.automization.view.popup.ErrorPopup;
 
-public final class HeapConstruction
+public final class HeapUtil
 {
-	private HeapConstruction() {}
+	private HeapUtil() {}
 
 	public static int[] calculateVolumes(Sample sample)
 	{

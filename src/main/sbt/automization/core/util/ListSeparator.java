@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-public final class Separator
+public final class ListSeparator
 {
-	private Separator() {}
+	private ListSeparator() {}
 
 	/**
 	 * Method can be used to separate lists into Collections of lists

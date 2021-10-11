@@ -6,7 +6,7 @@ import org.junit.Test;
 import sbt.automization.core.data.key.ProbeKey;
 import sbt.automization.core.data.key.SampleKey;
 import sbt.automization.core.data.key.*;
-import sbt.automization.core.util.CsvParser;
+import sbt.automization.core.util.csv.CsvParser;
 
 import java.io.File;
 import java.util.ArrayList;

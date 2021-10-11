@@ -1,4 +1,4 @@
-package sbt.automization.core.util;
+package sbt.automization;
 
 import sbt.automization.core.data.DataTable;
 

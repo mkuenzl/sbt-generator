@@ -3,11 +3,10 @@ package sbt.automization.view.element;
 import sbt.automization.core.data.Examination;
 import sbt.automization.core.export.HtmlTemplateExport;
 import sbt.automization.core.templates.HtmlTemplate;
-import sbt.automization.core.util.CsvParser;
-import sbt.automization.view.ViewParameter;
+import sbt.automization.core.util.csv.CsvCreator;
+import sbt.automization.core.util.csv.CsvParser;
+import sbt.automization.view.ViewConstant;
 import sbt.automization.view.popup.ErrorPopup;
-import sbt.automization.view.StrategyStorage;
-import sbt.automization.view.GUI;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -34,14 +33,29 @@ public class BuildTableButton extends CustomButton
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                File csv = new File(ViewParameter.pathComponent.getText());
-                CsvParser csvParser = new CsvParser(csv);
+                CsvParser csvParser = new CsvParser();
+                List<Map<String, String>> parsedSiteInformation;
 
+                String path = ViewConstant.pathComponent.getText();
+                File inputFile = new File(path);
+                File fromExcel = null;
                 try
                 {
-                    List<Map<String, String>> parsedSiteInformation = csvParser.parse();
-                    Examination examination = new Examination(parsedSiteInformation, csv.getParent());
-                    for (HtmlTemplate strategy : StrategyStorage.getInstance().getStrategies())
+                    if (path.endsWith(".csv"))
+                    {
+                        parsedSiteInformation = csvParser.parse(inputFile);
+                    } else if (path.endsWith(".xlsx"))
+                    {
+                        CsvCreator csvCreator = new CsvCreator();
+                        fromExcel = csvCreator.createFromExcel(inputFile, ViewConstant.dataSet);
+                        parsedSiteInformation = csvParser.parse(fromExcel, csvCreator.getDelimiter());
+                    } else
+                    {
+                        return;
+                    }
+
+                    Examination examination = new Examination(parsedSiteInformation, inputFile.getParent());
+                    for (HtmlTemplate strategy : ViewConstant.strategyList)
                     {
                         try
                         {
@@ -55,6 +69,8 @@ public class BuildTableButton extends CustomButton
                 } catch (Exception exception)
                 {
                     System.out.println(exception.getMessage());
+                } finally {
+                    if (fromExcel != null) fromExcel.delete();
                 }
             }
         });

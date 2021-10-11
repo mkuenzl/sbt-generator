@@ -24,7 +24,7 @@ public class UtilPartitioningTest
 			dataTables.add(datatableProvider.getTestDataTable());
 		}
 
-		Collection<List<DataTable>> partitionBasedOnSize = Separator.separateBasedOnSize(dataTables, 5);
+		Collection<List<DataTable>> partitionBasedOnSize = ListSeparator.separateBasedOnSize(dataTables, 5);
 
 		Assert.assertTrue(partitionBasedOnSize.size() == 20);
 	}
@@ -39,7 +39,7 @@ public class UtilPartitioningTest
 			dataTables.add(datatableProvider.getTestDataTable());
 		}
 
-		Collection<List<DataTable>> partitionBasedOnSize = Separator.separateBasedOnSize(dataTables, 5);
+		Collection<List<DataTable>> partitionBasedOnSize = ListSeparator.separateBasedOnSize(dataTables, 5);
 
 		Assert.assertTrue(partitionBasedOnSize.size() == 1);
 	}
@@ -54,7 +54,7 @@ public class UtilPartitioningTest
 			dataTables.add(datatableProvider.getTestDataTable());
 		}
 
-		Collection<List<DataTable>> partitionBasedOnSize = Separator.separateBasedOnSize(dataTables, 5);
+		Collection<List<DataTable>> partitionBasedOnSize = ListSeparator.separateBasedOnSize(dataTables, 5);
 
 		Assert.assertTrue(partitionBasedOnSize.size() == 4);
 	}
@@ -64,7 +64,7 @@ public class UtilPartitioningTest
 	{
 		List<DataTable> dataTables = new ArrayList<>();
 
-		Collection<List<DataTable>> partitionBasedOnSize = Separator.separateBasedOnSize(dataTables, 5);
+		Collection<List<DataTable>> partitionBasedOnSize = ListSeparator.separateBasedOnSize(dataTables, 5);
 
 		Assert.assertTrue(partitionBasedOnSize.size() == 0);
 	}

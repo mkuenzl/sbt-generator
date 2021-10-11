@@ -1,7 +1,7 @@
 package sbt.automization.view.element;
 
 import sbt.automization.core.util.FileExport;
-import sbt.automization.view.ViewParameter;
+import sbt.automization.view.ViewConstant;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -29,7 +29,7 @@ public class CreateExcelButton extends CustomButton{
                     String fileName = "/datenbank-template.xlsx";
                     FileExport.copyFileToUserDirectory(fileName);
 
-                    ViewParameter.pathComponent.setText(System.getProperty("user.dir").concat(fileName));
+                    ViewConstant.pathComponent.setText(System.getProperty("user.dir").concat(fileName));
                 } catch (IOException ioException)
                 {
                     ioException.printStackTrace();

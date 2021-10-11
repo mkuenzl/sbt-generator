@@ -19,7 +19,7 @@ import sbt.automization.core.templates.helper.RowFactory;
 import sbt.automization.core.templates.helper.strategies.CellPerSample;
 import sbt.automization.core.templates.helper.information.*;
 import sbt.automization.core.util.DatatableFilter;
-import sbt.automization.core.util.Separator;
+import sbt.automization.core.util.ListSeparator;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -86,7 +86,7 @@ public final class Building extends Report
 	{
 		List<DataTable> probesWhichIncludeOutcrop = DatatableFilter.getProbesWhichIncludeOutcrop(tables, outcrop);
 
-		Collection<List<DataTable>> portions = Separator.separateProbesBySizeOfSamples(probesWhichIncludeOutcrop, 12);
+		Collection<List<DataTable>> portions = ListSeparator.separateProbesBySizeOfSamples(probesWhichIncludeOutcrop, 12);
 
 		return portions;
 	}

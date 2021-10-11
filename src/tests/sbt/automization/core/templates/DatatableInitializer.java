@@ -2,8 +2,8 @@ package sbt.automization.core.templates;
 
 import sbt.automization.core.data.DataTable;
 import sbt.automization.core.data.Examination;
-import sbt.automization.core.util.CsvParser;
-import sbt.automization.core.util.DatatableSerializationFactory;
+import sbt.automization.core.util.csv.CsvParser;
+import sbt.automization.DatatableSerializationFactory;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -23,9 +23,9 @@ public class DatatableInitializer
 		String path = System.getProperty("user.dir").concat(File.separator).concat("tests-resources").concat(File.separator);
 
 		File csv = new File(path + "datenbank-template-test.csv");
-		CsvParser csvParser = new CsvParser(csv);
+		CsvParser csvParser = new CsvParser();
 
-		Examination examination = new Examination(csvParser.parse(), csv.getParent());
+		Examination examination = new Examination(csvParser.parse(csv), csv.getParent());
 
 		int size = examination.size();
 		for (int i = 0 ; i < size ; i++)

@@ -6,7 +6,7 @@ import sbt.automization.core.data.key.ChemistryKey;
 import sbt.automization.core.data.key.Key;
 import sbt.automization.core.data.key.RuKKey;
 import sbt.automization.core.data.key.SampleKey;
-import sbt.automization.core.util.HeapConstruction;
+import sbt.automization.core.util.HeapUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -161,7 +161,7 @@ public final class SampleFormatter
 
 		for (Sample heapSample : heapSamples)
 		{
-			int[] sampleVolumes = HeapConstruction.calculateVolumes(heapSample);
+			int[] sampleVolumes = HeapUtil.calculateVolumes(heapSample);
 			List<Sample> split = splitHeap(heapSample, sampleVolumes);
 			splitHeapSamples.addAll(split);
 		}

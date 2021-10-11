@@ -8,7 +8,7 @@ import sbt.automization.core.data.key.SampleKey;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DatatableFilter
+public final class DatatableFilter
 {
 	private DatatableFilter() {}
 

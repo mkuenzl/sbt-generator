@@ -1,6 +1,6 @@
 package sbt.automization.view.element;
 
-import sbt.automization.view.ViewParameter;
+import sbt.automization.view.ViewConstant;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,7 +36,7 @@ public class LoadExcelButton extends CustomButton
                     File file = new File(explorer.getSelectedFile().getAbsolutePath());
 
                     String path = file.toString();
-                    ViewParameter.pathComponent.setText(path);
+                    ViewConstant.pathComponent.setText(path);
                 }
             }
         });
