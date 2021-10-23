@@ -8,7 +8,7 @@ import java.util.*;
 public abstract class DataTableImpl implements DataTable, Comparable<DataTable>, Cloneable, Serializable
 {
 	protected Map<String, String> informationMap;
-
+	
 	/**
 	 * Constructs a new DataTable based on a map.
 	 *
@@ -18,51 +18,51 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 	{
 		this.informationMap = informationMap;
 	}
-
+	
 	/**
 	 * Constructor
 	 */
 	public DataTableImpl()
-	{this.informationMap = new HashMap<>();}
-
+	{
+		this.informationMap = new HashMap<>();
+	}
+	
 	@Override
 	public void add(String key, String value)
 	{
 		this.informationMap.put(key, value);
 	}
-
+	
 	@Override
 	public void add(Key key, String value)
 	{
 		this.informationMap.put(key.getKey(), value);
 	}
-
+	
 	@Override
 	public String get(Key key)
 	{
 		return this.informationMap.get(key.getKey());
 	}
-
+	
 	@Override
 	public String get(String key)
 	{
 		return this.informationMap.get(key);
 	}
-
+	
 	@Override
 	public String getAsString(Key key)
 	{
-		String value = get(key);
-		return value;
+        return get(key);
 	}
-
+	
 	@Override
 	public String getAsString(String key)
 	{
-		String value = get(key);
-		return value;
+        return get(key);
 	}
-
+	
 	@Override
 	public Integer getAsInteger(Key key)
 	{
@@ -73,7 +73,7 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 		}
 		return null;
 	}
-
+	
 	@Override
 	public Integer getAsInteger(String key)
 	{
@@ -84,7 +84,7 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 		}
 		return null;
 	}
-
+	
 	@Override
 	public Double getAsDouble(Key key)
 	{
@@ -95,7 +95,7 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 		}
 		return null;
 	}
-
+	
 	@Override
 	public Double getAsDouble(String key)
 	{
@@ -106,31 +106,31 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 		}
 		return null;
 	}
-
+	
 	@Override
 	public Map<String, String> getTable()
 	{
 		return informationMap;
 	}
-
+	
 	@Override
 	public void setTable(Map<String, String> table)
 	{
 		this.informationMap = table;
 	}
-
+	
 	@Override
 	public boolean containsReference(Key key)
 	{
 		return informationMap.containsKey(key.getKey());
 	}
-
+	
 	@Override
 	public boolean containsReference(String key)
 	{
 		return informationMap.containsKey(key);
 	}
-
+	
 	private boolean isNumeric(String str)
 	{
 		if (str == null)
@@ -146,7 +146,7 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 		}
 		return true;
 	}
-
+	
 	/**
 	 * Method used for testing purposes in reality every layer should be unique.
 	 *
@@ -160,17 +160,17 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 		{
 			return false;
 		}
-
+		
 		if (obj.getClass() != this.getClass())
 		{
 			return false;
 		}
-
+		
 		final DataTable otherTable = (DataTable) obj;
-
+		
 		return Objects.equals(this.getTable(), otherTable.getTable());
 	}
-
+	
 	/**
 	 * Used to create multiple objects of the same table. Necessary for PN Template.
 	 *
@@ -181,73 +181,74 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 	public DataTable clone() throws CloneNotSupportedException
 	{
 		DataTable cloned = (DataTable) super.clone();
-
+		
 		Map<String, String> clonedMap = new HashMap<>(this.informationMap);
-
+		
 		cloned.setTable(clonedMap);
-
+		
 		return cloned;
 	}
-
+	
 	public boolean isEmpty()
 	{
 		for (String value : informationMap.values())
 		{
-			if (! "".equals(value)) return false;
+			if (!"".equals(value)) return false;
 		}
 		return true;
 	}
-
-	public boolean isRelatedBy(Key source, DataTable target)
+	
+	public boolean isRelatedBy(Key sourceKey, Key targetKey, DataTable target)
 	{
-		String sourceValue = get(source);
-
-		if ("".equals(sourceValue)) return false;
-
-		return target.contains(sourceValue);
+		String sourceValue = get(sourceKey);
+		String targetValue = target.get(targetKey);
+		
+		if ("".equals(sourceValue) || "".equals(targetValue)) return false;
+		
+		return sourceValue.equals(targetValue);
 	}
-
+	
 	public boolean contains(String value)
 	{
 		if ("".equals(value)) return false;
-
+		
 		return informationMap.containsValue(value);
 	}
-
+	
 	public boolean containsValueFor(Key key)
 	{
 		String value = informationMap.get(key.getKey());
-
+		
 		if (value == null) return false;
-
-		return ! "".equals(value);
+		
+		return !"".equals(value);
 	}
-
+	
 	public Parameter getParameterBy(final Key key)
 	{
 		return new Parameter();
 	}
-
+	
 	public String getParameterValueBy(Key parameterID, Key valueID)
 	{
 		return "";
 	}
-
+	
 	public List<Sample> getSamplesBy(final Key key, final String value)
 	{
 		return new ArrayList<>();
 	}
-
+	
 	public List<Sample> getSamplesBy(final Key key, final String[] values)
 	{
 		return new ArrayList<>();
 	}
-
+	
 	public List<Sample> getSamples()
 	{
 		return new ArrayList<>();
 	}
-
+	
 	public boolean hasSampleWith(final Key key, final String value)
 	{
 		return false;
