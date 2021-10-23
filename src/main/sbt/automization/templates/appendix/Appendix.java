@@ -101,5 +101,7 @@ public abstract class Appendix implements HtmlTemplate
 	public void resetTemplate()
 	{
 		template.setLength(0);
+		linesPerPage = 0;
+		lines = 0;
 	}
 }
