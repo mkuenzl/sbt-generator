@@ -39,7 +39,7 @@ public interface DataTable
 
 	boolean isEmpty();
 
-	boolean isRelatedBy(Key source, DataTable target);
+	boolean isRelatedBy(Key sourceKey, Key targetKey, DataTable target);
 
 	boolean containsValueFor(Key key);
 
