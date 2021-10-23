@@ -1,8 +1,7 @@
 package sbt.automization.core.data;
 
-import sbt.automization.core.data.key.ProbeKey;
-import sbt.automization.core.data.key.SampleKey;
-import sbt.automization.view.popup.ErrorPopup;
+import sbt.automization.data.key.*;
+import sbt.automization.gui.ErrorPopup;
 
 import java.util.*;
 
@@ -72,11 +71,11 @@ public final class DataTableFactory
 
 			for (DataTable parameter : parameters)
 			{
-				if (table.isRelatedBy(SampleKey.CHEMISTRY_ID, parameter))
+				if (table.isRelatedBy(SampleKey.CHEMISTRY_ID, ChemistryKey.ID, parameter))
 				{
 					table.addParameter((Parameter) parameter);
 				}
-				if (table.isRelatedBy(SampleKey.RUK_ID, parameter))
+				if (table.isRelatedBy(SampleKey.RUK_ID, RuKKey.ID, parameter))
 				{
 					table.addParameter((Parameter) parameter);
 				}
@@ -92,7 +91,7 @@ public final class DataTableFactory
 
 			for (DataTable parameter : parameters)
 			{
-				if (table.isRelatedBy(ProbeKey.LP_ID, parameter))
+				if (table.isRelatedBy(ProbeKey.LP_ID, LpKey.ID, parameter))
 				{
 					table.addParameter((Parameter) parameter);
 				}
@@ -108,7 +107,7 @@ public final class DataTableFactory
 
 			for (DataTable sample : samples)
 			{
-				if (table.isRelatedBy(ProbeKey.ID, sample))
+				if (table.isRelatedBy(ProbeKey.ID, SampleKey.PROBE_ID, sample))
 				{
 					table.addSample((Sample) sample);
 					((Sample) sample).setProbe(table);
