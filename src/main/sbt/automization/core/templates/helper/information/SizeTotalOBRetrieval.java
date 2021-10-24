@@ -25,16 +25,16 @@ public class SizeTotalOBRetrieval extends DatatableInformationRetrieval
 //
 //		return row;
 //	}
-
+	
 	@Override
 	String retrieveFrom(Sample sample)
 	{
 		List<Sample> samples = sample.getSamplesBy(SampleKey.OUTCROP, outcrop.toString());
 		String information = new SamplePrinter().printThickness(samples);
-
+		
 		return information;
 	}
-
+	
 	@Override
 	String retrieveFrom(Probe probe)
 	{
@@ -45,9 +45,9 @@ public class SizeTotalOBRetrieval extends DatatableInformationRetrieval
 				Outcrop.COATING.toString(),
 				Outcrop.GOB.toString(),
 				Outcrop.SEAL.toString()});
-
+		
 		String information = new SamplePrinter().printThickness(samples);
-
+		
 		return information;
 	}
 }

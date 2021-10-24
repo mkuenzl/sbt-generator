@@ -16,45 +16,45 @@ import java.util.List;
 public final class Underground extends Appendix
 {
 	private String outcrop = "";
-
+	
 	@Override
 	public String getExportFileName()
 	{
 		return null;
 	}
-
+	
 	@Override
 	public void constructTemplate(List<DataTable> dataTables)
 	{
-
+	
 	}
-
+	
 	@Override
 	public void constructTemplate(DataTable dataTable)
 	{
 		setOutcrop(dataTable);
 		createTableWithHeader();
-
+		
 		if (dataTable instanceof Probe)
 		{
 			Probe probe = (Probe) dataTable;
 			List<Sample> samplesOfOutcrop = probe.getSamplesBy(SampleKey.OUTCROP, Outcrop.UG.toString());
-
+			
 			for (Sample sample : samplesOfOutcrop)
 			{
 				String row = createRow(sample);
 				table.appendContent(row);
 			}
 		}
-
+		
 		addToTemplate(table.appendTag());
 	}
-
+	
 	private void setOutcrop(DataTable dataTable)
 	{
 		outcrop = dataTable.get(ProbeKey.OUTCROP_UG_OH_BA);
 	}
-
+	
 	private String createRow(Sample sample)
 	{
 		String row = HtmlFactory.createRowAsString("NormalThin8", new String[]{
@@ -74,10 +74,10 @@ public final class Underground extends Appendix
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
 						new String[]{""})
 		});
-
+		
 		return row;
 	}
-
+	
 	@Override
 	public String constructAndGetTableHeader()
 	{
@@ -87,7 +87,7 @@ public final class Underground extends Appendix
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "text-align:left", 1, 8,
 						new String[]{"Aufschlussverfahren:", outcrop}),
 		});
-
+		
 		String secondRow = HtmlFactory.createRowAsString("NormalTableHeader", new String[]{
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "text-align:left", 2, 1,
 						new String[]{"Bodengruppe"}),
@@ -108,7 +108,7 @@ public final class Underground extends Appendix
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px",
 						new String[]{"Proctor", "<div>[20]</div>"})
 		});
-
+		
 		String thirdRow = HtmlFactory.createRowAsString("NormalHeaderUnits", new String[]{
 				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"cm"}),
@@ -121,12 +121,12 @@ public final class Underground extends Appendix
 				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"Mg/m³"})
 		});
-
+		
 		StringBuilder stringBuilder = new StringBuilder()
 				.append(firstRow)
 				.append(secondRow)
 				.append(thirdRow);
-
+		
 		return stringBuilder.toString();
 	}
 }

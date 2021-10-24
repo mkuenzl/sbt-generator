@@ -23,15 +23,15 @@ public class WearSoleRetrieval extends DatatableInformationRetrieval
 //
 //		return row;
 //	}
-
+	
 	@Override
 	String retrieveFrom(Sample sample)
 	{
 		Probe probe = sample.getProbe();
-
+		
 		return probe.get(informationKey);
 	}
-
+	
 	@Override
 	String retrieveFrom(Probe probe)
 	{
@@ -39,12 +39,12 @@ public class WearSoleRetrieval extends DatatableInformationRetrieval
 				.appendContent("[T:")
 				.appendContent(probe.get(ProbeKey.SOLE_DEPTH))
 				.appendContent("]").build().appendTag();
-
+		
 		String information = probe.get(informationKey);
-
+		
 		if ("".equals(information)) return "";
-
+		
 		return information.concat(UtilityPrinter.printLineEmpty()).concat(formattedCellText);
-
+		
 	}
 }

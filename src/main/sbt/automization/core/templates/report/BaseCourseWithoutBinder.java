@@ -6,9 +6,9 @@ import sbt.automization.core.format.printer.UtilityPrinter;
 import sbt.automization.core.html.HtmlCell;
 import sbt.automization.core.html.HtmlRow;
 import sbt.automization.core.styles.StyleParameter;
-import sbt.automization.core.templates.helper.strategies.CellPerProbe;
 import sbt.automization.core.templates.helper.RowFactory;
 import sbt.automization.core.templates.helper.information.*;
+import sbt.automization.core.templates.helper.strategies.CellPerProbe;
 
 import java.util.Collection;
 import java.util.List;
@@ -17,13 +17,13 @@ public final class BaseCourseWithoutBinder extends Report
 {
 	private static BaseCourseWithoutBinder instance;
 	private final RowFactory provider;
-
+	
 	private BaseCourseWithoutBinder()
 	{
 		super(Outcrop.TOB);
 		provider = new RowFactory(Outcrop.TOB);
 	}
-
+	
 	public static BaseCourseWithoutBinder getInstance()
 	{
 		if (instance == null)
@@ -38,13 +38,13 @@ public final class BaseCourseWithoutBinder extends Report
 		}
 		return instance;
 	}
-
+	
 	@Override
 	public String getExportFileName()
 	{
 		return "TOB-Report";
 	}
-
+	
 	@Override
 	public void constructTemplate(List<DataTable> dataTables)
 	{
@@ -52,32 +52,32 @@ public final class BaseCourseWithoutBinder extends Report
 		for (List<DataTable> portion : tablesSplitIntoPortions)
 		{
 			buildTable(portion);
-
+			
 			addTable();
 			addPageBreak();
 		}
 	}
-
+	
 	private void buildTable(List<DataTable> dataTables)
 	{
 		createTable();
 		provider.setDataTables(dataTables);
 		provider.setCellStrategy(new CellPerProbe());
-
+		
 		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}), new IdRetrieval()));
 		addToTable(provider.getRow(header.createCell(new String[]{"Aufbruch"}), new BaseCourseExposureRetrieval()));
-
+		
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
-
+		
 		addLegendRow(dataTables);
 	}
-
+	
 	@Override
 	protected void constructTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addTechnicalHeader(dataTables);
-
+		
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"E<sub>Vdyn</sub>,"}, "MN/m²"), new EvDynRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"E<sub>Vdyn (-15%)</sub>,"}, "MN/m²"), new EvDyn85Retrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"E<sub>V2</sub><sup>[41]</sup>,"}, "MN/m²"), new Ev2WithEv85Retrieval()));
@@ -87,12 +87,12 @@ public final class BaseCourseWithoutBinder extends Report
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Korngrößenverteilung,"}, "Kornanteil < 0,063 mm"), new GrainSizeDistributionRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Gesamtdicke Oberbau,"}, "cm"), new SizeTotalOBRetrieval()));
 	}
-
+	
 	@Override
 	protected void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addEnvironmentTechnicalHeader(dataTables);
-
+		
 		HtmlCell chemistryIdHeader = header.createCell(new String[]{"Laborprobe"});
 		addToTable(provider.getRowWithDataCheck(chemistryIdHeader, new ChemistryIdRetrieval()));
 		HtmlCell chemistryMufvHeader = header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"}, "Schreiben des MUFV<sup>[18]</sup>");
@@ -115,15 +115,15 @@ public final class BaseCourseWithoutBinder extends Report
 		addToTable(provider.getRowWithDataCheck(chemistryDecisionHeader, new ChemistryDecisionSupportRetrieval()));
 		HtmlCell chemistryWasteKeyHeader = header.createCell(new String[]{"Abfallschlüssel,"}, "AVV<sup>[14]</sup>");
 		addToTable(provider.getRowWithDataCheck(chemistryWasteKeyHeader, new ChemistryAvvRetrieval()));
-
+		
 	}
-
+	
 	@Override
 	protected void addLegendRow(List<DataTable> dataTables)
 	{
 		StyleParameter styleParameter = getStyleParameter();
 		double size = styleParameter.getHeaderCellWidthAsDouble() + dataTables.size() * styleParameter.getNormalCellWidthAsDouble();
-
+		
 		//Umwelttechnische Merkmale Trennzeile
 		HtmlRow rowLegend = new HtmlRow.Builder()
 				.appendAttribute("class", styleParameter.getRowClass())
@@ -139,13 +139,13 @@ public final class BaseCourseWithoutBinder extends Report
 						.build()
 						.appendTag())
 				.build();
-
+		
 		addToTable(rowLegend.appendTag());
 	}
-
+	
 	@Override
 	public void constructTemplate(DataTable dataTable)
 	{
-
+	
 	}
 }

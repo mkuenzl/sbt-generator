@@ -14,12 +14,12 @@ public final class CellPerSampleCombinedChemistry extends CellRow
 	{
 		super(styleParameter);
 	}
-
+	
 	public CellPerSampleCombinedChemistry()
 	{
 		super();
 	}
-
+	
 	@Override
 	void createCells(List<DataTable> probes)
 	{
@@ -28,12 +28,12 @@ public final class CellPerSampleCombinedChemistry extends CellRow
 			HtmlCell lastCell = null;
 			String lastCellChemistryId = null;
 			int columnSpan = 1;
-
+			
 			for (Sample sample : probe.getSamples())
 			{
 				String cellChemistryId = sample.get(SampleKey.CHEMISTRY_ID);
 				HtmlCell cell = createCell(sample);
-
+				
 				//case 1 sample
 				if (null == lastCell)
 				{
@@ -41,7 +41,7 @@ public final class CellPerSampleCombinedChemistry extends CellRow
 					lastCellChemistryId = cellChemistryId;
 					continue;
 				}
-
+				
 				if (compareContent(lastCell, cell) && lastCellChemistryId.equals(cellChemistryId))
 				{
 					lastCell = cell;
@@ -51,23 +51,23 @@ public final class CellPerSampleCombinedChemistry extends CellRow
 				{
 					lastCell.appendAttribute("colspan", String.valueOf(columnSpan));
 					cells.add(new HtmlCell(lastCell));
-
+					
 					columnSpan = 1;
 					lastCell = cell;
 					lastCellChemistryId = cellChemistryId;
 				}
 			}
 			lastCell.appendAttribute("colspan", String.valueOf(columnSpan));
-
+			
 			cells.add(new HtmlCell(lastCell));
 		}
 	}
-
+	
 	private boolean compareContent(HtmlCell first, HtmlCell second)
 	{
 		String firstContent = first.getContent();
 		String secondContent = second.getContent();
-
-		return firstContent.equals(secondContent) && ! "-".equals(firstContent);
+		
+		return firstContent.equals(secondContent) && !"-".equals(firstContent);
 	}
 }

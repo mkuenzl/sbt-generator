@@ -6,9 +6,9 @@ import sbt.automization.core.format.printer.UtilityPrinter;
 import sbt.automization.core.html.HtmlCell;
 import sbt.automization.core.html.HtmlRow;
 import sbt.automization.core.styles.StyleParameter;
-import sbt.automization.core.templates.helper.strategies.CellPerProbe;
 import sbt.automization.core.templates.helper.RowFactory;
 import sbt.automization.core.templates.helper.information.*;
+import sbt.automization.core.templates.helper.strategies.CellPerProbe;
 
 import java.util.Collection;
 import java.util.List;
@@ -17,13 +17,13 @@ public final class Gap extends Report
 {
 	private static Gap instance;
 	private final RowFactory provider;
-
+	
 	private Gap()
 	{
 		super(Outcrop.GAP);
 		provider = new RowFactory(Outcrop.GAP);
 	}
-
+	
 	public static Gap getInstance()
 	{
 		if (instance == null)
@@ -38,13 +38,13 @@ public final class Gap extends Report
 		}
 		return instance;
 	}
-
+	
 	@Override
 	protected void constructTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addTechnicalHeader(dataTables);
 	}
-
+	
 	@Override
 	protected void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
@@ -72,13 +72,13 @@ public final class Gap extends Report
 		HtmlCell chemistryWasteKeyHeader = header.createCell(new String[]{"Abfallschlüssel,"}, "AVV<sup>[14]</sup>");
 		addToTable(provider.getRowWithDataCheck(chemistryWasteKeyHeader, new ChemistryAvvRetrieval()));
 	}
-
+	
 	@Override
 	protected void addLegendRow(List<DataTable> dataTables)
 	{
 		StyleParameter styleParameter = getStyleParameter();
 		double size = styleParameter.getHeaderCellWidthAsDouble() + dataTables.size() * styleParameter.getNormalCellWidthAsDouble();
-
+		
 		//Umwelttechnische Merkmale Trennzeile
 		HtmlRow rowLegend = new HtmlRow.Builder()
 				.appendAttribute("class", styleParameter.getRowClass())
@@ -92,16 +92,16 @@ public final class Gap extends Report
 						.build()
 						.appendTag())
 				.build();
-
+		
 		addToTable(rowLegend.appendTag());
 	}
-
+	
 	@Override
 	public String getExportFileName()
 	{
 		return "FUGE-Report";
 	}
-
+	
 	@Override
 	public void constructTemplate(List<DataTable> dataTables)
 	{
@@ -109,28 +109,28 @@ public final class Gap extends Report
 		for (List<DataTable> portion : tablesSplitIntoPortions)
 		{
 			buildTable(portion);
-
+			
 			addTable();
 			addPageBreak();
 		}
 	}
-
+	
 	private void buildTable(List<DataTable> dataTables)
 	{
 		createTable();
 		provider.setDataTables(dataTables);
 		provider.setCellStrategy(new CellPerProbe());
-
+		
 		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}), new IdRetrieval()));
 		addToTable(provider.getRow(header.createCell(new String[]{"Aufschlussart"}), new SuperstructureExposureRetrieval()));
-
+		
 		constructEnvironmentTechnicalFeatures(dataTables);
 		addLegendRow(dataTables);
 	}
-
+	
 	@Override
 	public void constructTemplate(DataTable dataTable)
 	{
-
+	
 	}
 }

@@ -10,8 +10,8 @@ import java.util.List;
 public interface CellRowStrategy
 {
 	void setRetrievalStrategy(InformationRetrievalStrategy strategy);
-
+	
 	void setStyle(StyleParameter style);
-
+	
 	List<HtmlCell> build(List<DataTable> dataTables);
 }

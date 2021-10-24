@@ -14,37 +14,29 @@ import java.util.List;
  */
 public abstract class TableTemplate implements HtmlTemplate
 {
+	protected final StringBuilder template;
 	protected int linesPerPage;
 	protected int lines;
-	protected final StringBuilder template;
 	protected HtmlTable table;
-
+	
 	public TableTemplate()
 	{
 		linesPerPage = 0;
 		lines = 0;
 		template = new StringBuilder();
 	}
-
+	
 	public String getTemplate()
 	{
 		return template.toString();
 	}
-
-	abstract void addTableHeader();
-
-	void addPageBreak()
+	
+	@Override
+	public void resetTemplate()
 	{
-		this.template.append("<pre><br clear=all style='mso-special-character:line-break;page-break-before:always'></pre>");
+		template.setLength(0);
 	}
-
-	void addTable()
-	{
-		String tableString = table.appendTag();
-		this.template.append(tableString);
-	}
-
-
+	
 	/**
 	 * Method used to retrieve all exploration sites containing an outcrop and dividing them into
 	 * A3 paper sized portions.
@@ -55,10 +47,43 @@ public abstract class TableTemplate implements HtmlTemplate
 	Collection<List<DataTable>> splitIntoPortionPerPage(List<DataTable> tables)
 	{
 		Collection<List<DataTable>> portions = ListSeparator.separateBasedOnSize(tables, 17);
-
+		
 		return portions;
 	}
-
+	
+	void addToTable(String content)
+	{
+		table.appendContent(content);
+	}
+	
+	protected void addAndResetTableOnPageBreak()
+	{
+		if (linesPerPage >= 19)
+		{
+			addTable();
+			addPageBreak();
+			addPageBreak();
+			
+			linesPerPage = 0;
+			
+			createTable();
+			addTableHeader();
+		}
+	}
+	
+	abstract void addTableHeader();
+	
+	void addPageBreak()
+	{
+		this.template.append("<pre><br clear=all style='mso-special-character:line-break;page-break-before:always'></pre>");
+	}
+	
+	void addTable()
+	{
+		String tableString = table.appendTag();
+		this.template.append(tableString);
+	}
+	
 	void createTable()
 	{
 		this.table = new HtmlTable.Builder()
@@ -69,31 +94,5 @@ public abstract class TableTemplate implements HtmlTemplate
 				.appendAttribute("cellpadding", "0")
 				.build();
 	}
-
-	void addToTable(String content)
-	{
-		table.appendContent(content);
-	}
-
-	protected void addAndResetTableOnPageBreak()
-	{
-		if (linesPerPage >= 19)
-		{
-			addTable();
-			addPageBreak();
-			addPageBreak();
-
-			linesPerPage = 0;
-
-			createTable();
-			addTableHeader();
-		}
-	}
-
-	@Override
-	public void resetTemplate()
-	{
-		template.setLength(0);
-	}
-
+	
 }

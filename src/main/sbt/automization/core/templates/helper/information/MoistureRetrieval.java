@@ -22,19 +22,19 @@ public class MoistureRetrieval extends DatatableInformationRetrieval
 //
 //		return row;
 //	}
-
-
+	
+	
 	@Override
 	String retrieveFrom(Sample sample)
 	{
 		return sample.get(informationKey);
 	}
-
+	
 	@Override
 	String retrieveFrom(Probe probe)
 	{
 		String information = new SamplePrinter().printAttributeOfSamplesWithDepth(probe, outcrop.toString(), informationKey);
-
+		
 		return information;
 	}
 }

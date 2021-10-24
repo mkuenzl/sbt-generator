@@ -19,45 +19,45 @@ public final class BaseCourseWithoutBinder extends Appendix
 	private String outcrop = "";
 	private Probe probe;
 	private boolean alreadyPrintedLP = false;
-
+	
 	@Override
 	public String getExportFileName()
 	{
 		return null;
 	}
-
+	
 	@Override
 	public void constructTemplate(List<DataTable> dataTables)
 	{
-
+	
 	}
-
+	
 	@Override
 	public void constructTemplate(DataTable dataTable)
 	{
 		setOutcrop(dataTable);
 		createTableWithHeader();
-
+		
 		if (dataTable instanceof Probe)
 		{
 			this.probe = (Probe) dataTable;
 			List<Sample> samplesOfOutcrop = probe.getSamplesBy(SampleKey.OUTCROP, Outcrop.TOB.toString());
-
+			
 			for (Sample sample : samplesOfOutcrop)
 			{
 				String row = createRow(sample);
 				table.appendContent(row);
 			}
 		}
-
+		
 		addToTemplate(table.appendTag());
 	}
-
+	
 	private void setOutcrop(DataTable dataTable)
 	{
 		outcrop = dataTable.get(ProbeKey.OUTCROP_TOB);
 	}
-
+	
 	private String createRow(Sample sample)
 	{
 		String row = HtmlFactory.createRowAsString("NormalThin8", new String[]{
@@ -79,10 +79,24 @@ public final class BaseCourseWithoutBinder extends Appendix
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
 						new String[]{sample.get(SampleKey.GRAIN_SIZE_DISTRIBUTION)})
 		});
-
+		
 		return row;
 	}
-
+	
+	private String printEV()
+	{
+		if (probe.containsValueFor(ProbeKey.LP_ID) && !alreadyPrintedLP)
+		{
+			String formattedEV = probe.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV2)
+					.concat(UtilityPrinter.printLineBreak())
+					.concat(probe.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV85));
+			alreadyPrintedLP = true;
+			
+			return formattedEV;
+		}
+		return "-";
+	}
+	
 	@Override
 	public String constructAndGetTableHeader()
 	{
@@ -92,7 +106,7 @@ public final class BaseCourseWithoutBinder extends Appendix
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "text-align:left", 1, 8,
 						new String[]{"Aufschlussverfahren:", outcrop}),
 		});
-
+		
 		String secondRow = HtmlFactory.createRowAsString("NormalTableHeader", new String[]{
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "text-align:left", 2, 1,
 						new String[]{"Art der Schicht"}),
@@ -119,7 +133,7 @@ public final class BaseCourseWithoutBinder extends Appendix
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px",
 						new String[]{"KGV", "<div>[25]</div>"})
 		});
-
+		
 		String thirdRow = HtmlFactory.createRowAsString("NormalHeaderUnits", new String[]{
 				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"cm"}),
@@ -130,26 +144,12 @@ public final class BaseCourseWithoutBinder extends Appendix
 				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"M.-%"})
 		});
-
+		
 		StringBuilder stringBuilder = new StringBuilder()
 				.append(firstRow)
 				.append(secondRow)
 				.append(thirdRow);
-
+		
 		return stringBuilder.toString();
-	}
-
-	private String printEV()
-	{
-		if (probe.containsValueFor(ProbeKey.LP_ID) && ! alreadyPrintedLP)
-		{
-			String formattedEV = probe.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV2)
-					.concat(UtilityPrinter.printLineBreak())
-					.concat(probe.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV85));
-			alreadyPrintedLP = true;
-
-			return formattedEV;
-		}
-		return "-";
 	}
 }

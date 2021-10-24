@@ -22,20 +22,20 @@ public class Ev2Retrieval extends DatatableInformationRetrieval
 //
 //		return row;
 //	}
-
+	
 	@Override
 	String retrieveFrom(Sample sample)
 	{
 		String parameterValue = sample.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV2);
-
+		
 		return parameterValue;
 	}
-
+	
 	@Override
 	String retrieveFrom(Probe probe)
 	{
 		String parameterValue = probe.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV2);
-
+		
 		return parameterValue;
 	}
 }

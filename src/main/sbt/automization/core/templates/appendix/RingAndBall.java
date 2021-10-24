@@ -14,12 +14,12 @@ import java.util.List;
 public final class RingAndBall extends Appendix
 {
 	private static RingAndBall instance;
-
+	
 	private RingAndBall()
 	{
 		super();
 	}
-
+	
 	public static RingAndBall getInstance()
 	{
 		if (instance == null)
@@ -34,7 +34,7 @@ public final class RingAndBall extends Appendix
 		}
 		return instance;
 	}
-
+	
 	@Override
 	protected String constructAndGetTableHeader()
 	{
@@ -52,40 +52,46 @@ public final class RingAndBall extends Appendix
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:95px",
 						new String[]{"Erw. RuK", "<div>[31]</div>"}),
 		});
-
+		
 		String secondRow = HtmlFactory.createRowAsString("NormalHeaderUnits", new String[]{
 				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits", 1, 3,
 						new String[]{"cm"}),
 				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"°C"}),
 		});
-
+		
 		StringBuilder stringBuilder = new StringBuilder()
 				.append(firstRow)
 				.append(secondRow);
-
+		
 		return stringBuilder.toString();
 	}
-
+	
+	@Override
+	public String getExportFileName()
+	{
+		return "RUK-Anlage";
+	}
+	
 	@Override
 	public void constructTemplate(List<DataTable> dataTables)
 	{
 		createTableWithHeader();
-
+		
 		for (DataTable dataTable : dataTables)
 		{
 			if (dataTable instanceof Probe)
 			{
 				Probe probe = (Probe) dataTable;
-
+				
 				for (Sample sample : probe.getSamples())
 				{
 					Parameter parameter = sample.getParameterBy(SampleKey.RUK_ID);
-
+					
 					if (parameter != null)
 					{
 						addAndResetTableOnPageBreak();
-
+						
 						String row = HtmlFactory.createRowAsString("NormalThin8", new String[]{
 								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 										new String[]{probe.get(ProbeKey.ID)}),
@@ -105,7 +111,7 @@ public final class RingAndBall extends Appendix
 								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 										new String[]{parameter.get(RuKKey.VALUE)})
 						});
-
+						
 						table.appendContent(row);
 					}
 				}
@@ -113,16 +119,10 @@ public final class RingAndBall extends Appendix
 		}
 		addToTemplate(table.appendTag());
 	}
-
+	
 	@Override
 	public void constructTemplate(DataTable dataTable)
 	{
-
-	}
-
-	@Override
-	public String getExportFileName()
-	{
-		return "RUK-Anlage";
+	
 	}
 }

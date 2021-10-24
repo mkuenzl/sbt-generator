@@ -17,16 +17,16 @@ public class HtmlBody extends AHtml
 				.append("</body>");
 		return strb.toString();
 	}
-
+	
 	public static class Builder extends BaseHtmlBuilder<HtmlBody, Builder>
 	{
-
+		
 		@Override
 		protected HtmlBody getActual()
 		{
 			return new HtmlBody();
 		}
-
+		
 		@Override
 		protected Builder getActualBuilder()
 		{

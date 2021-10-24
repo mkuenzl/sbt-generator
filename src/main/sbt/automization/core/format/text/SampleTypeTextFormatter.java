@@ -21,8 +21,8 @@ public final class SampleTypeTextFormatter extends AbstractTextFormatter
 		}
 		return sampleType;
 	}
-
-
+	
+	
 	@Override
 	public String format(String firstText, String secondText)
 	{

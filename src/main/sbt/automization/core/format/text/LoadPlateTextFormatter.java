@@ -9,7 +9,7 @@ public final class LoadPlateTextFormatter extends AbstractTextFormatter
 	{
 		return null;
 	}
-
+	
 	/**
 	 * Method creates a formatted html text of the Ev2 value. When Ev2 is smaller 80 and Ev85 is in between a certain
 	 * range this range will be shown also.
@@ -22,21 +22,21 @@ public final class LoadPlateTextFormatter extends AbstractTextFormatter
 	public String format(final String ev2, final String ev85Percent)
 	{
 		StringBuilder stringBuilder = new StringBuilder();
-
-		if ("< 80".equals(ev2) && ! "-".equals(ev85Percent))
+		
+		if ("< 80".equals(ev2) && !"-".equals(ev85Percent))
 		{
 			String ev85PercentInformation = ev85Percent.replace(",", ".");
 			String replace = ev85PercentInformation.replace("~ ", "");
-
+			
 			double ev85PercentValue = Double.parseDouble(replace);
-
+			
 			String range = "";
-
+			
 			if (ev85PercentValue >= 10 && ev85PercentValue < 20) range = "[30 - 40]";
 			if (ev85PercentValue >= 20 && ev85PercentValue < 30) range = "[40 - 50]";
 			if (ev85PercentValue >= 30 && ev85PercentValue < 40) range = "[50 - 60]";
 			if (ev85PercentValue >= 40 && ev85PercentValue < 45) range = "[60 - 80]";
-
+			
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
 					.appendContent(ev2)
@@ -51,7 +51,7 @@ public final class LoadPlateTextFormatter extends AbstractTextFormatter
 		{
 			stringBuilder.append(ev2);
 		}
-
+		
 		return stringBuilder.toString();
 	}
 }

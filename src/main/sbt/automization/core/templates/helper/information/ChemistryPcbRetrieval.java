@@ -23,20 +23,20 @@ public class ChemistryPcbRetrieval extends DatatableInformationRetrieval
 //
 //		return row;
 //	}
-
+	
 	@Override
 	String retrieveFrom(Sample sample)
 	{
 		String parameter = sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, informationKey);
-
+		
 		return parameter;
 	}
-
+	
 	@Override
 	String retrieveFrom(Probe probe)
 	{
 		String information = new SamplePrinter().printAttributeOfSamplesWithDepth(probe, outcrop.toString(), informationKey);
-
+		
 		return information;
 	}
 }

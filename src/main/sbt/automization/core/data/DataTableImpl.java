@@ -54,13 +54,13 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 	@Override
 	public String getAsString(Key key)
 	{
-        return get(key);
+		return get(key);
 	}
 	
 	@Override
 	public String getAsString(String key)
 	{
-        return get(key);
+		return get(key);
 	}
 	
 	@Override
@@ -131,6 +131,71 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 		return informationMap.containsKey(key);
 	}
 	
+	public boolean contains(String value)
+	{
+		if ("".equals(value)) return false;
+		
+		return informationMap.containsValue(value);
+	}
+	
+	public boolean isEmpty()
+	{
+		for (String value : informationMap.values())
+		{
+			if (!"".equals(value)) return false;
+		}
+		return true;
+	}
+	
+	public boolean isRelatedBy(Key sourceKey, Key targetKey, DataTable target)
+	{
+		String sourceValue = get(sourceKey);
+		String targetValue = target.get(targetKey);
+		
+		if ("".equals(sourceValue) || "".equals(targetValue)) return false;
+		
+		return sourceValue.equals(targetValue);
+	}
+	
+	public boolean containsValueFor(Key key)
+	{
+		String value = informationMap.get(key.getKey());
+		
+		if (value == null) return false;
+		
+		return !"".equals(value);
+	}
+	
+	public boolean hasSampleWith(final Key key, final String value)
+	{
+		return false;
+	}
+	
+	public List<Sample> getSamples()
+	{
+		return new ArrayList<>();
+	}
+	
+	public List<Sample> getSamplesBy(final Key key, final String[] values)
+	{
+		return new ArrayList<>();
+	}
+	
+	public List<Sample> getSamplesBy(final Key key, final String value)
+	{
+		return new ArrayList<>();
+	}
+	
+	public String getParameterValueBy(Key parameterID, Key valueID)
+	{
+		return "";
+	}
+	
+	public Parameter getParameterBy(final Key key)
+	{
+		return new Parameter();
+	}
+	
 	private boolean isNumeric(String str)
 	{
 		if (str == null)
@@ -187,70 +252,5 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 		cloned.setTable(clonedMap);
 		
 		return cloned;
-	}
-	
-	public boolean isEmpty()
-	{
-		for (String value : informationMap.values())
-		{
-			if (!"".equals(value)) return false;
-		}
-		return true;
-	}
-	
-	public boolean isRelatedBy(Key sourceKey, Key targetKey, DataTable target)
-	{
-		String sourceValue = get(sourceKey);
-		String targetValue = target.get(targetKey);
-		
-		if ("".equals(sourceValue) || "".equals(targetValue)) return false;
-		
-		return sourceValue.equals(targetValue);
-	}
-	
-	public boolean contains(String value)
-	{
-		if ("".equals(value)) return false;
-		
-		return informationMap.containsValue(value);
-	}
-	
-	public boolean containsValueFor(Key key)
-	{
-		String value = informationMap.get(key.getKey());
-		
-		if (value == null) return false;
-		
-		return !"".equals(value);
-	}
-	
-	public Parameter getParameterBy(final Key key)
-	{
-		return new Parameter();
-	}
-	
-	public String getParameterValueBy(Key parameterID, Key valueID)
-	{
-		return "";
-	}
-	
-	public List<Sample> getSamplesBy(final Key key, final String value)
-	{
-		return new ArrayList<>();
-	}
-	
-	public List<Sample> getSamplesBy(final Key key, final String[] values)
-	{
-		return new ArrayList<>();
-	}
-	
-	public List<Sample> getSamples()
-	{
-		return new ArrayList<>();
-	}
-	
-	public boolean hasSampleWith(final Key key, final String value)
-	{
-		return false;
 	}
 }

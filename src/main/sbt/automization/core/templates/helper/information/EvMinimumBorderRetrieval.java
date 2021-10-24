@@ -22,20 +22,20 @@ public class EvMinimumBorderRetrieval extends DatatableInformationRetrieval
 //
 //		return row;
 //	}
-
+	
 	@Override
 	String retrieveFrom(Sample sample)
 	{
 		Probe probe = sample.getProbe();
-
+		
 		return retrieveFrom(probe);
 	}
-
+	
 	@Override
 	String retrieveFrom(Probe probe)
 	{
 		String information = probe.getParameterValueBy(ProbeKey.LP_ID, informationKey);
-
+		
 		return information;
 	}
 }

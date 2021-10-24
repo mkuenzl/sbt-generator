@@ -7,8 +7,8 @@ import sbt.automization.core.data.key.Key;
 public interface InformationRetrievalStrategy
 {
 	String retrieve(DataTable dataTable);
-
+	
 	Key getInformationKey();
-
+	
 	void setOutcrop(Outcrop outcrop);
 }

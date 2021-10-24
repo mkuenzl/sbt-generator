@@ -20,25 +20,25 @@ public final class BoundSuperstructure extends Appendix
 {
 	private String outcrop = "";
 	private Probe probe;
-
+	
 	@Override
 	public String getExportFileName()
 	{
 		return null;
 	}
-
+	
 	@Override
 	public void constructTemplate(List<DataTable> dataTables)
 	{
-
+	
 	}
-
+	
 	@Override
 	public void constructTemplate(DataTable dataTable)
 	{
 		setOutcrop(dataTable);
 		createTableWithHeader();
-
+		
 		if (dataTable instanceof Probe)
 		{
 			this.probe = (Probe) dataTable;
@@ -49,25 +49,25 @@ public final class BoundSuperstructure extends Appendix
 							Outcrop.SEAL.toString(),
 							Outcrop.COATING.toString()
 					});
-
+			
 			for (Sample sample : samplesOfOutcrop)
 			{
 				String row = createRow(sample);
 				table.appendContent(row);
 			}
-
+			
 			String loadClassRow = createLoadClassRow();
 			table.appendContent(loadClassRow);
 		}
-
+		
 		addToTemplate(table.appendTag());
 	}
-
+	
 	private void setOutcrop(DataTable dataTable)
 	{
 		outcrop = dataTable.get(ProbeKey.OUTCROP_GOB);
 	}
-
+	
 	private String createRow(Sample sample)
 	{
 		String row = HtmlFactory.createRowAsString("NormalThin8", new String[]{
@@ -87,10 +87,10 @@ public final class BoundSuperstructure extends Appendix
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
 						new String[]{sample.getParameterValueBy(SampleKey.RUK_ID, RuKKey.VALUE)})
 		});
-
+		
 		return row;
 	}
-
+	
 	private String createLoadClassRow()
 	{
 		String row = HtmlFactory.createRowAsString("Normal", new String[]{
@@ -103,11 +103,11 @@ public final class BoundSuperstructure extends Appendix
 								UtilityPrinter.printLineBreak(),
 								probe.get(ProbeKey.LOAD_CLASS_BOARD)})
 		});
-
+		
 		return row;
 	}
-
-
+	
+	
 	@Override
 	public String constructAndGetTableHeader()
 	{
@@ -117,7 +117,7 @@ public final class BoundSuperstructure extends Appendix
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "text-align:left", 1, 8,
 						new String[]{"Aufschlussverfahren:", outcrop}),
 		});
-
+		
 		String secondRow = HtmlFactory.createRowAsString("NormalHeader", new String[]{
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "text-align:left", 2, 1,
 						new String[]{"Art der Schicht"}),
@@ -138,7 +138,7 @@ public final class BoundSuperstructure extends Appendix
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px",
 						new String[]{"RuK", "<div>[31]</div>"})
 		});
-
+		
 		String thirdRow = HtmlFactory.createRowAsString("NormalHeaderUnits", new String[]{
 				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"cm"}),
@@ -149,12 +149,12 @@ public final class BoundSuperstructure extends Appendix
 				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"°C"})
 		});
-
+		
 		StringBuilder stringBuilder = new StringBuilder()
 				.append(firstRow)
 				.append(secondRow)
 				.append(thirdRow);
-
+		
 		return stringBuilder.toString();
 	}
 }

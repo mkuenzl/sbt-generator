@@ -24,22 +24,22 @@ public class SizeRetrieval extends DatatableInformationRetrieval
 //
 //		return row;
 //	}
-
+	
 	@Override
 	String retrieveFrom(Sample sample)
 	{
 		List<Sample> samples = sample.getSamplesBy(SampleKey.OUTCROP, outcrop.toString());
 		String size = new SamplePrinter().printThickness(samples);
-
+		
 		return size;
 	}
-
+	
 	@Override
 	String retrieveFrom(Probe probe)
 	{
 		List<Sample> samples = probe.getSamplesBy(SampleKey.OUTCROP, outcrop.toString());
 		String information = new SamplePrinter().printThickness(samples);
-
+		
 		return information;
 	}
 }

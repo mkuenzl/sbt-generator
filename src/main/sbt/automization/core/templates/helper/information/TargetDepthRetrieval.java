@@ -22,32 +22,32 @@ public class TargetDepthRetrieval extends DatatableInformationRetrieval
 //
 //		return row;
 //	}
-
+	
 	@Override
 	String retrieveFrom(Sample sample)
 	{
 		Probe probe = sample.getProbe();
-
+		
 		return probe.get(informationKey);
 	}
-
+	
 	@Override
 	String retrieveFrom(Probe probe)
 	{
 		String targetDepth = probe.get(ProbeKey.TARGET_DEPTH);
-
+		
 		if ("".equals(targetDepth))
 		{
 			return targetDepth;
 		} else
 		{
 			double depth = Double.parseDouble(targetDepth);
-
+			
 			String backgroundColor;
 			String textColor;
-
+			
 			double thickness = new SamplePrinter().measureThickness(probe.getSamples());
-
+			
 			if (depth <= thickness)
 			{
 				backgroundColor = "#00FF00";
@@ -57,7 +57,7 @@ public class TargetDepthRetrieval extends DatatableInformationRetrieval
 				backgroundColor = "red";
 				textColor = "white";
 			}
-
+			
 			return "<span style=\"background-color: " + backgroundColor + ";font-weight: bold;\n\n" +
 					"  color: " + textColor + "\">" + targetDepth + "</span>";
 		}

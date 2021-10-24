@@ -14,13 +14,13 @@ import java.util.Map;
 public final class Examination extends ArrayList<DataTable>
 {
 	public static String exportPath = "";
-
+	
 	public Examination(List<Map<String, String>> parsedCsv, String exportPath)
 	{
 		this.addAll(DataTableFactory.getProbes(parsedCsv));
 		Examination.exportPath = exportPath;
 	}
-
+	
 	/**
 	 * Constructor of the TableInformation class. Uses the parsed excel data to create all available ExplorationSites.
 	 *
@@ -32,7 +32,7 @@ public final class Examination extends ArrayList<DataTable>
 		this.addAll(probes);
 		Examination.exportPath = exportPath;
 	}
-
+	
 	/**
 	 * Constructor of the TableInformation class. Uses the parsed excel data to create all available ExplorationSites.
 	 *
@@ -43,7 +43,7 @@ public final class Examination extends ArrayList<DataTable>
 		this.addAll(probes);
 		exportPath = "";
 	}
-
+	
 	/**
 	 * Used to export data tables in different formats.
 	 * Implemented as of now is only the Html export format.
@@ -54,7 +54,7 @@ public final class Examination extends ArrayList<DataTable>
 	{
 		template.export(this);
 	}
-
+	
 	public String getExportPath()
 	{
 		return exportPath;

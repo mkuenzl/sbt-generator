@@ -23,23 +23,22 @@ public class RuKSingleValueRetrieval extends DatatableInformationRetrieval
 //
 //		return row;
 //	}
-
+	
 	@Override
 	String retrieveFrom(Sample sample)
 	{
 		if (!"".equals(sample.get(informationKey)))
-		return "77";
+			return "77";
 		else return "";
 	}
-
+	
 	@Override
 	String retrieveFrom(Probe probe)
 	{
 		if (CheckDataAvailability.thereExistsAnSampleWithData(probe, outcrop.toString(), informationKey))
 		{
 			return "77";
-		}
-		else
+		} else
 		{
 			return "";
 		}

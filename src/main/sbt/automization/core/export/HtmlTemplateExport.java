@@ -24,25 +24,34 @@ public final class HtmlTemplateExport extends ATemplateExport
 	 */
 	static final String HTML_ATTRIBUTE_XMLNSO = "\"urn:schemas-microsoft-com:office:office\"";
 	static final String HTML_ATTRIBUTE_XMLNS = "\"http://www.w3.org/TR/REC-html40\"";
-
+	
 	public HtmlTemplateExport(final HtmlTemplate strategy)
 	{
 		super(strategy);
 	}
-
+	
 	public HtmlTemplateExport()
 	{
 		super();
 	}
-
+	
+	@Override
+	public String getPath()
+	{
+		if (Examination.exportPath == null)
+			return System.getProperty("user.dir").concat(File.separator).concat(tableExportStrategy.getExportFileName()).concat(".html");
+		
+		return Examination.exportPath.concat(File.separator).concat(tableExportStrategy.getExportFileName()).concat(".html");
+	}
+	
 	@Override
 	String format(final Examination examination)
 	{
 		tableExportStrategy.constructTemplate(examination);
-
+		
 		return format(tableExportStrategy.getTemplate());
 	}
-
+	
 	/**
 	 * Method constructs a complete HTML file with
 	 * <html>
@@ -67,10 +76,16 @@ public final class HtmlTemplateExport extends ATemplateExport
 	String format(List<DataTable> tables)
 	{
 		tableExportStrategy.constructTemplate(tables);
-
+		
 		return format(tableExportStrategy.getTemplate());
 	}
-
+	
+	@Override
+	public String getPath(String path)
+	{
+		return path.concat(tableExportStrategy.getExportFileName()).concat(".html");
+	}
+	
 	@Override
 	String format(String htmlCode)
 	{
@@ -78,38 +93,23 @@ public final class HtmlTemplateExport extends ATemplateExport
 				.appendAttribute("class", "WordSection1")
 				.appendContent(htmlCode)
 				.build();
-
+		
 		HtmlBody body = new HtmlBody.Builder()
 				.appendAttribute("lang", "DE")
 				.appendAttribute("style", HTML_BODY_STYLE_ATTRIBUTE)
 				.appendContent(div.appendTag())
 				.build();
-
+		
 		Html template = new Html.Builder()
 				.appendAttribute("xmlns:o", HTML_ATTRIBUTE_XMLNSO)
 				.appendAttribute("xmlns", HTML_ATTRIBUTE_XMLNS)
 				.appendContent(constructAndGetHtmlHead())
 				.appendContent(body.appendTag())
 				.build();
-
+		
 		return template.appendTag();
 	}
-
-	@Override
-	public String getPath()
-	{
-		if (Examination.exportPath == null)
-			return System.getProperty("user.dir").concat(File.separator).concat(tableExportStrategy.getExportFileName()).concat(".html");
-
-		return Examination.exportPath.concat(File.separator).concat(tableExportStrategy.getExportFileName()).concat(".html");
-	}
-
-	@Override
-	public String getPath(String path)
-	{
-		return path.concat(tableExportStrategy.getExportFileName()).concat(".html");
-	}
-
+	
 	/**
 	 * Method loads the resource/sbt-table-stylesheet.txt which contains the actual header and css.
 	 *
@@ -118,8 +118,8 @@ public final class HtmlTemplateExport extends ATemplateExport
 	private String constructAndGetHtmlHead()
 	{
 		StringBuilder stringBuilder = new StringBuilder();
-
-		try (InputStreamReader inputStreamReader = new InputStreamReader(getClass().getResourceAsStream("/sbt-table-stylesheet.txt")) ;
+		
+		try (InputStreamReader inputStreamReader = new InputStreamReader(getClass().getResourceAsStream("/sbt-table-stylesheet.txt"));
 		     BufferedReader bufferedReader = new BufferedReader(inputStreamReader))
 		{
 			String line;
@@ -136,7 +136,7 @@ public final class HtmlTemplateExport extends ATemplateExport
 			e.printStackTrace();
 			stringBuilder.append("<head></head>");
 		}
-
+		
 		return stringBuilder.toString();
 	}
 }

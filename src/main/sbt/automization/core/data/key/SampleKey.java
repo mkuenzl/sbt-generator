@@ -196,7 +196,7 @@ public enum SampleKey implements Key
 			},
 	PITCH
 			{   //TAR
-
+				
 				@Override
 				public String getKey()
 				{
@@ -299,7 +299,7 @@ public enum SampleKey implements Key
 					return addSampleTag("PROBE.ID");
 				}
 			};
-
+	
 	private static String addSampleTag(String parameter)
 	{
 		return "SAMPLE." + parameter;

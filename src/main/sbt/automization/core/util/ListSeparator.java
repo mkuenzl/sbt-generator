@@ -11,8 +11,10 @@ import java.util.stream.Collectors;
 
 public final class ListSeparator
 {
-	private ListSeparator() {}
-
+	private ListSeparator()
+	{
+	}
+	
 	/**
 	 * Method can be used to separate lists into Collections of lists
 	 *
@@ -26,18 +28,18 @@ public final class ListSeparator
 		final AtomicInteger counter = new AtomicInteger(0);
 		return inputList.stream().collect(Collectors.groupingBy(l -> counter.getAndIncrement() / size)).values();
 	}
-
+	
 	public static Collection<List<DataTable>> separateProbesBySizeOfSamples(List<DataTable> inputList, int size)
 	{
 		Collection<List<DataTable>> lists = new HashSet<>();
-
+		
 		ArrayList<DataTable> tables = new ArrayList<>();
 		int amountOfSamplesInTables = 0;
-
+		
 		for (DataTable dataTable : inputList)
 		{
 			int amountOfSamples = dataTable.getSamples().size();
-
+			
 			if (amountOfSamplesInTables + amountOfSamples <= size)
 			{
 				tables.add(dataTable);
@@ -51,9 +53,9 @@ public final class ListSeparator
 				tables.add(dataTable);
 			}
 		}
-
-		if (! tables.isEmpty()) lists.add(tables);
-
+		
+		if (!tables.isEmpty()) lists.add(tables);
+		
 		return lists;
 	}
 }

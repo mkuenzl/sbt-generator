@@ -6,9 +6,9 @@ import sbt.automization.core.format.printer.UtilityPrinter;
 import sbt.automization.core.html.HtmlCell;
 import sbt.automization.core.html.HtmlRow;
 import sbt.automization.core.styles.StyleParameter;
-import sbt.automization.core.templates.helper.strategies.CellPerProbe;
 import sbt.automization.core.templates.helper.RowFactory;
 import sbt.automization.core.templates.helper.information.*;
+import sbt.automization.core.templates.helper.strategies.CellPerProbe;
 
 import java.util.Collection;
 import java.util.List;
@@ -17,13 +17,13 @@ public final class BaseCourseWithHydraulicBinder extends Report
 {
 	private static BaseCourseWithHydraulicBinder instance;
 	private final RowFactory provider;
-
+	
 	private BaseCourseWithHydraulicBinder()
 	{
 		super(Outcrop.TMHB);
 		provider = new RowFactory(Outcrop.TMHB);
 	}
-
+	
 	public static BaseCourseWithHydraulicBinder getInstance()
 	{
 		if (instance == null)
@@ -38,13 +38,13 @@ public final class BaseCourseWithHydraulicBinder extends Report
 		}
 		return instance;
 	}
-
+	
 	@Override
 	public String getExportFileName()
 	{
 		return "TMHB-Report";
 	}
-
+	
 	@Override
 	public void constructTemplate(List<DataTable> dataTables)
 	{
@@ -52,12 +52,12 @@ public final class BaseCourseWithHydraulicBinder extends Report
 		for (List<DataTable> portion : tablesSplitIntoPortions)
 		{
 			buildTable(portion);
-
+			
 			addTable();
 			addPageBreak();
 		}
 	}
-
+	
 	private void buildTable(List<DataTable> dataTables)
 	{
 		createTable();
@@ -65,28 +65,28 @@ public final class BaseCourseWithHydraulicBinder extends Report
 		provider.setCellStrategy(new CellPerProbe());
 		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}), new IdRetrieval()));
 		addToTable(provider.getRow(header.createCell(new String[]{"Aufbruch"}), new BaseCourseExposureRetrieval()));
-
+		
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
 		addLegendRow(dataTables);
 	}
-
+	
 	@Override
 	protected void constructTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addTechnicalHeader(dataTables);
-
+		
 		addToTable(provider.getRow(header.createCell(new String[]{"Belastungsklasse,"}, "RStO<sup>[5]</sup>"), new LoadClassRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Druckfestigkeit,"}, "N/mm²"), new CompressiveStrengthRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Dicke,"}, "cm"), new SizeRetrieval()));
 		addToTable(provider.getRow(header.createCell(new String[]{"Gesamtdicke Oberbau,"}, "cm"), new SizeTotalOBRetrieval()));
 	}
-
+	
 	@Override
 	protected void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addEnvironmentTechnicalHeader(dataTables);
-
+		
 		HtmlCell chemistryIdHeader = header.createCell(new String[]{"Laborprobe"});
 		addToTable(provider.getRowWithDataCheck(chemistryIdHeader, new ChemistryIdRetrieval()));
 		HtmlCell chemistryMufvHeader = header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"}, "Schreiben des MUFV<sup>[18]</sup>");
@@ -110,13 +110,13 @@ public final class BaseCourseWithHydraulicBinder extends Report
 		HtmlCell chemistryWasteKeyHeader = header.createCell(new String[]{"Abfallschlüssel,"}, "AVV<sup>[14]</sup>");
 		addToTable(provider.getRowWithDataCheck(chemistryWasteKeyHeader, new ChemistryAvvRetrieval()));
 	}
-
+	
 	@Override
 	protected void addLegendRow(List<DataTable> dataTables)
 	{
 		StyleParameter styleParameter = getStyleParameter();
 		double size = styleParameter.getHeaderCellWidthAsDouble() + dataTables.size() * styleParameter.getNormalCellWidthAsDouble();
-
+		
 		//Umwelttechnische Merkmale Trennzeile
 		HtmlRow rowLegend = new HtmlRow.Builder()
 				.appendAttribute("class", styleParameter.getRowClass())
@@ -130,13 +130,13 @@ public final class BaseCourseWithHydraulicBinder extends Report
 						.build()
 						.appendTag())
 				.build();
-
+		
 		addToTable(rowLegend.appendTag());
 	}
-
+	
 	@Override
 	public void constructTemplate(DataTable dataTable)
 	{
-
+	
 	}
 }

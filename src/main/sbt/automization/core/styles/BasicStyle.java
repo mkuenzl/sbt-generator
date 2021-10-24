@@ -12,7 +12,7 @@ public enum BasicStyle implements Style
 				{
 					return "MsoNormalTable";
 				}
-
+				
 				@Override
 				public String getStyle()
 				{
@@ -38,7 +38,7 @@ public enum BasicStyle implements Style
 				{
 					return "Normal";
 				}
-
+				
 				@Override
 				public String getStyle()
 				{
@@ -52,7 +52,7 @@ public enum BasicStyle implements Style
 				{
 					return "Normal";
 				}
-
+				
 				@Override
 				public String getStyle()
 				{
@@ -66,12 +66,12 @@ public enum BasicStyle implements Style
 				{
 					return "Normal6";
 				}
-
+				
 				@Override
 				public String getStyle()
 				{
 					return null;
 				}
 			}
-
+	
 }

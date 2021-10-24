@@ -22,21 +22,21 @@ public class DIN18320Retrieval extends DatatableInformationRetrieval
 //
 //		return row;
 //	}
-
+	
 	@Override
 	String retrieveFrom(Sample sample)
 	{
 		String information = new SamplePrinter().printAttributeOfDatatable(sample, informationKey);
-
+		
 		return information;
 	}
-
+	
 	@Override
 	String retrieveFrom(Probe probe)
 	{
 		String information = new SamplePrinter().printAttributeOfSamplesWithDepth(probe, outcrop.toString(), informationKey);
-
+		
 		return information;
 	}
-
+	
 }

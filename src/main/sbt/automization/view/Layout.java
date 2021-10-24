@@ -23,11 +23,6 @@ public class Layout
 		constructComponents();
 	}
 	
-	public List<JComponent> getComponents()
-	{
-		return components;
-	}
-	
 	private void setPositions()
 	{
 		//Excel Data Part
@@ -193,6 +188,11 @@ public class Layout
 		dataSetExplorationCheckBox.setRelatedCheckBoxes(dataSetAllCheckBox, dataSetHeapCheckBox, dataSetBuildingCheckBox);
 		dataSetHeapCheckBox.setRelatedCheckBoxes(dataSetExplorationCheckBox, dataSetAllCheckBox, dataSetBuildingCheckBox);
 		dataSetBuildingCheckBox.setRelatedCheckBoxes(dataSetExplorationCheckBox, dataSetHeapCheckBox, dataSetAllCheckBox);
+	}
+	
+	public List<JComponent> getComponents()
+	{
+		return components;
 	}
 	
 }

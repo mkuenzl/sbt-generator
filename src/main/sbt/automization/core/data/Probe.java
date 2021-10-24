@@ -11,43 +11,43 @@ public final class Probe extends DataTableImpl
 {
 	private final List<Sample> samples = new ArrayList<>();
 	private final List<Parameter> parameters = new ArrayList<>();
-
+	
 	public Probe(Map<String, String> informationMap)
 	{
 		super(informationMap);
 	}
-
+	
 	public Probe()
 	{
 		super();
 	}
-
+	
 	@Override
 	public int compareTo(DataTable o)
 	{
 		return 0;
 	}
-
+	
 	public void addSample(Sample sample)
 	{
 		this.samples.add(sample);
 	}
-
+	
 	public void addListOfSample(List<Sample> samples)
 	{
 		this.samples.addAll(samples);
 	}
-
+	
 	public void addParameter(Parameter parameter)
 	{
 		this.parameters.add(parameter);
 	}
-
+	
 	public void addListOfParameter(List<Parameter> parameter)
 	{
 		this.parameters.addAll(parameter);
 	}
-
+	
 	@SuppressWarnings("RedundantIfStatement")
 	@Override
 	public boolean equals(Object obj)
@@ -56,43 +56,37 @@ public final class Probe extends DataTableImpl
 		{
 			return false;
 		}
-
+		
 		if (obj.getClass() != this.getClass())
 		{
 			return false;
 		}
-
+		
 		final Probe otherTable = (Probe) obj;
-
-		if (! Objects.equals(this.getTable(), otherTable.getTable()))
+		
+		if (!Objects.equals(this.getTable(), otherTable.getTable()))
 		{
 			return false;
 		}
-
-		if (! Objects.equals(this.getSamples(), otherTable.getSamples()))
+		
+		if (!Objects.equals(this.getSamples(), otherTable.getSamples()))
 		{
 			return false;
 		}
-
-		if (! Objects.equals(this.getParameters(), otherTable.getParameters()))
+		
+		if (!Objects.equals(this.getParameters(), otherTable.getParameters()))
 		{
 			return false;
 		}
-
+		
 		return true;
 	}
-
-	@Override
-	public List<Sample> getSamples()
-	{
-		return samples;
-	}
-
+	
 	public List<Parameter> getParameters()
 	{
 		return parameters;
 	}
-
+	
 	@Override
 	public Parameter getParameterBy(final Key key)
 	{
@@ -101,10 +95,10 @@ public final class Probe extends DataTableImpl
 			String value = this.get(key);
 			if (par.contains(value)) return par;
 		}
-
+		
 		return null;
 	}
-
+	
 	@Override
 	public String getParameterValueBy(Key parameterID, Key valueID)
 	{
@@ -116,15 +110,15 @@ public final class Probe extends DataTableImpl
 				return par.get(valueID);
 			}
 		}
-
+		
 		return "";
 	}
-
+	
 	@Override
 	public List<Sample> getSamplesBy(final Key key, final String value)
 	{
 		List<Sample> samplesWithValue = new ArrayList<>();
-
+		
 		for (Sample sample : this.samples)
 		{
 			String valueToCompare = sample.get(key);
@@ -135,12 +129,12 @@ public final class Probe extends DataTableImpl
 		}
 		return samplesWithValue;
 	}
-
+	
 	@Override
 	public List<Sample> getSamplesBy(final Key key, final String[] values)
 	{
 		List<Sample> samplesWithValue = new ArrayList<>();
-
+		
 		for (Sample sample : this.samples)
 		{
 			String valueToCompare = sample.get(key);
@@ -154,7 +148,13 @@ public final class Probe extends DataTableImpl
 		}
 		return samplesWithValue;
 	}
-
+	
+	@Override
+	public List<Sample> getSamples()
+	{
+		return samples;
+	}
+	
 	@Override
 	public boolean hasSampleWith(final Key key, final String value)
 	{

@@ -22,13 +22,13 @@ public class HeapExposureRetrieval extends DatatableInformationRetrieval
 //
 //		return row;
 //	}
-
+	
 	@Override
 	String retrieveFrom(Sample sample)
 	{
 		return "Haufwerks-".concat(UtilityPrinter.printLineBreak()).concat("beprobung");
 	}
-
+	
 	@Override
 	String retrieveFrom(Probe probe)
 	{

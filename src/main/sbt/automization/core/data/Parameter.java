@@ -8,12 +8,12 @@ public final class Parameter extends DataTableImpl
 	{
 		super(informationMap);
 	}
-
+	
 	public Parameter()
 	{
 		super();
 	}
-
+	
 	@Override
 	public int compareTo(DataTable o)
 	{

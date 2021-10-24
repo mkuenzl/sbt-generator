@@ -82,7 +82,7 @@ public enum LpKey implements Key
 					return addLPTag("EV2_SOLL");
 				}
 			};
-
+	
 	private static String addLPTag(String parameter)
 	{
 		return "PARAMETER.LP." + parameter;

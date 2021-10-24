@@ -23,30 +23,30 @@ public class WasteKeyMaterialRetrieval extends DatatableInformationRetrieval
 //
 //		return row;
 //	}
-
+	
 	@Override
 	String retrieveFrom(Sample sample)
 	{
 		String avvParameter = sample.get(informationKey);
-
+		
 		String footnote = sample.get(SampleKey.MATERIAL_COMPARISON);
-
+		
 		if (avvParameter.contains("("))
 		{
 			String[] split = avvParameter.split("[(]");
 			avvParameter = split[0] + UtilityPrinter.printLineBreak() + "(" + split[1];
 		}
-
-		if (! "".equals(footnote) && ! "".equals(avvParameter)) return "<em>".concat(avvParameter).concat("</em>");
-
+		
+		if (!"".equals(footnote) && !"".equals(avvParameter)) return "<em>".concat(avvParameter).concat("</em>");
+		
 		return avvParameter;
 	}
-
+	
 	@Override
 	String retrieveFrom(Probe probe)
 	{
 		String information = new SamplePrinter().printAttributeOfSamplesWithDepth(probe, outcrop.toString(), informationKey);
-
+		
 		return information;
 	}
 }

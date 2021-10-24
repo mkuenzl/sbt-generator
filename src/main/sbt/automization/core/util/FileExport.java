@@ -11,8 +11,10 @@ import java.nio.file.Paths;
 
 public final class FileExport
 {
-	private FileExport() {}
-
+	private FileExport()
+	{
+	}
+	
 	/**
 	 * Method used to export files from with the program resource folder
 	 *
@@ -22,17 +24,17 @@ public final class FileExport
 	public static void copyFileTo(final String file, final String path) throws IOException
 	{
 		String pathname = System.getProperty("user.dir").concat(File.separator).concat(file);
-
+		
 		if (new File(pathname).exists()) return;
-
+		
 		URL inputUrl = FileExport.class.getResource(path + file);
-
+		
 		File destinationFile = new File(pathname);
-
-		if (! destinationFile.exists() && ! destinationFile.isDirectory())
+		
+		if (!destinationFile.exists() && !destinationFile.isDirectory())
 		{
 			Path pathToDirectory = Paths.get(destinationFile.getPath()).getParent();
-			if (! Files.exists(pathToDirectory))
+			if (!Files.exists(pathToDirectory))
 			{
 				Files.createDirectories(pathToDirectory);
 			}
@@ -42,7 +44,7 @@ public final class FileExport
 			}
 		}
 	}
-
+	
 	/**
 	 * Method used to export files from with the program resource folder
 	 *
@@ -52,17 +54,17 @@ public final class FileExport
 	public static void copyFileToUserDirectory(final String file) throws IOException
 	{
 		String pathname = System.getProperty("user.dir").concat(File.separator).concat(file);
-
+		
 		if (new File(pathname).exists()) return;
-
+		
 		URL inputUrl = FileExport.class.getResource(file);
-
+		
 		File destinationFile = new File(pathname);
-
-		if (! destinationFile.exists() && ! destinationFile.isDirectory())
+		
+		if (!destinationFile.exists() && !destinationFile.isDirectory())
 		{
 			Path path = Paths.get(destinationFile.getPath()).getParent();
-			if (! Files.exists(path))
+			if (!Files.exists(path))
 			{
 				Files.createDirectories(path);
 			}

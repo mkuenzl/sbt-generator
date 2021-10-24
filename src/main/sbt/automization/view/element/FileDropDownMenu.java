@@ -21,7 +21,7 @@ public class FileDropDownMenu extends JComboBox implements MouseListener
 			"Bericht-Straßenbau-Vorerkundung-(A3).docx",
 			"Regelwerk-Straßenbau.docx"
 	};
-
+	
 	public FileDropDownMenu(String[] pattern)
 	{
 		super(pattern);
@@ -33,10 +33,10 @@ public class FileDropDownMenu extends JComboBox implements MouseListener
 		this.setFocusable(false);
 		this.setEditable(false);
 		this.setBorder(new LineBorder(Color.BLACK));
-
+		
 		addMouseListener(this);
 	}
-
+	
 	public FileDropDownMenu(String[] pattern, Color backgroundColor, Color hoverColor)
 	{
 		super(pattern);
@@ -48,29 +48,35 @@ public class FileDropDownMenu extends JComboBox implements MouseListener
 		this.setFocusable(false);
 		this.setEditable(false);
 		this.setBorder(new LineBorder(Color.BLACK));
-
+		
 		addMouseListener(this);
 	}
-
+	
 	public void setHoverColor(Color color)
 	{
 		hoverColor = color;
 	}
-
+	
 	public void setBackgroundColor(Color color)
 	{
 		backgroundColor = color;
 	}
-
+	
 	@Override
-	public void mouseClicked(MouseEvent me) {}
-
+	public void mouseClicked(MouseEvent me)
+	{
+	}
+	
 	@Override
-	public void mousePressed(MouseEvent me) {}
-
+	public void mousePressed(MouseEvent me)
+	{
+	}
+	
 	@Override
-	public void mouseReleased(MouseEvent me) {}
-
+	public void mouseReleased(MouseEvent me)
+	{
+	}
+	
 	@Override
 	public void mouseEntered(MouseEvent e)
 	{
@@ -79,7 +85,7 @@ public class FileDropDownMenu extends JComboBox implements MouseListener
 			this.setBackground(this.hoverColor);
 		}
 	}
-
+	
 	@Override
 	public void mouseExited(MouseEvent e)
 	{

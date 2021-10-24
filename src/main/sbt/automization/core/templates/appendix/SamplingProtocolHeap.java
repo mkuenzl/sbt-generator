@@ -16,9 +16,11 @@ import java.util.List;
 public final class SamplingProtocolHeap extends Appendix
 {
 	private static SamplingProtocolHeap instance;
-
-	private SamplingProtocolHeap() {}
-
+	
+	private SamplingProtocolHeap()
+	{
+	}
+	
 	public static SamplingProtocolHeap getInstance()
 	{
 		if (instance == null)
@@ -33,7 +35,7 @@ public final class SamplingProtocolHeap extends Appendix
 		}
 		return instance;
 	}
-
+	
 	@Override
 	protected String constructAndGetTableHeader()
 	{
@@ -59,7 +61,7 @@ public final class SamplingProtocolHeap extends Appendix
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:55px", 2, 1,
 						new String[]{"Notiz"})
 		});
-
+		
 		String secondRow = HtmlFactory.createRowAsString("NormalHeaderUnits", new String[]{
 				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"l"}),
@@ -68,43 +70,43 @@ public final class SamplingProtocolHeap extends Appendix
 				HtmlFactory.createHeaderAsString("NormalTableHeaderUnits",
 						new String[]{"mm"})
 		});
-
+		
 		StringBuilder stringBuilder = new StringBuilder()
 				.append(firstRow)
 				.append(secondRow);
-
+		
 		return stringBuilder.toString();
 	}
-
+	
 	@Override
 	public String getExportFileName()
 	{
 		return "HAUFWERK-PN-Anlage";
 	}
-
+	
 	@Override
 	public void constructTemplate(List<DataTable> dataTables)
 	{
 		buildTable(dataTables);
 		addTable();
 	}
-
+	
 	private void buildTable(List<DataTable> dataTables)
 	{
 		createTableWithHeader();
-
+		
 		for (DataTable dataTable : dataTables)
 		{
 			SampleFormatter sampleFormatter = new SampleFormatter(dataTable, Outcrop.HEAP.toString());
 			List<Sample> heapSamples = sampleFormatter.createHeapSamples();
-
+			
 			for (Sample sample : heapSamples)
 			{
 				addAndResetTableOnPageBreak();
-
+				
 				String row = HtmlFactory.createRowAsString("NormalThin8", new String[]{
 						HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
-								new String[]{"P".concat(String.valueOf(++ lines))}),
+								new String[]{"P".concat(String.valueOf(++lines))}),
 						HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 								new String[]{new SampleTypeTextFormatter().format(sample.get(SampleKey.CONTAINER))}),
 						HtmlFactory.createCellAsString(textFormatter, "Normal",
@@ -126,17 +128,17 @@ public final class SamplingProtocolHeap extends Appendix
 						HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 								new String[]{new LineBreakTextFormatter().breakPerWord(sample.get(SampleKey.NOTE))})
 				});
-
+				
 				linesPerPage++;
-
+				
 				addToTable(row);
 			}
 		}
 	}
-
+	
 	@Override
 	public void constructTemplate(DataTable dataTable)
 	{
-
+	
 	}
 }

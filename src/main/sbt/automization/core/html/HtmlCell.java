@@ -6,12 +6,12 @@ public class HtmlCell extends AHtml
 	{
 		super(lastCell);
 	}
-
+	
 	public HtmlCell()
 	{
 		super();
 	}
-
+	
 	@Override
 	public String appendTag()
 	{
@@ -27,7 +27,7 @@ public class HtmlCell extends AHtml
 				.append("</td>");
 		return strb.toString();
 	}
-
+	
 	public static class Builder extends BaseHtmlBuilder<HtmlCell, Builder>
 	{
 		@Override
@@ -35,7 +35,7 @@ public class HtmlCell extends AHtml
 		{
 			return new HtmlCell();
 		}
-
+		
 		@Override
 		protected Builder getActualBuilder()
 		{

@@ -26,21 +26,21 @@ public class RuKCombinedRetrieval extends DatatableInformationRetrieval
 //
 //		return row;
 //	}
-
-
+	
+	
 	@Override
 	String retrieveFrom(Sample sample)
 	{
 		String information = sample.getParameterValueBy(SampleKey.RUK_ID, RuKKey.VALUE);
-
+		
 		return information;
 	}
-
+	
 	@Override
 	String retrieveFrom(Probe probe)
 	{
 		String information = new RuKPrinter().printRukLayers(probe, outcrop.toString());
-
+		
 		return information;
 	}
 }

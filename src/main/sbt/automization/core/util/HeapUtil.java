@@ -6,12 +6,14 @@ import sbt.automization.view.popup.ErrorPopup;
 
 public final class HeapUtil
 {
-	private HeapUtil() {}
-
+	private HeapUtil()
+	{
+	}
+	
 	public static int[] calculateVolumes(Sample sample)
 	{
 		int[] sampleVolumes = new int[0];
-
+		
 		try
 		{
 			Double volume = sample.getAsDouble(SampleKey.VOLUME);
@@ -22,31 +24,31 @@ public final class HeapUtil
 			String message = "Probe " + sample.get(SampleKey.PROBE_ID) + " fehlt in Bereich " + sample.get(SampleKey.ID) + " das Volumen oder die Anzahl an Proben.";
 			ErrorPopup.showMessage(message);
 		}
-
+		
 		return sampleVolumes;
 	}
-
+	
 	public static int[] calculateVolumes(double volume, int count)
 	{
 		if (count <= 0 || volume <= 0) return null;
-
+		
 		double x = volume / count;
-
+		
 		double modulo = x % 5;
-
+		
 		x -= modulo;
-
+		
 		double sumOfModulo = modulo * count;
-
+		
 		int[] sampleSizes = new int[count];
-
-		for (int i = 0 ; i < count - 1 ; i++)
+		
+		for (int i = 0; i < count - 1; i++)
 		{
 			sampleSizes[i] = (int) x;
 		}
-
+		
 		sampleSizes[count - 1] = (int) (x + Math.round(sumOfModulo));
-
+		
 		return sampleSizes;
 	}
 }

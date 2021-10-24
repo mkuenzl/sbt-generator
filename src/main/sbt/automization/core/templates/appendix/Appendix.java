@@ -10,8 +10,6 @@ import sbt.automization.core.templates.HtmlTemplate;
  */
 public abstract class Appendix implements HtmlTemplate
 {
-	protected TextFormatter textFormatter = new StandardCellTextFormatter();
-
 	public static final String HTML_BASIC_TABLE_STYLE = new StringBuilder()
 			.append("'")
 			.append("border-collapse:collapse")
@@ -25,49 +23,74 @@ public abstract class Appendix implements HtmlTemplate
 			.append("mso-padding-alt:0cm 5.4pt 0cm 5.4pt")
 			.append("'")
 			.toString();
-
+	protected final StringBuilder template;
+	protected TextFormatter textFormatter = new StandardCellTextFormatter();
 	protected int linesPerPage;
 	protected int lines;
-	protected final StringBuilder template;
 	protected HtmlTable table;
-
+	
 	public Appendix()
 	{
 		linesPerPage = 0;
 		lines = 0;
 		template = new StringBuilder();
 	}
-
+	
 	public String getTemplate()
 	{
 		return template.toString();
 	}
-
+	
+	@Override
+	public void resetTemplate()
+	{
+		template.setLength(0);
+		linesPerPage = 0;
+		lines = 0;
+	}
+	
 	public void addToTemplate(final String table)
 	{
 		this.template.append(table);
 	}
-
-	void addPageBreak()
-	{
-		this.template.append("<pre><br clear=all style='mso-special-character:line-break;page-break-before:always'></pre>");
-	}
-
+	
 	void addTable()
 	{
 		String tableString = table.appendTag();
 		this.template.append(tableString);
 	}
-
-	protected abstract String constructAndGetTableHeader();
-
+	
+	void addToTable(String content)
+	{
+		table.appendContent(content);
+	}
+	
+	protected void addAndResetTableOnPageBreak()
+	{
+		if (linesPerPage >= 19)
+		{
+			template.append(table.appendTag());
+			addPageBreak();
+			linesPerPage = 0;
+			
+			createTableWithHeader();
+		}
+	}
+	
+	void addPageBreak()
+	{
+		this.template.append("<pre><br clear=all style='mso-special-character:line-break;page-break-before:always'></pre>");
+	}
+	
 	public void createTableWithHeader()
 	{
-
+		
 		createTable();
 		table.appendContent(constructAndGetTableHeader());
 	}
-
+	
+	protected abstract String constructAndGetTableHeader();
+	
 	public void createTable()
 	{
 		table = new HtmlTable.Builder()
@@ -78,30 +101,5 @@ public abstract class Appendix implements HtmlTemplate
 				.appendAttribute("cellspacing", "0")
 				.appendAttribute("cellpadding", "0")
 				.build();
-	}
-
-	void addToTable(String content)
-	{
-		table.appendContent(content);
-	}
-
-	protected void addAndResetTableOnPageBreak()
-	{
-		if (linesPerPage >= 19)
-		{
-			template.append(table.appendTag());
-			addPageBreak();
-			linesPerPage = 0;
-
-			createTableWithHeader();
-		}
-	}
-
-	@Override
-	public void resetTemplate()
-	{
-		template.setLength(0);
-		linesPerPage = 0;
-		lines = 0;
 	}
 }

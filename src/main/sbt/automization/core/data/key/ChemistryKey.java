@@ -218,7 +218,7 @@ public enum ChemistryKey implements Key
 					return addChemistryTag("RUVA");
 				}
 			};
-
+	
 	private static String addChemistryTag(String parameter)
 	{
 		return "PARAMETER.CHEMISTRY." + parameter;

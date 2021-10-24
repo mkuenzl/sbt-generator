@@ -10,12 +10,12 @@ public abstract class DatatableInformationRetrieval implements InformationRetrie
 {
 	protected Key informationKey;
 	protected Outcrop outcrop;
-
+	
 	public DatatableInformationRetrieval(Key informationKey)
 	{
 		this.informationKey = informationKey;
 	}
-
+	
 	@Override
 	public String retrieve(DataTable dataTable)
 	{
@@ -29,17 +29,17 @@ public abstract class DatatableInformationRetrieval implements InformationRetrie
 		}
 		return "";
 	}
-
+	
 	abstract String retrieveFrom(Sample sample);
-
+	
 	abstract String retrieveFrom(Probe probe);
-
+	
 	@Override
 	public Key getInformationKey()
 	{
 		return informationKey;
 	}
-
+	
 	@Override
 	public void setOutcrop(Outcrop outcrop)
 	{

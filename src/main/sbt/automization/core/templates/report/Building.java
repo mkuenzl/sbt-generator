@@ -13,11 +13,11 @@ import sbt.automization.core.styles.BuildingStyle;
 import sbt.automization.core.styles.ReportStyle;
 import sbt.automization.core.styles.StyleParameter;
 import sbt.automization.core.styles.StyleParameterBuilder;
-import sbt.automization.core.templates.helper.strategies.CellPerSampleCombinedChemistry;
-import sbt.automization.core.templates.helper.strategies.CellPerSampleCombined;
 import sbt.automization.core.templates.helper.RowFactory;
-import sbt.automization.core.templates.helper.strategies.CellPerSample;
 import sbt.automization.core.templates.helper.information.*;
+import sbt.automization.core.templates.helper.strategies.CellPerSample;
+import sbt.automization.core.templates.helper.strategies.CellPerSampleCombined;
+import sbt.automization.core.templates.helper.strategies.CellPerSampleCombinedChemistry;
 import sbt.automization.core.util.DatatableFilter;
 import sbt.automization.core.util.ListSeparator;
 
@@ -29,13 +29,13 @@ public final class Building extends Report
 {
 	private static Building instance;
 	private final RowFactory provider;
-
+	
 	private Building()
 	{
 		super(Outcrop.BUILDING);
 		this.provider = new RowFactory(Outcrop.BUILDING, getStyleParameter());
 	}
-
+	
 	public static Building getInstance()
 	{
 		if (instance == null)
@@ -50,7 +50,42 @@ public final class Building extends Report
 		}
 		return instance;
 	}
-
+	
+	@Override
+	public String getExportFileName()
+	{
+		return "GEBÄUDE-Report";
+	}
+	
+	@Override
+	public void constructTemplate(List<DataTable> dataTables)
+	{
+		Collection<List<DataTable>> tablesSplitIntoPortions = splitIntoPortionPerPage(dataTables);
+		
+		for (List<DataTable> portion : tablesSplitIntoPortions)
+		{
+			buildTable(portion);
+			addTable();
+			addPageBreak();
+		}
+	}
+	
+	private void buildTable(List<DataTable> dataTables)
+	{
+		createTable();
+		provider.setDataTables(dataTables);
+		provider.setCellStrategy(new CellPerSampleCombined());
+		provider.setStyleParameter(getStyleParameterHeader());
+		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}), new IdRetrieval()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Bauteil"}), new ComponentRetrieval()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Material"}), new MaterialBuildingRetrieval()));
+		
+		provider.setStyleParameter(getStyleParameter());
+		
+		constructEnvironmentTechnicalFeatures(dataTables);
+		addLegendRow(dataTables);
+	}
+	
 	@Override
 	protected StyleParameter getStyleParameterHeader()
 	{
@@ -65,109 +100,35 @@ public final class Building extends Report
 				.setTextFormatter(new StandardCellTextFormatter())
 				.build();
 	}
-
-	@Override
-	protected StyleParameter getStyleParameter()
-	{
-		return new StyleParameterBuilder()
-				.setRowClass("NormalThin8")
-				.setHeaderCellClass("NormalHeader")
-				.setHeaderCellWidth("4")
-				.setNormalCellClass("NormalBold")
-				.setNormalCellWidth("2.5")
-				.setUnitCellClass("Normal6")
-				.setLegendCellClass("NormalHeaderSmallFont")
-				.setTextFormatter(new StandardCellTextFormatter())
-				.build();
-	}
-
+	
 	@Override
 	protected Collection<List<DataTable>> splitIntoPortionPerPage(List<DataTable> tables)
 	{
 		List<DataTable> probesWhichIncludeOutcrop = DatatableFilter.getProbesWhichIncludeOutcrop(tables, outcrop);
-
+		
 		Collection<List<DataTable>> portions = ListSeparator.separateProbesBySizeOfSamples(probesWhichIncludeOutcrop, 12);
-
+		
 		return portions;
 	}
-
-	@Override
-	public void constructTemplate(List<DataTable> dataTables)
-	{
-		Collection<List<DataTable>> tablesSplitIntoPortions = splitIntoPortionPerPage(dataTables);
-
-		for (List<DataTable> portion : tablesSplitIntoPortions)
-		{
-			buildTable(portion);
-			addTable();
-			addPageBreak();
-		}
-	}
-
-	void addInformationHeader(List<DataTable> dataTables)
-	{
-		int colspan = 1;
-
-		for (DataTable dataTable : dataTables)
-		{
-			int size = dataTable.getSamples().size();
-			colspan += size;
-		}
-
-		HtmlRow row = HtmlFactory.createRow(BuildingStyle.ROW_THIN_8.getStyleClass(), new HtmlCell[]{
-				HtmlFactory.createCell(ReportStyle.HEADER.getStyleClass(), 1, colspan,
-						new String[]{"Hinweise zur Einstufung in Abhängigkeit des Rückbauverfahrens (informativ)"})
-		});
-
-		addToTable(row.appendTag());
-	}
-
-	private void buildTable(List<DataTable> dataTables)
-	{
-		createTable();
-		provider.setDataTables(dataTables);
-		provider.setCellStrategy(new CellPerSampleCombined());
-		provider.setStyleParameter(getStyleParameterHeader());
-		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}), new IdRetrieval()));
-		addToTable(provider.getRow(header.createCell(new String[]{"Bauteil"}), new ComponentRetrieval()));
-		addToTable(provider.getRow(header.createCell(new String[]{"Material"}), new MaterialBuildingRetrieval()));
-
-		provider.setStyleParameter(getStyleParameter());
-
-		constructEnvironmentTechnicalFeatures(dataTables);
-		addLegendRow(dataTables);
-	}
-
-	@Override
-	public String getExportFileName()
-	{
-		return "GEBÄUDE-Report";
-	}
-
-	@Override
-	public void constructTemplate(DataTable dataTable)
-	{
-
-	}
-
+	
 	@Override
 	protected void constructTechnicalFeatures(List<DataTable> dataTables)
 	{
-
+	
 	}
-
+	
 	@Override
 	protected void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
 		provider.setCellStrategy(new CellPerSample());
 		addToTable(provider.getRow(header.createCell(new String[]{"Laborprobe"}), new ChemistryIdRetrieval()));
 		addToTable(provider.getRow(header.createCell(new String[]{"Schadstoffverdacht"}), new SuspectedPollutantRetrieval()));
-
+		
 		provider.setCellStrategy(new CellPerSampleCombinedChemistry());
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"PAK,"}, "mg/kg"), new ChemistryPakRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"PCB,"}, "mg/kg"), new ChemistryPcbRetrieval())); // PCB
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Asbest,"}, "Nachweisgrenze"), new ChemistryAsbestosRetrieval())); // ASBEST
-
+		
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"BTEX,"}, "mg/kg"), new ChemistryBtexRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Phenole,"}, "mg/l"), new ChemistryPhenolRetrieval())); // PAtonal
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"KMF,"}, "Nachweisgrenze"), new ChemistryKmfRetrieval())); // KMF
@@ -178,8 +139,8 @@ public final class Building extends Report
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"FCKW,"}, "mg/kg"), new ChemistryFCKWRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"MKW (C10 - C22),"}, "mg/kg"), new ChemistryMKWC22Retrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"MKW (C10 - C40),"}, "mg/kg"), new ChemistryMKWC40Retrieval()));
-
-
+		
+		
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Zuordnungsklasse,"}, "LAGA Boden<sup>[4]</sup>"), new ChemistryLagaBoRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Zuordnungsklasse,"}, "LAGA Bauschutt<sup>[15]</sup>"), new ChemistryLagaRcRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Orientierungswert,"}, "LAGA Bauschutt<sup>[15]</sup>"), new ChemistryLagaRcOrientationRetrieval()));
@@ -191,35 +152,53 @@ public final class Building extends Report
 		provider.setCellStrategy(new CellPerSampleCombined());
 		addToTable(provider.getRow(header.createCell(new String[]{"Abfallschlüssel<sup>1,2</sup>"}, "AVV<sup>[7]</sup>, mehrschichtig / Gemisch"), new WasteKeyMixRetrieval()));  // gemischt
 	}
-
+	
+	void addInformationHeader(List<DataTable> dataTables)
+	{
+		int colspan = 1;
+		
+		for (DataTable dataTable : dataTables)
+		{
+			int size = dataTable.getSamples().size();
+			colspan += size;
+		}
+		
+		HtmlRow row = HtmlFactory.createRow(BuildingStyle.ROW_THIN_8.getStyleClass(), new HtmlCell[]{
+				HtmlFactory.createCell(ReportStyle.HEADER.getStyleClass(), 1, colspan,
+						new String[]{"Hinweise zur Einstufung in Abhängigkeit des Rückbauverfahrens (informativ)"})
+		});
+		
+		addToTable(row.appendTag());
+	}
+	
 	@Override
 	protected void addLegendRow(List<DataTable> dataTables)
 	{
 		int amountOfSamples = 0;
-
+		
 		List<String> additionalFootnotes = new ArrayList<>();
-
+		
 		for (DataTable probe : dataTables)
 		{
 			List<Sample> samples = probe.getSamples();
 			amountOfSamples += samples.size();
-
+			
 			for (Sample sample : samples)
 			{
 				String footnote = sample.get(SampleKey.MATERIAL_COMPARISON);
 				String explorationSite = sample.get(SampleKey.PROBE_ID);
-
-				if (! "".equals(footnote))
+				
+				if (!"".equals(footnote))
 				{
 					additionalFootnotes.add(explorationSite.concat(",").concat(footnote));
 				}
 			}
 		}
-
+		
 		StyleParameter styleParameter = getStyleParameter();
-
+		
 		double size = styleParameter.getHeaderCellWidthAsDouble() + amountOfSamples * styleParameter.getNormalCellWidthAsDouble();
-
+		
 		//Umwelttechnische Merkmale Trennzeile
 		HtmlCell content = new HtmlCell.Builder()
 				.appendAttribute("class", styleParameter.getLegendCellClass())
@@ -234,7 +213,7 @@ public final class Building extends Report
 				.appendContent("2) AVV 17 09 04: Nicht gefährliche und nicht getrennte Bauteile können i.d.R. unter" +
 						" dem vorgenannten Abfallschlüssel, gemischte Bau- und Abbruchabfälle zusammen entsorgt werden.")
 				.build();
-
+		
 		int number = 3;
 		for (String additionalFootnote : additionalFootnotes)
 		{
@@ -252,12 +231,33 @@ public final class Building extends Report
 			content.appendContent(UtilityPrinter.printLineBreak());
 			content.appendContent(footnote);
 		}
-
+		
 		HtmlRow rowLegend = new HtmlRow.Builder()
 				.appendAttribute("class", styleParameter.getRowClass())
 				.appendContent(content.appendTag())
 				.build();
-
+		
 		addToTable(rowLegend.appendTag());
+	}
+	
+	@Override
+	protected StyleParameter getStyleParameter()
+	{
+		return new StyleParameterBuilder()
+				.setRowClass("NormalThin8")
+				.setHeaderCellClass("NormalHeader")
+				.setHeaderCellWidth("4")
+				.setNormalCellClass("NormalBold")
+				.setNormalCellWidth("2.5")
+				.setUnitCellClass("Normal6")
+				.setLegendCellClass("NormalHeaderSmallFont")
+				.setTextFormatter(new StandardCellTextFormatter())
+				.build();
+	}
+	
+	@Override
+	public void constructTemplate(DataTable dataTable)
+	{
+	
 	}
 }

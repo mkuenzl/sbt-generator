@@ -19,21 +19,22 @@ public final class SampleFormatter
 {
 	private DataTable dataTable;
 	private String outcrop;
-
+	
 	public SampleFormatter()
-	{}
-
+	{
+	}
+	
 	public SampleFormatter(DataTable dataTable)
 	{
 		this.dataTable = dataTable;
 	}
-
+	
 	public SampleFormatter(DataTable dataTable, String outcrop)
 	{
 		this.dataTable = dataTable;
 		this.outcrop = outcrop;
 	}
-
+	
 	/**
 	 * Method used to combine layers of an outcrop from an exploration site based on a specific tag
 	 *
@@ -52,7 +53,7 @@ public final class SampleFormatter
 			return combineSamples(samples, tag);
 		}
 	}
-
+	
 	/**
 	 * Method used to combine consecutive identical layers in a list.
 	 *
@@ -63,18 +64,18 @@ public final class SampleFormatter
 	public List<Sample> combineSamples(final List<Sample> samples, final Key... tag)
 	{
 		List<Sample> updatedSamples = new ArrayList<>();
-
-		for (int i = 0 ; i < samples.size() ; i++)
+		
+		for (int i = 0; i < samples.size(); i++)
 		{
 			Sample sample = samples.get(i);
 			Sample finalSample = sample;
-
+			
 			int next = i + 1;
 			while (next < samples.size())
 			{ // Checks how many consecutive layers have the same value as tag
 				Sample nextSample = samples.get(next);
 				Sample combinedSample = combineSamples(sample, nextSample, tag);
-
+				
 				if (combinedSample != null)
 				{
 					finalSample = combinedSample;
@@ -86,18 +87,18 @@ public final class SampleFormatter
 				i = next;
 				next++;
 			}
-
+			
 			updatedSamples.add(finalSample);
 		}
 		return updatedSamples;
 	}
-
+	
 	public Sample combineSamples(final Sample firstSample, final Sample secondSample, final Key... keys)
 	{
 		if (firstSample == null) return secondSample;
 		if (secondSample == null) return firstSample;
 		if (keys == null) return null;
-
+		
 		if (samplesAreEqualByTags(firstSample, secondSample, keys))
 		{
 			Sample sample = new Sample(firstSample);
@@ -105,60 +106,60 @@ public final class SampleFormatter
 			sampleTable.put(SampleKey.DEPTH_END.getKey(), secondSample.get(SampleKey.DEPTH_END));
 			return sample;
 		}
-
+		
 		return null;
 	}
-
+	
 	private boolean samplesAreEqualByTags(final Sample firstSample, final Sample secondSample, final Key... keys)
 	{
 		boolean isEquals = true;
-
+		
 		for (Key key : keys)
 		{
 			if (key instanceof SampleKey)
 			{
-				if (! firstSample.get(key).equals(secondSample.get(key)))
+				if (!firstSample.get(key).equals(secondSample.get(key)))
 				{
 					isEquals = false;
 					break;
 				}
 			}
-
+			
 			if (key instanceof ChemistryKey)
 			{
 				final String parameterValueOfFirstSample = firstSample.getParameterValueBy(SampleKey.CHEMISTRY_ID, key);
 				String parameterValueOfSecondSample = secondSample.getParameterValueBy(SampleKey.CHEMISTRY_ID, key);
-
-				if (! parameterValueOfFirstSample.equals(parameterValueOfSecondSample))
+				
+				if (!parameterValueOfFirstSample.equals(parameterValueOfSecondSample))
 				{
 					isEquals = false;
 					break;
 				}
 			}
-
+			
 			if (key instanceof RuKKey)
 			{
 				final String parameterValueOfFirstSample = firstSample.getParameterValueBy(SampleKey.RUK_ID, key);
 				String parameterValueOfSecondSample = secondSample.getParameterValueBy(SampleKey.RUK_ID, key);
-
-				if (! parameterValueOfFirstSample.equals(parameterValueOfSecondSample))
+				
+				if (!parameterValueOfFirstSample.equals(parameterValueOfSecondSample))
 				{
 					isEquals = false;
 					break;
 				}
 			}
-
+			
 		}
-
+		
 		return isEquals;
 	}
-
+	
 	public List<Sample> createHeapSamples()
 	{
 		List<Sample> splitHeapSamples = new ArrayList<>();
-
+		
 		List<Sample> heapSamples = dataTable.getSamplesBy(SampleKey.OUTCROP, outcrop);
-
+		
 		for (Sample heapSample : heapSamples)
 		{
 			int[] sampleVolumes = HeapUtil.calculateVolumes(heapSample);
@@ -167,7 +168,7 @@ public final class SampleFormatter
 		}
 		return splitHeapSamples;
 	}
-
+	
 	private List<Sample> splitHeap(Sample sample, int[] volumes)
 	{
 		List<Sample> clonedSamples = new ArrayList<>();

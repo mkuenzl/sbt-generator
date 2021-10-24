@@ -7,7 +7,7 @@ public final class StandardCellTextFormatter extends AbstractTextFormatter
 	{
 		return replaceIfEmpty(text);
 	}
-
+	
 	@Override
 	public String format(String firstText, String secondText)
 	{

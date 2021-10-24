@@ -34,7 +34,7 @@ public enum RuKKey implements Key
 					return addRuKTag("WERT");
 				}
 			};
-
+	
 	private static String addRuKTag(String parameter)
 	{
 		return "PARAMETER.RUK." + parameter;

@@ -23,22 +23,22 @@ public class AreaRetrieval extends DatatableInformationRetrieval
 //
 //		return row;
 //	}
-
+	
 	@Override
 	String retrieveFrom(Sample sample)
 	{
 		Probe probe = sample.getProbe();
-
+		
 		String concat = probe.get(ProbeKey.NUMBER).concat(".").concat(sample.get(SampleKey.NUMBER));
-
+		
 		return concat;
 	}
-
+	
 	@Override
 	String retrieveFrom(Probe probe)
 	{
 		String component = new SamplePrinter().printAttributeOfSamples(probe, outcrop.toString(), informationKey);
-
+		
 		return component;
 	}
 }

@@ -22,13 +22,13 @@ public final class RowFactory
 	private CellRowStrategy cellRowStrategy;
 	private StyleParameter styleParameter;
 	private List<DataTable> dataTables;
-
+	
 	public RowFactory(Outcrop outcrop)
 	{
 		this.outcrop = outcrop;
 		createStandardStyle();
 	}
-
+	
 	private void createStandardStyle()
 	{
 		this.styleParameter = new StyleParameterBuilder()
@@ -42,64 +42,67 @@ public final class RowFactory
 				.setTextFormatter(new StandardCellTextFormatter())
 				.build();
 	}
-
+	
 	public RowFactory(Outcrop outcrop, StyleParameter styleParameter)
 	{
 		this.outcrop = outcrop;
 		this.styleParameter = styleParameter;
 	}
-
+	
 	public String getRowWithDataCheck(HtmlCell header, InformationRetrievalStrategy informationRetrievalStrategy)
 	{
 		if (checkDataAvailability(informationRetrievalStrategy))
 		{
 			return getRow(header, informationRetrievalStrategy);
 		}
-
+		
 		return "";
 	}
-
+	
 	public boolean checkDataAvailability(InformationRetrievalStrategy informationRetrievalStrategy)
 	{
 		Key dataKey = informationRetrievalStrategy.getInformationKey();
-
+		
 		return CheckDataAvailability.thereExistsAnTableWithData(dataTables, outcrop.toString(), dataKey);
 	}
-
+	
 	public String getRow(HtmlCell header, InformationRetrievalStrategy informationRetrievalStrategy)
 	{
 		cellRowStrategy.setRetrievalStrategy(informationRetrievalStrategy);
 		cellRowStrategy.setStyle(styleParameter);
 		informationRetrievalStrategy.setOutcrop(outcrop);
-
+		
 		return build(header);
 	}
-
+	
 	private String build(HtmlCell header)
 	{
 		List<HtmlCell> cells = cellRowStrategy.build(dataTables);
-
+		
 		HtmlRow row = HtmlFactory.createRow(styleParameter.getRowClass());
-
+		
 		row.appendContent(header.appendTag());
-
+		
 		for (HtmlCell cell : cells)
 		{
 			row.appendContent(cell.appendTag());
 		}
-
+		
 		return row.appendTag();
 	}
-
+	
 	public void setDataTables(List<DataTable> tables)
 	{
 		this.dataTables = tables;
 	}
-
+	
 	public void setCellStrategy(CellRow cellRow)
 	{
 		this.cellRowStrategy = cellRow;
 	}
-
-	public void setStyleParameter(StyleParameter styleParameter) { this.styleParameter = styleParameter; }
+	
+	public void setStyleParameter(StyleParameter styleParameter)
+	{
+		this.styleParameter = styleParameter;
+	}
 }

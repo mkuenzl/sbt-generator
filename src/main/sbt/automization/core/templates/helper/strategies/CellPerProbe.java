@@ -12,12 +12,12 @@ public final class CellPerProbe extends CellRow
 	{
 		super(styleParameter);
 	}
-
+	
 	public CellPerProbe()
 	{
 		super();
 	}
-
+	
 	@Override
 	void createCells(List<DataTable> probes)
 	{

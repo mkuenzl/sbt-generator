@@ -9,7 +9,7 @@ public enum ReportStyle implements Style
 				{
 					return "Normal";
 				}
-
+				
 				@Override
 				public String getStyle()
 				{
@@ -23,7 +23,7 @@ public enum ReportStyle implements Style
 				{
 					return "NormalHeader";
 				}
-
+				
 				@Override
 				public String getStyle()
 				{
@@ -37,7 +37,7 @@ public enum ReportStyle implements Style
 				{
 					return "NormalBold";
 				}
-
+				
 				@Override
 				public String getStyle()
 				{
@@ -51,7 +51,7 @@ public enum ReportStyle implements Style
 				{
 					return "Normal6";
 				}
-
+				
 				@Override
 				public String getStyle()
 				{
@@ -65,7 +65,7 @@ public enum ReportStyle implements Style
 				{
 					return "MsoNormalTable";
 				}
-
+				
 				@Override
 				public String getStyle()
 				{
@@ -84,5 +84,5 @@ public enum ReportStyle implements Style
 							.toString();
 				}
 			}
-
+	
 }

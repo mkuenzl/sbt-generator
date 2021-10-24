@@ -25,102 +25,17 @@ public abstract class Report implements HtmlTemplate
 {
 	protected final Outcrop outcrop;
 	protected final StringBuilder template;
-	protected HtmlTable table;
 	protected final HeaderFactory header;
-
-
+	protected HtmlTable table;
+	
+	
 	public Report()
 	{
 		this.template = new StringBuilder();
 		this.outcrop = null;
 		this.header = new HeaderFactory(getStyleParameterHeader());
 	}
-
-	public Report(Outcrop outcrop)
-	{
-		this.template = new StringBuilder();
-		this.outcrop = outcrop;
-		this.header = new HeaderFactory(getStyleParameterHeader());
-	}
-
-	public String getTemplate()
-	{
-		return template.toString();
-	}
-
-	protected void addPageBreak()
-	{
-		this.template.append("<pre><br clear=all style='mso-special-character:line-break;page-break-before:always'></pre>");
-	}
-
-	protected void addTable()
-	{
-		String tableString = table.appendTag();
-		this.template.append(tableString);
-	}
-
-	/**
-	 * Method used to retrieve all exploration sites containing an outcrop and dividing them into
-	 * A3 paper sized portions.
-	 *
-	 * @param tables a List of ExplorationSites
-	 * @return a Collection of Lists
-	 */
-	protected Collection<List<DataTable>> splitIntoPortionPerPage(List<DataTable> tables)
-	{
-		List<DataTable> probesWhichIncludeOutcrop = DatatableFilter.getProbesWhichIncludeOutcrop(tables, outcrop);
-
-		Collection<List<DataTable>> portions = ListSeparator.separateBasedOnSize(probesWhichIncludeOutcrop, 17);
-
-		return portions;
-	}
-
-	protected abstract void constructTechnicalFeatures(List<DataTable> dataTables);
-
-	void addTechnicalHeader(List<DataTable> dataTables)
-	{
-		int colspan = dataTables.size() + 1;
-
-		HtmlRow row = HtmlFactory.createRow(ReportStyle.ROW.getStyleClass(), new HtmlCell[]{
-				HtmlFactory.createCell(ReportStyle.HEADER.getStyleClass(), 1, colspan,
-						new String[]{"Technische Merkmale"})
-		});
-
-		addToTable(row.appendTag());
-	}
-
-	protected abstract void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables);
-
-	protected abstract void addLegendRow(List<DataTable> dataTables);
-
-	void addEnvironmentTechnicalHeader(List<DataTable> dataTables)
-	{
-		int colspan = dataTables.size() + 1;
-
-		HtmlRow row = HtmlFactory.createRow(ReportStyle.ROW.getStyleClass(), new HtmlCell[]{
-				HtmlFactory.createCell(ReportStyle.HEADER.getStyleClass(), 1, colspan,
-						new String[]{"Umwelttechnische Merkmale"})
-		});
-
-		addToTable(row.appendTag());
-	}
-
-	protected void createTable()
-	{
-		this.table = new HtmlTable.Builder()
-				.appendAttribute("class", ReportStyle.TABLE.getStyleClass())
-				.appendAttribute("border", "1")
-				.appendAttribute("style", ReportStyle.TABLE.getStyle())
-				.appendAttribute("cellspacing", "0")
-				.appendAttribute("cellpadding", "0")
-				.build();
-	}
-
-	protected void addToTable(String content)
-	{
-		table.appendContent(content);
-	}
-
+	
 	protected StyleParameter getStyleParameterHeader()
 	{
 		return new StyleParameterBuilder()
@@ -134,7 +49,98 @@ public abstract class Report implements HtmlTemplate
 				.setTextFormatter(new StandardCellTextFormatter())
 				.build();
 	}
-
+	
+	public Report(Outcrop outcrop)
+	{
+		this.template = new StringBuilder();
+		this.outcrop = outcrop;
+		this.header = new HeaderFactory(getStyleParameterHeader());
+	}
+	
+	public String getTemplate()
+	{
+		return template.toString();
+	}
+	
+	@Override
+	public void resetTemplate()
+	{
+		template.setLength(0);
+	}
+	
+	protected void addPageBreak()
+	{
+		this.template.append("<pre><br clear=all style='mso-special-character:line-break;page-break-before:always'></pre>");
+	}
+	
+	protected void addTable()
+	{
+		String tableString = table.appendTag();
+		this.template.append(tableString);
+	}
+	
+	/**
+	 * Method used to retrieve all exploration sites containing an outcrop and dividing them into
+	 * A3 paper sized portions.
+	 *
+	 * @param tables a List of ExplorationSites
+	 * @return a Collection of Lists
+	 */
+	protected Collection<List<DataTable>> splitIntoPortionPerPage(List<DataTable> tables)
+	{
+		List<DataTable> probesWhichIncludeOutcrop = DatatableFilter.getProbesWhichIncludeOutcrop(tables, outcrop);
+		
+		Collection<List<DataTable>> portions = ListSeparator.separateBasedOnSize(probesWhichIncludeOutcrop, 17);
+		
+		return portions;
+	}
+	
+	protected abstract void constructTechnicalFeatures(List<DataTable> dataTables);
+	
+	void addTechnicalHeader(List<DataTable> dataTables)
+	{
+		int colspan = dataTables.size() + 1;
+		
+		HtmlRow row = HtmlFactory.createRow(ReportStyle.ROW.getStyleClass(), new HtmlCell[]{
+				HtmlFactory.createCell(ReportStyle.HEADER.getStyleClass(), 1, colspan,
+						new String[]{"Technische Merkmale"})
+		});
+		
+		addToTable(row.appendTag());
+	}
+	
+	protected void addToTable(String content)
+	{
+		table.appendContent(content);
+	}
+	
+	protected abstract void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables);
+	
+	protected abstract void addLegendRow(List<DataTable> dataTables);
+	
+	void addEnvironmentTechnicalHeader(List<DataTable> dataTables)
+	{
+		int colspan = dataTables.size() + 1;
+		
+		HtmlRow row = HtmlFactory.createRow(ReportStyle.ROW.getStyleClass(), new HtmlCell[]{
+				HtmlFactory.createCell(ReportStyle.HEADER.getStyleClass(), 1, colspan,
+						new String[]{"Umwelttechnische Merkmale"})
+		});
+		
+		addToTable(row.appendTag());
+	}
+	
+	protected void createTable()
+	{
+		this.table = new HtmlTable.Builder()
+				.appendAttribute("class", ReportStyle.TABLE.getStyleClass())
+				.appendAttribute("border", "1")
+				.appendAttribute("style", ReportStyle.TABLE.getStyle())
+				.appendAttribute("cellspacing", "0")
+				.appendAttribute("cellpadding", "0")
+				.build();
+	}
+	
 	protected StyleParameter getStyleParameter()
 	{
 		return new StyleParameterBuilder()
@@ -147,11 +153,5 @@ public abstract class Report implements HtmlTemplate
 				.setLegendCellClass("NormalHeaderSmallFont")
 				.setTextFormatter(new StandardCellTextFormatter())
 				.build();
-	}
-
-	@Override
-	public void resetTemplate()
-	{
-		template.setLength(0);
 	}
 }

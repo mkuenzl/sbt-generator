@@ -11,18 +11,18 @@ public class MaterialBuildingRetrieval extends DatatableInformationRetrieval
 	{
 		super(SampleKey.MATERIAL);
 	}
-
+	
 	@Override
 	String retrieveFrom(Sample sample)
 	{
 		return sample.get(informationKey);
 	}
-
+	
 	@Override
 	String retrieveFrom(Probe probe)
 	{
 		String material = new SamplePrinter().printAttributeOfSamplesWithDepth(probe, outcrop.toString(), informationKey);
-
+		
 		return material;
 	}
 }

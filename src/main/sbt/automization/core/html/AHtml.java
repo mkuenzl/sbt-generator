@@ -11,22 +11,22 @@ abstract class AHtml implements IHtmlCode
 {
 	String content = "";
 	Map<String, String> attributes = new HashMap<>();
-
+	
 	public AHtml()
 	{
 	}
-
+	
 	public AHtml(AHtml copyFrom)
 	{
 		this.content = copyFrom.content;
 		this.attributes = new HashMap<>(copyFrom.attributes);
 	}
-
+	
 	public String getContent()
 	{
 		return content;
 	}
-
+	
 	/**
 	 * Method formats all attributes to String
 	 *
@@ -44,7 +44,7 @@ abstract class AHtml implements IHtmlCode
 		}
 		return stringBuilder.toString();
 	}
-
+	
 	/**
 	 * Method adds an attribute with a value to the html tag to the attribute map
 	 */
@@ -53,7 +53,7 @@ abstract class AHtml implements IHtmlCode
 	{
 		attributes.put(attribute, content);
 	}
-
+	
 	/**
 	 * Method to add content as String between the html opening and closing tag
 	 *
@@ -70,13 +70,13 @@ abstract class AHtml implements IHtmlCode
 			this.content = this.content + "\n" + content;
 		}
 	}
-
+	
 	@Deprecated
 	public boolean isWithoutContent()
 	{
 		return "".equals(content);
 	}
-
+	
 	/**
 	 * Builder Class for html objects. Each class inheriting from this class has to implement
 	 * a builder for object creation. Using generic type parameter its possible to create a abstract builder class.
@@ -89,23 +89,23 @@ abstract class AHtml implements IHtmlCode
 	{
 		protected T actualHtmlClass;
 		protected B actualClassBuilder;
-
+		
 		protected BaseHtmlBuilder()
 		{
 			actualHtmlClass = getActual();
 			actualClassBuilder = getActualBuilder();
 		}
-
+		
 		protected abstract T getActual();
-
+		
 		protected abstract B getActualBuilder();
-
+		
 		public B appendAttribute(String attribute, String content)
 		{
 			actualHtmlClass.appendAttribute(attribute, content);
 			return actualClassBuilder;
 		}
-
+		
 		public B appendContent(String content)
 		{
 			if ("".equals(actualHtmlClass.content))
@@ -117,7 +117,7 @@ abstract class AHtml implements IHtmlCode
 			}
 			return actualClassBuilder;
 		}
-
+		
 		public T build()
 		{
 			return actualHtmlClass;

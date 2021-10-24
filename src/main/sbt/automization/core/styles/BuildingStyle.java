@@ -9,7 +9,7 @@ public enum BuildingStyle implements Style
 				{
 					return "Normal";
 				}
-
+				
 				@Override
 				public String getStyle()
 				{
@@ -23,7 +23,7 @@ public enum BuildingStyle implements Style
 				{
 					return "NormalThin8";
 				}
-
+				
 				@Override
 				public String getStyle()
 				{
@@ -37,7 +37,7 @@ public enum BuildingStyle implements Style
 				{
 					return "NormalThin6";
 				}
-
+				
 				@Override
 				public String getStyle()
 				{
@@ -51,7 +51,7 @@ public enum BuildingStyle implements Style
 				{
 					return "NormalTableHeader";
 				}
-
+				
 				@Override
 				public String getStyle()
 				{
@@ -65,7 +65,7 @@ public enum BuildingStyle implements Style
 				{
 					return "NormalTableHeaderBuilding";
 				}
-
+				
 				@Override
 				public String getStyle()
 				{
@@ -79,7 +79,7 @@ public enum BuildingStyle implements Style
 				{
 					return "NormalBuilding";
 				}
-
+				
 				@Override
 				public String getStyle()
 				{
@@ -93,7 +93,7 @@ public enum BuildingStyle implements Style
 				{
 					return null;
 				}
-
+				
 				@Override
 				public String getStyle()
 				{
@@ -107,7 +107,7 @@ public enum BuildingStyle implements Style
 				{
 					return "NormalBuilding";
 				}
-
+				
 				@Override
 				public String getStyle()
 				{
@@ -121,7 +121,7 @@ public enum BuildingStyle implements Style
 				{
 					return "MsoNormalTable";
 				}
-
+				
 				@Override
 				public String getStyle()
 				{

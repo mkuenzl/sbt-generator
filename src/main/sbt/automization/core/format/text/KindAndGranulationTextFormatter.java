@@ -7,16 +7,16 @@ public final class KindAndGranulationTextFormatter extends AbstractTextFormatter
 	{
 		return null;
 	}
-
+	
 	@Override
 	public String format(final String kind, String granulation)
 	{
 		String format = "";
-
+		
 		if ("-".equals(granulation)) granulation = "";
-
+		
 		format = kind.concat(" ").concat(granulation);
-
+		
 		return format;
 	}
 }

@@ -10,9 +10,11 @@ import java.util.List;
 public final class Coordinates extends TableTemplate
 {
 	private static Coordinates instance;
-
-	private Coordinates() {}
-
+	
+	private Coordinates()
+	{
+	}
+	
 	public static Coordinates getInstance()
 	{
 		if (instance == null)
@@ -27,31 +29,31 @@ public final class Coordinates extends TableTemplate
 		}
 		return instance;
 	}
-
+	
 	@Override
 	public String getExportFileName()
 	{
 		return "KOORDINATEN-Tabelle";
 	}
-
+	
 	@Override
 	public void constructTemplate(List<DataTable> dataTables)
 	{
 		createTable();
 		addTableHeader();
-
+		
 		for (DataTable dataTable : dataTables)
 		{
 			addAndResetTableOnPageBreak();
-
+			
 			addRows(dataTable);
-
+			
 			linesPerPage++;
 		}
-
+		
 		addTable();
 	}
-
+	
 	@Override
 	void addTableHeader()
 	{
@@ -61,9 +63,9 @@ public final class Coordinates extends TableTemplate
 				HtmlFactory.createHeaderAsString("NormalTableHeader", 1, 4,
 						new String[]{"UTM"})
 		});
-
+		
 		addToTable(firstRow);
-
+		
 		String secondRow = HtmlFactory.createRowAsString("NormalThinHeader", new String[]{
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:2cm",
 						new String[]{"Zone"}),
@@ -74,10 +76,10 @@ public final class Coordinates extends TableTemplate
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:8cm",
 						new String[]{""})
 		});
-
+		
 		addToTable(secondRow);
 	}
-
+	
 	private void addRows(DataTable dataTable)
 	{
 		String firstRow = HtmlFactory.createRowAsString("NormalThin5", new String[]{
@@ -86,11 +88,11 @@ public final class Coordinates extends TableTemplate
 				HtmlFactory.createCellAsString("Normal", 1, 4,
 						new String[]{dataTable.get(ProbeKey.LOCATION)})
 		});
-
+		
 		addToTable(firstRow);
-
+		
 		List<String> coordinateSplit = splitCoordinate(dataTable.get(ProbeKey.COORDINATES));
-
+		
 		String secondRow = HtmlFactory.createRowAsString("NormalThin5", new String[]{
 				HtmlFactory.createCellAsString("Normal",
 						new String[]{coordinateSplit.get(0)}),
@@ -101,16 +103,16 @@ public final class Coordinates extends TableTemplate
 				HtmlFactory.createCellAsString("Normal",
 						new String[]{""})
 		});
-
+		
 		addToTable(secondRow);
 	}
-
+	
 	private List<String> splitCoordinate(String coordinates)
 	{
 		List<String> coordinateList;
-
+		
 		String[] split = coordinates.split("(\\s)+");
-
+		
 		if (split.length == 3)
 		{
 			coordinateList = Arrays.asList(split);
@@ -118,13 +120,13 @@ public final class Coordinates extends TableTemplate
 		{
 			coordinateList = Arrays.asList("-", "-", "-");
 		}
-
+		
 		return coordinateList;
 	}
-
+	
 	@Override
 	public void constructTemplate(DataTable dataTable)
 	{
-
+	
 	}
 }

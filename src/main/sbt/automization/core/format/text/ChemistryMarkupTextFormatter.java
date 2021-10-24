@@ -8,7 +8,7 @@ public final class ChemistryMarkupTextFormatter extends AbstractTextFormatter
 	public String format(final String classification)
 	{
 		StringBuilder stringBuilder = new StringBuilder();
-
+		
 		switch (classification)
 		{
 			case "Z0":
@@ -120,10 +120,10 @@ public final class ChemistryMarkupTextFormatter extends AbstractTextFormatter
 						.build().appendTag());
 				break;
 		}
-
+		
 		return stringBuilder.toString();
 	}
-
+	
 	@Override
 	public String format(String firstText, String secondText)
 	{

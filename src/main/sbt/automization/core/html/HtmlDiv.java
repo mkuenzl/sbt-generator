@@ -17,16 +17,16 @@ public class HtmlDiv extends AHtml
 				.append("</div>");
 		return strb.toString();
 	}
-
+	
 	public static class Builder extends BaseHtmlBuilder<HtmlDiv, Builder>
 	{
-
+		
 		@Override
 		protected HtmlDiv getActual()
 		{
 			return new HtmlDiv();
 		}
-
+		
 		@Override
 		protected Builder getActualBuilder()
 		{

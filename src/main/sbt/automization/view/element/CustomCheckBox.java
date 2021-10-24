@@ -8,12 +8,12 @@ import java.awt.event.MouseListener;
 
 public abstract class CustomCheckBox extends JCheckBox implements MouseListener
 {
-
+	
 	Font defaultFont = new Font("Gill Sans MT", Font.BOLD, 10);
 	Color textColor = Color.decode("#000000");
 	Color backgroundColor = Color.decode("#ffffff");
 	Color hoverColor = Color.decode("#00aced");
-
+	
 	public CustomCheckBox(String text, Rectangle position)
 	{
 		text = text.toUpperCase();
@@ -31,7 +31,7 @@ public abstract class CustomCheckBox extends JCheckBox implements MouseListener
 		this.setVisible(true);
 		addMouseListener(this);
 	}
-
+	
 	public CustomCheckBox(String s, Rectangle position, Color backgroundColor, Color hoverColor)
 	{
 		s = s.toUpperCase();
@@ -49,31 +49,37 @@ public abstract class CustomCheckBox extends JCheckBox implements MouseListener
 		this.setVisible(true);
 		addMouseListener(this);
 	}
-
-	public void setBackgroundColor(Color color)
-	{
-		backgroundColor = color;
-	}
-
+	
 	public void setHoverColor(Color color)
 	{
 		hoverColor = color;
 	}
-
+	
+	public void setBackgroundColor(Color color)
+	{
+		backgroundColor = color;
+	}
+	
 	@Override
-	public void mouseClicked(MouseEvent me) {}
-
+	public void mouseClicked(MouseEvent me)
+	{
+	}
+	
 	@Override
-	public void mouseReleased(MouseEvent me) {}
-
+	public void mousePressed(MouseEvent me)
+	{
+	}
+	
 	@Override
-	public void mousePressed(MouseEvent me) {}
-
+	public void mouseReleased(MouseEvent me)
+	{
+	}
+	
 	@Override
 	public void mouseEntered(MouseEvent e)
 	{
 	}
-
+	
 	@Override
 	public void mouseExited(MouseEvent e)
 	{

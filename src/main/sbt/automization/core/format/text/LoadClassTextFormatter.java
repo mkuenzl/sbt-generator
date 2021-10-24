@@ -20,7 +20,7 @@ public final class LoadClassTextFormatter extends AbstractTextFormatter
 	{
 		String formattedText;
 		String replacedText = replaceIfEmpty(loadClassText);
-
+		
 		if ("keine".equals(replacedText) || "-".equals(replacedText))
 		{
 			formattedText = replacedText;
@@ -28,7 +28,7 @@ public final class LoadClassTextFormatter extends AbstractTextFormatter
 		{
 			formattedText = "Bk" + replacedText;
 		}
-
+		
 		return new HtmlText.Builder()
 				.appendAttribute("class", BasicStyle.ROW.getStyleClass())
 				.appendContent("Belastungsklasse")
@@ -37,7 +37,7 @@ public final class LoadClassTextFormatter extends AbstractTextFormatter
 				.build()
 				.appendTag();
 	}
-
+	
 	@Deprecated
 	@Override
 	public String format(String firstText, String secondText)

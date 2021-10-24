@@ -6,9 +6,9 @@ import sbt.automization.core.format.printer.UtilityPrinter;
 import sbt.automization.core.html.HtmlCell;
 import sbt.automization.core.html.HtmlRow;
 import sbt.automization.core.styles.StyleParameter;
-import sbt.automization.core.templates.helper.strategies.CellPerProbe;
 import sbt.automization.core.templates.helper.RowFactory;
 import sbt.automization.core.templates.helper.information.*;
+import sbt.automization.core.templates.helper.strategies.CellPerProbe;
 
 import java.util.Collection;
 import java.util.List;
@@ -17,13 +17,13 @@ public final class Topsoil extends Report
 {
 	private static Topsoil instance;
 	private final RowFactory provider;
-
+	
 	private Topsoil()
 	{
 		super(Outcrop.OH);
 		provider = new RowFactory(Outcrop.OH);
 	}
-
+	
 	public static Topsoil getInstance()
 	{
 		if (instance == null)
@@ -38,13 +38,13 @@ public final class Topsoil extends Report
 		}
 		return instance;
 	}
-
+	
 	@Override
 	public String getExportFileName()
 	{
 		return "OH-Report";
 	}
-
+	
 	@Override
 	public void constructTemplate(List<DataTable> dataTables)
 	{
@@ -56,35 +56,35 @@ public final class Topsoil extends Report
 			addPageBreak();
 		}
 	}
-
+	
 	private void buildTable(List<DataTable> dataTables)
 	{
 		createTable();
 		provider.setDataTables(dataTables);
 		provider.setCellStrategy(new CellPerProbe());
-
+		
 		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}), new IdRetrieval()));
 		addToTable(provider.getRow(header.createCell(new String[]{"Aufschlussart"}), new GroundExposureRetrieval()));
-
+		
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
 		addLegendRow(dataTables);
 	}
-
+	
 	@Override
 	protected void constructTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addTechnicalHeader(dataTables);
-
+		
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Bodengruppe,"}, "DIN 18196<sup>[22]</sup>"), new DIN18196Retrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Bodengruppe,"}, "DIN 18915<sup>[37]</sup>"), new DIN18915Retrieval()));
 	}
-
+	
 	@Override
 	protected void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addEnvironmentTechnicalHeader(dataTables);
-
+		
 		HtmlCell chemistryIdHeader = header.createCell(new String[]{"Laborprobe"});
 		addToTable(provider.getRowWithDataCheck(chemistryIdHeader, new ChemistryIdRetrieval()));
 		HtmlCell chemistryMufvHeader = header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"}, "Schreiben des MUFV<sup>[18]</sup>");
@@ -108,13 +108,13 @@ public final class Topsoil extends Report
 		HtmlCell chemistryWasteKeyHeader = header.createCell(new String[]{"Abfallschlüssel,"}, "AVV<sup>[14]</sup>");
 		addToTable(provider.getRowWithDataCheck(chemistryWasteKeyHeader, new ChemistryAvvRetrieval()));
 	}
-
+	
 	@Override
 	protected void addLegendRow(List<DataTable> dataTables)
 	{
 		StyleParameter styleParameter = getStyleParameter();
 		double size = styleParameter.getHeaderCellWidthAsDouble() + dataTables.size() * styleParameter.getNormalCellWidthAsDouble();
-
+		
 		//Umwelttechnische Merkmale Trennzeile
 		HtmlRow rowLegend = new HtmlRow.Builder()
 				.appendAttribute("class", styleParameter.getRowClass())
@@ -128,13 +128,13 @@ public final class Topsoil extends Report
 						.build()
 						.appendTag())
 				.build();
-
+		
 		addToTable(rowLegend.appendTag());
 	}
-
+	
 	@Override
 	public void constructTemplate(DataTable dataTable)
 	{
-
+	
 	}
 }

@@ -17,16 +17,16 @@ public class HtmlTableHeader extends AHtml
 				.append("</th>");
 		return strb.toString();
 	}
-
+	
 	public static class Builder extends BaseHtmlBuilder<HtmlTableHeader, Builder>
 	{
-
+		
 		@Override
 		protected HtmlTableHeader getActual()
 		{
 			return new HtmlTableHeader();
 		}
-
+		
 		@Override
 		protected Builder getActualBuilder()
 		{

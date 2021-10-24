@@ -12,7 +12,7 @@ public abstract class CustomButton extends JButton implements MouseListener
 	Color textColor = Color.decode("#000000");
 	Color backgroundColor = Color.decode("#ffffff");
 	Color hoverColor = Color.decode("#00aced");
-
+	
 	public CustomButton(String s)
 	{
 		s = s.toUpperCase();
@@ -24,12 +24,12 @@ public abstract class CustomButton extends JButton implements MouseListener
 		this.setFont(defaultFont);
 		this.setOpaque(true);
 		this.setFocusable(false);
-
+		
 		this.setBorder(new LineBorder(Color.BLACK));
-
+		
 		addMouseListener(this);
 	}
-
+	
 	public CustomButton(String text, Rectangle position)
 	{
 		text = text.toUpperCase();
@@ -41,31 +41,37 @@ public abstract class CustomButton extends JButton implements MouseListener
 		this.setFont(defaultFont);
 		this.setOpaque(true);
 		this.setFocusable(false);
-
+		
 		this.setBorder(new LineBorder(Color.BLACK));
 		this.setBounds(position);
 		addMouseListener(this);
 	}
-
+	
 	public void setHoverColor(Color color)
 	{
 		hoverColor = color;
 	}
-
+	
 	public void setBackgroundColor(Color color)
 	{
 		backgroundColor = color;
 	}
-
+	
 	@Override
-	public void mouseClicked(MouseEvent me) {}
-
+	public void mouseClicked(MouseEvent me)
+	{
+	}
+	
 	@Override
-	public void mousePressed(MouseEvent me) {}
-
+	public void mousePressed(MouseEvent me)
+	{
+	}
+	
 	@Override
-	public void mouseReleased(MouseEvent me) {}
-
+	public void mouseReleased(MouseEvent me)
+	{
+	}
+	
 	@Override
 	public void mouseEntered(MouseEvent e)
 	{
@@ -74,7 +80,7 @@ public abstract class CustomButton extends JButton implements MouseListener
 			this.setBackground(this.hoverColor);
 		}
 	}
-
+	
 	@Override
 	public void mouseExited(MouseEvent e)
 	{

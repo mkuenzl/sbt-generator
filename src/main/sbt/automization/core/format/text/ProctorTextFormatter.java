@@ -13,7 +13,7 @@ public final class ProctorTextFormatter extends AbstractTextFormatter
 			return moisture.concat(" W<sub>Pr</sub>");
 		}
 	}
-
+	
 	@Override
 	public String format(String firstText, String secondText)
 	{

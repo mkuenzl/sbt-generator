@@ -17,9 +17,11 @@ import java.util.List;
 public final class ExplorationSite extends Appendix
 {
 	private static ExplorationSite instance;
-
-	private ExplorationSite() {}
-
+	
+	private ExplorationSite()
+	{
+	}
+	
 	public static ExplorationSite getInstance()
 	{
 		if (instance == null)
@@ -34,33 +36,33 @@ public final class ExplorationSite extends Appendix
 		}
 		return instance;
 	}
-
+	
 	@Override
 	public String getExportFileName()
 	{
 		return "ERK-Anlage";
 	}
-
+	
 	@Override
 	public void constructTemplate(List<DataTable> dataTables)
 	{
 		for (DataTable dataTable : dataTables)
 		{
 			Probe probe = (Probe) dataTable;
-
+			
 			createTable();
 			String headOfTable = createHeadOfTable(probe);
 			table.appendContent(headOfTable);
 			addToTemplate(table.appendTag());
-
+			
 			createTemplatesForSamples(probe);
-
+			
 			String footer = createFooter(dataTable);
 			addToTemplate(footer);
 			addPageBreak();
 		}
 	}
-
+	
 	private String createHeadOfTable(Probe probe)
 	{
 		String firstRow = HtmlFactory.createRowAsString("NormalThin8", new String[]{
@@ -69,7 +71,7 @@ public final class ExplorationSite extends Appendix
 				HtmlFactory.createCellAsString(textFormatter, "Normal", 1, 3,
 						new String[]{probe.get(ProbeKey.LOCATION)}),
 		});
-
+		
 		String secondRow = HtmlFactory.createRowAsString("NormalThin8", new String[]{
 				HtmlFactory.createCellAsString("NormalHeader",
 						new String[]{"Bezeichnung"}),
@@ -80,7 +82,7 @@ public final class ExplorationSite extends Appendix
 				HtmlFactory.createCellAsString(textFormatter, "Normal", "width:200px",
 						new String[]{probe.get(ProbeKey.DATE)}),
 		});
-
+		
 		String thirdRow = HtmlFactory.createRowAsString("NormalThin8", new String[]{
 				HtmlFactory.createCellAsString("NormalHeader",
 						new String[]{"Koordinaten<sup>1)</sup>"}),
@@ -91,7 +93,7 @@ public final class ExplorationSite extends Appendix
 				HtmlFactory.createCellAsString(textFormatter, "Normal",
 						new String[]{probe.get(ProbeKey.INSPECTOR)}),
 		});
-
+		
 		String fourthRow = HtmlFactory.createRowAsString("NormalThin8", new String[]{
 				HtmlFactory.createCellAsString("NormalHeader",
 						new String[]{"Bereich"}),
@@ -102,7 +104,7 @@ public final class ExplorationSite extends Appendix
 				HtmlFactory.createCellAsString(textFormatter, "Normal",
 						new String[]{probe.get(ProbeKey.CONTACT_PERSON)}),
 		});
-
+		
 		return new StringBuilder()
 				.append(firstRow)
 				.append(secondRow)
@@ -110,7 +112,7 @@ public final class ExplorationSite extends Appendix
 				.append(fourthRow)
 				.toString();
 	}
-
+	
 	private void createTemplatesForSamples(Probe probe)
 	{
 		createBanquetTemplate(probe);
@@ -120,38 +122,7 @@ public final class ExplorationSite extends Appendix
 		createTOBTemplate(probe);
 		createUGTemplate(probe);
 	}
-
-	private String createFooter(DataTable dataTable)
-	{
-		HtmlCell cell = new HtmlCell.Builder()
-				.appendAttribute("class", "NormalHeaderSmallFont")
-				.appendContent(new FootnotePrinter().print(dataTable))
-				.build();
-
-		HtmlRow row = new HtmlRow.Builder()
-				.appendAttribute("class", "NormalThin8")
-				.appendContent(cell.appendTag())
-				.build();
-
-		HtmlTable table = new HtmlTable.Builder()
-				.appendAttribute("class", "MsoNormalTable")
-				.appendAttribute("width", "605")
-				.appendAttribute("border", "1")
-				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
-				.appendAttribute("cellspacing", "0")
-				.appendAttribute("cellpadding", "0")
-				.appendContent(row.appendTag())
-				.build();
-
-		return table.appendTag();
-	}
-
-	@Override
-	protected String constructAndGetTableHeader()
-	{
-		return "";
-	}
-
+	
 	private void createBanquetTemplate(Probe probe)
 	{
 		if (probe.hasSampleWith(SampleKey.OUTCROP, Outcrop.BANQUET.toString()))
@@ -161,7 +132,7 @@ public final class ExplorationSite extends Appendix
 			addToTemplate(banquet.getTemplate());
 		}
 	}
-
+	
 	private void createGAPTemplate(Probe probe)
 	{
 		if (probe.hasSampleWith(SampleKey.OUTCROP, Outcrop.GAP.toString()))
@@ -171,7 +142,7 @@ public final class ExplorationSite extends Appendix
 			addToTemplate(table.getTemplate());
 		}
 	}
-
+	
 	private void createOHTemplate(Probe probe)
 	{
 		if (probe.hasSampleWith(SampleKey.OUTCROP, Outcrop.OH.toString()))
@@ -181,7 +152,7 @@ public final class ExplorationSite extends Appendix
 			addToTemplate(table.getTemplate());
 		}
 	}
-
+	
 	private void createOBTemplate(Probe probe)
 	{
 		if (probe.hasSampleWith(SampleKey.OUTCROP, Outcrop.GOB.toString()) ||
@@ -195,7 +166,7 @@ public final class ExplorationSite extends Appendix
 			addToTemplate(table.getTemplate());
 		}
 	}
-
+	
 	private void createTOBTemplate(Probe probe)
 	{
 		if (probe.hasSampleWith(SampleKey.OUTCROP, Outcrop.TOB.toString()))
@@ -205,7 +176,7 @@ public final class ExplorationSite extends Appendix
 			addToTemplate(table.getTemplate());
 		}
 	}
-
+	
 	private void createUGTemplate(Probe probe)
 	{
 		if (probe.hasSampleWith(SampleKey.OUTCROP, Outcrop.UG.toString()))
@@ -215,12 +186,43 @@ public final class ExplorationSite extends Appendix
 			addToTemplate(table.getTemplate());
 		}
 	}
-
+	
+	private String createFooter(DataTable dataTable)
+	{
+		HtmlCell cell = new HtmlCell.Builder()
+				.appendAttribute("class", "NormalHeaderSmallFont")
+				.appendContent(new FootnotePrinter().print(dataTable))
+				.build();
+		
+		HtmlRow row = new HtmlRow.Builder()
+				.appendAttribute("class", "NormalThin8")
+				.appendContent(cell.appendTag())
+				.build();
+		
+		HtmlTable table = new HtmlTable.Builder()
+				.appendAttribute("class", "MsoNormalTable")
+				.appendAttribute("width", "605")
+				.appendAttribute("border", "1")
+				.appendAttribute("style", HTML_BASIC_TABLE_STYLE)
+				.appendAttribute("cellspacing", "0")
+				.appendAttribute("cellpadding", "0")
+				.appendContent(row.appendTag())
+				.build();
+		
+		return table.appendTag();
+	}
+	
 	@Override
 	public void constructTemplate(DataTable dataTable)
 	{
-
+	
 	}
-
-
+	
+	@Override
+	protected String constructAndGetTableHeader()
+	{
+		return "";
+	}
+	
+	
 }

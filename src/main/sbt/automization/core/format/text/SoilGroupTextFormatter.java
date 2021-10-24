@@ -13,17 +13,17 @@ public final class SoilGroupTextFormatter extends AbstractTextFormatter
 		boolean isFillUp;
 		String kind;
 		String kindText;
-
+		
 		if (layerKind == null)
 		{
 			return "-";
 		}
-
+		
 		if (layerKind.contains("-") || ("").equals(layerKind))
 		{
 			return layerKind;
 		}
-
+		
 		if (layerKind.contains("["))
 		{
 			kind = layerKind.replaceAll("[\\[\\]]", "");
@@ -33,7 +33,7 @@ public final class SoilGroupTextFormatter extends AbstractTextFormatter
 			kind = layerKind;
 			isFillUp = false;
 		}
-
+		
 		switch (kind)
 		{
 			case "GE":
@@ -114,18 +114,18 @@ public final class SoilGroupTextFormatter extends AbstractTextFormatter
 				kindText = "";
 				break;
 		}
-
+		
 		if (isFillUp)
 		{
 			return kindText + " " + "[" + kind + "]";
 		}
-
+		
 		if ("".equals(kindText))
 			return kind;
-
+		
 		return kindText + " " + kind;
 	}
-
+	
 	@Override
 	public String format(String firstText, String secondText)
 	{

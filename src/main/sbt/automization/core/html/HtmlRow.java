@@ -17,23 +17,23 @@ public class HtmlRow extends AHtml
 				.append("</tr>");
 		return strb.toString();
 	}
-
+	
 	//Tags
 	//String Content
 	public static class Builder extends BaseHtmlBuilder<HtmlRow, Builder>
 	{
-
+		
 		@Override
 		protected HtmlRow getActual()
 		{
 			return new HtmlRow();
 		}
-
+		
 		@Override
 		protected Builder getActualBuilder()
 		{
 			return this;
 		}
 	}
-
+	
 }

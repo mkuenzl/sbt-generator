@@ -17,17 +17,17 @@ public class HtmlText extends AHtml
 				.append("</p>");
 		return strb.toString();
 	}
-
+	
 	//p , span
 	public static class Builder extends BaseHtmlBuilder<HtmlText, Builder>
 	{
-
+		
 		@Override
 		protected HtmlText getActual()
 		{
 			return new HtmlText();
 		}
-
+		
 		@Override
 		protected Builder getActualBuilder()
 		{

@@ -7,8 +7,8 @@ import sbt.automization.core.html.HtmlFactory;
 import sbt.automization.core.html.HtmlRow;
 import sbt.automization.core.styles.ReportStyle;
 import sbt.automization.core.templates.helper.RowFactory;
-import sbt.automization.core.templates.helper.strategies.CellPerSample;
 import sbt.automization.core.templates.helper.information.*;
+import sbt.automization.core.templates.helper.strategies.CellPerSample;
 
 import java.util.Collection;
 import java.util.List;
@@ -17,13 +17,13 @@ public final class Heap extends Report
 {
 	private static Heap instance;
 	private final RowFactory provider;
-
+	
 	private Heap()
 	{
 		super(Outcrop.HEAP);
 		provider = new RowFactory(Outcrop.HEAP);
 	}
-
+	
 	public static Heap getInstance()
 	{
 		if (instance == null)
@@ -38,13 +38,13 @@ public final class Heap extends Report
 		}
 		return instance;
 	}
-
+	
 	@Override
 	public String getExportFileName()
 	{
 		return "HAUFWERK-Report";
 	}
-
+	
 	@Override
 	public void constructTemplate(List<DataTable> dataTables)
 	{
@@ -56,13 +56,13 @@ public final class Heap extends Report
 			addPageBreak();
 		}
 	}
-
+	
 	private void buildTable(List<DataTable> dataTables)
 	{
 		createTable();
 		provider.setDataTables(dataTables);
 		provider.setCellStrategy(new CellPerSample());
-
+		
 		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}), new IdRetrieval()));
 		addToTable(provider.getRow(header.createCell(new String[]{"Bereich"}), new AreaRetrieval()));
 		addToTable(provider.getRow(header.createCell(new String[]{"Probenahmeverfahren"}), new HeapExposureRetrieval()));
@@ -70,57 +70,40 @@ public final class Heap extends Report
 		constructEnvironmentTechnicalFeatures(dataTables);
 		//addToTable(provider.getRowWithSamples(new LegendWithDepthRow()));
 	}
-
-	@Override
-	void addTechnicalHeader(List<DataTable> dataTables)
-	{
-		int colspan = 1;
-
-		for (DataTable dataTable : dataTables)
-		{
-			colspan += dataTable.getSamples().size();
-		}
-
-		HtmlRow row = HtmlFactory.createRow(ReportStyle.ROW.getStyleClass(), new HtmlCell[]{
-				HtmlFactory.createCell(ReportStyle.HEADER.getStyleClass(), 1, colspan,
-						new String[]{"Technische Merkmale"})
-		});
-
-		addToTable(row.appendTag());
-	}
-
+	
 	@Override
 	protected void constructTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addTechnicalHeader(dataTables);
-
+		
 		addToTable(provider.getRow(header.createCell(new String[]{"Material"}), new MaterialHeapRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Bodenklasse,"}, "DIN 18300<sup>[11]</sup>"), new DIN18300Retrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Bodengruppe,"}, "DIN 18196<sup>[10]</sup>"), new DIN18196Retrieval()));
 	}
-
+	
 	@Override
-	void addEnvironmentTechnicalHeader(List<DataTable> dataTables)
+	void addTechnicalHeader(List<DataTable> dataTables)
 	{
 		int colspan = 1;
-
+		
 		for (DataTable dataTable : dataTables)
 		{
 			colspan += dataTable.getSamples().size();
 		}
+		
 		HtmlRow row = HtmlFactory.createRow(ReportStyle.ROW.getStyleClass(), new HtmlCell[]{
 				HtmlFactory.createCell(ReportStyle.HEADER.getStyleClass(), 1, colspan,
-						new String[]{"Umwelttechnische Merkmale"})
+						new String[]{"Technische Merkmale"})
 		});
-
+		
 		addToTable(row.appendTag());
 	}
-
+	
 	@Override
 	protected void constructEnvironmentTechnicalFeatures(List<DataTable> dataTables)
 	{
 		addEnvironmentTechnicalHeader(dataTables);
-
+		
 		provider.setCellStrategy(new CellPerSample());
 		HtmlCell chemistryIdHeader = header.createCell(new String[]{"Laborprobe"});
 		addToTable(provider.getRowWithDataCheck(chemistryIdHeader, new ChemistryIdRetrieval()));
@@ -149,16 +132,33 @@ public final class Heap extends Report
 		HtmlCell chemistryWasteKeyHeader = header.createCell(new String[]{"Abfallschlüssel,"}, "AVV<sup>[6]</sup>");
 		addToTable(provider.getRowWithDataCheck(chemistryWasteKeyHeader, new ChemistryAvvRetrieval()));
 	}
-
+	
 	@Override
 	protected void addLegendRow(List<DataTable> dataTables)
 	{
-
+	
 	}
-
+	
+	@Override
+	void addEnvironmentTechnicalHeader(List<DataTable> dataTables)
+	{
+		int colspan = 1;
+		
+		for (DataTable dataTable : dataTables)
+		{
+			colspan += dataTable.getSamples().size();
+		}
+		HtmlRow row = HtmlFactory.createRow(ReportStyle.ROW.getStyleClass(), new HtmlCell[]{
+				HtmlFactory.createCell(ReportStyle.HEADER.getStyleClass(), 1, colspan,
+						new String[]{"Umwelttechnische Merkmale"})
+		});
+		
+		addToTable(row.appendTag());
+	}
+	
 	@Override
 	public void constructTemplate(DataTable dataTable)
 	{
-
+	
 	}
 }

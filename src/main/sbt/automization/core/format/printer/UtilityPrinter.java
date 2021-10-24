@@ -13,18 +13,28 @@ public final class UtilityPrinter implements TextPrinter
 	public static String printCellTextDivider()
 	{
 		StringBuilder stringBuilder = new StringBuilder();
-
+		
 		HtmlText textDivider = new HtmlText.Builder()
 				.appendAttribute("class", "Normal2")
 				.appendContent("_____________________________________")
 				.build();
-
+		
 		stringBuilder.append(textDivider.appendTag())
 				.append(printLineEmptyThin());
-
+		
 		return stringBuilder.toString();
 	}
-
+	
+	public static String printLineEmptyThin()
+	{
+		HtmlText emptyRow = new HtmlText.Builder()
+				.appendAttribute("class", "Normal2")
+				.appendContent("&nbsp;")
+				.build();
+		
+		return emptyRow.appendTag();
+	}
+	
 	/**
 	 * Method to provide a line without content.
 	 *
@@ -36,10 +46,10 @@ public final class UtilityPrinter implements TextPrinter
 				.appendAttribute("class", "Normal")
 				.appendContent("&nbsp;")
 				.build();
-
+		
 		return emptyRow.appendTag();
 	}
-
+	
 	/**
 	 * Method to provide the standard html line break. May be moved to the html package in the future.
 	 *
@@ -49,28 +59,18 @@ public final class UtilityPrinter implements TextPrinter
 	{
 		return "<br>";
 	}
-
-	public static String printLineEmptyThin()
-	{
-		HtmlText emptyRow = new HtmlText.Builder()
-				.appendAttribute("class", "Normal2")
-				.appendContent("&nbsp;")
-				.build();
-
-		return emptyRow.appendTag();
-	}
-
+	
 	@Override
 	public String print(DataTable dataTable)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public String print()
 	{
 		return null;
 	}
-
-
+	
+	
 }

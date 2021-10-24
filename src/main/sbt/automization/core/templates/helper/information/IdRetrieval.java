@@ -21,15 +21,15 @@ public class IdRetrieval extends DatatableInformationRetrieval
 //
 //		return row;
 //	}
-
+	
 	@Override
 	String retrieveFrom(Sample sample)
 	{
 		Probe probe = sample.getProbe();
-
+		
 		return probe.get(informationKey);
 	}
-
+	
 	@Override
 	String retrieveFrom(Probe probe)
 	{

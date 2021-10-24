@@ -22,20 +22,20 @@ public class SizeTotalRetrieval extends DatatableInformationRetrieval
 //
 //		return row;
 //	}
-
+	
 	@Override
 	String retrieveFrom(Sample sample)
 	{
 		String information = new SamplePrinter().printThickness(sample.getSamples());
-
+		
 		return information;
 	}
-
+	
 	@Override
 	String retrieveFrom(Probe probe)
 	{
 		String information = new SamplePrinter().printThickness(probe.getSamples());
-
+		
 		return information;
 	}
 }

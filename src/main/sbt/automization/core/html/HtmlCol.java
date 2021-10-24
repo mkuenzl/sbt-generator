@@ -14,16 +14,16 @@ public class HtmlCol extends AHtml
 				.append("\n");
 		return strb.toString();
 	}
-
+	
 	public static class Builder extends BaseHtmlBuilder<HtmlCol, Builder>
 	{
-
+		
 		@Override
 		protected HtmlCol getActual()
 		{
 			return new HtmlCol();
 		}
-
+		
 		@Override
 		protected Builder getActualBuilder()
 		{

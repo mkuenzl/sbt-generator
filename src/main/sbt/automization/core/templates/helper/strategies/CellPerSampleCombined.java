@@ -13,12 +13,12 @@ public final class CellPerSampleCombined extends CellRow
 	{
 		super(styleParameter);
 	}
-
+	
 	public CellPerSampleCombined()
 	{
 		super();
 	}
-
+	
 	@Override
 	void createCells(List<DataTable> probes)
 	{
@@ -26,18 +26,18 @@ public final class CellPerSampleCombined extends CellRow
 		{
 			HtmlCell lastCell = null;
 			int columnSpan = 1;
-
+			
 			for (Sample sample : probe.getSamples())
 			{
 				HtmlCell cell = createCell(sample);
-
+				
 				//case 1 sample
 				if (null == lastCell)
 				{
 					lastCell = cell;
 					continue;
 				}
-
+				
 				if (compareContent(lastCell, cell))
 				{
 					lastCell = cell;
@@ -51,16 +51,16 @@ public final class CellPerSampleCombined extends CellRow
 				}
 			}
 			lastCell.appendAttribute("colspan", String.valueOf(columnSpan));
-
+			
 			cells.add(new HtmlCell(lastCell));
 		}
 	}
-
+	
 	private boolean compareContent(HtmlCell first, HtmlCell second)
 	{
 		String firstContent = first.getContent();
 		String secondContent = second.getContent();
-
-		return firstContent.equals(secondContent) && ! "-".equals(firstContent);
+		
+		return firstContent.equals(secondContent) && !"-".equals(firstContent);
 	}
 }
