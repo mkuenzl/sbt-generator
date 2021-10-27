@@ -27,8 +27,8 @@ public class AppendixTemplateBuildingTest
 	@BeforeClass
 	public static void initializeDatatables() throws Exception
 	{
-		Thread thread = new Thread(new EnterRobot());
-		thread.start();
+		//Thread thread = new Thread(new EnterRobot());
+		//thread.start();
 		dataTables = new DatatableInitializer().initializeDatatables();
 	}
 

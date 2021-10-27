@@ -29,10 +29,9 @@ public class ReportTemplateBuildingTest
 	@BeforeClass
 	public static void initializeDatatables() throws Exception
 	{
-		Thread thread = new Thread(new EnterRobot());
-		thread.start();
+		//Thread thread = new Thread(new EnterRobot());
+		//thread.start();
 		dataTables = new DatatableInitializer().initializeDatatables();
-
 	}
 
 	@Test
@@ -141,11 +140,11 @@ public class ReportTemplateBuildingTest
 	}
 
 	@Test
-	public void BUILDINGTemplateTest() throws IOException
+	public void BUILDINGTemplateTest() throws Exception
 	{
 		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Building.getInstance());
 		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-
+		
 		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
 	}
 }

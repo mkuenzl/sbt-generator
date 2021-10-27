@@ -1,4 +1,4 @@
-package sbt.automization.core.util.csv;
+package sbt.automization.core.parser;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;

@@ -6,7 +6,7 @@ import org.junit.Test;
 import sbt.automization.core.data.key.ProbeKey;
 import sbt.automization.core.data.key.SampleKey;
 import sbt.automization.core.data.key.*;
-import sbt.automization.core.util.csv.CsvParser;
+import sbt.automization.core.parser.ExcelParser;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -19,11 +19,11 @@ public class KeyTest {
     @BeforeClass
     public static void initializeHeader()
     {
-        String path = System.getProperty("user.dir").concat(File.separator).concat("tests-resources").concat(File.separator);
-                                                                                                                             
-        File csv = new File(path + "datenbank-template-test.csv");
-                                                                                                                             
-        header = CsvParser.parseHeader(csv);
+        File inputFile = new File("tests-resources/input/excel-template-test.xlsx");
+    
+        ExcelParser parser = new ExcelParser();
+        parser.setSheetName("Daten");
+        header = parser.retrieveHeader(inputFile);
     }
 
     @Test
