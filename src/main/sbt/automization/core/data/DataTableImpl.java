@@ -152,7 +152,7 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 		String sourceValue = get(sourceKey);
 		String targetValue = target.get(targetKey);
 		
-		if ("".equals(sourceValue) || "".equals(targetValue)) return false;
+		if ("".equals(sourceValue) || null == sourceValue) return false;
 		
 		return sourceValue.equals(targetValue);
 	}
