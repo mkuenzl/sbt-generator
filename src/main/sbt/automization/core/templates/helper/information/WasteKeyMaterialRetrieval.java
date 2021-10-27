@@ -31,6 +31,8 @@ public class WasteKeyMaterialRetrieval extends DatatableInformationRetrieval
 		
 		String footnote = sample.get(SampleKey.MATERIAL_COMPARISON);
 		
+		if (avvParameter == null || footnote == null) return "";
+		
 		if (avvParameter.contains("("))
 		{
 			String[] split = avvParameter.split("[(]");
