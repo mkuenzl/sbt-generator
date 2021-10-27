@@ -26,21 +26,21 @@ public class Layout
 	private void setPositions()
 	{
 		//Excel Data Part
-		positions.put("ButtonCreate", new Rectangle(10, 10, 160, 20));
-		positions.put("ButtonLoad", new Rectangle(180, 10, 160, 20));
-		positions.put("ButtonOpen", new Rectangle(350, 10, 160, 20));
-		positions.put("ButtonHelp", new Rectangle(540, 10, 20, 20));
-		positions.put("TextAreaPath", new Rectangle(10, 40, 500, 20));
+		positions.put("LabelChooseFile", new Rectangle(10, 0, 400, 20));
+		positions.put("ButtonCreate", new Rectangle(10, 30, 160, 20));
+		positions.put("ButtonLoad", new Rectangle(180, 30, 160, 20));
+		positions.put("ButtonOpen", new Rectangle(350, 30, 160, 20));
+		positions.put("TextAreaPath", new Rectangle(10, 60, 500, 20));
 		
 		//Choose Data Set Part
-		positions.put("LabelChooseDataSet", new Rectangle(10, 90, 200, 20));
-		positions.put("CheckBoxAllData", new Rectangle(10, 120, 120, 20));
-		positions.put("CheckBoxExplorationData", new Rectangle(140, 120, 120, 20));
-		positions.put("CheckBoxHeapData", new Rectangle(270, 120, 120, 20));
-		positions.put("CheckBoxBuildingData", new Rectangle(400, 120, 120, 20));
+		positions.put("LabelChooseDataSet", new Rectangle(10, 100, 400, 20));
+		positions.put("CheckBoxAllData", new Rectangle(10, 130, 120, 20));
+		positions.put("CheckBoxExplorationData", new Rectangle(140, 130, 120, 20));
+		positions.put("CheckBoxHeapData", new Rectangle(270, 130, 120, 20));
+		positions.put("CheckBoxBuildingData", new Rectangle(400, 130, 120, 20));
 		
 		//Choose Tables Part
-		positions.put("LabelChooseTable", new Rectangle(10, 160, 265, 40));
+		positions.put("LabelChooseTable", new Rectangle(10, 170, 400, 20));
 		positions.put("CheckBoxFirstColumnFirstRow", new Rectangle(10, 200, 180, 20));
 		positions.put("CheckBoxFirstColumnSecondRow", new Rectangle(10, 220, 180, 20));
 		positions.put("CheckBoxFirstColumnThirdRow", new Rectangle(10, 240, 180, 20));
@@ -63,11 +63,18 @@ public class Layout
 		
 		
 		//Create Tables Part
-		positions.put("ButtonBuildTable", new Rectangle(10, 410, 160, 20));
+		positions.put("ButtonBuildTable", new Rectangle(180, 410, 160, 20));
+		positions.put("ButtonHelp", new Rectangle(350, 410, 20, 20));
 	}
 	
 	private void constructComponents()
 	{
+		JLabel labelChooseFile = new JLabel("1. Wählen Sie eine Excel oder CSV Datei", JLabel.LEFT);
+		labelChooseFile.setBounds(positions.get("LabelChooseFile"));
+		labelChooseFile.setForeground(Color.BLACK);
+		labelChooseFile.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
+		components.add(labelChooseFile);
+		
 		// CREATE.
 		JButton createButton = new CreateExcelButton("Create", positions.get("ButtonCreate"));
 		components.add(createButton);
@@ -85,13 +92,19 @@ public class Layout
 		ViewConstant.pathComponent = textArea;
 		components.add(textArea);
 		
-		constructCheckBoxDataSetArea();
-		
-		JLabel jLabel = new JLabel("Wählen Sie Tabellen", JLabel.LEFT);
-		jLabel.setBounds(positions.get("LabelChooseTable"));
+		JLabel jLabel = new JLabel("2. Wählen Sie einen Datensatz", JLabel.LEFT);
+		jLabel.setBounds(positions.get("LabelChooseDataSet"));
 		jLabel.setForeground(Color.BLACK);
 		jLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
 		components.add(jLabel);
+		
+		constructCheckBoxDataSetArea();
+		
+		JLabel labelChooseTable = new JLabel("3. Wählen Sie Tabellen", JLabel.LEFT);
+		labelChooseTable.setBounds(positions.get("LabelChooseTable"));
+		labelChooseTable.setForeground(Color.BLACK);
+		labelChooseTable.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
+		components.add(labelChooseTable);
 		
 		// TEMPLATE CHECKBOX
 		constructCheckBoxTemplateArea();
@@ -162,26 +175,20 @@ public class Layout
 	
 	private void constructCheckBoxDataSetArea()
 	{
-		JLabel jLabel = new JLabel("Wählen Sie einen Datensatz", JLabel.LEFT);
-		jLabel.setBounds(positions.get("LabelChooseDataSet"));
-		jLabel.setForeground(Color.BLACK);
-		jLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
-		components.add(jLabel);
-		
 		DataSetCheckBox dataSetAllCheckBox = new DataSetCheckBox("Gesamt", positions.get("CheckBoxAllData"));
 		dataSetAllCheckBox.setDataSet("Daten");
 		components.add(dataSetAllCheckBox);
 		
 		DataSetCheckBox dataSetExplorationCheckBox = new DataSetCheckBox("Erkundung", positions.get("CheckBoxExplorationData"));
-		dataSetExplorationCheckBox.setDataSet("Daten ERK");
+		dataSetExplorationCheckBox.setDataSet("DatenErkundungsstelle");
 		components.add(dataSetExplorationCheckBox);
 		
 		DataSetCheckBox dataSetHeapCheckBox = new DataSetCheckBox("Haufwerke", positions.get("CheckBoxHeapData"));
-		dataSetHeapCheckBox.setDataSet("Daten HAUF");
+		dataSetHeapCheckBox.setDataSet("DatenHaufwerk");
 		components.add(dataSetHeapCheckBox);
 		
 		DataSetCheckBox dataSetBuildingCheckBox = new DataSetCheckBox("Gebäude", positions.get("CheckBoxBuildingData"));
-		dataSetBuildingCheckBox.setDataSet("Daten GEBÄUDE");
+		dataSetBuildingCheckBox.setDataSet("DatenGebaeude");
 		components.add(dataSetBuildingCheckBox);
 		
 		dataSetAllCheckBox.setRelatedCheckBoxes(dataSetExplorationCheckBox, dataSetHeapCheckBox, dataSetBuildingCheckBox);
