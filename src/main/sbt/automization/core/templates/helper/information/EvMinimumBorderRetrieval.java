@@ -3,7 +3,7 @@ package sbt.automization.core.templates.helper.information;
 import sbt.automization.core.data.Probe;
 import sbt.automization.core.data.Sample;
 import sbt.automization.core.data.key.LpKey;
-import sbt.automization.core.data.key.ProbeKey;
+import sbt.automization.core.format.printer.SamplePrinter;
 
 public class EvMinimumBorderRetrieval extends DatatableInformationRetrieval
 {
@@ -34,7 +34,7 @@ public class EvMinimumBorderRetrieval extends DatatableInformationRetrieval
 	@Override
 	String retrieveFrom(Probe probe)
 	{
-		String information = probe.getParameterValueBy(ProbeKey.LP_ID, informationKey);
+		String information = new SamplePrinter().printParameterOfSamples(probe, outcrop.toString(), informationKey);
 		
 		return information;
 	}

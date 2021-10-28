@@ -75,7 +75,7 @@ public final class BaseCourseWithoutBinder extends Appendix
 				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.LAGA_RC)),
 				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.TL_ROCK_STRATUM)),
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
-						new String[]{printEV()}),
+						new String[]{printEV(sample)}),
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
 						new String[]{sample.get(SampleKey.GRAIN_SIZE_DISTRIBUTION)})
 		});
@@ -83,16 +83,19 @@ public final class BaseCourseWithoutBinder extends Appendix
 		return row;
 	}
 	
-	private String printEV()
+	private String printEV(Sample sample)
 	{
-		if (probe.containsValueFor(ProbeKey.LP_ID) && !alreadyPrintedLP)
+		//TODO: Change Probe to Sample
+		if (sample.containsValueFor(SampleKey.LP_ID))
 		{
-			String formattedEV = probe.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV2)
-					.concat(UtilityPrinter.printLineBreak())
-					.concat(probe.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV85));
-			alreadyPrintedLP = true;
+			String ev2 = sample.getParameterValueBy(SampleKey.LP_ID, LpKey.EV2);
+			String ev85 = sample.getParameterValueBy(SampleKey.LP_ID, LpKey.EV85);
 			
-			return formattedEV;
+			if ("".equals(ev2) && "".equals(ev85)) return "-";
+			
+			return ev2
+					.concat(UtilityPrinter.printLineBreak())
+					.concat(ev85);
 		}
 		return "-";
 	}

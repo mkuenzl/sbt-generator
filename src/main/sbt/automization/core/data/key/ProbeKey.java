@@ -321,14 +321,6 @@ public enum ProbeKey implements Key
 				{
 					return addProbeTag("ID");
 				}
-			},
-	LP_ID
-			{
-				@Override
-				public String getKey()
-				{
-					return addProbeTag("LP.ID");
-				}
 			};
 	
 	private static String addProbeTag(String parameter)

@@ -3,6 +3,7 @@ package sbt.automization.core.format.printer;
 import sbt.automization.core.data.DataTable;
 import sbt.automization.core.data.key.Key;
 import sbt.automization.core.data.key.ProbeKey;
+import sbt.automization.core.data.key.SampleKey;
 import sbt.automization.core.html.HtmlText;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public final class FootnotePrinter implements TextPrinter
 		{
 			if (checkExistenceOfFootnote(table, footnoteReference))
 			{
-				stringBuilder.append(printFootnoteForReference(table, footnoteReference));
+				stringBuilder.append(printFootnoteWithText(table.get(footnoteReference)));
 			}
 		}
 		return stringBuilder.toString();
@@ -81,7 +82,6 @@ public final class FootnotePrinter implements TextPrinter
 	{
 		List<ProbeKey> references = new ArrayList<>()
 		{{
-			add(ProbeKey.LP_ID);
 			add(ProbeKey.FOOTNOTE_1);
 			add(ProbeKey.FOOTNOTE_2);
 			add(ProbeKey.FOOTNOTE_3);
@@ -101,36 +101,5 @@ public final class FootnotePrinter implements TextPrinter
 	{
 		String footnote = table.get(key);
 		return (footnote != null && !footnote.equals("#") && !footnote.equals("-") && !footnote.equals(""));
-	}
-	
-	private String printFootnoteForReference(DataTable table, ProbeKey footnoteReference)
-	{
-		switch (footnoteReference)
-		{
-			case LP_ID:
-				return printFootnoteForLP(table);
-			default:
-				return printFootnoteWithText(table.get(footnoteReference));
-		}
-	}
-	
-	private String printFootnoteForLP(DataTable table)
-	{
-		if (!table.containsValueFor(ProbeKey.LP_ID)) return "";
-		
-		return printFootnoteWithText(new String[]{
-				"Prüfergebnisse unter Berücksichtigung einer ca. 15 % Reduzierung aufgrund der Einspannung durch den gebundenen Oberbau"});
-	}
-	
-	private String printFootnoteWithText(String[] lines)
-	{
-		HtmlText footnote = createFootnote();
-		
-		for (String line : lines)
-		{
-			footnote.appendContent(line);
-		}
-		
-		return footnote.appendTag();
 	}
 }

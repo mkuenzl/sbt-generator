@@ -4,6 +4,7 @@ import sbt.automization.core.data.Probe;
 import sbt.automization.core.data.Sample;
 import sbt.automization.core.data.key.LpKey;
 import sbt.automization.core.data.key.ProbeKey;
+import sbt.automization.core.data.key.SampleKey;
 import sbt.automization.core.format.text.LoadPlateTextFormatter;
 
 public class Ev2WithEv85Retrieval extends DatatableInformationRetrieval
@@ -27,19 +28,28 @@ public class Ev2WithEv85Retrieval extends DatatableInformationRetrieval
 	@Override
 	String retrieveFrom(Sample sample)
 	{
-		Probe probe = sample.getProbe();
+		String ev2 = sample.getParameterValueBy(SampleKey.LP_ID, LpKey.EV2);
+		String ev85 = sample.getParameterValueBy(SampleKey.LP_ID, LpKey.EV85);
 		
-		return retrieveFrom(probe);
+		String information = new LoadPlateTextFormatter().format(ev2, ev85);
+		
+		return information;
 	}
 	
 	@Override
 	String retrieveFrom(Probe probe)
 	{
-		String ev2 = probe.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV2);
-		String ev85 = probe.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV85);
+		StringBuilder stringBuilder = new StringBuilder();
+		for (Sample sample : probe.getSamples())
+		{
+			String ev2 = sample.getParameterValueBy(SampleKey.LP_ID, LpKey.EV2);
+			String ev85 = sample.getParameterValueBy(SampleKey.LP_ID, LpKey.EV85);
+			
+			String information = new LoadPlateTextFormatter().format(ev2, ev85);
+			stringBuilder.append(information);
+			stringBuilder.append("<br>");
+		}
 		
-		String information = new LoadPlateTextFormatter().format(ev2, ev85);
-		
-		return information;
+		return stringBuilder.toString();
 	}
 }

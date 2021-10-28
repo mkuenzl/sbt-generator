@@ -3,7 +3,8 @@ package sbt.automization.core.templates.helper.information;
 import sbt.automization.core.data.Probe;
 import sbt.automization.core.data.Sample;
 import sbt.automization.core.data.key.LpKey;
-import sbt.automization.core.data.key.ProbeKey;
+import sbt.automization.core.data.key.SampleKey;
+import sbt.automization.core.format.printer.SamplePrinter;
 
 public class Ev2Retrieval extends DatatableInformationRetrieval
 {
@@ -26,7 +27,7 @@ public class Ev2Retrieval extends DatatableInformationRetrieval
 	@Override
 	String retrieveFrom(Sample sample)
 	{
-		String parameterValue = sample.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV2);
+		String parameterValue = sample.getParameterValueBy(SampleKey.LP_ID, LpKey.EV2);
 		
 		return parameterValue;
 	}
@@ -34,8 +35,8 @@ public class Ev2Retrieval extends DatatableInformationRetrieval
 	@Override
 	String retrieveFrom(Probe probe)
 	{
-		String parameterValue = probe.getParameterValueBy(ProbeKey.LP_ID, LpKey.EV2);
+		String information = new SamplePrinter().printParameterOfSamples(probe, outcrop.toString(), informationKey);
 		
-		return parameterValue;
+		return information;
 	}
 }

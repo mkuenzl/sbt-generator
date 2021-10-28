@@ -31,11 +31,6 @@ public final class CheckDataAvailability
 	{
 		List<Parameter> parameters = new ArrayList<>();
 		
-		if (dataTable instanceof Probe)
-		{
-			List<Parameter> parameterList = ((Probe) dataTable).getParameters();
-			parameters.addAll(parameterList);
-		}
 		if (dataTable instanceof Sample)
 		{
 			List<Parameter> parameterList = ((Sample) dataTable).getParameters();

@@ -10,7 +10,6 @@ import java.util.Objects;
 public final class Probe extends DataTableImpl
 {
 	private final List<Sample> samples = new ArrayList<>();
-	private final List<Parameter> parameters = new ArrayList<>();
 	
 	public Probe(Map<String, String> informationMap)
 	{
@@ -40,12 +39,12 @@ public final class Probe extends DataTableImpl
 	
 	public void addParameter(Parameter parameter)
 	{
-		this.parameters.add(parameter);
+	
 	}
 	
 	public void addListOfParameter(List<Parameter> parameter)
 	{
-		this.parameters.addAll(parameter);
+	
 	}
 	
 	@SuppressWarnings("RedundantIfStatement")
@@ -74,43 +73,18 @@ public final class Probe extends DataTableImpl
 			return false;
 		}
 		
-		if (!Objects.equals(this.getParameters(), otherTable.getParameters()))
-		{
-			return false;
-		}
-		
 		return true;
-	}
-	
-	public List<Parameter> getParameters()
-	{
-		return parameters;
 	}
 	
 	@Override
 	public Parameter getParameterBy(final Key key)
 	{
-		for (Parameter par : parameters)
-		{
-			String value = this.get(key);
-			if (par.contains(value)) return par;
-		}
-		
 		return null;
 	}
 	
 	@Override
 	public String getParameterValueBy(Key parameterID, Key valueID)
 	{
-		for (Parameter par : parameters)
-		{
-			String value = this.get(parameterID);
-			if (par.contains(value))
-			{
-				return par.get(valueID);
-			}
-		}
-		
 		return "";
 	}
 	

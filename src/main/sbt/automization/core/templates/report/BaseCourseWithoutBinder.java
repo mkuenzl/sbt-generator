@@ -80,7 +80,8 @@ public final class BaseCourseWithoutBinder extends Report
 		
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"E<sub>Vdyn</sub>,"}, "MN/m²"), new EvDynRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"E<sub>Vdyn (-15%)</sub>,"}, "MN/m²"), new EvDyn85Retrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"E<sub>V2</sub><sup>[41]</sup>,"}, "MN/m²"), new Ev2WithEv85Retrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"E<sub>V2</sub><sup>[41]</sup>,"}, "MN" +
+				"/m²"), new Ev2Retrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Soll Wert,"}, "E<sub>V2</sub>"), new EvMinimumBorderRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Material"}), new MaterialTobRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Dicke,"}, "cm"), new SizeRetrieval()));

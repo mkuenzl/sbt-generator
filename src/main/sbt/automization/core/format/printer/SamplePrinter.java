@@ -150,6 +150,39 @@ public final class SamplePrinter implements TextPrinter
 		return stringBuilder.toString();
 	}
 	
+	public String printParameterOfSamples(final DataTable dataTable, final String outcrop, final Key tag)
+	{
+		SampleFormatter sampleFormatter = new SampleFormatter(dataTable, outcrop);
+		
+		List<Sample> samples = sampleFormatter.combineSamplesByTag(tag);
+		
+		StringBuilder stringBuilder = new StringBuilder();
+		
+		int amountOfSamples = samples.size();
+		
+		for (int i = 0; i < amountOfSamples; i++)
+		{
+			Sample sample = samples.get(i);
+			
+			String formattedTag = new StandardCellTextFormatter().format(sample.getParameterValueBy(SampleKey.LP_ID,
+					tag));
+			
+			if ("-".equals(formattedTag)) continue;
+			
+			if (i > 0)
+			{
+				stringBuilder.append(UtilityPrinter.printCellTextDivider());
+			}
+			
+			stringBuilder.append(formattedTag);
+//			stringBuilder.append(UtilityPrinter.printLineEmptyThin());
+//			stringBuilder.append(new DepthTextFormatter(true).format(sample.get(SampleKey.DEPTH_START),
+//					sample.get(SampleKey.DEPTH_END)));
+		}
+		
+		return stringBuilder.toString();
+	}
+	
 	public String printAttributeOfDatatable(final DataTable dataTable, final Key tag)
 	{
 		String formattedTag;

@@ -19,7 +19,7 @@ public class KeyTest {
     @BeforeClass
     public static void initializeHeader()
     {
-        File inputFile = new File("tests-resources/input/excel-template-test.xlsx");
+        File inputFile = new File("tests-resources/input/excel/excel-template-test.xlsx");
     
         ExcelParser parser = new ExcelParser();
         parser.setSheetName("Daten");

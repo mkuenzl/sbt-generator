@@ -2,10 +2,7 @@ package sbt.automization.core.format.datatable;
 
 import sbt.automization.core.data.DataTable;
 import sbt.automization.core.data.Sample;
-import sbt.automization.core.data.key.ChemistryKey;
-import sbt.automization.core.data.key.Key;
-import sbt.automization.core.data.key.RuKKey;
-import sbt.automization.core.data.key.SampleKey;
+import sbt.automization.core.data.key.*;
 import sbt.automization.core.util.HeapUtil;
 
 import java.util.ArrayList;
@@ -141,6 +138,18 @@ public final class SampleFormatter
 			{
 				final String parameterValueOfFirstSample = firstSample.getParameterValueBy(SampleKey.RUK_ID, key);
 				String parameterValueOfSecondSample = secondSample.getParameterValueBy(SampleKey.RUK_ID, key);
+				
+				if (!parameterValueOfFirstSample.equals(parameterValueOfSecondSample))
+				{
+					isEquals = false;
+					break;
+				}
+			}
+			
+			if (key instanceof LpKey)
+			{
+				final String parameterValueOfFirstSample = firstSample.getParameterValueBy(SampleKey.LP_ID, key);
+				String parameterValueOfSecondSample = secondSample.getParameterValueBy(SampleKey.LP_ID, key);
 				
 				if (!parameterValueOfFirstSample.equals(parameterValueOfSecondSample))
 				{

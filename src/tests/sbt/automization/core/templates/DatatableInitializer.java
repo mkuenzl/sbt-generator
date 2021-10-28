@@ -35,7 +35,7 @@ public class DatatableInitializer
 	
 	public static void createDatatablesFromExcel()
 	{
-		File file = new File("test-resources/input/excel/excel-template-test.xlsx");
+		File file = new File("tests-resources/input/excel/excel-template-test.xlsx");
 		ExcelParser parser = new ExcelParser();
 		parser.setSheetName("Daten");
 		Examination examination = new Examination(parser.parse(file), file.getParent());
@@ -49,6 +49,7 @@ public class DatatableInitializer
 
 	public List<DataTable> initializeDatatables()
 	{
+		createDatatablesFromExcel();
 		List<DataTable> dataTables = new ArrayList<>();
 
 		for (int i = 0 ; i < 24 ; i++)

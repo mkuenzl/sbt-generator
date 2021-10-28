@@ -30,7 +30,6 @@ public final class DataTableFactory
 		
 		createParameters(csvTable);
 		
-		addParametersToProbes();
 		addParametersToSamples();
 		
 		addSamplesToProbes();
@@ -178,29 +177,22 @@ public final class DataTableFactory
 			
 			for (DataTable parameter : parameters)
 			{
+				Parameter par = (Parameter) parameter;
+				
 				if (table.isRelatedBy(SampleKey.CHEMISTRY_ID, ChemistryKey.ID, parameter))
 				{
-					table.addParameter((Parameter) parameter);
+					table.addParameter(par);
+					par.setSample(table);
 				}
 				if (table.isRelatedBy(SampleKey.RUK_ID, RuKKey.ID, parameter))
 				{
-					table.addParameter((Parameter) parameter);
+					table.addParameter(par);
+					par.setSample(table);
 				}
-			}
-		}
-	}
-	
-	private static void addParametersToProbes()
-	{
-		for (DataTable probe : probes)
-		{
-			Probe table = (Probe) probe;
-			
-			for (DataTable parameter : parameters)
-			{
-				if (table.isRelatedBy(ProbeKey.LP_ID, LpKey.ID, parameter))
+				if (table.isRelatedBy(SampleKey.LP_ID, LpKey.ID, parameter))
 				{
-					table.addParameter((Parameter) parameter);
+					table.addParameter(par);
+					par.setSample(table);
 				}
 			}
 		}

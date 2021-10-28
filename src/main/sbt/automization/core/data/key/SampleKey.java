@@ -298,6 +298,14 @@ public enum SampleKey implements Key
 				{
 					return addSampleTag("PROBE.ID");
 				}
+			},
+	LP_ID
+			{
+				@Override
+				public String getKey()
+				{
+					return addSampleTag("LP.ID");
+				}
 			};
 	
 	private static String addSampleTag(String parameter)
