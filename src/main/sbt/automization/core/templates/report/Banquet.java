@@ -6,9 +6,9 @@ import sbt.automization.core.format.printer.UtilityPrinter;
 import sbt.automization.core.html.HtmlCell;
 import sbt.automization.core.html.HtmlRow;
 import sbt.automization.core.styles.StyleParameter;
-import sbt.automization.core.templates.helper.RowFactory;
-import sbt.automization.core.templates.helper.information.*;
-import sbt.automization.core.templates.helper.strategies.CellPerProbe;
+import sbt.automization.core.templates.construction.RowFactory;
+import sbt.automization.core.retrieval.*;
+import sbt.automization.core.templates.construction.strategies.CellPerProbe;
 
 import java.util.Collection;
 import java.util.List;

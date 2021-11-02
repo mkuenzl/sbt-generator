@@ -6,9 +6,9 @@ import sbt.automization.core.format.printer.UtilityPrinter;
 import sbt.automization.core.html.HtmlCell;
 import sbt.automization.core.html.HtmlRow;
 import sbt.automization.core.styles.StyleParameter;
-import sbt.automization.core.templates.helper.RowFactory;
-import sbt.automization.core.templates.helper.information.*;
-import sbt.automization.core.templates.helper.strategies.CellPerProbe;
+import sbt.automization.core.templates.construction.RowFactory;
+import sbt.automization.core.retrieval.*;
+import sbt.automization.core.templates.construction.strategies.CellPerProbe;
 
 import java.util.Collection;
 import java.util.List;
@@ -81,7 +81,7 @@ public final class BaseCourseWithoutBinder extends Report
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"E<sub>Vdyn</sub>,"}, "MN/m²"), new EvDynRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"E<sub>Vdyn (-15%)</sub>,"}, "MN/m²"), new EvDyn85Retrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"E<sub>V2</sub><sup>[41]</sup>,"}, "MN" +
-				"/m²"), new Ev2Retrieval()));
+				"/m²"), new Ev2WithEv85Retrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Soll Wert,"}, "E<sub>V2</sub>"), new EvMinimumBorderRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Material"}), new MaterialTobRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Dicke,"}, "cm"), new SizeRetrieval()));

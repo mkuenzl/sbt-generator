@@ -1,5 +1,6 @@
 package sbt.automization.core.templates.report;
 
+import sbt.automization.core.Project;
 import sbt.automization.core.data.DataTable;
 import sbt.automization.core.data.Outcrop;
 import sbt.automization.core.format.text.StandardCellTextFormatter;
@@ -11,10 +12,11 @@ import sbt.automization.core.styles.ReportStyle;
 import sbt.automization.core.styles.StyleParameter;
 import sbt.automization.core.styles.StyleParameterBuilder;
 import sbt.automization.core.templates.HtmlTemplate;
-import sbt.automization.core.templates.helper.HeaderFactory;
+import sbt.automization.core.templates.construction.HeaderFactory;
 import sbt.automization.core.util.DatatableFilter;
 import sbt.automization.core.util.ListSeparator;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -55,6 +57,13 @@ public abstract class Report implements HtmlTemplate
 		this.template = new StringBuilder();
 		this.outcrop = outcrop;
 		this.header = new HeaderFactory(getStyleParameterHeader());
+	}
+	
+	@Override
+	public void constructTemplate(Project project)
+	{
+		List<DataTable> dataTables = new ArrayList<>(project.getProbes());
+		constructTemplate(dataTables);
 	}
 	
 	public String getTemplate()

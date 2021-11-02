@@ -6,9 +6,9 @@ import sbt.automization.core.html.HtmlCell;
 import sbt.automization.core.html.HtmlFactory;
 import sbt.automization.core.html.HtmlRow;
 import sbt.automization.core.styles.ReportStyle;
-import sbt.automization.core.templates.helper.RowFactory;
-import sbt.automization.core.templates.helper.information.*;
-import sbt.automization.core.templates.helper.strategies.CellPerSample;
+import sbt.automization.core.templates.construction.RowFactory;
+import sbt.automization.core.retrieval.*;
+import sbt.automization.core.templates.construction.strategies.CellPerSample;
 
 import java.util.Collection;
 import java.util.List;

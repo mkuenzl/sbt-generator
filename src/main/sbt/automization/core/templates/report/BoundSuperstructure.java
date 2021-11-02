@@ -2,9 +2,9 @@ package sbt.automization.core.templates.report;
 
 import sbt.automization.core.data.DataTable;
 import sbt.automization.core.data.Outcrop;
-import sbt.automization.core.templates.helper.RowFactory;
-import sbt.automization.core.templates.helper.information.*;
-import sbt.automization.core.templates.helper.strategies.CellPerProbe;
+import sbt.automization.core.templates.construction.RowFactory;
+import sbt.automization.core.retrieval.*;
+import sbt.automization.core.templates.construction.strategies.CellPerProbe;
 import sbt.automization.core.templates.report.tableparts.CrossSectionWithPitch;
 import sbt.automization.core.templates.report.tableparts.CrossSectionWithoutPitch;
 

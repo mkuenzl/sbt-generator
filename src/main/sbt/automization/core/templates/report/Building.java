@@ -13,11 +13,11 @@ import sbt.automization.core.styles.BuildingStyle;
 import sbt.automization.core.styles.ReportStyle;
 import sbt.automization.core.styles.StyleParameter;
 import sbt.automization.core.styles.StyleParameterBuilder;
-import sbt.automization.core.templates.helper.RowFactory;
-import sbt.automization.core.templates.helper.information.*;
-import sbt.automization.core.templates.helper.strategies.CellPerSample;
-import sbt.automization.core.templates.helper.strategies.CellPerSampleCombined;
-import sbt.automization.core.templates.helper.strategies.CellPerSampleCombinedChemistry;
+import sbt.automization.core.templates.construction.RowFactory;
+import sbt.automization.core.retrieval.*;
+import sbt.automization.core.templates.construction.strategies.CellPerSample;
+import sbt.automization.core.templates.construction.strategies.CellPerSampleCombined;
+import sbt.automization.core.templates.construction.strategies.CellPerSampleCombinedChemistry;
 import sbt.automization.core.util.DatatableFilter;
 import sbt.automization.core.util.ListSeparator;
 
