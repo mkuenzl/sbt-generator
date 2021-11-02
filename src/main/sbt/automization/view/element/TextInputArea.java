@@ -6,7 +6,6 @@ import java.awt.*;
 
 public class TextInputArea extends JTextArea
 {
-	
 	public TextInputArea(String text, Rectangle position)
 	{
 		this.setBounds(position);

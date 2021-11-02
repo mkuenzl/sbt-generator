@@ -4,21 +4,31 @@ package sbt.automization.core.data;
 import sbt.automization.core.data.key.*;
 import sbt.automization.view.popup.ErrorPopup;
 
+import javax.xml.crypto.Data;
 import java.util.*;
 
 public final class DataTableFactory
 {
-	static List<DataTable> probes = new ArrayList<>();
-	static List<DataTable> samples = new ArrayList<>();
-	static List<DataTable> parameters = new ArrayList<>();
+	static List<Probe> probes = new ArrayList<>();
+	static List<Sample> samples = new ArrayList<>();
+	static List<Parameter> parameters = new ArrayList<>();
 	
 	private DataTableFactory()
 	{
 	}
 	
-	public static List<DataTable> getProbes(List<Map<String, String>> csvTable)
+	public static List<DataTable> getTables()
 	{
-		initialize(csvTable);
+		List<DataTable> tables = new ArrayList<>();
+		tables.addAll(probes);
+		tables.addAll(samples);
+		tables.addAll(parameters);
+		
+		return tables;
+	}
+	
+	public static List<Probe> getProbes()
+	{
 		return probes;
 	}
 	
@@ -46,8 +56,8 @@ public final class DataTableFactory
 		// PROBE.
 		for (Map<String, String> csvRow : csvTable)
 		{
-			DataTable probe = createProbeFrom(csvRow);
-			if (!probe.isEmpty() && !isTableInList(probes, probe))
+			Probe probe = createProbeFrom(csvRow);
+			if (!probe.isEmpty() && !isTableInList(probe))
 			{
 				probes.add(probe);
 			}
@@ -80,22 +90,52 @@ public final class DataTableFactory
 		return identifierMap;
 	}
 	
-	private static boolean isTableInList(List<DataTable> compareToList, DataTable target)
+	private static boolean compare(DataTable target, DataTable table)
 	{
 		Map<String, String> targetTable = target.getTable();
+		Map<String, String> compareTable = table.getTable();
 		
-		for (DataTable dataTable : compareToList)
+		return targetTable.equals(compareTable);
+	}
+	
+	private static boolean isTableInList(DataTable target)
+	{
+		if (target instanceof Probe)
 		{
-			Map<String, String> compareToTable = dataTable.getTable();
-			
-			if (targetTable.equals(compareToTable))
+			for (Probe probe : probes)
 			{
-				return true;
+				if (compare(target, probe))
+				{
+					return true;
+				}
+			}
+		}
+		
+		if (target instanceof Sample)
+		{
+			for (Sample sample : samples)
+			{
+				if (compare(target, sample))
+				{
+					return true;
+				}
+			}
+		}
+		
+		if (target instanceof Parameter)
+		{
+			for (Parameter parameter : parameters)
+			{
+				if (compare(target, parameter))
+				{
+					return true;
+				}
 			}
 		}
 		
 		return false;
 	}
+	
 	
 	public static void createSamples(List<Map<String, String>> csvTable)
 	{
@@ -108,8 +148,8 @@ public final class DataTableFactory
 		// SAMPLE.
 		for (Map<String, String> csvRow : csvTable)
 		{
-			DataTable sample = createSampleFrom(csvRow);
-			if (!sample.isEmpty() && !isTableInList(samples, sample))
+			Sample sample = createSampleFrom(csvRow);
+			if (!sample.isEmpty() && !isTableInList(sample))
 			{
 				samples.add(sample);
 			}
@@ -137,20 +177,20 @@ public final class DataTableFactory
 		// PARAMETER.
 		for (Map<String, String> csvRow : csvTable)
 		{
-			List<DataTable> parameter = createParameterFrom(csvRow);
-			for (DataTable dataTable : parameter)
+			List<Parameter> parameterList = createParameterFrom(csvRow);
+			for (Parameter parameter : parameterList)
 			{
-				if (!dataTable.isEmpty() && !isTableInList(parameters, dataTable))
+				if (!parameter.isEmpty() && !isTableInList(parameter))
 				{
-					parameters.add(dataTable);
+					parameters.add(parameter);
 				}
 			}
 		}
 	}
 	
-	private static List<DataTable> createParameterFrom(Map<String, String> csvRow)
+	private static List<Parameter> createParameterFrom(Map<String, String> csvRow)
 	{
-		List<DataTable> parameter = new ArrayList<>();
+		List<Parameter> parameter = new ArrayList<>();
 		
 		parameter.add(createParameterFrom(csvRow, "PARAMETER.LP."));
 		parameter.add(createParameterFrom(csvRow, "PARAMETER.CHEMISTRY."));
@@ -171,28 +211,24 @@ public final class DataTableFactory
 	
 	private static void addParametersToSamples()
 	{
-		for (DataTable sample : samples)
+		for (Sample sample : samples)
 		{
-			Sample table = (Sample) sample;
-			
-			for (DataTable parameter : parameters)
+			for (Parameter parameter : parameters)
 			{
-				Parameter par = (Parameter) parameter;
-				
-				if (table.isRelatedBy(SampleKey.CHEMISTRY_ID, ChemistryKey.ID, parameter))
+				if (sample.isRelatedBy(SampleKey.CHEMISTRY_ID, ChemistryKey.ID, parameter))
 				{
-					table.addParameter(par);
-					par.setSample(table);
+					sample.addParameter(parameter);
+					parameter.addSample(sample);
 				}
-				if (table.isRelatedBy(SampleKey.RUK_ID, RuKKey.ID, parameter))
+				if (sample.isRelatedBy(SampleKey.RUK_ID, RuKKey.ID, parameter))
 				{
-					table.addParameter(par);
-					par.setSample(table);
+					sample.addParameter(parameter);
+					parameter.addSample(sample);
 				}
-				if (table.isRelatedBy(SampleKey.LP_ID, LpKey.ID, parameter))
+				if (sample.isRelatedBy(SampleKey.LP_ID, LpKey.ID, parameter))
 				{
-					table.addParameter(par);
-					par.setSample(table);
+					sample.addParameter(parameter);
+					parameter.addSample(sample);
 				}
 			}
 		}
@@ -200,19 +236,17 @@ public final class DataTableFactory
 	
 	private static void addSamplesToProbes()
 	{
-		for (DataTable probe : probes)
+		for (Probe probe : probes)
 		{
-			Probe table = (Probe) probe;
-			
-			for (DataTable sample : samples)
+			for (Sample sample : samples)
 			{
-				if (table.isRelatedBy(ProbeKey.ID, SampleKey.PROBE_ID, sample))
+				if (probe.isRelatedBy(ProbeKey.ID, SampleKey.PROBE_ID, sample))
 				{
-					table.addSample((Sample) sample);
-					((Sample) sample).setProbe(table);
+					probe.addSample(sample);
+					sample.setProbe(probe);
 				}
 			}
-			sortSamples(table);
+			sortSamples(probe);
 		}
 	}
 	
@@ -227,15 +261,13 @@ public final class DataTableFactory
 		}
 	}
 	
-	public static List<DataTable> getSamples(List<Map<String, String>> csvTable)
+	public static List<Sample> getSamples()
 	{
-		initialize(csvTable);
 		return samples;
 	}
 	
-	public static List<DataTable> getParameters(List<Map<String, String>> csvTable)
+	public static List<Parameter> getParameters()
 	{
-		initialize(csvTable);
 		return parameters;
 	}
 	

@@ -19,9 +19,10 @@ public class DataTableFactoryCreateObjectsTest
 			add(new HashMap<>());
 			add(new HashMap<>());
 		}};
-
-		List<DataTable> target = DataTableFactory.getProbes(dataTable);
-
+		
+		DataTableFactory.initialize(dataTable);
+		List<Probe> target = DataTableFactory.getProbes();
+		
 		ArrayList<DataTable> expected = new ArrayList<>();
 
 		Assert.assertEquals(expected, target);
@@ -47,9 +48,10 @@ public class DataTableFactoryCreateObjectsTest
 				put("TEST.CHEMISTRY.ID", "C1");
 			}});
 		}};
-
-		List<DataTable> target = DataTableFactory.getProbes(dataTable);
-
+		
+		DataTableFactory.initialize(dataTable);
+		List<Probe> target = DataTableFactory.getProbes();
+		
 		ArrayList<DataTable> expected = new ArrayList<>();
 
 		Assert.assertEquals(expected, target);
@@ -59,9 +61,10 @@ public class DataTableFactoryCreateObjectsTest
 	public void createEmptyListTest()
 	{
 		ArrayList<Map<String, String>> dataTable = new ArrayList<>();
-
-		List<DataTable> target = DataTableFactory.getProbes(dataTable);
-
+		
+		DataTableFactory.initialize(dataTable);
+		List<Probe> target = DataTableFactory.getProbes();
+		
 		ArrayList<DataTable> expected = new ArrayList<>();
 
 		Assert.assertEquals(expected, target);
@@ -96,9 +99,10 @@ public class DataTableFactoryCreateObjectsTest
 				put("PROBE.LP.ID", "LP1");
 			}});
 		}};
-
-		List<DataTable> target = DataTableFactory.getProbes(dataTable);
-
+		
+		DataTableFactory.initialize(dataTable);
+		List<Probe> target = DataTableFactory.getProbes();
+		
 		ArrayList<DataTable> expected = new ArrayList<>()
 		{{
 			add(new Probe(new HashMap<>()
@@ -132,9 +136,10 @@ public class DataTableFactoryCreateObjectsTest
 				put("PROBE.LP.ID", "LP1");
 			}});
 		}};
-
-		List<DataTable> target = DataTableFactory.getProbes(dataTable);
-
+		
+		DataTableFactory.initialize(dataTable);
+		List<Probe> target = DataTableFactory.getProbes();
+		
 		ArrayList<DataTable> expected = new ArrayList<>()
 		{{
 			add(new Probe(new HashMap<>()
@@ -169,9 +174,10 @@ public class DataTableFactoryCreateObjectsTest
 				put("PARAMETER.RUK.ID", "noise");
 			}});
 		}};
-
-		List<DataTable> target = DataTableFactory.getSamples(dataTable);
-
+		
+		DataTableFactory.initialize(dataTable);
+		List<Sample> target = DataTableFactory.getSamples();
+		
 		ArrayList<DataTable> expected = new ArrayList<>()
 		{{
 			add(new Sample(new HashMap<>()
@@ -210,9 +216,10 @@ public class DataTableFactoryCreateObjectsTest
 				put("SAMPLE.ID", "1");
 			}});
 		}};
-
-		List<DataTable> target = DataTableFactory.getSamples(dataTable);
-
+		
+		DataTableFactory.initialize(dataTable);
+		List<Sample> target = DataTableFactory.getSamples();
+		
 		ArrayList<DataTable> expected = new ArrayList<>()
 		{{
 			add(new Sample(new HashMap<>()
@@ -256,8 +263,9 @@ public class DataTableFactoryCreateObjectsTest
 				put("PARAMETER.RUK.ID", "A1");
 			}});
 		}};
-
-		List<DataTable> target = DataTableFactory.getSamples(dataTable);
+		
+		DataTableFactory.initialize(dataTable);
+		List<Sample> target = DataTableFactory.getSamples();
 
 		Sample expectedSample = new Sample(new HashMap<>()
 		{{
@@ -301,7 +309,8 @@ public class DataTableFactoryCreateObjectsTest
 			}});
 		}};
 
-		List<DataTable> target = DataTableFactory.getParameters(dataTable);
+		DataTableFactory.initialize(dataTable);
+		List<Parameter> target = DataTableFactory.getParameters();
 
 		ArrayList<DataTable> expected = new ArrayList<>()
 		{{
@@ -331,7 +340,8 @@ public class DataTableFactoryCreateObjectsTest
 			}});
 		}};
 
-		List<DataTable> target = DataTableFactory.getParameters(dataTable);
+		DataTableFactory.initialize(dataTable);
+		List<Parameter> target = DataTableFactory.getParameters();
 
 		//Watch out there may be different orderings!
 		ArrayList<DataTable> expected = new ArrayList<>()
@@ -378,8 +388,9 @@ public class DataTableFactoryCreateObjectsTest
 				put("PARAMETER.LP.WERT_1", "3");
 			}});
 		}};
-
-		List<DataTable> target = DataTableFactory.getParameters(dataTable);
+		
+		DataTableFactory.initialize(dataTable);
+		List<Parameter> target = DataTableFactory.getParameters();
 
 		ArrayList<DataTable> expected = new ArrayList<>()
 		{{
@@ -440,8 +451,8 @@ public class DataTableFactoryCreateObjectsTest
 				put("SAMPLE.NUMMER", "3");
 			}});
 		}};
-
-		List<DataTable> target = DataTableFactory.getProbes(dataTable);
+		DataTableFactory.initialize(dataTable);
+		List<Probe> target = DataTableFactory.getProbes();
 
 		Probe expectedProbe = new Probe(new HashMap<>()
 		{{
@@ -532,8 +543,9 @@ public class DataTableFactoryCreateObjectsTest
 				put("SAMPLE.NUMMER", "3");
 			}});
 		}};
-
-		List<DataTable> target = DataTableFactory.getProbes(dataTable);
+		
+		DataTableFactory.initialize(dataTable);
+		List<Probe> target = DataTableFactory.getProbes();
 
 		Probe expectedProbe = new Probe(new HashMap<>()
 		{{

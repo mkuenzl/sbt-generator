@@ -1,7 +1,7 @@
 package sbt.automization.core.export;
 
+import sbt.automization.core.Project;
 import sbt.automization.core.data.DataTable;
-import sbt.automization.core.data.Examination;
 import sbt.automization.core.templates.HtmlTemplate;
 
 import java.io.*;
@@ -11,23 +11,23 @@ import java.util.List;
 /**
  * Abstract class for an export strategy pattern
  */
-public abstract class ATemplateExport
+public abstract class TemplateExport
 {
 	HtmlTemplate tableExportStrategy;
 	
-	ATemplateExport(final HtmlTemplate tableExportStrategy)
+	TemplateExport(final HtmlTemplate tableExportStrategy)
 	{
 		this.tableExportStrategy = tableExportStrategy;
 	}
 	
-	public ATemplateExport()
+	public TemplateExport()
 	{
 	
 	}
 	
-	public void export(Examination examination) throws Exception
+	public void export(Project project, String path) throws Exception
 	{
-		export(getPath(), format(examination));
+		export(getPath(path), format(project));
 	}
 	
 	private void export(String path, String content) throws Exception
@@ -48,7 +48,7 @@ public abstract class ATemplateExport
 	
 	public abstract String getPath();
 	
-	abstract String format(Examination examination);
+	abstract String format(Project project);
 	
 	public void export(List<DataTable> tables)
 	{

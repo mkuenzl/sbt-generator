@@ -2,21 +2,19 @@ package sbt.automization.core.templates.report;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import sbt.automization.core.data.DataTable;
-import sbt.automization.core.export.HtmlTemplateExport;
-import sbt.automization.core.templates.DatatableInitializer;
+import sbt.automization.core.ProjectEngine;
+import sbt.automization.core.export.HtmlExport;
+import sbt.automization.core.export.TemplateExport;
 import sbt.automization.core.templates.appendix.AttemptTemplate;
 import sbt.automization.core.templates.basic.Coordinates;
 
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ReportTemplateBuildingTest
 {
-	static List<DataTable> dataTables = new ArrayList<>();
+	static ProjectEngine projectEngine;
 	
 	String templateExportPath = System.getProperty("user.dir")
 			.concat(File.separator)
@@ -28,122 +26,104 @@ public class ReportTemplateBuildingTest
 	@BeforeClass
 	public static void initializeDatatables() throws Exception
 	{
-		//Thread thread = new Thread(new EnterRobot());
-		//thread.start();
-		dataTables = new DatatableInitializer().initializeDatatables();
+		projectEngine = new ProjectEngine();
+		projectEngine.retrieveDataFrom(new File("tests-resources/input/excel/excel-template-test.xlsx"), "Daten");
 	}
 	
-	@Test
-	public void GOBTemplateTest() throws IOException
+	
+	private void createAndOpenTemplate(TemplateExport exportStrategy) throws Exception
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(BoundSuperstructure.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-		
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
+		projectEngine.export(exportStrategy, templateExportPath);
+		openTemplateFile(exportStrategy.getPath(templateExportPath));
 	}
 	
-	public static void openExportFile(String path) throws IOException
+	public static void openTemplateFile(String path) throws IOException
 	{
 		File htmlFile = new File(path);
 		Desktop.getDesktop().browse(htmlFile.toURI());
 	}
 	
 	@Test
-	public void TOBTemplateTest() throws IOException
+	public void GOBTemplateTest() throws Exception
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(BaseCourseWithoutBinder.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-		
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
+		TemplateExport exportStrategy = new HtmlExport(BoundSuperstructure.getInstance());
+		createAndOpenTemplate(exportStrategy);
 	}
 	
 	@Test
-	public void UGTemplateTest() throws IOException
+	public void TOBTemplateTest() throws Exception
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Underground.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-		
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
+		TemplateExport exportStrategy = new HtmlExport(BaseCourseWithoutBinder.getInstance());
+		createAndOpenTemplate(exportStrategy);
 	}
 	
 	@Test
-	public void OHTemplateTest() throws IOException
+	public void UGTemplateTest() throws Exception
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Topsoil.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-		
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
+		TemplateExport exportStrategy = new HtmlExport(Underground.getInstance());
+		createAndOpenTemplate(exportStrategy);
 	}
 	
 	@Test
-	public void ExampleTemplateTest() throws IOException
+	public void OHTemplateTest() throws Exception
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(AttemptTemplate.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-		
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
+		TemplateExport exportStrategy = new HtmlExport(Topsoil.getInstance());
+		createAndOpenTemplate(exportStrategy);
 	}
 	
 	@Test
-	public void TMHBTemplateTest() throws IOException
+	public void ExampleTemplateTest() throws Exception
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(BaseCourseWithHydraulicBinder.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-		
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
+		TemplateExport exportStrategy = new HtmlExport(AttemptTemplate.getInstance());
+		createAndOpenTemplate(exportStrategy);
 	}
 	
 	@Test
-	public void CONCRETETemplateTest() throws IOException
+	public void TMHBTemplateTest() throws Exception
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Concrete.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-		
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
+		TemplateExport exportStrategy = new HtmlExport(BaseCourseWithHydraulicBinder.getInstance());
+		createAndOpenTemplate(exportStrategy);
 	}
 	
 	@Test
-	public void GAPTemplateTest() throws IOException
+	public void CONCRETETemplateTest() throws Exception
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Gap.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-		
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
+		TemplateExport exportStrategy = new HtmlExport(Concrete.getInstance());
+		createAndOpenTemplate(exportStrategy);
 	}
 	
 	@Test
-	public void HEAPTemplateTest() throws IOException
+	public void GAPTemplateTest() throws Exception
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Heap.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-		
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
+		TemplateExport exportStrategy = new HtmlExport(Gap.getInstance());
+		createAndOpenTemplate(exportStrategy);
 	}
 	
 	@Test
-	public void COORDINATETemplateTest() throws IOException
+	public void HEAPTemplateTest() throws Exception
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Coordinates.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-		
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
+		TemplateExport exportStrategy = new HtmlExport(Heap.getInstance());
+		createAndOpenTemplate(exportStrategy);
 	}
 	
 	@Test
-	public void BANQUETTemplateTest() throws IOException
+	public void COORDINATETemplateTest() throws Exception
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Banquet.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-		
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
+		TemplateExport exportStrategy = new HtmlExport(Coordinates.getInstance());
+		createAndOpenTemplate(exportStrategy);
+	}
+	
+	@Test
+	public void BANQUETTemplateTest() throws Exception
+	{
+		TemplateExport exportStrategy = new HtmlExport(Banquet.getInstance());
+		createAndOpenTemplate(exportStrategy);
 	}
 	
 	@Test
 	public void BUILDINGTemplateTest() throws Exception
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(Building.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-		
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
+		TemplateExport exportStrategy = new HtmlExport(Building.getInstance());
+		createAndOpenTemplate(exportStrategy);
 	}
 }

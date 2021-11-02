@@ -1,10 +1,12 @@
 package sbt.automization.core.data;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public final class Parameter extends DataTableImpl
 {
-	private Sample sample;
+	private List<Sample> samples;
 	
 	public Parameter(Map<String, String> informationMap)
 	{
@@ -22,13 +24,16 @@ public final class Parameter extends DataTableImpl
 		return 0;
 	}
 	
-	public Sample getSample()
+	public List<Sample> getSamples()
 	{
-		return sample;
+		return samples;
 	}
 	
-	public void setSample(Sample sample)
+	public void addSample(Sample sample)
 	{
-		this.sample = sample;
+		if (this.samples == null)
+			this.samples = new ArrayList<>();
+		
+		this.samples.add(sample);
 	}
 }

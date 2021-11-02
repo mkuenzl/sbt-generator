@@ -50,5 +50,4 @@ public final class DatatableSerializationFactory
 
 		return table;
 	}
-
 }

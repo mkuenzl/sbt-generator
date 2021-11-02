@@ -9,8 +9,8 @@ import java.util.Map;
 
 public final class Sample extends DataTableImpl
 {
-	private final List<Parameter> parameters = new ArrayList<>();
 	private Probe probe;
+	private final List<Parameter> parameters = new ArrayList<>();
 	
 	public Sample(Map<String, String> informationMap)
 	{

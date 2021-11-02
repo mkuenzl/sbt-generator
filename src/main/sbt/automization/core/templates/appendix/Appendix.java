@@ -1,9 +1,14 @@
 package sbt.automization.core.templates.appendix;
 
+import sbt.automization.core.Project;
+import sbt.automization.core.data.DataTable;
 import sbt.automization.core.format.text.StandardCellTextFormatter;
 import sbt.automization.core.format.text.TextFormatter;
 import sbt.automization.core.html.HtmlTable;
 import sbt.automization.core.templates.HtmlTemplate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Abstract class for all html tables
@@ -47,6 +52,13 @@ public abstract class Appendix implements HtmlTemplate
 		template.setLength(0);
 		linesPerPage = 0;
 		lines = 0;
+	}
+	
+	@Override
+	public void constructTemplate(Project project)
+	{
+		List<DataTable> dataTables = new ArrayList<>(project.getProbes());
+		constructTemplate(dataTables);
 	}
 	
 	public void addToTemplate(final String table)

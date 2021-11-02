@@ -1,11 +1,13 @@
 package sbt.automization.core.templates.basic;
 
+import sbt.automization.core.Project;
 import sbt.automization.core.data.DataTable;
 import sbt.automization.core.html.HtmlTable;
 import sbt.automization.core.styles.BasicStyle;
 import sbt.automization.core.templates.HtmlTemplate;
 import sbt.automization.core.util.ListSeparator;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -69,6 +71,13 @@ public abstract class TableTemplate implements HtmlTemplate
 			createTable();
 			addTableHeader();
 		}
+	}
+	
+	@Override
+	public void constructTemplate(Project project)
+	{
+		List<DataTable> dataTables = new ArrayList<>(project.getProbes());
+		constructTemplate(dataTables);
 	}
 	
 	abstract void addTableHeader();

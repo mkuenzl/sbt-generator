@@ -2,93 +2,83 @@ package sbt.automization.core.templates.appendix;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import sbt.automization.core.data.DataTable;
-import sbt.automization.core.export.HtmlTemplateExport;
-import sbt.automization.core.templates.DatatableInitializer;
-import sbt.automization.core.templates.EnterRobot;
+import sbt.automization.core.ProjectEngine;
+import sbt.automization.core.export.HtmlExport;
+import sbt.automization.core.export.TemplateExport;
 
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AppendixTemplateBuildingTest
 {
-	static List<DataTable> dataTables = new ArrayList<>();
-
+	static ProjectEngine projectEngine;
+	
 	String templateExportPath = System.getProperty("user.dir")
 			.concat(File.separator)
 			.concat("tests-resources")
 			.concat(File.separator)
 			.concat("template-output")
 			.concat(File.separator);
-
+	
 	@BeforeClass
 	public static void initializeDatatables() throws Exception
 	{
-		//Thread thread = new Thread(new EnterRobot());
-		//thread.start();
-		dataTables = new DatatableInitializer().initializeDatatables();
+		projectEngine = new ProjectEngine();
+		projectEngine.retrieveDataFrom(new File("tests-resources/input/excel/excel-template-test.xlsx"), "Daten");
 	}
-
-	@Test
-	public void createExplorationSiteTemplate() throws IOException
+	
+	private void createAndOpenTemplate(TemplateExport exportStrategy) throws Exception
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(ExplorationSite.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
+		projectEngine.export(exportStrategy, templateExportPath);
+		openTemplateFile(exportStrategy.getPath(templateExportPath));
 	}
-
-	public static void openExportFile(String path) throws IOException
+	
+	public static void openTemplateFile(String path) throws IOException
 	{
 		File htmlFile = new File(path);
 		Desktop.getDesktop().browse(htmlFile.toURI());
 	}
-
+	
 	@Test
-	public void createRukTemplate() throws IOException
+	public void createExplorationSiteTemplate() throws Exception
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(RingAndBall.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
+		TemplateExport exportStrategy = new HtmlExport(ExplorationSite.getInstance());
+		createAndOpenTemplate(exportStrategy);
 	}
-
+	
 	@Test
-	public void createLpTemplate() throws IOException
+	public void createRukTemplate() throws Exception
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(LoadPlate.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
+		TemplateExport exportStrategy = new HtmlExport(RingAndBall.getInstance());
+		createAndOpenTemplate(exportStrategy);
 	}
-
+	
 	@Test
-	public void createPnTemplate() throws IOException
+	public void createLpTemplate() throws Exception
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(SamplingProtocol.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
+		TemplateExport exportStrategy = new HtmlExport(LoadPlate.getInstance());
+		createAndOpenTemplate(exportStrategy);
 	}
-
+	
 	@Test
-	public void createPnHeapTemplate() throws IOException
+	public void createPnTemplate() throws Exception
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(SamplingProtocolHeap.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
+		TemplateExport exportStrategy = new HtmlExport(SamplingProtocol.getInstance());
+		createAndOpenTemplate(exportStrategy);
 	}
-
+	
 	@Test
-	public void createPnBuildingTemplate() throws IOException
+	public void createPnHeapTemplate() throws Exception
 	{
-		HtmlTemplateExport htmlTemplateExportStrategy = new HtmlTemplateExport(SamplingProtocolBuilding.getInstance());
-		htmlTemplateExportStrategy.export(templateExportPath, dataTables);
-
-		openExportFile(htmlTemplateExportStrategy.getPath(templateExportPath));
+		TemplateExport exportStrategy = new HtmlExport(SamplingProtocolHeap.getInstance());
+		createAndOpenTemplate(exportStrategy);
+	}
+	
+	@Test
+	public void createPnBuildingTemplate() throws Exception
+	{
+		TemplateExport exportStrategy = new HtmlExport(SamplingProtocolBuilding.getInstance());
+		createAndOpenTemplate(exportStrategy);
 	}
 }

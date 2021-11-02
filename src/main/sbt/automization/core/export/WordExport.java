@@ -1,7 +1,7 @@
 package sbt.automization.core.export;
 
+import sbt.automization.core.Project;
 import sbt.automization.core.data.DataTable;
-import sbt.automization.core.data.Examination;
 import sbt.automization.core.html.Html;
 import sbt.automization.core.html.HtmlBody;
 import sbt.automization.core.html.HtmlDiv;
@@ -13,10 +13,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 
-/**
- * Class for the HTML export strategy
- */
-public final class HtmlTemplateExport extends ATemplateExport
+public final class WordExport extends TemplateExport
 {
 	static final String HTML_BODY_STYLE_ATTRIBUTE = "'tab-interval:35.4pt;word-wrap:break-word'";
 	/**
@@ -25,12 +22,12 @@ public final class HtmlTemplateExport extends ATemplateExport
 	static final String HTML_ATTRIBUTE_XMLNSO = "\"urn:schemas-microsoft-com:office:office\"";
 	static final String HTML_ATTRIBUTE_XMLNS = "\"http://www.w3.org/TR/REC-html40\"";
 	
-	public HtmlTemplateExport(final HtmlTemplate strategy)
+	public WordExport(final HtmlTemplate strategy)
 	{
 		super(strategy);
 	}
 	
-	public HtmlTemplateExport()
+	public WordExport()
 	{
 		super();
 	}
@@ -38,40 +35,15 @@ public final class HtmlTemplateExport extends ATemplateExport
 	@Override
 	public String getPath()
 	{
-		if (Examination.exportPath == null)
-			return System.getProperty("user.dir").concat(File.separator).concat(tableExportStrategy.getExportFileName()).concat(".html");
-		
-		return Examination.exportPath.concat(File.separator).concat(tableExportStrategy.getExportFileName()).concat(".html");
+		return null;
 	}
 	
 	@Override
-	String format(final Examination examination)
+	String format(Project project)
 	{
-		tableExportStrategy.constructTemplate(examination);
-		
-		return format(tableExportStrategy.getTemplate());
+		return null;
 	}
 	
-	/**
-	 * Method constructs a complete HTML file with
-	 * <html>
-	 * <head>
-	 * <css>
-	 *
-	 * </css>
-	 * </head>
-	 * <body>
-	 *          <div>
-	 *              <table>
-	 *                  from strategy
-	 *              </table>
-	 *          </div>
-	 *      </body>
-	 * </html>
-	 *
-	 * @param tables expects a list of explorations sites
-	 * @return a HTML file containing the strategy table
-	 */
 	@Override
 	String format(List<DataTable> tables)
 	{
@@ -83,7 +55,7 @@ public final class HtmlTemplateExport extends ATemplateExport
 	@Override
 	public String getPath(String path)
 	{
-		return path.concat(tableExportStrategy.getExportFileName()).concat(".html");
+		return path.concat(tableExportStrategy.getExportFileName()).concat(".docx");
 	}
 	
 	@Override

@@ -1,6 +1,7 @@
 package sbt.automization.core.templates.appendix;
 
 
+import sbt.automization.core.Project;
 import sbt.automization.core.data.DataTable;
 import sbt.automization.core.data.Parameter;
 import sbt.automization.core.data.Probe;
@@ -12,6 +13,7 @@ import sbt.automization.core.format.printer.UtilityPrinter;
 import sbt.automization.core.format.text.LoadPlateTextFormatter;
 import sbt.automization.core.html.HtmlFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public final class LoadPlate extends Appendix
@@ -36,6 +38,13 @@ public final class LoadPlate extends Appendix
 			}
 		}
 		return instance;
+	}
+	
+	@Override
+	public void constructTemplate(Project project)
+	{
+		List<DataTable> dataTables = new ArrayList<>(project.getParameters());
+		constructTemplate(dataTables);
 	}
 	
 	@Override
@@ -108,49 +117,72 @@ public final class LoadPlate extends Appendix
 		
 		for (DataTable dataTable : dataTables)
 		{
-			if (dataTable instanceof Probe)
+			if (dataTable instanceof Parameter && dataTable.containsReference(LpKey.ID))
 			{
-				Probe probe = (Probe) dataTable;
+				Parameter parameter = (Parameter) dataTable;
 				
-				//TODO: Change Probe to Sample
-				for (Sample sample : probe.getSamples())
-				{
-					Parameter parameter = sample.getParameterBy(SampleKey.LP_ID);
-					
-					if (parameter != null)
-					{
-						String formattedEV2 = new LoadPlateTextFormatter().format(parameter.get(LpKey.EV2),
-								parameter.get(LpKey.EV85));
-						
-						String row = HtmlFactory.createRowAsString("NormalThin8", new String[]{
-								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
-										new String[]{dataTable.get(ProbeKey.ID)}),
-								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
-										new String[]{sample.get(SampleKey.LP_ID)}),
-								HtmlFactory.createCellAsString(textFormatter, "Normal",
-										new String[]{dataTable.get(ProbeKey.LOCATION)}),
-								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
-										new String[]{parameter.get(LpKey.VALUE_1)}),
-								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
-										new String[]{parameter.get(LpKey.VALUE_2)}),
-								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
-										new String[]{parameter.get(LpKey.VALUE_3)}),
-								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
-										new String[]{parameter.get(LpKey.MEAN)}),
-								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
-										new String[]{parameter.get(LpKey.EV)}),
-								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
-										new String[]{parameter.get(LpKey.EV85)}),
-								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
-										new String[]{formattedEV2}),
-						});
-						
-						this.table.appendContent(row);
-					}
-				}
+				String formattedEV2 = new LoadPlateTextFormatter().format(parameter.get(LpKey.EV2),
+						parameter.get(LpKey.EV85));
+				
+				String row = HtmlFactory.createRowAsString("NormalThin8", new String[]{
+						HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
+								new String[]{getProbeIds(parameter)}),
+						HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
+								new String[]{parameter.get(LpKey.ID)}),
+						HtmlFactory.createCellAsString(textFormatter, "Normal",
+								new String[]{getProbeLocations(parameter)}),
+						HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
+								new String[]{parameter.get(LpKey.VALUE_1)}),
+						HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
+								new String[]{parameter.get(LpKey.VALUE_2)}),
+						HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
+								new String[]{parameter.get(LpKey.VALUE_3)}),
+						HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
+								new String[]{parameter.get(LpKey.MEAN)}),
+						HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
+								new String[]{parameter.get(LpKey.EV)}),
+						HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
+								new String[]{parameter.get(LpKey.EV85)}),
+						HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
+								new String[]{formattedEV2}),
+				});
+				
+				this.table.appendContent(row);
 			}
 		}
 		addToTemplate(this.table.appendTag());
+	}
+	
+	public String getProbeIds(Parameter parameter)
+	{
+		StringBuilder stringBuilder = new StringBuilder();
+		List<Sample> samples = parameter.getSamples();
+		List<Probe> probes = new ArrayList<>();
+		for (Sample sample : samples)
+		{
+			probes.add(sample.getProbe());
+		}
+		for (Probe probe : probes)
+		{
+			stringBuilder.append(probe.get(ProbeKey.ID));
+		}
+		return stringBuilder.toString();
+	}
+	
+	public String getProbeLocations(Parameter parameter)
+	{
+		StringBuilder stringBuilder = new StringBuilder();
+		List<Sample> samples = parameter.getSamples();
+		List<Probe> probes = new ArrayList<>();
+		for (Sample sample : samples)
+		{
+			probes.add(sample.getProbe());
+		}
+		for (Probe probe : probes)
+		{
+			stringBuilder.append(probe.get(ProbeKey.LOCATION));
+		}
+		return stringBuilder.toString();
 	}
 	
 	@Override

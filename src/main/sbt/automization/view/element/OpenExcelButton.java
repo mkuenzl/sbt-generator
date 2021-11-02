@@ -1,6 +1,7 @@
 package sbt.automization.view.element;
 
 import sbt.automization.view.ViewConstant;
+import sbt.automization.view.popup.ErrorPopup;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -26,7 +27,14 @@ public class OpenExcelButton extends CustomButton
 				//TODO: open excel, add error case, add file path
 				try
 				{
-					Desktop.getDesktop().open(new File(ViewConstant.pathComponent.getText()));
+					File file = new File(ViewConstant.pathComponent.getText());
+					if (!file.exists())
+					{
+						ErrorPopup.showMessage("An dem angegebenen Pfad existiert keine Datei.");
+						return;
+					}
+					
+					Desktop.getDesktop().open(file);
 				} catch (IOException ex)
 				{
 					ex.printStackTrace();
