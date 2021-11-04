@@ -1,6 +1,7 @@
 package sbt.automization.core.templates.report;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import sbt.automization.core.ProjectEngine;
 import sbt.automization.core.export.HtmlExport;
@@ -72,13 +73,6 @@ public class ReportTemplateBuildingTest
 	}
 	
 	@Test
-	public void ExampleTemplateTest() throws Exception
-	{
-		TemplateExport exportStrategy = new HtmlExport(AttemptTemplate.getInstance());
-		createAndOpenTemplate(exportStrategy);
-	}
-	
-	@Test
 	public void TMHBTemplateTest() throws Exception
 	{
 		TemplateExport exportStrategy = new HtmlExport(BaseCourseWithHydraulicBinder.getInstance());
@@ -126,4 +120,13 @@ public class ReportTemplateBuildingTest
 		TemplateExport exportStrategy = new HtmlExport(Building.getInstance());
 		createAndOpenTemplate(exportStrategy);
 	}
+	
+	@Ignore
+	@Test
+	public void ExampleTemplateTest() throws Exception
+	{
+		TemplateExport exportStrategy = new HtmlExport(AttemptTemplate.getInstance());
+		createAndOpenTemplate(exportStrategy);
+	}
+	
 }

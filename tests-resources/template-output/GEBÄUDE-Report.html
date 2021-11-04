@@ -1,0 +1,2939 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40" >
+<head>
+	<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+		<xml>
+			<o:DocumentProperties>
+				<o:Author>mKuenzl</o:Author>
+				<o:Template/>
+				<o:LastAuthor></o:LastAuthor>
+				<o:Revision/>
+				<o:Created></o:Created>
+				<o:LastSaved></o:LastSaved>
+				<o:Pages/>
+				<o:Words/>
+				<o:Characters/>
+				<o:Lines/>
+				<o:Paragraphs/>
+				<o:CharactersWithSpaces/>
+				<o:Version></o:Version>
+			</o:DocumentProperties>
+			<o:OfficeDocumentSettings>
+				<o:AllowPNG/>
+			</o:OfficeDocumentSettings>
+		</xml>
+		<style>
+			/* Font Definitions */
+			@font-face
+			{font-family:"Cambria Math";
+			panose-1:2 4 5 3 5 4 6 3 2 4;
+			}
+			/* Style Definitions */
+			p.Normal, li.Normal, div.Normal
+			{
+                margin:0cm;
+                font-size:8.0pt;
+                font-family:"Arial",sans-serif;
+			}
+			p.Normal7, li.Normal7, div.Normal7
+            {
+                margin:0cm;
+                font-size:7.0pt;
+                font-family:"Arial",sans-serif;
+            }
+            p.Normal6, li.Normal6, div.Normal6
+            {
+                margin:0cm;
+                font-size:6.0pt;
+                font-family:"Arial",sans-serif;
+            }
+            p.Normal5, li.Normal5, div.Normal5
+            {
+                margin:0cm;
+                font-size:5.0pt;
+                font-family:"Arial",sans-serif;
+            }
+            p.Normal2, li.Normal2, div.Normal2
+            {
+                margin:0cm;
+                font-size:2.0pt;
+                font-family:"Arial",sans-serif;
+            }
+			span.Normal
+			{
+                font-size:8.0pt;
+                font-family:"Arial",sans-serif;
+                font-weight:normal; /*bold*/
+                text-decoration:underline;
+                text-underline:single;
+			}
+			span.ChemieWhite
+			{
+                font-size:8.0pt;
+                font-family:"Arial",sans-serif;
+                color:white;
+                font-weight:bold;
+                text-decoration:underline;
+                text-underline:single;
+			}
+			p.Standard-Tabelle, li.Standard-Tabelle, div.Standard-Tabelle
+			{
+                margin:0cm;
+                font-size:8.0pt;
+                font-family:"Arial",sans-serif;
+			}
+			div.WordSection1
+			{page:WordSection1;}
+		</style>
+		<style>
+			/* Style Definitions */
+			tr.Normal
+			{
+                page-break-inside:avoid;
+                height:1cm;
+			}
+            tr.NormalThin8
+            {
+                page-break-inside:avoid;
+                height:0.8cm;
+            }
+            tr.NormalThin9
+            {
+                page-break-inside:avoid;
+                height:0.9cm;
+            }
+            tr.NormalThin6
+            {
+                page-break-inside:avoid;
+                height:0.6cm;
+            }
+			tr.NormalHeader
+			{
+                page-break-inside:avoid;
+                background:grey;
+                height:1.0cm;
+			}
+			tr.NormalThinHeader
+            {
+                page-break-inside:avoid;
+                background:grey;
+                height:0.5cm;
+            }
+			tr.NormalHeaderUnits
+            {
+                page-break-inside:avoid;
+                background:grey;
+                height:0.5cm;
+            }
+			tr.NormalThin
+			{
+                page-break-inside:avoid;
+                height:0.7cm;
+			}
+			tr.NormalThin5
+            {
+                page-break-inside:avoid;
+                height:0.5cm;
+            }
+			td.Normal
+			{
+                border:solid windowtext .5pt;
+                background:white;
+                padding:0cm 1.4pt 0cm 3.4pt;
+                overflow:hidden;
+			}
+			td.NormalBuilding
+            {
+                border:solid windowtext .5pt;
+                background:white;
+                font-size:10.0pt;
+                padding:0cm 1.4pt 0cm 3.4pt;
+                overflow:hidden;
+            }
+			td.NormalCenterNoPadding
+            {
+                border:solid windowtext .5pt;
+                background:white;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
+                overflow:hidden;
+            }
+            td.NormalCenter
+            {
+                border:solid windowtext .5pt;
+                background:white;
+                padding:2.4pt 1.4pt 2.4pt 1.4pt;
+                text-align:center;
+                overflow:hidden;
+            }
+            td.NormalBold
+            {
+                border:solid windowtext .5pt;
+                background:white;
+                padding:2.4pt 1.4pt 2.4pt 1.4pt;
+                text-align:center;
+                font-weight: bold;
+                overflow:hidden;
+            }
+            td.NormalBoldHeader
+            {
+                border:solid windowtext .5pt;
+                background:white;
+                padding:2.4pt 1.4pt 2.4pt 1.4pt;
+                text-align:center;
+                background:#F3F3F3;
+                font-weight: bold;
+                overflow:hidden;
+            }
+			td.NormalHeader
+			{
+                border:solid windowtext .5pt;
+                background:#F3F3F3;
+                padding:2.4pt 1.4pt 2.4pt 1.4pt;
+                word-break:break-all;
+            }
+            td.NormalTableHeaderBuilding
+            {
+                border:solid windowtext .5pt;
+                font-size:10.0pt;
+                background:#E7E6E6;
+                text-align: left;
+                font-weight: bold;
+                padding:0.5pt 1.4pt 0.5pt 1.4pt;
+            }
+			td.NormalHeaderCenter
+            {
+                border:solid windowtext .5pt;
+                background:#F3F3F3;
+                text-align:center;
+                padding:2.4pt 1.4pt 2.4pt 1.4pt;
+                word-break:break-all;
+            }
+            td.NormalHeaderSmallFont
+            {
+                border:solid windowtext .5pt;
+                font-size:6.0pt;
+                background:#F3F3F3;
+                padding:2.4pt 1.4pt 2.4pt 1.4pt;
+                word-break:break-all;
+            }
+			td.ChemistryWhite
+            {
+                border:solid windowtext .5pt;
+                background:white;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
+                font-weight: bold;
+                overflow:hidden;
+            }
+			td.ChemistryRed
+			{
+                border:solid windowtext .5pt;
+                background:#FF0000;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
+                font-weight: bold;
+                color:white;
+                overflow:hidden;
+			}
+			td.ChemistryBlack
+			{
+                border:solid windowtext .5pt;
+                background:black;
+                color:white;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
+                font-weight: bold;
+                overflow:hidden;
+            }
+			td.ChemistryGreen
+			{
+                border:solid windowtext .5pt;
+                background:#00FF00;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
+                font-weight: bold;
+                overflow:hidden;
+			}
+			td.ChemistryBlue
+			{
+                border:solid windowtext .5pt;
+                background:#00FFFF;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
+                font-weight: bold;
+                overflow:hidden;
+			}
+			td.ChemistryYellow
+			{
+                border:solid windowtext .5pt;
+                background:#FFFF00;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                text-align:center;
+                font-weight: bold;
+                overflow:hidden;
+			}
+			th.NormalTableHeader
+			{
+                border:solid windowtext .5pt;
+                background:#F2F2F2;
+                padding:2.4pt 1.4pt 2.4pt 1.4pt;
+			}
+            th.NormalTableHeaderBuilding
+			{
+                border:solid windowtext .5pt;
+                font-size:10.0pt;
+                background:#E7E6E6;
+                text-align: left;
+                padding:2.4pt 1.4pt 2.4pt 1.4pt;
+			}
+			th.NormalTableHeader div {
+                position: relative;
+                font-size: 5.0pt;
+            }
+
+			th.NormalTableHeaderUnits
+			{
+                border:solid windowtext .5pt;
+                background:#F2F2F2;
+                padding:0cm 1.4pt 0cm 1.4pt;
+                font-style:italic;
+            }
+			table.MsoNormalTable
+			{
+                table-layout:fixed;
+                padding-alt:0cm 1.4pt 0cm 1.4pt;
+                para-margin:0cm;
+                pagination:widow-orphan;
+                font-size:8.0pt;
+                font-family:"Arial",sans-serif;
+                word-break:break-all;
+                border-collapse: collapse;
+			}
+			table.MsoTableGrid
+            {
+                table-layout:fixed;
+                width:100.0%;
+                height:100.0%;
+                border:solid windowtext 1.0pt;
+                padding-alt:0cm 0cm 0cm 0cm;
+                para-margin:0cm;
+                pagination:widow-orphan;
+                font-size:8.0pt;
+                font-family:"Arial",sans-serif;
+                word-break:break-all;
+                border-collapse: collapse;
+            }
+		</style>
+</head>
+<body style='tab-interval:35.4pt;word-wrap:break-word' lang=DE >
+<div class=WordSection1 >
+<table border=1 cellpadding=0 cellspacing=0 style='border-collapse:collapse;mso-table-layout-alt:fixed;border:none;mso-border-alt:solid windowtext .5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt' class=MsoNormalTable >
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Erkundungsstelle
+</td>
+<td colspan=3 style=width:2.5cm class=NormalBoldHeader >
+GB9
+</td>
+<td colspan=5 style=width:2.5cm class=NormalBoldHeader >
+GB10
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Bauteil
+</td>
+<td colspan=3 style=width:2.5cm class=NormalBoldHeader >
+Wand
+</td>
+<td colspan=5 style=width:2.5cm class=NormalBoldHeader >
+Fußboden
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Material
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Fliese
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Mörtelkleber
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Ziegelmauerwerk
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Fliese
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Kleber
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Mörtel / Estrich
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+HWL
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Beton
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Laborprobe
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+C11
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+C11
+</td>
+<td style=width:2.5cm class=NormalBold >
+C11
+</td>
+<td style=width:2.5cm class=NormalBold >
+C11
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Schadstoffverdacht
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+Asbest0,001-0,003%
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+Asbest
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+PAK
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+</tr>
+
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+PCB,
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+11
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=3 class=NormalBold >
+11
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+</tr>
+
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+BTEX,
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+11
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=3 class=NormalBold >
+11
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Phenole,
+<p class=Normal6 >
+mg/l
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+11
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=3 class=NormalBold >
+11
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+</tr>
+
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Sulfat,
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+11
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=3 class=NormalBold >
+11
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+ICP Screening,
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+11
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=3 class=NormalBold >
+11
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+EOX,
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+11
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=3 class=NormalBold >
+11
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+HBCD,
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+11
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=3 class=NormalBold >
+11
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+FCKW,
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+11
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=3 class=NormalBold >
+11
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+MKW (C10 - C22),
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+11
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=3 class=NormalBold >
+11
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+MKW (C10 - C40),
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+11
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=3 class=NormalBold >
+11
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Zuordnungsklasse,
+<p class=Normal6 >
+LAGA Boden<sup>[4]</sup>
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryWhite >
+Z0
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=3 class=ChemistryWhite >
+Z0
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Zuordnungsklasse,
+<p class=Normal6 >
+LAGA Bauschutt<sup>[15]</sup>
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryWhite >
+Z0
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=3 class=ChemistryWhite >
+Z0
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+</tr>
+
+
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Abgrenzung Gefährlichkeit,
+<p class=Normal6 >
+Einstufung
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryWhite >
+keine
+<br>
+Auffälligkeit
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=3 class=ChemistryWhite >
+keine
+<br>
+Auffälligkeit
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Abgrenzung Gefährlichkeit,
+<p class=Normal6 >
+Parameter
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Abfallschlüssel<sup>1,2</sup>
+<p class=Normal6 >
+AVV<sup>[7]</sup>, materialspezifisch
+</p>
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+<em>17 01 03</em>
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+17 01 07
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+17 01 03
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+17 09 04
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+17 09 04 <br>(17 02 01)
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td colspan=9 rowspan=1 class=NormalHeader >
+Hinweise zur Einstufung in Abhängigkeit des Rückbauverfahrens (informativ)
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Abfallschlüssel<sup>1,2</sup>
+<p class=Normal6 >
+AVV<sup>[7]</sup>, mehrschichtig / Gemisch
+</p>
+</td>
+<td colspan=2 style=width:2.5cm class=NormalBold >
+17 01 07
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=2 style=width:2.5cm class=NormalBold >
+17 01 07
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td colspan=9 width=24.0 class=NormalHeaderSmallFont >
+Anmerkungen:
+<br>
+1) Die abschließende Zuordnung zu einem Abfallschlüssel hängt u. a. von der Zusammensetzung der abzufahrenden, separierten Abfälle und von den Annahmebedingungen und der Abfalleinstufung der vorgesehenen Entsorgungseinrichtung ab. 
+<br>
+2) AVV 17 09 04: Nicht gefährliche und nicht getrennte Bauteile können i.d.R. unter dem vorgenannten Abfallschlüssel, gemischte Bau- und Abbruchabfälle zusammen entsorgt werden.
+<br>
+3) An der Erk-St GB9: Einstufung aufgrund des an der Erk.-St. GB2 ermittelten Untersuchungsergebnisses der Probe C9 unter Zugrundelegung der Vergleichbarkeit der vorhandenen Materialien.
+</td>
+</tr>
+</table><pre><br clear=all style='mso-special-character:line-break;page-break-before:always'></pre><table border=1 cellpadding=0 cellspacing=0 style='border-collapse:collapse;mso-table-layout-alt:fixed;border:none;mso-border-alt:solid windowtext .5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt' class=MsoNormalTable >
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Erkundungsstelle
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+GB4
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+GB5
+</td>
+<td colspan=6 style=width:2.5cm class=NormalBoldHeader >
+GB6
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+GB7
+</td>
+<td colspan=2 style=width:2.5cm class=NormalBoldHeader >
+GB8
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Bauteil
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Außenfassade
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Rohrisolierung
+</td>
+<td colspan=6 style=width:2.5cm class=NormalBoldHeader >
+Fußboden
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Decke
+</td>
+<td colspan=2 style=width:2.5cm class=NormalBoldHeader >
+Fußboden
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Material
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Fugenmasse
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Dämmwolle
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Teppich
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Kleber
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Gussasphalt
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Pappe
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Granulatschüttung
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Estrich
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Odenwaldplatte
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Teppich
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Kleber
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Laborprobe
+</td>
+<td style=width:2.5cm class=NormalBold >
+C5
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+C6
+</td>
+<td style=width:2.5cm class=NormalBold >
+C7
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+C8
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+C9
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+C10
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Schadstoffverdacht
+</td>
+<td style=width:2.5cm class=NormalBold >
+PCB
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+Asbest0,1% + PAK
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+TOC, elektr. Leitfähigkeit
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+KMF
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+Asbest
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+PAK,
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+0,12
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+PCB,
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+5
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+6
+</td>
+<td colspan=1 class=NormalBold >
+7
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+8
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+9
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+10
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Asbest,
+<p class=Normal6 >
+Nachweisgrenze
+</p>
+</td>
+<td colspan=1 class=ChemistryWhite >
+nicht
+<br>
+nachweis-
+<br>
+bar
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryBlack >
+nachweis-
+<br>
+bar
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+BTEX,
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+5
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+6
+</td>
+<td colspan=1 class=NormalBold >
+7
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+8
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+9
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+10
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Phenole,
+<p class=Normal6 >
+mg/l
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+5
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+6
+</td>
+<td colspan=1 class=NormalBold >
+7
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+8
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+9
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+10
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+KMF,
+<p class=Normal6 >
+Nachweisgrenze
+</p>
+</td>
+<td colspan=1 class=ChemistryBlack >
+nachweis-
+<br>
+bar
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryBlack >
+nachweis-
+<br>
+bar
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryBlack >
+nachweis-
+<br>
+bar
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryWhite >
+nicht
+<br>
+nachweis-
+<br>
+bar
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Sulfat,
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+5
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+6
+</td>
+<td colspan=1 class=NormalBold >
+7
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+8
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+9
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+10
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+ICP Screening,
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+5
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+6
+</td>
+<td colspan=1 class=NormalBold >
+7
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+8
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+9
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+10
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+EOX,
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+5
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+6
+</td>
+<td colspan=1 class=NormalBold >
+7
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+8
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+9
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+10
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+HBCD,
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+5
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+6
+</td>
+<td colspan=1 class=NormalBold >
+7
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+8
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+9
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+10
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+FCKW,
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+5
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+6
+</td>
+<td colspan=1 class=NormalBold >
+7
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+8
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+9
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+10
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+MKW (C10 - C22),
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+5
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+6
+</td>
+<td colspan=1 class=NormalBold >
+7
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+8
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+9
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+10
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+MKW (C10 - C40),
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+5
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+6
+</td>
+<td colspan=1 class=NormalBold >
+7
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+8
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+9
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+10
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Zuordnungsklasse,
+<p class=Normal6 >
+LAGA Boden<sup>[4]</sup>
+</p>
+</td>
+<td colspan=1 class=ChemistryRed >
+Z2
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryBlack >
+>Z2
+</td>
+<td colspan=1 class=ChemistryRed >
+Z2
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryYellow >
+Z1.2
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryGreen >
+Z1.1
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryBlue >
+Z0*
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Zuordnungsklasse,
+<p class=Normal6 >
+LAGA Bauschutt<sup>[15]</sup>
+</p>
+</td>
+<td colspan=1 class=ChemistryRed >
+Z2
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryBlack >
+>Z2
+</td>
+<td colspan=1 class=ChemistryRed >
+Z2
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryYellow >
+Z1.2
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryGreen >
+Z1.1
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryBlue >
+Z0*
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Orientierungswert,
+<p class=Normal6 >
+LAGA Bauschutt<sup>[15]</sup>
+</p>
+</td>
+<td colspan=1 class=ChemistryBlack >
+nicht
+<br>
+eingehalten
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryWhite >
+eingehalten
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryBlack >
+nicht
+<br>
+eingehalten
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Verwertungsklasse,
+<p class=Normal6 >
+TL Gestein<sup>[14]</sup>
+</p>
+</td>
+<td colspan=1 class=ChemistryYellow >
+RC2
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryRed >
+RC3
+</td>
+<td colspan=1 class=ChemistryBlack >
+>RC3
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryGreen >
+RC1
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryYellow >
+RC2
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Abgrenzung Gefährlichkeit,
+<p class=Normal6 >
+Einstufung
+</p>
+</td>
+<td colspan=1 class=ChemistryBlack >
+gefährlich
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryBlack >
+gefährlich
+</td>
+<td colspan=1 class=ChemistryBlack >
+gefährlich
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryWhite >
+nicht
+<br>
+gefährlich
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryBlack >
+gefährlich
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryWhite >
+nicht
+<br>
+gefährlich
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Abgrenzung Gefährlichkeit,
+<p class=Normal6 >
+Parameter
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+PCB
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+KMF
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Abfallschlüssel<sup>1,2</sup>
+<p class=Normal6 >
+AVV<sup>[7]</sup>, materialspezifisch
+</p>
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+17 09 02*
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+17 09 04
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+<em>17 09 04</em>
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+17 03 02
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+17 09 04
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+17 09 04
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+17 06 03*
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+17 09 04
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+17 09 04
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td colspan=12 rowspan=1 class=NormalHeader >
+Hinweise zur Einstufung in Abhängigkeit des Rückbauverfahrens (informativ)
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Abfallschlüssel<sup>1,2</sup>
+<p class=Normal6 >
+AVV<sup>[7]</sup>, mehrschichtig / Gemisch
+</p>
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td colspan=12 width=31.5 class=NormalHeaderSmallFont >
+Anmerkungen:
+<br>
+1) Die abschließende Zuordnung zu einem Abfallschlüssel hängt u. a. von der Zusammensetzung der abzufahrenden, separierten Abfälle und von den Annahmebedingungen und der Abfalleinstufung der vorgesehenen Entsorgungseinrichtung ab. 
+<br>
+2) AVV 17 09 04: Nicht gefährliche und nicht getrennte Bauteile können i.d.R. unter dem vorgenannten Abfallschlüssel, gemischte Bau- und Abbruchabfälle zusammen entsorgt werden.
+<br>
+3) An der Erk-St GB6: Einstufung aufgrund des an der Erk.-St. GB1 ermittelten Untersuchungsergebnisses der Probe C4 unter Zugrundelegung der Vergleichbarkeit der vorhandenen Materialien.
+</td>
+</tr>
+</table><pre><br clear=all style='mso-special-character:line-break;page-break-before:always'></pre><table border=1 cellpadding=0 cellspacing=0 style='border-collapse:collapse;mso-table-layout-alt:fixed;border:none;mso-border-alt:solid windowtext .5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt' class=MsoNormalTable >
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Erkundungsstelle
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+GB0
+</td>
+<td colspan=2 style=width:2.5cm class=NormalBoldHeader >
+GB1
+</td>
+<td colspan=6 style=width:2.5cm class=NormalBoldHeader >
+GB2
+</td>
+<td colspan=3 style=width:2.5cm class=NormalBoldHeader >
+GB3
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Bauteil
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+-
+</td>
+<td colspan=2 style=width:2.5cm class=NormalBoldHeader >
+Dach
+</td>
+<td colspan=6 style=width:2.5cm class=NormalBoldHeader >
+Dach
+</td>
+<td colspan=3 style=width:2.5cm class=NormalBoldHeader >
+Außenfassade
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Material
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Kies
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+bit. Abdichtung
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Abdichtung
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+bit. Abdichtung
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+PE-Schaum
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+bit. Anstrich
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Hohlraum
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Betonträger
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Natursteinplatte
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Dämmwolle
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBoldHeader >
+Beton
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Laborprobe
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+C1
+</td>
+<td style=width:2.5cm class=NormalBold >
+C1
+</td>
+<td style=width:2.5cm class=NormalBold >
+C2
+</td>
+<td style=width:2.5cm class=NormalBold >
+C3
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+C3
+</td>
+<td style=width:2.5cm class=NormalBold >
+C4
+</td>
+<td style=width:2.5cm class=NormalBold >
+C4
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Schadstoffverdacht
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+LAGA RC
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+PAK
+</td>
+<td style=width:2.5cm class=NormalBold >
+Asbest + PAK
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+<td style=width:2.5cm class=NormalBold >
+KMF
+</td>
+<td style=width:2.5cm class=NormalBold >
+-
+</td>
+</tr>
+
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+PCB,
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=2 class=NormalBold >
+1
+</td>
+<td colspan=1 class=NormalBold >
+2
+</td>
+<td colspan=1 class=NormalBold >
+3
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+3
+</td>
+<td colspan=2 class=NormalBold >
+4
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Asbest,
+<p class=Normal6 >
+Nachweisgrenze
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=2 class=ChemistryWhite >
+nicht
+<br>
+nachweis-
+<br>
+bar
+</td>
+<td colspan=1 class=ChemistryBlack >
+nachweis-
+<br>
+bar
+</td>
+<td colspan=1 class=ChemistryBlack >
+nachweis-
+<br>
+bar
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryBlack >
+nachweis-
+<br>
+bar
+</td>
+<td colspan=2 class=ChemistryWhite >
+nicht
+<br>
+nachweis-
+<br>
+bar
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+BTEX,
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=2 class=NormalBold >
+1
+</td>
+<td colspan=1 class=NormalBold >
+2
+</td>
+<td colspan=1 class=NormalBold >
+3
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+3
+</td>
+<td colspan=2 class=NormalBold >
+4
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Phenole,
+<p class=Normal6 >
+mg/l
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=2 class=NormalBold >
+1
+</td>
+<td colspan=1 class=NormalBold >
+2
+</td>
+<td colspan=1 class=NormalBold >
+3
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+3
+</td>
+<td colspan=2 class=NormalBold >
+4
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+KMF,
+<p class=Normal6 >
+Nachweisgrenze
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryBlack >
+nachweis-
+<br>
+bar
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryBlack >
+nachweis-
+<br>
+bar
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Sulfat,
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=2 class=NormalBold >
+1
+</td>
+<td colspan=1 class=NormalBold >
+2
+</td>
+<td colspan=1 class=NormalBold >
+3
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+3
+</td>
+<td colspan=2 class=NormalBold >
+4
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+ICP Screening,
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=2 class=NormalBold >
+1
+</td>
+<td colspan=1 class=NormalBold >
+2
+</td>
+<td colspan=1 class=NormalBold >
+3
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+3
+</td>
+<td colspan=2 class=NormalBold >
+4
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+EOX,
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=2 class=NormalBold >
+1
+</td>
+<td colspan=1 class=NormalBold >
+2
+</td>
+<td colspan=1 class=NormalBold >
+3
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+3
+</td>
+<td colspan=2 class=NormalBold >
+4
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+HBCD,
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=2 class=NormalBold >
+1
+</td>
+<td colspan=1 class=NormalBold >
+2
+</td>
+<td colspan=1 class=NormalBold >
+3
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+3
+</td>
+<td colspan=2 class=NormalBold >
+4
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+FCKW,
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=2 class=NormalBold >
+1
+</td>
+<td colspan=1 class=NormalBold >
+2
+</td>
+<td colspan=1 class=NormalBold >
+3
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+3
+</td>
+<td colspan=2 class=NormalBold >
+4
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+MKW (C10 - C22),
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=2 class=NormalBold >
+1
+</td>
+<td colspan=1 class=NormalBold >
+2
+</td>
+<td colspan=1 class=NormalBold >
+3
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+3
+</td>
+<td colspan=2 class=NormalBold >
+4
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+MKW (C10 - C40),
+<p class=Normal6 >
+mg/kg
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=2 class=NormalBold >
+1
+</td>
+<td colspan=1 class=NormalBold >
+2
+</td>
+<td colspan=1 class=NormalBold >
+3
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+3
+</td>
+<td colspan=2 class=NormalBold >
+4
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Zuordnungsklasse,
+<p class=Normal6 >
+LAGA Boden<sup>[4]</sup>
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=2 class=ChemistryWhite >
+Z0
+</td>
+<td colspan=1 class=ChemistryBlue >
+Z0*
+</td>
+<td colspan=1 class=ChemistryGreen >
+Z1.1
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryGreen >
+Z1.1
+</td>
+<td colspan=2 class=ChemistryYellow >
+Z1.2
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Zuordnungsklasse,
+<p class=Normal6 >
+LAGA Bauschutt<sup>[15]</sup>
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=2 class=ChemistryWhite >
+Z0
+</td>
+<td colspan=1 class=ChemistryBlue >
+Z0*
+</td>
+<td colspan=1 class=ChemistryGreen >
+Z1.1
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryGreen >
+Z1.1
+</td>
+<td colspan=2 class=ChemistryYellow >
+Z1.2
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Orientierungswert,
+<p class=Normal6 >
+LAGA Bauschutt<sup>[15]</sup>
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=2 class=ChemistryBlack >
+nicht
+<br>
+eingehalten
+</td>
+<td colspan=1 class=ChemistryWhite >
+eingehalten
+</td>
+<td colspan=1 class=ChemistryBlack >
+nicht
+<br>
+eingehalten
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryBlack >
+nicht
+<br>
+eingehalten
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Verwertungsklasse,
+<p class=Normal6 >
+TL Gestein<sup>[14]</sup>
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=2 class=ChemistryBlack >
+>RC3
+</td>
+<td colspan=1 class=ChemistryRed >
+RC3
+</td>
+<td colspan=1 class=ChemistryYellow >
+RC2
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=ChemistryYellow >
+RC2
+</td>
+<td colspan=2 class=ChemistryGreen >
+RC1
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Abgrenzung Gefährlichkeit,
+<p class=Normal6 >
+Einstufung
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=2 class=ChemistryWhite >
+nicht
+<br>
+gefährlich
+</td>
+<td colspan=1 class=ChemistryWhite >
+keine
+<br>
+Auffälligkeit
+</td>
+<td colspan=1 class=NormalBold >
+Auffälligkeit
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+Auffälligkeit
+</td>
+<td colspan=2 class=ChemistryBlack >
+gefährlich
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Abgrenzung Gefährlichkeit,
+<p class=Normal6 >
+Parameter
+</p>
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=1 class=NormalBold >
+-
+</td>
+<td colspan=2 class=NormalBold >
+KMF
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Abfallschlüssel<sup>1,2</sup>
+<p class=Normal6 >
+AVV<sup>[7]</sup>, materialspezifisch
+</p>
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+17 05 04
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+17 03 02
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+17 03 02
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+17 09 04 <br>(17 06 04)
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+<em>17 03 02</em>
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+17 06 03*
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td colspan=13 rowspan=1 class=NormalHeader >
+Hinweise zur Einstufung in Abhängigkeit des Rückbauverfahrens (informativ)
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td style=width:4cm class=NormalHeader >
+Abfallschlüssel<sup>1,2</sup>
+<p class=Normal6 >
+AVV<sup>[7]</sup>, mehrschichtig / Gemisch
+</p>
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+<td colspan=1 style=width:2.5cm class=NormalBold >
+-
+</td>
+</tr>
+<tr class=NormalThin8 >
+<td colspan=13 width=34.0 class=NormalHeaderSmallFont >
+Anmerkungen:
+<br>
+1) Die abschließende Zuordnung zu einem Abfallschlüssel hängt u. a. von der Zusammensetzung der abzufahrenden, separierten Abfälle und von den Annahmebedingungen und der Abfalleinstufung der vorgesehenen Entsorgungseinrichtung ab. 
+<br>
+2) AVV 17 09 04: Nicht gefährliche und nicht getrennte Bauteile können i.d.R. unter dem vorgenannten Abfallschlüssel, gemischte Bau- und Abbruchabfälle zusammen entsorgt werden.
+<br>
+3) An der Erk-St GB2: Einstufung aufgrund des an der Erk.-St. GB3+4 ermittelten Untersuchungsergebnisses der Probe C3 unter Zugrundelegung der Vergleichbarkeit der vorhandenen Materialien.
+</td>
+</tr>
+</table><pre><br clear=all style='mso-special-character:line-break;page-break-before:always'></pre>
+</div>
+</body>
+</html>
