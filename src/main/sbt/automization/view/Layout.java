@@ -63,6 +63,7 @@ public class Layout
 		
 		
 		//Create Tables Part
+		positions.put("ButtonReport", new Rectangle(150, 410, 20, 20));
 		positions.put("ButtonBuildTable", new Rectangle(180, 410, 160, 20));
 		positions.put("ButtonHelp", new Rectangle(350, 410, 20, 20));
 	}
@@ -84,9 +85,6 @@ public class Layout
 		// OPEN.
 		JButton openButton = new OpenExcelButton("Open", positions.get("ButtonOpen"));
 		components.add(openButton);
-		//INFO.
-		JButton infoButton = new InfoButton("", positions.get("ButtonHelp"));
-		components.add(infoButton);
 		
 		TextInputArea textArea = new TextInputArea("", positions.get("TextAreaPath"));
 		ViewConstant.pathComponent = textArea;
@@ -109,10 +107,17 @@ public class Layout
 		// TEMPLATE CHECKBOX
 		constructCheckBoxTemplateArea();
 		
+		//REPORT.
+		JButton reportButton = new ReportButton("", positions.get("ButtonReport"));
+		components.add(reportButton);
+		
 		// BUTTONS.
 		JButton buildTableButton = new BuildTableButton("Build", positions.get("ButtonBuildTable"));
 		components.add(buildTableButton);
 		
+		//INFO.
+		JButton infoButton = new InfoButton("", positions.get("ButtonHelp"));
+		components.add(infoButton);
 	}
 	
 	private void constructCheckBoxTemplateArea()

@@ -11,7 +11,7 @@ public class UtilExportFilesTest
     @Test
     public void exportExcelTemplate() throws IOException
     {
-        FileExport.copyFileToUserDirectory("/datenbank-template.xlsx");
+        FileUtils.copyFileToUserDirectory("/datenbank-template.xlsx");
     
         File file = new File("datenbank-template.xlsx");
         

@@ -13,7 +13,7 @@
   <stayAlive>false</stayAlive>
   <restartOnCrash>false</restartOnCrash>
   <manifest></manifest>
-  <icon>C:\Users\mkuen\Git\sbt-generator\resources\sbt-exe-icon.ico</icon>
+  <icon>C:\Users\mkuen\Git\sbt-generator\resources\icons\sbt-exe-icon.ico</icon>
   <singleInstance>
     <mutexName>sbt-table-generator</mutexName>
     <windowTitle>sbt-table-generator</windowTitle>

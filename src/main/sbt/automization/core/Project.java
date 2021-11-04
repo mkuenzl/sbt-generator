@@ -1,6 +1,5 @@
 package sbt.automization.core;
 
-import sbt.automization.core.data.DataTable;
 import sbt.automization.core.data.Parameter;
 import sbt.automization.core.data.Probe;
 import sbt.automization.core.data.Sample;
@@ -14,7 +13,8 @@ public class Project
 	private List<Sample> samples;
 	private List<Parameter> parameters;
 	
-	public Project(){
+	public Project()
+	{
 		this.probes = new ArrayList<>();
 		this.samples = new ArrayList<>();
 		this.parameters = new ArrayList<>();

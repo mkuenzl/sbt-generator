@@ -69,7 +69,7 @@
 
     <target name="exe" depends="jar">
         <mkdir dir="${exe.dir}"/>
-        <launch4j configFile="${main.resources}/sbt-table-config.xml" />
+        <launch4j configFile="${main.resources}/executable-config.xml" />
     </target>
 
 </project>
