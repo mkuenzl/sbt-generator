@@ -40,6 +40,13 @@ public class MailHandlerTest
 	}
 	
 	@Test
+	public void uriEncodeSpecialCharacterUmlautsTest()
+	{
+		String umlaut = MailHandler.uriEncode("ü");
+		Assert.assertEquals( "ü", umlaut);
+	}
+	
+	@Test
 	public void uriEncodeSpecialCharacterNewLineTest()
 	{
 		String newLine = MailHandler.uriEncode("\n");
