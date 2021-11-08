@@ -59,9 +59,14 @@
     <!-- set paths -->
     <path id="libraries.path">
         <fileset dir="${lib.dir}">
-            <include name="commons-cli-1.4.jar"/>
             <include name="commons-io-2.6.jar"/>
             <include name="commons-csv-1.8.jar"/>
+            <include name="commons-collections4-4.4.jar"/>
+            <include name="commons-compress-1.19.jar"/>
+            <include name="xmlbeans-3.1.0.jar"/>
+            <include name="poi-4.1.2.jar"/>
+            <include name="poi-ooxml-4.1.2.jar"/>
+            <include name="poi-ooxml-schemas-4.1.2.jar"/>
         </fileset>
     </path>
 
@@ -84,6 +89,7 @@
         <delete dir="${build.dir}"/>
         <!--<delete dir="${libPath}"/>-->
         <delete dir="${out.dir}"/>
+        <delete dir="${test.resources}/template-output"/>
     </target>
 
     <target name="compile-main" depends="clean, retrieve-ivy">
@@ -111,13 +117,14 @@
     </target>
 
     <target name="junit" depends="compile-tests">
-        <junit printsummary="yes" haltonfailure="yes">
+        <delete dir="${test.resources}/template-output"/>
+
+        <junit haltonfailure="yes">
+            <formatter type="plain" usefile="false"/>
             <classpath>
                 <path refid="test.class.path"/>
                 <pathelement path="${java.class.path}"/>
             </classpath>
-
-            <formatter type="plain"/>
 
             <batchtest fork="yes">
                 <fileset dir="${test.dir}">
@@ -132,9 +139,14 @@
         <mkdir dir="${jar.dir}"/>
         <jar destfile="${jar.dir}/sbt-table-generator.jar" basedir="${main.classes}">
             <zipgroupfileset dir="${lib.dir}">
-                <include name="commons-cli-1.4.jar"/>
                 <include name="commons-io-2.6.jar"/>
                 <include name="commons-csv-1.8.jar"/>
+                <include name="commons-collections4-4.4.jar"/>
+                <include name="commons-compress-1.19.jar"/>
+                <include name="xmlbeans-3.1.0.jar"/>
+                <include name="poi-4.1.2.jar"/>
+                <include name="poi-ooxml-4.1.2.jar"/>
+                <include name="poi-ooxml-schemas-4.1.2.jar"/>
             </zipgroupfileset>
             <fileset dir="${main.resources}"/>
             <manifest>

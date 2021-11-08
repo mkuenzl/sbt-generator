@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"sbt"},{"l":"sbt.automization.data"},{"l":"sbt.automization.export"},{"l":"sbt.automization.format"},{"l":"sbt.automization.gui"},{"l":"sbt.automization.templates"},{"l":"sbt.automization.templates.helper"},{"l":"sbt.automization.util"},{"l":"sbt.automization.util.html"}]

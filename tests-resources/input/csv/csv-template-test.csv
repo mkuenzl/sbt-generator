@@ -1,0 +1,94 @@
+﻿ID;PROBE.ID;CHEMISTRY.ID;RUK.ID;LP.ID;TYPE;NUMMER;AUFSCHLUSS;ART;KOERNUNG;BODENKLASSE;DICKE;TIEFE_START;TIEFE_ENDE;PECH;RUNDUNGSGRAD_GESTUFTHEIT;FARBE;BODENART;KONSISTENZ;FEUCHTIGKEIT;WASSERGEHALT;WASSERPROCTOR;NOTIZ;BEHAELTNIS;ABFALLART;GERUCH;KORNGROESSENVERTEILUNG;DRUCKFESTIGKEIT;FROSTEMPFINDLICHKEITSKLASSE;VERDICHTUNGSFAEHIGKEIT;HOMOGENBEREICH
+SE1;FB1;C0;A1;;LAYER;1;GOB;Deckschicht;0/8;;5;0;5;JA;RK, sg;blau;Lehme;breiig;<;1;1;;;bit. Befestigung;auffällig;1;a;a;JA;a
+SE2;FB1;C1;A2;;LAYER;2;GOB;Deckschicht;0/8;;3;5;8;NEIN;RK, ug;gelb;Schluffe;breiig-weich;≤;2;2;;;Asphalt;neutral;2;b;b;NEIN;b
+SE3;FB1;C0;A3;;LAYER;3;GOB;Tragschicht;0/11;;4;8;12;NEIN;BK, sg;braun;Sande;weich;~;3;3;;;Asphalt;neutral;3;c;c;JA;c
+SE4;FB1;C2;;LP1;LAYER;4;TOB;Gem. a. G. (LS);0/8;;3;12;15;;BK, ug;schwarz;Tone;weich-steif;>;4;4;;PE-Beh. 3 l;Gem. a. G. (LS);neutral;4;a;a;NEIN;a
+SE5;FB1;C3;;;LAYER;5;TOB;Gem. a. G. (NS);0/9;;6;15;21;;RK, sg;blau;Lehme;steif;≥;5;5;;PE-Dose 1 l;Gem. a. G. (NS);neutral;5;b;b;JA;b
+SE6;FB1;C4;;;LAYER;6;UG;ST*;;;78;21;99;;RK, ug;gelb;Schluffe;steif-halbfest;<;6;6;;Bohrkiste;Boden;neutral;6;c;c;NEIN;c
+SE7;FB1;C5;;;LAYER;7;UG;ST*;;;9;99;108;;BK, sg;braun;Sande;halbfest;≤;7;7;;PE-Eimer 10 l;Boden;neutral;7;a;a;JA;a
+SE8;FB1;C6;;;LAYER;8;UG;GE;;;12;108;120;;BK, ug;schwarz;Tone;halbfest-fest;~;8;8;;PE-Eimer  5 l ;Boden;neutral;8;b;b;NEIN;b
+SE9;FB1;C7;;;LAYER;9;UG;SW;;;15;120;135;;RK, sg;blau;Lehme;breiig;>;9;9;;PE-Eimer  5 l ;Boden;neutral;9;c;c;JA;c
+SE10;FB2;;A2;;LAYER;1;GOB;Tragschicht;;;3;0;3;JA;RK, ug;gelb;Schluffe;breiig-weich;≥;10;10;;;bit. Befestigung;auffällig;10;a;a;NEIN;a
+SE11;FB2;C2;A3;;LAYER;2;GOB;Pechfreie Schicht;;;6;3;9;NEIN;;;;;;;;;;Pechfreie Schicht;neutral;;;;;
+SE12;FB2;;;;LAYER;3;TOB;TOB;;;1;9;10;;;;;;;;;;;TOB;neutral;;;;;
+SE13;FB2;;;;LAYER;4;OH;OH Testschicht;;;17;10;27;;;;;;;;;;;Oberboden;neutral;;;;;
+SE14;FB2;C1;;;LAYER;5;UG;ST*;;;6;27;33;;BK, sg;braun;Sande;weich;<;11;11;;PE-Dose 1 l;Boden;neutral;11;b;b;JA;b
+SE15;FB3;C1;A1;;LAYER;1;BANKETT;OH;;;4;0;4;;BK, ug;schwarz;Tone;weich-steif;≤;12;12;;PE-Eimer  5 l ;Oberboden;neutral;12;c;c;NEIN;c
+SE16;FB3;C3;;;LAYER;2;OH;OH Testschicht;;;2;4;6;;;;;;;;;;;Oberboden;neutral;;;;;
+SE17;FB3;C4;;;LAYER;3;OH;OH Testschicht;;;10;6;16;;;;;;;;;;;Oberboden;neutral;;;;;
+SE18;FB3;;;;LAYER;4;GOB;Testschicht kein Pech;;;5;16;21;;;;;;;;;;;Testschicht kein Pech;neutral;;;;;
+SE19;FB3;;;;LAYER;5;UG;HDF;0-4/11;;150;21;171;;;;;;;;;;;Boden;neutral;;;;;
+SE20;FB4;C2;A2;;LAYER;1;BANKETT;ST*;;;3;0;3;;RK, sg;blau;Lehme;steif;~;13;13;;PE-Dose 1 l;ST*;neutral;13;a;a;JA;a
+SE21;FB4;C2;;;LAYER;2;BANKETT;ST*;;;1;3;4;;RK, ug;gelb;Schluffe;steif-halbfest;>;14;14;;;ST*;neutral;14;b;b;NEIN;b
+SE22;FB4;C3;;;LAYER;3;BETON;TestSchicht Beton;;;12;4;16;;;;;;;;;;;TestSchicht Beton;neutral;;;;;
+SE23;FB5;;;;LAYER;1;OH;Test OH;;;15;0;15;;;;;;;;;;;Oberboden;neutral;;;;;
+SE24;FB5;C1;;LP3;LAYER;2;TMHB;Gem. a. G. (LS);;;17;15;32;;BK, sg;braun;Sande;halbfest;≥;15;15;;;Gem. a. G. (LS);neutral;15;c;c;JA;c
+SE25;FB6;C2;;;LAYER;1;TMHB;Gem. a. G. (NS);;;3;0;3;;BK, ug;schwarz;Tone;halbfest-fest;<;16;16;;;Gem. a. G. (NS);neutral;16;a;a;NEIN;a
+SE26;FB6;C2;;;LAYER;2;TMHB;Gem. a. G. (CD);;;1;3;4;;RK, sg;blau;Lehme;breiig;≤;17;17;;;Gem. a. G. (CD);neutral;17;b;b;JA;b
+SE27;FB6;C1;;;LAYER;3;TMHB;Gem. a. G. (XD);;;7;4;11;;RK, ug;gelb;Schluffe;breiig-weich;~;18;18;;;Gem. a. G. (XD);neutral;18;c;c;NEIN;c
+SE28;FB0;C0;;;LAYER;1;GOB;1;;;1;0;1;JA;;;;;;;;;;1;auffällig;;;;;
+SE29;FB0;C0;;LP4;LAYER;2;TOB;2;;;2;1;3;;;;;;;;;;;2;neutral;;;;;
+SE30;FB0;C0;;;LAYER;3;UG;3;;;3;3;6;;;;;;;;;;;Boden;neutral;;;;;
+SE31;FB0;C0;;;LAYER;4;OH;4;;;4;6;10;;;;;;;;;;;4;neutral;;;;;
+SE32;FB0;C0;;;LAYER;5;BESCHICHTUNG;5;;;5;10;15;JA;;;;;;;;;;5;auffällig;;;;;
+SE33;FB0;C0;;;LAYER;6;TMHB;6;;;6;15;21;JA;;;;;;;;;;6;auffällig;;;;;
+SE34;FB0;C0;;;LAYER;7;FUGE;7;;;7;21;28;JA;;;;;;;;;;7;auffällig;;;;;
+SE35;FB0;C0;;;LAYER;8;BETON;8;;;8;28;36;JA;;;;;;;;;;8;auffällig;;;;;
+SE36;FB0;C0;;;LAYER;9;ABDICHTUNG;9;;;9;36;45;JA;;;;;;;;;;9;auffällig;;;;;
+SE37;FB0;C0;;;LAYER;10;BANKETT;10;;;10;45;55;JA;;;;;;;;;;10;auffällig;;;;;
+SE38;FB7;C7;;;LAYER;1;FUGE;Test Fuge;;;13;0;13;;;;;;;;;;;Test Fuge;neutral;;;;;
+SE39;FB7;C0;;LP5;LAYER;2;TOB;Gem. a. G. (LS);;;5;13;18;;RK, sg;blau;Lehme;steif;~;19;19;;;Gem. a. G. (LS);neutral;19;a;a;JA;a
+SE40;FB7;C1;;;LAYER;3;TOB;Gem. a. G. (LS);;;6;18;24;;RK, ug;gelb;Schluffe;steif-halbfest;>;20;20;;PE-Beh. 3 l;Gem. a. G. (LS);neutral;20;b;b;NEIN;b
+SE41;FB7;C2;;;LAYER;4;TOB;Gem. a. G. (LS);;;8;24;32;;BK, sg;braun;Sande;halbfest;≥;21;21;;PE-Dose 1 l;Gem. a. G. (LS);neutral;21;c;c;JA;c
+SE42;FB7;C3;;;LAYER;5;TOB;Gem. a. G. (XD);;;7;32;39;;BK, ug;schwarz;Tone;halbfest-fest;<;22;22;;Bohrkiste;Gem. a. G. (XD);neutral;22;a;a;NEIN;a
+SE43;FB7;C4;;;LAYER;6;TOB;Gem. a. G. (XD);;;9;39;48;;RK, sg;blau;Lehme;breiig;≤;23;23;;PE-Eimer 10 l;Gem. a. G. (XD);neutral;23;b;b;JA;b
+SE44;FB8;C6;;;LAYER;1;OH;ST;;;1;0;1;;RK, ug;gelb;Schluffe;breiig-weich;~;24;24;;PE-Eimer  5 l ;ST;neutral;24;c;c;NEIN;c
+SE45;FB8;C5;;;LAYER;2;OH;GE;;;2;1;3;;BK, sg;braun;Sande;weich;~;25;25;;PE-Eimer  5 l ;GE;neutral;25;a;a;JA;a
+SE46;FB8;C5;;;LAYER;3;OH;OH;;;3;3;6;;BK, ug;schwarz;Tone;weich-steif;~;26;26;;;Oberboden;neutral;26;b;b;NEIN;b
+SE47;FB8;C2;;;LAYER;4;OH;OH;;;3;6;9;;RK, sg;blau;Lehme;steif;~;27;27;;;Oberboden;neutral;27;c;c;JA;c
+SE48;FB8;;;LP6;LAYER;5;TOB;Gem. A. G. (DT);;;100;9;109;;;;;;;;;;;Gem. A. G. (DT);neutral;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
