@@ -314,6 +314,14 @@ public enum ProbeKey implements Key
 					return addProbeTag("NUMMER");
 				}
 			},
+	CLASS
+			{
+				@Override
+				public String getKey()
+				{
+					return addProbeTag("TYPE");
+				}
+			},
 	ID
 			{
 				@Override

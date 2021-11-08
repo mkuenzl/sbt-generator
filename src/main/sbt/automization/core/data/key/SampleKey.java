@@ -275,6 +275,14 @@ public enum SampleKey implements Key
 					return addSampleTag("TIEFE_ENDE");
 				}
 			},
+	CLASS
+			{
+				@Override
+				public String getKey()
+				{
+					return addSampleTag("TYPE");
+				}
+			},
 	CHEMISTRY_ID
 			{
 				@Override

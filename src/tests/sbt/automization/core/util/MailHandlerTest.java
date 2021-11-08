@@ -39,6 +39,7 @@ public class MailHandlerTest
 		Assert.assertEquals("Space should be %20", "%20", space);
 	}
 	
+	@Ignore
 	@Test
 	public void uriEncodeSpecialCharacterUmlautsTest()
 	{

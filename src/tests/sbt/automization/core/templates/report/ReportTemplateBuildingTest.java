@@ -1,5 +1,6 @@
 package sbt.automization.core.templates.report;
 
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -12,23 +13,35 @@ import sbt.automization.core.templates.basic.Coordinates;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class ReportTemplateBuildingTest
 {
 	static ProjectEngine projectEngine;
 	
-	String templateExportPath = System.getProperty("user.dir")
+	static String templateExportPath = System.getProperty("user.dir")
 			.concat(File.separator)
 			.concat("tests-resources")
 			.concat(File.separator)
 			.concat("template-output")
 			.concat(File.separator);
 	
-	@BeforeClass
 	public static void initializeDatatables() throws Exception
 	{
 		projectEngine = new ProjectEngine();
 		projectEngine.retrieveDataFrom(new File("tests-resources/input/excel/excel-template-test.xlsx"), "Daten");
+	}
+	
+	@BeforeClass
+	public static void initialize() throws Exception
+	{
+		initializeDatatables();
+		
+		if (!new File(templateExportPath).exists())
+		{
+			Files.createDirectory(Path.of(templateExportPath));
+		}
 	}
 	
 	
@@ -49,6 +62,8 @@ public class ReportTemplateBuildingTest
 	{
 		TemplateExport exportStrategy = new HtmlExport(BoundSuperstructure.getInstance());
 		createAndOpenTemplate(exportStrategy);
+		
+		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
 	}
 	
 	@Test
@@ -56,6 +71,8 @@ public class ReportTemplateBuildingTest
 	{
 		TemplateExport exportStrategy = new HtmlExport(BaseCourseWithoutBinder.getInstance());
 		createAndOpenTemplate(exportStrategy);
+		
+		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
 	}
 	
 	@Test
@@ -63,6 +80,8 @@ public class ReportTemplateBuildingTest
 	{
 		TemplateExport exportStrategy = new HtmlExport(Underground.getInstance());
 		createAndOpenTemplate(exportStrategy);
+		
+		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
 	}
 	
 	@Test
@@ -70,6 +89,8 @@ public class ReportTemplateBuildingTest
 	{
 		TemplateExport exportStrategy = new HtmlExport(Topsoil.getInstance());
 		createAndOpenTemplate(exportStrategy);
+		
+		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
 	}
 	
 	@Test
@@ -77,6 +98,8 @@ public class ReportTemplateBuildingTest
 	{
 		TemplateExport exportStrategy = new HtmlExport(BaseCourseWithHydraulicBinder.getInstance());
 		createAndOpenTemplate(exportStrategy);
+		
+		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
 	}
 	
 	@Test
@@ -84,6 +107,8 @@ public class ReportTemplateBuildingTest
 	{
 		TemplateExport exportStrategy = new HtmlExport(Concrete.getInstance());
 		createAndOpenTemplate(exportStrategy);
+		
+		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
 	}
 	
 	@Test
@@ -91,6 +116,8 @@ public class ReportTemplateBuildingTest
 	{
 		TemplateExport exportStrategy = new HtmlExport(Gap.getInstance());
 		createAndOpenTemplate(exportStrategy);
+		
+		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
 	}
 	
 	@Test
@@ -98,6 +125,8 @@ public class ReportTemplateBuildingTest
 	{
 		TemplateExport exportStrategy = new HtmlExport(Heap.getInstance());
 		createAndOpenTemplate(exportStrategy);
+		
+		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
 	}
 	
 	@Test
@@ -105,6 +134,8 @@ public class ReportTemplateBuildingTest
 	{
 		TemplateExport exportStrategy = new HtmlExport(Coordinates.getInstance());
 		createAndOpenTemplate(exportStrategy);
+		
+		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
 	}
 	
 	@Test
@@ -112,6 +143,8 @@ public class ReportTemplateBuildingTest
 	{
 		TemplateExport exportStrategy = new HtmlExport(Banquet.getInstance());
 		createAndOpenTemplate(exportStrategy);
+		
+		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
 	}
 	
 	@Test
@@ -119,6 +152,8 @@ public class ReportTemplateBuildingTest
 	{
 		TemplateExport exportStrategy = new HtmlExport(Building.getInstance());
 		createAndOpenTemplate(exportStrategy);
+		
+		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
 	}
 	
 	@Ignore
@@ -127,6 +162,8 @@ public class ReportTemplateBuildingTest
 	{
 		TemplateExport exportStrategy = new HtmlExport(AttemptTemplate.getInstance());
 		createAndOpenTemplate(exportStrategy);
+		
+		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
 	}
 	
 }

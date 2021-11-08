@@ -89,6 +89,7 @@
         <delete dir="${build.dir}"/>
         <!--<delete dir="${libPath}"/>-->
         <delete dir="${out.dir}"/>
+        <delete dir="${test.resources}/template-output"/>
     </target>
 
     <target name="compile-main" depends="clean, retrieve-ivy">
@@ -116,7 +117,10 @@
     </target>
 
     <target name="junit" depends="compile-tests">
-        <junit printsummary="yes" haltonfailure="yes">
+        <delete dir="${test.resources}/template-output"/>
+
+        <junit haltonfailure="yes">
+            <formatter type="plain" usefile="false"/>
             <classpath>
                 <path refid="test.class.path"/>
                 <pathelement path="${java.class.path}"/>
