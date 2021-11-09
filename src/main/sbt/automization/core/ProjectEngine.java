@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class ProjectEngine
 {
-	private Project project;
+	private final Project project;
 	
 	public ProjectEngine()
 	{
@@ -39,6 +39,7 @@ public class ProjectEngine
 			case "csv":
 				return new CsvParser();
 			case "xlsx":
+			case "xlsm":
 				ExcelParser excelParser = new ExcelParser();
 				excelParser.setSheetName(sheetName);
 				return excelParser;
