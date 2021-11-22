@@ -88,7 +88,7 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 	@Override
 	public Double getAsDouble(Key key)
 	{
-		String value = get(key);
+		String value = get(key).replace(",", ".");
 		if (isNumeric(value))
 		{
 			return Double.parseDouble(value);
@@ -99,7 +99,7 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 	@Override
 	public Double getAsDouble(String key)
 	{
-		String value = get(key);
+		String value = get(key).replace(",", ".");
 		if (isNumeric(value))
 		{
 			return Double.parseDouble(value);
