@@ -25,7 +25,9 @@ install in your home under .launch4j or change the path in the build-exe.xml
 - MS Office 365 or 2019
 
 ### Flow Chart
-![Application flow chart](architecture/sbt-generator-flow.png)
+
+![](architecture/sbt-generator-flow.png)
+
 ### Excel Template Explained
 
 #### Queries with Power Query
