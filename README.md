@@ -32,6 +32,9 @@ install in your home under .launch4j or change the path in the build-exe.xml
 
 #### Queries with Power Query
 #### Database Model
+
+![](architecture/sbt-database-scheme.jpg)
+
 #### VBA
 
 
