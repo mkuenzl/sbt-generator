@@ -53,7 +53,7 @@ public final class FootnotePrinter implements TextPrinter
 				.appendAttribute("class", "Normal6")
 				.appendContent("Angaben:")
 				.appendContent(UtilityPrinter.printLineBreak())
-				.appendContent("KGV = Korngrößenverteilung, WG = Wassergehalt, LP = Plattendruckversuch, wPr = optimaler Wassergehalt, Gem. a. G. = Gemisch aus Gesteinskörnungen, NS = ")
+				.appendContent("KGV = Korngrößenverteilung, WG = Wassergehalt, Ev = Plattendruckversuch, wPr = optimaler Wassergehalt, Gem. a. G. = Gemisch aus Gesteinskörnungen, NS = ")
 				.appendContent(UtilityPrinter.printLineBreak())
 				.appendContent("Naturstein, LS = Lavaschlacke, HO = Hochofenschlacke, RC = Rezyklierte Gesteinskörnung, BK = Brechkorn, RK = Rundkorn, sg = stetig gestuft, ug = unstetig gestuft")
 				.appendContent(UtilityPrinter.printLineEmptyThin())
