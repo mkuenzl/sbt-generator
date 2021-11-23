@@ -70,7 +70,7 @@ public final class Underground extends Appendix
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
 						new String[]{sample.get(SampleKey.WATER_CONTENT)}),
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
-						new String[]{sample.get(SampleKey.WATER_PROCTOR)}),
+						new String[]{sample.get(SampleKey.MOISTURE)}),
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
 						new String[]{""})
 		});

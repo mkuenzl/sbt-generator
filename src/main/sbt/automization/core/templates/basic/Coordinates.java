@@ -111,6 +111,9 @@ public final class Coordinates extends TableTemplate
 	{
 		List<String> coordinateList;
 		
+		//Bad
+		if (coordinates == null) return Arrays.asList("-", "-", "-");
+		
 		String[] split = coordinates.split("(\\s)+");
 		
 		if (split.length == 3)

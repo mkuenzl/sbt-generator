@@ -12,7 +12,7 @@ public class GUI extends JFrame
 		
 		setLookAndFeel();
 		
-		ImageIcon img = new ImageIcon(getClass().getResource("/icons/sbt-logo.jpg"));
+		ImageIcon img = new ImageIcon(getClass().getResource("/icons/sbt-exe-icon.png"));
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setIconImage(img.getImage());
