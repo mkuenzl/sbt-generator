@@ -106,12 +106,27 @@ public final class ChemistryMarkupTextFormatter extends AbstractTextFormatter
 								.build().appendTag());
 				break;
 			case "eingehalten":
+			case "Auffälligkeit":
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
 						.appendContent("<span style=\"font-weight: bold\";>")
 						.appendContent(classification)
 						.appendContent("</span>")
 						.build().appendTag());
+				break;
+			case "keine Auffälligkeit":
+				stringBuilder.append(new HtmlText.Builder()
+								.appendAttribute("class", "Normal")
+								.appendContent("<span style=\"font-weight: bold\";>")
+								.appendContent("keine")
+								.appendContent("</span>")
+								.build().appendTag())
+						.append(new HtmlText.Builder()
+								.appendAttribute("class", "Normal")
+								.appendContent("<span style=\"font-weight: bold\";>")
+								.appendContent("Auffälligkeit")
+								.appendContent("</span>")
+								.build().appendTag());
 				break;
 			default:
 				stringBuilder.append(new HtmlText.Builder()

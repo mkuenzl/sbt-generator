@@ -111,31 +111,31 @@ public final class BoundSuperstructure extends Appendix
 	@Override
 	public String constructAndGetTableHeader()
 	{
-		String firstRow = HtmlFactory.createRowAsString("NormalHeader", new String[]{
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:125;text-align:left", 1, 1,
+		String firstRow = HtmlFactory.createRowAsString("NormalTableHeader", new String[]{
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:3.2cm;text-align:left", 1, 1,
 						new String[]{"Gebundener Oberbau"}),
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "text-align:left", 1, 8,
 						new String[]{"Aufschlussverfahren:", outcrop}),
 		});
 		
-		String secondRow = HtmlFactory.createRowAsString("NormalHeader", new String[]{
+		String secondRow = HtmlFactory.createRowAsString("NormalTableHeader", new String[]{
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "text-align:left", 2, 1,
 						new String[]{"Art der Schicht"}),
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm",
 						new String[]{"Dicke"}),
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm",
 						new String[]{"Tiefe"}),
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm",2, 1,
 						new String[]{"MUFV", "<div>[18]</div>"}),
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm", 2, 1,
 						new String[]{"PECH", "<div>[10]</div>"}),
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm", 2, 1,
 						new String[]{"LAGA RC", "<div>[28]</div>"}),
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm", 2, 1,
 						new String[]{"TL Ge.", "<div>[27]</div>"}),
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm",
 						new String[]{"PAK"}),
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm",
 						new String[]{"RuK", "<div>[31]</div>"})
 		});
 		

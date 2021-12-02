@@ -7,6 +7,7 @@ import sbt.automization.core.data.Sample;
 import sbt.automization.core.data.key.ProbeKey;
 import sbt.automization.core.data.key.RuKKey;
 import sbt.automization.core.data.key.SampleKey;
+import sbt.automization.core.format.printer.UtilityPrinter;
 import sbt.automization.core.html.HtmlFactory;
 
 import java.util.List;
@@ -39,17 +40,17 @@ public final class RingAndBall extends Appendix
 	protected String constructAndGetTableHeader()
 	{
 		String firstRow = HtmlFactory.createRowAsString("NormalTableHeader", new String[]{
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:75px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.5cm", 2, 1,
 						new String[]{"Erk. St."}),
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:75px", 2, 1,
-						new String[]{"Versuch Nr."}),
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:95px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.5cm", 2, 1,
+						new String[]{"Versuch", UtilityPrinter.printLineBreak(), "Nr."}),
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:2.5cm", 2, 1,
 						new String[]{"Probenart"}),
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:165px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:5cm", 2, 1,
 						new String[]{"Prüfschicht"}),
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:100px", 1, 3,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", 1, 3,
 						new String[]{"Prüftiefe"}),
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:95px",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:2.5cm",
 						new String[]{"Erw. RuK", "<div>[31]</div>"}),
 		});
 		
@@ -102,11 +103,11 @@ public final class RingAndBall extends Appendix
 								HtmlFactory.createCellAsString("Normal",
 										new String[]{sample.get(SampleKey.TYPE), " ",
 												sample.get(SampleKey.GRANULATION)}),
-								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
+								HtmlFactory.createCellAsString(textFormatter, "NormalCenter","width:1cm",
 										new String[]{sample.get(SampleKey.DEPTH_START)}),
-								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
+								HtmlFactory.createCellAsString(textFormatter, "NormalCenter","width:1cm",
 										new String[]{"-"}),
-								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
+								HtmlFactory.createCellAsString(textFormatter, "NormalCenter","width:1cm",
 										new String[]{sample.get(SampleKey.DEPTH_END)}),
 								HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 										new String[]{parameter.get(RuKKey.VALUE)})

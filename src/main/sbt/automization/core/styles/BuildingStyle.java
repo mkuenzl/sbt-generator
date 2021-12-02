@@ -111,7 +111,7 @@ public enum BuildingStyle implements Style
 				@Override
 				public String getStyle()
 				{
-					return "width:5.3cm;height:7.0cm;text-align:center;padding:0cm 0cm 0cm 0cm";
+					return "width:5.3333cm;height:7.0cm;text-align:center;padding:0cm 0cm 0cm 0cm";
 				}
 			},
 	TABLE

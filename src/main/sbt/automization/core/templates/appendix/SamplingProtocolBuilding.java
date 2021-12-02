@@ -41,11 +41,11 @@ public final class SamplingProtocolBuilding extends Appendix
 	protected String constructAndGetTableHeader()
 	{
 		String firstRow = HtmlFactory.createRowAsString(BuildingStyle.ROW_THIN_8.getStyleClass(), new String[]{
-				HtmlFactory.createHeaderAsString(BuildingStyle.HEADER_CELL.getStyleClass(), "width:0.7cm",
+				HtmlFactory.createHeaderAsString(BuildingStyle.HEADER_CELL.getStyleClass(), "width:1cm",
 						new String[]{"QS"}),
-				HtmlFactory.createHeaderAsString(BuildingStyle.HEADER_CELL.getStyleClass(), "width:4.0cm",
+				HtmlFactory.createHeaderAsString(BuildingStyle.HEADER_CELL.getStyleClass(), "width:4.5cm",
 						new String[]{"Material"}),
-				HtmlFactory.createHeaderAsString(BuildingStyle.HEADER_CELL.getStyleClass(), "width:2.3cm",
+				HtmlFactory.createHeaderAsString(BuildingStyle.HEADER_CELL.getStyleClass(), "width:2.5cm",
 						new String[]{"Farbe"}),
 				HtmlFactory.createHeaderAsString(BuildingStyle.HEADER_CELL.getStyleClass(), "width:1.5cm",
 						new String[]{"Tiefe"}),
@@ -53,7 +53,7 @@ public final class SamplingProtocolBuilding extends Appendix
 						new String[]{"Probe"}),
 				HtmlFactory.createHeaderAsString(BuildingStyle.HEADER_CELL.getStyleClass(), "width:1.5cm",
 						new String[]{"Chemie"}),
-				HtmlFactory.createHeaderAsString(BuildingStyle.HEADER_CELL.getStyleClass(), "width:2.5cm",
+				HtmlFactory.createHeaderAsString(BuildingStyle.HEADER_CELL.getStyleClass(), "width:3.5cm",
 						new String[]{"Umfang"})
 		});
 		

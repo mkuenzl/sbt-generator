@@ -64,7 +64,11 @@ public final class Gap extends Appendix
 				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{sample.get(SampleKey.DEPTH_END)}),
 				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.MUFV)),
-				HtmlFactory.createCellAsString(textFormatter, "NormalBold", 1, 3,
+				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
+						new String[]{""}),
+				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
+						new String[]{""}),
+				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
 						new String[]{""}),
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
 						new String[]{sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.PAK)}),
@@ -79,7 +83,7 @@ public final class Gap extends Appendix
 	public String constructAndGetTableHeader()
 	{
 		String firstRow = HtmlFactory.createRowAsString("NormalTableHeader", new String[]{
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:125px;text-align:left",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:3.2cm;text-align:left",
 						new String[]{"Fuge"}),
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "text-align:left", 1, 8,
 						new String[]{"Aufschlussverfahren:", outcrop}),
@@ -88,17 +92,21 @@ public final class Gap extends Appendix
 		String secondRow = HtmlFactory.createRowAsString("NormalTableHeader", new String[]{
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "text-align:left", 2, 1,
 						new String[]{"Art der Schicht"}),
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm",
 						new String[]{"Dicke", "<div>[7]</div>"}),
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm",
 						new String[]{"Tiefe"}),
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm", 2, 1,
 						new String[]{"MUFV", "<div>[18]</div>"}),
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px", 2, 3,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm",2, 1,
 						new String[]{""}),
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px",
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm",2, 1,
+						new String[]{""}),
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm",2, 1,
+						new String[]{""}),
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm",
 						new String[]{"PAK"}),
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:60px", 2, 1,
+				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm", 2, 1,
 						new String[]{"Asbest"})
 		});
 		

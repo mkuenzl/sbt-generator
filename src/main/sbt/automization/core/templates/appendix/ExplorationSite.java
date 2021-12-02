@@ -189,14 +189,20 @@ public final class ExplorationSite extends Appendix
 	
 	private String createFooter(DataTable dataTable)
 	{
-		HtmlCell cell = new HtmlCell.Builder()
+		
+		String cell = HtmlFactory.createCellAsString("NormalHeaderSmallFont",
+				new String[]{new FootnotePrinter().print(dataTable)});
+		
+		/*HtmlCell cell = new HtmlCell.Builder()
 				.appendAttribute("class", "NormalHeaderSmallFont")
 				.appendContent(new FootnotePrinter().print(dataTable))
 				.build();
+				
+		 */
 		
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "NormalThin8")
-				.appendContent(cell.appendTag())
+				.appendContent(cell)
 				.build();
 		
 		HtmlTable table = new HtmlTable.Builder()
