@@ -131,7 +131,7 @@ public class CrossSectionWithPitch extends Report
 				
 				String isPitch = sample.get(SampleKey.PITCH);
 				
-				if ("JA".equalsIgnoreCase(isPitch))
+				if ("JA".equalsIgnoreCase(isPitch) && thicknessOfSample != null)
 				{
 					depth += thicknessOfSample;
 				}

@@ -131,7 +131,7 @@ public final class CrossSectionWithoutPitch extends Report
 				
 				String isPitch = sample.get(SampleKey.PITCH);
 				
-				if ("NEIN".equalsIgnoreCase(isPitch))
+				if ("NEIN".equalsIgnoreCase(isPitch) && thicknessOfSample != null)
 				{
 					depth += thicknessOfSample;
 				}
