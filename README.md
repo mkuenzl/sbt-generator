@@ -26,14 +26,14 @@ install in your home under .launch4j or change the path in the build-exe.xml
 
 ### Flow Chart
 
-![](architecture/sbt-generator-flow.png)
+![](documentation/sbt-generator-flow.png)
 
 ### Excel Template Explained
 
 #### Queries with Power Query
 #### Database Model
 
-![](architecture/sbt-database-scheme.jpg)
+![](documentation/sbt-database-scheme.jpg)
 
 #### VBA
 
