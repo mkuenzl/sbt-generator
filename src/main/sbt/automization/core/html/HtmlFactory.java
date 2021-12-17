@@ -784,7 +784,7 @@ public class HtmlFactory
 			case "Z1":
 			case "Z1.1":
 			case "RC1":
-			case "DK1":
+			case "DK I":
 				htmlCell = new HtmlCell.Builder()
 						.appendAttribute("class", "ChemistryGreen")
 						.appendContent(classification)
@@ -792,7 +792,7 @@ public class HtmlFactory
 				break;
 			case "Z1.2":
 			case "RC2":
-			case "DK2":
+			case "DK II":
 				htmlCell = new HtmlCell.Builder()
 						.appendAttribute("class", "ChemistryYellow")
 						.appendContent(classification)
@@ -800,14 +800,14 @@ public class HtmlFactory
 				break;
 			case "Z2":
 			case "RC3":
-			case "DK3":
+			case "DK III":
 				htmlCell = new HtmlCell.Builder()
 						.appendAttribute("class", "ChemistryRed")
 						.appendContent(classification)
 						.build();
 				break;
 			case ">Z2":
-			case ">DK3":
+			case ">DK III":
 			case ">RC3":
 			case "gefährlich":
 				htmlCell = new HtmlCell.Builder()

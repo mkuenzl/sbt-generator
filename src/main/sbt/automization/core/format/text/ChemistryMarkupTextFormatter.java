@@ -33,7 +33,7 @@ public final class ChemistryMarkupTextFormatter extends AbstractTextFormatter
 			case "Z1":
 			case "Z1.1":
 			case "RC1":
-			case "DK1":
+			case "DK I":
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
 						.appendContent("<span style=\"background-color: #00FF00;font-weight: bold;\n" +
@@ -44,7 +44,7 @@ public final class ChemistryMarkupTextFormatter extends AbstractTextFormatter
 				break;
 			case "Z1.2":
 			case "RC2":
-			case "DK2":
+			case "DK II":
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
 						.appendContent("<span style=\"background-color: yellow;font-weight: bold;\n" +
@@ -55,7 +55,7 @@ public final class ChemistryMarkupTextFormatter extends AbstractTextFormatter
 				break;
 			case "Z2":
 			case "RC3":
-			case "DK3":
+			case "DK III":
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
 						.appendContent("<span style=\"background-color: red;font-weight: bold;\n" +
@@ -65,7 +65,7 @@ public final class ChemistryMarkupTextFormatter extends AbstractTextFormatter
 						.build().appendTag());
 				break;
 			case ">Z2":
-			case ">DK3":
+			case ">DK III":
 			case ">RC3":
 			case "gefährlich":
 				stringBuilder.append(new HtmlText.Builder()
