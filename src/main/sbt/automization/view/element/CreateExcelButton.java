@@ -25,7 +25,7 @@ public class CreateExcelButton extends CustomButton
 			{
 				try
 				{
-					String fileName = "/datenbank-template.xlsx";
+					String fileName = "/datenbank-template.xlsm";
 					FileUtils.copyFileToUserDirectory(fileName);
 					
 					ViewConstant.pathComponent.setText(System.getProperty("user.dir").concat(fileName));
