@@ -39,8 +39,8 @@ public class SizeTotalOBRetrieval extends DatatableInformationRetrieval
 	String retrieveFrom(Probe probe)
 	{
 		List<Sample> samples = probe.getSamplesBy(SampleKey.OUTCROP, new String[]{
-				outcrop.toString(),
 				Outcrop.CONCRETE.toString(),
+				Outcrop.TMHB.toString(),
 				Outcrop.TOB.toString(),
 				Outcrop.COATING.toString(),
 				Outcrop.GOB.toString(),

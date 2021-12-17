@@ -38,7 +38,7 @@ public class SizeTotalGOBRetrieval extends DatatableInformationRetrieval
 	@Override
 	String retrieveFrom(Probe probe)
 	{
-		List<Sample> samples = probe.getSamplesBy(SampleKey.OUTCROP, new String[]{outcrop.toString(),
+		List<Sample> samples = probe.getSamplesBy(SampleKey.OUTCROP, new String[]{Outcrop.GOB.toString(),
 				Outcrop.CONCRETE.toString(),
 				Outcrop.COATING.toString(),
 				Outcrop.TMHB.toString(),
