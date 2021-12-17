@@ -254,8 +254,8 @@ public final class DataTableFactory
 	{
 		try
 		{
-			table.getSamples().sort(Comparator.comparing(a -> a.get(SampleKey.NUMBER)));
-		} catch (NullPointerException e)
+			table.getSamples().sort(Comparator.comparing(a -> Integer.parseInt(a.get(SampleKey.NUMBER))));
+		} catch (Exception e)
 		{
 			ErrorPopup.showMessage("Es fehlt eine Nummerierung der Samples. Demnach kann eine Sorierung nicht durchgeführt werden.");
 		}

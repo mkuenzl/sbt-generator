@@ -14,6 +14,7 @@ import sbt.automization.core.format.text.LoadClassTextFormatter;
 import sbt.automization.core.html.HtmlFactory;
 import sbt.automization.core.templates.appendix.Appendix;
 
+import java.util.Comparator;
 import java.util.List;
 
 public final class BoundSuperstructure extends Appendix
@@ -49,6 +50,8 @@ public final class BoundSuperstructure extends Appendix
 							Outcrop.SEAL.toString(),
 							Outcrop.COATING.toString()
 					});
+			
+			samplesOfOutcrop.sort(Comparator.comparing(a -> Integer.parseInt(a.get(SampleKey.NUMBER))));
 			
 			for (Sample sample : samplesOfOutcrop)
 			{
