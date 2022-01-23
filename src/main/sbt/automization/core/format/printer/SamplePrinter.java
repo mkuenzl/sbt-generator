@@ -108,11 +108,20 @@ public final class SamplePrinter implements TextPrinter
 		stringBuilder.append(new LineBreakTextFormatter().format(sample.get(SampleKey.TYPE)));
 		stringBuilder.append(UtilityPrinter.printLineEmptyThin());
 		
+		//PLEASE DON'T JUDGE
+		String granulationFormatted = "";
+		if (!"".equals(sample.get(SampleKey.GRANULATION))) {
+			if (!"".equals(sample.get(SampleKey.ROUNDING_GRADATION)))
+				granulationFormatted = ", " + sample.get(SampleKey.GRANULATION);
+			else
+				granulationFormatted = sample.get(SampleKey.GRANULATION);
+		}
+		//END
+		
 		HtmlText attributes = new HtmlText.Builder()
 				.appendAttribute("class", "Normal6")
 				.appendContent(sample.get(SampleKey.ROUNDING_GRADATION))
-				.appendContent(" ")
-				.appendContent(sample.get(SampleKey.GRANULATION))
+				.appendContent(granulationFormatted)
 				.build();
 		stringBuilder.append(attributes.appendTag());
 		
