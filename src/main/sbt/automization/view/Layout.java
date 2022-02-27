@@ -25,47 +25,51 @@ public class Layout
 	
 	private void setPositions()
 	{
+		//Create Documents Part
+		positions.put("LabelChooseDropdown", new Rectangle(10, 0, 500, 20));
+		positions.put("DropdownFiles", new Rectangle(10, 30, 330, 20));
+		
 		//Excel Data Part
-		positions.put("LabelChooseFile", new Rectangle(10, 0, 400, 20));
-		positions.put("ButtonCreate", new Rectangle(10, 30, 160, 20));
-		positions.put("ButtonLoad", new Rectangle(180, 30, 160, 20));
-		positions.put("ButtonOpen", new Rectangle(350, 30, 160, 20));
-		positions.put("TextAreaPath", new Rectangle(10, 60, 500, 20));
+		positions.put("LabelChooseFile", new Rectangle(10, 60, 400, 20));
+		positions.put("ButtonCreate", new Rectangle(10, 90, 160, 20));
+		positions.put("ButtonLoad", new Rectangle(180, 90, 160, 20));
+		positions.put("ButtonOpen", new Rectangle(350, 90, 160, 20));
+		positions.put("TextAreaPath", new Rectangle(10, 120, 500, 20));
 		
 		//Choose Data Set Part
-		positions.put("LabelChooseDataSet", new Rectangle(10, 100, 400, 20));
-		positions.put("CheckBoxAllData", new Rectangle(10, 130, 120, 20));
-		positions.put("CheckBoxExplorationData", new Rectangle(140, 130, 120, 20));
-		positions.put("CheckBoxHeapData", new Rectangle(270, 130, 120, 20));
-		positions.put("CheckBoxBuildingData", new Rectangle(400, 130, 120, 20));
+		positions.put("LabelChooseDataSet", new Rectangle(10, 150, 400, 20));
+		positions.put("CheckBoxAllData", new Rectangle(10, 180, 120, 20));
+		positions.put("CheckBoxExplorationData", new Rectangle(140, 180, 120, 20));
+		positions.put("CheckBoxHeapData", new Rectangle(270, 180, 120, 20));
+		positions.put("CheckBoxBuildingData", new Rectangle(400, 180, 120, 20));
 		
 		//Choose Tables Part
-		positions.put("LabelChooseTable", new Rectangle(10, 170, 400, 20));
-		positions.put("CheckBoxFirstColumnFirstRow", new Rectangle(10, 200, 180, 20));
-		positions.put("CheckBoxFirstColumnSecondRow", new Rectangle(10, 220, 180, 20));
-		positions.put("CheckBoxFirstColumnThirdRow", new Rectangle(10, 240, 180, 20));
-		positions.put("CheckBoxFirstColumnFourthRow", new Rectangle(10, 260, 180, 20));
-		positions.put("CheckBoxFirstColumnFifthRow", new Rectangle(10, 280, 180, 20));
-		positions.put("CheckBoxFirstColumnSixthRow", new Rectangle(10, 300, 180, 20));
+		positions.put("LabelChooseTable", new Rectangle(10, 210, 400, 20));
+		positions.put("CheckBoxFirstColumnFirstRow", new Rectangle(10, 240, 180, 20));
+		positions.put("CheckBoxFirstColumnSecondRow", new Rectangle(10, 260, 180, 20));
+		positions.put("CheckBoxFirstColumnThirdRow", new Rectangle(10, 280, 180, 20));
+		positions.put("CheckBoxFirstColumnFourthRow", new Rectangle(10, 300, 180, 20));
+		positions.put("CheckBoxFirstColumnFifthRow", new Rectangle(10, 320, 180, 20));
+		positions.put("CheckBoxFirstColumnSixthRow", new Rectangle(10, 340, 180, 20));
 		
-		positions.put("CheckBoxSecondColumnFirstRow", new Rectangle(200, 200, 180, 20));
-		positions.put("CheckBoxSecondColumnSecondRow", new Rectangle(200, 220, 180, 20));
-		positions.put("CheckBoxSecondColumnThirdRow", new Rectangle(200, 240, 180, 20));
-		positions.put("CheckBoxSecondColumnFourthRow", new Rectangle(200, 260, 180, 20));
-		positions.put("CheckBoxSecondColumnFifthRow", new Rectangle(200, 280, 180, 20));
-		positions.put("CheckBoxSecondColumnSixthRow", new Rectangle(200, 300, 180, 20));
-		positions.put("CheckBoxSecondColumnSeventhRow", new Rectangle(200, 320, 180, 20));
-		positions.put("CheckBoxSecondColumnEighthRow", new Rectangle(200, 340, 180, 20));
-		positions.put("CheckBoxSecondColumnNinthRow", new Rectangle(200, 360, 180, 20));
-		positions.put("CheckBoxSecondColumnTenthRow", new Rectangle(200, 380, 180, 20));
+		positions.put("CheckBoxSecondColumnFirstRow", new Rectangle(200, 240, 180, 20));
+		positions.put("CheckBoxSecondColumnSecondRow", new Rectangle(200, 260, 180, 20));
+		positions.put("CheckBoxSecondColumnThirdRow", new Rectangle(200, 280, 180, 20));
+		positions.put("CheckBoxSecondColumnFourthRow", new Rectangle(200, 300, 180, 20));
+		positions.put("CheckBoxSecondColumnFifthRow", new Rectangle(200, 320, 180, 20));
+		positions.put("CheckBoxSecondColumnSixthRow", new Rectangle(200, 340, 180, 20));
+		positions.put("CheckBoxSecondColumnSeventhRow", new Rectangle(200, 360, 180, 20));
+		positions.put("CheckBoxSecondColumnEighthRow", new Rectangle(200, 380, 180, 20));
+		positions.put("CheckBoxSecondColumnNinthRow", new Rectangle(200, 400, 180, 20));
+		positions.put("CheckBoxSecondColumnTenthRow", new Rectangle(200, 420, 180, 20));
 		
-		positions.put("CheckBoxThirdColumnFirstRow", new Rectangle(390, 200, 180, 20));
+		positions.put("CheckBoxThirdColumnFirstRow", new Rectangle(390, 240, 180, 20));
 		
 		
 		//Create Tables Part
-		positions.put("ButtonReport", new Rectangle(150, 410, 20, 20));
-		positions.put("ButtonBuildTable", new Rectangle(180, 410, 160, 20));
-		positions.put("ButtonHelp", new Rectangle(350, 410, 20, 20));
+		positions.put("ButtonReport", new Rectangle(150, 450, 20, 20));
+		positions.put("ButtonBuildTable", new Rectangle(180, 450, 160, 20));
+		positions.put("ButtonHelp", new Rectangle(350, 450, 20, 20));
 	}
 	
 	private void constructComponents()
@@ -90,11 +94,11 @@ public class Layout
 		ViewConstant.pathComponent = textArea;
 		components.add(textArea);
 		
-		JLabel jLabel = new JLabel("2. Wählen Sie einen Datensatz", JLabel.LEFT);
-		jLabel.setBounds(positions.get("LabelChooseDataSet"));
-		jLabel.setForeground(Color.BLACK);
-		jLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
-		components.add(jLabel);
+		JLabel labelChooseData = new JLabel("2. Wählen Sie einen Datensatz", JLabel.LEFT);
+		labelChooseData.setBounds(positions.get("LabelChooseDataSet"));
+		labelChooseData.setForeground(Color.BLACK);
+		labelChooseData.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
+		components.add(labelChooseData);
 		
 		constructCheckBoxDataSetArea();
 		
@@ -118,6 +122,23 @@ public class Layout
 		//INFO.
 		JButton infoButton = new InfoButton("", positions.get("ButtonHelp"));
 		components.add(infoButton);
+		
+		//FileDropDowns
+		JLabel labelChooseFileDropDown = new JLabel("0. Auswahl zusätzlicher Documente", JLabel.LEFT);
+		labelChooseFileDropDown.setBounds(positions.get("LabelChooseDropdown"));
+		labelChooseFileDropDown.setForeground(Color.BLACK);
+		labelChooseFileDropDown.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
+		components.add(labelChooseFileDropDown);
+		
+		JComboBox dropdownMenu = new FileDropDownMenu(new String[]{
+				"Chemie_Vorlage.xlsx",
+				"Bericht-Erkundung-Straße.docx",
+				"Bericht-Gebäude.docx",
+				"Bericht-Straßenbau-Vorerkundung.docx",
+				"Bericht-Straßenbau-Vorerkundung-(A3).docx",
+				"Regelwerk-Straßenbau.docx"
+		}, positions.get("DropdownFiles"));
+		components.add(dropdownMenu);
 	}
 	
 	private void constructCheckBoxTemplateArea()

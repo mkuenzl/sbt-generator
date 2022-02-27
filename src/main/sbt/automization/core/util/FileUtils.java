@@ -25,11 +25,14 @@ public final class FileUtils
 	 */
 	public static void copyFileTo(final String file, final String path) throws IOException
 	{
-		String pathname = System.getProperty("user.dir").concat(File.separator).concat(file);
+		Path internFilePath = Paths.get(file);
+		String internFileName = internFilePath.getFileName().toString();
+		
+		String pathname = path.concat(File.separator).concat(internFileName);
 		
 		if (new File(pathname).exists()) return;
 		
-		URL inputUrl = FileUtils.class.getResource(path + file);
+		URL inputUrl = FileUtils.class.getResource(file);
 		
 		File destinationFile = new File(pathname);
 		

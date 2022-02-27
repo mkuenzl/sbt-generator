@@ -17,7 +17,7 @@ public class GUI extends JFrame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setIconImage(img.getImage());
 		this.setLayout(null);
-		this.setSize(540, 490);
+		this.setSize(540, 520);
 		this.setResizable(false);
 		constructPanel();
 		//this.setJMenuBar(menuBar);
