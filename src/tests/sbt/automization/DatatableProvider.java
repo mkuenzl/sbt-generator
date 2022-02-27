@@ -9,7 +9,6 @@ import java.util.Map;
 
 public final class DatatableProvider
 {
-	Probe dataTable = new Probe();
 	Sample sample_1_GOB;
 	Sample sample_2_GOB;
 	Sample sample_3_GOB;
@@ -24,6 +23,7 @@ public final class DatatableProvider
 
 	public DataTable getTestDataTable()
 	{
+		Probe dataTable = new Probe();
 		dataTable.setTable(buildProbeData());
 		buildSampleData();
 		dataTable.addSample(sample_1_GOB);
@@ -35,6 +35,20 @@ public final class DatatableProvider
 		dataTable.addSample(sample_7_TOB);
 		dataTable.addSample(sample_8_UG);
 
+		return dataTable;
+	}
+	
+	public DataTable getTestDataTable(int sampleAmount)
+	{
+		Probe dataTable = new Probe();
+		dataTable.setTable(buildProbeData());
+		buildSampleData();
+		
+		for (int i = 0; i < sampleAmount; i++)
+		{
+			dataTable.addSample(sample_1_GOB);
+		}
+		
 		return dataTable;
 	}
 

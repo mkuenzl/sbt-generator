@@ -47,10 +47,10 @@ public final class ListSeparator
 			} else
 			{
 				List<DataTable> copiedTables = new ArrayList<>(tables);
-				amountOfSamplesInTables = 0;
 				tables.clear();
 				lists.add(copiedTables);
 				tables.add(dataTable);
+				amountOfSamplesInTables = amountOfSamples;
 			}
 		}
 		
