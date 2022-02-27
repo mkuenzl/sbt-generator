@@ -137,7 +137,7 @@
 			{
                 border:solid windowtext .5pt;
                 background:white;
-                padding:0cm 1.4pt 0cm 3.4pt;
+                padding:0cm 1.4pt 0cm 1.4pt;
                 overflow:hidden;
 			}
 			td.NormalBuilding
