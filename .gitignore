@@ -8,6 +8,9 @@ out
 *.html
 files
 *.jar
+.idea
+sbt-generator.iml
+.gitattributes
 
 # Compiled class file
 *.class
