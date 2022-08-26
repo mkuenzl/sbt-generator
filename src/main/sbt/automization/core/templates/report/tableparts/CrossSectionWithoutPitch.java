@@ -4,6 +4,7 @@ import sbt.automization.core.data.DataTable;
 import sbt.automization.core.data.Outcrop;
 import sbt.automization.core.data.Sample;
 import sbt.automization.core.data.key.SampleKey;
+import sbt.automization.core.format.text.DepthTextFormatter;
 import sbt.automization.core.html.HtmlCell;
 import sbt.automization.core.html.HtmlFactory;
 import sbt.automization.core.html.HtmlRow;
@@ -145,7 +146,7 @@ public final class CrossSectionWithoutPitch extends Report
 	{
 		if (depth > 0)
 		{
-			size = String.valueOf(depth).replace(".", ",");
+			size = new DepthTextFormatter().printThicknessInHalves(depth);
 			mufv = "nicht gefährlich";
 			ruva = "A";
 			avv = "17 03 02";
