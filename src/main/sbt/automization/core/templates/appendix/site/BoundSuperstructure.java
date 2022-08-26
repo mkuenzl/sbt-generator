@@ -97,7 +97,7 @@ public final class BoundSuperstructure extends Appendix
 	private String createLoadClassRow()
 	{
 		String row = HtmlFactory.createRowAsString("Normal", new String[]{
-				HtmlFactory.createCellAsString("NormalCenter", 1, 5,
+				HtmlFactory.createCellAsString("NormalHeaderCenter", 1, 5,
 						new String[]{""}),
 				HtmlFactory.createCellAsString("NormalCenter", 1, 2,
 						new String[]{new LoadClassTextFormatter().format(probe.get(ProbeKey.LOAD_CLASS))}),

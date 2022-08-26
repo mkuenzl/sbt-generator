@@ -1,6 +1,10 @@
 package sbt.automization.core.format.text;
 
+import sbt.automization.core.data.Sample;
+import sbt.automization.core.data.key.SampleKey;
 import sbt.automization.core.html.HtmlText;
+
+import java.util.List;
 
 public final class DepthTextFormatter extends AbstractTextFormatter
 {
@@ -65,5 +69,20 @@ public final class DepthTextFormatter extends AbstractTextFormatter
 				.build();
 		
 		return htmlText.appendTag();
+	}
+	
+	public String printThicknessInHalves(double depth)
+	{
+		if (depth % 1 == 0)
+		{
+			return String.format("%.0f", depth);
+		} else
+		{
+			double height = Math.round(depth * 10.0) / 10.0;
+			//String height = String.valueOf(thicknessOfSamples);
+			String replace = String.valueOf(height).replace(".", ",");
+			
+			return replace;
+		}
 	}
 }
