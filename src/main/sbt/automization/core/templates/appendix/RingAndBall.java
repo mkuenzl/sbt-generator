@@ -11,7 +11,11 @@ import sbt.automization.core.format.printer.UtilityPrinter;
 import sbt.automization.core.html.HtmlFactory;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public final class RingAndBall extends Appendix
 {
@@ -142,9 +146,26 @@ public final class RingAndBall extends Appendix
 	
 	
 	private static void sort(List<Parameter> list) {
-		list.sort((o1, o2)
-				-> o1.get(RuKKey.ID).compareTo(
-				o2.get(RuKKey.ID)));
+		Collections.sort(list, new Comparator<Parameter>() {
+			@Override
+			public int compare(Parameter param1, Parameter param2) {
+				int id1 = extractFirstNumber(param1.get(RuKKey.ID));
+				int id2 = extractFirstNumber(param2.get(RuKKey.ID));
+				return Integer.compare(id1, id2);
+			}
+		});
+	}
+	
+	public static int extractFirstNumber(String str) {
+		Pattern pattern = Pattern.compile("\\d+");
+		Matcher matcher = pattern.matcher(str);
+		
+		if (matcher.find()) {
+			String numberStr = matcher.group();
+			return Integer.parseInt(numberStr);
+		}
+		
+		return -1;  // Return a default value if no number is found
 	}
 	
 	
