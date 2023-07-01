@@ -140,12 +140,26 @@ public final class Building extends Report
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"MKW (C10 - C22),"}, "mg/kg"), new ChemistryMKWC22Retrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"MKW (C10 - C40),"}, "mg/kg"), new ChemistryMKWC40Retrieval()));
 		
+		// added 01.07.2023
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Materialklasse,"}, "EBV Boden<sup" +
+				">[]</sup>"),	new ChemistryEbvSoil()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Materialklasse,"}, "EBV " +
+				"Bauschutt<sup>[]</sup>"), new ChemistryEbvConstructionWaste()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Überwachungswert,"}, "EBV " +
+				"Bauschutt<sup>[]</sup>"), new ChemistryEbvMonitoringValue()));
 		
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Zuordnungsklasse,"}, "LAGA Boden<sup>[4]</sup>"), new ChemistryLagaBoRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Zuordnungsklasse,"}, "LAGA Bauschutt<sup>[15]</sup>"), new ChemistryLagaRcRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Orientierungswert,"}, "LAGA Bauschutt<sup>[15]</sup>"), new ChemistryLagaRcOrientationRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Verwertungsklasse,"}, "TL Gestein<sup>[14]</sup>"), new ChemistryTlRockRetrieval()));
-		addToTable(provider.getRow(header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"}, "Einstufung"), new ChemistryMufvClassificationRetrieval())); // Einstufung
+		
+		addToTable(provider.getRow(header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"}, "Einstufung (bis 31" +
+						".07.2023)"),
+				new ChemistryMufvRetrieval())); // Einstufung
+		
+		addToTable(provider.getRow(header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"}, "Einstufung (ab 01" +
+				".08.2023)"),	new ChemistryMufv0823Retrieval())); // Einstufung
+		
 		addToTable(provider.getRow(header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"}, "Parameter"), new ChemistryMufvParameterRetrieval())); // Parameter
 		addToTable(provider.getRow(header.createCell(new String[]{"Abfallschlüssel<sup>1,2</sup>"}, "AVV<sup>[7]</sup>, materialspezifisch"), new WasteKeyMaterialRetrieval()));  // Material
 		addInformationHeader(dataTables);

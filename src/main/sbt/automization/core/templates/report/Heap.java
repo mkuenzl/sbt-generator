@@ -2,6 +2,7 @@ package sbt.automization.core.templates.report;
 
 import sbt.automization.core.data.DataTable;
 import sbt.automization.core.data.Outcrop;
+import sbt.automization.core.format.printer.UtilityPrinter;
 import sbt.automization.core.html.HtmlCell;
 import sbt.automization.core.html.HtmlFactory;
 import sbt.automization.core.html.HtmlRow;
@@ -109,10 +110,30 @@ public final class Heap extends Report
 		addToTable(provider.getRowWithDataCheck(chemistryIdHeader, new ChemistryIdRetrieval()));
 		HtmlCell chemistryPakHeader = header.createCell(new String[]{"PAK,"}, "mg/kg");
 		addToTable(provider.getRowWithDataCheck(chemistryPakHeader, new ChemistryPakRetrieval()));
-		HtmlCell chemistryMufvHeader = header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"}, "Schreiben des MUFV<sup>[9]</sup>");
+		// updated 01.07.2023
+		HtmlCell chemistryMufvHeader = header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"},
+				"Schreiben des MUFV<sup>[18]</sup>"  + UtilityPrinter.printLineBreak() + "bis 31.07.2023");
 		addToTable(provider.getRowWithDataCheck(chemistryMufvHeader, new ChemistryMufvRetrieval()));
+		
+		// added 01.07.2023
+		HtmlCell chemistryMufv0823Header = header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"},
+				"Schreiben des MUFV<sup>[51]</sup>" + UtilityPrinter.printLineBreak() + "ab 01.08.2023");
+		addToTable(provider.getRowWithDataCheck(chemistryMufv0823Header, new ChemistryMufv0823Retrieval()));
+		
 		HtmlCell chemistryLfsHeader = header.createCell(new String[]{"Vollzugshinweise,"}, "LFS");
 		addToTable(provider.getRowWithDataCheck(chemistryLfsHeader, new ChemistryLfsRetrieval()));
+		
+		// added 01.07.2023
+		HtmlCell chemistryEbvSoilHeader = header.createCell(new String[]{"Materialklasse,"}, "EBV Boden<sup>[50]</sup>");
+		addToTable(provider.getRowWithDataCheck(chemistryEbvSoilHeader, new ChemistryEbvSoil()));
+		HtmlCell chemistryEbvConstructionWasteHeader = header.createCell(new String[]{"Materialklasse,"}, "EBV " +
+				"Bauschutt<sup>[50]</sup>");
+		addToTable(provider.getRowWithDataCheck(chemistryEbvConstructionWasteHeader, new ChemistryEbvConstructionWaste()));
+		HtmlCell chemistryEbvMonitoringValue = header.createCell(new String[]{"Überwachungswert,"}, "EBV Bauschutt" +
+				"<sup>[50]</sup>");
+		addToTable(provider.getRowWithDataCheck(chemistryEbvMonitoringValue, new ChemistryEbvMonitoringValue()));
+		
+		
 		HtmlCell chemistryLagaBoHeader = header.createCell(new String[]{"Zuordnungsklasse,"}, "LAGA Boden<sup>[2]</sup>");
 		addToTable(provider.getRowWithDataCheck(chemistryLagaBoHeader, new ChemistryLagaBoRetrieval()));
 		HtmlCell chemistryLagaRcHeader = header.createCell(new String[]{"Zuordnungsklasse,"}, "LAGA Bauschutt<sup>[16]</sup>");
