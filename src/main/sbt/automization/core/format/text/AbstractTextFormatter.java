@@ -8,7 +8,7 @@ public abstract class AbstractTextFormatter implements TextFormatter
 	
 	protected String replaceIfEmpty(String text)
 	{
-		if ("".equals(text))
+		if ("".equals(text) || null == text)
 		{
 			return "-";
 		} else
