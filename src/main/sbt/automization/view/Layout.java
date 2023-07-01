@@ -51,6 +51,7 @@ public class Layout
 		positions.put("CheckBoxFirstColumnFourthRow", new Rectangle(10, 300, 180, 20));
 		positions.put("CheckBoxFirstColumnFifthRow", new Rectangle(10, 320, 180, 20));
 		positions.put("CheckBoxFirstColumnSixthRow", new Rectangle(10, 340, 180, 20));
+		positions.put("CheckBoxFirstColumnSeventhRow", new Rectangle(10, 360, 180, 20));
 		
 		positions.put("CheckBoxSecondColumnFirstRow", new Rectangle(200, 240, 180, 20));
 		positions.put("CheckBoxSecondColumnSecondRow", new Rectangle(200, 260, 180, 20));
@@ -147,19 +148,24 @@ public class Layout
 		TemplateCheckBox explorationSiteCheckBox = new TemplateCheckBox("Erkundungsstellen", positions.get("CheckBoxFirstColumnFirstRow"), ExplorationSite.getInstance());
 		components.add(explorationSiteCheckBox);
 		
-		TemplateCheckBox lpCheckBox = new TemplateCheckBox("Lastplatten", positions.get("CheckBoxFirstColumnSecondRow"), LoadPlate.getInstance());
+		TemplateCheckBox explorationSite08CheckBox = new TemplateCheckBox("Erkundungsstellen 08.23", positions.get(
+				"CheckBoxFirstColumnSecondRow"), ExplorationSite08.getInstance());
+		components.add(explorationSite08CheckBox);
+		
+		TemplateCheckBox lpCheckBox = new TemplateCheckBox("Lastplatten", positions.get("CheckBoxFirstColumnThirdRow"), LoadPlate.getInstance());
 		components.add(lpCheckBox);
 		
-		TemplateCheckBox rukCheckBox = new TemplateCheckBox("Ring und Kugel", positions.get("CheckBoxFirstColumnThirdRow"), RingAndBall.getInstance());
+		TemplateCheckBox rukCheckBox = new TemplateCheckBox("Ring und Kugel", positions.get("CheckBoxFirstColumnFourthRow"), RingAndBall.getInstance());
 		components.add(rukCheckBox);
 		
-		TemplateCheckBox pnCheckBox = new TemplateCheckBox("Probenahme", positions.get("CheckBoxFirstColumnFourthRow"), SamplingProtocol.getInstance());
+		TemplateCheckBox pnCheckBox = new TemplateCheckBox("Probenahme", positions.get("CheckBoxFirstColumnFifthRow"), SamplingProtocol.getInstance());
 		components.add(pnCheckBox);
 		
-		TemplateCheckBox pnHeapCheckBox = new TemplateCheckBox("Probenahme Haufwerk", positions.get("CheckBoxFirstColumnFifthRow"), SamplingProtocolHeap.getInstance());
+		TemplateCheckBox pnHeapCheckBox = new TemplateCheckBox("Probenahme Haufwerk", positions.get("CheckBoxFirstColumnSixthRow"), SamplingProtocolHeap.getInstance());
 		components.add(pnHeapCheckBox);
 		
-		TemplateCheckBox pnBuildingCheckBox = new TemplateCheckBox("Probenahme Gebäude", positions.get("CheckBoxFirstColumnSixthRow"), SamplingProtocolBuilding.getInstance());
+		TemplateCheckBox pnBuildingCheckBox = new TemplateCheckBox("Probenahme Gebäude", positions.get(
+				"CheckBoxFirstColumnSeventhRow"), SamplingProtocolBuilding.getInstance());
 		components.add(pnBuildingCheckBox);
 		
 		//REPORT

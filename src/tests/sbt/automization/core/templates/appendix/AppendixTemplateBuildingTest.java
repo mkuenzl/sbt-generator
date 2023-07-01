@@ -63,6 +63,15 @@ public class AppendixTemplateBuildingTest
 	}
 	
 	@Test
+	public void createExplorationSite08Template() throws Exception
+	{
+		TemplateExport exportStrategy = new HtmlExport(ExplorationSite08.getInstance());
+		createAndOpenTemplate(exportStrategy);
+		
+		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
+	}
+	
+	@Test
 	public void createRukTemplate() throws Exception
 	{
 		TemplateExport exportStrategy = new HtmlExport(RingAndBall.getInstance());
