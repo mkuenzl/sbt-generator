@@ -16,6 +16,9 @@ import sbt.automization.core.html.HtmlFactory;
 import java.util.ArrayList;
 import java.util.List;
 
+import static sbt.automization.core.format.text.NumberTextFormatter.formatStringToOneDecimal;
+import static sbt.automization.core.format.text.NumberTextFormatter.formatStringToTwoDecimals;
+
 public final class LoadPlate extends Appendix
 {
 	private static LoadPlate instance;
@@ -132,15 +135,15 @@ public final class LoadPlate extends Appendix
 						HtmlFactory.createCellAsString(textFormatter, "Normal",
 								new String[]{getProbeLocations(parameter)}),
 						HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
-								new String[]{parameter.get(LpKey.VALUE_1)}),
+								new String[]{formatStringToTwoDecimals(parameter.get(LpKey.VALUE_1))}),
 						HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
-								new String[]{parameter.get(LpKey.VALUE_2)}),
+								new String[]{formatStringToTwoDecimals(parameter.get(LpKey.VALUE_2))}),
 						HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
-								new String[]{parameter.get(LpKey.VALUE_3)}),
+								new String[]{formatStringToTwoDecimals(parameter.get(LpKey.VALUE_3))}),
 						HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
-								new String[]{parameter.get(LpKey.MEAN)}),
+								new String[]{formatStringToTwoDecimals(parameter.get(LpKey.MEAN))}),
 						HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
-								new String[]{parameter.get(LpKey.EV)}),
+								new String[]{formatStringToOneDecimal(parameter.get(LpKey.EV))}),
 						HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 								new String[]{parameter.get(LpKey.EV85)}),
 						HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
