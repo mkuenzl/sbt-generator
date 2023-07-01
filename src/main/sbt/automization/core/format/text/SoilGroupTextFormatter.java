@@ -37,7 +37,7 @@ public final class SoilGroupTextFormatter extends AbstractTextFormatter
 		switch (kind)
 		{
 			case "GE":
-				kindText = "Engestufte Kiese";
+				kindText = "Enggestufte Kiese";
 				break;
 			case "GW":
 				kindText = "Weitgestufte Kies-Sand-Gemische";
