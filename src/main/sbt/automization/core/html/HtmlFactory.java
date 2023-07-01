@@ -761,7 +761,7 @@ public class HtmlFactory
 	{
 		HtmlCell htmlCell;
 		
-		if ("".equals(classification)) return htmlCell = new HtmlCell.Builder()
+		if ("".equals(classification) || null == classification) return new HtmlCell.Builder()
 				.appendAttribute("class", "NormalBold")
 				.appendContent("-")
 				.build();
@@ -769,18 +769,37 @@ public class HtmlFactory
 		switch (classification)
 		{
 			case "Z0":
+			case "BM-0":
+			case "BG-0":
+			case "GS-0":
+			case "GRS":
+			case "SKG":
+			case "SKA":
+			case "SFA":
+			case "BFA":
+			case "HS":
 			case "DK0":
 				htmlCell = new HtmlCell.Builder()
 						.appendAttribute("class", "ChemistryWhite")
 						.appendContent(classification)
 						.build();
 				break;
+			case "BM-0*":
+			case "BG-0*":
 			case "Z0*":
 				htmlCell = new HtmlCell.Builder()
 						.appendAttribute("class", "ChemistryBlue")
 						.appendContent(classification)
 						.build();
 				break;
+			case "BM-F0*":
+			case "BG-F0*":
+			case "RC-1":
+			case "HOS-1":
+			case "GS-1":
+			case "SWS-1":
+			case "CUM-1":
+			case "HMVA-1":
 			case "Z1":
 			case "Z1.1":
 			case "RC1":
@@ -790,6 +809,14 @@ public class HtmlFactory
 						.appendContent(classification)
 						.build();
 				break;
+			case "BM-F1":
+			case "BG-F1":
+			case "RC-2":
+			case "HOS-2":
+			case "GS-2":
+			case "SWS-2":
+			case "CUM-2":
+			case "HMVA-2":
 			case "Z1.2":
 			case "RC2":
 			case "DK II":
@@ -798,6 +825,17 @@ public class HtmlFactory
 						.appendContent(classification)
 						.build();
 				break;
+			case "BG-F2":
+			case "BM-F2":
+				htmlCell = new HtmlCell.Builder()
+						.appendAttribute("class", "ChemistryOrange")
+						.appendContent(classification)
+						.build();
+				break;
+			case "BM-F3":
+			case "BG-F3":
+			case "RC-3":
+			case "GS-3":
 			case "Z2":
 			case "RC3":
 			case "DK III":
@@ -806,6 +844,8 @@ public class HtmlFactory
 						.appendContent(classification)
 						.build();
 				break;
+			case ">BM-F3":
+			case ">BG-F3":
 			case ">Z2":
 			case ">DK III":
 			case ">RC3":
