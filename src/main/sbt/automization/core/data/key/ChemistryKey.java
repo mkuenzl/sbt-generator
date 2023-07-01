@@ -178,6 +178,30 @@ public enum ChemistryKey implements Key
 					return addChemistryTag("LAGA_BO");
 				}
 			},
+	EBV_MONITORING_VALUE
+			{
+				@Override
+				public String getKey()
+				{
+					return addChemistryTag("EBV_UEBERWACHUNGSWERT");
+				}
+			},
+	EBV_SOIL
+			{
+				@Override
+				public String getKey()
+				{
+					return addChemistryTag("EBV_BODEN");
+				}
+			},
+	EBV_CONSTRUCTION_WASTE
+			{
+				@Override
+				public String getKey()
+				{
+					return addChemistryTag("EBV_BAUSCHUTT");
+				}
+			},
 	LFS
 			{
 				@Override
@@ -192,6 +216,14 @@ public enum ChemistryKey implements Key
 				public String getKey()
 				{
 					return addChemistryTag("MUFV");
+				}
+			},
+	MUFV_08_23
+			{
+				@Override
+				public String getKey()
+				{
+					return addChemistryTag("MUFV_08_23");
 				}
 			},
 	MUFV_PARAMETER
