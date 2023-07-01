@@ -60,18 +60,18 @@ public final class Coordinates extends TableTemplate
 		String firstRow = HtmlFactory.createRowAsString("NormalThinHeader", new String[]{
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:2cm", 2, 1,
 						new String[]{"Erk. St."}),
-				HtmlFactory.createHeaderAsString("NormalTableHeader", 1, 4,
+				HtmlFactory.createHeaderAsString("NormalTableHeaderAlignLeft", 1, 4,
 						new String[]{"UTM"})
 		});
 		
 		addToTable(firstRow);
 		
 		String secondRow = HtmlFactory.createRowAsString("NormalThinHeader", new String[]{
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:2cm",
+				HtmlFactory.createHeaderAsString("NormalTableHeaderAlignLeft", "width:2cm",
 						new String[]{"Zone"}),
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:2cm",
+				HtmlFactory.createHeaderAsString("NormalTableHeaderAlignLeft", "width:2cm",
 						new String[]{"Ostwert"}),
-				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:2cm",
+				HtmlFactory.createHeaderAsString("NormalTableHeaderAlignLeft", "width:2cm",
 						new String[]{"Nordwert"}),
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:8cm",
 						new String[]{""})
