@@ -12,6 +12,15 @@ public final class ChemistryMarkupTextFormatter extends AbstractTextFormatter
 		switch (classification)
 		{
 			case "Z0":
+			case "BM-0":
+			case "BG-0":
+			case "GS-0":
+			case "GRS":
+			case "SKG":
+			case "SKA":
+			case "SFA":
+			case "BFA":
+			case "HS":
 			case "DK0":
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
@@ -21,6 +30,8 @@ public final class ChemistryMarkupTextFormatter extends AbstractTextFormatter
 						.appendContent("</span>")
 						.build().appendTag());
 				break;
+			case "BM-0*":
+			case "BG-0*":
 			case "Z0*":
 				stringBuilder.append(new HtmlText.Builder()
 						.appendAttribute("class", "Normal")
@@ -30,6 +41,14 @@ public final class ChemistryMarkupTextFormatter extends AbstractTextFormatter
 						.appendContent("</span>")
 						.build().appendTag());
 				break;
+			case "BM-F0*":
+			case "BG-F0*":
+			case "RC-1":
+			case "HOS-1":
+			case "GS-1":
+			case "SWS-1":
+			case "CUM-1":
+			case "HMVA-1":
 			case "Z1":
 			case "Z1.1":
 			case "RC1":
@@ -42,6 +61,14 @@ public final class ChemistryMarkupTextFormatter extends AbstractTextFormatter
 						.appendContent("</span>")
 						.build().appendTag());
 				break;
+			case "BM-F1":
+			case "BG-F1":
+			case "RC-2":
+			case "HOS-2":
+			case "GS-2":
+			case "SWS-2":
+			case "CUM-2":
+			case "HMVA-2":
 			case "Z1.2":
 			case "RC2":
 			case "DK II":
@@ -53,6 +80,20 @@ public final class ChemistryMarkupTextFormatter extends AbstractTextFormatter
 						.appendContent("</span>")
 						.build().appendTag());
 				break;
+			case "BG-F2":
+			case "BM-F2":
+				stringBuilder.append(new HtmlText.Builder()
+						.appendAttribute("class", "Normal")
+						.appendContent("<span style=\"background-color: #FFC000;font-weight: bold;\n" +
+								"  color: black\">")
+						.appendContent(classification)
+						.appendContent("</span>")
+						.build().appendTag());
+				break;
+			case "BM-F3":
+			case "BG-F3":
+			case "RC-3":
+			case "GS-3":
 			case "Z2":
 			case "RC3":
 			case "DK III":
@@ -64,6 +105,8 @@ public final class ChemistryMarkupTextFormatter extends AbstractTextFormatter
 						.appendContent("</span>")
 						.build().appendTag());
 				break;
+			case ">BM-F3":
+			case ">BG-F3":
 			case ">Z2":
 			case ">DK III":
 			case ">RC3":
