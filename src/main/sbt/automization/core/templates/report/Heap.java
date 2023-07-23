@@ -116,21 +116,21 @@ public final class Heap extends Report
 		addToTable(provider.getRowWithDataCheck(chemistryMufvHeader, new ChemistryMufvRetrieval()));
 		
 		// added 01.07.2023
-		HtmlCell chemistryMufv0823Header = header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"},
-				"Schreiben des MUFV<sup>[51]</sup>" + UtilityPrinter.printLineBreak() + "ab 01.08.2023");
-		addToTable(provider.getRowWithDataCheck(chemistryMufv0823Header, new ChemistryMufv0823Retrieval()));
+		HtmlCell chemistryMkuemHeader = header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"},
+				"Schreiben des MKUEM<sup>[9]</sup>" + UtilityPrinter.printLineBreak() + "ab 01.08.2023");
+		addToTable(provider.getRowWithDataCheck(chemistryMkuemHeader, new ChemistryMkuemRetrieval()));
 		
 		HtmlCell chemistryLfsHeader = header.createCell(new String[]{"Vollzugshinweise,"}, "LFS");
 		addToTable(provider.getRowWithDataCheck(chemistryLfsHeader, new ChemistryLfsRetrieval()));
 		
 		// added 01.07.2023
-		HtmlCell chemistryEbvSoilHeader = header.createCell(new String[]{"Materialklasse,"}, "EBV Boden<sup>[50]</sup>");
+		HtmlCell chemistryEbvSoilHeader = header.createCell(new String[]{"Materialklasse,"}, "EBV Boden<sup>[2]</sup>");
 		addToTable(provider.getRowWithDataCheck(chemistryEbvSoilHeader, new ChemistryEbvSoil()));
 		HtmlCell chemistryEbvConstructionWasteHeader = header.createCell(new String[]{"Materialklasse,"}, "EBV " +
-				"Bauschutt<sup>[50]</sup>");
+				"Bauschutt<sup>[2]</sup>");
 		addToTable(provider.getRowWithDataCheck(chemistryEbvConstructionWasteHeader, new ChemistryEbvConstructionWaste()));
 		HtmlCell chemistryEbvMonitoringValue = header.createCell(new String[]{"Überwachungswert,"}, "EBV Bauschutt" +
-				"<sup>[50]</sup>");
+				"<sup>[2]</sup>");
 		addToTable(provider.getRowWithDataCheck(chemistryEbvMonitoringValue, new ChemistryEbvMonitoringValue()));
 		
 		

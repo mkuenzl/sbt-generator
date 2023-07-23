@@ -218,12 +218,12 @@ public enum ChemistryKey implements Key
 					return addChemistryTag("MUFV");
 				}
 			},
-	MUFV_08_23
+	MKUEM
 			{
 				@Override
 				public String getKey()
 				{
-					return addChemistryTag("MUFV_08_23");
+					return addChemistryTag("MKUEM");
 				}
 			},
 	MUFV_PARAMETER

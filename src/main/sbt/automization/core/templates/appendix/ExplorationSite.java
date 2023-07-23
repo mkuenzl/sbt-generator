@@ -6,6 +6,7 @@ import sbt.automization.core.data.Probe;
 import sbt.automization.core.data.key.ProbeKey;
 import sbt.automization.core.data.key.SampleKey;
 import sbt.automization.core.format.printer.FootnotePrinter;
+import sbt.automization.core.format.text.DateTextFormatter;
 import sbt.automization.core.html.HtmlCell;
 import sbt.automization.core.html.HtmlFactory;
 import sbt.automization.core.html.HtmlRow;
@@ -79,7 +80,7 @@ public final class ExplorationSite extends Appendix
 						new String[]{probe.get(ProbeKey.ID)}),
 				HtmlFactory.createCellAsString("NormalHeader", "width:100px",
 						new String[]{"Datum"}),
-				HtmlFactory.createCellAsString(textFormatter, "Normal", "width:200px",
+				HtmlFactory.createCellAsString(new DateTextFormatter(), "Normal", "width:200px",
 						new String[]{probe.get(ProbeKey.DATE)}),
 		});
 		

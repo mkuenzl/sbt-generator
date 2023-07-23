@@ -6,11 +6,11 @@ import sbt.automization.core.data.key.ChemistryKey;
 import sbt.automization.core.data.key.SampleKey;
 import sbt.automization.core.format.printer.SamplePrinter;
 
-public class ChemistryMufv0823Retrieval extends DatatableInformationRetrieval
+public class ChemistryMkuemRetrieval extends DatatableInformationRetrieval
 {
-	public ChemistryMufv0823Retrieval()
+	public ChemistryMkuemRetrieval()
 	{
-		super(ChemistryKey.MUFV_08_23);
+		super(ChemistryKey.MKUEM);
 	}
 	
 	@Override

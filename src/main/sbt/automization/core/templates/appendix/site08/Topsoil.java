@@ -7,7 +7,6 @@ import sbt.automization.core.data.Sample;
 import sbt.automization.core.data.key.ChemistryKey;
 import sbt.automization.core.data.key.ProbeKey;
 import sbt.automization.core.data.key.SampleKey;
-import sbt.automization.core.format.printer.UtilityPrinter;
 import sbt.automization.core.format.text.ProctorTextFormatter;
 import sbt.automization.core.format.text.SoilGroupTextFormatter;
 import sbt.automization.core.html.HtmlFactory;
@@ -66,7 +65,8 @@ public final class Topsoil extends Appendix
 						new String[]{sample.get(SampleKey.THICKNESS)}),
 				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{sample.get(SampleKey.DEPTH_END)}),
-				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.MUFV)),
+				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
+						ChemistryKey.MKUEM)),
 				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
 						ChemistryKey.EBV_SOIL)),
 				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
@@ -100,17 +100,12 @@ public final class Topsoil extends Appendix
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm",
 						new String[]{"Tiefe"}),
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm", 2, 1,
-						new String[]{"MUFV", "<div>[51]</div>"}),
+						new String[]{"MKUEM", "<div>[18]</div>"}),
 				
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm", 2, 1,
-						new String[]{"EBV" + UtilityPrinter.printLineBreak() + "Boden", "<div>[50]</div>"}),
+						new String[]{"EBV BO", "<div>[50]</div>"}),
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm", 2, 1,
-						new String[]{"EBV" + UtilityPrinter.printLineBreak() + "Bauschutt", "<div>[50]</div>"}),
-
-//				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm", 2, 1,
-//						new String[]{"LAGA BO", "<div>[11]</div>"}),
-//				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm", 2, 1,
-//						new String[]{"LAGA RC", "<div>[28]</div>"}),
+						new String[]{"EBV RC", "<div>[50]</div>"}),
 			
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm",
 						new String[]{"WG", "<div>[19]</div>"}),

@@ -142,11 +142,11 @@ public final class Building extends Report
 		
 		// added 01.07.2023
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Materialklasse,"}, "EBV Boden<sup" +
-				">[]</sup>"),	new ChemistryEbvSoil()));
+				">[4]</sup>"),	new ChemistryEbvSoil()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Materialklasse,"}, "EBV " +
-				"Bauschutt<sup>[]</sup>"), new ChemistryEbvConstructionWaste()));
+				"Bauschutt<sup>[4]</sup>"), new ChemistryEbvConstructionWaste()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Überwachungswert,"}, "EBV " +
-				"Bauschutt<sup>[]</sup>"), new ChemistryEbvMonitoringValue()));
+				"Bauschutt<sup>[4]</sup>"), new ChemistryEbvMonitoringValue()));
 		
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Zuordnungsklasse,"}, "LAGA Boden<sup>[4]</sup>"), new ChemistryLagaBoRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Zuordnungsklasse,"}, "LAGA Bauschutt<sup>[15]</sup>"), new ChemistryLagaRcRetrieval()));
@@ -158,7 +158,7 @@ public final class Building extends Report
 				new ChemistryMufvRetrieval())); // Einstufung
 		
 		addToTable(provider.getRow(header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"}, "Einstufung (ab 01" +
-				".08.2023)"),	new ChemistryMufv0823Retrieval())); // Einstufung
+				".08.2023)"),	new ChemistryMkuemRetrieval())); // Einstufung
 		
 		addToTable(provider.getRow(header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"}, "Parameter"), new ChemistryMufvParameterRetrieval())); // Parameter
 		addToTable(provider.getRow(header.createCell(new String[]{"Abfallschlüssel<sup>1,2</sup>"}, "AVV<sup>[7]</sup>, materialspezifisch"), new WasteKeyMaterialRetrieval()));  // Material

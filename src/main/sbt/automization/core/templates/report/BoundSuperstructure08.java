@@ -2,37 +2,35 @@ package sbt.automization.core.templates.report;
 
 import sbt.automization.core.data.DataTable;
 import sbt.automization.core.data.Outcrop;
-import sbt.automization.core.templates.construction.RowFactory;
 import sbt.automization.core.retrieval.*;
+import sbt.automization.core.templates.construction.RowFactory;
 import sbt.automization.core.templates.construction.strategies.CellPerProbe;
-import sbt.automization.core.templates.report.tableparts.CrossSectionWithPitch;
 import sbt.automization.core.templates.report.tableparts.CrossSectionWithPitch08;
-import sbt.automization.core.templates.report.tableparts.CrossSectionWithoutPitch;
 import sbt.automization.core.templates.report.tableparts.CrossSectionWithoutPitch08;
 
 import java.util.Collection;
 import java.util.List;
 
-public final class BoundSuperstructure extends Report
+public final class BoundSuperstructure08 extends Report
 {
-	private static BoundSuperstructure instance;
+	private static BoundSuperstructure08 instance;
 	private final RowFactory provider;
 	
-	private BoundSuperstructure()
+	private BoundSuperstructure08()
 	{
 		super(Outcrop.GOB);
 		provider = new RowFactory(Outcrop.GOB);
 	}
 	
-	public static BoundSuperstructure getInstance()
+	public static BoundSuperstructure08 getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (BoundSuperstructure.class)
+			synchronized (BoundSuperstructure08.class)
 			{
 				if (instance == null)
 				{
-					instance = new BoundSuperstructure();
+					instance = new BoundSuperstructure08();
 				}
 			}
 		}
@@ -42,7 +40,7 @@ public final class BoundSuperstructure extends Report
 	@Override
 	public String getExportFileName()
 	{
-		return "GOB-Report";
+		return "GOB-08-Report";
 	}
 	
 	@Override
@@ -70,13 +68,13 @@ public final class BoundSuperstructure extends Report
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
 		
-		CrossSectionWithPitch crossSectionWithPitch = new CrossSectionWithPitch();
-		crossSectionWithPitch.constructTemplate(dataTables);
-		addToTable(crossSectionWithPitch.getTemplate());
+		CrossSectionWithPitch08 crossSectionWithPitch08 = new CrossSectionWithPitch08();
+		crossSectionWithPitch08.constructTemplate(dataTables);
+		addToTable(crossSectionWithPitch08.getTemplate());
 		
-		CrossSectionWithoutPitch crossSectionWithoutPitch = new CrossSectionWithoutPitch();
-		crossSectionWithoutPitch.constructTemplate(dataTables);
-		addToTable(crossSectionWithoutPitch.getTemplate());
+		CrossSectionWithoutPitch08 crossSectionWithoutPitch08 = new CrossSectionWithoutPitch08();
+		crossSectionWithoutPitch08.constructTemplate(dataTables);
+		addToTable(crossSectionWithoutPitch08.getTemplate());
 	}
 	
 	@Override

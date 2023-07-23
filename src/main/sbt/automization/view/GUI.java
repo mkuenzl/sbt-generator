@@ -17,7 +17,7 @@ public class GUI extends JFrame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setIconImage(img.getImage());
 		this.setLayout(null);
-		this.setSize(540, 520);
+		this.setSize(540, 540);
 		this.setResizable(false);
 		constructPanel();
 		//this.setJMenuBar(menuBar);
@@ -54,7 +54,7 @@ public class GUI extends JFrame
 	{
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBounds(0, 0, 600, 580);
+		panel.setBounds(0, 0, 600, 600);
 		panel.setBackground(Color.white);
 		
 		Layout layout = new Layout();

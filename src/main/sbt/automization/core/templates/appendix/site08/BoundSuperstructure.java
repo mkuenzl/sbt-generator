@@ -81,11 +81,13 @@ public final class BoundSuperstructure extends Appendix
 						new String[]{sample.get(SampleKey.THICKNESS)}),
 				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{sample.get(SampleKey.DEPTH_END)}),
-				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.MUFV)),
+				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
+						ChemistryKey.MKUEM)),
 				HtmlFactory.createPitchCell(sample.get(SampleKey.PITCH)),
 				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
 						ChemistryKey.EBV_CONSTRUCTION_WASTE)),
-				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.TL_ROCK_STRATUM)),
+				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
+						ChemistryKey.EBV_MONITORING_VALUE)),
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
 						new String[]{sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.PAK)}),
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
@@ -130,21 +132,20 @@ public final class BoundSuperstructure extends Appendix
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm",
 						new String[]{"Tiefe"}),
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm",2, 1,
-						new String[]{"MUFV", "<div>[51]</div>"}),
+						new String[]{"MKUEM", "<div>[18]</div>"}),
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm", 2, 1,
 						new String[]{"PECH", "<div>[10]</div>"}),
 				
 				
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm", 2, 1,
-						new String[]{"EBV" + UtilityPrinter.printLineBreak() + "Bauschutt", "<div>[50]</div>"}),
-
-
-//				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm", 2, 1,
-//						new String[]{"LAGA RC", "<div>[28]</div>"}),
+						new String[]{"EBV RC", "<div>[50]</div>"}),
 				
-			
+				
+				// EBV ÜBERWACHUNGSWERTE
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm", 2, 1,
-						new String[]{"TL Ge.", "<div>[27]</div>"}),
+						new String[]{"EBV RC" + UtilityPrinter.printLineBreak() + "Überw.-" + UtilityPrinter.printLineBreak() + "werte", "<div>[50]</div>"}),
+				
+				
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm",
 						new String[]{"PAK"}),
 				HtmlFactory.createHeaderAsString("NormalTableHeader", "width:1.6cm",

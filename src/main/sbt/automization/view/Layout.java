@@ -63,14 +63,15 @@ public class Layout
 		positions.put("CheckBoxSecondColumnEighthRow", new Rectangle(200, 380, 180, 20));
 		positions.put("CheckBoxSecondColumnNinthRow", new Rectangle(200, 400, 180, 20));
 		positions.put("CheckBoxSecondColumnTenthRow", new Rectangle(200, 420, 180, 20));
+		positions.put("CheckBoxSecondColumnEleventhRow", new Rectangle(200, 440, 180, 20));
 		
 		positions.put("CheckBoxThirdColumnFirstRow", new Rectangle(390, 240, 180, 20));
 		
 		
 		//Create Tables Part
-		positions.put("ButtonReport", new Rectangle(150, 450, 20, 20));
-		positions.put("ButtonBuildTable", new Rectangle(180, 450, 160, 20));
-		positions.put("ButtonHelp", new Rectangle(350, 450, 20, 20));
+		positions.put("ButtonReport", new Rectangle(150, 470, 20, 20));
+		positions.put("ButtonBuildTable", new Rectangle(180, 470, 160, 20));
+		positions.put("ButtonHelp", new Rectangle(350, 470, 20, 20));
 	}
 	
 	private void constructComponents()
@@ -125,7 +126,7 @@ public class Layout
 		components.add(infoButton);
 		
 		//FileDropDowns
-		JLabel labelChooseFileDropDown = new JLabel("0. Auswahl zusätzlicher Documente", JLabel.LEFT);
+		JLabel labelChooseFileDropDown = new JLabel("0. Auswahl zusätzlicher Dokumente", JLabel.LEFT);
 		labelChooseFileDropDown.setBounds(positions.get("LabelChooseDropdown"));
 		labelChooseFileDropDown.setForeground(Color.BLACK);
 		labelChooseFileDropDown.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
@@ -198,6 +199,11 @@ public class Layout
 		
 		TemplateCheckBox heapCheckBox = new TemplateCheckBox("HAUFWERK", positions.get("CheckBoxSecondColumnTenthRow"), Heap.getInstance());
 		components.add(heapCheckBox);
+		
+		TemplateCheckBox boundSuperStructure08CheckBox = new TemplateCheckBox("GOB 08.23", positions.get(
+				"CheckBoxSecondColumnEleventhRow"), BoundSuperstructure08.getInstance());
+		components.add(boundSuperStructure08CheckBox);
+		
 		
 		//Other
 		TemplateCheckBox coordinatesCheckBox = new TemplateCheckBox("KOORDINATEN", positions.get("CheckBoxThirdColumnFirstRow"), Coordinates.getInstance());
