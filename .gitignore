@@ -37,3 +37,4 @@ sbt-generator.iml
 hs_err_pid*
 /lib/
 /tests-resources/template-output/
+/resources/report-templates/
