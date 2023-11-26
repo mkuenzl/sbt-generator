@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Locale;
 
 public class BuildTableButton extends CustomButton
 {
@@ -28,6 +29,7 @@ public class BuildTableButton extends CustomButton
 			{
 				ProjectEngine projectEngine = new ProjectEngine();
 				File inputFile = new File(ViewConstant.pathComponent.getText());
+				final Locale aDefault = Locale.getDefault();
 				projectEngine.retrieveDataFrom(inputFile, ViewConstant.dataSet);
 				
 				for (HtmlTemplate strategy : ViewConstant.strategyList)
