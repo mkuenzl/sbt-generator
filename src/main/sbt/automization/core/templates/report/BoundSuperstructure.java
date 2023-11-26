@@ -2,17 +2,18 @@ package sbt.automization.core.templates.report;
 
 import sbt.automization.core.data.DataTable;
 import sbt.automization.core.data.Outcrop;
-import sbt.automization.core.templates.construction.RowFactory;
 import sbt.automization.core.retrieval.*;
+import sbt.automization.core.templates.construction.RowFactory;
 import sbt.automization.core.templates.construction.strategies.CellPerProbe;
 import sbt.automization.core.templates.report.tableparts.CrossSectionWithPitch;
-import sbt.automization.core.templates.report.tableparts.CrossSectionWithPitch08;
 import sbt.automization.core.templates.report.tableparts.CrossSectionWithoutPitch;
-import sbt.automization.core.templates.report.tableparts.CrossSectionWithoutPitch08;
 
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Represent the Table Data Structure for the "GOB-Report"
+ */
 public final class BoundSuperstructure extends Report
 {
 	private static BoundSuperstructure instance;
@@ -69,14 +70,14 @@ public final class BoundSuperstructure extends Report
 		
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
-		
-		CrossSectionWithPitch crossSectionWithPitch = new CrossSectionWithPitch();
-		crossSectionWithPitch.constructTemplate(dataTables);
-		addToTable(crossSectionWithPitch.getTemplate());
-		
+
 		CrossSectionWithoutPitch crossSectionWithoutPitch = new CrossSectionWithoutPitch();
 		crossSectionWithoutPitch.constructTemplate(dataTables);
 		addToTable(crossSectionWithoutPitch.getTemplate());
+
+		CrossSectionWithPitch crossSectionWithPitch = new CrossSectionWithPitch();
+		crossSectionWithPitch.constructTemplate(dataTables);
+		addToTable(crossSectionWithPitch.getTemplate());
 	}
 	
 	@Override
