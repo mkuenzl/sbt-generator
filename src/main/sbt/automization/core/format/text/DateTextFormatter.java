@@ -39,15 +39,15 @@ public final class DateTextFormatter extends AbstractTextFormatter
 		Date date = null;
 		try
 		{
-			date = new SimpleDateFormat("dd.MM.yy").parse(text);
+			date = new SimpleDateFormat("dd.MM.yyyy").parse(text);
 			
 		} catch (ParseException e)
 		{
 			System.out.println("Format DateException: " + e);
+			e.printStackTrace();
 		}
-		String formattedDate = new SimpleDateFormat("dd.MM.yyyy").format(date);
-		
-		return formattedDate;
+
+		return new SimpleDateFormat("dd.MM.yyyy").format(date);
 	}
 }
 
