@@ -4,12 +4,13 @@ import sbt.automization.core.data.Probe;
 import sbt.automization.core.data.Sample;
 import sbt.automization.core.data.key.ProbeKey;
 
-public class BaseCourseExposureRetrieval extends DatatableInformationRetrieval
+public class BaseCourseExposureRetrieval
+        extends DatatableInformationRetrieval
 {
-	public BaseCourseExposureRetrieval()
-	{
-		super(ProbeKey.OUTCROP_TOB);
-	}
+    public BaseCourseExposureRetrieval()
+    {
+        super(ProbeKey.OUTCROP_TOB);
+    }
 
 //	@Override
 //	HtmlRow createRow()
@@ -21,18 +22,22 @@ public class BaseCourseExposureRetrieval extends DatatableInformationRetrieval
 //
 //		return row;
 //	}
-	
-	@Override
-	String retrieveFrom(Sample sample)
-	{
-		Probe probe = sample.getProbe();
-		
-		return probe.get(informationKey);
-	}
-	
-	@Override
-	String retrieveFrom(Probe probe)
-	{
-		return probe.get(informationKey);
-	}
+
+    @Override
+    String retrieveFrom(Sample sample)
+    {
+        Probe probe = sample.getProbe();
+        return probe.get(informationKey);
+    }
+
+    @Override
+    String retrieveFrom(Probe probe)
+    {
+        final String value = probe.get(informationKey);
+        if ("Kleinrammbohrung".equalsIgnoreCase(value))
+        {
+            return "Kleinramm-\nbohrung";
+        }
+        return probe.get(informationKey);
+    }
 }
