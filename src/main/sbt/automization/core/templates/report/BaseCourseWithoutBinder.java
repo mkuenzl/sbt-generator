@@ -12,7 +12,9 @@ import sbt.automization.core.templates.construction.strategies.CellPerProbe;
 
 import java.util.Collection;
 import java.util.List;
-
+/**
+ * Represent the Table Data Structure for the "TOB-Report"
+ */
 public final class BaseCourseWithoutBinder extends Report
 {
 	private static BaseCourseWithoutBinder instance;

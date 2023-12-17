@@ -11,27 +11,16 @@ public class HeapExposureRetrieval extends DatatableInformationRetrieval
 	{
 		super(SampleKey.ID);
 	}
-
-//	@Override
-//	HtmlRow createRow()
-//	{
-//		HtmlRow row = HtmlFactory.createRow(styleParameter.getRowClass(), new HtmlCell[]{
-//				HtmlFactory.createCell(styleParameter.getHeaderCellClass(), styleParameter.getHeaderCellWidth(),
-//						new String[]{"Aufschlussart"})
-//		});
-//
-//		return row;
-//	}
 	
 	@Override
 	String retrieveFrom(Sample sample)
 	{
-		return "Haufwerks-".concat(UtilityPrinter.printLineBreak()).concat("beprobung");
+		return "Haufwerks".concat(UtilityPrinter.printLineBreakWithHyphen()).concat("beprobung");
 	}
 	
 	@Override
 	String retrieveFrom(Probe probe)
 	{
-		return "Haufwerks-".concat(UtilityPrinter.printLineBreak()).concat("beprobung");
+		return "Haufwerks".concat(UtilityPrinter.printLineBreakWithHyphen()).concat("beprobung");
 	}
 }

@@ -59,6 +59,25 @@ public final class UtilityPrinter implements TextPrinter
 	{
 		return "<br>";
 	}
+
+	/**
+	 * HTML-Linebreak with custom separator in Front.
+	 *
+	 * @return a html line break
+	 */
+	public static String printLineBreak(char separator)
+	{
+		return separator+"<br>";
+	}
+	/**
+	 * HTML-Linebreak with hyphen-separator before line break.
+	 *
+	 * @return a html line break
+	 */
+	public static String printLineBreakWithHyphen()
+	{
+		return printLineBreak('-');
+	}
 	
 	@Override
 	public String print(DataTable dataTable)
