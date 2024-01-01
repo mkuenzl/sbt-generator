@@ -13,6 +13,9 @@ import sbt.automization.core.templates.construction.strategies.CellPerProbe;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Represent the Table Data Structure for the "UG-Report"
+ */
 public final class Underground extends Report
 {
 	private static Underground instance;

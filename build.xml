@@ -96,7 +96,7 @@
         <mkdir dir="${main.classes}"/>
         <javac srcdir="${main.dir}"
                destdir="${main.classes}"
-                release="11"
+                release="17"
                includeantruntime="false">
             <classpath>
                 <path refid="main.class.path"/>
