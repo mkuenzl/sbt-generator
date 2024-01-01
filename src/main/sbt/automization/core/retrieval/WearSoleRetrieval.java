@@ -3,7 +3,6 @@ package sbt.automization.core.retrieval;
 import sbt.automization.core.data.Probe;
 import sbt.automization.core.data.Sample;
 import sbt.automization.core.data.key.ProbeKey;
-import sbt.automization.core.format.printer.UtilityPrinter;
 import sbt.automization.core.html.HtmlText;
 
 public class WearSoleRetrieval extends DatatableInformationRetrieval
@@ -35,7 +34,7 @@ public class WearSoleRetrieval extends DatatableInformationRetrieval
 	@Override
 	String retrieveFrom(Probe probe)
 	{
-		String formattedCellText = new HtmlText.Builder().appendAttribute("class", "Normal6")
+		String formattedCellText = new HtmlText.Builder().appendAttribute("class", "Normal5")
 				.appendContent("[T:")
 				.appendContent(probe.get(ProbeKey.SOLE_DEPTH))
 				.appendContent("]").build().appendTag();
@@ -44,7 +43,7 @@ public class WearSoleRetrieval extends DatatableInformationRetrieval
 		
 		if ("".equals(information)) return "";
 		
-		return information.concat(UtilityPrinter.printLineEmpty()).concat(formattedCellText);
+		return information.concat(formattedCellText);
 		
 	}
 }

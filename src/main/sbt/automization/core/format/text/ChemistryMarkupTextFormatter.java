@@ -20,7 +20,9 @@ public final class ChemistryMarkupTextFormatter extends AbstractTextFormatter
 					stringBuilder.append(new HtmlText.Builder()
 												 .appendAttribute("class", "Normal")
 												 .appendContent(
-														 "<span style=\"background-color: white;font-weight: bold;" +
+														 "<span style=\"" +
+																 "background-color: white;" +
+																 "font-weight: bold;" +
 																 "\n\n" +
 																 "  color: black\">")
 												 .appendContent(classification)
