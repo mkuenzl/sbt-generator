@@ -4,7 +4,6 @@ package sbt.automization.core.data;
 import sbt.automization.core.data.key.*;
 import sbt.automization.view.popup.ErrorPopup;
 
-import javax.xml.crypto.Data;
 import java.util.*;
 
 public final class DataTableFactory
@@ -160,10 +159,7 @@ public final class DataTableFactory
 	{
 		// SAMPLE.
 		Map<String, String> informationMap = createMapBasedOnIdentifier(csvRow, "SAMPLE.");
-		
-		Sample sample = new Sample(informationMap);
-		
-		return sample;
+		return new Sample(informationMap);
 	}
 	
 	public static void createParameters(List<Map<String, String>> csvTable)
