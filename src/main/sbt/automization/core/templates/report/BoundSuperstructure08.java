@@ -67,14 +67,14 @@ public final class BoundSuperstructure08 extends Report
 		
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
-		
-		CrossSectionWithPitch08 crossSectionWithPitch08 = new CrossSectionWithPitch08();
-		crossSectionWithPitch08.constructTemplate(dataTables);
-		addToTable(crossSectionWithPitch08.getTemplate());
-		
+
 		CrossSectionWithoutPitch08 crossSectionWithoutPitch08 = new CrossSectionWithoutPitch08();
 		crossSectionWithoutPitch08.constructTemplate(dataTables);
 		addToTable(crossSectionWithoutPitch08.getTemplate());
+
+		CrossSectionWithPitch08 crossSectionWithPitch08 = new CrossSectionWithPitch08();
+		crossSectionWithPitch08.constructTemplate(dataTables);
+		addToTable(crossSectionWithPitch08.getTemplate());
 	}
 	
 	@Override
