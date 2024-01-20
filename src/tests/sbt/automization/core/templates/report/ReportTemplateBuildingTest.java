@@ -65,6 +65,14 @@ public class ReportTemplateBuildingTest
 		
 		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
 	}
+	@Test
+	public void GOB08TemplateTest() throws Exception
+	{
+		TemplateExport exportStrategy = new HtmlExport(BoundSuperstructure08.getInstance());
+		createAndOpenTemplate(exportStrategy);
+
+		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
+	}
 	
 	@Test
 	public void TOBTemplateTest() throws Exception
