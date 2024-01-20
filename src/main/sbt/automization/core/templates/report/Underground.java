@@ -92,9 +92,8 @@ public final class Underground extends Report
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Frostempfindlichkeits-", UtilityPrinter.printLineBreak(), "klasse,"}, "ZTV E<sup>[2]</sup>"), new ZTVRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Wassergehalt,"}, "M.-%"), new WaterContentRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Feuchtezustand"}), new MoistureRetrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Verdichtungsfähigkeit"}), new CompressibilityRetrieval()));
-		
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Konsistenz"}), new ConsistencyRetrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Verdichtungsfähigkeit"}), new CompressibilityRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Tragfähigkeit Planum"}, "Soll: E<sub>V2</sub> >= 45 MN/m²".concat(UtilityPrinter.printLineBreak()).concat("Ansatz Planum: FOK -60cm")), new WearPlanumRetrieval()));
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Tragfähigkeit Grabensohle"}, "Ansatz Sohle"), new WearSoleRetrieval()));
 	}
