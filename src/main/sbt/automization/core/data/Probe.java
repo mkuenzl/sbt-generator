@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public final class Probe extends DataTableImpl
+public final class Probe extends AbstractDataTable
 {
 	private final List<Sample> samples = new ArrayList<>();
 	
@@ -117,6 +117,7 @@ public final class Probe extends DataTableImpl
 				if (value.equals(valueToCompare))
 				{
 					samplesWithValue.add(sample);
+					break;
 				}
 			}
 		}

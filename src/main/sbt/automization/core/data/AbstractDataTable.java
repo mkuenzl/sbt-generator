@@ -5,7 +5,8 @@ import sbt.automization.core.data.key.Key;
 import java.io.Serializable;
 import java.util.*;
 
-public abstract class DataTableImpl implements DataTable, Comparable<DataTable>, Cloneable, Serializable
+public abstract class AbstractDataTable
+		implements DataTable, Comparable<DataTable>, Cloneable, Serializable
 {
 	protected Map<String, String> informationMap;
 	
@@ -14,7 +15,7 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 	 *
 	 * @param informationMap a map parsed from an excel template
 	 */
-	public DataTableImpl(Map<String, String> informationMap)
+	public AbstractDataTable(Map<String, String> informationMap)
 	{
 		this.informationMap = informationMap;
 	}
@@ -22,7 +23,7 @@ public abstract class DataTableImpl implements DataTable, Comparable<DataTable>,
 	/**
 	 * Constructor
 	 */
-	public DataTableImpl()
+	public AbstractDataTable()
 	{
 		this.informationMap = new HashMap<>();
 	}

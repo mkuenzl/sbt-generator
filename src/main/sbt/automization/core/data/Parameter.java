@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public final class Parameter extends DataTableImpl
+public final class Parameter extends AbstractDataTable
 {
 	private List<Sample> samples;
 	

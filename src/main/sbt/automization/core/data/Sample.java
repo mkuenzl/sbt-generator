@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public final class Sample extends DataTableImpl
+public final class Sample extends AbstractDataTable
 {
 	private Probe probe;
 	private final List<Parameter> parameters = new ArrayList<>();
