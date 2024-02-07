@@ -1,90 +1,44 @@
 package sbt.automization.core.data.key;
 
+/**
+ * Spaltenschlüssensammlung für jede Spalte die mit <b>"PARAMETER.LP."</b> beginnt, um auf den Zellwert zuzugreifen.
+ */
 public enum LpKey implements Key
 {
-	ID
-			{
-				@Override
-				public String getKey()
-				{
-					return addLPTag("ID");
-				}
-			},
-	NUMBER
-			{
-				@Override
-				public String getKey()
-				{
-					return addLPTag("NUMMER");
-				}
-			},
-	VALUE_1
-			{
-				@Override
-				public String getKey()
-				{
-					return addLPTag("WERT_1");
-				}
-			},
-	VALUE_2
-			{
-				@Override
-				public String getKey()
-				{
-					return addLPTag("WERT_2");
-				}
-			},
-	VALUE_3
-			{
-				@Override
-				public String getKey()
-				{
-					return addLPTag("WERT_3");
-				}
-			},
-	MEAN
-			{
-				@Override
-				public String getKey()
-				{
-					return addLPTag("MITTELWERT");
-				}
-			},
-	EV
-			{
-				@Override
-				public String getKey()
-				{
-					return addLPTag("EV");
-				}
-			},
-	EV85
-			{
-				@Override
-				public String getKey()
-				{
-					return addLPTag("EV85");
-				}
-			},
-	EV2
-			{
-				@Override
-				public String getKey()
-				{
-					return addLPTag("EV2");
-				}
-			},
-	EV2_TARGET
-			{
-				@Override
-				public String getKey()
-				{
-					return addLPTag("EV2_SOLL");
-				}
-			};
-	
+	ID("ID"),
+
+	NUMBER("NUMMER"),
+	VALUE_1("WERT_1"),
+	VALUE_2("WERT_2"),
+	VALUE_3("WERT_3"),
+	MEAN("MITTELWERT"),
+	EV("EV"),
+	EV85("EV85"),
+	EV2("EV2"),
+	EV2_TARGET("EV2_SOLL");
+
+	private static final String KEY_PREFIX = "PARAMETER.LP";
+	private final String keySuffix;
+
+	LpKey(String keySuffix)
+	{
+		this.keySuffix = keySuffix;
+	}
+
 	private static String addLPTag(String parameter)
 	{
 		return "PARAMETER.LP." + parameter;
+	}
+
+	@Override
+	public String getKeyPrefix()
+	{
+		return KEY_PREFIX;
+	}
+
+	@Override
+	public String getKeySuffix()
+	{
+		return keySuffix;
 	}
 }

@@ -1,323 +1,67 @@
 package sbt.automization.core.data.key;
-
+/**
+ * Spaltenschlüssensammlung für jede Spalte die mit <b>"SAMPLE."</b> beginnt, um auf den Zellwert zuzugreifen.
+ */
 public enum SampleKey implements Key
 {
-	WASTE_KEY_MIX
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("ABFALLSCHLUESSEL_GEMISCH");
-				}
-			},
-	WASTE_KEY_MATERIAL
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("ABFALLSCHLUESSEL_MATERIAL");
-				}
-			},
-	MATERIAL_COMPARISON
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("MATERIAL_VERGLEICH");
-				}
-			},
-	SUSPECTED_POLLUTANT
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("SCHADSTOFFVERDACHT");
-				}
-			},
-	EXTRACTION
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("ENTNAHME");
-				}
-			},
-	MATERIAL
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("MATERIAL");
-				}
-			},
-	SAMPLE_AMOUNT
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("PROBEN");
-				}
-			},
-	VOLUME
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("VOLUMEN");
-				}
-			},
-	HOMOGENEOUS_RANGE
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("HOMOGENBEREICH");
-				}
-			},
-	COMPRESSIBILITY
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("VERDICHTUNGSFAEHIGKEIT");
-				}
-			},
-	FROST_SENSITIVITY_CLASS
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("FROSTEMPFINDLICHKEITSKLASSE");
-				}
-			},
-	COMPRESSIVE_STRENGTH
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("DRUCKFESTIGKEIT");
-				}
-			},
-	GRAIN_SIZE_DISTRIBUTION
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("KORNGROESSENVERTEILUNG");
-				}
-			},
-	SMELL
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("GERUCH");
-				}
-			},
-	WASTE_TYPE
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("ABFALLART");
-				}
-			},
-	CONTAINER
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("BEHAELTNIS");
-				}
-			},
-	NOTE
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("NOTIZ");
-				}
-			},
-	WATER_PROCTOR
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("WASSERPROCTOR");
-				}
-			},
-	WATER_CONTENT
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("WASSERGEHALT");
-				}
-			},
-	MOISTURE
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("FEUCHTIGKEIT");
-				}
-			},
-	CONSISTENCY
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("KONSISTENZ");
-				}
-			},
-	SOIL_TYPE
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("BODENART");
-				}
-			},
-	COLOR
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("FARBE");
-				}
-			},
-	ROUNDING_GRADATION
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("RUNDUNGSGRAD_GESTUFTHEIT");
-				}
-			},
-	PITCH
-			{   //TAR
-				
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("PECH");
-				}
-			},
-	THICKNESS
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("DICKE");
-				}
-			},
-	SOIL_CLASS
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("BODENKLASSE");
-				}
-			},
-	GRANULATION
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("KOERNUNG");
-				}
-			},
-	TYPE
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("ART");
-				}
-			},
-	OUTCROP
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("AUFSCHLUSS");
-				}
-			},
-	NUMBER
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("NUMMER");
-				}
-			},
-	ID
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("ID");
-				}
-			},
-	DEPTH_START
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("TIEFE_START");
-				}
-			},
-	DEPTH_END
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("TIEFE_ENDE");
-				}
-			},
-	CLASS
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("TYPE");
-				}
-			},
-	CHEMISTRY_ID
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("CHEMISTRY.ID");
-				}
-			},
-	RUK_ID
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("RUK.ID");
-				}
-			},
-	PROBE_ID
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("PROBE.ID");
-				}
-			},
-	LP_ID
-			{
-				@Override
-				public String getKey()
-				{
-					return addSampleTag("LP.ID");
-				}
-			};
-	
-	private static String addSampleTag(String parameter)
+	WASTE_KEY_MIX("ABFALLSCHLUESSEL_GEMISCH"),
+	WASTE_KEY_MATERIAL("ABFALLSCHLUESSEL_MATERIAL"),
+	MATERIAL_COMPARISON("MATERIAL_VERGLEICH"),
+	SUSPECTED_POLLUTANT("SCHADSTOFFVERDACHT"),
+	EXTRACTION("ENTNAHME"),
+	MATERIAL("MATERIAL"),
+	SAMPLE_AMOUNT("PROBEN"),
+	VOLUME("VOLUMEN"),
+	HOMOGENEOUS_RANGE("HOMOGENBEREICH"),
+	COMPRESSIBILITY("VERDICHTUNGSFAEHIGKEIT"),
+	FROST_SENSITIVITY_CLASS("FROSTEMPFINDLICHKEITSKLASSE"),
+	COMPRESSIVE_STRENGTH("DRUCKFESTIGKEIT"),
+	GRAIN_SIZE_DISTRIBUTION("KORNGROESSENVERTEILUNG"),
+	SMELL("GERUCH"),
+	WASTE_TYPE("ABFALLART"),
+	CONTAINER("BEHAELTNIS"),
+	NOTE("NOTIZ"),
+	WATER_PROCTOR("WASSERPROCTOR"),
+	WATER_CONTENT("WASSERGEHALT"),
+	MOISTURE("FEUCHTIGKEIT"),
+	CONSISTENCY("KONSISTENZ"),
+	SOIL_TYPE("BODENART"),
+	COLOR("FARBE"),
+	ROUNDING_GRADATION("RUNDUNGSGRAD_GESTUFTHEIT"),
+	PITCH("PECH"),
+	THICKNESS("DICKE"),
+	SOIL_CLASS("BODENKLASSE"),
+	GRANULATION("KOERNUNG"),
+	TYPE("ART"),
+	OUTCROP("AUFSCHLUSS"),
+	NUMBER("NUMMER"),
+	ID("ID"),
+	DEPTH_START("TIEFE_START"),
+	DEPTH_END("TIEFE_ENDE"),
+	CLASS("TYPE"),
+	CHEMISTRY_ID("CHEMISTRY.ID"),
+	RUK_ID("RUK.ID"),
+	PROBE_ID("PROBE.ID"),
+	LP_ID("LP.ID");
+
+
+	private static final String KEY_PREFIX = "SAMPLE";
+	private final String keySuffix;
+
+	SampleKey(String keySuffix)
 	{
-		return "SAMPLE." + parameter;
+		this.keySuffix = keySuffix;
+	}
+
+	@Override
+	public String getKeyPrefix()
+	{
+		return KEY_PREFIX;
+	}
+
+	@Override
+	public String getKeySuffix()
+	{
+		return keySuffix;
 	}
 }

@@ -1,42 +1,32 @@
 package sbt.automization.core.data.key;
 
+/**
+ * Spaltenschlüssensammlung für jede Spalte die mit <b>"PARAMETER.RUK."</b> beginnt, um auf den Zellwert zuzugreifen.
+ */
 public enum RuKKey implements Key
 {
-	ID
-			{
-				@Override
-				public String getKey()
-				{
-					return addRuKTag("ID");
-				}
-			},
-	NUMBER
-			{
-				@Override
-				public String getKey()
-				{
-					return addRuKTag("NUMMER");
-				}
-			},
-	SAMPLE
-			{
-				@Override
-				public String getKey()
-				{
-					return addRuKTag("PROBENART");
-				}
-			},
-	VALUE
-			{
-				@Override
-				public String getKey()
-				{
-					return addRuKTag("WERT");
-				}
-			};
-	
-	private static String addRuKTag(String parameter)
+	ID("ID"),
+	NUMBER("NUMMER"),
+	SAMPLE("PROBENART"),
+	VALUE("WERT");
+
+	private static final String KEY_PREFIX = "PARAMETER.RUK";
+	private final String keySuffix;
+
+	RuKKey(String keySuffix)
 	{
-		return "PARAMETER.RUK." + parameter;
+		this.keySuffix = keySuffix;
+	}
+
+	@Override
+	public String getKeyPrefix()
+	{
+		return KEY_PREFIX;
+	}
+
+	@Override
+	public String getKeySuffix()
+	{
+		return keySuffix;
 	}
 }

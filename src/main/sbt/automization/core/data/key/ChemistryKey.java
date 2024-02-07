@@ -1,258 +1,59 @@
 package sbt.automization.core.data.key;
 
+/**
+ * Spaltenschlüssensammlung für jede Spalte die mit <b>"PARAMETER.CHEMISTRY."</b> beginnt, um auf den Zellwert zuzugreifen.
+ */
 public enum ChemistryKey implements Key
 {
-	MKW_C22
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("MKW_C10_C22");
-				}
-			},
-	MKW_C40
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("MKW_C10_C40");
-				}
-			},
-	HBCD
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("HBCD");
-				}
-			},
-	FCKW
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("FCKW");
-				}
-			},
-	WASTE_WOOD_ORDINANCE
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("ALTHOLZ_VERORDNUNG");
-				}
-			},
-	PAK
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("PAK");
-				}
-			},
-	KMF
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("KMF");
-				}
-			},
-	SULFATE
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("SULFAT");
-				}
-			},
-	ICP_SCREENING
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("ICP_SCREENING");
-				}
-			},
-	PHENOL
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("PHENOLE");
-				}
-			},
-	EOX
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("EOX");
-				}
-			},
-	BTEX
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("BTEX");
-				}
-			},
-	PCB
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("PCB");
-				}
-			},
-	ASBESTOS
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("ASBEST");
-				}
-			},
-	WASTE_KEY
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("ABFALLSCHLUESSEL");
-				}
-			},
-	REKU
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("REKU");
-				}
-			},
-	DECISION_SUPPORT
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("ENTSCHEIDUNGSHILFE");
-				}
-			},
-	DEPV
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("DEPV");
-				}
-			},
-	TL_ROCK_STRATUM
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("TL_GESTEIN");
-				}
-			},
-	LAGA_RC_ORIENTATION
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("LAGA_RC_ORIENTIERUNGSWERT");
-				}
-			},
-	LAGA_RC
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("LAGA_RC");
-				}
-			},
-	LAGA_BO
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("LAGA_BO");
-				}
-			},
-	EBV_MONITORING_VALUE
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("EBV_UEBERWACHUNGSWERT");
-				}
-			},
-	EBV_SOIL
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("EBV_BODEN");
-				}
-			},
-	EBV_CONSTRUCTION_WASTE
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("EBV_BAUSCHUTT");
-				}
-			},
-	LFS
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("LFS");
-				}
-			},
-	MUFV
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("MUFV");
-				}
-			},
-	MKUEM
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("MKUEM");
-				}
-			},
-	MUFV_PARAMETER
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("MUFV_PARAMETER");
-				}
-			},
-	ID
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("ID");
-				}
-			},
-	RUVA
-			{
-				@Override
-				public String getKey()
-				{
-					return addChemistryTag("RUVA");
-				}
-			};
-	
-	private static String addChemistryTag(String parameter)
+	ASBESTOS("ASBEST"),
+	BTEX("BTEX"),
+	DECISION_SUPPORT("ENTSCHEIDUNGSHILFE"),
+	DEPV("DEPV"),
+	EBV_CONSTRUCTION_WASTE("EBV_BAUSCHUTT"),
+	EBV_MONITORING_VALUE("EBV_UEBERWACHUNGSWERT"),
+	EBV_SOIL("EBV_BODEN"),
+	EOX("EOX"),
+	FCKW("FCKW"),
+	HBCD("HBCD"),
+	ICP_SCREENING("ICP_SCREENING"),
+	ID("ID"),
+	KMF("KMF"),
+	LAGA_BO("LAGA_BO"),
+	LAGA_RC("LAGA_RC"),
+	LAGA_RC_ORIENTATION("LAGA_RC_ORIENTIERUNGSWERT"),
+	LFS("LFS"),
+	MKUEM("MKUEM"),
+	MKW_C22("MKW_C10_C22"),
+	MKW_C40("MKW_C10_C40"),
+	MUFV("MUFV"),
+	MUFV_PARAMETER("MUFV_PARAMETER"),
+	PAK("PAK"),
+	PCB("PCB"),
+	PHENOL("PHENOLE"),
+	REKU("REKU"),
+	RUVA("RUVA"),
+	SULFATE("SULFAT"),
+	TL_ROCK_STRATUM("TL_GESTEIN"),
+	WASTE_KEY("ABFALLSCHLUESSEL"),
+	WASTE_WOOD_ORDINANCE("ALTHOLZ_VERORDNUNG");
+
+	private static final String KEY_PREFIX = "PARAMETER.CHEMISTRY";
+	private final String keySuffix;
+
+	ChemistryKey(String keySuffix)
 	{
-		return "PARAMETER.CHEMISTRY." + parameter;
+		this.keySuffix = keySuffix;
+	}
+
+	@Override
+	public String getKeyPrefix()
+	{
+		return KEY_PREFIX;
+	}
+
+	@Override
+	public String getKeySuffix()
+	{
+		return keySuffix;
 	}
 }
