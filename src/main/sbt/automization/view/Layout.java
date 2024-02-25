@@ -129,8 +129,8 @@ public class Layout
 		components.add(infoButton);
 
 		//INFO.
-		JButton currentReleaseButton = new InfoButton(GUI.RELEASE_VERSION+" Info",positions.get("ReleaseVersion"),InfoTexts.V_2_1_1,false);
-		components.add(currentReleaseButton);
+		JButton releaseVersionInfo = new InfoButton(GUI.RELEASE_VERSION+" Info",positions.get("ReleaseVersion"),InfoTexts.V_2_1_1,false);
+		components.add(releaseVersionInfo);
 		
 		//FileDropDowns
 		JLabel labelChooseFileDropDown = new JLabel("0. Auswahl zusätzlicher Dokumente", JLabel.LEFT);

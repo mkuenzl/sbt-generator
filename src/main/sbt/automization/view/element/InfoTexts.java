@@ -41,20 +41,17 @@ public enum InfoTexts
                  "\n" +
                  "\n7. Klicken Sie auf den Button \"BUILD\"" +
                  "\n    Die Tabellen erscheinen nun als HTML Dateien in dem Ordner Ihrer ausgewählten Datei."),
-    V_2_1_1("Aktueller Release 2.1.1:" +
-                    "\n\n" +
-                    "- Neuer Release-Info Button, der die aktuelle Releaseversion angibt und per Mausklick die " +
-                    "Neuerungen auflistet." +
-                    "\n" +
-                    "- Tabellen, die sich auf Standards vor 08 beziehen, befinden sich nun in eigener Spalte (Alte Tabellen) ganz " +
-                    "rechts (GOB vor 08, Erkundungsstellen vor 08)." +
-                    "\n" +
-                    "- GOB-08 Report listet \"pechfreien\" vor \"pechhaltigem\" Querschnitt." +
-                    "\n" +
-                    "- UG Report listet \"Konsistenz\" vor \"Verdichtungsfähigkeit\"."
-                    +
-                    "\n" +
-                    "- UG Report \"Tragfähigkeit Grabensohle\"-Werte sind nun wie alle anderen Werte auf formatiert.");
+    V_2_1_1(new ReleaseNoteBuilder("2.1.1")
+                    .addReleaseNote("Neuer Release-Info Button, der die aktuelle Release Version angibt und per Mausklick die Neuerungen auflistet.")
+                    .addReleaseNote("Tabellen, die sich auf Standards vor 08 beziehen, befinden sich nun in eigener " +
+                                            "Spalte (Alte Tabellen) ganz rechts (GOB vor 08, Erkundungsstellen vor 08).")
+                    .addReleaseNote("GOB-08 Report listet \"pechfreien\" vor \"pechhaltigem\" Querschnitt.")
+                    .addReleaseNote("UG Report listet \"Konsistenz\" vor \"Verdichtungsfähigkeit\".")
+                    .addReleaseNote("UG Report \"Tragfähigkeit Grabensohle\"-Werte sind nun wie alle anderen " +
+                                            "Werte auf formatiert.")
+                    .addReleaseNote("ERK-08 Reports Parameter-Wert (Auffälligkeit, keine Auffälligkeit etc.) Formatierung angepasst, sodass eine vernünftige Worttrennung stattfindet.")
+                    .buildReleaseNote());
+
 
     private final String infoText;
 
