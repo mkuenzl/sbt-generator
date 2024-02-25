@@ -1,9 +1,6 @@
 package sbt.automization.core.templates.appendix.site08;
 
-import sbt.automization.core.data.DataTable;
-import sbt.automization.core.data.Outcrop;
-import sbt.automization.core.data.Probe;
-import sbt.automization.core.data.Sample;
+import sbt.automization.core.data.*;
 import sbt.automization.core.data.key.ChemistryKey;
 import sbt.automization.core.data.key.ProbeKey;
 import sbt.automization.core.data.key.SampleKey;
@@ -14,6 +11,9 @@ import sbt.automization.core.templates.appendix.Appendix;
 
 import java.util.List;
 
+/**
+ * Repräsentiert <b>Untergrund</b>.
+ */
 public final class Underground extends Appendix
 {
 	private String outcrop = "";
@@ -58,19 +58,20 @@ public final class Underground extends Appendix
 	
 	private String createRow(Sample sample)
 	{
-		String row = HtmlFactory.createRowAsString("NormalThin8", new String[]{
+
+		return HtmlFactory.createRowAsString("NormalThin8", new String[]{
 				HtmlFactory.createCellAsString(textFormatter, "Normal",
 						new String[]{new SoilGroupTextFormatter().format(sample.get(SampleKey.TYPE))}),
 				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{sample.get(SampleKey.THICKNESS)}),
 				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{sample.get(SampleKey.DEPTH_END)}),
-				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
-						ChemistryKey.MKUEM)),
-				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
-						ChemistryKey.EBV_SOIL)),
-				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
-						ChemistryKey.EBV_CONSTRUCTION_WASTE)),
+				HtmlFactory.createChemistryCellAsString(formatParameterValue(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
+						ChemistryKey.MKUEM))),
+				HtmlFactory.createChemistryCellAsString(formatParameterValue(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
+						ChemistryKey.EBV_SOIL))),
+				HtmlFactory.createChemistryCellAsString(formatParameterValue(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
+						ChemistryKey.EBV_CONSTRUCTION_WASTE))),
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
 						new String[]{sample.get(SampleKey.WATER_CONTENT)}),
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
@@ -78,8 +79,11 @@ public final class Underground extends Appendix
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
 						new String[]{""})
 		});
-		
-		return row;
+	}
+
+	private String formatParameterValue(String parameterValue)
+	{
+		return ParameterValueToFormat.getFormattedValue(parameterValue);
 	}
 	
 	@Override

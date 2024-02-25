@@ -192,19 +192,12 @@ public final class ExplorationSite08 extends Appendix
 		
 		String cell = HtmlFactory.createCellAsString("NormalHeaderSmallFont",
 				new String[]{new FootnotePrinter().print(dataTable)});
-		
-		/*HtmlCell cell = new HtmlCell.Builder()
-				.appendAttribute("class", "NormalHeaderSmallFont")
-				.appendContent(new FootnotePrinter().print(dataTable))
-				.build();
-				
-		 */
-		
+
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "NormalThin8")
 				.appendContent(cell)
 				.build();
-		
+
 		HtmlTable table = new HtmlTable.Builder()
 				.appendAttribute("class", "MsoNormalTable")
 				.appendAttribute("width", "605")

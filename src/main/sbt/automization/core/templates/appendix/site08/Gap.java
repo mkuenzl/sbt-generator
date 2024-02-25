@@ -1,9 +1,6 @@
 package sbt.automization.core.templates.appendix.site08;
 
-import sbt.automization.core.data.DataTable;
-import sbt.automization.core.data.Outcrop;
-import sbt.automization.core.data.Probe;
-import sbt.automization.core.data.Sample;
+import sbt.automization.core.data.*;
 import sbt.automization.core.data.key.ChemistryKey;
 import sbt.automization.core.data.key.ProbeKey;
 import sbt.automization.core.data.key.SampleKey;
@@ -12,6 +9,9 @@ import sbt.automization.core.templates.appendix.Appendix;
 
 import java.util.List;
 
+/**
+ * Repräsentiert <b>Fuge</b>
+ */
 public final class Gap extends Appendix
 {
 	private String outcrop = "";
@@ -63,8 +63,8 @@ public final class Gap extends Appendix
 						new String[]{sample.get(SampleKey.THICKNESS)}),
 				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{sample.get(SampleKey.DEPTH_END)}),
-				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
-						ChemistryKey.MKUEM)),
+				HtmlFactory.createChemistryCellAsString(formatParameterValue(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
+						ChemistryKey.MKUEM))),
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
 						new String[]{""}),
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
@@ -73,10 +73,15 @@ public final class Gap extends Appendix
 						new String[]{""}),
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
 						new String[]{sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.PAK)}),
-				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.ASBESTOS)),
+				HtmlFactory.createChemistryCellAsString(formatParameterValue(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.ASBESTOS))),
 		});
 		
 		return row;
+	}
+
+	private String formatParameterValue(String parameterValue)
+	{
+		return ParameterValueToFormat.getFormattedValue(parameterValue);
 	}
 	
 	

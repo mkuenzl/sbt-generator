@@ -1,9 +1,6 @@
 package sbt.automization.core.templates.appendix.site08;
 
-import sbt.automization.core.data.DataTable;
-import sbt.automization.core.data.Outcrop;
-import sbt.automization.core.data.Probe;
-import sbt.automization.core.data.Sample;
+import sbt.automization.core.data.*;
 import sbt.automization.core.data.key.ChemistryKey;
 import sbt.automization.core.data.key.ProbeKey;
 import sbt.automization.core.data.key.RuKKey;
@@ -17,6 +14,9 @@ import sbt.automization.core.templates.appendix.Appendix;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Repräsentiert den <b>Gebundenen Oberbau</b>
+ */
 public final class BoundSuperstructure extends Appendix
 {
 	private String outcrop = "";
@@ -81,13 +81,13 @@ public final class BoundSuperstructure extends Appendix
 						new String[]{sample.get(SampleKey.THICKNESS)}),
 				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{sample.get(SampleKey.DEPTH_END)}),
-				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
-						ChemistryKey.MKUEM)),
+				HtmlFactory.createChemistryCellAsString(formatParameterValue(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
+						ChemistryKey.MKUEM))),
 				HtmlFactory.createPitchCell(sample.get(SampleKey.PITCH)),
-				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
-						ChemistryKey.EBV_CONSTRUCTION_WASTE)),
-				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
-						ChemistryKey.EBV_MONITORING_VALUE)),
+				HtmlFactory.createChemistryCellAsString(formatParameterValue(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
+						ChemistryKey.EBV_CONSTRUCTION_WASTE))),
+				HtmlFactory.createChemistryCellAsString(formatParameterValue(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
+						ChemistryKey.EBV_MONITORING_VALUE))),
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
 						new String[]{sample.getParameterValueBy(SampleKey.CHEMISTRY_ID, ChemistryKey.PAK)}),
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
@@ -95,6 +95,11 @@ public final class BoundSuperstructure extends Appendix
 		});
 		
 		return row;
+	}
+
+	private String formatParameterValue(String parameterValue)
+	{
+		return ParameterValueToFormat.getFormattedValue(parameterValue);
 	}
 	
 	private String createLoadClassRow()

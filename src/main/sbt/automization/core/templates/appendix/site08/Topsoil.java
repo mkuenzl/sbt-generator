@@ -1,9 +1,6 @@
 package sbt.automization.core.templates.appendix.site08;
 
-import sbt.automization.core.data.DataTable;
-import sbt.automization.core.data.Outcrop;
-import sbt.automization.core.data.Probe;
-import sbt.automization.core.data.Sample;
+import sbt.automization.core.data.*;
 import sbt.automization.core.data.key.ChemistryKey;
 import sbt.automization.core.data.key.ProbeKey;
 import sbt.automization.core.data.key.SampleKey;
@@ -65,12 +62,12 @@ public final class Topsoil extends Appendix
 						new String[]{sample.get(SampleKey.THICKNESS)}),
 				HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
 						new String[]{sample.get(SampleKey.DEPTH_END)}),
-				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
-						ChemistryKey.MKUEM)),
-				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
-						ChemistryKey.EBV_SOIL)),
-				HtmlFactory.createChemistryCellAsString(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
-						ChemistryKey.EBV_CONSTRUCTION_WASTE)),
+				HtmlFactory.createChemistryCellAsString(formatParameterValue(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
+						ChemistryKey.MKUEM))),
+				HtmlFactory.createChemistryCellAsString(formatParameterValue(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
+						ChemistryKey.EBV_SOIL))),
+				HtmlFactory.createChemistryCellAsString(formatParameterValue(sample.getParameterValueBy(SampleKey.CHEMISTRY_ID,
+						ChemistryKey.EBV_CONSTRUCTION_WASTE))),
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
 						new String[]{sample.get(SampleKey.WATER_CONTENT)}),
 				HtmlFactory.createCellAsString(textFormatter, "NormalBold",
@@ -80,6 +77,11 @@ public final class Topsoil extends Appendix
 		});
 		
 		return row;
+	}
+
+	private String formatParameterValue(String parameterValue)
+	{
+		return ParameterValueToFormat.getFormattedValue(parameterValue);
 	}
 	
 	@Override

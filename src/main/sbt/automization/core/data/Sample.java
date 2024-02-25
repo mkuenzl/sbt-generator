@@ -85,12 +85,12 @@ public final class Sample extends AbstractDataTable
 	@Override
 	public String getParameterValueBy(Key parameterID, Key valueID)
 	{
-		for (Parameter par : parameters)
+		for (Parameter parameter : parameters)
 		{
 			String value = this.get(parameterID);
-			if (par.contains(value))
+			if (parameter.contains(value))
 			{
-				return par.get(valueID);
+				return parameter.get(valueID);
 			}
 		}
 		
