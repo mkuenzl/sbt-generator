@@ -36,21 +36,6 @@ public final class UtilityPrinter implements TextPrinter
 	}
 	
 	/**
-	 * Method to provide a line without content.
-	 *
-	 * @return a html paragraph without content
-	 */
-	public static String printLineEmpty()
-	{
-		HtmlText emptyRow = new HtmlText.Builder()
-				.appendAttribute("class", "Normal")
-				.appendContent("&nbsp;")
-				.build();
-		
-		return emptyRow.appendTag();
-	}
-	
-	/**
 	 * Method to provide the standard html line break. May be moved to the html package in the future.
 	 *
 	 * @return a html line break

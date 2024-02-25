@@ -7,7 +7,6 @@ import sbt.automization.core.data.key.ProbeKey;
 import sbt.automization.core.data.key.SampleKey;
 import sbt.automization.core.format.printer.FootnotePrinter;
 import sbt.automization.core.format.text.DateTextFormatter;
-import sbt.automization.core.html.HtmlCell;
 import sbt.automization.core.html.HtmlFactory;
 import sbt.automization.core.html.HtmlRow;
 import sbt.automization.core.html.HtmlTable;
@@ -193,13 +192,6 @@ public final class ExplorationSite extends Appendix
 		
 		String cell = HtmlFactory.createCellAsString("NormalHeaderSmallFont",
 				new String[]{new FootnotePrinter().print(dataTable)});
-		
-		/*HtmlCell cell = new HtmlCell.Builder()
-				.appendAttribute("class", "NormalHeaderSmallFont")
-				.appendContent(new FootnotePrinter().print(dataTable))
-				.build();
-				
-		 */
 		
 		HtmlRow row = new HtmlRow.Builder()
 				.appendAttribute("class", "NormalThin8")

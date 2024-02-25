@@ -8,9 +8,8 @@ import sbt.automization.core.data.Probe;
 import sbt.automization.core.data.Sample;
 import sbt.automization.core.data.key.LpKey;
 import sbt.automization.core.data.key.ProbeKey;
-import sbt.automization.core.data.key.SampleKey;
 import sbt.automization.core.format.printer.UtilityPrinter;
-import sbt.automization.core.format.text.LoadPlateTextFormatter;
+import sbt.automization.core.format.text.LoadPlateTextFormatterExclusiveEv85Value;
 import sbt.automization.core.html.HtmlFactory;
 
 import java.util.ArrayList;
@@ -124,8 +123,8 @@ public final class LoadPlate extends Appendix
 			{
 				Parameter parameter = (Parameter) dataTable;
 				
-				String formattedEV2 = new LoadPlateTextFormatter().format(parameter.get(LpKey.EV2),
-						parameter.get(LpKey.EV85));
+				String formattedEV2 = new LoadPlateTextFormatterExclusiveEv85Value().format(parameter.get(LpKey.EV2),
+																							parameter.get(LpKey.EV85));
 				
 				String row = HtmlFactory.createRowAsString("NormalThin8", new String[]{
 						HtmlFactory.createCellAsString(textFormatter, "NormalCenter",

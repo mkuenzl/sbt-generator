@@ -2,7 +2,8 @@ package sbt.automization.core.format.text;
 
 import sbt.automization.core.html.HtmlText;
 
-public final class LoadPlateTextFormatter extends AbstractTextFormatter
+public final class LoadPlateTextFormatterExclusiveEv85Value
+		extends AbstractLoadPlateTextFormatter
 {
 	@Override
 	public String format(String text)
@@ -30,17 +31,11 @@ public final class LoadPlateTextFormatter extends AbstractTextFormatter
 			
 			double ev85PercentValue = Double.parseDouble(replace);
 			
-			String range = "";
-			
-			if (ev85PercentValue >= 10 && ev85PercentValue < 20) range = "[30 - 40]";
-			if (ev85PercentValue >= 20 && ev85PercentValue < 30) range = "[40 - 50]";
-			if (ev85PercentValue >= 30 && ev85PercentValue < 40) range = "[50 - 60]";
-			if (ev85PercentValue >= 40 && ev85PercentValue < 45) range = "[60 - 80]";
-			
+			String range = formatRange(ev85PercentValue);
+
 			stringBuilder.append(new HtmlText.Builder()
 					.appendAttribute("class", "Normal")
 					.appendContent(ev2)
-					//.appendContent(printLineBreak())
 					.appendContent(new HtmlText.Builder()
 							.appendAttribute("class", "Normal6")
 							.appendContent(range)

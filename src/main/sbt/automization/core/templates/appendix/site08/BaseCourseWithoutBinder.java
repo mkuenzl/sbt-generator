@@ -6,6 +6,7 @@ import sbt.automization.core.data.key.LpKey;
 import sbt.automization.core.data.key.ProbeKey;
 import sbt.automization.core.data.key.SampleKey;
 import sbt.automization.core.format.printer.UtilityPrinter;
+import sbt.automization.core.format.text.LoadPlateTextFormatterInclusiveEv85Value;
 import sbt.automization.core.html.HtmlFactory;
 import sbt.automization.core.templates.appendix.Appendix;
 
@@ -94,19 +95,11 @@ public final class BaseCourseWithoutBinder
 
     private String printEV(Sample sample)
     {
-        //TODO: Change Probe to Sample
         if (sample.containsValueFor(SampleKey.LP_ID))
         {
             String ev2 = sample.getParameterValueBy(SampleKey.LP_ID, LpKey.EV2);
             String ev85 = sample.getParameterValueBy(SampleKey.LP_ID, LpKey.EV85);
-
-            if ("".equals(ev2) && "".equals(ev85)) return "-";
-
-            return ev2
-                    .concat(UtilityPrinter.printLineBreak())
-                    .concat("(")
-                    .concat(ev85)
-                    .concat(")");
+            return new LoadPlateTextFormatterInclusiveEv85Value().format(ev2, ev85);
         }
         return "-";
     }
