@@ -42,15 +42,24 @@ public enum InfoTexts
                  "\n7. Klicken Sie auf den Button \"BUILD\"" +
                  "\n    Die Tabellen erscheinen nun als HTML Dateien in dem Ordner Ihrer ausgewählten Datei."),
     V_2_1_1(new ReleaseNoteBuilder("2.1.1")
-                    .addReleaseNote("Neuer Release-Info Button, der die aktuelle Release Version angibt und per Mausklick die Neuerungen auflistet.")
+                    .addReleaseNote(
+                            "Neuer Release-Info Button, der die aktuelle Release Version angibt und per Mausklick die" +
+                                    " Neuerungen auflistet.")
                     .addReleaseNote("Tabellen, die sich auf Standards vor 08 beziehen, befinden sich nun in eigener " +
-                                            "Spalte (Alte Tabellen) ganz rechts (GOB vor 08, Erkundungsstellen vor 08).")
+                                            "Spalte (Alte Tabellen) ganz rechts (GOB vor 08, Erkundungsstellen vor " +
+                                            "08).")
                     .addReleaseNote("GOB-08 Report listet \"pechfreien\" vor \"pechhaltigem\" Querschnitt.")
                     .addReleaseNote("UG Report listet \"Konsistenz\" vor \"Verdichtungsfähigkeit\".")
                     .addReleaseNote("UG Report \"Tragfähigkeit Grabensohle\"-Werte sind nun wie alle anderen " +
                                             "Werte auf formatiert.")
-                    .addReleaseNote("ERK-08 Reports Parameter-Wert (Auffälligkeit, keine Auffälligkeit etc.) Formatierung angepasst, sodass eine vernünftige Worttrennung stattfindet.")
-                    .addReleaseNote("In der Datenbank-template wurde die Etagenbezeichnung \"Keller\" durch \"UG\" ersetzt.")
+                    .addReleaseNote(
+                            "ERK-08 Reports Parameter-Wert (Auffälligkeit, keine Auffälligkeit etc.) Formatierung " +
+                                    "angepasst, sodass eine vernünftige Worttrennung stattfindet.")
+                    .addReleaseNote(
+                            "In der Datenbank-template wurde die Etagenbezeichnung \"Keller\" durch \"UG\" ersetzt.")
+                    .addReleaseNote("Die Datenbank-template verrechnet nun nur noch bei aufeinanderfolgenden GOB-Proben die Starttiefe und Endtiefe.")
+                    .addReleaseNote("Haufwerk Volumen zu Probenberechnung funktioniert wieder.")
+                    .addReleaseNote("MUFV-Berichte tauchen nur auf, wenn MUFV-Werte hinterlegt sind.")
                     .buildReleaseNote());
 
 
