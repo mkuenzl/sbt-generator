@@ -1,9 +1,6 @@
 package sbt.automization.core.templates.appendix;
 
-import sbt.automization.core.data.DataTable;
-import sbt.automization.core.data.DataTableFactory;
-import sbt.automization.core.data.Probe;
-import sbt.automization.core.data.Sample;
+import sbt.automization.core.data.*;
 import sbt.automization.core.data.key.ProbeKey;
 import sbt.automization.core.data.key.SampleKey;
 import sbt.automization.core.format.printer.UtilityPrinter;
@@ -57,15 +54,25 @@ public final class SamplingProtocol
             {
                 Probe probe = (Probe) dataTable;
 
+                // DIE FORMAT SAMPLES METHODE
+                // FASST PROBEN ZUSAMMEN, SODASS HIER WENIGER PROBEN ANKOMMEN.
+                // PROBLEM:
+                // ES PASSIERT, DASS HIER GOB PROBEN ZUSAMMENGEFÜHRT WURDEN
+                // ABER ALS EP ERSCHEINEN ???
                 List<Sample> samples = formatSamples(probe.getSamples());
 
                 for (Sample sample : samples)
                 {
                     addAndResetTableOnPageBreak();
 
+                    final String sampleNumber = "P".concat(String.valueOf(++lines));
+
                     String row = HtmlFactory.createRowAsString("NormalThin8", new String[]{
                             HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
-                                                           new String[]{"P".concat(String.valueOf(++lines))}),
+                                                           new String[]{sampleNumber}),
+                            // PROBLEM:
+                            // ALLES, BEI DEM KEIN "BEHAELTNIS" ANGEGEBEN IST, GILT ALS EP?
+                            // IST DAS SO???
                             HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
                                                            new String[]{new SampleTypeTextFormatter().format(sample.get(
                                                                    SampleKey.CONTAINER))}),
@@ -165,21 +172,40 @@ public final class SamplingProtocol
         {
             for (int i = 0; i < formattedSamples.size(); i++)
             {
-                Sample sample = formattedSamples.get(i);
+                // HIER WIRD VERSUCHT GOB PROBEN ZUSAMMENZUFASSEN
+                // ES WIRD DAVON AUSGEGANGEN DASS DIESE DIREKT UNTER EINANDER STEHEN
+                // ES WIRD DABEI DIE START-TIEFER DER NÄCHSTEN DURCH DIE AKTUELLE ERSETZT ? WARUM?
 
-                if ("GOB".equals(sample.get(SampleKey.OUTCROP)))
+                // PROBLEM!!!
+                // DER ERSTEN GOB PROBE IST ES EGAL, WELCHEN AUFSCHLUSS DIE NÄCHSTE HAT.
+                // HAUPTSACHE ABFALLART PASST. MIT CHRISTIAN KLÄREN.
+                Sample currentSample = formattedSamples.get(i);
+                final String currentSampleOutCrop = currentSample.get(SampleKey.OUTCROP);
+                final boolean isGOBSample = Outcrop.GOB.toString()
+                                                  .equals(currentSampleOutCrop);
+                // WENN PROBE GOB ALS AUFSCHLUSS HAT
+                if (isGOBSample)
                 {
-                    if (formattedSamples.size() <= i + 1) break;
-                    if (sample.get(SampleKey.WASTE_TYPE)
-                              .equals(formattedSamples.get(i + 1)
-                                                      .get(SampleKey.WASTE_TYPE)))
+                    final boolean isLastIndex = formattedSamples.size() <= i + 1;
+                    if (isLastIndex)
                     {
-                        formattedSamples.get(i + 1)
-                                        .add(SampleKey.DEPTH_START.getKey(),
-                                             sample.get(SampleKey.DEPTH_START));
-                        formattedSamples.get(i + 1)
-                                        .add(SampleKey.GRANULATION.getKey(), "");
-                        formattedSamples.remove(sample);
+                        break;
+                    }
+                    final String ownWasteType = currentSample.get(SampleKey.WASTE_TYPE);
+                    final Sample nextSample = formattedSamples.get(i + 1);
+                    final String nextSampleWasteType = nextSample.get(SampleKey.WASTE_TYPE);
+                    // NÄCHSTE PROBE DARF VON EGAL WELCHER AUFSCHLUSSART SEIN, HAUPTSACHE GLEICHE ABFALLART?
+                    if (ownWasteType.equals(nextSampleWasteType))
+                    {
+                        // dann überschreibe des Nächsten Starttiefe mit der eigenen Starttiefe?
+                        final String currentSampleDepthStart = currentSample.get(SampleKey.DEPTH_START);
+                        nextSample.put(SampleKey.DEPTH_START, currentSampleDepthStart);
+                        // Und überschreibe den Granulations-Wert mit NIX???
+                        nextSample.put(SampleKey.GRANULATION, "");
+                        // dann GOB-Probe fott.
+                        formattedSamples.remove(currentSample);
+                        // Mit dem gleichen Sample weiter machen, denn dieses ist grade aufgerutscht.
+                        // index erst -- und danach direkt wieder ++.
                         i--;
                     }
                 }

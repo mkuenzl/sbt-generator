@@ -7,9 +7,9 @@ import java.util.Map;
 
 public interface DataTable
 {
-	void add(String key, String value);
+
 	
-	void add(Key key, String value);
+	void put(Key key, String value);
 	
 	String get(Key key);
 	

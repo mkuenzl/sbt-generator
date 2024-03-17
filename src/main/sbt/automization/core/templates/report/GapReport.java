@@ -13,26 +13,27 @@ import sbt.automization.core.templates.construction.strategies.CellPerProbe;
 import java.util.Collection;
 import java.util.List;
 
-public final class Gap extends Report
+public final class GapReport
+		extends AbstractReport
 {
-	private static Gap instance;
+	private static GapReport instance;
 	private final RowFactory provider;
 	
-	private Gap()
+	private GapReport()
 	{
 		super(Outcrop.GAP);
 		provider = new RowFactory(Outcrop.GAP);
 	}
 	
-	public static Gap getInstance()
+	public static GapReport getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (Gap.class)
+			synchronized (GapReport.class)
 			{
 				if (instance == null)
 				{
-					instance = new Gap();
+					instance = new GapReport();
 				}
 			}
 		}

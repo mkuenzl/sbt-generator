@@ -50,6 +50,7 @@ public enum InfoTexts
                     .addReleaseNote("UG Report \"Tragfähigkeit Grabensohle\"-Werte sind nun wie alle anderen " +
                                             "Werte auf formatiert.")
                     .addReleaseNote("ERK-08 Reports Parameter-Wert (Auffälligkeit, keine Auffälligkeit etc.) Formatierung angepasst, sodass eine vernünftige Worttrennung stattfindet.")
+                    .addReleaseNote("In der Datenbank-template wurde die Etagenbezeichnung \"Keller\" durch \"UG\" ersetzt.")
                     .buildReleaseNote());
 
 

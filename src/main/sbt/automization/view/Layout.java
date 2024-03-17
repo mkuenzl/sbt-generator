@@ -164,7 +164,7 @@ public class Layout
 		label.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
 		components.add(label);
 
-		TemplateCheckBox boundSuperStructureCheckBox = new TemplateCheckBox("GOB vor 08", positions.get("CheckBoxThirdColumnSecondRow"), BoundSuperstructure.getInstance());
+		TemplateCheckBox boundSuperStructureCheckBox = new TemplateCheckBox("GOB vor 08", positions.get("CheckBoxThirdColumnSecondRow"), BoundSuperstructureReport.getInstance());
 		components.add(boundSuperStructureCheckBox);
 
 		//APPENDIX
@@ -175,39 +175,39 @@ public class Layout
 	private void constructSecondColumn()
 	{
 		//REPORT
-		TemplateCheckBox topsoilCheckBox = new TemplateCheckBox("OBERBODEN", positions.get("CheckBoxSecondColumnFirstRow"), Topsoil.getInstance());
+		TemplateCheckBox topsoilCheckBox = new TemplateCheckBox("OBERBODEN", positions.get("CheckBoxSecondColumnFirstRow"), TopsoilReport.getInstance());
 		components.add(topsoilCheckBox);
 
-		TemplateCheckBox banquetCheckBox = new TemplateCheckBox("BANKETT", positions.get("CheckBoxSecondColumnSecondRow"), Banquet.getInstance());
+		TemplateCheckBox banquetCheckBox = new TemplateCheckBox("BANKETT", positions.get("CheckBoxSecondColumnSecondRow"), BanquetReport.getInstance());
 		components.add(banquetCheckBox);
 
-		TemplateCheckBox concreteCheckBox = new TemplateCheckBox("BETON", positions.get("CheckBoxSecondColumnThirdRow"), Concrete.getInstance());
+		TemplateCheckBox concreteCheckBox = new TemplateCheckBox("BETON", positions.get("CheckBoxSecondColumnThirdRow"), ConcreteReport.getInstance());
 		components.add(concreteCheckBox);
 
 		//Other
 		TemplateCheckBox coordinatesCheckBox = new TemplateCheckBox("KOORDINATEN", positions.get("CheckBoxSecondColumnFourthRow"), Coordinates.getInstance());
 		components.add(coordinatesCheckBox);
 
-		TemplateCheckBox baseCourseWithoutBinderCheckBox = new TemplateCheckBox("TOB", positions.get("CheckBoxSecondColumnFifthRow"), BaseCourseWithoutBinder.getInstance());
+		TemplateCheckBox baseCourseWithoutBinderCheckBox = new TemplateCheckBox("TOB", positions.get("CheckBoxSecondColumnFifthRow"), BaseCourseWithoutBinderReport.getInstance());
 		components.add(baseCourseWithoutBinderCheckBox);
 
-		TemplateCheckBox baseCourseWithHydraulicBinderCheckBox = new TemplateCheckBox("TMHB", positions.get("CheckBoxSecondColumnSixthRow"), BaseCourseWithHydraulicBinder.getInstance());
+		TemplateCheckBox baseCourseWithHydraulicBinderCheckBox = new TemplateCheckBox("TMHB", positions.get("CheckBoxSecondColumnSixthRow"), BaseCourseWithHydraulicBinderReport.getInstance());
 		components.add(baseCourseWithHydraulicBinderCheckBox);
 
-		TemplateCheckBox gapCheckBox = new TemplateCheckBox("FUGE", positions.get("CheckBoxSecondColumnSeventhRow"), Gap.getInstance());
+		TemplateCheckBox gapCheckBox = new TemplateCheckBox("FUGE", positions.get("CheckBoxSecondColumnSeventhRow"), GapReport.getInstance());
 		components.add(gapCheckBox);
 
-		TemplateCheckBox undergroundCheckBox = new TemplateCheckBox("UNTERGRUND", positions.get("CheckBoxSecondColumnEighthRow"), Underground.getInstance());
+		TemplateCheckBox undergroundCheckBox = new TemplateCheckBox("UNTERGRUND", positions.get("CheckBoxSecondColumnEighthRow"), UndergroundReport.getInstance());
 		components.add(undergroundCheckBox);
 
-		TemplateCheckBox buildingCheckBox = new TemplateCheckBox("GEBÄUDE", positions.get("CheckBoxSecondColumnNinthRow"), Building.getInstance());
+		TemplateCheckBox buildingCheckBox = new TemplateCheckBox("GEBÄUDE", positions.get("CheckBoxSecondColumnNinthRow"), BuildingReport.getInstance());
 		components.add(buildingCheckBox);
 
-		TemplateCheckBox heapCheckBox = new TemplateCheckBox("HAUFWERK", positions.get("CheckBoxSecondColumnTenthRow"), Heap.getInstance());
+		TemplateCheckBox heapCheckBox = new TemplateCheckBox("HAUFWERK", positions.get("CheckBoxSecondColumnTenthRow"), HeapReport.getInstance());
 		components.add(heapCheckBox);
 
 		TemplateCheckBox boundSuperStructure08CheckBox = new TemplateCheckBox("GOB 08.23", positions.get(
-				"CheckBoxSecondColumnEleventhRow"), BoundSuperstructure08.getInstance());
+				"CheckBoxSecondColumnEleventhRow"), BoundSuperstructure08Report.getInstance());
 		components.add(boundSuperStructure08CheckBox);
 	}
 

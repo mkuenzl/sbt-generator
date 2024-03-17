@@ -12,29 +12,29 @@ import sbt.automization.core.templates.construction.strategies.CellPerProbe;
 
 import java.util.Collection;
 import java.util.List;
-/**
- * Represent the Table Data Structure for the "TOB-Report"
- */
-public final class BaseCourseWithoutBinder extends Report
+
+public final class ConcreteReport
+		extends AbstractReport
 {
-	private static BaseCourseWithoutBinder instance;
+	
+	private static ConcreteReport instance;
 	private final RowFactory provider;
 	
-	private BaseCourseWithoutBinder()
+	private ConcreteReport()
 	{
-		super(Outcrop.TOB);
-		provider = new RowFactory(Outcrop.TOB);
+		super(Outcrop.CONCRETE);
+		provider = new RowFactory(Outcrop.CONCRETE);
 	}
 	
-	public static BaseCourseWithoutBinder getInstance()
+	public static ConcreteReport getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (BaseCourseWithoutBinder.class)
+			synchronized (ConcreteReport.class)
 			{
 				if (instance == null)
 				{
-					instance = new BaseCourseWithoutBinder();
+					instance = new ConcreteReport();
 				}
 			}
 		}
@@ -44,7 +44,7 @@ public final class BaseCourseWithoutBinder extends Report
 	@Override
 	public String getExportFileName()
 	{
-		return "TOB-Report";
+		return "BETON-Report";
 	}
 	
 	@Override
@@ -67,7 +67,7 @@ public final class BaseCourseWithoutBinder extends Report
 		provider.setCellStrategy(new CellPerProbe());
 		
 		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}), new IdRetrieval()));
-		addToTable(provider.getRow(header.createCell(new String[]{"Aufbruch"}), new BaseCourseExposureRetrieval()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Aufschlussart"}), new SuperstructureExposureRetrieval()));
 		
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
@@ -80,15 +80,8 @@ public final class BaseCourseWithoutBinder extends Report
 	{
 		addTechnicalHeader(dataTables);
 		
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"E<sub>Vdyn</sub>,"}, "MN/m²"), new EvDynRetrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"E<sub>Vdyn (-15%)</sub>,"}, "MN/m²"), new EvDyn85Retrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"E<sub>V2</sub><sup>[41]</sup>,"}, "MN" +
-				"/m²"), new Ev2WithEv85Retrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Soll Wert,"}, "E<sub>V2</sub>"), new EvMinimumBorderRetrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Dicke,"}, "cm"), new SizeRetrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Gesamtdicke Oberbau,"}, "cm"), new SizeTotalOBRetrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Material"}), new MaterialTobRetrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Korngrößenverteilung,"}, "Kornanteil < 0,063 mm"), new GrainSizeDistributionRetrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Material"}), new MaterialRetrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Druckfestigkeit,"}, "N/mm²"), new CompressiveStrengthRetrieval()));
 	}
 	
 	@Override
@@ -135,7 +128,6 @@ public final class BaseCourseWithoutBinder extends Report
 		addToTable(provider.getRowWithDataCheck(chemistryDecisionHeader, new ChemistryDecisionSupportRetrieval()));
 		HtmlCell chemistryWasteKeyHeader = header.createCell(new String[]{"Abfallschlüssel,"}, "AVV<sup>[14]</sup>");
 		addToTable(provider.getRowWithDataCheck(chemistryWasteKeyHeader, new ChemistryAvvRetrieval()));
-		
 	}
 	
 	@Override
@@ -153,9 +145,7 @@ public final class BaseCourseWithoutBinder extends Report
 						.appendAttribute("width", String.valueOf(size))
 						.appendContent("Anmerkungen:")
 						.appendContent(UtilityPrinter.printLineBreak())
-						.appendContent("Für die angegebenen Tiefen [] gilt die Einheit cm. ")
-						.appendContent("Gem. a. G. = Gemisch aus Gesteinskörnungen, NS = Naturstein, LS = Lavaschlacke, HO = Hochofenschlacke,")
-						.appendContent("RC = Rezyklierte Gesteinskörnung, BK = Brechkorn, RK = Rundkorn, sg = stetig gestuft, ug = unstetig gestuft")
+						.appendContent("Für die angegebenen Tiefen [] gilt die Einheit cm.")
 						.build()
 						.appendTag())
 				.build();

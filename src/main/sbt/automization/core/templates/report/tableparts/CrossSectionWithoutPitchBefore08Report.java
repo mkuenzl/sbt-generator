@@ -10,11 +10,12 @@ import sbt.automization.core.html.HtmlFactory;
 import sbt.automization.core.html.HtmlRow;
 import sbt.automization.core.html.HtmlText;
 import sbt.automization.core.styles.StyleParameter;
-import sbt.automization.core.templates.report.Report;
+import sbt.automization.core.templates.report.AbstractReport;
 
 import java.util.List;
 
-public final class CrossSectionWithoutPitch extends Report
+public final class CrossSectionWithoutPitchBefore08Report
+		extends AbstractReport
 {
 	private String size;
 	private HtmlRow rowSize;
@@ -25,7 +26,7 @@ public final class CrossSectionWithoutPitch extends Report
 	private String avv;
 	private HtmlRow rowAvv;
 	
-	public CrossSectionWithoutPitch()
+	public CrossSectionWithoutPitchBefore08Report()
 	{
 		super(Outcrop.GOB);
 	}

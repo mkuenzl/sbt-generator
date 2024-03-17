@@ -186,7 +186,7 @@ public final class SampleFormatter
 			try
 			{
 				Sample clonedSample = (Sample) sample.clone();
-				clonedSample.add(SampleKey.VOLUME, String.valueOf(volume));
+				clonedSample.put(SampleKey.VOLUME, String.valueOf(volume));
 				clonedSamples.add(clonedSample);
 			} catch (CloneNotSupportedException e)
 			{

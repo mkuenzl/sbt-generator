@@ -29,13 +29,7 @@ public abstract class AbstractDataTable
 	}
 	
 	@Override
-	public void add(String key, String value)
-	{
-		this.informationMap.put(key, value);
-	}
-	
-	@Override
-	public void add(Key key, String value)
+	public void put(Key key, String value)
 	{
 		this.informationMap.put(key.getKey(), value);
 	}

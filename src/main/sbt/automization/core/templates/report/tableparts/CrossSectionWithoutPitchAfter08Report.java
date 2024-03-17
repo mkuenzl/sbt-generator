@@ -10,11 +10,15 @@ import sbt.automization.core.html.HtmlFactory;
 import sbt.automization.core.html.HtmlRow;
 import sbt.automization.core.html.HtmlText;
 import sbt.automization.core.styles.StyleParameter;
-import sbt.automization.core.templates.report.Report;
+import sbt.automization.core.templates.report.AbstractReport;
 
 import java.util.List;
 
-public final class CrossSectionWithoutPitch08 extends Report
+/**
+ * Repräsentiert die Zeile innerhalb eines Reports, die den <b>Pechfreien Querschnitt</b> abbildet.
+ */
+public final class CrossSectionWithoutPitchAfter08Report
+		extends AbstractReport
 {
 	private String size;
 	private HtmlRow rowSize;
@@ -25,7 +29,7 @@ public final class CrossSectionWithoutPitch08 extends Report
 	private String avv;
 	private HtmlRow rowAvv;
 	
-	public CrossSectionWithoutPitch08()
+	public CrossSectionWithoutPitchAfter08Report()
 	{
 		super(Outcrop.GOB);
 	}
@@ -141,9 +145,10 @@ public final class CrossSectionWithoutPitch08 extends Report
 		
 		return depth;
 	}
-	
+
 	private void setCellStrings(double depth)
 	{
+		// Pechfreier Querschnitt, wenn gemessen gilt generell als nicht gefährlich.
 		if (depth > 0)
 		{
 			size = new DepthTextFormatter().printThicknessInHalves(depth);

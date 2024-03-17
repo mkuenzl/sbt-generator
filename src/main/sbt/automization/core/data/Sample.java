@@ -1,6 +1,7 @@
 package sbt.automization.core.data;
 
 import sbt.automization.core.data.key.Key;
+import sbt.automization.core.data.key.SampleKey;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -105,5 +106,14 @@ public final class Sample extends AbstractDataTable
 	public void setProbe(Probe probe)
 	{
 		this.probe = probe;
+	}
+
+	/**
+	 * For debug purposes implemented.
+	 */
+	@Override
+	public String toString()
+	{
+		return String.format("%s %s %s",get(SampleKey.PROBE_ID),get(SampleKey.OUTCROP),get(SampleKey.WASTE_TYPE));
 	}
 }

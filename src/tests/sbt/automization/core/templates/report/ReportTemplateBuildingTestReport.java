@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class ReportTemplateBuildingTest
+public class ReportTemplateBuildingTestReport
 {
 	static ProjectEngine projectEngine;
 	
@@ -60,7 +60,7 @@ public class ReportTemplateBuildingTest
 	@Test
 	public void GOBTemplateTest() throws Exception
 	{
-		TemplateExport exportStrategy = new HtmlExport(BoundSuperstructure.getInstance());
+		TemplateExport exportStrategy = new HtmlExport(BoundSuperstructureReport.getInstance());
 		createAndOpenTemplate(exportStrategy);
 		
 		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
@@ -68,7 +68,7 @@ public class ReportTemplateBuildingTest
 	@Test
 	public void GOB08TemplateTest() throws Exception
 	{
-		TemplateExport exportStrategy = new HtmlExport(BoundSuperstructure08.getInstance());
+		TemplateExport exportStrategy = new HtmlExport(BoundSuperstructure08Report.getInstance());
 		createAndOpenTemplate(exportStrategy);
 
 		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
@@ -77,7 +77,7 @@ public class ReportTemplateBuildingTest
 	@Test
 	public void TOBTemplateTest() throws Exception
 	{
-		TemplateExport exportStrategy = new HtmlExport(BaseCourseWithoutBinder.getInstance());
+		TemplateExport exportStrategy = new HtmlExport(BaseCourseWithoutBinderReport.getInstance());
 		createAndOpenTemplate(exportStrategy);
 		
 		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
@@ -86,7 +86,7 @@ public class ReportTemplateBuildingTest
 	@Test
 	public void UGTemplateTest() throws Exception
 	{
-		TemplateExport exportStrategy = new HtmlExport(Underground.getInstance());
+		TemplateExport exportStrategy = new HtmlExport(UndergroundReport.getInstance());
 		createAndOpenTemplate(exportStrategy);
 		
 		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
@@ -95,7 +95,7 @@ public class ReportTemplateBuildingTest
 	@Test
 	public void OHTemplateTest() throws Exception
 	{
-		TemplateExport exportStrategy = new HtmlExport(Topsoil.getInstance());
+		TemplateExport exportStrategy = new HtmlExport(TopsoilReport.getInstance());
 		createAndOpenTemplate(exportStrategy);
 		
 		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
@@ -104,7 +104,7 @@ public class ReportTemplateBuildingTest
 	@Test
 	public void TMHBTemplateTest() throws Exception
 	{
-		TemplateExport exportStrategy = new HtmlExport(BaseCourseWithHydraulicBinder.getInstance());
+		TemplateExport exportStrategy = new HtmlExport(BaseCourseWithHydraulicBinderReport.getInstance());
 		createAndOpenTemplate(exportStrategy);
 		
 		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
@@ -113,7 +113,7 @@ public class ReportTemplateBuildingTest
 	@Test
 	public void CONCRETETemplateTest() throws Exception
 	{
-		TemplateExport exportStrategy = new HtmlExport(Concrete.getInstance());
+		TemplateExport exportStrategy = new HtmlExport(ConcreteReport.getInstance());
 		createAndOpenTemplate(exportStrategy);
 		
 		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
@@ -122,7 +122,7 @@ public class ReportTemplateBuildingTest
 	@Test
 	public void GAPTemplateTest() throws Exception
 	{
-		TemplateExport exportStrategy = new HtmlExport(Gap.getInstance());
+		TemplateExport exportStrategy = new HtmlExport(GapReport.getInstance());
 		createAndOpenTemplate(exportStrategy);
 		
 		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
@@ -131,7 +131,7 @@ public class ReportTemplateBuildingTest
 	@Test
 	public void HEAPTemplateTest() throws Exception
 	{
-		TemplateExport exportStrategy = new HtmlExport(Heap.getInstance());
+		TemplateExport exportStrategy = new HtmlExport(HeapReport.getInstance());
 		createAndOpenTemplate(exportStrategy);
 		
 		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
@@ -149,7 +149,7 @@ public class ReportTemplateBuildingTest
 	@Test
 	public void BANQUETTemplateTest() throws Exception
 	{
-		TemplateExport exportStrategy = new HtmlExport(Banquet.getInstance());
+		TemplateExport exportStrategy = new HtmlExport(BanquetReport.getInstance());
 		createAndOpenTemplate(exportStrategy);
 		
 		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());
@@ -158,7 +158,7 @@ public class ReportTemplateBuildingTest
 	@Test
 	public void BUILDINGTemplateTest() throws Exception
 	{
-		TemplateExport exportStrategy = new HtmlExport(Building.getInstance());
+		TemplateExport exportStrategy = new HtmlExport(BuildingReport.getInstance());
 		createAndOpenTemplate(exportStrategy);
 		
 		Assert.assertTrue(new File(exportStrategy.getPath(templateExportPath)).exists());

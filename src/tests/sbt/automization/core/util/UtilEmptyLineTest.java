@@ -3,6 +3,7 @@ package sbt.automization.core.util;
 import org.junit.Assert;
 import org.junit.Test;
 import sbt.automization.core.data.DataTable;
+import sbt.automization.core.data.Outcrop;
 import sbt.automization.core.data.Probe;
 import sbt.automization.core.data.Sample;
 import sbt.automization.core.data.key.ProbeKey;
@@ -227,7 +228,7 @@ public class UtilEmptyLineTest
 	{
 		String valueIdentifier = SampleKey.TYPE.getKey();
 		String outcropIdentifier = SampleKey.OUTCROP.getKey();
-		String outcropValue = "GOB";
+		String outcropValue = Outcrop.GOB.toString();
 
 		Sample outcropEmptyLayerSample = new Sample(new HashMap<>()
 		{{
@@ -276,7 +277,7 @@ public class UtilEmptyLineTest
 	{
 		String valueIdentifier = SampleKey.TYPE.getKey();
 		String outcropIdentifier = SampleKey.OUTCROP.getKey();
-		String outcropValue = "GOB";
+		String outcropValue = Outcrop.GOB.toString();
 
 		Sample outcropEmptyLayerSample = new Sample(new HashMap<>()
 		{{
@@ -325,7 +326,7 @@ public class UtilEmptyLineTest
 	{
 		String valueIdentifier = SampleKey.TYPE.getKey();
 		String outcropIdentifier = SampleKey.OUTCROP.getKey();
-		String outcropValue = "GOB";
+		String outcropValue = Outcrop.GOB.toString();
 
 		Sample outcropEmptyLayerSample = new Sample(new HashMap<>()
 		{{
@@ -374,7 +375,7 @@ public class UtilEmptyLineTest
 	{
 		String valueIdentifier = SampleKey.TYPE.getKey();
 		String outcropIdentifier = SampleKey.OUTCROP.getKey();
-		String outcropValue = "GOB";
+		String outcropValue = Outcrop.GOB.toString();
 
 		Sample outcropEmptyLayerSample = new Sample(new HashMap<>()
 		{{

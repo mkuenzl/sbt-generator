@@ -12,31 +12,30 @@ import sbt.automization.core.templates.construction.strategies.CellPerProbe;
 
 import java.util.Collection;
 import java.util.List;
-
 /**
- * Represent the Table Data Structure for the "UG-Report"
+ * Represent the Table Data Structure for the "TOB-Report"
  */
-public final class Underground extends Report
+public final class BaseCourseWithoutBinderReport
+		extends AbstractReport
 {
-	private static Underground instance;
-	
+	private static BaseCourseWithoutBinderReport instance;
 	private final RowFactory provider;
 	
-	private Underground()
+	private BaseCourseWithoutBinderReport()
 	{
-		super(Outcrop.UG);
-		provider = new RowFactory(Outcrop.UG);
+		super(Outcrop.TOB);
+		provider = new RowFactory(Outcrop.TOB);
 	}
 	
-	public static Underground getInstance()
+	public static BaseCourseWithoutBinderReport getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (Underground.class)
+			synchronized (BaseCourseWithoutBinderReport.class)
 			{
 				if (instance == null)
 				{
-					instance = new Underground();
+					instance = new BaseCourseWithoutBinderReport();
 				}
 			}
 		}
@@ -46,7 +45,7 @@ public final class Underground extends Report
 	@Override
 	public String getExportFileName()
 	{
-		return "UG-Report";
+		return "TOB-Report";
 	}
 	
 	@Override
@@ -56,6 +55,7 @@ public final class Underground extends Report
 		for (List<DataTable> portion : tablesSplitIntoPortions)
 		{
 			buildTable(portion);
+			
 			addTable();
 			addPageBreak();
 		}
@@ -68,10 +68,7 @@ public final class Underground extends Report
 		provider.setCellStrategy(new CellPerProbe());
 		
 		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}), new IdRetrieval()));
-		addToTable(provider.getRow(header.createCell(new String[]{"Aufschlussart"}), new GroundExposureRetrieval()));
-		addToTable(provider.getRow(header.createCell(new String[]{"Dicke,"}, "cm"), new SizeRetrieval()));
-		addToTable(provider.getRow(header.createCell(new String[]{"Gesamtdicke,"}, "cm"), new SizeTotalRetrieval()));
-		addToTable(provider.getRow(header.createCell(new String[]{"Zieltiefe,"}, "cm"), new TargetDepthRetrieval()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Aufbruch"}), new BaseCourseExposureRetrieval()));
 		
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
@@ -84,18 +81,15 @@ public final class Underground extends Report
 	{
 		addTechnicalHeader(dataTables);
 		
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Bodengruppe,"}, "DIN 18196<sup>[22]</sup>"), new DIN18196Retrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Bodenklasse,"}, "DIN 18300<sup>[23]</sup>"), new DIN18300Retrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Bodenarten-", UtilityPrinter.printLineBreak(), "hauptgruppe,"}, "DIN 19682-2<sup>[24]</sup>"), new DIN19682Retrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Homogenbereich,"}, "DIN 18300:2019-09" +
-				"<sup>[34]</sup>"), new DIN18300_09Retrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Frostempfindlichkeits-", UtilityPrinter.printLineBreak(), "klasse,"}, "ZTV E<sup>[2]</sup>"), new ZTVRetrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Wassergehalt,"}, "M.-%"), new WaterContentRetrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Feuchtezustand"}), new MoistureRetrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Konsistenz"}), new ConsistencyRetrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Verdichtungsfähigkeit"}), new CompressibilityRetrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Tragfähigkeit Planum"}, "Soll: E<sub>V2</sub> >= 45 MN/m²".concat(UtilityPrinter.printLineBreak()).concat("Ansatz Planum: FOK -60cm")), new WearPlanumRetrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Tragfähigkeit Grabensohle"}, "Ansatz Sohle"), new WearSoleRetrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"E<sub>Vdyn</sub>,"}, "MN/m²"), new EvDynRetrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"E<sub>Vdyn (-15%)</sub>,"}, "MN/m²"), new EvDyn85Retrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"E<sub>V2</sub><sup>[41]</sup>,"}, "MN" +
+				"/m²"), new Ev2WithEv85Retrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Soll Wert,"}, "E<sub>V2</sub>"), new EvMinimumBorderRetrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Dicke,"}, "cm"), new SizeRetrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Gesamtdicke Oberbau,"}, "cm"), new SizeTotalOBRetrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Material"}), new MaterialTobRetrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Korngrößenverteilung,"}, "Kornanteil < 0,063 mm"), new GrainSizeDistributionRetrieval()));
 	}
 	
 	@Override
@@ -107,16 +101,15 @@ public final class Underground extends Report
 		addToTable(provider.getRowWithDataCheck(chemistryIdHeader, new ChemistryIdRetrieval()));
 		// updated 01.07.2023
 		HtmlCell chemistryMufvHeader = header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"},
-				"Schreiben des MUFV<sup>[18]</sup>"  + UtilityPrinter.printLineBreak() + "bis 31.07.2023");
+														 "Schreiben des MUFV<sup>[18]</sup>"  + UtilityPrinter.printLineBreak() + "bis 31.07.2023");
 		addToTable(provider.getRowWithDataCheck(chemistryMufvHeader, new ChemistryMufvRetrieval()));
 		
 		// added 01.07.2023
-		HtmlCell chemistryMkuemHeader = header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"},
+		HtmlCell chemistryMufv0823Header = header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"},
 				"Schreiben des MKUEM<sup>[18]</sup>" + UtilityPrinter.printLineBreak() + "ab 01.08.2023");
-		addToTable(provider.getRowWithDataCheck(chemistryMkuemHeader, new ChemistryMkuemRetrieval()));
+		addToTable(provider.getRowWithDataCheck(chemistryMufv0823Header, new ChemistryMkuemRetrieval()));
 		HtmlCell chemistryLfsHeader = header.createCell(new String[]{"Vollzugshinweise,"}, "LFS");
 		addToTable(provider.getRowWithDataCheck(chemistryLfsHeader, new ChemistryLfsRetrieval()));
-		
 		// added 01.07.2023
 		HtmlCell chemistryEbvSoilHeader = header.createCell(new String[]{"Materialklasse,"}, "EBV Boden<sup>[50]</sup>");
 		addToTable(provider.getRowWithDataCheck(chemistryEbvSoilHeader, new ChemistryEbvSoil()));
@@ -143,6 +136,7 @@ public final class Underground extends Report
 		addToTable(provider.getRowWithDataCheck(chemistryDecisionHeader, new ChemistryDecisionSupportRetrieval()));
 		HtmlCell chemistryWasteKeyHeader = header.createCell(new String[]{"Abfallschlüssel,"}, "AVV<sup>[14]</sup>");
 		addToTable(provider.getRowWithDataCheck(chemistryWasteKeyHeader, new ChemistryAvvRetrieval()));
+		
 	}
 	
 	@Override
@@ -161,8 +155,8 @@ public final class Underground extends Report
 						.appendContent("Anmerkungen:")
 						.appendContent(UtilityPrinter.printLineBreak())
 						.appendContent("Für die angegebenen Tiefen [] gilt die Einheit cm. ")
-						.appendContent("Die Einstufung der Verdichtungsfähigkeit erfolgt unter Berücksichtigung der Bodenfeuchtigkeit und der Konsistenz\n" +
-								"des Materials zum Erkundungszeitpunkt.")
+						.appendContent("Gem. a. G. = Gemisch aus Gesteinskörnungen, NS = Naturstein, LS = Lavaschlacke, HO = Hochofenschlacke,")
+						.appendContent("RC = Rezyklierte Gesteinskörnung, BK = Brechkorn, RK = Rundkorn, sg = stetig gestuft, ug = unstetig gestuft")
 						.build()
 						.appendTag())
 				.build();

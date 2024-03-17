@@ -13,26 +13,27 @@ import sbt.automization.core.templates.construction.strategies.CellPerProbe;
 import java.util.Collection;
 import java.util.List;
 
-public final class BaseCourseWithHydraulicBinder extends Report
+public final class BaseCourseWithHydraulicBinderReport
+		extends AbstractReport
 {
-	private static BaseCourseWithHydraulicBinder instance;
+	private static BaseCourseWithHydraulicBinderReport instance;
 	private final RowFactory provider;
 	
-	private BaseCourseWithHydraulicBinder()
+	private BaseCourseWithHydraulicBinderReport()
 	{
 		super(Outcrop.TMHB);
 		provider = new RowFactory(Outcrop.TMHB);
 	}
 	
-	public static BaseCourseWithHydraulicBinder getInstance()
+	public static BaseCourseWithHydraulicBinderReport getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (BaseCourseWithHydraulicBinder.class)
+			synchronized (BaseCourseWithHydraulicBinderReport.class)
 			{
 				if (instance == null)
 				{
-					instance = new BaseCourseWithHydraulicBinder();
+					instance = new BaseCourseWithHydraulicBinderReport();
 				}
 			}
 		}

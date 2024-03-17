@@ -71,7 +71,6 @@ public final class RowFactory
 		cellRowStrategy.setRetrievalStrategy(informationRetrievalStrategy);
 		cellRowStrategy.setStyle(styleParameter);
 		informationRetrievalStrategy.setOutcrop(outcrop);
-		
 		return build(header);
 	}
 	

@@ -1,6 +1,7 @@
 package sbt.automization;
 
 import sbt.automization.core.data.DataTable;
+import sbt.automization.core.data.Outcrop;
 import sbt.automization.core.data.Probe;
 import sbt.automization.core.data.Sample;
 
@@ -160,7 +161,7 @@ public final class DatatableProvider
 		sample_3.put("ERK_ID", "FB8");
 		sample_3.put("CHEMIE_ID", "");
 		sample_3.put("SCHICHT_NR", "3");
-		sample_3.put("SCHICHT_AUFSCHLUSS", "GOB");
+		sample_3.put("SCHICHT_AUFSCHLUSS", Outcrop.GOB.toString());
 		sample_3.put("SCHICHT_ART", "Tragschicht");
 		sample_3.put("SCHICHT_KOERNUNG", "0/22");
 		sample_3.put("SCHICHT_DICKE", "6");
@@ -199,7 +200,7 @@ public final class DatatableProvider
 		sample_4.put("ERK_ID", "FB8");
 		sample_4.put("CHEMIE_ID", "");
 		sample_4.put("SCHICHT_NR", "4");
-		sample_4.put("SCHICHT_AUFSCHLUSS", "GOB");
+		sample_4.put("SCHICHT_AUFSCHLUSS", Outcrop.GOB.toString());
 		sample_4.put("SCHICHT_ART", "Tragschicht");
 		sample_4.put("SCHICHT_KOERNUNG", "0/22");
 		sample_4.put("SCHICHT_DICKE", "5,5");

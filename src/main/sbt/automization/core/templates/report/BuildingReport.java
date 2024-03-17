@@ -25,26 +25,27 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public final class Building extends Report
+public final class BuildingReport
+		extends AbstractReport
 {
-	private static Building instance;
+	private static BuildingReport instance;
 	private final RowFactory provider;
 	
-	private Building()
+	private BuildingReport()
 	{
 		super(Outcrop.BUILDING);
 		this.provider = new RowFactory(Outcrop.BUILDING, getStyleParameter());
 	}
 	
-	public static Building getInstance()
+	public static BuildingReport getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (Building.class)
+			synchronized (BuildingReport.class)
 			{
 				if (instance == null)
 				{
-					instance = new Building();
+					instance = new BuildingReport();
 				}
 			}
 		}

@@ -38,7 +38,7 @@ public class UtilDataTableWithOutcropTest
 		Probe dataTable = new Probe();
 		dataTable.addSample(new Sample(new HashMap<>()
 		{{
-			put(SampleKey.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), Outcrop.GOB.toString());
 		}}));
 		dataTable.addSample(new Sample(new HashMap<>()
 		{{
@@ -60,7 +60,7 @@ public class UtilDataTableWithOutcropTest
 		Probe dataTable = new Probe();
 		dataTable.addSample(new Sample(new HashMap<>()
 		{{
-			put(SampleKey.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), Outcrop.GOB.toString());
 		}}));
 		dataTable.addSample(new Sample(new HashMap<>()
 		{{
@@ -82,7 +82,7 @@ public class UtilDataTableWithOutcropTest
 		Probe dataTableOne = new Probe();
 		dataTableOne.addSample(new Sample(new HashMap<>()
 		{{
-			put(SampleKey.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), Outcrop.GOB.toString());
 		}}));
 		dataTableOne.addSample(new Sample(new HashMap<>()
 		{{
@@ -92,7 +92,7 @@ public class UtilDataTableWithOutcropTest
 		Probe dataTableTwo = new Probe();
 		dataTableTwo.addSample(new Sample(new HashMap<>()
 		{{
-			put(SampleKey.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), Outcrop.GOB.toString());
 		}}));
 		dataTableTwo.addSample(new Sample(new HashMap<>()
 		{{
@@ -106,7 +106,7 @@ public class UtilDataTableWithOutcropTest
 		Probe dataTableThree = new Probe();
 		dataTableThree.addSample(new Sample(new HashMap<>()
 		{{
-			put(SampleKey.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), Outcrop.GOB.toString());
 		}}));
 		dataTableThree.addSample(new Sample(new HashMap<>()
 		{{
@@ -135,7 +135,7 @@ public class UtilDataTableWithOutcropTest
 		Probe dataTableOne = new Probe();
 		dataTableOne.addSample(new Sample(new HashMap<>()
 		{{
-			put(SampleKey.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), Outcrop.GOB.toString());
 		}}));
 		dataTableOne.addSample(new Sample(new HashMap<>()
 		{{
@@ -145,7 +145,7 @@ public class UtilDataTableWithOutcropTest
 		Probe dataTableTwo = new Probe();
 		dataTableTwo.addSample(new Sample(new HashMap<>()
 		{{
-			put(SampleKey.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), Outcrop.GOB.toString());
 		}}));
 		dataTableTwo.addSample(new Sample(new HashMap<>()
 		{{
@@ -159,7 +159,7 @@ public class UtilDataTableWithOutcropTest
 		Probe dataTableThree = new Probe();
 		dataTableThree.addSample(new Sample(new HashMap<>()
 		{{
-			put(SampleKey.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), Outcrop.GOB.toString());
 		}}));
 		dataTableThree.addSample(new Sample(new HashMap<>()
 		{{
@@ -188,7 +188,7 @@ public class UtilDataTableWithOutcropTest
 		Probe dataTableOne = new Probe();
 		dataTableOne.addSample(new Sample(new HashMap<>()
 		{{
-			put(SampleKey.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), Outcrop.GOB.toString());
 		}}));
 		dataTableOne.addSample(new Sample(new HashMap<>()
 		{{
@@ -198,7 +198,7 @@ public class UtilDataTableWithOutcropTest
 		Probe dataTableTwo = new Probe();
 		dataTableTwo.addSample(new Sample(new HashMap<>()
 		{{
-			put(SampleKey.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), Outcrop.GOB.toString());
 		}}));
 		dataTableTwo.addSample(new Sample(new HashMap<>()
 		{{
@@ -212,7 +212,7 @@ public class UtilDataTableWithOutcropTest
 		Probe dataTableThree = new Probe();
 		dataTableThree.addSample(new Sample(new HashMap<>()
 		{{
-			put(SampleKey.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), Outcrop.GOB.toString());
 		}}));
 		dataTableThree.addSample(new Sample(new HashMap<>()
 		{{
@@ -241,7 +241,7 @@ public class UtilDataTableWithOutcropTest
 		Probe dataTableOne = new Probe();
 		dataTableOne.addSample(new Sample(new HashMap<>()
 		{{
-			put(SampleKey.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), Outcrop.GOB.toString());
 		}}));
 		dataTableOne.addSample(new Sample(new HashMap<>()
 		{{
@@ -251,7 +251,7 @@ public class UtilDataTableWithOutcropTest
 		Probe dataTableTwo = new Probe();
 		dataTableTwo.addSample(new Sample(new HashMap<>()
 		{{
-			put(SampleKey.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), Outcrop.GOB.toString());
 		}}));
 		dataTableTwo.addSample(new Sample(new HashMap<>()
 		{{
@@ -265,7 +265,7 @@ public class UtilDataTableWithOutcropTest
 		Probe dataTableThree = new Probe();
 		dataTableThree.addSample(new Sample(new HashMap<>()
 		{{
-			put(SampleKey.OUTCROP.getKey(), "GOB");
+			put(SampleKey.OUTCROP.getKey(), Outcrop.GOB.toString());
 		}}));
 		dataTableThree.addSample(new Sample(new HashMap<>()
 		{{

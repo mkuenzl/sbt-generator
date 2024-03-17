@@ -23,7 +23,8 @@ import java.util.List;
 /**
  * Abstract class for all report tables inherits from AHtmlTable
  */
-public abstract class Report implements HtmlTemplate
+public abstract class AbstractReport
+		implements HtmlTemplate
 {
 	protected final Outcrop outcrop;
 	protected final StringBuilder template;
@@ -31,7 +32,7 @@ public abstract class Report implements HtmlTemplate
 	protected HtmlTable table;
 	
 	
-	public Report()
+	public AbstractReport()
 	{
 		this.template = new StringBuilder();
 		this.outcrop = null;
@@ -52,7 +53,7 @@ public abstract class Report implements HtmlTemplate
 				.build();
 	}
 	
-	public Report(Outcrop outcrop)
+	public AbstractReport(Outcrop outcrop)
 	{
 		this.template = new StringBuilder();
 		this.outcrop = outcrop;

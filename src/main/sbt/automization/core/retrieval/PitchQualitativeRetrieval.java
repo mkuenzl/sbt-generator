@@ -10,19 +10,6 @@ public class PitchQualitativeRetrieval extends DatatableInformationRetrieval
 	{
 		super(ProbeKey.PITCH_QUALITATIVE);
 	}
-
-//	@Override
-//	HtmlRow createRow()
-//	{
-//		HtmlRow row = HtmlFactory.createRow(styleParameter.getRowClass(), new HtmlCell[]{
-//				HtmlFactory.createCell(styleParameter.getHeaderCellClass(), styleParameter.getHeaderCellWidth(),
-//						new String[]{"Pechnachweis",
-//								UtilityPrinter.printLineBreak(),
-//								"qualitativ"})
-//		});
-//
-//		return row;
-//	}
 	
 	@Override
 	String retrieveFrom(Sample sample)

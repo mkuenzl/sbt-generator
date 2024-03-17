@@ -13,27 +13,27 @@ import sbt.automization.core.templates.construction.strategies.CellPerProbe;
 import java.util.Collection;
 import java.util.List;
 
-public final class Concrete extends Report
+public final class TopsoilReport
+		extends AbstractReport
 {
-	
-	private static Concrete instance;
+	private static TopsoilReport instance;
 	private final RowFactory provider;
 	
-	private Concrete()
+	private TopsoilReport()
 	{
-		super(Outcrop.CONCRETE);
-		provider = new RowFactory(Outcrop.CONCRETE);
+		super(Outcrop.OH);
+		provider = new RowFactory(Outcrop.OH);
 	}
 	
-	public static Concrete getInstance()
+	public static TopsoilReport getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (Concrete.class)
+			synchronized (TopsoilReport.class)
 			{
 				if (instance == null)
 				{
-					instance = new Concrete();
+					instance = new TopsoilReport();
 				}
 			}
 		}
@@ -43,7 +43,7 @@ public final class Concrete extends Report
 	@Override
 	public String getExportFileName()
 	{
-		return "BETON-Report";
+		return "OH-Report";
 	}
 	
 	@Override
@@ -53,7 +53,6 @@ public final class Concrete extends Report
 		for (List<DataTable> portion : tablesSplitIntoPortions)
 		{
 			buildTable(portion);
-			
 			addTable();
 			addPageBreak();
 		}
@@ -66,11 +65,10 @@ public final class Concrete extends Report
 		provider.setCellStrategy(new CellPerProbe());
 		
 		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}), new IdRetrieval()));
-		addToTable(provider.getRow(header.createCell(new String[]{"Aufschlussart"}), new SuperstructureExposureRetrieval()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Aufschlussart"}), new GroundExposureRetrieval()));
 		
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
-		
 		addLegendRow(dataTables);
 	}
 	
@@ -79,8 +77,10 @@ public final class Concrete extends Report
 	{
 		addTechnicalHeader(dataTables);
 		
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Material"}), new MaterialRetrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Druckfestigkeit,"}, "N/mm²"), new CompressiveStrengthRetrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Bodengruppe,"}, "DIN 18196<sup>[22]</sup>"), new DIN18196Retrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Bodengruppe,"}, "DIN 18915<sup>[37]</sup>"), new DIN18915Retrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Homogenbereich,"}, "DIN 18320:2019-09<sup>[34]</sup>"), new DIN18300_09Retrieval()));
+
 	}
 	
 	@Override
@@ -94,11 +94,10 @@ public final class Concrete extends Report
 		HtmlCell chemistryMufvHeader = header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"},
 				"Schreiben des MUFV<sup>[18]</sup>"  + UtilityPrinter.printLineBreak() + "bis 31.07.2023");
 		addToTable(provider.getRowWithDataCheck(chemistryMufvHeader, new ChemistryMufvRetrieval()));
-		
 		// added 01.07.2023
-		HtmlCell chemistryMufv0823Header = header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"},
+		HtmlCell chemistryMkuemHeader = header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"},
 				"Schreiben des MKUEM<sup>[18]</sup>" + UtilityPrinter.printLineBreak() + "ab 01.08.2023");
-		addToTable(provider.getRowWithDataCheck(chemistryMufv0823Header, new ChemistryMkuemRetrieval()));
+		addToTable(provider.getRowWithDataCheck(chemistryMkuemHeader, new ChemistryMkuemRetrieval()));
 		HtmlCell chemistryLfsHeader = header.createCell(new String[]{"Vollzugshinweise,"}, "LFS");
 		addToTable(provider.getRowWithDataCheck(chemistryLfsHeader, new ChemistryLfsRetrieval()));
 		// added 01.07.2023

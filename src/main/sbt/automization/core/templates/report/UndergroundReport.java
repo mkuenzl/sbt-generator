@@ -13,26 +13,31 @@ import sbt.automization.core.templates.construction.strategies.CellPerProbe;
 import java.util.Collection;
 import java.util.List;
 
-public final class Topsoil extends Report
+/**
+ * Represent the Table Data Structure for the "UG-Report"
+ */
+public final class UndergroundReport
+        extends AbstractReport
 {
-	private static Topsoil instance;
+	private static UndergroundReport instance;
+	
 	private final RowFactory provider;
 	
-	private Topsoil()
+	private UndergroundReport()
 	{
-		super(Outcrop.OH);
-		provider = new RowFactory(Outcrop.OH);
+		super(Outcrop.UG);
+		provider = new RowFactory(Outcrop.UG);
 	}
 	
-	public static Topsoil getInstance()
+	public static UndergroundReport getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (Topsoil.class)
+			synchronized (UndergroundReport.class)
 			{
 				if (instance == null)
 				{
-					instance = new Topsoil();
+					instance = new UndergroundReport();
 				}
 			}
 		}
@@ -42,7 +47,7 @@ public final class Topsoil extends Report
 	@Override
 	public String getExportFileName()
 	{
-		return "OH-Report";
+		return "UG-Report";
 	}
 	
 	@Override
@@ -65,9 +70,13 @@ public final class Topsoil extends Report
 		
 		addToTable(provider.getRow(header.createCell(new String[]{"Erkundungsstelle"}), new IdRetrieval()));
 		addToTable(provider.getRow(header.createCell(new String[]{"Aufschlussart"}), new GroundExposureRetrieval()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Dicke,"}, "cm"), new SizeRetrieval()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Gesamtdicke,"}, "cm"), new SizeTotalRetrieval()));
+		addToTable(provider.getRow(header.createCell(new String[]{"Zieltiefe,"}, "cm"), new TargetDepthRetrieval()));
 		
 		constructTechnicalFeatures(dataTables);
 		constructEnvironmentTechnicalFeatures(dataTables);
+		
 		addLegendRow(dataTables);
 	}
 	
@@ -77,9 +86,17 @@ public final class Topsoil extends Report
 		addTechnicalHeader(dataTables);
 		
 		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Bodengruppe,"}, "DIN 18196<sup>[22]</sup>"), new DIN18196Retrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Bodengruppe,"}, "DIN 18915<sup>[37]</sup>"), new DIN18915Retrieval()));
-		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Homogenbereich,"}, "DIN 18320:2019-09<sup>[34]</sup>"), new DIN18300_09Retrieval()));
-
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Bodenklasse,"}, "DIN 18300<sup>[23]</sup>"), new DIN18300Retrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Bodenarten-", UtilityPrinter.printLineBreak(), "hauptgruppe,"}, "DIN 19682-2<sup>[24]</sup>"), new DIN19682Retrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Homogenbereich,"}, "DIN 18300:2019-09" +
+				"<sup>[34]</sup>"), new DIN18300_09Retrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Frostempfindlichkeits-", UtilityPrinter.printLineBreak(), "klasse,"}, "ZTV E<sup>[2]</sup>"), new ZTVRetrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Wassergehalt,"}, "M.-%"), new WaterContentRetrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Feuchtezustand"}), new MoistureRetrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Konsistenz"}), new ConsistencyRetrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Verdichtungsfähigkeit"}), new CompressibilityRetrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Tragfähigkeit Planum"}, "Soll: E<sub>V2</sub> >= 45 MN/m²".concat(UtilityPrinter.printLineBreak()).concat("Ansatz Planum: FOK -60cm")), new WearPlanumRetrieval()));
+		addToTable(provider.getRowWithDataCheck(header.createCell(new String[]{"Tragfähigkeit Grabensohle"}, "Ansatz Sohle"), new WearSoleRetrieval()));
 	}
 	
 	@Override
@@ -100,6 +117,7 @@ public final class Topsoil extends Report
 		addToTable(provider.getRowWithDataCheck(chemistryMkuemHeader, new ChemistryMkuemRetrieval()));
 		HtmlCell chemistryLfsHeader = header.createCell(new String[]{"Vollzugshinweise,"}, "LFS");
 		addToTable(provider.getRowWithDataCheck(chemistryLfsHeader, new ChemistryLfsRetrieval()));
+		
 		// added 01.07.2023
 		HtmlCell chemistryEbvSoilHeader = header.createCell(new String[]{"Materialklasse,"}, "EBV Boden<sup>[50]</sup>");
 		addToTable(provider.getRowWithDataCheck(chemistryEbvSoilHeader, new ChemistryEbvSoil()));
@@ -143,7 +161,9 @@ public final class Topsoil extends Report
 						.appendAttribute("width", String.valueOf(size))
 						.appendContent("Anmerkungen:")
 						.appendContent(UtilityPrinter.printLineBreak())
-						.appendContent("Für die angegebenen Tiefen [] gilt die Einheit cm.")
+						.appendContent("Für die angegebenen Tiefen [] gilt die Einheit cm. ")
+						.appendContent("Die Einstufung der Verdichtungsfähigkeit erfolgt unter Berücksichtigung der Bodenfeuchtigkeit und der Konsistenz\n" +
+								"des Materials zum Erkundungszeitpunkt.")
 						.build()
 						.appendTag())
 				.build();
