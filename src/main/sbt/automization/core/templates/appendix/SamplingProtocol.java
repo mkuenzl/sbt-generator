@@ -160,47 +160,34 @@ public final class SamplingProtocol
      */
     public List<Sample> formatSamples(List<Sample> samples)
     {
-        List<Sample> formattedSamples = new ArrayList<>();
-        for (Sample sample : samples)
+        final List<Sample> formattedSamples = new ArrayList<>();
+        for (final Sample sample : samples)
         {
             formattedSamples.add(DataTableFactory.createSampleFrom(sample.getTable()));
         }
-
-        int size = formattedSamples.size();
-
-        if (size > 2)
+        final int samplesAmount = formattedSamples.size();
+        // Wenn es mehr als 2 Proben gibt.
+        if (samplesAmount > 2)
         {
             for (int i = 0; i < formattedSamples.size(); i++)
             {
-                // HIER WIRD VERSUCHT GOB PROBEN ZUSAMMENZUFASSEN
-                // ES WIRD DAVON AUSGEGANGEN DASS DIESE DIREKT UNTER EINANDER STEHEN
-                // ES WIRD DABEI DIE START-TIEFER DER NÄCHSTEN DURCH DIE AKTUELLE ERSETZT ? WARUM?
-
-                // PROBLEM!!!
-                // DER ERSTEN GOB PROBE IST ES EGAL, WELCHEN AUFSCHLUSS DIE NÄCHSTE HAT.
-                // HAUPTSACHE ABFALLART PASST. MIT CHRISTIAN KLÄREN.
-                Sample currentSample = formattedSamples.get(i);
-                final String currentSampleOutCrop = currentSample.get(SampleKey.OUTCROP);
-                final boolean isGOBSample = Outcrop.GOB.toString()
-                                                  .equals(currentSampleOutCrop);
-                // WENN PROBE GOB ALS AUFSCHLUSS HAT
-                if (isGOBSample)
+                final Sample currentSample = formattedSamples.get(i);
+                // Wenn die aktuelle Probe "GOB" als Aufschluss hat.
+                if (isGOBOutcrop(currentSample))
                 {
                     final boolean isLastIndex = formattedSamples.size() <= i + 1;
                     if (isLastIndex)
                     {
                         break;
                     }
-                    final String ownWasteType = currentSample.get(SampleKey.WASTE_TYPE);
                     final Sample nextSample = formattedSamples.get(i + 1);
-                    final String nextSampleWasteType = nextSample.get(SampleKey.WASTE_TYPE);
-                    // NÄCHSTE PROBE DARF VON EGAL WELCHER AUFSCHLUSSART SEIN, HAUPTSACHE GLEICHE ABFALLART?
-                    if (ownWasteType.equals(nextSampleWasteType))
+                    // Und wenn die nächste Probe "GOB" als Aufschluss hat, werden diese zusammengefasst.
+                    if (isGOBOutcrop(nextSample))
                     {
-                        // dann überschreibe des Nächsten Starttiefe mit der eigenen Starttiefe?
+                        // Probe wird zusammengefasst:
+                        // Dabei erhält die nächste Probe die Starttiefe der aktuellen Probe.
                         final String currentSampleDepthStart = currentSample.get(SampleKey.DEPTH_START);
                         nextSample.put(SampleKey.DEPTH_START, currentSampleDepthStart);
-                        // Und überschreibe den Granulations-Wert mit NIX???
                         nextSample.put(SampleKey.GRANULATION, "");
                         // dann GOB-Probe fott.
                         formattedSamples.remove(currentSample);
@@ -253,6 +240,16 @@ public final class SamplingProtocol
                 .append(secondRow);
 
         return stringBuilder.toString();
+    }
+
+    /**
+     * @return Ob die Probe die Aufschlussart "GOB" hat.
+     */
+    private boolean isGOBOutcrop(Sample sample)
+    {
+        final String currentSampleOutCrop = sample.get(SampleKey.OUTCROP);
+        return Outcrop.GOB.toString()
+                          .equals(currentSampleOutCrop);
     }
 
 }

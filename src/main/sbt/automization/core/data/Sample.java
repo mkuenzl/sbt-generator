@@ -114,6 +114,6 @@ public final class Sample extends AbstractDataTable
 	@Override
 	public String toString()
 	{
-		return String.format("%s %s %s",get(SampleKey.PROBE_ID),get(SampleKey.OUTCROP),get(SampleKey.WASTE_TYPE));
+		return String.format("%s %s %s [%s - %s]",get(SampleKey.PROBE_ID),get(SampleKey.OUTCROP),get(SampleKey.WASTE_TYPE),get(SampleKey.DEPTH_START),get(SampleKey.DEPTH_END));
 	}
 }
