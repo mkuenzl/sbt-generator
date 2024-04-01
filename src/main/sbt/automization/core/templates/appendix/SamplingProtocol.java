@@ -53,23 +53,15 @@ public final class SamplingProtocol
             if (dataTable instanceof Probe)
             {
                 Probe probe = (Probe) dataTable;
-
-                // DIE FORMAT SAMPLES METHODE
-                // FASST PROBEN ZUSAMMEN, SODASS HIER WENIGER PROBEN ANKOMMEN.
-                // PROBLEM:
-                // ES PASSIERT, DASS HIER GOB PROBEN ZUSAMMENGEFÜHRT WURDEN
-                // ABER ALS EP ERSCHEINEN ???
                 List<Sample> samples = formatSamples(probe.getSamples());
-
                 for (Sample sample : samples)
                 {
                     addAndResetTableOnPageBreak();
-
-                    final String sampleNumber = "P".concat(String.valueOf(++lines));
+                    ++lines;
 
                     String row = HtmlFactory.createRowAsString("NormalThin8", new String[]{
                             HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
-                                                           new String[]{sampleNumber}),
+                                                           new String[]{sample.get(SampleKey.SAMPLE_NUMBER)}),
                             // PROBLEM:
                             // ALLES, BEI DEM KEIN "BEHAELTNIS" ANGEGEBEN IST, GILT ALS EP?
                             // IST DAS SO???

@@ -41,7 +41,7 @@ public enum InfoTexts
                  "\n" +
                  "\n7. Klicken Sie auf den Button \"BUILD\"" +
                  "\n    Die Tabellen erscheinen nun als HTML Dateien in dem Ordner Ihrer ausgewählten Datei."),
-    V_2_1_1(new ReleaseNoteBuilder("2.1.1")
+    V_2_1_2(new ReleaseNoteBuilder("2.1.2")
                     .addReleaseNote(
                             "Neuer Release-Info Button, der die aktuelle Release Version angibt und per Mausklick die" +
                                     " Neuerungen auflistet.")

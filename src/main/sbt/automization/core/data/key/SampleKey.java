@@ -41,6 +41,7 @@ public enum SampleKey implements Key
 	CLASS("TYPE"),
 	CHEMISTRY_ID("CHEMISTRY.ID"),
 	RUK_ID("RUK.ID"),
+	SAMPLE_NUMBER("NUMBER"),
 	PROBE_ID("PROBE.ID"),
 	LP_ID("LP.ID");
 
