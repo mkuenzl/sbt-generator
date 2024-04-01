@@ -1,6 +1,7 @@
 package sbt.automization.core.data;
 
 import sbt.automization.core.data.key.Key;
+import sbt.automization.core.data.key.ProbeKey;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -142,5 +143,11 @@ public final class Probe extends AbstractDataTable
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public String toString()
+	{
+		return String.format("%s",get(ProbeKey.ID));
 	}
 }

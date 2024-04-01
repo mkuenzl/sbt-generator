@@ -10,7 +10,7 @@ public class AreaRetrieval extends DatatableInformationRetrieval
 {
 	public AreaRetrieval()
 	{
-		super(SampleKey.NUMBER);
+		super(SampleKey.SAMPLE_NUMBER);
 	}
 
 //	@Override
@@ -29,7 +29,7 @@ public class AreaRetrieval extends DatatableInformationRetrieval
 	{
 		Probe probe = sample.getProbe();
 		
-		String concat = probe.get(ProbeKey.NUMBER).concat(".").concat(sample.get(SampleKey.NUMBER));
+		String concat = probe.get(ProbeKey.NUMBER).concat(".").concat(sample.get(SampleKey.SAMPLE_NUMBER));
 		
 		return concat;
 	}
