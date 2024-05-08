@@ -56,23 +56,11 @@ public final class DataTableFactory
         for (Map<String, String> csvRow : csvTable)
         {
             Probe probe = createProbeFrom(csvRow);
-            if (!probe.isEmpty() && !probeAlreadyCaptured(probe))
+            if (!probe.isEmpty() && !isTableInList(probe))
             {
                 probes.add(probe);
             }
         }
-    }
-
-    private static boolean probeAlreadyCaptured(Probe probe)
-    {
-        for (Probe probe1 : probes)
-        {
-            if (probe1.get(ProbeKey.ID).equals(probe.get(ProbeKey.ID)))
-            {
-				return true;
-            }
-        }
-        return false;
     }
 
     public static Probe createProbeFrom(Map<String, String> csvRow)
@@ -199,7 +187,6 @@ public final class DataTableFactory
     private static List<Parameter> createParameterFrom(Map<String, String> csvRow)
     {
         List<Parameter> parameter = new ArrayList<>();
-
         parameter.add(createParameterFrom(csvRow, "PARAMETER.LP."));
         parameter.add(createParameterFrom(csvRow, "PARAMETER.CHEMISTRY."));
         parameter.add(createParameterFrom(csvRow, "PARAMETER.RUK."));

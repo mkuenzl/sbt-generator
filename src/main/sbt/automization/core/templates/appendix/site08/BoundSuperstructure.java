@@ -35,7 +35,7 @@ public final class BoundSuperstructure extends Appendix
 	}
 	
 	@Override
-	public void constructTemplate(DataTable dataTable)
+	public void constructTemplate(DataTable dataTable) throws NumberFormatException
 	{
 		setOutcrop(dataTable);
 		createTableWithHeader();
@@ -51,7 +51,7 @@ public final class BoundSuperstructure extends Appendix
 							Outcrop.COATING.toString()
 					});
 			
-			samplesOfOutcrop.sort(Comparator.comparing(a -> Integer.parseInt(a.get(SampleKey.SAMPLE_NUMBER))));
+			samplesOfOutcrop.sort(Comparator.comparing(a -> Integer.parseInt(a.get(SampleKey.NUMBER))));
 			
 			for (Sample sample : samplesOfOutcrop)
 			{

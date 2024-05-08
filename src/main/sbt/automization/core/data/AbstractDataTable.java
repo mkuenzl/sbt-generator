@@ -39,25 +39,7 @@ public abstract class AbstractDataTable
 	{
 		return this.informationMap.get(key.getKey());
 	}
-	
-	@Override
-	public String get(String key)
-	{
-		return this.informationMap.get(key);
-	}
-	
-	@Override
-	public String getAsString(Key key)
-	{
-		return get(key);
-	}
-	
-	@Override
-	public String getAsString(String key)
-	{
-		return get(key);
-	}
-	
+
 	@Override
 	public Integer getAsInteger(Key key)
 	{
@@ -70,29 +52,7 @@ public abstract class AbstractDataTable
 	}
 	
 	@Override
-	public Integer getAsInteger(String key)
-	{
-		String value = get(key);
-		if (isNumeric(value))
-		{
-			return Integer.parseInt(value);
-		}
-		return null;
-	}
-	
-	@Override
 	public Double getAsDouble(Key key)
-	{
-		String value = get(key).replace(",", ".");
-		if (isNumeric(value))
-		{
-			return Double.parseDouble(value);
-		}
-		return null;
-	}
-	
-	@Override
-	public Double getAsDouble(String key)
 	{
 		String value = get(key).replace(",", ".");
 		if (isNumeric(value))
@@ -118,12 +78,6 @@ public abstract class AbstractDataTable
 	public boolean containsReference(Key key)
 	{
 		return informationMap.containsKey(key.getKey());
-	}
-	
-	@Override
-	public boolean containsReference(String key)
-	{
-		return informationMap.containsKey(key);
 	}
 	
 	public boolean contains(String value)
@@ -184,11 +138,6 @@ public abstract class AbstractDataTable
 	public String getParameterValueBy(Key parameterID, Key valueID)
 	{
 		return "";
-	}
-	
-	public Parameter getParameterBy(final Key key)
-	{
-		return new Parameter();
 	}
 	
 	private boolean isNumeric(String str)

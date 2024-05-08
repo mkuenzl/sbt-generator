@@ -72,18 +72,6 @@ public final class Sample extends AbstractDataTable
 	}
 	
 	@Override
-	public Parameter getParameterBy(Key keyID)
-	{
-		for (Parameter par : parameters)
-		{
-			String value = this.get(keyID);
-			if (par.contains(value)) return par;
-		}
-		
-		return null;
-	}
-	
-	@Override
 	public String getParameterValueBy(Key parameterID, Key valueID)
 	{
 		for (Parameter parameter : parameters)

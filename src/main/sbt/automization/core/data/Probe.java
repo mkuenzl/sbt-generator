@@ -78,12 +78,6 @@ public final class Probe extends AbstractDataTable
 	}
 	
 	@Override
-	public Parameter getParameterBy(final Key key)
-	{
-		return null;
-	}
-	
-	@Override
 	public String getParameterValueBy(Key parameterID, Key valueID)
 	{
 		return "";
