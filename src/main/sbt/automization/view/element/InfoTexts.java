@@ -60,7 +60,14 @@ public enum InfoTexts
                     .addReleaseNote("Die Datenbank-template verrechnet nun nur noch bei aufeinanderfolgenden GOB-Proben die Starttiefe und Endtiefe.")
                     .addReleaseNote("Haufwerk Volumen zu Probenberechnung funktioniert wieder.")
                     .addReleaseNote("MUFV-Berichte tauchen nur auf, wenn MUFV-Werte hinterlegt sind.")
-                    .buildReleaseNote());
+                    .buildReleaseNote()),
+
+    V_2_1_3(new ReleaseNoteBuilder("2.1.3")
+                    .addReleaseNote("Probennummern Generierung mittels PowerQuery. Neue Spalte im 'Daten' Worksheet. (Wird in PN-Anlage verwendet)")
+                    .addReleaseNote("Neue Spalte 'Probenart' in 'Probe ERK' Worksheet. (Wird in PN-Anlage verwendet)")
+                    .addReleaseNote("'ab 01.08.2023' aus MKUEM Angabe entfernt.")
+                    .addReleaseNote("Pechnachweise gehen nun bis x100 (Man weiß ja nie)")
+                    .buildReleaseNote() +"\n"+ V_2_1_2.getInfoText());
 
 
     private final String infoText;

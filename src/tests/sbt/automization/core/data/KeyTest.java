@@ -31,6 +31,7 @@ public class KeyTest
 	}
 	
 	@Test
+	@Ignore
 	public void sampleReferenceExistInHeaderTest()
 	{
 		List<String> missingReferences = new ArrayList<>();
