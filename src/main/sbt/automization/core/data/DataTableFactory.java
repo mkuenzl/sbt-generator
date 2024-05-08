@@ -56,14 +56,24 @@ public final class DataTableFactory
         for (Map<String, String> csvRow : csvTable)
         {
             Probe probe = createProbeFrom(csvRow);
-            if (!probe.isEmpty() && !isTableInList(probe))
+            if (!probe.isEmpty() && !probeAlreadyCaptured(probe))
             {
                 probes.add(probe);
             }
         }
     }
 
-    public static Probe createProbeFrom(Map<String, String> csvRow)
+    private static boolean probeAlreadyCaptured(Probe probe)
+    {
+        for (Probe probe1 : probes)
+        {
+            if (probe1.get(ProbeKey.ID).equals(probe.get(ProbeKey.ID)))
+            {
+				return true;
+            }
+        }
+        return false;
+    }public static Probe createProbeFrom(Map<String, String> csvRow)
     {
         // PROBE.
         Map<String, String> informationMap = createMapBasedOnIdentifier(csvRow, "PROBE.");
@@ -267,5 +277,4 @@ public final class DataTableFactory
     {
         return parameters;
     }
-
 }
