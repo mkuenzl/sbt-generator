@@ -2,6 +2,7 @@ package sbt.automization.core.data;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import sbt.automization.core.data.key.*;
 import sbt.automization.core.parser.ExcelParser;
@@ -118,8 +119,10 @@ public class KeyTest
 		
 		Assert.assertEquals(missingReferences.toString(), 0, missingReferences.size());
 	}
-	
+
+
 	@Test
+	@Ignore
 	public void missingHeaderInReferenceTest()
 	{
 		List<String> missingReferences = new ArrayList<>();

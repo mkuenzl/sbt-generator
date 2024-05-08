@@ -97,7 +97,7 @@ public final class BaseCourseWithHydraulicBinderReport
 		
 		// added 01.07.2023
 		HtmlCell chemistryMufv0823Header = header.createCell(new String[]{"Abgrenzung Gefährlichkeit,"},
-				"Schreiben des MKUEM<sup>[18]</sup>" + UtilityPrinter.printLineBreak() + "ab 01.08.2023");
+				"Schreiben des MKUEM<sup>[18]</sup>" + UtilityPrinter.printLineBreak());
 		addToTable(provider.getRowWithDataCheck(chemistryMufv0823Header, new ChemistryMkuemRetrieval()));
 		HtmlCell chemistryLfsHeader = header.createCell(new String[]{"Vollzugshinweise,"}, "LFS");
 		addToTable(provider.getRowWithDataCheck(chemistryLfsHeader, new ChemistryLfsRetrieval()));
