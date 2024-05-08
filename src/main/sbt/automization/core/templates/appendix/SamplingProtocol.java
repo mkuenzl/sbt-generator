@@ -6,7 +6,6 @@ import sbt.automization.core.data.key.SampleKey;
 import sbt.automization.core.format.printer.UtilityPrinter;
 import sbt.automization.core.format.text.DepthTextFormatter;
 import sbt.automization.core.format.text.LineBreakTextFormatter;
-import sbt.automization.core.format.text.SampleTypeTextFormatter;
 import sbt.automization.core.html.HtmlFactory;
 
 import java.util.ArrayList;
@@ -66,8 +65,7 @@ public final class SamplingProtocol
                             // ALLES, BEI DEM KEIN "BEHAELTNIS" ANGEGEBEN IST, GILT ALS EP?
                             // IST DAS SO???
                             HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
-                                                           new String[]{new SampleTypeTextFormatter().format(sample.get(
-                                                                   SampleKey.CONTAINER))}),
+                                                           new String[]{sample.get(SampleKey.SAMPLE_TYPE)}),
                             HtmlFactory.createCellAsString(textFormatter, "Normal",
                                                            new String[]{sample.get(SampleKey.CONTAINER)}),
                             HtmlFactory.createCellAsString(textFormatter, "NormalCenter",
