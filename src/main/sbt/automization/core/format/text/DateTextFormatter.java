@@ -39,7 +39,8 @@ public final class DateTextFormatter extends AbstractTextFormatter
 		Date date = null;
 		try
 		{
-			date = new SimpleDateFormat("dd.MM.yyyy").parse(text);
+			date = new SimpleDateFormat("dd.MM.yy").parse(text);
+			return new SimpleDateFormat("dd.MM.yyyy").format(date);
 			
 		} catch (ParseException e)
 		{
@@ -47,7 +48,7 @@ public final class DateTextFormatter extends AbstractTextFormatter
 			e.printStackTrace();
 		}
 
-		return new SimpleDateFormat("dd.MM.yyyy").format(date);
+		return "Date Parsing Error";
 	}
 }
 
