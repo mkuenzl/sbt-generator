@@ -129,7 +129,7 @@ public class Layout
 		components.add(infoButton);
 
 		//INFO.
-		JButton releaseVersionInfo = new InfoButton(GUI.RELEASE_VERSION+" Info", positions.get("ReleaseVersion"), InfoTexts.V_2_1_3, false);
+		JButton releaseVersionInfo = new InfoButton(GUI.RELEASE_VERSION+" Info", positions.get("ReleaseVersion"), InfoTexts.V_2_1_4, false);
 		components.add(releaseVersionInfo);
 		
 		//FileDropDowns

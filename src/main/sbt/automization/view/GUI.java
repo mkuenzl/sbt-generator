@@ -7,7 +7,7 @@ import java.awt.*;
 public class GUI
         extends JFrame
 {
-    public static final String RELEASE_VERSION = "V.2.1.3";
+    public static final String RELEASE_VERSION = "V.2.1.4";
 
     public GUI()
     {

@@ -67,7 +67,14 @@ public enum InfoTexts
                     .addReleaseNote("Neue Spalte 'Probenart' in 'Probe ERK' Worksheet. (Wird in PN-Anlage verwendet)")
                     .addReleaseNote("'ab 01.08.2023' aus MKUEM Angabe entfernt.")
                     .addReleaseNote("Pechnachweise gehen nun bis x100 (Man weiß ja nie)")
-                    .buildReleaseNote() +"\n"+ V_2_1_2.getInfoText());
+                    .buildReleaseNote() +"\n"+ V_2_1_2.getInfoText()),
+
+    V_2_1_4(new ReleaseNoteBuilder("2.1.4")
+                    .addReleaseNote("Datums Sicherheitsnetz eingebaut. Wenn 2.2.24 reinkommt beispielsweise, soll daraus 02.02.2024 gemacht werden.")
+                    .addReleaseNote("Spaltenreglementierungen in 'Probe GEB' (O) und 'Untersuchung GEB' (E,F,G,J,L) aufgehoben.")
+                    .buildReleaseNote() +
+                    "\n"+ V_2_1_3.getInfoText() +
+                    "\n"+ V_2_1_2.getInfoText());
 
 
     private final String infoText;
